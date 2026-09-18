@@ -1,0 +1,4 @@
+interface:
+  display_name: "Traffic Data Streaming"
+  short_description: "Build secure, replay-safe data pipelines"
+  default_prompt: "Use $traffic-data-streaming to implement or verify the next messaging and storage task."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Traffic Security Engineering"
+  short_description: "Enforce identity, policy, and runtime security"
+  default_prompt: "Use $traffic-security-engineering to implement or verify the next technical security control."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Traffic Optimization Control"
+  short_description: "Build constrained, auditable traffic actions"
+  default_prompt: "Use $traffic-optimization-control to design or verify a safe simulator traffic action."

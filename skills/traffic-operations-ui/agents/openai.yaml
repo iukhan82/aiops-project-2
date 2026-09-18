@@ -1,0 +1,4 @@
+interface:
+  display_name: "Traffic Operations UI"
+  short_description: "Implement the control-room web platform"
+  default_prompt: "Use $traffic-operations-ui to implement the next approved frontend workflow."

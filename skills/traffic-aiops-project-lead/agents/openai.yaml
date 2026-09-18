@@ -1,0 +1,4 @@
+interface:
+  display_name: "Traffic AIOps Project Lead"
+  short_description: "Coordinate scope, delivery, and evidence"
+  default_prompt: "Use $traffic-aiops-project-lead to coordinate the next dependency-ready project task."

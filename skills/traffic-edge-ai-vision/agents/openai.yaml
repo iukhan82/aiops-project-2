@@ -1,0 +1,4 @@
+interface:
+  display_name: "Traffic Edge AI and Vision"
+  short_description: "Build safe, measurable edge inference"
+  default_prompt: "Use $traffic-edge-ai-vision to implement or evaluate the next edge AI task."

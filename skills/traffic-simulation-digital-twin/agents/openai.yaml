@@ -1,0 +1,4 @@
+interface:
+  display_name: "Traffic Simulation Digital Twin"
+  short_description: "Build reproducible traffic simulations"
+  default_prompt: "Use $traffic-simulation-digital-twin to build or test the next traffic scenario and dataset task."

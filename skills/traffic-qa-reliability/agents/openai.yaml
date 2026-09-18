@@ -1,0 +1,4 @@
+interface:
+  display_name: "Traffic QA and Reliability"
+  short_description: "Run independent acceptance and evidence gates"
+  default_prompt: "Use $traffic-qa-reliability to verify the next project capability and record evidence."

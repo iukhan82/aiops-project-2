@@ -1,0 +1,4 @@
+interface:
+  display_name: "Traffic Emergency Response"
+  short_description: "Build safe emergency coordination workflows"
+  default_prompt: "Use $traffic-emergency-response to implement or test the next emergency workflow."

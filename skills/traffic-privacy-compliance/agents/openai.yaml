@@ -1,0 +1,4 @@
+interface:
+  display_name: "Traffic Privacy Compliance"
+  short_description: "Map privacy, risk, and governance evidence"
+  default_prompt: "Use $traffic-privacy-compliance to assess the next privacy, risk, or standards requirement."

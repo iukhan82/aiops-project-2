@@ -1,0 +1,4 @@
+interface:
+  display_name: "Traffic Observability and AIOps"
+  short_description: "Detect failures and verify safe recovery"
+  default_prompt: "Use $traffic-observability-aiops to implement or test the next observability and remediation task."

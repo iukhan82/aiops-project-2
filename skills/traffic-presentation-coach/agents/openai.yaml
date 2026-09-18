@@ -1,0 +1,4 @@
+interface:
+  display_name: "Traffic Presentation Coach"
+  short_description: "Prepare evidence-led oral assessment delivery"
+  default_prompt: "Use $traffic-presentation-coach to prepare or rehearse the next assessment deliverable."

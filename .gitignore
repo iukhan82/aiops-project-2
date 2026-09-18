@@ -1,0 +1,46 @@
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+**/runtime/
+**/secrets/
+
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Node
+node_modules/
+dist/
+coverage/
+test-results/
+playwright-report/
+
+# Runtime and generated data
+*.db
+*.sqlite*
+*.log
+tmp/
+data/generated/
+artifacts/runtime/
+**/models/**/*.onnx
+
+# IDE and OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Confidential assessment sources must remain in the workspace root
+*Exam Topic*.pdf
+*Exam Guide*.pdf
+*Sample Presentation*.pptx

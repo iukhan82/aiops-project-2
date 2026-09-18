@@ -1,0 +1,4 @@
+interface:
+  display_name: "Traffic Backend Platform"
+  short_description: "Build network state, incidents, and APIs"
+  default_prompt: "Use $traffic-backend-platform to build the next central backend capability."

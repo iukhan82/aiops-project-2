@@ -1,0 +1,4 @@
+interface:
+  display_name: "Traffic Architecture Docs"
+  short_description: "Design defensible architecture and diagrams"
+  default_prompt: "Use $traffic-architecture-docs to create or verify the platform architecture evidence."

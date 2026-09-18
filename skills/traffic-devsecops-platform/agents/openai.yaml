@@ -1,0 +1,4 @@
+interface:
+  display_name: "Traffic Devsecops Platform"
+  short_description: "Build secure CI/CD and K3s deployments"
+  default_prompt: "Use $traffic-devsecops-platform to implement or verify the next DevSecOps task."

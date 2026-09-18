@@ -1,0 +1,4 @@
+interface:
+  display_name: "Traffic Operations UI/UX"
+  short_description: "Design safe, accessible operator workflows"
+  default_prompt: "Use $traffic-ui-ux to design or review the next operator workflow."
