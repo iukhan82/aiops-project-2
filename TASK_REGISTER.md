@@ -61,7 +61,7 @@ feasibility are measured, with repeatable local checks.
 |---|---|---|---|---|---|---|---|---|
 | P01.01 | Inventory workstation and target environment | DEVOPS | High | P00.06 | DONE | CPU/RAM/disk/OS/GPU/Python/Node/Git/container/WSL/network facts recorded | `docs/environment/WORKSTATION_INVENTORY.md`; target facts explicitly unknown | 2026-09-18 |
 | P01.02 | Select topology and resource budgets | DEVOPS | High | P01.01 | DONE | Dev, acceptance and proposed production profiles have limits and rationale | `docs/environment/TOPOLOGY.md`; `docs/environment/RESOURCE_BUDGET.md` | 2026-09-18 |
-| P01.03 | Initialize Git, exclusions and branch/review policy | DEVOPS | High | P00.07 | IN_PROGRESS | Initial commit excludes secrets/private sources/runtime data; review rules documented | Acting owner: Codex DEVOPS; repository initialization running | 2026-09-18 |
+| P01.03 | Initialize Git, exclusions and branch/review policy | DEVOPS | High | P00.07 | DONE | Initial commit excludes secrets/private sources/runtime data; review rules documented | Root commit `f775f05160eeb8517488f2089c8083a7588ca6f3`; `docs/environment/GIT_POLICY.md`; ignore and staged-content checks passed | 2026-09-18 |
 | P01.04 | Scaffold Python/Node conventions and dependency locks | DEVOPS | Normal | P01.01 | TODO | Reproducible environments, linters, formatters and test entrypoints run cleanly | - | 2026-09-18 |
 | P01.05 | Build initial DevSecOps workflow | DEVOPS | High | P01.03, P01.04 | TODO | CI runs quality/tests plus secret/dependency/IaC scans with least privileges | - | 2026-09-18 |
 | P01.06 | Prove SUMO and map-tool feasibility | SIM | High | P01.01 | TODO | Headless deterministic run and telemetry extraction execute on supported dev route | - | 2026-09-18 |
@@ -290,6 +290,7 @@ work; the authorized submission is complete and recorded.
 
 ## Change log
 
+- 2026-09-18 - DEVOPS - P01.03 IN_PROGRESS to DONE. Initialized `main`, verified publication exclusions and staged content, documented review policy, and created root commit `f775f05`.
 - 2026-09-18 - DEVOPS - P01.03 TODO to IN_PROGRESS. Started local Git baseline, exclusion review and branch/review policy.
 - 2026-09-18 - DEVOPS - P01.02 IN_PROGRESS to DONE. Selected WSL2/Compose development, native Linux/K3s assessment and proposed multi-zone production profiles; assigned bounded planning budgets and capacity gates.
 - 2026-09-18 - DEVOPS - P01.02 TODO to IN_PROGRESS. Started topology and resource-budget decision from measured inventory.

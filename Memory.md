@@ -23,14 +23,14 @@ Last updated: 2026-09-18 (Asia/Karachi)
 
 ## Current task
 
-P01.03 is IN_PROGRESS under Codex DEVOPS. Local Git baseline and publication-safe
-exclusions are being verified. No project service is assumed active.
+No task is active. P01.01-P01.03 are DONE. Root commit is `f775f05`. No project
+service is assumed active.
 
 ## Exact next action
 
-Start P01.03 and P01.04: initialize Git/review controls and create pinned Python/
-Node conventions with local checks. P01.06 SUMO feasibility is also ready. P01.07
-final target evidence must remain open until a supported Linux target is supplied.
+Start P01.04: create pinned Python/Node conventions with local checks. P01.06 SUMO
+feasibility is also ready. P01.07 final target evidence must remain open until a
+supported Linux target is supplied.
 
 ## Open decisions and required user information
 
