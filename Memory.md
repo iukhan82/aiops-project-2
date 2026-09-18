@@ -23,14 +23,14 @@ Last updated: 2026-09-18 (Asia/Karachi)
 
 ## Current task
 
-No task is active. P01.01-P01.04 are DONE. Python and Node foundation checks pass.
+P01.06 is IN_PROGRESS under Codex SIM. P01.05 is IN_REVIEW: local Python, Node,
+workflow-policy and Trivy checks pass, but no hosted GitHub Actions run exists.
 No project service is assumed active.
 
 ## Exact next action
 
-Start P01.05 initial DevSecOps workflow and P01.06 SUMO feasibility. P01.07 WSL
-feasibility can run locally, but final target evidence remains open until a supported
-Linux target is supplied.
+Complete a pinned headless SUMO feasibility run twice, compare deterministic
+telemetry hashes, record exact commands/results, then begin P01.07 WSL feasibility.
 
 ## Open decisions and required user information
 

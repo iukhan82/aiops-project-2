@@ -1,0 +1,64 @@
+name: project-checks
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: checks-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  python:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: source-code/requirements-lock.txt
+      - run: python -m pip install --disable-pip-version-check -r source-code/requirements-lock.txt
+      - run: python source-code/scripts/check.py
+
+  frontend:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: source-code/frontend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: source-code/frontend/package-lock.json
+      - run: npm ci --ignore-scripts
+      - run: npm run check
+
+  repository-security:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Scan dependencies, configuration and secrets
+        run: >-
+          docker run --rm
+          -v "$PWD:/workspace:ro"
+          aquasec/trivy:0.74.0
+          filesystem
+          --scanners vuln,misconfig,secret
+          --exit-code 1
+          --severity CRITICAL,HIGH
+          --skip-dirs /workspace/.git
+          --skip-dirs /workspace/.venv
+          --skip-dirs /workspace/source-code/frontend/.venv
+          --skip-dirs /workspace/source-code/frontend/node_modules
+          /workspace

@@ -63,8 +63,8 @@ feasibility are measured, with repeatable local checks.
 | P01.02 | Select topology and resource budgets | DEVOPS | High | P01.01 | DONE | Dev, acceptance and proposed production profiles have limits and rationale | `docs/environment/TOPOLOGY.md`; `docs/environment/RESOURCE_BUDGET.md` | 2026-09-18 |
 | P01.03 | Initialize Git, exclusions and branch/review policy | DEVOPS | High | P00.07 | DONE | Initial commit excludes secrets/private sources/runtime data; review rules documented | Root commit `f775f05160eeb8517488f2089c8083a7588ca6f3`; `docs/environment/GIT_POLICY.md`; ignore and staged-content checks passed | 2026-09-18 |
 | P01.04 | Scaffold Python/Node conventions and dependency locks | DEVOPS | Normal | P01.01 | DONE | Reproducible environments, linters, formatters and test entrypoints run cleanly | Python: ruff clean, 2 pytest passed, management validation passed; Node: `npm ci`, TypeScript 7.0.2, Vitest no-tests foundation passed, 0 audit vulnerabilities | 2026-09-18 |
-| P01.05 | Build initial DevSecOps workflow | DEVOPS | High | P01.03, P01.04 | TODO | CI runs quality/tests plus secret/dependency/IaC scans with least privileges | - | 2026-09-18 |
-| P01.06 | Prove SUMO and map-tool feasibility | SIM | High | P01.01 | TODO | Headless deterministic run and telemetry extraction execute on supported dev route | - | 2026-09-18 |
+| P01.05 | Build initial DevSecOps workflow | DEVOPS | High | P01.03, P01.04 | IN_REVIEW | CI runs quality/tests plus secret/dependency/IaC scans with least privileges | `.github/workflows/check.yml`; `workflows/SECURITY_GATES.md`; 4 pytest checks, Ruff and Node checks pass; Trivy 0.74.0 local scan exits 0; first hosted GitHub run remains pending | 2026-09-18 |
+| P01.06 | Prove SUMO and map-tool feasibility | SIM | High | P01.01 | IN_PROGRESS | Headless deterministic run and telemetry extraction execute on supported dev route | Acting owner: Codex SIM; testing a pinned headless SUMO route | 2026-09-18 |
 | P01.07 | Prove container, K3s/MicroK8s and Falco feasibility | DEVOPS | High | P01.01, P01.02 | TODO | Workload reaches Ready and a scoped runtime event is observed on supported Linux | - | 2026-09-18 |
 | P01.08 | Write and verify clean-start developer instructions | DEVOPS | Normal | P01.04-P01.07 | TODO | Another clean environment can install and run the documented smoke check | - | 2026-09-18 |
 
@@ -290,6 +290,9 @@ work; the authorized submission is complete and recorded.
 
 ## Change log
 
+- 2026-09-18 - SIM - P01.06 TODO to IN_PROGRESS. Started pinned headless SUMO and deterministic telemetry feasibility on the WSL/Docker development route.
+- 2026-09-18 - DEVOPS - P01.05 IN_PROGRESS to IN_REVIEW. Added least-privilege Python, Node and Trivy gates; local checks and Trivy 0.74.0 scan pass, while the first hosted GitHub run remains pending.
+- 2026-09-18 - DEVOPS - P01.05 TODO to IN_PROGRESS. Started least-privilege Python, frontend and security CI gates.
 - 2026-09-18 - DEVOPS - P01.04 IN_PROGRESS to DONE. Added exact Python and Node locks, clean check entrypoints and two foundation tests; Python and Node checks pass.
 - 2026-09-18 - DEVOPS - P01.04 TODO to IN_PROGRESS. Started pinned Python/Node tooling, checks and foundation tests.
 - 2026-09-18 - DEVOPS - P01.03 IN_PROGRESS to DONE. Initialized `main`, verified publication exclusions and staged content, documented review policy, and created root commit `f775f05`.
