@@ -1,0 +1,18 @@
+{
+  "name": "traffic-operations-platform",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "engines": {
+    "node": ">=22 <25"
+  },
+  "scripts": {
+    "typecheck": "tsc --version",
+    "test": "vitest run --passWithNoTests",
+    "check": "npm run typecheck && npm run test"
+  },
+  "devDependencies": {
+    "typescript": "7.0.2",
+    "vitest": "5.0.0"
+  }
+}

@@ -27,6 +27,7 @@ VALID_STATUSES = {
     "DEFERRED",
     "CANCELLED",
 }
+IGNORED_PARTS = {".git", ".venv", "node_modules", "dist", "coverage", "tmp"}
 
 
 def task_rows() -> list[list[str]]:
@@ -91,6 +92,8 @@ def validate_skills(errors: list[str]) -> None:
 
 def validate_links(errors: list[str]) -> None:
     for path in ROOT.rglob("*.md"):
+        if IGNORED_PARTS.intersection(path.relative_to(ROOT).parts):
+            continue
         text = path.read_text(encoding="utf-8")
         for match in LINK_PATTERN.finditer(text):
             target = match.group(1)

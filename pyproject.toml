@@ -1,0 +1,12 @@
+[tool.pytest.ini_options]
+testpaths = ["source-code/tests"]
+pythonpath = ["source-code"]
+addopts = "-ra"
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+include = ["source-code/**/*.py"]
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F"]

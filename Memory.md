@@ -23,14 +23,14 @@ Last updated: 2026-09-18 (Asia/Karachi)
 
 ## Current task
 
-No task is active. P01.01-P01.03 are DONE. Root commit is `f775f05`. No project
-service is assumed active.
+No task is active. P01.01-P01.04 are DONE. Python and Node foundation checks pass.
+No project service is assumed active.
 
 ## Exact next action
 
-Start P01.04: create pinned Python/Node conventions with local checks. P01.06 SUMO
-feasibility is also ready. P01.07 final target evidence must remain open until a
-supported Linux target is supplied.
+Start P01.05 initial DevSecOps workflow and P01.06 SUMO feasibility. P01.07 WSL
+feasibility can run locally, but final target evidence remains open until a supported
+Linux target is supplied.
 
 ## Open decisions and required user information
 
