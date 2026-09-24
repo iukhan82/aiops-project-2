@@ -74,6 +74,10 @@ COSIGN_IMAGE = (
     "gcr.io/projectsigstore/cosign:v2.4.1"
     "@sha256:b03690aa52bfe94054187142fba24dc54137650682810633901767d8a3e15b31"
 )
+# Run cosign as the host user (not the image's baked-in nonroot UID) so every
+# file it creates - keys, signatures - is owned by whoever needs to read it
+# back afterwards, both later in this script and in the upload-artifact step.
+COSIGN_USER_ARGS = ["--user", f"{os.getuid()}:{os.getgid()}"]
 TRIVY_IMAGE = "aquasec/trivy:0.74.0"
 
 
@@ -239,6 +243,7 @@ def cosign_ensure_keys() -> None:
             "run",
             "--rm",
             "-i",
+            *COSIGN_USER_ARGS,
             "-e",
             "COSIGN_PASSWORD",
             "-e",
@@ -267,8 +272,7 @@ def cosign_sign_blob(path: Path) -> Path:
             "run",
             "--rm",
             "-i",
-            "--user",
-            f"{os.getuid()}:{os.getgid()}",
+            *COSIGN_USER_ARGS,
             "-e",
             "COSIGN_PASSWORD",
             "-e",
@@ -300,6 +304,7 @@ def cosign_verify_blob(path: Path, sig_path: Path) -> bool:
             "docker",
             "run",
             "--rm",
+            *COSIGN_USER_ARGS,
             "-e",
             "HOME",
             "-v",

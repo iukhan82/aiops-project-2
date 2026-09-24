@@ -41,6 +41,19 @@ jobs:
       - run: npm ci --ignore-scripts
       - run: npm run check
 
+  sonarqube:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    needs: [python, frontend]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: SonarQube Cloud Scan
+        uses: SonarSource/sonarqube-scan-action@v5
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
   repository-security:
     runs-on: ubuntu-24.04
     timeout-minutes: 15
@@ -66,6 +79,8 @@ jobs:
   supply-chain:
     runs-on: ubuntu-24.04
     timeout-minutes: 20
+    env:
+      DOCKERHUB_IMAGE: iukhan82/aiops-edge
     steps:
       - uses: actions/checkout@v4
         with:
@@ -85,3 +100,20 @@ jobs:
           path: |
             docs/evidence/p09_08_supply_chain.json
             source-code/security/supply_chain/output/
+      # Only pushes on main - the admission gate above already proved the
+      # image is signed and passes; a PR build has no business landing on
+      # Docker Hub before it's merged.
+      - name: Log in to Docker Hub
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Push edge image to Docker Hub
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          LOCAL_TAG=$(python3 -c "import json; print(json.load(open('docs/evidence/p09_08_supply_chain.json'))['metrics']['image']['tag'])")
+          docker tag "$LOCAL_TAG" "$DOCKERHUB_IMAGE:${{ github.sha }}"
+          docker tag "$LOCAL_TAG" "$DOCKERHUB_IMAGE:latest"
+          docker push "$DOCKERHUB_IMAGE:${{ github.sha }}"
+          docker push "$DOCKERHUB_IMAGE:latest"

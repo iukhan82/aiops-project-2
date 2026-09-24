@@ -18,6 +18,7 @@ def test_workflow_has_least_privilege_and_required_jobs() -> None:
     assert set(workflow["jobs"]) == {
         "python",
         "frontend",
+        "sonarqube",
         "repository-security",
         "supply-chain",
     }
