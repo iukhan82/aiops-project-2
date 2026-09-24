@@ -1,0 +1,149 @@
+{
+  "task": "P08.06",
+  "generated_at": "2026-09-21T15:32:23Z",
+  "browser": {
+    "channel": "chrome",
+    "headless": true,
+    "viewport": null
+  },
+  "stack": "real Chrome, real Keycloak (Authorization Code + PKCE), real API on the demo database fed by backend/demo/feeder.py",
+  "tests_total": 19,
+  "tests_passed": 19,
+  "all_passed": true,
+  "tests": [
+    {
+      "title": "analytics.spec.ts > corridor analytics (P08.06) > shows the latest complete window with units, truth label and freshness, and a chart of measured and forecast values",
+      "file": "analytics.spec.ts",
+      "status": "passed",
+      "duration_ms": 4588,
+      "error": null
+    },
+    {
+      "title": "analytics.spec.ts > corridor analytics (P08.06) > names the model behind every horizon and says when the baseline is served instead of the trained model",
+      "file": "analytics.spec.ts",
+      "status": "passed",
+      "duration_ms": 5292,
+      "error": null
+    },
+    {
+      "title": "analytics.spec.ts > corridor analytics (P08.06) > the chart has a table alternative carrying the same values",
+      "file": "analytics.spec.ts",
+      "status": "passed",
+      "duration_ms": 3724,
+      "error": null
+    },
+    {
+      "title": "analytics.spec.ts > corridor analytics (P08.06) > the keyboard moves a crosshair through the points and the value is written out",
+      "file": "analytics.spec.ts",
+      "status": "passed",
+      "duration_ms": 4035,
+      "error": null
+    },
+    {
+      "title": "analytics.spec.ts > corridor analytics (P08.06) > a metric the forecast package does not predict is drawn with measured values only, and says why",
+      "file": "analytics.spec.ts",
+      "status": "passed",
+      "duration_ms": 4289,
+      "error": null
+    },
+    {
+      "title": "analytics.spec.ts > corridor analytics (P08.06) > pausing stops the polling and says so",
+      "file": "analytics.spec.ts",
+      "status": "passed",
+      "duration_ms": 3820,
+      "error": null
+    },
+    {
+      "title": "analytics.spec.ts > corridor analytics (P08.06) > lists detector output for the corridor as candidates, labelled inferred",
+      "file": "analytics.spec.ts",
+      "status": "passed",
+      "duration_ms": 3512,
+      "error": null
+    },
+    {
+      "title": "analytics.spec.ts > corridor analytics (P08.06) > no accessibility violations, chart and table",
+      "file": "analytics.spec.ts",
+      "status": "passed",
+      "duration_ms": 5816,
+      "error": null
+    },
+    {
+      "title": "analytics.spec.ts > corridor analytics (P08.06) > a role without analytics.view is refused",
+      "file": "analytics.spec.ts",
+      "status": "passed",
+      "duration_ms": 2964,
+      "error": null
+    },
+    {
+      "title": "analytics.spec.ts > intersection analytics (P08.06) > shows the signal groups in words with shape and label, from the controller's latest message",
+      "file": "analytics.spec.ts",
+      "status": "passed",
+      "duration_ms": 3997,
+      "error": null
+    },
+    {
+      "title": "analytics.spec.ts > intersection analytics (P08.06) > tabs move with the arrow keys and show movements, devices and observations",
+      "file": "analytics.spec.ts",
+      "status": "passed",
+      "duration_ms": 4120,
+      "error": null
+    },
+    {
+      "title": "analytics.spec.ts > intersection analytics (P08.06) > switching intersection keeps the deep link and reloads everything for it",
+      "file": "analytics.spec.ts",
+      "status": "passed",
+      "duration_ms": 4898,
+      "error": null
+    },
+    {
+      "title": "analytics.spec.ts > intersection analytics (P08.06) > junction state says plainly when no detector has ever reported for it",
+      "file": "analytics.spec.ts",
+      "status": "passed",
+      "duration_ms": 3762,
+      "error": null
+    },
+    {
+      "title": "analytics.spec.ts > intersection analytics (P08.06) > no accessibility violations",
+      "file": "analytics.spec.ts",
+      "status": "passed",
+      "duration_ms": 4316,
+      "error": null
+    },
+    {
+      "title": "analytics.spec.ts > device health (P08.06) > summarises how many devices are reporting, stale or never reported, and lists every device",
+      "file": "analytics.spec.ts",
+      "status": "passed",
+      "duration_ms": 7297,
+      "error": null
+    },
+    {
+      "title": "analytics.spec.ts > device health (P08.06) > filters by type and reporting state and announces the count",
+      "file": "analytics.spec.ts",
+      "status": "passed",
+      "duration_ms": 8472,
+      "error": null
+    },
+    {
+      "title": "analytics.spec.ts > device health (P08.06) > selecting a device shows its registration, freshness and latest observations",
+      "file": "analytics.spec.ts",
+      "status": "passed",
+      "duration_ms": 4735,
+      "error": null
+    },
+    {
+      "title": "analytics.spec.ts > device health (P08.06) > sorting the reporting column works from the keyboard",
+      "file": "analytics.spec.ts",
+      "status": "passed",
+      "duration_ms": 4003,
+      "error": null
+    },
+    {
+      "title": "analytics.spec.ts > device health (P08.06) > no accessibility violations",
+      "file": "analytics.spec.ts",
+      "status": "passed",
+      "duration_ms": 6200,
+      "error": null
+    }
+  ],
+  "metrics": {}
+}

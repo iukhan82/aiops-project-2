@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://project2.local/contracts/command/v1/schema.json",
+  "title": "Command request, approval and execution",
+  "description": "Request-to-execution lifecycle for one protected action, per REFERENCE_ARCHITECTURE.md's command safety path. idempotency_key guarantees replay-safety; error is a structured, enumerated failure reason, never free text alone.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "command_id",
+    "idempotency_key",
+    "action_type",
+    "target",
+    "requested_by",
+    "requested_at",
+    "expires_at",
+    "status",
+    "policy_decision"
+  ],
+  "properties": {
+    "schema_version": { "const": "1.0.0" },
+    "command_id": { "type": "string", "format": "uuid" },
+    "idempotency_key": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Stable key for this logical command attempt; a resubmission with the same key must not execute twice."
+    },
+    "recommendation_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "recommendation/v1 recommendation_id this command executes, when operator-selected from a recommendation."
+    },
+    "action_type": {
+      "type": "string",
+      "enum": [
+        "signal_plan_change", "diversion", "transit_priority",
+        "emergency_preemption", "variable_message_sign", "other"
+      ]
+    },
+    "target": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["adapter", "entity_id"],
+      "properties": {
+        "adapter": { "type": "string", "minLength": 1 },
+        "entity_id": { "type": "string", "minLength": 1 }
+      }
+    },
+    "requested_by": { "type": "string", "minLength": 1 },
+    "requested_at": { "type": "string", "format": "date-time" },
+    "approved_by": { "type": "string" },
+    "approved_at": { "type": "string", "format": "date-time" },
+    "expires_at": { "type": "string", "format": "date-time" },
+    "policy_decision": {
+      "type": "string",
+      "enum": ["pending", "approved", "denied", "policy_unavailable"]
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "requested", "approved", "denied", "executing", "executed",
+        "failed", "rolled_back", "expired"
+      ]
+    },
+    "acknowledged_at": { "type": "string", "format": "date-time" },
+    "rolled_back_at": { "type": "string", "format": "date-time" },
+    "error": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["error_code", "message", "retryable"],
+      "properties": {
+        "error_code": {
+          "type": "string",
+          "enum": [
+            "policy_denied", "expired", "stale_evidence", "adapter_unreachable",
+            "invalid_target", "conflict", "internal"
+          ]
+        },
+        "message": { "type": "string", "minLength": 1 },
+        "retryable": { "type": "boolean" }
+      },
+      "description": "Present only when status is 'failed' or policy_decision is 'denied'/'policy_unavailable'."
+    }
+  }
+}

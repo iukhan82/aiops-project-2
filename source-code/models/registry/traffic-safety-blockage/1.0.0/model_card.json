@@ -1,0 +1,244 @@
+{
+  "candidates_tried": 30,
+  "decision_policy": {
+    "abstain_if_probability_in": [
+      0.28140946817397927,
+      0.5628189363479585
+    ],
+    "alarm_if_probability_at_least": 0.5628189363479585,
+    "clear_below": 0.28140946817397927
+  },
+  "export": {
+    "converter": "skl2onnx 1.20.0",
+    "onnx": "1.23.0",
+    "onnx_bytes": 1637,
+    "onnx_sha256": "e3ab6a4ac96a0ea7f06ad1235404f7f0ac17122ddab8573b1a07c8a682350e44",
+    "onnxruntime": "1.30.0",
+    "opset": 17,
+    "parity": {
+      "decision_mismatches_away_from_thresholds": 0,
+      "max_abs_probability_diff_vs_sklearn": 6.556510925292969e-07,
+      "per_split": {
+        "test": {
+          "decision_mismatches": 0,
+          "max_abs_probability_diff": 4.172325134277344e-07,
+          "rows": 12528
+        },
+        "train": {
+          "decision_mismatches": 0,
+          "max_abs_probability_diff": 6.556510925292969e-07,
+          "rows": 31320
+        },
+        "validation": {
+          "decision_mismatches": 0,
+          "max_abs_probability_diff": 4.76837158203125e-07,
+          "rows": 12528
+        }
+      },
+      "tolerance": 1e-05
+    }
+  },
+  "format": "edge-model-card/1",
+  "held_out_test_opened_once": {
+    "abstention": {
+      "abstain_rate": 0.0026340996168582377,
+      "positive_rate_among_abstained": 0.48484848484848486
+    },
+    "acc01_verdict": {
+      "baseline_f1": 0.4797507788161993,
+      "baseline_incident_recall": 0.5,
+      "model_beats_baseline_on_incident_recall": true,
+      "model_beats_baseline_on_row_f1": true,
+      "model_f1": 0.5235294117647059,
+      "model_incident_recall": 0.6041666666666666,
+      "note": "Reported as measured; the comparison stands whether or not the model wins."
+    },
+    "calibration": {
+      "brier": 0.011807393282651901,
+      "ece": 0.002979973269243503
+    },
+    "model": {
+      "f1": 0.5235294117647059,
+      "f1_ci95": [
+        0.37858036272670426,
+        0.6472820604118449
+      ],
+      "false_alarm_episode_share": 0.12121212121212122,
+      "false_alarm_episodes": 4,
+      "false_alarm_episodes_per_device_hour": 0.039059321344291645,
+      "incident_recall": 0.6041666666666666,
+      "incidents": 48,
+      "incidents_detected": 29,
+      "median_detection_delay_s": 64.0,
+      "positive_rows": 239,
+      "precision": 0.8811881188118812,
+      "precision_ci95": [
+        0.8332943925233646,
+        0.9367286392405063
+      ],
+      "recall": 0.3723849372384937,
+      "recall_ci95": [
+        0.2431629785324611,
+        0.5088493348503411
+      ],
+      "rows": 12528
+    },
+    "paired_delta_model_minus_baseline_cluster_bootstrap": {
+      "f1": {
+        "ci95": [
+          0.006565122332964071,
+          0.08503653835455784
+        ],
+        "mean": 0.04409621384460206
+      },
+      "precision": {
+        "ci95": [
+          -0.12103990637876182,
+          0.027859386548410876
+        ],
+        "mean": -0.0528695177957038
+      },
+      "recall": {
+        "ci95": [
+          0.009439895294986239,
+          0.10066229976249431
+        ],
+        "mean": 0.05140211704710298
+      }
+    },
+    "rule_baseline": {
+      "f1": 0.4797507788161993,
+      "f1_ci95": [
+        0.34459396193946756,
+        0.5965299277605779
+      ],
+      "false_alarm_episode_share": 0.10714285714285714,
+      "false_alarm_episodes": 3,
+      "false_alarm_episodes_per_device_hour": 0.029294491008218734,
+      "incident_recall": 0.5,
+      "incidents": 48,
+      "incidents_detected": 24,
+      "median_detection_delay_s": 74.0,
+      "positive_rows": 239,
+      "precision": 0.9390243902439024,
+      "precision_ci95": [
+        0.8790940766550522,
+        0.9773013407455854
+      ],
+      "recall": 0.32217573221757323,
+      "recall_ci95": [
+        0.2129513888888889,
+        0.4315781363306743
+      ],
+      "rows": 12528
+    }
+  },
+  "inputs": {
+    "feature_names": [
+      "count_last",
+      "count_mean",
+      "count_max",
+      "count_delta",
+      "occ_last",
+      "occ_mean",
+      "occ_max",
+      "occ_delta",
+      "speed_last",
+      "speed_mean",
+      "speed_min",
+      "speed_delta",
+      "zero_flow_run",
+      "high_occ_run",
+      "missing_fraction",
+      "speed_imputed_fraction",
+      "down_available",
+      "down_count_mean",
+      "down_occ_last",
+      "down_zero_flow_run",
+      "count_gap_down",
+      "up_available",
+      "up_count_mean",
+      "up_occ_last"
+    ],
+    "feature_version": "loop-window/2",
+    "window": "4 x 30 s intervals, past-only; corridor context from adjacent loops"
+  },
+  "intended_use": "Edge-local candidate incident detection feeding operator review. Output is an inferred candidate with probability and abstention, never an autonomous action; protected actions still need policy, approval and audit.",
+  "limitations": [
+    "Trained and evaluated only on SUMO-simulated loop data; no field-accuracy claim follows.",
+    "A single physical mechanism (two-lane blockage 25-70 m past the loop) and one network geometry; distance and demand generalization is untested outside them.",
+    "Labels are ground truth (blockage active), not 'detectable yet': at low flow or long blockage-to-loop distance the queue never reaches a detector and no loop-based method can see the incident. See recall by distance/demand in comparison_test.json.",
+    "The false-alarm budget (<=10% of alarm episodes) held on validation; on the test split both detectors ended slightly above it (see held_out_test_opened_once).",
+    "Corridor-context features need neighbor loops; at corridor ends they are structurally absent and the model falls back on own-window evidence only.",
+    "Test-split sample is small (48 incidents, 24 runs): confidence intervals are wide."
+  ],
+  "model_id": "traffic-safety-blockage",
+  "model_version": "1.0.0",
+  "out_of_scope": [
+    "any use as evidence of field accuracy (all data is SUMO-simulated)",
+    "non-loop sensors, vision, or other incident types (collision, wrong-way, flooding)",
+    "direct actuation of signals or road closures"
+  ],
+  "outputs": {
+    "decision": "alarm | abstain | clear",
+    "probability": "P(blockage) in [0,1]"
+  },
+  "privacy": "Inputs are aggregate loop counts/occupancy/speed; no personal or identifying data.",
+  "provenance": {
+    "dataset_sha256": "4c3cc8a38e84c11ed7bdd34475da5673d8759ca2486b1ace4cd539c332942bc2",
+    "environment": {
+      "numpy": "2.5.3",
+      "python": "3.12.3",
+      "scikit_learn": "1.9.1"
+    },
+    "positives": {
+      "test": 239,
+      "train": 589,
+      "validation": 247
+    },
+    "procedure": {
+      "candidates_tried": 30,
+      "fit": "train split only",
+      "operating_constraint": "alarm-episode false share <= 0.1 on validation (mirrors FA-01)",
+      "test": "opened once for the final model-vs-baseline comparison (test_split_ledger.json)",
+      "tuning": "hyperparameters, alarm threshold and abstention band on validation only"
+    },
+    "reports": [
+      "training_report.json",
+      "comparison_test.json"
+    ],
+    "reproducible_refit_bitwise_identical": true,
+    "rows": {
+      "test": 12528,
+      "train": 31320,
+      "validation": 12528
+    },
+    "split_seeds": {
+      "test": [
+        20260925,
+        20260926
+      ],
+      "train": [
+        20260918,
+        20260919,
+        20260920,
+        20260921,
+        20260922
+      ],
+      "validation": [
+        20260923,
+        20260924
+      ]
+    },
+    "training_seed": 20260918
+  },
+  "selected_candidate": {
+    "index": 2,
+    "kind": "logistic_regression",
+    "params": {
+      "C": 1.0,
+      "class_weight": null
+    }
+  },
+  "task": "Detect an active road blockage on a corridor segment from a loop detector's last four 30 s intervals plus its upstream/downstream neighbor loops."
+}

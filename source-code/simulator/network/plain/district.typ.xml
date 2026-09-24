@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  P03.01 district edge types. "corridor" carries a dedicated, protected
+  bicycle lane (general-traffic lanes disallow bicycle); "cross-street"
+  connects the three corridors and carries pedestrian sidewalks only.
+  Both carry sidewalks so netconvert can derive marked pedestrian crossings
+  at every intersection (crossings.guess option).
+-->
+<types>
+  <type id="corridor" numLanes="2" speed="15.65" priority="3" sidewalkWidth="2.0" bikeLaneWidth="1.5"/>
+  <type id="cross-street" numLanes="2" speed="12.0" priority="2" sidewalkWidth="2.0"/>
+</types>

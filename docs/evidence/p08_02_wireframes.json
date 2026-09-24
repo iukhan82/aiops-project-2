@@ -1,0 +1,66 @@
+{
+  "all_passed": true,
+  "checks": {
+    "all_seven_wireframes_exist_with_the_declared_layout_size_and_required_regions": true,
+    "each_wireframe_renders_in_real_chrome_to_a_non_blank_image": true,
+    "every_numbered_callout_is_contiguous_and_documented": true,
+    "every_wireframe_screen_id_exists_in_the_inventory_and_the_wireframe_role_may_open_it": true,
+    "every_wireframe_whose_role_holds_a_write_capability_shows_its_controls": true,
+    "laptop_projector_and_field_layouts_and_an_accessible_alternative_are_all_present": true,
+    "navigation_and_identity_in_each_wireframe_match_the_roles_capabilities_in_the_inventory": true,
+    "the_field_and_projector_views_are_read_only_with_no_control_and_the_field_has_44px_touch_targets": true,
+    "the_list_alternative_carries_status_freshness_and_truth_label_as_columns": true
+  },
+  "generated_at": "2026-09-21T13:37:42Z",
+  "metrics": {
+    "wireframes": {
+      "approval-confirm-laptop": {
+        "callouts": 4,
+        "layout": "laptop",
+        "png_bytes": 73625
+      },
+      "emergency-laptop": {
+        "callouts": 6,
+        "layout": "laptop",
+        "png_bytes": 94112
+      },
+      "field-mobile": {
+        "callouts": 6,
+        "layout": "field",
+        "png_bytes": 40267
+      },
+      "incident-laptop": {
+        "callouts": 6,
+        "layout": "laptop",
+        "png_bytes": 112265
+      },
+      "map-laptop": {
+        "callouts": 9,
+        "layout": "laptop",
+        "png_bytes": 80093
+      },
+      "map-list-laptop": {
+        "callouts": 6,
+        "layout": "laptop",
+        "png_bytes": 83333
+      },
+      "map-projector": {
+        "callouts": 4,
+        "layout": "projector",
+        "png_bytes": 92589
+      }
+    }
+  },
+  "notes": {
+    "all_seven_wireframes_exist_with_the_declared_layout_size_and_required_regions": "{}",
+    "each_wireframe_renders_in_real_chrome_to_a_non_blank_image": "{'map-laptop': 80093, 'map-list-laptop': 83333, 'map-projector': 92589, 'field-mobile': 40267, 'incident-laptop': 112265, 'emergency-laptop': 94112, 'approval-confirm-laptop': 73625}",
+    "every_numbered_callout_is_contiguous_and_documented": "",
+    "every_wireframe_screen_id_exists_in_the_inventory_and_the_wireframe_role_may_open_it": "",
+    "every_wireframe_whose_role_holds_a_write_capability_shows_its_controls": "",
+    "laptop_projector_and_field_layouts_and_an_accessible_alternative_are_all_present": "",
+    "navigation_and_identity_in_each_wireframe_match_the_roles_capabilities_in_the_inventory": "",
+    "the_field_and_projector_views_are_read_only_with_no_control_and_the_field_has_44px_touch_targets": "{'field-mobile': [], 'map-projector': []}",
+    "the_list_alternative_carries_status_freshness_and_truth_label_as_columns": ""
+  },
+  "task": "P08.02"
+}

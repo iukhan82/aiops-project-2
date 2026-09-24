@@ -1,0 +1,51 @@
+{
+  "all_passed": true,
+  "checks": {
+    "LAT_02_edge_to_central_ingest_p95_under_2s": true,
+    "every_edge_endpoint_is_a_declared_node": true,
+    "every_metric_backed_slo_is_mapped_to_a_source_file": true,
+    "every_referenced_metric_name_is_grepped_from_its_real_source": true,
+    "every_related_acceptance_target_id_is_a_real_row": true,
+    "every_slo_validates_against_the_real_schema": true,
+    "every_topology_edge_is_grepped_from_the_real_connecting_source": true
+  },
+  "generated_at": "2026-09-23T18:34:43Z",
+  "metrics": {
+    "lat_02": {
+      "n": 20,
+      "p95_ms": 27.77,
+      "samples_ms": [
+        28.25,
+        15.15,
+        16.34,
+        17.27,
+        17.23,
+        18.69,
+        14.99,
+        15.75,
+        15.97,
+        15.88,
+        15.98,
+        16.66,
+        15.45,
+        18.41,
+        16.95,
+        15.56,
+        17.15,
+        16.54,
+        16.3,
+        17.63
+      ]
+    }
+  },
+  "notes": {
+    "LAT_02_edge_to_central_ingest_p95_under_2s": "n=20, p95=27.8 ms",
+    "every_edge_endpoint_is_a_declared_node": "set()",
+    "every_metric_backed_slo_is_mapped_to_a_source_file": "set()",
+    "every_referenced_metric_name_is_grepped_from_its_real_source": "[]",
+    "every_related_acceptance_target_id_is_a_real_row": "5 referenced, missing: []",
+    "every_slo_validates_against_the_real_schema": "[]",
+    "every_topology_edge_is_grepped_from_the_real_connecting_source": "[]"
+  },
+  "task": "P10.02"
+}

@@ -1,0 +1,57 @@
+{
+  "baseline_id": "rules-blockage/1.0.0",
+  "feature_names": [
+    "count_last",
+    "count_mean",
+    "count_max",
+    "count_delta",
+    "occ_last",
+    "occ_mean",
+    "occ_max",
+    "occ_delta",
+    "speed_last",
+    "speed_mean",
+    "speed_min",
+    "speed_delta",
+    "zero_flow_run",
+    "high_occ_run",
+    "missing_fraction",
+    "speed_imputed_fraction",
+    "down_available",
+    "down_count_mean",
+    "down_occ_last",
+    "down_zero_flow_run",
+    "count_gap_down",
+    "up_available",
+    "up_count_mean",
+    "up_occ_last"
+  ],
+  "feature_version": "loop-window/2",
+  "format": "edge-rule-baseline/1",
+  "params": {
+    "count_last_max": 1,
+    "occ_last_min": 0.05,
+    "occ_mean_min": null,
+    "speed_last_max": 13.9,
+    "variant": "occupancy_flow_speed"
+  },
+  "provenance": {
+    "dataset_sha256": "4c3cc8a38e84c11ed7bdd34475da5673d8759ca2486b1ace4cd539c332942bc2",
+    "fit_objective": "row-level F1 on training rows subject to alarm-episode false share <= 0.1, tie-break on precision",
+    "fit_split": "train",
+    "selection_split": "validation",
+    "test_split_touched": false,
+    "train_seeds": [
+      20260918,
+      20260919,
+      20260920,
+      20260921,
+      20260922
+    ],
+    "validation_seeds": [
+      20260923,
+      20260924
+    ]
+  },
+  "variant": "occupancy_flow_speed"
+}

@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://project2.local/contracts/emergency-unit-assignment/v1/schema.json",
+  "title": "Emergency unit assignment, route and coordination",
+  "description": "Unit-to-call assignment state machine with route alternatives and cross-agency handover, per docs/SENSOR_AND_DATA_CATALOG.md section 6 and REFERENCE_ARCHITECTURE.md's emergency service. Patient-free, matching emergency-call/v1.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "assignment_id",
+    "call_id",
+    "unit_id",
+    "agency",
+    "capability",
+    "status",
+    "assigned_at",
+    "route_alternatives",
+    "truth_label"
+  ],
+  "properties": {
+    "schema_version": { "const": "1.0.0" },
+    "assignment_id": { "type": "string", "format": "uuid" },
+    "call_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "emergency-call/v1 call_id this assignment serves."
+    },
+    "unit_id": { "type": "string", "minLength": 1 },
+    "agency": { "type": "string", "minLength": 1 },
+    "capability": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "status": {
+      "type": "string",
+      "enum": ["assigned", "acknowledged", "en_route", "staged", "on_scene", "clear", "unavailable"],
+      "description": "State machine: assigned -> acknowledged -> en_route -> (staged ->) on_scene -> clear, or unavailable at any point."
+    },
+    "assigned_at": { "type": "string", "format": "date-time" },
+    "acknowledged_at": { "type": "string", "format": "date-time" },
+    "arrived_at": { "type": "string", "format": "date-time" },
+    "cleared_at": { "type": "string", "format": "date-time" },
+    "route_alternatives": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["route_id", "geometry_version", "distance_m", "eta_seconds", "eta_uncertainty_seconds", "selected"],
+        "properties": {
+          "route_id": { "type": "string", "minLength": 1 },
+          "geometry_version": { "type": "string", "minLength": 1 },
+          "distance_m": { "type": "number", "minimum": 0 },
+          "eta_seconds": { "type": "number", "minimum": 0 },
+          "eta_uncertainty_seconds": { "type": "number", "minimum": 0 },
+          "constraints_applied": {
+            "type": "array",
+            "items": { "type": "string", "minLength": 1 },
+            "description": "e.g. vehicle-height, hazmat, bridge-weight-limit constraints honored when generating this alternative."
+          },
+          "selected": { "type": "boolean" }
+        }
+      }
+    },
+    "handover": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["from_agency", "to_agency", "handover_at", "acknowledged_by"],
+      "properties": {
+        "from_agency": { "type": "string", "minLength": 1 },
+        "to_agency": { "type": "string", "minLength": 1 },
+        "handover_at": { "type": "string", "format": "date-time" },
+        "acknowledged_by": { "type": "string", "minLength": 1 }
+      }
+    },
+    "truth_label": {
+      "type": "string",
+      "enum": ["simulated", "measured", "inferred", "predicted", "operator_entered", "verified"]
+    }
+  }
+}

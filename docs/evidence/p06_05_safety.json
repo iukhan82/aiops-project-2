@@ -1,0 +1,126 @@
+{
+  "all_passed": true,
+  "checks": {
+    "all_four_overlay_kinds_detected_from_the_database": true,
+    "api_serves_every_kind_with_evidence_labelled_inferred": true,
+    "blockage_run_ingested_through_real_write_path": true,
+    "corroboration_by_a_second_source_raises_confidence": true,
+    "db_stall_candidates_equal_file_stall_candidates": true,
+    "edge_abstentions_never_raise_a_candidate": true,
+    "every_candidate_cites_events_that_exist": true,
+    "every_stall_candidate_keeps_its_per_source_uncertainty": true,
+    "held_out_stall_metrics_reproduce_exactly_from_stored_parameters": true,
+    "overlay_hard_negatives_and_faults_raise_nothing": true,
+    "overlay_specification_test_all_injected_detected_exactly": true,
+    "overlay_stuck_and_contradicted_flags_are_demoted_below_half": true,
+    "p03_05_overlay_events_ingested_through_real_write_path": true,
+    "rerun_is_idempotent_no_duplicate_candidates": true,
+    "signal_fault_overlay_is_not_a_safety_candidate": true,
+    "stall_candidates_find_real_measured_incidents_in_this_run": true,
+    "stall_false_alarm_gate_per_incident_free_hour": true,
+    "stall_precision_is_reported_with_its_interval_not_gated": true,
+    "stall_recall_gate_on_held_out_incidents": true,
+    "stall_test_use_is_ledgered_as_non_selecting": true
+  },
+  "generated_at": "2026-09-20T07:35:01Z",
+  "metrics": {
+    "held_out_stall_test": {
+      "candidates": 13,
+      "candidates_matched": 5,
+      "candidates_on_an_adjacent_segment_during_an_incident": 0,
+      "detection_delay_s_median": 139.0,
+      "detection_delay_s_p90": 145.0,
+      "false_alarms_in_incident_free_runs": 3,
+      "false_alarms_per_incident_free_hour": 0.167,
+      "incident_free_hours": 18.0,
+      "incidents": 6,
+      "incidents_detected": 5,
+      "mean_confidence_true_vs_false": {
+        "matched": 0.979,
+        "unmatched": 0.978
+      },
+      "precision": 0.385,
+      "precision_ci95": [
+        0.177,
+        0.645
+      ],
+      "precision_if_adjacent_segment_counts": 0.385,
+      "recall": 0.833,
+      "recall_by_blockage_distance_m": {
+        "25": {
+          "detected": 2,
+          "incidents": 2
+        },
+        "45": {
+          "detected": 3,
+          "incidents": 3
+        },
+        "70": {
+          "detected": 0,
+          "incidents": 1
+        }
+      },
+      "recall_ci95": [
+        0.436,
+        0.97
+      ]
+    },
+    "overlay_specification_test": {
+      "injection_totals": {
+        "candidates_from_hard_negatives": 0,
+        "detected_exactly": 216,
+        "hard_negative_events": 270,
+        "injected": 216,
+        "unexplained_candidates_in_positive_pass": 0
+      },
+      "p03_05_overlays": {
+        "collision": {
+          "candidates_with_exact_onset_and_clear": 1,
+          "device_matches": true
+        },
+        "flooding": {
+          "candidates_with_exact_onset_and_clear": 1,
+          "device_matches": true
+        },
+        "low_visibility": {
+          "candidates_with_exact_onset_and_clear": 1,
+          "device_matches": true
+        },
+        "wrong_way": {
+          "candidates_with_exact_onset_and_clear": 1,
+          "device_matches": true
+        }
+      },
+      "stuck_and_contradiction": {
+        "contradicted_flood_confidence": 0.45,
+        "stuck_flag_candidates": 1,
+        "stuck_flag_confidence": 0.3612,
+        "stuck_flag_suspect": true,
+        "uncontradicted_reference_confidence": 0.9
+      }
+    }
+  },
+  "notes": {
+    "all_four_overlay_kinds_detected_from_the_database": "['collision', 'flooding', 'low_visibility', 'wrong_way']",
+    "api_serves_every_kind_with_evidence_labelled_inferred": "['collision', 'congestion', 'flooding', 'low_visibility', 'stalled_vehicle', 'wrong_way']",
+    "blockage_run_ingested_through_real_write_path": "",
+    "corroboration_by_a_second_source_raises_confidence": "8 corroborated of 8",
+    "db_stall_candidates_equal_file_stall_candidates": "8 candidates",
+    "edge_abstentions_never_raise_a_candidate": "28 abstain events",
+    "every_candidate_cites_events_that_exist": "[]",
+    "every_stall_candidate_keeps_its_per_source_uncertainty": "",
+    "held_out_stall_metrics_reproduce_exactly_from_stored_parameters": "{'incidents': 6, 'incidents_detected': 5, 'candidates': 13, 'candidates_matched': 5, 'false_alarms_in_incident_free_runs': 3, 'recall': 0.833, 'precision': 0.385}",
+    "overlay_hard_negatives_and_faults_raise_nothing": "",
+    "overlay_specification_test_all_injected_detected_exactly": "{'candidates_from_hard_negatives': 0, 'detected_exactly': 216, 'hard_negative_events': 270, 'injected': 216, 'unexplained_candidates_in_positive_pass': 0}",
+    "overlay_stuck_and_contradicted_flags_are_demoted_below_half": "",
+    "p03_05_overlay_events_ingested_through_real_write_path": "{'inserted': 10}",
+    "rerun_is_idempotent_no_duplicate_candidates": "12 -> 12",
+    "signal_fault_overlay_is_not_a_safety_candidate": "",
+    "stall_candidates_find_real_measured_incidents_in_this_run": "3 of 3 incidents matched, 8 candidates",
+    "stall_false_alarm_gate_per_incident_free_hour": "0.167/h over 18.0 h",
+    "stall_precision_is_reported_with_its_interval_not_gated": "precision 0.385 Wilson95 [0.177, 0.645] - candidate-level, before P06.07 correlation",
+    "stall_recall_gate_on_held_out_incidents": "recall 0.833 Wilson95 [0.436, 0.97] (6 incidents)",
+    "stall_test_use_is_ledgered_as_non_selecting": ""
+  },
+  "task": "P06.05"
+}

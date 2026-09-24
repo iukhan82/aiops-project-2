@@ -1,0 +1,31 @@
+{
+  "task": "P05.08",
+  "generated_at": "2026-09-20T10:24:05Z",
+  "checks": {
+    "incident_valid_transition_chain_succeeds": true,
+    "incident_audit_trail_records_every_transition_in_order": true,
+    "incident_invalid_transition_rejected_and_status_unchanged": true,
+    "incident_transition_on_unknown_id_raises_not_found": true,
+    "command_idempotency_key_resubmission_returns_same_id_no_duplicate_row": true,
+    "command_approve_without_approved_by_is_refused": true,
+    "command_approve_with_audit_reference_records_it": true,
+    "command_invalid_transition_from_approved_to_denied_rejected": true,
+    "command_fail_without_error_fields_is_refused": true,
+    "command_fail_with_error_fields_recorded": true,
+    "concurrent_transitions_serialize_exactly_one_wins": true
+  },
+  "notes": {
+    "incident_valid_transition_chain_succeeds": "{'incident_id': UUID('2e91bfde-d062-44b1-9aad-fe655c9475e0'), 'status': 'resolved', 'severity': 'high', 'incident_type': 'collision', 'owner_role': 'OPS', 'updated_at': datetime.datetime(2026, 9, 20, 10, 24, 5, 339471, tzinfo=zoneinfo.ZoneInfo(key='Etc/UTC')), 'resolved_at': datetime.datetime(2026, 9, 20, 10, 24, 5, 339471, tzinfo=zoneinfo.ZoneInfo(key='Etc/UTC'))}",
+    "incident_audit_trail_records_every_transition_in_order": "['open', 'acknowledged', 'investigating', 'resolved']",
+    "incident_invalid_transition_rejected_and_status_unchanged": "{'incident_id': UUID('2e91bfde-d062-44b1-9aad-fe655c9475e0'), 'status': 'resolved', 'severity': 'high', 'incident_type': 'collision', 'owner_role': 'OPS', 'updated_at': datetime.datetime(2026, 9, 20, 10, 24, 5, 339471, tzinfo=zoneinfo.ZoneInfo(key='Etc/UTC')), 'resolved_at': datetime.datetime(2026, 9, 20, 10, 24, 5, 339471, tzinfo=zoneinfo.ZoneInfo(key='Etc/UTC'))}",
+    "incident_transition_on_unknown_id_raises_not_found": "",
+    "command_idempotency_key_resubmission_returns_same_id_no_duplicate_row": "id1=b14a6776-e2ea-43fa-a920-3a0510ddf0cf id2=b14a6776-e2ea-43fa-a920-3a0510ddf0cf created=(True,False) rows=1",
+    "command_approve_without_approved_by_is_refused": "",
+    "command_approve_with_audit_reference_records_it": "{'command_id': UUID('b14a6776-e2ea-43fa-a920-3a0510ddf0cf'), 'idempotency_key': 'verify-repo-idem-1789899845.3595278', 'recommendation_id': None, 'action_type': 'diversion', 'target_adapter': 'signal-adapter', 'target_entity_id': 'int-a1', 'requested_by': 'verify-script', 'requested_at': datetime.datetime(2026, 9, 20, 10, 24, 5, 359528, tzinfo=zoneinfo.ZoneInfo(key='Etc/UTC')), 'approved_by': 'ops-lead', 'approved_at': datetime.datetime(2026, 9, 20, 10, 24, 5, 373212, tzinfo=zoneinfo.ZoneInfo(key='Etc/UTC')), 'expires_at': datetime.datetime(2026, 9, 20, 11, 24, 5, 359528, tzinfo=zoneinfo.ZoneInfo(key='Etc/UTC')), 'policy_decision': 'pending', 'status': 'approved', 'acknowledged_at': None, 'rolled_back_at': None, 'error_code': None, 'error_message': None, 'error_retryable': None}",
+    "command_invalid_transition_from_approved_to_denied_rejected": "",
+    "command_fail_without_error_fields_is_refused": "",
+    "command_fail_with_error_fields_recorded": "",
+    "concurrent_transitions_serialize_exactly_one_wins": "outcomes={'A': 'succeeded:escalated', 'B': 'invalid_transition'} final_status=escalated"
+  },
+  "all_passed": true
+}

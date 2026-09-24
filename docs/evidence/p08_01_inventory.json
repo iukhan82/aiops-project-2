@@ -1,0 +1,33 @@
+{
+  "all_passed": true,
+  "checks": {
+    "every_live_screen_designs_stale_state_and_every_data_screen_designs_loading_error_forbidden": true,
+    "every_role_has_a_home_screen_and_a_journey_with_failure_cases": true,
+    "inventory_is_internally_consistent_roles_capabilities_screens_apis_journeys": true,
+    "inventory_matches_what_the_fastapi_apps_actually_serve": true,
+    "roles_equal_the_binding_p02_08_role_set": true,
+    "the_generated_tables_in_the_inventory_document_are_current": true
+  },
+  "generated_at": "2026-09-21T14:31:11Z",
+  "metrics": {
+    "counts": {
+      "apis": 45,
+      "apis_implemented": 45,
+      "apis_planned": 0,
+      "capabilities": 17,
+      "journeys": 7,
+      "roles": 7,
+      "screens": 21
+    },
+    "planned_apis_by_task": {}
+  },
+  "notes": {
+    "every_live_screen_designs_stale_state_and_every_data_screen_designs_loading_error_forbidden": "",
+    "every_role_has_a_home_screen_and_a_journey_with_failure_cases": "",
+    "inventory_is_internally_consistent_roles_capabilities_screens_apis_journeys": "",
+    "inventory_matches_what_the_fastapi_apps_actually_serve": "",
+    "roles_equal_the_binding_p02_08_role_set": "",
+    "the_generated_tables_in_the_inventory_document_are_current": ""
+  },
+  "task": "P08.01"
+}

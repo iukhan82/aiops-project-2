@@ -1,0 +1,12 @@
+{
+  "_invalid_because": "idempotency_key is missing; without it a resubmitted or retried request cannot be recognized as the same command attempt, risking duplicate execution of a protected action.",
+  "schema_version": "1.0.0",
+  "command_id": "2e1a4c3b-6f5d-4e2a-8b3c-9d0e1f2a3b4c",
+  "action_type": "signal_plan_change",
+  "target": { "adapter": "simulator-signal-adapter", "entity_id": "int-03" },
+  "requested_by": "operator-jsmith",
+  "requested_at": "2026-09-18T09:09:00Z",
+  "expires_at": "2026-09-18T09:10:00Z",
+  "policy_decision": "pending",
+  "status": "requested"
+}

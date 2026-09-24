@@ -1,0 +1,29 @@
+{
+  "bbox": [
+    0.0,
+    0.0,
+    900.0,
+    800.0
+  ],
+  "passed": true,
+  "problems": [],
+  "stages": {
+    "emergency": {
+      "checked_events": 238,
+      "problems": []
+    },
+    "faults": {
+      "checked_events": 14,
+      "problems": []
+    },
+    "scenarios": {
+      "checked_events": 10,
+      "problems": []
+    },
+    "sensors": {
+      "checked_events": 1453,
+      "problems": []
+    }
+  },
+  "total_problems": 0
+}

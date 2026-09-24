@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1366" height="768" viewBox="0 0 1366 768" role="img" aria-labelledby="t d" data-role="operator">
+<title id="t">Incident investigation - laptop (1366x768)</title>
+<desc id="d">Incident header with severity, status and owner; evidence timeline; ranked hypotheses labelled inferred; linked recommendations and commands; an action bar with a required note for resolve.</desc>
+<rect width="1366" height="768" fill="#0F172A"/>
+<g id="region-header" data-region="banner">
+<rect x="0" y="0" width="1366" height="48" rx="0" fill="#1B2336" stroke="#475569" stroke-width="1"/>
+<rect x="12" y="10" width="28" height="28" rx="6" fill="#22C55E" stroke="#22C55E" stroke-width="1"/>
+<text x="52" y="30.0" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="17" font-weight="700" fill="#F8FAFC" text-anchor="start">Traffic Operations</text>
+<circle cx="470" cy="24" r="5" fill="#22C55E"/>
+<text x="482" y="29" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="14" font-weight="400" fill="#F8FAFC" text-anchor="start">Connected - updated 2 s ago</text>
+<rect x="792" y="12" width="92" height="24" rx="12" fill="#272F42" stroke="#38BDF8" stroke-width="1"/>
+<text x="838" y="29" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="12" font-weight="700" fill="#38BDF8" text-anchor="middle">SIMULATED</text>
+<text x="1310" y="29.0" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="14" font-weight="400" fill="#94A3B8" text-anchor="end">alex.chen - operator</text>
+<rect x="1322" y="10" width="32" height="28" rx="6" fill="none" stroke="#94A3B8" stroke-width="2"/>
+<text x="1338" y="30" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#F8FAFC" text-anchor="middle">v</text>
+</g>
+<g id="region-nav" data-region="navigation">
+<rect x="0" y="48" width="200" height="720" rx="0" fill="#1B2336" stroke="#475569" stroke-width="1"/>
+<text x="16" y="74" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="12" font-weight="400" fill="#94A3B8" text-anchor="start">Signed in as operator</text>
+<rect x="8" y="96" width="184" height="34" rx="6" fill="none" stroke="none" stroke-width="2"/>
+<text x="24" y="118" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="14" font-weight="400" fill="#F8FAFC" text-anchor="start">Map</text>
+<rect x="8" y="136" width="184" height="34" rx="6" fill="none" stroke="none" stroke-width="2"/>
+<text x="24" y="158" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="14" font-weight="400" fill="#F8FAFC" text-anchor="start">Analytics</text>
+<rect x="8" y="176" width="184" height="34" rx="6" fill="#272F42" stroke="#22C55E" stroke-width="2"/>
+<text x="24" y="198" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#F8FAFC" text-anchor="start">Incidents</text>
+<text x="172" y="198" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="10" font-weight="400" fill="#94A3B8" text-anchor="end">current</text>
+<rect x="8" y="216" width="184" height="34" rx="6" fill="none" stroke="none" stroke-width="2"/>
+<text x="24" y="238" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="14" font-weight="400" fill="#F8FAFC" text-anchor="start">Dispatch</text>
+<rect x="8" y="256" width="184" height="34" rx="6" fill="none" stroke="none" stroke-width="2"/>
+<text x="24" y="278" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="14" font-weight="400" fill="#F8FAFC" text-anchor="start">Actions</text>
+<rect x="8" y="296" width="184" height="34" rx="6" fill="none" stroke="none" stroke-width="2"/>
+<text x="24" y="318" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="14" font-weight="400" fill="#F8FAFC" text-anchor="start">Handover</text>
+<rect x="8" y="336" width="184" height="34" rx="6" fill="none" stroke="none" stroke-width="2"/>
+<text x="24" y="358" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="14" font-weight="400" fill="#F8FAFC" text-anchor="start">Operations</text>
+</g>
+<g id="region-incident-header" data-region="incident header">
+<rect x="216" y="60" width="1134" height="96" rx="8" fill="#1B2336" stroke="#475569" stroke-width="1"/>
+<text x="232" y="92" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="20" font-weight="700" fill="#F8FAFC" text-anchor="start">Stalled vehicle - segment int-b2_int-b3</text>
+<rect x="232" y="109" width="11" height="11" fill="#EF4444"/>
+<text x="250" y="120" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="400" fill="#F8FAFC" text-anchor="start">Critical</text>
+<text x="340" y="120" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="400" fill="#94A3B8" text-anchor="start">Confidence 0.63 - inferred</text>
+<text x="232" y="144" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="400" fill="#94A3B8" text-anchor="start">Opened 09:12:07 UTC - owner OPS - status Open</text>
+<rect x="760" y="76" width="138" height="32" rx="16" fill="#272F42" stroke="#22C55E" stroke-width="2"/>
+<text x="829" y="97" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="600" fill="#F8FAFC" text-anchor="middle">Open</text>
+<rect x="906" y="76" width="138" height="32" rx="16" fill="none" stroke="#475569" stroke-width="2"/>
+<text x="975" y="97" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="400" fill="#F8FAFC" text-anchor="middle">Acknowledged</text>
+<rect x="1052" y="76" width="138" height="32" rx="16" fill="none" stroke="#475569" stroke-width="2"/>
+<text x="1121" y="97" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="400" fill="#F8FAFC" text-anchor="middle">Investigating</text>
+<rect x="1198" y="76" width="138" height="32" rx="16" fill="none" stroke="#475569" stroke-width="2"/>
+<text x="1267" y="97" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="400" fill="#F8FAFC" text-anchor="middle">Resolved</text>
+<text x="760" y="134" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="12" font-weight="400" fill="#94A3B8" text-anchor="start">Allowed next steps only; an illegal transition is not offered.</text>
+</g>
+<g id="region-evidence" data-region="evidence timeline">
+<rect x="216" y="168" width="380" height="508" rx="8" fill="#1B2336" stroke="#475569" stroke-width="1"/>
+<text x="232" y="200" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="16" font-weight="700" fill="#F8FAFC" text-anchor="start">Evidence timeline</text>
+<line x1="238" y1="228" x2="238" y2="312" stroke="#475569" stroke-width="2"/>
+<circle cx="238" cy="236" r="7" fill="#22C55E" stroke="#F8FAFC" stroke-width="2"/>
+<text x="256" y="240" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="600" fill="#F8FAFC" text-anchor="start">09:14:31 UTC - Edge model - blockage</text>
+<text x="256" y="262" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="12" font-weight="400" fill="#94A3B8" text-anchor="start">modality: camera - truth label: inferred</text>
+<text x="256" y="284" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="12" font-weight="400" fill="#38BDF8" text-anchor="start">Open evidence record</text>
+<line x1="238" y1="324" x2="238" y2="408" stroke="#475569" stroke-width="2"/>
+<circle cx="238" cy="332" r="7" fill="#22C55E" stroke="#F8FAFC" stroke-width="2"/>
+<text x="256" y="336" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="600" fill="#F8FAFC" text-anchor="start">09:13:50 UTC - Congestion detector</text>
+<text x="256" y="358" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="12" font-weight="400" fill="#94A3B8" text-anchor="start">modality: loop - truth label: inferred</text>
+<text x="256" y="380" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="12" font-weight="400" fill="#38BDF8" text-anchor="start">Open evidence record</text>
+<line x1="238" y1="420" x2="238" y2="504" stroke="#475569" stroke-width="2"/>
+<circle cx="238" cy="428" r="7" fill="#22C55E" stroke="#F8FAFC" stroke-width="2"/>
+<text x="256" y="432" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="600" fill="#F8FAFC" text-anchor="start">09:13:02 UTC - Loop det-b2-04 occupancy</text>
+<text x="256" y="454" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="12" font-weight="400" fill="#94A3B8" text-anchor="start">modality: loop - truth label: inferred</text>
+<text x="256" y="476" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="12" font-weight="400" fill="#38BDF8" text-anchor="start">Open evidence record</text>
+<line x1="238" y1="516" x2="238" y2="600" stroke="#475569" stroke-width="2"/>
+<circle cx="238" cy="524" r="7" fill="#22C55E" stroke="#F8FAFC" stroke-width="2"/>
+<text x="256" y="528" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="600" fill="#F8FAFC" text-anchor="start">09:12:07 UTC - Stall candidate raised</text>
+<text x="256" y="550" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="12" font-weight="400" fill="#94A3B8" text-anchor="start">modality: fused - truth label: inferred</text>
+<text x="256" y="572" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="12" font-weight="400" fill="#38BDF8" text-anchor="start">Open evidence record</text>
+</g>
+<g id="region-hypotheses" data-region="hypotheses">
+<rect x="608" y="168" width="400" height="240" rx="8" fill="#1B2336" stroke="#475569" stroke-width="1"/>
+<text x="624" y="200" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="16" font-weight="700" fill="#F8FAFC" text-anchor="start">Hypotheses (not verified causes)</text>
+<text x="624" y="232" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#F8FAFC" text-anchor="start">1. Stalled vehicle blocking lane</text>
+<text x="992" y="232" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="14" font-weight="400" fill="#94A3B8" text-anchor="end">0.63</text>
+<text x="624" y="252" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="12" font-weight="400" fill="#94A3B8" text-anchor="start">inferred - ranked by evidence, not confirmed</text>
+<text x="624" y="288" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#F8FAFC" text-anchor="start">2. Signal fault upstream</text>
+<text x="992" y="288" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="14" font-weight="400" fill="#94A3B8" text-anchor="end">0.18</text>
+<text x="624" y="308" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="12" font-weight="400" fill="#94A3B8" text-anchor="start">inferred - ranked by evidence, not confirmed</text>
+<text x="624" y="344" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#F8FAFC" text-anchor="start">3. Demand surge</text>
+<text x="992" y="344" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="14" font-weight="400" fill="#94A3B8" text-anchor="end">0.11</text>
+<text x="624" y="364" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="12" font-weight="400" fill="#94A3B8" text-anchor="start">inferred - ranked by evidence, not confirmed</text>
+</g>
+<g id="region-mini-map" data-region="affected network">
+<rect x="608" y="420" width="400" height="256" rx="8" fill="#1B2336" stroke="#475569" stroke-width="1"/>
+<text x="624" y="452" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="16" font-weight="700" fill="#F8FAFC" text-anchor="start">Affected elements</text>
+<g id="region-map" data-region="map canvas">
+<rect x="620" y="462" width="376" height="202" rx="8" fill="#0B1220" stroke="#475569" stroke-width="1"/>
+<line x1="665.12" y1="506.44" x2="762.88" y2="506.44" stroke="#94A3B8" stroke-width="4"/>
+<line x1="762.88" y1="506.44" x2="860.64" y2="506.44" stroke="#94A3B8" stroke-width="4"/>
+<line x1="860.64" y1="506.44" x2="958.4000000000001" y2="506.44" stroke="#94A3B8" stroke-width="4"/>
+<line x1="665.12" y1="563.0" x2="762.88" y2="563.0" stroke="#94A3B8" stroke-width="4"/>
+<line x1="762.88" y1="563.0" x2="860.64" y2="563.0" stroke="#F59E0B" stroke-width="4" stroke-dasharray="10 6"/>
+<line x1="860.64" y1="563.0" x2="958.4000000000001" y2="563.0" stroke="#94A3B8" stroke-width="4"/>
+<line x1="665.12" y1="619.56" x2="762.88" y2="619.56" stroke="#94A3B8" stroke-width="4"/>
+<line x1="762.88" y1="619.56" x2="860.64" y2="619.56" stroke="#94A3B8" stroke-width="4"/>
+<line x1="860.64" y1="619.56" x2="958.4000000000001" y2="619.56" stroke="#94A3B8" stroke-width="4"/>
+<line x1="665.12" y1="506.44" x2="665.12" y2="563.0" stroke="#94A3B8" stroke-width="3"/>
+<line x1="665.12" y1="563.0" x2="665.12" y2="619.56" stroke="#94A3B8" stroke-width="3"/>
+<line x1="958.4000000000001" y1="506.44" x2="958.4000000000001" y2="563.0" stroke="#94A3B8" stroke-width="3"/>
+<line x1="958.4000000000001" y1="563.0" x2="958.4000000000001" y2="619.56" stroke="#94A3B8" stroke-width="3"/>
+<circle cx="665.12" cy="506.44" r="9" fill="#1B2336" stroke="#F8FAFC" stroke-width="2"/>
+<circle cx="762.88" cy="506.44" r="9" fill="#1B2336" stroke="#F8FAFC" stroke-width="2"/>
+<circle cx="860.64" cy="506.44" r="9" fill="#1B2336" stroke="#F8FAFC" stroke-width="2"/>
+<circle cx="958.4000000000001" cy="506.44" r="9" fill="#1B2336" stroke="#F8FAFC" stroke-width="2"/>
+<circle cx="665.12" cy="563.0" r="9" fill="#1B2336" stroke="#F8FAFC" stroke-width="2"/>
+<circle cx="762.88" cy="563.0" r="9" fill="#1B2336" stroke="#F8FAFC" stroke-width="2"/>
+<circle cx="860.64" cy="563.0" r="9" fill="#1B2336" stroke="#F8FAFC" stroke-width="2"/>
+<circle cx="958.4000000000001" cy="563.0" r="9" fill="#1B2336" stroke="#F8FAFC" stroke-width="2"/>
+<circle cx="665.12" cy="619.56" r="9" fill="#1B2336" stroke="#F8FAFC" stroke-width="2"/>
+<circle cx="762.88" cy="619.56" r="9" fill="#1B2336" stroke="#F8FAFC" stroke-width="2"/>
+<circle cx="860.64" cy="619.56" r="9" fill="#1B2336" stroke="#F8FAFC" stroke-width="2"/>
+<circle cx="958.4000000000001" cy="619.56" r="9" fill="#1B2336" stroke="#F8FAFC" stroke-width="2"/>
+<polygon points="811.76,547.0 825.76,573.0 797.76,573.0" fill="#EF4444" stroke="#F8FAFC" stroke-width="2"/>
+<rect x="952.4000000000001" y="500.44" width="12" height="12" fill="#38BDF8" stroke="#F8FAFC"/>
+</g>
+</g>
+<g id="region-linked-actions" data-region="linked recommendations and commands">
+<rect x="1020" y="168" width="330" height="508" rx="8" fill="#1B2336" stroke="#475569" stroke-width="1"/>
+<text x="1036" y="200" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="16" font-weight="700" fill="#F8FAFC" text-anchor="start">Recommendations and commands</text>
+<rect x="1032" y="218" width="306" height="130" rx="8" fill="#272F42" stroke="#475569" stroke-width="1"/>
+<text x="1044" y="244" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="600" fill="#F8FAFC" text-anchor="start">Recommendation: divert via corridor C</text>
+<polygon points="1050,258 1056,264 1050,270 1044,264" fill="#38BDF8"/>
+<text x="1062" y="270" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="12" font-weight="400" fill="#F8FAFC" text-anchor="start">Proposed - expires 09:24</text>
+<text x="1044" y="294" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="12" font-weight="400" fill="#94A3B8" text-anchor="start">Benefit -74 s delay   Harm +12 s cross street</text>
+<g class="control">
+<rect x="1044" y="308" width="130" height="30" rx="8" fill="#22C55E" stroke="#22C55E" stroke-width="2"/>
+<text x="1109.0" y="327.0" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="12" font-weight="600" fill="#0F172A" text-anchor="middle">Request</text>
+</g>
+<rect x="1032" y="360" width="306" height="96" rx="8" fill="#272F42" stroke="#475569" stroke-width="1"/>
+<text x="1044" y="386" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="600" fill="#F8FAFC" text-anchor="start">Command: variable message sign</text>
+<polygon points="1050,401 1056,412 1044,412" fill="#F59E0B"/>
+<text x="1062" y="412" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="12" font-weight="400" fill="#F8FAFC" text-anchor="start">Requested - waiting for approval</text>
+<text x="1044" y="436" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="12" font-weight="400" fill="#94A3B8" text-anchor="start">Requested by operator, needs a supervisor</text>
+</g>
+<g id="region-action-bar" data-region="incident actions">
+<rect x="216" y="688" width="1134" height="68" rx="8" fill="#1B2336" stroke="#475569" stroke-width="1"/>
+<g class="control">
+<rect x="232" y="704" width="150" height="36" rx="8" fill="#22C55E" stroke="#22C55E" stroke-width="2"/>
+<text x="307.0" y="726.3333333333334" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="600" fill="#0F172A" text-anchor="middle">Acknowledge</text>
+</g>
+<g class="control">
+<rect x="394" y="704" width="150" height="36" rx="8" fill="none" stroke="#94A3B8" stroke-width="2"/>
+<text x="469.0" y="726.3333333333334" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="600" fill="#F8FAFC" text-anchor="middle">Assign owner v</text>
+</g>
+<g class="control">
+<rect x="556" y="704" width="150" height="36" rx="8" fill="none" stroke="#94A3B8" stroke-width="2"/>
+<text x="631.0" y="726.3333333333334" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="600" fill="#F8FAFC" text-anchor="middle">Escalate</text>
+</g>
+<g class="control">
+<rect x="718" y="704" width="150" height="36" rx="8" fill="none" stroke="#94A3B8" stroke-width="2"/>
+<text x="793.0" y="726.3333333333334" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="600" fill="#F8FAFC" text-anchor="middle">Resolve...</text>
+</g>
+<rect x="884" y="704" width="452" height="36" rx="6" fill="none" stroke="#94A3B8" stroke-width="1"/>
+<text x="896" y="727" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="400" fill="#94A3B8" text-anchor="start">Add a note (required to resolve)...</text>
+</g>
+<g id="callout-1"><circle cx="216" cy="60" r="11" fill="#F59E0B" stroke="#0F172A" stroke-width="2"/><text x="216" y="65" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="700" fill="#0F172A" text-anchor="middle">1</text></g>
+<g id="callout-2"><circle cx="760" cy="76" r="11" fill="#F59E0B" stroke="#0F172A" stroke-width="2"/><text x="760" y="81" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="700" fill="#0F172A" text-anchor="middle">2</text></g>
+<g id="callout-3"><circle cx="216" cy="168" r="11" fill="#F59E0B" stroke="#0F172A" stroke-width="2"/><text x="216" y="173" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="700" fill="#0F172A" text-anchor="middle">3</text></g>
+<g id="callout-4"><circle cx="608" cy="168" r="11" fill="#F59E0B" stroke="#0F172A" stroke-width="2"/><text x="608" y="173" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="700" fill="#0F172A" text-anchor="middle">4</text></g>
+<g id="callout-5"><circle cx="1020" cy="168" r="11" fill="#F59E0B" stroke="#0F172A" stroke-width="2"/><text x="1020" y="173" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="700" fill="#0F172A" text-anchor="middle">5</text></g>
+<g id="callout-6"><circle cx="216" cy="688" r="11" fill="#F59E0B" stroke="#0F172A" stroke-width="2"/><text x="216" y="693" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="700" fill="#0F172A" text-anchor="middle">6</text></g>
+</svg>

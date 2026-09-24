@@ -1,0 +1,21 @@
+{
+  "dataset_sha256": "f361f3b87cc8c0727727999ed8b8c090faa3f2b7f3954380e1efd405676fc6e2",
+  "detector": "rule:congestion/1",
+  "params": {
+    "n_off": 2,
+    "n_on": 3,
+    "occ_off_frac": 0.6,
+    "occ_on": 0.2,
+    "speed_on": 4.0
+  },
+  "severity_precision": {
+    "critical": 0.75,
+    "high": 0.75,
+    "low": 0.75,
+    "medium": 0.75
+  },
+  "spillback_params": {
+    "min_duration_s": 120.0,
+    "min_peak_occupancy": 0.4
+  }
+}

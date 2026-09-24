@@ -1,0 +1,626 @@
+{
+  "policy": {
+    "max_hops": 3,
+    "open_confidence": 0.6,
+    "resolve_hysteresis_s": 120.0,
+    "slack_s": 300.0
+  },
+  "schema": "incident-level-evaluation-v1",
+  "test": {
+    "_all_classes_pooled_for_FA-01": {
+      "blockage_recall": 0.833,
+      "blockage_recall_ci95": [
+        0.436,
+        0.97
+      ],
+      "blockages_covered": 5,
+      "candidate_to_incident_latency_s": {
+        "max": 0.0,
+        "median": 0.0,
+        "n": 7,
+        "note": "last contributing evidence event's observation_time to incident opened_at; event-driven correlation (no polling delay), nominal load",
+        "p95": 0.0
+      },
+      "candidates": 26,
+      "false_positive": 0,
+      "false_positive_rate": 0.0,
+      "false_positive_rate_ci95": [
+        0.0,
+        0.354
+      ],
+      "incident_delay_after_blockage_onset_s": {
+        "median": 139.0,
+        "n": 5,
+        "p90": 145.0
+      },
+      "incident_delay_after_queue_onset_s": {
+        "median": 30.0,
+        "n": 19,
+        "p90": 90.0
+      },
+      "incidents_by_type": {
+        "stalled_vehicle": 7
+      },
+      "incidents_raised": 7,
+      "measured_blockages": 6,
+      "queue_recall": 0.731,
+      "queue_recall_ci95": [
+        0.539,
+        0.863
+      ],
+      "queues_covered": 19,
+      "runs": 8,
+      "true_positive": 7,
+      "truth_queue_episodes": 26
+    },
+    "am-peak": {
+      "blockage_recall": 0.0,
+      "blockage_recall_ci95": null,
+      "blockages_covered": 0,
+      "candidate_to_incident_latency_s": {
+        "max": 0.0,
+        "median": 0.0,
+        "n": 1,
+        "note": "last contributing evidence event's observation_time to incident opened_at; event-driven correlation (no polling delay), nominal load",
+        "p95": 0.0
+      },
+      "candidates": 5,
+      "false_positive": 0,
+      "false_positive_rate": 0.0,
+      "false_positive_rate_ci95": [
+        0.0,
+        0.793
+      ],
+      "incident_delay_after_blockage_onset_s": {
+        "median": null,
+        "n": 0,
+        "p90": null
+      },
+      "incident_delay_after_queue_onset_s": {
+        "median": -330.0,
+        "n": 5,
+        "p90": 30.0
+      },
+      "incidents_by_type": {
+        "stalled_vehicle": 1
+      },
+      "incidents_raised": 1,
+      "measured_blockages": 0,
+      "queue_recall": 0.714,
+      "queue_recall_ci95": [
+        0.359,
+        0.918
+      ],
+      "queues_covered": 5,
+      "runs": 2,
+      "true_positive": 1,
+      "truth_queue_episodes": 7
+    },
+    "am-peak-blockage": {
+      "blockage_recall": 0.833,
+      "blockage_recall_ci95": [
+        0.436,
+        0.97
+      ],
+      "blockages_covered": 5,
+      "candidate_to_incident_latency_s": {
+        "max": 0.0,
+        "median": 0.0,
+        "n": 6,
+        "note": "last contributing evidence event's observation_time to incident opened_at; event-driven correlation (no polling delay), nominal load",
+        "p95": 0.0
+      },
+      "candidates": 21,
+      "false_positive": 0,
+      "false_positive_rate": 0.0,
+      "false_positive_rate_ci95": [
+        0.0,
+        0.39
+      ],
+      "incident_delay_after_blockage_onset_s": {
+        "median": 139.0,
+        "n": 5,
+        "p90": 145.0
+      },
+      "incident_delay_after_queue_onset_s": {
+        "median": 45.0,
+        "n": 14,
+        "p90": 90.0
+      },
+      "incidents_by_type": {
+        "stalled_vehicle": 6
+      },
+      "incidents_raised": 6,
+      "measured_blockages": 6,
+      "queue_recall": 0.737,
+      "queue_recall_ci95": [
+        0.512,
+        0.882
+      ],
+      "queues_covered": 14,
+      "runs": 2,
+      "true_positive": 6,
+      "truth_queue_episodes": 19
+    },
+    "midday-steady": {
+      "blockage_recall": 0.0,
+      "blockage_recall_ci95": null,
+      "blockages_covered": 0,
+      "candidate_to_incident_latency_s": {
+        "max": null,
+        "median": null,
+        "n": 0,
+        "note": "last contributing evidence event's observation_time to incident opened_at; event-driven correlation (no polling delay), nominal load",
+        "p95": null
+      },
+      "candidates": 0,
+      "false_positive": 0,
+      "false_positive_rate": null,
+      "false_positive_rate_ci95": null,
+      "incident_delay_after_blockage_onset_s": {
+        "median": null,
+        "n": 0,
+        "p90": null
+      },
+      "incident_delay_after_queue_onset_s": {
+        "median": null,
+        "n": 0,
+        "p90": null
+      },
+      "incidents_by_type": {},
+      "incidents_raised": 0,
+      "measured_blockages": 0,
+      "queue_recall": 0.0,
+      "queue_recall_ci95": null,
+      "queues_covered": 0,
+      "runs": 2,
+      "true_positive": 0,
+      "truth_queue_episodes": 0
+    },
+    "pm-double": {
+      "blockage_recall": 0.0,
+      "blockage_recall_ci95": null,
+      "blockages_covered": 0,
+      "candidate_to_incident_latency_s": {
+        "max": null,
+        "median": null,
+        "n": 0,
+        "note": "last contributing evidence event's observation_time to incident opened_at; event-driven correlation (no polling delay), nominal load",
+        "p95": null
+      },
+      "candidates": 0,
+      "false_positive": 0,
+      "false_positive_rate": null,
+      "false_positive_rate_ci95": null,
+      "incident_delay_after_blockage_onset_s": {
+        "median": null,
+        "n": 0,
+        "p90": null
+      },
+      "incident_delay_after_queue_onset_s": {
+        "median": null,
+        "n": 0,
+        "p90": null
+      },
+      "incidents_by_type": {},
+      "incidents_raised": 0,
+      "measured_blockages": 0,
+      "queue_recall": 0.0,
+      "queue_recall_ci95": null,
+      "queues_covered": 0,
+      "runs": 2,
+      "true_positive": 0,
+      "truth_queue_episodes": 0
+    }
+  },
+  "train": {
+    "_all_classes_pooled_for_FA-01": {
+      "blockage_recall": 0.467,
+      "blockage_recall_ci95": [
+        0.248,
+        0.699
+      ],
+      "blockages_covered": 7,
+      "candidate_to_incident_latency_s": {
+        "max": 0.0,
+        "median": 0.0,
+        "n": 7,
+        "note": "last contributing evidence event's observation_time to incident opened_at; event-driven correlation (no polling delay), nominal load",
+        "p95": 0.0
+      },
+      "candidates": 34,
+      "false_positive": 0,
+      "false_positive_rate": 0.0,
+      "false_positive_rate_ci95": [
+        0.0,
+        0.354
+      ],
+      "incident_delay_after_blockage_onset_s": {
+        "median": 144.0,
+        "n": 7,
+        "p90": 194.0
+      },
+      "incident_delay_after_queue_onset_s": {
+        "median": 60.0,
+        "n": 15,
+        "p90": 120.0
+      },
+      "incidents_by_type": {
+        "stalled_vehicle": 7
+      },
+      "incidents_raised": 7,
+      "measured_blockages": 15,
+      "queue_recall": 0.577,
+      "queue_recall_ci95": [
+        0.389,
+        0.745
+      ],
+      "queues_covered": 15,
+      "runs": 20,
+      "true_positive": 7,
+      "truth_queue_episodes": 26
+    },
+    "am-peak": {
+      "blockage_recall": 0.0,
+      "blockage_recall_ci95": null,
+      "blockages_covered": 0,
+      "candidate_to_incident_latency_s": {
+        "max": null,
+        "median": null,
+        "n": 0,
+        "note": "last contributing evidence event's observation_time to incident opened_at; event-driven correlation (no polling delay), nominal load",
+        "p95": null
+      },
+      "candidates": 0,
+      "false_positive": 0,
+      "false_positive_rate": null,
+      "false_positive_rate_ci95": null,
+      "incident_delay_after_blockage_onset_s": {
+        "median": null,
+        "n": 0,
+        "p90": null
+      },
+      "incident_delay_after_queue_onset_s": {
+        "median": null,
+        "n": 0,
+        "p90": null
+      },
+      "incidents_by_type": {},
+      "incidents_raised": 0,
+      "measured_blockages": 0,
+      "queue_recall": 0.0,
+      "queue_recall_ci95": [
+        0.0,
+        0.49
+      ],
+      "queues_covered": 0,
+      "runs": 5,
+      "true_positive": 0,
+      "truth_queue_episodes": 4
+    },
+    "am-peak-blockage": {
+      "blockage_recall": 0.467,
+      "blockage_recall_ci95": [
+        0.248,
+        0.699
+      ],
+      "blockages_covered": 7,
+      "candidate_to_incident_latency_s": {
+        "max": 0.0,
+        "median": 0.0,
+        "n": 7,
+        "note": "last contributing evidence event's observation_time to incident opened_at; event-driven correlation (no polling delay), nominal load",
+        "p95": 0.0
+      },
+      "candidates": 32,
+      "false_positive": 0,
+      "false_positive_rate": 0.0,
+      "false_positive_rate_ci95": [
+        0.0,
+        0.354
+      ],
+      "incident_delay_after_blockage_onset_s": {
+        "median": 144.0,
+        "n": 7,
+        "p90": 194.0
+      },
+      "incident_delay_after_queue_onset_s": {
+        "median": 60.0,
+        "n": 15,
+        "p90": 120.0
+      },
+      "incidents_by_type": {
+        "stalled_vehicle": 7
+      },
+      "incidents_raised": 7,
+      "measured_blockages": 15,
+      "queue_recall": 0.682,
+      "queue_recall_ci95": [
+        0.473,
+        0.836
+      ],
+      "queues_covered": 15,
+      "runs": 5,
+      "true_positive": 7,
+      "truth_queue_episodes": 22
+    },
+    "midday-steady": {
+      "blockage_recall": 0.0,
+      "blockage_recall_ci95": null,
+      "blockages_covered": 0,
+      "candidate_to_incident_latency_s": {
+        "max": null,
+        "median": null,
+        "n": 0,
+        "note": "last contributing evidence event's observation_time to incident opened_at; event-driven correlation (no polling delay), nominal load",
+        "p95": null
+      },
+      "candidates": 1,
+      "false_positive": 0,
+      "false_positive_rate": null,
+      "false_positive_rate_ci95": null,
+      "incident_delay_after_blockage_onset_s": {
+        "median": null,
+        "n": 0,
+        "p90": null
+      },
+      "incident_delay_after_queue_onset_s": {
+        "median": null,
+        "n": 0,
+        "p90": null
+      },
+      "incidents_by_type": {},
+      "incidents_raised": 0,
+      "measured_blockages": 0,
+      "queue_recall": 0.0,
+      "queue_recall_ci95": null,
+      "queues_covered": 0,
+      "runs": 5,
+      "true_positive": 0,
+      "truth_queue_episodes": 0
+    },
+    "pm-double": {
+      "blockage_recall": 0.0,
+      "blockage_recall_ci95": null,
+      "blockages_covered": 0,
+      "candidate_to_incident_latency_s": {
+        "max": null,
+        "median": null,
+        "n": 0,
+        "note": "last contributing evidence event's observation_time to incident opened_at; event-driven correlation (no polling delay), nominal load",
+        "p95": null
+      },
+      "candidates": 1,
+      "false_positive": 0,
+      "false_positive_rate": null,
+      "false_positive_rate_ci95": null,
+      "incident_delay_after_blockage_onset_s": {
+        "median": null,
+        "n": 0,
+        "p90": null
+      },
+      "incident_delay_after_queue_onset_s": {
+        "median": null,
+        "n": 0,
+        "p90": null
+      },
+      "incidents_by_type": {},
+      "incidents_raised": 0,
+      "measured_blockages": 0,
+      "queue_recall": 0.0,
+      "queue_recall_ci95": null,
+      "queues_covered": 0,
+      "runs": 5,
+      "true_positive": 0,
+      "truth_queue_episodes": 0
+    }
+  },
+  "truth": "SUMO stop-output blockage windows + standing-queue episodes (edge-wide waiting vehicles); an incident is a TP if a member candidate relates to a truth event on the graph",
+  "validation": {
+    "_all_classes_pooled_for_FA-01": {
+      "blockage_recall": 0.5,
+      "blockage_recall_ci95": [
+        0.188,
+        0.812
+      ],
+      "blockages_covered": 3,
+      "candidate_to_incident_latency_s": {
+        "max": 0.0,
+        "median": 0.0,
+        "n": 3,
+        "note": "last contributing evidence event's observation_time to incident opened_at; event-driven correlation (no polling delay), nominal load",
+        "p95": 0.0
+      },
+      "candidates": 14,
+      "false_positive": 0,
+      "false_positive_rate": 0.0,
+      "false_positive_rate_ci95": [
+        0.0,
+        0.562
+      ],
+      "incident_delay_after_blockage_onset_s": {
+        "median": 131.0,
+        "n": 3,
+        "p90": 131.0
+      },
+      "incident_delay_after_queue_onset_s": {
+        "median": 30.0,
+        "n": 5,
+        "p90": 90.0
+      },
+      "incidents_by_type": {
+        "stalled_vehicle": 3
+      },
+      "incidents_raised": 3,
+      "measured_blockages": 6,
+      "queue_recall": 0.455,
+      "queue_recall_ci95": [
+        0.213,
+        0.72
+      ],
+      "queues_covered": 5,
+      "runs": 8,
+      "true_positive": 3,
+      "truth_queue_episodes": 11
+    },
+    "am-peak": {
+      "blockage_recall": 0.0,
+      "blockage_recall_ci95": null,
+      "blockages_covered": 0,
+      "candidate_to_incident_latency_s": {
+        "max": null,
+        "median": null,
+        "n": 0,
+        "note": "last contributing evidence event's observation_time to incident opened_at; event-driven correlation (no polling delay), nominal load",
+        "p95": null
+      },
+      "candidates": 1,
+      "false_positive": 0,
+      "false_positive_rate": null,
+      "false_positive_rate_ci95": null,
+      "incident_delay_after_blockage_onset_s": {
+        "median": null,
+        "n": 0,
+        "p90": null
+      },
+      "incident_delay_after_queue_onset_s": {
+        "median": null,
+        "n": 0,
+        "p90": null
+      },
+      "incidents_by_type": {},
+      "incidents_raised": 0,
+      "measured_blockages": 0,
+      "queue_recall": 0.0,
+      "queue_recall_ci95": null,
+      "queues_covered": 0,
+      "runs": 2,
+      "true_positive": 0,
+      "truth_queue_episodes": 0
+    },
+    "am-peak-blockage": {
+      "blockage_recall": 0.5,
+      "blockage_recall_ci95": [
+        0.188,
+        0.812
+      ],
+      "blockages_covered": 3,
+      "candidate_to_incident_latency_s": {
+        "max": 0.0,
+        "median": 0.0,
+        "n": 2,
+        "note": "last contributing evidence event's observation_time to incident opened_at; event-driven correlation (no polling delay), nominal load",
+        "p95": 0.0
+      },
+      "candidates": 10,
+      "false_positive": 0,
+      "false_positive_rate": 0.0,
+      "false_positive_rate_ci95": [
+        0.0,
+        0.658
+      ],
+      "incident_delay_after_blockage_onset_s": {
+        "median": 131.0,
+        "n": 3,
+        "p90": 131.0
+      },
+      "incident_delay_after_queue_onset_s": {
+        "median": 30.0,
+        "n": 4,
+        "p90": 30.0
+      },
+      "incidents_by_type": {
+        "stalled_vehicle": 2
+      },
+      "incidents_raised": 2,
+      "measured_blockages": 6,
+      "queue_recall": 0.4,
+      "queue_recall_ci95": [
+        0.168,
+        0.687
+      ],
+      "queues_covered": 4,
+      "runs": 2,
+      "true_positive": 2,
+      "truth_queue_episodes": 10
+    },
+    "midday-steady": {
+      "blockage_recall": 0.0,
+      "blockage_recall_ci95": null,
+      "blockages_covered": 0,
+      "candidate_to_incident_latency_s": {
+        "max": null,
+        "median": null,
+        "n": 0,
+        "note": "last contributing evidence event's observation_time to incident opened_at; event-driven correlation (no polling delay), nominal load",
+        "p95": null
+      },
+      "candidates": 0,
+      "false_positive": 0,
+      "false_positive_rate": null,
+      "false_positive_rate_ci95": null,
+      "incident_delay_after_blockage_onset_s": {
+        "median": null,
+        "n": 0,
+        "p90": null
+      },
+      "incident_delay_after_queue_onset_s": {
+        "median": null,
+        "n": 0,
+        "p90": null
+      },
+      "incidents_by_type": {},
+      "incidents_raised": 0,
+      "measured_blockages": 0,
+      "queue_recall": 0.0,
+      "queue_recall_ci95": null,
+      "queues_covered": 0,
+      "runs": 2,
+      "true_positive": 0,
+      "truth_queue_episodes": 0
+    },
+    "pm-double": {
+      "blockage_recall": 0.0,
+      "blockage_recall_ci95": null,
+      "blockages_covered": 0,
+      "candidate_to_incident_latency_s": {
+        "max": 0.0,
+        "median": 0.0,
+        "n": 1,
+        "note": "last contributing evidence event's observation_time to incident opened_at; event-driven correlation (no polling delay), nominal load",
+        "p95": 0.0
+      },
+      "candidates": 3,
+      "false_positive": 0,
+      "false_positive_rate": 0.0,
+      "false_positive_rate_ci95": [
+        0.0,
+        0.793
+      ],
+      "incident_delay_after_blockage_onset_s": {
+        "median": null,
+        "n": 0,
+        "p90": null
+      },
+      "incident_delay_after_queue_onset_s": {
+        "median": 690.0,
+        "n": 1,
+        "p90": 690.0
+      },
+      "incidents_by_type": {
+        "stalled_vehicle": 1
+      },
+      "incidents_raised": 1,
+      "measured_blockages": 0,
+      "queue_recall": 1.0,
+      "queue_recall_ci95": [
+        0.207,
+        1.0
+      ],
+      "queues_covered": 1,
+      "runs": 2,
+      "true_positive": 1,
+      "truth_queue_episodes": 1
+    }
+  }
+}

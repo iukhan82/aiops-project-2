@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://project2.local/contracts/slo-definition/v1/schema.json",
+  "title": "Service level objective definition",
+  "description": "One versioned, measurable SLO for a platform service, per REFERENCE_ARCHITECTURE.md section 2 and docs/requirements/ACCEPTANCE_TARGETS.md's latency/load/recovery targets. Defines the objective, not a result; P10.02 registers these, P10.04 alerts against them.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "slo_id",
+    "service",
+    "objective_type",
+    "target_value",
+    "target_unit",
+    "window_seconds",
+    "measurement_query_ref",
+    "owner_role",
+    "effective_from"
+  ],
+  "properties": {
+    "schema_version": { "const": "1.0.0" },
+    "slo_id": { "type": "string", "minLength": 1 },
+    "service": { "type": "string", "minLength": 1 },
+    "objective_type": {
+      "type": "string",
+      "enum": ["availability", "latency", "error_rate", "saturation", "freshness", "acknowledgement", "eta_accuracy"]
+    },
+    "target_value": { "type": "number" },
+    "target_unit": { "type": "string", "minLength": 1 },
+    "window_seconds": { "type": "number", "exclusiveMinimum": 0 },
+    "measurement_query_ref": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Pointer to the exact PromQL/log query implementing this measurement; the query itself is not embedded in the contract."
+    },
+    "related_acceptance_target_id": {
+      "type": "string",
+      "description": "An ID from docs/requirements/ACCEPTANCE_TARGETS.md this SLO operationalizes, e.g. 'LAT-02'."
+    },
+    "owner_role": {
+      "type": "string",
+      "enum": ["LEAD", "ARCH", "SIM", "EDGE", "DATA", "BACKEND", "EMERG", "CONTROL", "UX", "UI", "OPS", "SEC", "GRC", "DEVOPS", "QA", "PRESENT"]
+    },
+    "effective_from": { "type": "string", "format": "date-time" },
+    "superseded_by": { "type": "string" }
+  }
+}

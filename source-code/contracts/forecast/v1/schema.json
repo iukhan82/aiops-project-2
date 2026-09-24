@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://project2.local/contracts/forecast/v1/schema.json",
+  "title": "Traffic forecast",
+  "description": "Short-horizon predicted network state for one lane/segment/intersection/corridor, per REFERENCE_ARCHITECTURE.md 'Network state and forecast'. Always truth_label=predicted; carries explicit uncertainty, never a bare point value.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "forecast_id",
+    "network_element_type",
+    "network_element_id",
+    "geometry_version",
+    "predicted_at",
+    "horizon_seconds",
+    "valid_from",
+    "valid_until",
+    "model_id",
+    "model_version",
+    "measurements",
+    "truth_label"
+  ],
+  "properties": {
+    "schema_version": { "const": "1.0.0" },
+    "forecast_id": { "type": "string", "format": "uuid" },
+    "network_element_type": {
+      "type": "string",
+      "enum": ["lane", "segment", "intersection", "corridor"]
+    },
+    "network_element_id": { "type": "string", "minLength": 1 },
+    "geometry_version": { "type": "string", "minLength": 1 },
+    "predicted_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the forecast was computed."
+    },
+    "horizon_seconds": {
+      "type": "integer",
+      "enum": [300, 900, 1800],
+      "description": "5, 15 or 30 minute horizon, per docs/PROJECT_PLAN.md forecast scope."
+    },
+    "valid_from": { "type": "string", "format": "date-time" },
+    "valid_until": { "type": "string", "format": "date-time" },
+    "model_id": { "type": "string", "minLength": 1 },
+    "model_version": { "type": "string", "minLength": 1 },
+    "baseline_id": {
+      "type": "string",
+      "description": "Identifies the P06.02 baseline this forecast was compared against, when produced by a trained model rather than the baseline itself."
+    },
+    "measurements": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "value", "unit", "uncertainty"],
+        "properties": {
+          "name": { "type": "string", "minLength": 1 },
+          "value": { "type": "number" },
+          "unit": { "type": "string", "minLength": 1 },
+          "uncertainty": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["method", "lower_bound", "upper_bound"],
+            "properties": {
+              "method": {
+                "type": "string",
+                "enum": ["quantile_interval", "std_dev_interval", "ensemble_range"]
+              },
+              "lower_bound": { "type": "number" },
+              "upper_bound": { "type": "number" }
+            }
+          }
+        }
+      }
+    },
+    "truth_label": { "type": "string", "const": "predicted" }
+  }
+}

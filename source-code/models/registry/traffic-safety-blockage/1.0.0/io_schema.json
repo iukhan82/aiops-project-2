@@ -1,0 +1,54 @@
+{
+  "decision_policy": {
+    "abstain_if_probability_in": [
+      0.28140946817397927,
+      0.5628189363479585
+    ],
+    "alarm_if_probability_at_least": 0.5628189363479585,
+    "clear_below": 0.28140946817397927
+  },
+  "feature_names": [
+    "count_last",
+    "count_mean",
+    "count_max",
+    "count_delta",
+    "occ_last",
+    "occ_mean",
+    "occ_max",
+    "occ_delta",
+    "speed_last",
+    "speed_mean",
+    "speed_min",
+    "speed_delta",
+    "zero_flow_run",
+    "high_occ_run",
+    "missing_fraction",
+    "speed_imputed_fraction",
+    "down_available",
+    "down_count_mean",
+    "down_occ_last",
+    "down_zero_flow_run",
+    "count_gap_down",
+    "up_available",
+    "up_count_mean",
+    "up_occ_last"
+  ],
+  "feature_version": "loop-window/2",
+  "input": {
+    "dtype": "float32",
+    "name": "features",
+    "shape": [
+      "N",
+      24
+    ]
+  },
+  "input_contract": "finite float32 only; NaN/inf is refused, never imputed by the runtime",
+  "output_names": [
+    "label",
+    "probabilities"
+  ],
+  "output_semantics": {
+    "label": "int64 predicted label at 0.5 (do not use for decisions)",
+    "probabilities": "float32 [N,2] class probabilities; column 1 = P(road blockage)"
+  }
+}

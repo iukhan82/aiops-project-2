@@ -1,0 +1,92 @@
+{
+  "all_passed": true,
+  "checks": {
+    "each_departure_from_master_md_is_justified_by_a_re_measured_failure": true,
+    "every_backend_state_has_a_label_shape_and_tone_and_no_invented_states": true,
+    "every_component_documents_purpose_anatomy_states_keyboard_aria_tokens_and_used_by": true,
+    "every_declared_colour_pair_meets_its_wcag_2_2_minimum": true,
+    "every_status_entry_is_complete_and_uses_a_defined_shape_and_tone": true,
+    "every_token_and_screen_a_component_names_exists": true,
+    "no_two_states_of_a_lifecycle_share_a_shape_or_a_label_so_they_are_distinct_in_greyscale": true,
+    "the_generated_reference_tables_in_the_design_document_are_current": true,
+    "the_screen_composition_table_and_the_components_used_by_lists_agree_in_both_directions": true,
+    "tokens_css_is_exactly_what_tokens_json_generates": true
+  },
+  "generated_at": "2026-09-21T14:20:01Z",
+  "metrics": {
+    "components": {
+      "documented": 26,
+      "screens_covered": 21,
+      "status_domains": 15,
+      "status_states": 71,
+      "tokens": 77
+    },
+    "contrast": {
+      "lowest": 3.19,
+      "non_text_pairs_min_3": 15,
+      "pairs": {
+        "accent on card": 6.88,
+        "border-strong on background": 4.27,
+        "border-strong on card": 3.74,
+        "border-strong on muted": 3.19,
+        "danger-text on background": 6.45,
+        "danger-text on card": 5.66,
+        "destructive on card": 4.16,
+        "destructive on map-background": 4.98,
+        "foreground on background": 17.06,
+        "foreground on card": 14.98,
+        "foreground on muted": 12.77,
+        "info on card": 7.31,
+        "info on map-background": 8.74,
+        "muted-foreground on background": 6.96,
+        "muted-foreground on card": 6.11,
+        "muted-foreground on muted": 5.21,
+        "neutral on card": 6.11,
+        "neutral on map-background": 7.3,
+        "on-accent on accent": 7.83,
+        "on-destructive on destructive": 5.58,
+        "on-primary on primary": 14.63,
+        "on-secondary on secondary": 10.35,
+        "ring on background": 17.85,
+        "ring on ring-inner": 17.85,
+        "ring-inner on accent": 7.83,
+        "warning on card": 7.3,
+        "warning on map-background": 8.72
+      },
+      "text_pairs_min_4_5": 15
+    },
+    "master_measurements": {
+      "border_on_background": 2.36,
+      "border_on_card": 2.07,
+      "destructive_on_card": 4.16,
+      "white_ring_on_accent": 2.28
+    },
+    "status_coverage": {
+      "assignment": 7,
+      "audit": 3,
+      "call": 7,
+      "command": 9,
+      "device": 4,
+      "freshness": 3,
+      "incident": 6,
+      "outcome": 4,
+      "recommendation": 4,
+      "run": 4,
+      "severity": 4,
+      "truth": 6
+    }
+  },
+  "notes": {
+    "each_departure_from_master_md_is_justified_by_a_re_measured_failure": "{}",
+    "every_backend_state_has_a_label_shape_and_tone_and_no_invented_states": "{}",
+    "every_component_documents_purpose_anatomy_states_keyboard_aria_tokens_and_used_by": "{}",
+    "every_declared_colour_pair_meets_its_wcag_2_2_minimum": "{}",
+    "every_status_entry_is_complete_and_uses_a_defined_shape_and_tone": "[]",
+    "every_token_and_screen_a_component_names_exists": "{}",
+    "no_two_states_of_a_lifecycle_share_a_shape_or_a_label_so_they_are_distinct_in_greyscale": "{}",
+    "the_generated_reference_tables_in_the_design_document_are_current": "run tools/design.py --build",
+    "the_screen_composition_table_and_the_components_used_by_lists_agree_in_both_directions": "",
+    "tokens_css_is_exactly_what_tokens_json_generates": "run tools/design.py --build"
+  },
+  "task": "P08.03"
+}

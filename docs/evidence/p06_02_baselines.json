@@ -1,0 +1,717 @@
+{
+  "dataset_sha256": "f361f3b87cc8c0727727999ed8b8c090faa3f2b7f3954380e1efd405676fc6e2",
+  "feature_version": "forecast-kpi/1",
+  "horizons": {
+    "1800": {
+      "horizon_seconds": 1800,
+      "targets": {
+        "density_veh_km": {
+          "conformal_halfwidth": 9.0145,
+          "selected_baseline": "time_of_day_mean",
+          "test": {
+            "bias": -2.3638,
+            "coverage": 0.7875,
+            "mae": 8.307,
+            "mean_abs_target": 13.0263,
+            "mean_interval_width": 18.029,
+            "n": 1200,
+            "relative_mae": 0.6377,
+            "rmse": 27.469,
+            "target": "density_veh_km"
+          },
+          "test_by_change": {
+            "changing_windows": {
+              "coverage": 0.7807276302851525,
+              "mae": 8.346336774827925,
+              "n": 1017,
+              "relative_mae": 0.646566690660908
+            },
+            "steady_windows": {
+              "coverage": 0.825136612021858,
+              "mae": 8.08857650273224,
+              "n": 183,
+              "relative_mae": 0.5912702121880292
+            }
+          },
+          "test_by_run_spec": {
+            "am-peak": {
+              "coverage": 0.8266666666666667,
+              "mae": 8.48562,
+              "n": 300,
+              "relative_mae": 0.557843644268359
+            },
+            "am-peak-blockage": {
+              "coverage": 0.75,
+              "mae": 12.807186666666666,
+              "n": 300,
+              "relative_mae": 0.6087017688389667
+            },
+            "midday-steady": {
+              "coverage": 0.8466666666666667,
+              "mae": 5.415733333333334,
+              "n": 300,
+              "relative_mae": 0.7756152285475595
+            },
+            "pm-double": {
+              "coverage": 0.7266666666666667,
+              "mae": 6.519573333333334,
+              "n": 300,
+              "relative_mae": 0.7349172412497418
+            }
+          },
+          "test_mae_all_baselines": {
+            "moving_average_3": 13.0156,
+            "persistence": 12.6389,
+            "time_of_day_mean": 8.307,
+            "trend_extrapolation": 21.2687
+          },
+          "test_vs_persistence_mae_diff_ci95": {
+            "ci95": [
+              -8.1503,
+              -0.7859
+            ],
+            "mae_diff": -4.3319
+          },
+          "validation_mae_by_baseline": {
+            "moving_average_3": 8.446,
+            "persistence": 8.356,
+            "time_of_day_mean": 6.34,
+            "trend_extrapolation": 14.5565
+          }
+        },
+        "travel_time_s": {
+          "conformal_halfwidth": 2.52,
+          "selected_baseline": "time_of_day_mean",
+          "test": {
+            "bias": -1.8428,
+            "coverage": 0.8092,
+            "mae": 3.8711,
+            "mean_abs_target": 61.3437,
+            "mean_interval_width": 5.04,
+            "n": 1200,
+            "relative_mae": 0.0631,
+            "rmse": 26.0278,
+            "target": "travel_time_s"
+          },
+          "test_by_change": {
+            "changing_windows": {
+              "coverage": 0.8102261553588987,
+              "mae": 3.612514257620452,
+              "n": 1017,
+              "relative_mae": 0.05922416097169531
+            },
+            "steady_windows": {
+              "coverage": 0.8032786885245902,
+              "mae": 5.307857923497267,
+              "n": 183,
+              "relative_mae": 0.08389420398630867
+            }
+          },
+          "test_by_run_spec": {
+            "am-peak": {
+              "coverage": 0.82,
+              "mae": 4.273583333333333,
+              "n": 300,
+              "relative_mae": 0.06934644528306784
+            },
+            "am-peak-blockage": {
+              "coverage": 0.79,
+              "mae": 7.595523333333333,
+              "n": 300,
+              "relative_mae": 0.11599406452663837
+            },
+            "midday-steady": {
+              "coverage": 0.8166666666666667,
+              "mae": 1.8008633333333326,
+              "n": 300,
+              "relative_mae": 0.030492735202168674
+            },
+            "pm-double": {
+              "coverage": 0.81,
+              "mae": 1.8142466666666663,
+              "n": 300,
+              "relative_mae": 0.030642280034162445
+            }
+          },
+          "test_mae_all_baselines": {
+            "moving_average_3": 5.9926,
+            "persistence": 6.2511,
+            "time_of_day_mean": 3.8711,
+            "trend_extrapolation": 15.447
+          },
+          "test_vs_persistence_mae_diff_ci95": {
+            "ci95": [
+              -4.6425,
+              -0.193
+            ],
+            "mae_diff": -2.38
+          },
+          "validation_mae_by_baseline": {
+            "moving_average_3": 2.1327,
+            "persistence": 2.4632,
+            "time_of_day_mean": 2.0824,
+            "trend_extrapolation": 8.1531
+          }
+        },
+        "volume_veh_h": {
+          "conformal_halfwidth": 389.1245,
+          "selected_baseline": "time_of_day_mean",
+          "test": {
+            "bias": -29.8984,
+            "coverage": 0.7783,
+            "mae": 257.1175,
+            "mean_abs_target": 524.8559,
+            "mean_interval_width": 778.249,
+            "n": 1200,
+            "relative_mae": 0.4899,
+            "rmse": 356.7362,
+            "target": "volume_veh_h"
+          },
+          "test_by_change": {
+            "changing_windows": {
+              "coverage": 0.7689282202556539,
+              "mae": 261.3338957718781,
+              "n": 1017,
+              "relative_mae": 0.5016402458450174
+            },
+            "steady_windows": {
+              "coverage": 0.8306010928961749,
+              "mae": 233.68569945355188,
+              "n": 183,
+              "relative_mae": 0.42759364704044917
+            }
+          },
+          "test_by_run_spec": {
+            "am-peak": {
+              "coverage": 0.8333333333333334,
+              "mae": 222.92292333333336,
+              "n": 300,
+              "relative_mae": 0.3803458317200488
+            },
+            "am-peak-blockage": {
+              "coverage": 0.74,
+              "mae": 283.02424333333335,
+              "n": 300,
+              "relative_mae": 0.40960044848613264
+            },
+            "midday-steady": {
+              "coverage": 0.86,
+              "mae": 225.33675333333332,
+              "n": 300,
+              "relative_mae": 0.6208023675353207
+            },
+            "pm-double": {
+              "coverage": 0.68,
+              "mae": 297.18626333333333,
+              "n": 300,
+              "relative_mae": 0.6469506831138284
+            }
+          },
+          "test_mae_all_baselines": {
+            "moving_average_3": 410.1629,
+            "persistence": 397.6783,
+            "time_of_day_mean": 257.1175,
+            "trend_extrapolation": 628.7318
+          },
+          "test_vs_persistence_mae_diff_ci95": {
+            "ci95": [
+              -218.9793,
+              -53.1954
+            ],
+            "mae_diff": -140.5608
+          },
+          "validation_mae_by_baseline": {
+            "moving_average_3": 375.8178,
+            "persistence": 366.1506,
+            "time_of_day_mean": 257.1362,
+            "trend_extrapolation": 589.7711
+          }
+        }
+      },
+      "test_samples": 1200,
+      "validation_samples": 1200
+    },
+    "300": {
+      "horizon_seconds": 300,
+      "targets": {
+        "density_veh_km": {
+          "conformal_halfwidth": 4.86,
+          "selected_baseline": "persistence",
+          "test": {
+            "bias": 0.0616,
+            "coverage": 0.8,
+            "mae": 4.8673,
+            "mean_abs_target": 12.3788,
+            "mean_interval_width": 9.72,
+            "n": 1440,
+            "relative_mae": 0.3932,
+            "rmse": 17.6794,
+            "target": "density_veh_km"
+          },
+          "test_by_change": {
+            "changing_windows": {
+              "coverage": 0.7133620689655172,
+              "mae": 5.46510775862069,
+              "n": 928,
+              "relative_mae": 0.47808352571541163
+            },
+            "steady_windows": {
+              "coverage": 0.95703125,
+              "mae": 3.783632812500001,
+              "n": 512,
+              "relative_mae": 0.268414883210526
+            }
+          },
+          "test_by_run_spec": {
+            "am-peak": {
+              "coverage": 0.8055555555555556,
+              "mae": 4.891111111111112,
+              "n": 360,
+              "relative_mae": 0.3638076662424173
+            },
+            "am-peak-blockage": {
+              "coverage": 0.7027777777777777,
+              "mae": 9.099722222222223,
+              "n": 360,
+              "relative_mae": 0.4619480532299982
+            },
+            "midday-steady": {
+              "coverage": 0.9027777777777778,
+              "mae": 2.3739444444444446,
+              "n": 360,
+              "relative_mae": 0.33790799280390654
+            },
+            "pm-double": {
+              "coverage": 0.7888888888888889,
+              "mae": 3.104222222222222,
+              "n": 360,
+              "relative_mae": 0.3321079487537631
+            }
+          },
+          "test_mae_all_baselines": {
+            "moving_average_3": 6.0066,
+            "persistence": 4.8673,
+            "time_of_day_mean": 7.6104,
+            "trend_extrapolation": 5.9573
+          },
+          "test_vs_persistence_mae_diff_ci95": {
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "mae_diff": 0.0
+          },
+          "validation_mae_by_baseline": {
+            "moving_average_3": 4.3873,
+            "persistence": 3.7907,
+            "time_of_day_mean": 5.9308,
+            "trend_extrapolation": 4.7286
+          }
+        },
+        "travel_time_s": {
+          "conformal_halfwidth": 2.422,
+          "selected_baseline": "time_of_day_mean",
+          "test": {
+            "bias": -1.5776,
+            "coverage": 0.8063,
+            "mae": 3.4871,
+            "mean_abs_target": 61.0077,
+            "mean_interval_width": 4.844,
+            "n": 1440,
+            "relative_mae": 0.0572,
+            "rmse": 23.8143,
+            "target": "travel_time_s"
+          },
+          "test_by_change": {
+            "changing_windows": {
+              "coverage": 0.7995689655172413,
+              "mae": 3.794845905172413,
+              "n": 928,
+              "relative_mae": 0.06196622877949324
+            },
+            "steady_windows": {
+              "coverage": 0.818359375,
+              "mae": 2.9292929687499996,
+              "n": 512,
+              "relative_mae": 0.04834959011756012
+            }
+          },
+          "test_by_run_spec": {
+            "am-peak": {
+              "coverage": 0.7972222222222223,
+              "mae": 3.9835444444444446,
+              "n": 360,
+              "relative_mae": 0.06497737466351977
+            },
+            "am-peak-blockage": {
+              "coverage": 0.8,
+              "mae": 6.5297222222222215,
+              "n": 360,
+              "relative_mae": 0.10138935375123787
+            },
+            "midday-steady": {
+              "coverage": 0.8111111111111111,
+              "mae": 1.7561249999999993,
+              "n": 360,
+              "relative_mae": 0.029701874839675967
+            },
+            "pm-double": {
+              "coverage": 0.8166666666666667,
+              "mae": 1.6789833333333326,
+              "n": 360,
+              "relative_mae": 0.028362788650454853
+            }
+          },
+          "test_mae_all_baselines": {
+            "moving_average_3": 3.9431,
+            "persistence": 3.8257,
+            "time_of_day_mean": 3.4871,
+            "trend_extrapolation": 5.0562
+          },
+          "test_vs_persistence_mae_diff_ci95": {
+            "ci95": [
+              -1.4272,
+              0.6714
+            ],
+            "mae_diff": -0.3386
+          },
+          "validation_mae_by_baseline": {
+            "moving_average_3": 1.9909,
+            "persistence": 2.2684,
+            "time_of_day_mean": 1.9424,
+            "trend_extrapolation": 3.0721
+          }
+        },
+        "volume_veh_h": {
+          "conformal_halfwidth": 251.98,
+          "selected_baseline": "persistence",
+          "test": {
+            "bias": 3.2841,
+            "coverage": 0.8118,
+            "mae": 161.2267,
+            "mean_abs_target": 514.3619,
+            "mean_interval_width": 503.96,
+            "n": 1440,
+            "relative_mae": 0.3134,
+            "rmse": 229.401,
+            "target": "volume_veh_h"
+          },
+          "test_by_change": {
+            "changing_windows": {
+              "coverage": 0.7133620689655172,
+              "mae": 218.38412715517242,
+              "n": 928,
+              "relative_mae": 0.46647064173031705
+            },
+            "steady_windows": {
+              "coverage": 0.990234375,
+              "mae": 57.62880859375,
+              "n": 512,
+              "relative_mae": 0.09635345980892031
+            }
+          },
+          "test_by_run_spec": {
+            "am-peak": {
+              "coverage": 0.8166666666666667,
+              "mae": 163.14808333333335,
+              "n": 360,
+              "relative_mae": 0.30882832205723915
+            },
+            "am-peak-blockage": {
+              "coverage": 0.7277777777777777,
+              "mae": 199.4281111111111,
+              "n": 360,
+              "relative_mae": 0.29334213268371107
+            },
+            "midday-steady": {
+              "coverage": 0.9055555555555556,
+              "mae": 122.91308333333335,
+              "n": 360,
+              "relative_mae": 0.3373489061686027
+            },
+            "pm-double": {
+              "coverage": 0.7972222222222223,
+              "mae": 159.41744444444444,
+              "n": 360,
+              "relative_mae": 0.32871714906536875
+            }
+          },
+          "test_mae_all_baselines": {
+            "moving_average_3": 183.8124,
+            "persistence": 161.2267,
+            "time_of_day_mean": 248.48,
+            "trend_extrapolation": 196.2325
+          },
+          "test_vs_persistence_mae_diff_ci95": {
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "mae_diff": 0.0
+          },
+          "validation_mae_by_baseline": {
+            "moving_average_3": 179.7057,
+            "persistence": 162.5684,
+            "time_of_day_mean": 245.7672,
+            "trend_extrapolation": 199.2561
+          }
+        }
+      },
+      "test_samples": 1440,
+      "validation_samples": 1440
+    },
+    "900": {
+      "horizon_seconds": 900,
+      "targets": {
+        "density_veh_km": {
+          "conformal_halfwidth": 7.96,
+          "selected_baseline": "persistence",
+          "test": {
+            "bias": 0.2293,
+            "coverage": 0.7902,
+            "mae": 8.6503,
+            "mean_abs_target": 12.736,
+            "mean_interval_width": 15.92,
+            "n": 1344,
+            "relative_mae": 0.6792,
+            "rmse": 29.3641,
+            "target": "density_veh_km"
+          },
+          "test_by_change": {
+            "changing_windows": {
+              "coverage": 0.7358309317963496,
+              "mae": 9.78895292987512,
+              "n": 1041,
+              "relative_mae": 0.7910820737074262
+            },
+            "steady_windows": {
+              "coverage": 0.976897689768977,
+              "mae": 4.7384818481848185,
+              "n": 303,
+              "relative_mae": 0.3389648040946994
+            }
+          },
+          "test_by_run_spec": {
+            "am-peak": {
+              "coverage": 0.7738095238095238,
+              "mae": 10.487172619047621,
+              "n": 336,
+              "relative_mae": 0.7423061123458222
+            },
+            "am-peak-blockage": {
+              "coverage": 0.7083333333333334,
+              "mae": 14.734404761904763,
+              "n": 336,
+              "relative_mae": 0.7200854079275778
+            },
+            "midday-steady": {
+              "coverage": 0.9464285714285714,
+              "mae": 3.490982142857143,
+              "n": 336,
+              "relative_mae": 0.49808912328976535
+            },
+            "pm-double": {
+              "coverage": 0.7321428571428571,
+              "mae": 5.888809523809524,
+              "n": 336,
+              "relative_mae": 0.6301280867244575
+            }
+          },
+          "test_mae_all_baselines": {
+            "moving_average_3": 9.5914,
+            "persistence": 8.6503,
+            "time_of_day_mean": 7.946,
+            "trend_extrapolation": 12.3708
+          },
+          "test_vs_persistence_mae_diff_ci95": {
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "mae_diff": 0.0
+          },
+          "validation_mae_by_baseline": {
+            "moving_average_3": 6.5179,
+            "persistence": 6.0551,
+            "time_of_day_mean": 6.1368,
+            "trend_extrapolation": 8.6276
+          }
+        },
+        "travel_time_s": {
+          "conformal_halfwidth": 2.4345,
+          "selected_baseline": "time_of_day_mean",
+          "test": {
+            "bias": -1.6484,
+            "coverage": 0.7999,
+            "mae": 3.606,
+            "mean_abs_target": 61.1042,
+            "mean_interval_width": 4.869,
+            "n": 1344,
+            "relative_mae": 0.059,
+            "rmse": 24.6016,
+            "target": "travel_time_s"
+          },
+          "test_by_change": {
+            "changing_windows": {
+              "coverage": 0.7905859750240154,
+              "mae": 3.9749164265129675,
+              "n": 1041,
+              "relative_mae": 0.06482521314724744
+            },
+            "steady_windows": {
+              "coverage": 0.8316831683168316,
+              "mae": 2.338610561056105,
+              "n": 303,
+              "relative_mae": 0.038736984469650786
+            }
+          },
+          "test_by_run_spec": {
+            "am-peak": {
+              "coverage": 0.7946428571428571,
+              "mae": 3.9917321428571433,
+              "n": 336,
+              "relative_mae": 0.0650884639238596
+            },
+            "am-peak-blockage": {
+              "coverage": 0.7916666666666666,
+              "mae": 6.92020238095238,
+              "n": 336,
+              "relative_mae": 0.10678064253328413
+            },
+            "midday-steady": {
+              "coverage": 0.8065476190476191,
+              "mae": 1.7730208333333324,
+              "n": 336,
+              "relative_mae": 0.030004054363729295
+            },
+            "pm-double": {
+              "coverage": 0.8065476190476191,
+              "mae": 1.7391130952380944,
+              "n": 336,
+              "relative_mae": 0.029382567931305136
+            }
+          },
+          "test_mae_all_baselines": {
+            "moving_average_3": 5.0166,
+            "persistence": 5.1389,
+            "time_of_day_mean": 3.606,
+            "trend_extrapolation": 9.4059
+          },
+          "test_vs_persistence_mae_diff_ci95": {
+            "ci95": [
+              -2.867,
+              -0.2378
+            ],
+            "mae_diff": -1.5329
+          },
+          "validation_mae_by_baseline": {
+            "moving_average_3": 2.0886,
+            "persistence": 2.392,
+            "time_of_day_mean": 1.9811,
+            "trend_extrapolation": 5.256
+          }
+        },
+        "volume_veh_h": {
+          "conformal_halfwidth": 408.84,
+          "selected_baseline": "persistence",
+          "test": {
+            "bias": 11.9312,
+            "coverage": 0.7946,
+            "mae": 263.9573,
+            "mean_abs_target": 523.7339,
+            "mean_interval_width": 817.68,
+            "n": 1344,
+            "relative_mae": 0.504,
+            "rmse": 359.9522,
+            "target": "volume_veh_h"
+          },
+          "test_by_change": {
+            "changing_windows": {
+              "coverage": 0.7348703170028819,
+              "mae": 323.6974063400576,
+              "n": 1041,
+              "relative_mae": 0.6444617132722289
+            },
+            "steady_windows": {
+              "coverage": 1.0,
+              "mae": 58.711485148514846,
+              "n": 303,
+              "relative_mae": 0.098268956164603
+            }
+          },
+          "test_by_run_spec": {
+            "am-peak": {
+              "coverage": 0.7767857142857143,
+              "mae": 273.06898809523807,
+              "n": 336,
+              "relative_mae": 0.4949281974957656
+            },
+            "am-peak-blockage": {
+              "coverage": 0.7321428571428571,
+              "mae": 295.8213095238095,
+              "n": 336,
+              "relative_mae": 0.42578716424846275
+            },
+            "midday-steady": {
+              "coverage": 0.9434523809523809,
+              "mae": 181.48229166666664,
+              "n": 336,
+              "relative_mae": 0.4990802160010986
+            },
+            "pm-double": {
+              "coverage": 0.7261904761904762,
+              "mae": 305.45651785714284,
+              "n": 336,
+              "relative_mae": 0.6300613888996832
+            }
+          },
+          "test_mae_all_baselines": {
+            "moving_average_3": 294.1427,
+            "persistence": 263.9573,
+            "time_of_day_mean": 255.3455,
+            "trend_extrapolation": 360.778
+          },
+          "test_vs_persistence_mae_diff_ci95": {
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "mae_diff": 0.0
+          },
+          "validation_mae_by_baseline": {
+            "moving_average_3": 275.9372,
+            "persistence": 251.6426,
+            "time_of_day_mean": 251.8444,
+            "trend_extrapolation": 343.4367
+          }
+        }
+      },
+      "test_samples": 1344,
+      "validation_samples": 1344
+    }
+  },
+  "limitations": [
+    "Targets are the platform's own KPI estimates (loop-derived), not SUMO truth; KPI error (P06.01) is upstream of any forecast error.",
+    "Congestion is rare in the dataset, so travel-time forecasts are dominated by near-constant free-flow values.",
+    "Conformal coverage assumes test residuals are exchangeable with validation residuals; changing windows (demand ramps) violate that.",
+    "Synthetic demand shapes (Gaussian peaks); no claim about real-world forecast accuracy."
+  ],
+  "nominal_interval_coverage": 0.8,
+  "runs": {
+    "test": 8,
+    "train": 20,
+    "validation": 8
+  },
+  "schema": "traffic-forecast-baseline-evaluation-v1",
+  "selected_baselines": {
+    "1800:density_veh_km": "time_of_day_mean",
+    "1800:travel_time_s": "time_of_day_mean",
+    "1800:volume_veh_h": "time_of_day_mean",
+    "300:density_veh_km": "persistence",
+    "300:travel_time_s": "time_of_day_mean",
+    "300:volume_veh_h": "persistence",
+    "900:density_veh_km": "persistence",
+    "900:travel_time_s": "time_of_day_mean",
+    "900:volume_veh_h": "persistence"
+  }
+}

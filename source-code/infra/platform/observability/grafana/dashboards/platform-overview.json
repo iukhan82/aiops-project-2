@@ -1,0 +1,78 @@
+{
+  "title": "AIOPS platform overview (P10.03)",
+  "uid": "aiops-platform-overview",
+  "timezone": "utc",
+  "schemaVersion": 39,
+  "version": 1,
+  "refresh": "30s",
+  "time": { "from": "now-1h", "to": "now" },
+  "panels": [
+    {
+      "id": 1,
+      "title": "Ingestion latency P95 (LAT-02)",
+      "type": "timeseries",
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 0 },
+      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "targets": [
+        {
+          "expr": "histogram_quantile(0.95, sum(rate(ingestion_ingest_latency_milliseconds_bucket[5m])) by (le))",
+          "legendFormat": "p95 ms"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Ingestion events by outcome",
+      "type": "timeseries",
+      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 0 },
+      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "targets": [
+        { "expr": "sum(rate(ingestion_events_inserted_total[5m]))", "legendFormat": "inserted" },
+        { "expr": "sum(rate(ingestion_events_duplicate_ok_total[5m]))", "legendFormat": "duplicate_ok" },
+        { "expr": "sum(rate(ingestion_events_rejected_schema_total[5m]))", "legendFormat": "rejected_schema" }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "API HTTP requests by route and status",
+      "type": "timeseries",
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 8 },
+      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "targets": [
+        {
+          "expr": "sum(rate(api_http_requests_total[5m])) by (http_route, http_status_code)",
+          "legendFormat": "{{http_route}} {{http_status_code}}"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Network-state records by freshness_status (SAFE-03)",
+      "type": "timeseries",
+      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 8 },
+      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "targets": [
+        {
+          "expr": "sum(rate(network_state_records_total[5m])) by (freshness_status)",
+          "legendFormat": "{{freshness_status}}"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "title": "Recent traces",
+      "type": "traces",
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 16 },
+      "datasource": { "type": "tempo", "uid": "tempo" },
+      "targets": [{ "queryType": "traceql", "query": "{}" }]
+    },
+    {
+      "id": 6,
+      "title": "Recent logs",
+      "type": "logs",
+      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 16 },
+      "datasource": { "type": "loki", "uid": "loki" },
+      "targets": [{ "expr": "{service_name=~\".+\"}" }]
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  P03.01 district edges. Naming: <from>_<to>. Corridor edges (type=corridor)
+  form the three east-west arterials; cross-street edges (type=cross-street)
+  connect the corridors at the west (x=0) and east (x=900) columns.
+-->
+<edges>
+  <!-- Corridor A -->
+  <edge id="int-a1_int-a2" from="int-a1" to="int-a2" type="corridor"/>
+  <edge id="int-a2_int-a1" from="int-a2" to="int-a1" type="corridor"/>
+  <edge id="int-a2_int-a3" from="int-a2" to="int-a3" type="corridor"/>
+  <edge id="int-a3_int-a2" from="int-a3" to="int-a2" type="corridor"/>
+  <edge id="int-a3_int-a4" from="int-a3" to="int-a4" type="corridor"/>
+  <edge id="int-a4_int-a3" from="int-a4" to="int-a3" type="corridor"/>
+
+  <!-- Corridor B -->
+  <edge id="int-b1_int-b2" from="int-b1" to="int-b2" type="corridor"/>
+  <edge id="int-b2_int-b1" from="int-b2" to="int-b1" type="corridor"/>
+  <edge id="int-b2_int-b3" from="int-b2" to="int-b3" type="corridor"/>
+  <edge id="int-b3_int-b2" from="int-b3" to="int-b2" type="corridor"/>
+  <edge id="int-b3_int-b4" from="int-b3" to="int-b4" type="corridor"/>
+  <edge id="int-b4_int-b3" from="int-b4" to="int-b3" type="corridor"/>
+
+  <!-- Corridor C -->
+  <edge id="int-c1_int-c2" from="int-c1" to="int-c2" type="corridor"/>
+  <edge id="int-c2_int-c1" from="int-c2" to="int-c1" type="corridor"/>
+  <edge id="int-c2_int-c3" from="int-c2" to="int-c3" type="corridor"/>
+  <edge id="int-c3_int-c2" from="int-c3" to="int-c2" type="corridor"/>
+  <edge id="int-c3_int-c4" from="int-c3" to="int-c4" type="corridor"/>
+  <edge id="int-c4_int-c3" from="int-c4" to="int-c3" type="corridor"/>
+
+  <!-- West cross-street (x=0): corridor A - B - C -->
+  <edge id="int-a1_int-b1" from="int-a1" to="int-b1" type="cross-street"/>
+  <edge id="int-b1_int-a1" from="int-b1" to="int-a1" type="cross-street"/>
+  <edge id="int-b1_int-c1" from="int-b1" to="int-c1" type="cross-street"/>
+  <edge id="int-c1_int-b1" from="int-c1" to="int-b1" type="cross-street"/>
+
+  <!-- East cross-street (x=900): corridor A - B - C -->
+  <edge id="int-a4_int-b4" from="int-a4" to="int-b4" type="cross-street"/>
+  <edge id="int-b4_int-a4" from="int-b4" to="int-a4" type="cross-street"/>
+  <edge id="int-b4_int-c4" from="int-b4" to="int-c4" type="cross-street"/>
+  <edge id="int-c4_int-b4" from="int-c4" to="int-b4" type="cross-street"/>
+</edges>

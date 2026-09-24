@@ -1,0 +1,172 @@
+{
+  "accuracy_held_out_test_split": {
+    "ACC01_model_beats_baseline_on_row_f1": true,
+    "FA01_met_by_baseline": false,
+    "FA01_met_by_model": false,
+    "abstention": {
+      "abstain_rate": 0.0026340996168582377,
+      "positive_rate_among_abstained": 0.48484848484848486
+    },
+    "acc01_verdict_full": {
+      "baseline_f1": 0.4797507788161993,
+      "baseline_incident_recall": 0.5,
+      "model_beats_baseline_on_incident_recall": true,
+      "model_beats_baseline_on_row_f1": true,
+      "model_f1": 0.5235294117647059,
+      "model_incident_recall": 0.6041666666666666,
+      "note": "Reported as measured; the comparison stands whether or not the model wins."
+    },
+    "calibration": {
+      "brier": 0.011807393282651901,
+      "ece": 0.002979973269243503
+    },
+    "model": {
+      "f1": 0.5235294117647059,
+      "f1_ci95": [
+        0.37858036272670426,
+        0.6472820604118449
+      ],
+      "false_alarm_episode_share": 0.12121212121212122,
+      "false_alarm_episodes": 4,
+      "false_alarm_episodes_per_device_hour": 0.039059321344291645,
+      "incident_recall": 0.6041666666666666,
+      "incidents": 48,
+      "incidents_detected": 29,
+      "median_detection_delay_s": 64.0,
+      "positive_rows": 239,
+      "precision": 0.8811881188118812,
+      "precision_ci95": [
+        0.8332943925233646,
+        0.9367286392405063
+      ],
+      "recall": 0.3723849372384937,
+      "recall_ci95": [
+        0.2431629785324611,
+        0.5088493348503411
+      ],
+      "rows": 12528
+    },
+    "note": "Measured once by models/train/train_model.py against the sealed TEST split (models/registry/test_split_ledger.json records the single 'final_comparison' opening); cited here, not recomputed.",
+    "paired_delta_model_minus_baseline_cluster_bootstrap": {
+      "f1": {
+        "ci95": [
+          0.006565122332964071,
+          0.08503653835455784
+        ],
+        "mean": 0.04409621384460206
+      },
+      "precision": {
+        "ci95": [
+          -0.12103990637876182,
+          0.027859386548410876
+        ],
+        "mean": -0.0528695177957038
+      },
+      "recall": {
+        "ci95": [
+          0.009439895294986239,
+          0.10066229976249431
+        ],
+        "mean": 0.05140211704710298
+      }
+    },
+    "rule_baseline": {
+      "f1": 0.4797507788161993,
+      "f1_ci95": [
+        0.34459396193946756,
+        0.5965299277605779
+      ],
+      "false_alarm_episode_share": 0.10714285714285714,
+      "false_alarm_episodes": 3,
+      "false_alarm_episodes_per_device_hour": 0.029294491008218734,
+      "incident_recall": 0.5,
+      "incidents": 48,
+      "incidents_detected": 24,
+      "median_detection_delay_s": 74.0,
+      "positive_rows": 239,
+      "precision": 0.9390243902439024,
+      "precision_ci95": [
+        0.8790940766550522,
+        0.9773013407455854
+      ],
+      "recall": 0.32217573221757323,
+      "recall_ci95": [
+        0.2129513888888889,
+        0.4315781363306743
+      ],
+      "rows": 12528
+    },
+    "sample_sizes": {
+      "test_incidents": 48,
+      "test_positive_rows": 239,
+      "test_rows": 12528,
+      "test_runs": 24,
+      "test_seeds": [
+        20260925,
+        20260926
+      ]
+    },
+    "target_FA01_max_false_alarm_episode_share": 0.1
+  },
+  "conditions": {
+    "container": "edge-runtime:p04 (source-code/edge/Dockerfile), non-root uid 10001, read-only rootfs, cap-drop ALL, no-new-privileges",
+    "onnxruntime_threads": "intra_op=1, inter_op=1, sequential execution (bounded CPU use)",
+    "resource_limits": "--cpus=0.75 --memory=512m --memory-swap=512m --pids-limit=64 (ADR-0006 / docs/environment/RESOURCE_BUDGET.md per-edge-instance limit)",
+    "workload": "12960 real SUMO loop-detector events, 540 events/run averaged over 2 held-out TEST seeds x runs (P03.08 split), concatenated and time-sorted - a sustained-load throughput/latency benchmark, not a coherent traffic scenario (see limitations)"
+  },
+  "format": "edge-benchmark-report/1",
+  "latency_ms": {
+    "LAT01_met": true,
+    "cold_first_inference": 0.1737,
+    "decision_latency_including_features_and_emit": {
+      "max": 23.7463,
+      "mean": 0.1558,
+      "n": 540,
+      "p50": 0.0879,
+      "p95": 0.271,
+      "p99": 0.4864
+    },
+    "target_LAT01_warm_p95_below_ms": 100.0,
+    "warm_inference": {
+      "max": 0.2414,
+      "mean": 0.0315,
+      "n": 521,
+      "p50": 0.019,
+      "p95": 0.135,
+      "p99": 0.1983
+    }
+  },
+  "limitations": [
+    "Trained and evaluated only on SUMO-simulated loop data; no field-accuracy claim follows.",
+    "A single physical mechanism (two-lane blockage 25-70 m past the loop) and one network geometry; distance and demand generalization is untested outside them.",
+    "Labels are ground truth (blockage active), not 'detectable yet': at low flow or long blockage-to-loop distance the queue never reaches a detector and no loop-based method can see the incident. See recall by distance/demand in comparison_test.json.",
+    "The false-alarm budget (<=10% of alarm episodes) held on validation; on the test split both detectors ended slightly above it (see held_out_test_opened_once).",
+    "Corridor-context features need neighbor loops; at corridor ends they are structurally absent and the model falls back on own-window evidence only.",
+    "Test-split sample is small (48 incidents, 24 runs): confidence intervals are wide.",
+    "The throughput/latency/resource benchmark replays 24 independent SUMO test-split runs concatenated onto the same 18 shared device ids; it measures sustained system load, not a single coherent traffic scenario - accuracy is not evaluated from this run (that is the separate, already-sealed test-split comparison above).",
+    "Benchmarked on one development host's Docker Desktop/WSL2 (docker info: 4 CPUs, 11.68 GiB visible to the daemon); the assessment target host is unconfirmed (docs/environment/RESOURCE_BUDGET.md) - absolute wall-clock numbers may differ there, though the per-container 0.75 CPU/512 MiB limit is what was actually enforced.",
+    "cgroup_cpu_nr_throttled/throttled_usec show the container was periodically CPU-throttled while ingesting 12960 events in under 6 seconds (a burst far denser than real telemetry arrival, which is one event per device per ~30s); per-event latency remained far under the LAT-01 budget throughout, including under throttling.",
+    "onnxruntime logs a benign 'Failed to persist telemetry device ID' warning on this read-only rootfs (it cannot write a local cache file); no network telemetry call is made and no data leaves the container either way."
+  ],
+  "model": "traffic-safety-blockage/1.0.0",
+  "onnx_sha256": "e3ab6a4ac96a0ea7f06ad1235404f7f0ac17122ddab8573b1a07c8a682350e44",
+  "resource_use": {
+    "cgroup_cpu_nr_throttled": 56,
+    "cgroup_cpu_throttled_usec": 1627192,
+    "cgroup_cpu_usage_usec": 4393400,
+    "cgroup_memory_max_bytes": 536870912,
+    "cpu_throttled_fraction_of_wall": 0.3111,
+    "memory_limit_bytes": 536870912,
+    "metrics_series_count": 49,
+    "peak_rss_fraction_of_limit": 0.1445,
+    "process_cpu_s": 4.385,
+    "vm_hwm_kb": 75764,
+    "vm_rss_kb": 75764
+  },
+  "throughput": {
+    "emitted_candidate_events": 28,
+    "events_ingested": 12960,
+    "events_per_second": 2477.5,
+    "wall_seconds": 5.231
+  }
+}

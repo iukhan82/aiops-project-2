@@ -1,0 +1,25 @@
+{
+  "_invalid_because": "the lane omits movement_ids; a lane that maps to no movement cannot be used for conflict-group/signal-state cross-referencing.",
+  "schema_version": "1.0.0",
+  "geometry_version": "2026-09-18.1",
+  "intersection_id": "int-03",
+  "coordinate_reference": "EPSG:4326",
+  "centroid": { "latitude": 31.5204, "longitude": 74.3587 },
+  "approaches": [
+    {
+      "approach_id": "int-03-approach-n",
+      "bearing_degrees": 0,
+      "lanes": [
+        { "lane_id": "int-03-approach-n-lane-1", "lane_type": "through" }
+      ]
+    }
+  ],
+  "movements": [
+    {
+      "movement_id": "int-03-mv-n-through",
+      "from_approach_id": "int-03-approach-n",
+      "conflict_group": "int-03-phase-a"
+    }
+  ],
+  "effective_from": "2026-09-18T00:00:00Z"
+}

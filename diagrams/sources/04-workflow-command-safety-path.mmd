@@ -1,0 +1,48 @@
+%%{init: {"sequence": {"actorMargin": 40, "messageMargin": 30}} }%%
+sequenceDiagram
+  participant Evi as Evidence (network-state/v1, incident/v1)
+  participant OptSvc as Optimization/Emergency service (RECOMMEND)
+  participant Op as Operator/Dispatcher (REQUEST)
+  participant Sup as Supervisor/Incident Commander (APPROVE)
+  participant OPA as OPA policy engine
+  participant Cmd as Command service
+  participant Exec as system:command-executor (EXECUTE)
+  participant Adapt as Simulator adapter
+  participant Ver as Outcome verifier
+  participant Aud as Audit service (append-only)
+
+  Evi->>OptSvc: current state + incident evidence
+  OptSvc->>Op: recommendation/v1 (alternatives, safety_bounds, expires_at)
+  Op->>Cmd: command/v1 (status=requested, idempotency_key)
+  Cmd->>Aud: log request
+  alt safety class SC-1 or SC-2
+    Op->>Sup: request approval (different person, four-eyes)
+    Sup->>Cmd: approved_by (must != requested_by)
+  else safety class SC-0
+    Note over Op,Cmd: requester's REQUEST is sufficient, no second approval
+  end
+  Cmd->>OPA: policy-decision/v1 input (role, action_type, target, evidence_freshness_seconds)
+  alt evidence stale or expired or policy unavailable
+    OPA-->>Cmd: deny (reason required)
+    Cmd->>Aud: log denial
+    Cmd-->>Op: status=denied / expired
+  else permit
+    OPA-->>Cmd: permit
+    Cmd->>Exec: dispatch approved command
+    Exec->>Adapt: execute (registered, idempotent action only)
+    Adapt-->>Exec: acknowledgement + observed state
+    Exec->>Cmd: status=executed
+    Cmd->>Aud: log execution
+    Cmd->>Ver: request outcome verification
+    Ver->>Evi: read independent pre/post window
+    alt effective
+      Ver-->>Cmd: outcome/v1 classification=effective
+    else unsafe or unknown
+      Ver-->>Cmd: outcome/v1 classification=unsafe/unknown
+      Cmd->>Exec: rollback
+      Exec->>Adapt: revert
+      Cmd->>Aud: log rollback/escalation
+    end
+  end
+
+  Note over Sup,Aud: OVERRIDE (incident_commander, SC-2 only) requires justification, always audited, never for SC-0/SC-1

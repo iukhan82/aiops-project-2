@@ -1,0 +1,10 @@
+{
+  "_invalid_because": "labels includes 'vehicle_id', which is not in the enumerated low-cardinality key set; a per-vehicle metric label would grow the label cardinality unbounded, exactly what docs/environment/RESOURCE_BUDGET.md forbids.",
+  "schema_version": "1.0.0",
+  "metric_name": "vehicle_speed_meters_per_second",
+  "service_name": "edge-runtime",
+  "labels": {
+    "service_name": "edge-runtime",
+    "vehicle_id": "veh-38221"
+  }
+}

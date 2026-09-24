@@ -1,0 +1,18 @@
+{
+  "_invalid_because": "safety_bounds is missing; every recommendation must declare its pedestrian-clearance and signal-deviation limits so the command executor can reject anything that would breach them.",
+  "schema_version": "1.0.0",
+  "recommendation_id": "1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed",
+  "action_type": "signal_plan_change",
+  "generated_at": "2026-09-18T09:08:00Z",
+  "expires_at": "2026-09-18T09:13:00Z",
+  "status": "proposed",
+  "alternatives": [
+    {
+      "alternative_id": "alt-extend-north-green",
+      "description": "Extend int-03 north-through green by 8 seconds for two cycles.",
+      "predicted_benefit": [{ "name": "queue_reduction", "value": 35, "unit": "percent" }],
+      "predicted_harm": [{ "name": "cross_street_delay_increase", "value": 6, "unit": "s" }],
+      "confidence": 0.68
+    }
+  ]
+}

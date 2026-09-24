@@ -1,0 +1,509 @@
+{
+  "drift": {
+    "monitor": {
+      "chosen_on": "validation (ratio 2.0 / window 12 had the lowest false-alarm rate of six candidates, 6/48 vs 18-38/48)",
+      "reading": "a coarse alarm, not a precise detector: five-minute count errors are noisy. A false alarm falls back to the baseline (the safe direction); a miss leaves the model in service, which the held-out error already bounds.",
+      "rule": "trailing-12-window mean relative error > 2.0 x validation relative error",
+      "series_flagged_no_drift": "11/48",
+      "series_flagged_unanticipated_1.4x_demand_step_from_window_15": "26/48",
+      "target": "900s volume_veh_h",
+      "validation_relative_error": 0.4299
+    },
+    "psi_features_0_1_to_0_25": [],
+    "psi_features_above_0_25": [],
+    "psi_train_vs_test_max": [
+      "network_volume_veh_h",
+      0.0548
+    ]
+  },
+  "selection": {
+    "1800:density_veh_km": {
+      "accepted": true,
+      "baseline": "time_of_day_mean",
+      "baseline_validation_mae": 6.34,
+      "candidates_validation_mae": {
+        "hgb:{\"l2_regularization\": 1.0, \"learning_rate\": 0.05, \"max_depth\": 3, \"max_iter\": 150, \"min_samples_leaf\": 30}": 6.3156,
+        "hgb:{\"l2_regularization\": 1.0, \"learning_rate\": 0.05, \"max_depth\": null, \"max_iter\": 150, \"min_samples_leaf\": 30}": 6.0135,
+        "hgb:{\"l2_regularization\": 1.0, \"learning_rate\": 0.1, \"max_depth\": 3, \"max_iter\": 150, \"min_samples_leaf\": 30}": 6.351,
+        "hgb:{\"l2_regularization\": 1.0, \"learning_rate\": 0.1, \"max_depth\": null, \"max_iter\": 150, \"min_samples_leaf\": 30}": 6.4313,
+        "ridge:{\"alpha\": 1.0}": 5.9051,
+        "ridge:{\"alpha\": 10.0}": 5.8746,
+        "ridge:{\"alpha\": 100.0}": 5.7541
+      },
+      "chosen": "ridge:{\"alpha\": 100.0}",
+      "chosen_validation_mae": 5.7541,
+      "relative_gain_vs_baseline": 0.0924
+    },
+    "1800:travel_time_s": {
+      "accepted": false,
+      "baseline": "time_of_day_mean",
+      "baseline_validation_mae": 2.0824,
+      "candidates_validation_mae": {
+        "hgb:{\"l2_regularization\": 1.0, \"learning_rate\": 0.05, \"max_depth\": 3, \"max_iter\": 150, \"min_samples_leaf\": 30}": 2.8754,
+        "hgb:{\"l2_regularization\": 1.0, \"learning_rate\": 0.05, \"max_depth\": null, \"max_iter\": 150, \"min_samples_leaf\": 30}": 2.6491,
+        "hgb:{\"l2_regularization\": 1.0, \"learning_rate\": 0.1, \"max_depth\": 3, \"max_iter\": 150, \"min_samples_leaf\": 30}": 2.8761,
+        "hgb:{\"l2_regularization\": 1.0, \"learning_rate\": 0.1, \"max_depth\": null, \"max_iter\": 150, \"min_samples_leaf\": 30}": 2.9246,
+        "ridge:{\"alpha\": 1.0}": 2.6684,
+        "ridge:{\"alpha\": 10.0}": 2.6339,
+        "ridge:{\"alpha\": 100.0}": 2.4647
+      },
+      "chosen": "ridge:{\"alpha\": 100.0}",
+      "chosen_validation_mae": 2.4647,
+      "relative_gain_vs_baseline": -0.1836
+    },
+    "1800:volume_veh_h": {
+      "accepted": true,
+      "baseline": "time_of_day_mean",
+      "baseline_validation_mae": 257.1362,
+      "candidates_validation_mae": {
+        "hgb:{\"l2_regularization\": 1.0, \"learning_rate\": 0.05, \"max_depth\": 3, \"max_iter\": 150, \"min_samples_leaf\": 30}": 216.5798,
+        "hgb:{\"l2_regularization\": 1.0, \"learning_rate\": 0.05, \"max_depth\": null, \"max_iter\": 150, \"min_samples_leaf\": 30}": 205.7655,
+        "hgb:{\"l2_regularization\": 1.0, \"learning_rate\": 0.1, \"max_depth\": 3, \"max_iter\": 150, \"min_samples_leaf\": 30}": 214.6775,
+        "hgb:{\"l2_regularization\": 1.0, \"learning_rate\": 0.1, \"max_depth\": null, \"max_iter\": 150, \"min_samples_leaf\": 30}": 207.6744,
+        "ridge:{\"alpha\": 1.0}": 229.175,
+        "ridge:{\"alpha\": 10.0}": 229.1749,
+        "ridge:{\"alpha\": 100.0}": 229.4357
+      },
+      "chosen": "hgb:{\"l2_regularization\": 1.0, \"learning_rate\": 0.05, \"max_depth\": null, \"max_iter\": 150, \"min_samples_leaf\": 30}",
+      "chosen_validation_mae": 205.7655,
+      "relative_gain_vs_baseline": 0.1998
+    },
+    "300:density_veh_km": {
+      "accepted": true,
+      "baseline": "persistence",
+      "baseline_validation_mae": 3.7907,
+      "candidates_validation_mae": {
+        "hgb:{\"l2_regularization\": 1.0, \"learning_rate\": 0.05, \"max_depth\": 3, \"max_iter\": 150, \"min_samples_leaf\": 30}": 3.5682,
+        "hgb:{\"l2_regularization\": 1.0, \"learning_rate\": 0.05, \"max_depth\": null, \"max_iter\": 150, \"min_samples_leaf\": 30}": 3.4816,
+        "hgb:{\"l2_regularization\": 1.0, \"learning_rate\": 0.1, \"max_depth\": 3, \"max_iter\": 150, \"min_samples_leaf\": 30}": 3.5526,
+        "hgb:{\"l2_regularization\": 1.0, \"learning_rate\": 0.1, \"max_depth\": null, \"max_iter\": 150, \"min_samples_leaf\": 30}": 3.639,
+        "ridge:{\"alpha\": 1.0}": 3.2892,
+        "ridge:{\"alpha\": 10.0}": 3.2879,
+        "ridge:{\"alpha\": 100.0}": 3.2782
+      },
+      "chosen": "ridge:{\"alpha\": 100.0}",
+      "chosen_validation_mae": 3.2782,
+      "relative_gain_vs_baseline": 0.1352
+    },
+    "300:travel_time_s": {
+      "accepted": false,
+      "baseline": "time_of_day_mean",
+      "baseline_validation_mae": 1.9424,
+      "candidates_validation_mae": {
+        "hgb:{\"l2_regularization\": 1.0, \"learning_rate\": 0.05, \"max_depth\": 3, \"max_iter\": 150, \"min_samples_leaf\": 30}": 2.219,
+        "hgb:{\"l2_regularization\": 1.0, \"learning_rate\": 0.05, \"max_depth\": null, \"max_iter\": 150, \"min_samples_leaf\": 30}": 2.0349,
+        "hgb:{\"l2_regularization\": 1.0, \"learning_rate\": 0.1, \"max_depth\": 3, \"max_iter\": 150, \"min_samples_leaf\": 30}": 2.1577,
+        "hgb:{\"l2_regularization\": 1.0, \"learning_rate\": 0.1, \"max_depth\": null, \"max_iter\": 150, \"min_samples_leaf\": 30}": 2.1426,
+        "ridge:{\"alpha\": 1.0}": 2.0418,
+        "ridge:{\"alpha\": 10.0}": 2.0304,
+        "ridge:{\"alpha\": 100.0}": 1.9811
+      },
+      "chosen": "ridge:{\"alpha\": 100.0}",
+      "chosen_validation_mae": 1.9811,
+      "relative_gain_vs_baseline": -0.0199
+    },
+    "300:volume_veh_h": {
+      "accepted": true,
+      "baseline": "persistence",
+      "baseline_validation_mae": 162.5684,
+      "candidates_validation_mae": {
+        "hgb:{\"l2_regularization\": 1.0, \"learning_rate\": 0.05, \"max_depth\": 3, \"max_iter\": 150, \"min_samples_leaf\": 30}": 130.3246,
+        "hgb:{\"l2_regularization\": 1.0, \"learning_rate\": 0.05, \"max_depth\": null, \"max_iter\": 150, \"min_samples_leaf\": 30}": 130.9053,
+        "hgb:{\"l2_regularization\": 1.0, \"learning_rate\": 0.1, \"max_depth\": 3, \"max_iter\": 150, \"min_samples_leaf\": 30}": 128.7715,
+        "hgb:{\"l2_regularization\": 1.0, \"learning_rate\": 0.1, \"max_depth\": null, \"max_iter\": 150, \"min_samples_leaf\": 30}": 131.2498,
+        "ridge:{\"alpha\": 1.0}": 127.0661,
+        "ridge:{\"alpha\": 10.0}": 127.0126,
+        "ridge:{\"alpha\": 100.0}": 128.1381
+      },
+      "chosen": "ridge:{\"alpha\": 10.0}",
+      "chosen_validation_mae": 127.0126,
+      "relative_gain_vs_baseline": 0.2187
+    },
+    "900:density_veh_km": {
+      "accepted": true,
+      "baseline": "persistence",
+      "baseline_validation_mae": 6.0551,
+      "candidates_validation_mae": {
+        "hgb:{\"l2_regularization\": 1.0, \"learning_rate\": 0.05, \"max_depth\": 3, \"max_iter\": 150, \"min_samples_leaf\": 30}": 5.0021,
+        "hgb:{\"l2_regularization\": 1.0, \"learning_rate\": 0.05, \"max_depth\": null, \"max_iter\": 150, \"min_samples_leaf\": 30}": 4.7517,
+        "hgb:{\"l2_regularization\": 1.0, \"learning_rate\": 0.1, \"max_depth\": 3, \"max_iter\": 150, \"min_samples_leaf\": 30}": 4.8652,
+        "hgb:{\"l2_regularization\": 1.0, \"learning_rate\": 0.1, \"max_depth\": null, \"max_iter\": 150, \"min_samples_leaf\": 30}": 4.9601,
+        "ridge:{\"alpha\": 1.0}": 4.85,
+        "ridge:{\"alpha\": 10.0}": 4.8325,
+        "ridge:{\"alpha\": 100.0}": 4.7603
+      },
+      "chosen": "hgb:{\"l2_regularization\": 1.0, \"learning_rate\": 0.05, \"max_depth\": null, \"max_iter\": 150, \"min_samples_leaf\": 30}",
+      "chosen_validation_mae": 4.7517,
+      "relative_gain_vs_baseline": 0.2153
+    },
+    "900:travel_time_s": {
+      "accepted": false,
+      "baseline": "time_of_day_mean",
+      "baseline_validation_mae": 1.9811,
+      "candidates_validation_mae": {
+        "hgb:{\"l2_regularization\": 1.0, \"learning_rate\": 0.05, \"max_depth\": 3, \"max_iter\": 150, \"min_samples_leaf\": 30}": 2.7304,
+        "hgb:{\"l2_regularization\": 1.0, \"learning_rate\": 0.05, \"max_depth\": null, \"max_iter\": 150, \"min_samples_leaf\": 30}": 2.4445,
+        "hgb:{\"l2_regularization\": 1.0, \"learning_rate\": 0.1, \"max_depth\": 3, \"max_iter\": 150, \"min_samples_leaf\": 30}": 2.7209,
+        "hgb:{\"l2_regularization\": 1.0, \"learning_rate\": 0.1, \"max_depth\": null, \"max_iter\": 150, \"min_samples_leaf\": 30}": 2.6149,
+        "ridge:{\"alpha\": 1.0}": 2.5324,
+        "ridge:{\"alpha\": 10.0}": 2.499,
+        "ridge:{\"alpha\": 100.0}": 2.35
+      },
+      "chosen": "ridge:{\"alpha\": 100.0}",
+      "chosen_validation_mae": 2.35,
+      "relative_gain_vs_baseline": -0.1862
+    },
+    "900:volume_veh_h": {
+      "accepted": true,
+      "baseline": "persistence",
+      "baseline_validation_mae": 251.6426,
+      "candidates_validation_mae": {
+        "hgb:{\"l2_regularization\": 1.0, \"learning_rate\": 0.05, \"max_depth\": 3, \"max_iter\": 150, \"min_samples_leaf\": 30}": 170.7072,
+        "hgb:{\"l2_regularization\": 1.0, \"learning_rate\": 0.05, \"max_depth\": null, \"max_iter\": 150, \"min_samples_leaf\": 30}": 166.8263,
+        "hgb:{\"l2_regularization\": 1.0, \"learning_rate\": 0.1, \"max_depth\": 3, \"max_iter\": 150, \"min_samples_leaf\": 30}": 168.1981,
+        "hgb:{\"l2_regularization\": 1.0, \"learning_rate\": 0.1, \"max_depth\": null, \"max_iter\": 150, \"min_samples_leaf\": 30}": 168.2067,
+        "ridge:{\"alpha\": 1.0}": 179.0527,
+        "ridge:{\"alpha\": 10.0}": 179.085,
+        "ridge:{\"alpha\": 100.0}": 180.339
+      },
+      "chosen": "hgb:{\"l2_regularization\": 1.0, \"learning_rate\": 0.05, \"max_depth\": null, \"max_iter\": 150, \"min_samples_leaf\": 30}",
+      "chosen_validation_mae": 166.8263,
+      "relative_gain_vs_baseline": 0.3371
+    }
+  },
+  "test": {
+    "1800:density_veh_km": {
+      "baseline": "time_of_day_mean",
+      "baseline_interval_coverage": 0.7875,
+      "baseline_test_mae": 8.307,
+      "by_change": {
+        "changing_windows": {
+          "baseline_mae": 8.3463,
+          "model_mae": 9.0675,
+          "n": 1017
+        },
+        "steady_windows": {
+          "baseline_mae": 8.0886,
+          "model_mae": 7.793,
+          "n": 183
+        }
+      },
+      "by_run_spec_model_mae": {
+        "am-peak": 9.543,
+        "am-peak-blockage": 13.3456,
+        "midday-steady": 5.2155,
+        "pm-double": 7.3883
+      },
+      "model_interval_coverage": 0.7133,
+      "model_interval_width": 16.6019,
+      "model_minus_baseline_mae": {
+        "ci95": [
+          0.1735,
+          1.0052
+        ],
+        "mae_diff": 0.5661
+      },
+      "model_test_mae": 8.8731,
+      "n_test_samples": 1200,
+      "served_source_test_mae": 8.8731,
+      "test_verdict_model_vs_baseline": "model significantly worse",
+      "validation_decision": "model accepted"
+    },
+    "1800:travel_time_s": {
+      "baseline": "time_of_day_mean",
+      "baseline_interval_coverage": 0.8092,
+      "baseline_test_mae": 3.8711,
+      "by_change": {
+        "changing_windows": {
+          "baseline_mae": 3.6125,
+          "model_mae": 4.2966,
+          "n": 1017
+        },
+        "steady_windows": {
+          "baseline_mae": 5.3079,
+          "model_mae": 5.9315,
+          "n": 183
+        }
+      },
+      "by_run_spec_model_mae": {
+        "am-peak": 5.0059,
+        "am-peak-blockage": 9.1836,
+        "midday-steady": 1.8798,
+        "pm-double": 2.1145
+      },
+      "model_interval_coverage": 0.7933,
+      "model_interval_width": 6.7581,
+      "model_minus_baseline_mae": {
+        "ci95": [
+          0.2447,
+          1.21
+        ],
+        "mae_diff": 0.6749
+      },
+      "model_test_mae": 4.5459,
+      "n_test_samples": 1200,
+      "served_source_test_mae": 3.8711,
+      "test_verdict_model_vs_baseline": "model significantly worse",
+      "validation_decision": "model rejected, baseline served"
+    },
+    "1800:volume_veh_h": {
+      "baseline": "time_of_day_mean",
+      "baseline_interval_coverage": 0.7783,
+      "baseline_test_mae": 257.1175,
+      "by_change": {
+        "changing_windows": {
+          "baseline_mae": 261.3339,
+          "model_mae": 233.2605,
+          "n": 1017
+        },
+        "steady_windows": {
+          "baseline_mae": 233.6857,
+          "model_mae": 231.6868,
+          "n": 183
+        }
+      },
+      "by_run_spec_model_mae": {
+        "am-peak": 216.4893,
+        "am-peak-blockage": 293.8148,
+        "midday-steady": 200.0357,
+        "pm-double": 221.7422
+      },
+      "model_interval_coverage": 0.7792,
+      "model_interval_width": 662.8565,
+      "model_minus_baseline_mae": {
+        "ci95": [
+          -52.667,
+          7.9536
+        ],
+        "mae_diff": -24.097
+      },
+      "model_test_mae": 233.0205,
+      "n_test_samples": 1200,
+      "served_source_test_mae": 233.0205,
+      "test_verdict_model_vs_baseline": "no significant difference",
+      "validation_decision": "model accepted"
+    },
+    "300:density_veh_km": {
+      "baseline": "persistence",
+      "baseline_interval_coverage": 0.8,
+      "baseline_test_mae": 4.8673,
+      "by_change": {
+        "changing_windows": {
+          "baseline_mae": 5.4651,
+          "model_mae": 4.7266,
+          "n": 928
+        },
+        "steady_windows": {
+          "baseline_mae": 3.7836,
+          "model_mae": 4.5614,
+          "n": 512
+        }
+      },
+      "by_run_spec_model_mae": {
+        "am-peak": 5.0237,
+        "am-peak-blockage": 8.6749,
+        "midday-steady": 2.2885,
+        "pm-double": 2.6845
+      },
+      "model_interval_coverage": 0.7674,
+      "model_interval_width": 8.5345,
+      "model_minus_baseline_mae": {
+        "ci95": [
+          -0.9943,
+          0.4879
+        ],
+        "mae_diff": -0.1994
+      },
+      "model_test_mae": 4.6679,
+      "n_test_samples": 1440,
+      "served_source_test_mae": 4.6679,
+      "test_verdict_model_vs_baseline": "no significant difference",
+      "validation_decision": "model accepted"
+    },
+    "300:travel_time_s": {
+      "baseline": "time_of_day_mean",
+      "baseline_interval_coverage": 0.8063,
+      "baseline_test_mae": 3.4871,
+      "by_change": {
+        "changing_windows": {
+          "baseline_mae": 3.7948,
+          "model_mae": 3.7688,
+          "n": 928
+        },
+        "steady_windows": {
+          "baseline_mae": 2.9293,
+          "model_mae": 3.0766,
+          "n": 512
+        }
+      },
+      "by_run_spec_model_mae": {
+        "am-peak": 4.017,
+        "am-peak-blockage": 6.7432,
+        "midday-steady": 1.7423,
+        "pm-double": 1.5884
+      },
+      "model_interval_coverage": 0.7993,
+      "model_interval_width": 5.3021,
+      "model_minus_baseline_mae": {
+        "ci95": [
+          -0.7256,
+          0.86
+        ],
+        "mae_diff": 0.0356
+      },
+      "model_test_mae": 3.5227,
+      "n_test_samples": 1440,
+      "served_source_test_mae": 3.4871,
+      "test_verdict_model_vs_baseline": "no significant difference",
+      "validation_decision": "model rejected, baseline served"
+    },
+    "300:volume_veh_h": {
+      "baseline": "persistence",
+      "baseline_interval_coverage": 0.8118,
+      "baseline_test_mae": 161.2267,
+      "by_change": {
+        "changing_windows": {
+          "baseline_mae": 218.3841,
+          "model_mae": 156.5555,
+          "n": 928
+        },
+        "steady_windows": {
+          "baseline_mae": 57.6288,
+          "model_mae": 100.5461,
+          "n": 512
+        }
+      },
+      "by_run_spec_model_mae": {
+        "am-peak": 139.6352,
+        "am-peak-blockage": 175.2939,
+        "midday-steady": 107.3318,
+        "pm-double": 124.3032
+      },
+      "model_interval_coverage": 0.8042,
+      "model_interval_width": 414.9076,
+      "model_minus_baseline_mae": {
+        "ci95": [
+          -30.8155,
+          -19.3646
+        ],
+        "mae_diff": -24.5857
+      },
+      "model_test_mae": 136.641,
+      "n_test_samples": 1440,
+      "served_source_test_mae": 136.641,
+      "test_verdict_model_vs_baseline": "model significantly better",
+      "validation_decision": "model accepted"
+    },
+    "900:density_veh_km": {
+      "baseline": "persistence",
+      "baseline_interval_coverage": 0.7902,
+      "baseline_test_mae": 8.6503,
+      "by_change": {
+        "changing_windows": {
+          "baseline_mae": 9.789,
+          "model_mae": 8.0958,
+          "n": 1041
+        },
+        "steady_windows": {
+          "baseline_mae": 4.7385,
+          "model_mae": 7.9669,
+          "n": 303
+        }
+      },
+      "by_run_spec_model_mae": {
+        "am-peak": 9.6153,
+        "am-peak-blockage": 14.2353,
+        "midday-steady": 3.3744,
+        "pm-double": 5.042
+      },
+      "model_interval_coverage": 0.7493,
+      "model_interval_width": 12.3835,
+      "model_minus_baseline_mae": {
+        "ci95": [
+          -1.0159,
+          -0.1706
+        ],
+        "mae_diff": -0.5836
+      },
+      "model_test_mae": 8.0668,
+      "n_test_samples": 1344,
+      "served_source_test_mae": 8.0668,
+      "test_verdict_model_vs_baseline": "model significantly better",
+      "validation_decision": "model accepted"
+    },
+    "900:travel_time_s": {
+      "baseline": "time_of_day_mean",
+      "baseline_interval_coverage": 0.7999,
+      "baseline_test_mae": 3.606,
+      "by_change": {
+        "changing_windows": {
+          "baseline_mae": 3.9749,
+          "model_mae": 4.4648,
+          "n": 1041
+        },
+        "steady_windows": {
+          "baseline_mae": 2.3386,
+          "model_mae": 3.3138,
+          "n": 303
+        }
+      },
+      "by_run_spec_model_mae": {
+        "am-peak": 5.0307,
+        "am-peak-blockage": 8.0909,
+        "midday-steady": 1.7445,
+        "pm-double": 1.9552
+      },
+      "model_interval_coverage": 0.7909,
+      "model_interval_width": 6.3839,
+      "model_minus_baseline_mae": {
+        "ci95": [
+          0.1313,
+          1.2171
+        ],
+        "mae_diff": 0.5993
+      },
+      "model_test_mae": 4.2053,
+      "n_test_samples": 1344,
+      "served_source_test_mae": 3.606,
+      "test_verdict_model_vs_baseline": "model significantly worse",
+      "validation_decision": "model rejected, baseline served"
+    },
+    "900:volume_veh_h": {
+      "baseline": "persistence",
+      "baseline_interval_coverage": 0.7946,
+      "baseline_test_mae": 263.9573,
+      "by_change": {
+        "changing_windows": {
+          "baseline_mae": 323.6974,
+          "model_mae": 190.8412,
+          "n": 1041
+        },
+        "steady_windows": {
+          "baseline_mae": 58.7115,
+          "model_mae": 169.3351,
+          "n": 303
+        }
+      },
+      "by_run_spec_model_mae": {
+        "am-peak": 184.4431,
+        "am-peak-blockage": 225.394,
+        "midday-steady": 169.4734,
+        "pm-double": 164.6604
+      },
+      "model_interval_coverage": 0.7619,
+      "model_interval_width": 520.7676,
+      "model_minus_baseline_mae": {
+        "ci95": [
+          -113.6834,
+          -43.8753
+        ],
+        "mae_diff": -77.9646
+      },
+      "model_test_mae": 185.9927,
+      "n_test_samples": 1344,
+      "served_source_test_mae": 185.9927,
+      "test_verdict_model_vs_baseline": "model significantly better",
+      "validation_decision": "model accepted"
+    }
+  }
+}

@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1366" height="768" viewBox="0 0 1366 768" role="img" aria-labelledby="t d" data-role="operator">
+<title id="t">Live operations map - accessible list alternative (1366x768)</title>
+<desc id="d">A sortable, filterable table carrying every fact the map shows, with freshness and truth label per row and a details panel, synchronised with map selection.</desc>
+<rect width="1366" height="768" fill="#0F172A"/>
+<g id="region-header" data-region="banner">
+<rect x="0" y="0" width="1366" height="48" rx="0" fill="#1B2336" stroke="#475569" stroke-width="1"/>
+<rect x="12" y="10" width="28" height="28" rx="6" fill="#22C55E" stroke="#22C55E" stroke-width="1"/>
+<text x="52" y="30.0" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="17" font-weight="700" fill="#F8FAFC" text-anchor="start">Traffic Operations</text>
+<circle cx="470" cy="24" r="5" fill="#22C55E"/>
+<text x="482" y="29" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="14" font-weight="400" fill="#F8FAFC" text-anchor="start">Connected - updated 2 s ago</text>
+<rect x="792" y="12" width="92" height="24" rx="12" fill="#272F42" stroke="#38BDF8" stroke-width="1"/>
+<text x="838" y="29" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="12" font-weight="700" fill="#38BDF8" text-anchor="middle">SIMULATED</text>
+<text x="1310" y="29.0" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="14" font-weight="400" fill="#94A3B8" text-anchor="end">alex.chen - operator</text>
+<rect x="1322" y="10" width="32" height="28" rx="6" fill="none" stroke="#94A3B8" stroke-width="2"/>
+<text x="1338" y="30" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#F8FAFC" text-anchor="middle">v</text>
+</g>
+<g id="region-nav" data-region="navigation">
+<rect x="0" y="48" width="200" height="720" rx="0" fill="#1B2336" stroke="#475569" stroke-width="1"/>
+<text x="16" y="74" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="12" font-weight="400" fill="#94A3B8" text-anchor="start">Signed in as operator</text>
+<rect x="8" y="96" width="184" height="34" rx="6" fill="#272F42" stroke="#22C55E" stroke-width="2"/>
+<text x="24" y="118" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#F8FAFC" text-anchor="start">Map</text>
+<text x="172" y="118" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="10" font-weight="400" fill="#94A3B8" text-anchor="end">current</text>
+<rect x="8" y="136" width="184" height="34" rx="6" fill="none" stroke="none" stroke-width="2"/>
+<text x="24" y="158" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="14" font-weight="400" fill="#F8FAFC" text-anchor="start">Analytics</text>
+<rect x="8" y="176" width="184" height="34" rx="6" fill="none" stroke="none" stroke-width="2"/>
+<text x="24" y="198" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="14" font-weight="400" fill="#F8FAFC" text-anchor="start">Incidents</text>
+<rect x="8" y="216" width="184" height="34" rx="6" fill="none" stroke="none" stroke-width="2"/>
+<text x="24" y="238" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="14" font-weight="400" fill="#F8FAFC" text-anchor="start">Dispatch</text>
+<rect x="8" y="256" width="184" height="34" rx="6" fill="none" stroke="none" stroke-width="2"/>
+<text x="24" y="278" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="14" font-weight="400" fill="#F8FAFC" text-anchor="start">Actions</text>
+<rect x="8" y="296" width="184" height="34" rx="6" fill="none" stroke="none" stroke-width="2"/>
+<text x="24" y="318" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="14" font-weight="400" fill="#F8FAFC" text-anchor="start">Handover</text>
+<rect x="8" y="336" width="184" height="34" rx="6" fill="none" stroke="none" stroke-width="2"/>
+<text x="24" y="358" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="14" font-weight="400" fill="#F8FAFC" text-anchor="start">Operations</text>
+</g>
+<g id="region-main" data-region="main">
+<text x="224" y="84" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="20" font-weight="700" fill="#F8FAFC" text-anchor="start">Live operations map - list view</text>
+<g id="region-view-toggle" data-region="view toggle">
+<rect x="892" y="60" width="130" height="32" rx="8" fill="#272F42" stroke="#475569" stroke-width="1"/>
+<rect x="958" y="62" width="62" height="28" rx="6" fill="#22C55E" stroke="#22C55E" stroke-width="1"/>
+<text x="925" y="81" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="400" fill="#F8FAFC" text-anchor="middle">Map</text>
+<text x="989" y="81" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="700" fill="#0F172A" text-anchor="middle">List</text>
+</g>
+<g id="region-filters" data-region="filters">
+<rect x="216" y="106" width="810" height="44" rx="8" fill="#1B2336" stroke="#475569" stroke-width="1"/>
+<rect x="228" y="114" width="184" height="28" rx="6" fill="none" stroke="#94A3B8" stroke-width="1"/>
+<text x="240" y="133" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="12" font-weight="400" fill="#94A3B8" text-anchor="start">Type: all v</text>
+<rect x="424" y="114" width="184" height="28" rx="6" fill="none" stroke="#94A3B8" stroke-width="1"/>
+<text x="436" y="133" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="12" font-weight="400" fill="#94A3B8" text-anchor="start">Status: all v</text>
+<rect x="620" y="114" width="184" height="28" rx="6" fill="none" stroke="#94A3B8" stroke-width="1"/>
+<text x="632" y="133" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="12" font-weight="400" fill="#94A3B8" text-anchor="start">Freshness: all v</text>
+<rect x="816" y="114" width="184" height="28" rx="6" fill="none" stroke="#94A3B8" stroke-width="1"/>
+<text x="828" y="133" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="12" font-weight="400" fill="#94A3B8" text-anchor="start">Search elements...</text>
+</g>
+<g id="region-table" data-region="data table">
+<rect x="216" y="158" width="810" height="480" rx="8" fill="#1B2336" stroke="#475569" stroke-width="1"/>
+<rect x="216" y="158" width="810" height="34" rx="8" fill="#272F42" stroke="#475569" stroke-width="1"/>
+<text x="228" y="180" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="700" fill="#F8FAFC" text-anchor="start">Element</text>
+<text x="424" y="180" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="700" fill="#F8FAFC" text-anchor="start">Type</text>
+<text x="520" y="180" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="700" fill="#F8FAFC" text-anchor="start">Status ^</text>
+<text x="670" y="180" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="700" fill="#F8FAFC" text-anchor="start">Metric</text>
+<text x="780" y="180" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="700" fill="#F8FAFC" text-anchor="start">Freshness</text>
+<text x="900" y="180" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="700" fill="#F8FAFC" text-anchor="start">Truth</text>
+<line x1="216" y1="196" x2="1026" y2="196" stroke="#475569" stroke-width="1"/>
+<text x="228" y="222" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="600" fill="#F8FAFC" text-anchor="start">Corridor B east</text>
+<text x="424" y="222" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="400" fill="#F8FAFC" text-anchor="start">Corridor</text>
+<polygon points="526,211 532,222 520,222" fill="#F59E0B"/>
+<text x="538" y="222" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="400" fill="#F8FAFC" text-anchor="start">Slow</text>
+<text x="670" y="222" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="13" font-weight="400" fill="#F8FAFC" text-anchor="start">18 km/h</text>
+<text x="780" y="222" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="400" fill="#F8FAFC" text-anchor="start">fresh 3 s</text>
+<text x="900" y="222" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="400" fill="#F8FAFC" text-anchor="start">simulated</text>
+<line x1="216" y1="248" x2="1026" y2="248" stroke="#475569" stroke-width="1"/>
+<rect x="224" y="250" width="794" height="46" rx="6" fill="#22C55E22" stroke="#22C55E" stroke-width="2"/>
+<text x="228" y="274" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="600" fill="#F8FAFC" text-anchor="start">Stalled vehicle B2-B3</text>
+<text x="424" y="274" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="400" fill="#F8FAFC" text-anchor="start">Incident</text>
+<rect x="520" y="263" width="11" height="11" fill="#EF4444"/>
+<text x="538" y="274" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="400" fill="#F8FAFC" text-anchor="start">Critical</text>
+<text x="670" y="274" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="13" font-weight="400" fill="#F8FAFC" text-anchor="start">open</text>
+<text x="780" y="274" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="400" fill="#F8FAFC" text-anchor="start">fresh 9 s</text>
+<text x="900" y="274" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="400" fill="#F8FAFC" text-anchor="start">inferred</text>
+<line x1="216" y1="300" x2="1026" y2="300" stroke="#475569" stroke-width="1"/>
+<text x="228" y="326" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="600" fill="#F8FAFC" text-anchor="start">Signal int-b2</text>
+<text x="424" y="326" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="400" fill="#F8FAFC" text-anchor="start">Signal</text>
+<circle cx="526" cy="321" r="5" fill="#22C55E"/>
+<text x="538" y="326" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="400" fill="#F8FAFC" text-anchor="start">Normal</text>
+<text x="670" y="326" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="13" font-weight="400" fill="#F8FAFC" text-anchor="start">phase 0</text>
+<text x="780" y="326" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="400" fill="#F8FAFC" text-anchor="start">fresh 2 s</text>
+<text x="900" y="326" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="400" fill="#F8FAFC" text-anchor="start">simulated</text>
+<line x1="216" y1="352" x2="1026" y2="352" stroke="#475569" stroke-width="1"/>
+<text x="228" y="378" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="600" fill="#F8FAFC" text-anchor="start">Loop det-b2-04</text>
+<text x="424" y="378" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="400" fill="#F8FAFC" text-anchor="start">Device</text>
+<circle cx="526" cy="373" r="5" fill="none" stroke="#94A3B8" stroke-width="2"/>
+<text x="538" y="378" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="400" fill="#F8FAFC" text-anchor="start">Silent</text>
+<text x="670" y="378" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="13" font-weight="400" fill="#F8FAFC" text-anchor="start">-</text>
+<text x="780" y="378" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="400" fill="#94A3B8" text-anchor="start">stale 4 min</text>
+<text x="900" y="378" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="400" fill="#F8FAFC" text-anchor="start">measured</text>
+<line x1="216" y1="404" x2="1026" y2="404" stroke="#475569" stroke-width="1"/>
+<text x="228" y="430" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="600" fill="#F8FAFC" text-anchor="start">Corridor A east</text>
+<text x="424" y="430" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="400" fill="#F8FAFC" text-anchor="start">Corridor</text>
+<circle cx="526" cy="425" r="5" fill="#22C55E"/>
+<text x="538" y="430" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="400" fill="#F8FAFC" text-anchor="start">Flowing</text>
+<text x="670" y="430" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="13" font-weight="400" fill="#F8FAFC" text-anchor="start">46 km/h</text>
+<text x="780" y="430" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="400" fill="#F8FAFC" text-anchor="start">fresh 3 s</text>
+<text x="900" y="430" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="400" fill="#F8FAFC" text-anchor="start">simulated</text>
+<line x1="216" y1="456" x2="1026" y2="456" stroke="#475569" stroke-width="1"/>
+<text x="228" y="482" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="600" fill="#F8FAFC" text-anchor="start">Unit E1 (engine)</text>
+<text x="424" y="482" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="400" fill="#F8FAFC" text-anchor="start">Emergency</text>
+<polygon points="526,470 532,476 526,482 520,476" fill="#38BDF8"/>
+<text x="538" y="482" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="400" fill="#F8FAFC" text-anchor="start">En route</text>
+<text x="670" y="482" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="13" font-weight="400" fill="#F8FAFC" text-anchor="start">ETA 1:42</text>
+<text x="780" y="482" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="400" fill="#F8FAFC" text-anchor="start">fresh 5 s</text>
+<text x="900" y="482" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="400" fill="#F8FAFC" text-anchor="start">predicted</text>
+<line x1="216" y1="508" x2="1026" y2="508" stroke="#475569" stroke-width="1"/>
+<text x="228" y="534" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="600" fill="#F8FAFC" text-anchor="start">Camera cam-c3-01</text>
+<text x="424" y="534" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="400" fill="#F8FAFC" text-anchor="start">Device</text>
+<circle cx="526" cy="529" r="5" fill="#22C55E"/>
+<text x="538" y="534" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="400" fill="#F8FAFC" text-anchor="start">Flowing</text>
+<text x="670" y="534" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="13" font-weight="400" fill="#F8FAFC" text-anchor="start">-</text>
+<text x="780" y="534" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="400" fill="#F8FAFC" text-anchor="start">fresh 6 s</text>
+<text x="900" y="534" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="400" fill="#F8FAFC" text-anchor="start">measured</text>
+<line x1="216" y1="560" x2="1026" y2="560" stroke="#475569" stroke-width="1"/>
+<text x="228" y="586" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="600" fill="#F8FAFC" text-anchor="start">Signal int-c3</text>
+<text x="424" y="586" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="400" fill="#F8FAFC" text-anchor="start">Signal</text>
+<circle cx="526" cy="581" r="5" fill="#22C55E"/>
+<text x="538" y="586" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="400" fill="#F8FAFC" text-anchor="start">Normal</text>
+<text x="670" y="586" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="13" font-weight="400" fill="#F8FAFC" text-anchor="start">phase 2</text>
+<text x="780" y="586" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="400" fill="#F8FAFC" text-anchor="start">fresh 2 s</text>
+<text x="900" y="586" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="400" fill="#F8FAFC" text-anchor="start">simulated</text>
+<text x="228" y="626" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="12" font-weight="400" fill="#94A3B8" text-anchor="start">Showing 8 of 141 - columns sortable by keyboard (Enter or Space on the header)</text>
+</g>
+<g id="region-live-log" data-region="polite live region">
+<rect x="216" y="650" width="810" height="96" rx="8" fill="#1B2336" stroke="#475569" stroke-width="1"/>
+<text x="232" y="676" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="700" fill="#F8FAFC" text-anchor="start">Updates (announced politely, never stealing focus)</text>
+<text x="232" y="700" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="12" font-weight="400" fill="#94A3B8" text-anchor="start">09:14:52  Stalled vehicle B2-B3 became Critical</text>
+<text x="232" y="720" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="12" font-weight="400" fill="#94A3B8" text-anchor="start">09:14:47  Corridor B east slowed to 18 km/h</text>
+<g class="control">
+<rect x="846" y="664" width="168" height="30" rx="8" fill="none" stroke="#94A3B8" stroke-width="2"/>
+<text x="930.0" y="683.0" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="12" font-weight="600" fill="#F8FAFC" text-anchor="middle">Pause updates</text>
+</g>
+</g>
+</g>
+<g id="region-selection" data-region="selection details">
+<rect x="1046" y="48" width="320" height="720" rx="0" fill="#1B2336" stroke="#475569" stroke-width="1"/>
+<text x="1062" y="80" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="16" font-weight="700" fill="#F8FAFC" text-anchor="start">Stalled vehicle, B2-B3</text>
+<rect x="1062" y="97" width="11" height="11" fill="#EF4444"/>
+<text x="1080" y="108" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="400" fill="#F8FAFC" text-anchor="start">Critical, open</text>
+<text x="1062" y="140" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="400" fill="#94A3B8" text-anchor="start">Severity</text>
+<text x="1350" y="140" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="13" font-weight="600" fill="#F8FAFC" text-anchor="end">critical</text>
+<text x="1062" y="166" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="400" fill="#94A3B8" text-anchor="start">Confidence</text>
+<text x="1350" y="166" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="13" font-weight="600" fill="#F8FAFC" text-anchor="end">0.63 (inferred)</text>
+<text x="1062" y="192" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="400" fill="#94A3B8" text-anchor="start">Opened</text>
+<text x="1350" y="192" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="13" font-weight="600" fill="#F8FAFC" text-anchor="end">09:12:07 UTC</text>
+<text x="1062" y="218" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="400" fill="#94A3B8" text-anchor="start">Owner</text>
+<text x="1350" y="218" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="13" font-weight="600" fill="#F8FAFC" text-anchor="end">OPS</text>
+<text x="1062" y="244" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="400" fill="#94A3B8" text-anchor="start">Freshness</text>
+<text x="1350" y="244" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="13" font-weight="600" fill="#F8FAFC" text-anchor="end">fresh, 9 s</text>
+<g class="control">
+<rect x="1062" y="294" width="288" height="40" rx="8" fill="none" stroke="#94A3B8" stroke-width="2"/>
+<text x="1206.0" y="318.6666666666667" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#F8FAFC" text-anchor="middle">Show on map</text>
+</g>
+<g class="control">
+<rect x="1062" y="346" width="288" height="40" rx="8" fill="#22C55E" stroke="#22C55E" stroke-width="2"/>
+<text x="1206.0" y="370.6666666666667" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#0F172A" text-anchor="middle">Open incident</text>
+</g>
+</g>
+<g id="callout-1"><circle cx="892" cy="60" r="11" fill="#F59E0B" stroke="#0F172A" stroke-width="2"/><text x="892" y="65" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="700" fill="#0F172A" text-anchor="middle">1</text></g>
+<g id="callout-2"><circle cx="216" cy="106" r="11" fill="#F59E0B" stroke="#0F172A" stroke-width="2"/><text x="216" y="111" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="700" fill="#0F172A" text-anchor="middle">2</text></g>
+<g id="callout-3"><circle cx="216" cy="158" r="11" fill="#F59E0B" stroke="#0F172A" stroke-width="2"/><text x="216" y="163" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="700" fill="#0F172A" text-anchor="middle">3</text></g>
+<g id="callout-4"><circle cx="508" cy="158" r="11" fill="#F59E0B" stroke="#0F172A" stroke-width="2"/><text x="508" y="163" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="700" fill="#0F172A" text-anchor="middle">4</text></g>
+<g id="callout-5"><circle cx="216" cy="650" r="11" fill="#F59E0B" stroke="#0F172A" stroke-width="2"/><text x="216" y="655" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="700" fill="#0F172A" text-anchor="middle">5</text></g>
+<g id="callout-6"><circle cx="1046" cy="48" r="11" fill="#F59E0B" stroke="#0F172A" stroke-width="2"/><text x="1046" y="53" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="700" fill="#0F172A" text-anchor="middle">6</text></g>
+</svg>

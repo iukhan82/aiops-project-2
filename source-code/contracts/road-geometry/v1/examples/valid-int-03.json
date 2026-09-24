@@ -1,0 +1,71 @@
+{
+  "schema_version": "1.0.0",
+  "geometry_version": "2026-09-18.1",
+  "intersection_id": "int-03",
+  "corridor_id": "corridor-a",
+  "coordinate_reference": "EPSG:4326",
+  "centroid": { "latitude": 31.5204, "longitude": 74.3587 },
+  "approaches": [
+    {
+      "approach_id": "int-03-approach-n",
+      "bearing_degrees": 0,
+      "lanes": [
+        {
+          "lane_id": "int-03-approach-n-lane-1",
+          "lane_type": "through",
+          "movement_ids": ["int-03-mv-n-through"],
+          "stop_line": { "latitude": 31.5206, "longitude": 74.3587 }
+        },
+        {
+          "lane_id": "int-03-approach-n-lane-2",
+          "lane_type": "left",
+          "movement_ids": ["int-03-mv-n-left"],
+          "stop_line": { "latitude": 31.5206, "longitude": 74.35865 }
+        }
+      ]
+    },
+    {
+      "approach_id": "int-03-approach-s",
+      "bearing_degrees": 180,
+      "lanes": [
+        {
+          "lane_id": "int-03-approach-s-lane-1",
+          "lane_type": "through",
+          "movement_ids": ["int-03-mv-s-through"]
+        }
+      ]
+    }
+  ],
+  "movements": [
+    {
+      "movement_id": "int-03-mv-n-through",
+      "from_approach_id": "int-03-approach-n",
+      "to_approach_id": "int-03-approach-s",
+      "conflict_group": "int-03-phase-a",
+      "permitted": true
+    },
+    {
+      "movement_id": "int-03-mv-n-left",
+      "from_approach_id": "int-03-approach-n",
+      "conflict_group": "int-03-phase-b",
+      "permitted": true
+    },
+    {
+      "movement_id": "int-03-mv-s-through",
+      "from_approach_id": "int-03-approach-s",
+      "to_approach_id": "int-03-approach-n",
+      "conflict_group": "int-03-phase-a",
+      "permitted": true
+    }
+  ],
+  "crossing_zones": [
+    {
+      "crossing_id": "int-03-crossing-n",
+      "approach_id": "int-03-approach-n",
+      "latitude": 31.5205,
+      "longitude": 74.35868,
+      "accessible_device": true
+    }
+  ],
+  "effective_from": "2026-09-18T00:00:00Z"
+}

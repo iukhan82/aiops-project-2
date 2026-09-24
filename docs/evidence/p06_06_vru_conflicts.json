@@ -1,0 +1,386 @@
+{
+  "all_passed": true,
+  "checks": {
+    "aggregate_events_ingested_through_the_real_write_path": true,
+    "api_serves_no_cyclist_conflict_candidates_because_the_mode_is_unvalidated": true,
+    "api_serves_pedestrian_conflict_candidates_labelled_inferred_with_evidence": true,
+    "candidates_are_low_confidence_and_carry_their_basis": true,
+    "candidates_are_stored_and_every_one_cites_an_event_that_exists": true,
+    "candidates_only_for_windows_that_passed_the_floor": true,
+    "cyclist_mode_is_reported_as_unvalidated_because_no_real_cyclist_conflict_exists": true,
+    "edge_run_is_deterministic": true,
+    "every_suppressed_window_really_was_below_the_floor_and_the_thin_run_has_some": true,
+    "exported_counts_plus_suppressed_windows_account_for_every_detector_event": true,
+    "exported_measurements_are_only_counts_and_one_minimum_pet": true,
+    "held_out_metrics_reproduce_exactly_from_the_stored_artifact": true,
+    "no_exported_aggregate_is_below_the_k_anonymity_floor": true,
+    "no_object_id_or_salt_appears_anywhere_in_the_exported_events": true,
+    "privacy_zones_remove_samples_and_never_add_conflicts": true,
+    "reingesting_the_same_events_is_idempotent": true,
+    "rerun_is_idempotent_no_duplicate_candidates": true,
+    "results_do_not_depend_on_the_identity_hashing_salt": true,
+    "selection_used_validation_only_and_test_was_ledgered_non_selecting": true,
+    "stored_events_are_aggregated_short_retention_and_leak_no_object_ids": true,
+    "the_privacy_floor_cost_is_measured_and_reported": true
+  },
+  "generated_at": "2026-09-20T09:06:23Z",
+  "metrics": {
+    "bias": {
+      "driver_type": {
+        "passenger": {
+          "conflicts": 78,
+          "detected": 10,
+          "recall": 0.128,
+          "recall_ci95": [
+            0.071,
+            0.22
+          ]
+        },
+        "passenger-assertive": {
+          "conflicts": 28,
+          "detected": 4,
+          "recall": 0.143,
+          "recall_ci95": [
+            0.057,
+            0.315
+          ]
+        }
+      },
+      "false_alarm_events_by_vru_class": {
+        "pedestrian": 58
+      },
+      "pet_band": {
+        "1.5-3 s": {
+          "conflicts": 77,
+          "detected": 9,
+          "recall": 0.117,
+          "recall_ci95": [
+            0.063,
+            0.207
+          ]
+        },
+        "<=1.5 s": {
+          "conflicts": 29,
+          "detected": 5,
+          "recall": 0.172,
+          "recall_ci95": [
+            0.076,
+            0.345
+          ]
+        }
+      },
+      "run_spec": {
+        "offpeak": {
+          "conflicts": 12,
+          "detected": 0,
+          "recall": 0.0,
+          "recall_ci95": [
+            0.0,
+            0.243
+          ]
+        },
+        "peak": {
+          "conflicts": 94,
+          "detected": 14,
+          "recall": 0.149,
+          "recall_ci95": [
+            0.091,
+            0.235
+          ]
+        }
+      },
+      "vehicle_speed_at_crossing": {
+        "4-6 m/s": {
+          "conflicts": 39,
+          "detected": 7,
+          "recall": 0.179,
+          "recall_ci95": [
+            0.09,
+            0.327
+          ]
+        },
+        "6-9 m/s": {
+          "conflicts": 32,
+          "detected": 3,
+          "recall": 0.094,
+          "recall_ci95": [
+            0.032,
+            0.242
+          ]
+        },
+        ">=9 m/s": {
+          "conflicts": 35,
+          "detected": 4,
+          "recall": 0.114,
+          "recall_ci95": [
+            0.045,
+            0.26
+          ]
+        }
+      },
+      "vru_speed_class": {
+        "ped-normal": {
+          "conflicts": 100,
+          "detected": 14,
+          "recall": 0.14,
+          "recall_ci95": [
+            0.085,
+            0.221
+          ]
+        },
+        "ped-slow": {
+          "conflicts": 6,
+          "detected": 0,
+          "recall": 0.0,
+          "recall_ci95": [
+            0.0,
+            0.39
+          ]
+        }
+      },
+      "who_reaches_the_conflict_point_first": {
+        "vehicle": {
+          "conflicts": 24,
+          "detected": 6,
+          "recall": 0.25,
+          "recall_ci95": [
+            0.12,
+            0.449
+          ]
+        },
+        "vru": {
+          "conflicts": 82,
+          "detected": 8,
+          "recall": 0.098,
+          "recall_ci95": [
+            0.05,
+            0.181
+          ]
+        }
+      }
+    },
+    "cyclists": {
+      "cyclist_alerts": 0,
+      "cyclist_site_visits": 968,
+      "real_cyclist_vehicle_interactions_with_pet_up_to_3s": 0
+    },
+    "held_out_test": {
+      "events": 100,
+      "events_by_mode": {
+        "pedestrian": {
+          "events": 100,
+          "fp": 58,
+          "tp": 14
+        }
+      },
+      "f1": 0.136,
+      "interacted_but_not_positive": 28,
+      "lead_time_s_median": -0.011500000000069122,
+      "matched": 14,
+      "never_interacted": 58,
+      "precision": 0.14,
+      "precision_ci95": [
+        0.085,
+        0.221
+      ],
+      "recall": 0.132,
+      "recall_ci95": [
+        0.08,
+        0.21
+      ],
+      "share_alerted_before_the_first_user_reaches_the_conflict_point": 0.5,
+      "truth_conflicts": 106
+    },
+    "held_out_test_plain_pet_3s": {
+      "events": 100,
+      "events_by_mode": {
+        "pedestrian": {
+          "events": 100,
+          "fp": 58,
+          "tp": 30
+        }
+      },
+      "f1": 0.13,
+      "interacted_but_not_positive": 12,
+      "lead_time_s_median": -0.16949999999999932,
+      "matched": 30,
+      "never_interacted": 58,
+      "precision": 0.3,
+      "precision_ci95": [
+        0.219,
+        0.396
+      ],
+      "recall": 0.083,
+      "recall_ci95": [
+        0.059,
+        0.116
+      ],
+      "share_alerted_before_the_first_user_reaches_the_conflict_point": 0.367,
+      "truth_conflicts": 360
+    },
+    "noise_sensitivity": [
+      {
+        "events": 84,
+        "f1": 0.179,
+        "matched": 17,
+        "precision": 0.202,
+        "recall": 0.16,
+        "tracker": {
+          "dropout": 0.05,
+          "frame_s": 1.0,
+          "position_sigma_m": 0.2
+        }
+      },
+      {
+        "events": 100,
+        "f1": 0.136,
+        "matched": 14,
+        "precision": 0.14,
+        "recall": 0.132,
+        "tracker": {
+          "dropout": 0.05,
+          "frame_s": 1.0,
+          "position_sigma_m": 0.4
+        }
+      },
+      {
+        "events": 328,
+        "f1": 0.092,
+        "matched": 20,
+        "precision": 0.061,
+        "recall": 0.189,
+        "tracker": {
+          "dropout": 0.05,
+          "frame_s": 1.0,
+          "position_sigma_m": 0.8
+        }
+      },
+      {
+        "events": 693,
+        "f1": 0.04,
+        "matched": 16,
+        "precision": 0.023,
+        "recall": 0.151,
+        "tracker": {
+          "dropout": 0.05,
+          "frame_s": 1.0,
+          "position_sigma_m": 1.2
+        }
+      },
+      {
+        "events": 107,
+        "f1": 0.113,
+        "matched": 12,
+        "precision": 0.112,
+        "recall": 0.113,
+        "tracker": {
+          "dropout": 0.0,
+          "frame_s": 1.0,
+          "position_sigma_m": 0.4
+        }
+      },
+      {
+        "events": 84,
+        "f1": 0.095,
+        "matched": 9,
+        "precision": 0.107,
+        "recall": 0.085,
+        "tracker": {
+          "dropout": 0.15,
+          "frame_s": 1.0,
+          "position_sigma_m": 0.4
+        }
+      },
+      {
+        "events": 55,
+        "f1": 0.087,
+        "matched": 7,
+        "precision": 0.127,
+        "recall": 0.066,
+        "tracker": {
+          "dropout": 0.3,
+          "frame_s": 1.0,
+          "position_sigma_m": 0.4
+        }
+      },
+      {
+        "events": 66,
+        "f1": 0.093,
+        "matched": 8,
+        "precision": 0.121,
+        "recall": 0.075,
+        "tracker": {
+          "dropout": 0.05,
+          "frame_s": 2.0,
+          "position_sigma_m": 0.4
+        }
+      }
+    ],
+    "scorer_diagnostics": {
+      "candidate_rows_train": 7636,
+      "candidate_rows_validation": 3007,
+      "positive_rate_train": 0.0284,
+      "validation_frame_level_average_precision": {
+        "base_rate": 0.0266,
+        "gradient_boosting_ceiling_not_deployed": 0.141,
+        "logistic_deployed": 0.143
+      }
+    },
+    "window_level": {
+      "k_anonymity_floor": {
+        "by_run_spec": {
+          "offpeak": {
+            "true_conflicts": 12,
+            "true_conflicts_suppressed": 0,
+            "windows": 141,
+            "windows_suppressed": 21
+          },
+          "peak": {
+            "true_conflicts": 94,
+            "true_conflicts_suppressed": 0,
+            "windows": 144,
+            "windows_suppressed": 0
+          }
+        },
+        "detected_events_lost_to_the_floor": 0,
+        "detected_events_total": 100,
+        "min_cohort": 3,
+        "share_of_true_conflicts_lost_to_the_floor": 0.0,
+        "true_conflicts_in_suppressed_windows": 0,
+        "true_conflicts_total": 106,
+        "windows_suppressed": 21
+      },
+      "pearson_detected_vs_true_conflicts_per_window": 0.474,
+      "spearman_detected_vs_true_conflicts_per_window": 0.407,
+      "window_s": 300.0,
+      "windows": 285,
+      "windows_with_a_true_conflict": 58,
+      "windows_with_a_true_conflict_that_also_have_a_detected_one": 28,
+      "windows_without_a_true_conflict_that_have_a_detected_one": 28
+    }
+  },
+  "notes": {
+    "aggregate_events_ingested_through_the_real_write_path": "{'inserted': 72}",
+    "api_serves_no_cyclist_conflict_candidates_because_the_mode_is_unvalidated": "",
+    "api_serves_pedestrian_conflict_candidates_labelled_inferred_with_evidence": "26 candidates",
+    "candidates_are_low_confidence_and_carry_their_basis": "confidence range 0.5-0.5; event precision 0.228",
+    "candidates_are_stored_and_every_one_cites_an_event_that_exists": "26 candidates",
+    "candidates_only_for_windows_that_passed_the_floor": "",
+    "cyclist_mode_is_reported_as_unvalidated_because_no_real_cyclist_conflict_exists": "968 cyclist site visits, 0 alerts (all false), 0 real interactions",
+    "edge_run_is_deterministic": "",
+    "every_suppressed_window_really_was_below_the_floor_and_the_thin_run_has_some": "10 suppressed windows (off-peak run), max cohort 2; peak run suppressed 0",
+    "exported_counts_plus_suppressed_windows_account_for_every_detector_event": "exported 45 of 45 detector events; the rest fell in suppressed windows",
+    "exported_measurements_are_only_counts_and_one_minimum_pet": "['conflicts_serious_pedestrian', 'conflicts_severe_pedestrian', 'exposure_pedestrian', 'min_predicted_pet_pedestrian']",
+    "held_out_metrics_reproduce_exactly_from_the_stored_artifact": "{'truth_conflicts': 106, 'events': 100, 'matched': 14, 'precision': 0.14, 'recall': 0.132}",
+    "no_exported_aggregate_is_below_the_k_anonymity_floor": "min exposure 3",
+    "no_object_id_or_salt_appears_anywhere_in_the_exported_events": "80282 bytes of event JSON scanned",
+    "privacy_zones_remove_samples_and_never_add_conflicts": "1474 samples dropped; raw events 45 -> 43",
+    "reingesting_the_same_events_is_idempotent": "{'duplicate_ok': 72}",
+    "rerun_is_idempotent_no_duplicate_candidates": "26 -> 26",
+    "results_do_not_depend_on_the_identity_hashing_salt": "72 events identical under two salts",
+    "selection_used_validation_only_and_test_was_ledgered_non_selecting": "",
+    "stored_events_are_aggregated_short_retention_and_leak_no_object_ids": "",
+    "the_privacy_floor_cost_is_measured_and_reported": "0.0 of true conflicts fall in suppressed windows"
+  },
+  "task": "P06.06"
+}

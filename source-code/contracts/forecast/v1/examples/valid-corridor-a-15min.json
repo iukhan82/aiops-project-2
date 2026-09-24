@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0.0",
+  "forecast_id": "8f14e45f-ceea-467e-add1-b5d5d9f4472a",
+  "network_element_type": "corridor",
+  "network_element_id": "corridor-a",
+  "geometry_version": "2026-09-18.1",
+  "predicted_at": "2026-09-18T09:00:00Z",
+  "horizon_seconds": 900,
+  "valid_from": "2026-09-18T09:15:00Z",
+  "valid_until": "2026-09-18T09:16:00Z",
+  "model_id": "traffic-forecast-baseline",
+  "model_version": "0.1.0",
+  "baseline_id": "traffic-forecast-baseline-v0",
+  "measurements": [
+    {
+      "name": "mean_travel_time",
+      "value": 182.0,
+      "unit": "s",
+      "uncertainty": { "method": "quantile_interval", "lower_bound": 150.0, "upper_bound": 230.0 }
+    }
+  ],
+  "truth_label": "predicted"
+}

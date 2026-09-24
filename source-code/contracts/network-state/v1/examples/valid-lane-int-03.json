@@ -1,0 +1,18 @@
+{
+  "schema_version": "1.0.0",
+  "record_id": "7c9e6679-7425-40de-944b-e07fc1f90ae7",
+  "network_element_type": "lane",
+  "network_element_id": "int-03-approach-n-lane-1",
+  "geometry_version": "2026-09-18.1",
+  "window_seconds": 60,
+  "observation_time": "2026-09-18T09:01:00.000Z",
+  "ingest_time": "2026-09-18T09:01:00.400Z",
+  "measurements": [
+    { "name": "mean_speed", "value": 11.3, "unit": "m_s-1", "quality": "valid", "confidence": 0.94, "sample_count": 42 },
+    { "name": "occupancy", "value": 0.18, "unit": "ratio", "quality": "valid", "confidence": 0.9, "sample_count": 42 },
+    { "name": "queue_length", "value": 3, "unit": "vehicle_count", "quality": "valid", "confidence": 0.85, "sample_count": 42 }
+  ],
+  "truth_label": "simulated",
+  "freshness_status": "fresh",
+  "max_staleness_seconds": 120
+}

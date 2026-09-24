@@ -62,3 +62,26 @@ jobs:
           --skip-dirs /workspace/source-code/frontend/.venv
           --skip-dirs /workspace/source-code/frontend/node_modules
           /workspace
+
+  supply-chain:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: source-code/requirements-lock.txt
+      - run: python -m pip install --disable-pip-version-check -r source-code/requirements-lock.txt
+      - name: Build, scan, SBOM, sign and admission-gate the edge release image (P09.08)
+        run: python3 source-code/security/supply_chain/build_release.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: supply-chain-evidence
+          path: |
+            docs/evidence/p09_08_supply_chain.json
+            source-code/security/supply_chain/output/

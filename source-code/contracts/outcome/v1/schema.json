@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://project2.local/contracts/outcome/v1/schema.json",
+  "title": "Independent outcome verification",
+  "description": "Pre/post-window verification of one executed command, per REFERENCE_ARCHITECTURE.md's command safety path. Kept separate from command/v1 because outcome verification must be independent of the request/approval/execution steps it evaluates.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "outcome_id",
+    "command_id",
+    "pre_window",
+    "post_window",
+    "classification",
+    "verified_at",
+    "verifier",
+    "rollback_triggered"
+  ],
+  "properties": {
+    "schema_version": { "const": "1.0.0" },
+    "outcome_id": { "type": "string", "format": "uuid" },
+    "command_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "command/v1 command_id this outcome verifies."
+    },
+    "pre_window": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["from", "to", "measurements"],
+      "properties": {
+        "from": { "type": "string", "format": "date-time" },
+        "to": { "type": "string", "format": "date-time" },
+        "measurements": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["name", "value", "unit"],
+            "properties": {
+              "name": { "type": "string", "minLength": 1 },
+              "value": { "type": "number" },
+              "unit": { "type": "string", "minLength": 1 }
+            }
+          }
+        }
+      }
+    },
+    "post_window": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["from", "to", "measurements"],
+      "properties": {
+        "from": { "type": "string", "format": "date-time" },
+        "to": { "type": "string", "format": "date-time" },
+        "measurements": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["name", "value", "unit"],
+            "properties": {
+              "name": { "type": "string", "minLength": 1 },
+              "value": { "type": "number" },
+              "unit": { "type": "string", "minLength": 1 }
+            }
+          }
+        }
+      }
+    },
+    "classification": {
+      "type": "string",
+      "enum": ["effective", "ineffective", "unsafe", "unknown"],
+      "description": "'unknown' when evidence is insufficient; never defaulted to 'effective'."
+    },
+    "verified_at": { "type": "string", "format": "date-time" },
+    "verifier": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Identifies the independent verification service/process, distinct from the requester/approver/executor."
+    },
+    "rollback_triggered": { "type": "boolean" },
+    "escalation_reason": {
+      "type": "string",
+      "description": "Set when classification is 'unsafe' or 'unknown' and the outcome was escalated instead of auto-rolled-back."
+    }
+  }
+}

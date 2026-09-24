@@ -1,0 +1,290 @@
+{
+  "all_passed": true,
+  "checks": {
+    "adapter_failure_fails_the_command_retryably_and_the_unit_continues_unassisted": true,
+    "eta_01_every_scenario_within_15_percent_individually": true,
+    "eta_01_pooled_mae_within_15_percent_in_normal_traffic": true,
+    "eta_02_every_scenario_within_25_percent_individually": true,
+    "eta_02_pooled_mae_within_25_percent_under_an_active_incident": true,
+    "eta_03_pre_emption_reduces_travel_time_on_average_and_never_worsens_a_pair_beyond_the_outcome_tolerance": true,
+    "eta_03_the_benefit_is_not_explained_by_chance_sign_test": true,
+    "every_executed_preemption_was_independently_verified_and_none_was_left_unknown": true,
+    "every_incident_reroute_avoids_the_blocked_segment_it_learned_from_the_incident_record": true,
+    "failure_runs_also_had_zero_signal_safety_violations": true,
+    "general_traffic_effect_was_measured_paired_and_is_reported": true,
+    "heavy_congestion_is_run_and_its_eta_error_is_reported_not_hidden": true,
+    "no_open_route_is_reported_not_guessed_and_nothing_is_pre_empted": true,
+    "policy_outage_fails_closed_the_command_never_executes_and_later_expires": true,
+    "safe_01_zero_signal_safety_violations_over_every_step_of_every_platform_run": true,
+    "staged_response_holds_ems_back_until_fire_has_arrived_then_releases_it": true,
+    "stale_evidence_denies_the_preemption_and_the_unit_drives_on_unassisted": true,
+    "the_recorded_assignment_timeline_equals_the_simulated_travel_and_carries_the_predicted_eta": true
+  },
+  "generated_at": "2026-09-20T15:23:27Z",
+  "metrics": {
+    "eta_01_normal_traffic": {
+      "against_the_unassisted_baseline_instead": {
+        "ambulance": {
+          "mae_pct": 3.65,
+          "mean_signed_error_pct": 3.65,
+          "n": 5,
+          "within_stated_uncertainty": "5/5",
+          "worst_pct": 7.19
+        },
+        "fire": {
+          "mae_pct": 20.89,
+          "mean_signed_error_pct": 20.89,
+          "n": 5,
+          "within_stated_uncertainty": "2/5",
+          "worst_pct": 31.46
+        },
+        "police": {
+          "mae_pct": 18.37,
+          "mean_signed_error_pct": 18.37,
+          "n": 5,
+          "within_stated_uncertainty": "1/5",
+          "worst_pct": 25.7
+        }
+      },
+      "note": "actual = the unit's simulated travel time on the platform's own flow (pre-emption executed); the second block scores the same ETAs against the paired no-pre-emption run",
+      "per_scenario": {
+        "ambulance": {
+          "mae_pct": 3.65,
+          "mean_signed_error_pct": 3.65,
+          "n": 5,
+          "within_stated_uncertainty": "5/5",
+          "worst_pct": 7.19
+        },
+        "fire": {
+          "mae_pct": 6.91,
+          "mean_signed_error_pct": 6.91,
+          "n": 5,
+          "within_stated_uncertainty": "5/5",
+          "worst_pct": 7.39
+        },
+        "police": {
+          "mae_pct": 14.63,
+          "mean_signed_error_pct": 14.63,
+          "n": 5,
+          "within_stated_uncertainty": "3/5",
+          "worst_pct": 20.71
+        }
+      },
+      "pooled": {
+        "mae_pct": 8.4,
+        "mean_signed_error_pct": 8.4,
+        "n": 15,
+        "within_stated_uncertainty": "13/15",
+        "worst_pct": 20.71
+      }
+    },
+    "eta_02_with_incident": {
+      "detours": {
+        "ambulance": {
+          "blocked_edge": "int-a2_int-a3",
+          "detour_eta_s": 119.1,
+          "detour_route": [
+            "int-a1_int-b1",
+            "int-b1_int-b2",
+            "int-b2_int-b3",
+            "int-b3_int-b4",
+            "int-b4_int-a4"
+          ],
+          "normal_eta_s": 56.1,
+          "normal_route": [
+            "int-a1_int-a2",
+            "int-a2_int-a3",
+            "int-a3_int-a4"
+          ]
+        },
+        "fire": {
+          "blocked_edge": "int-b2_int-b3",
+          "detour_eta_s": 87.7,
+          "detour_route": [
+            "int-c1_int-c2",
+            "int-c2_int-c3",
+            "int-c3_int-c4",
+            "int-c4_int-b4"
+          ],
+          "normal_eta_s": 87.4,
+          "normal_route": [
+            "int-c1_int-b1",
+            "int-b1_int-b2",
+            "int-b2_int-b3",
+            "int-b3_int-b4"
+          ]
+        },
+        "police": {
+          "blocked_edge": "int-b3_int-b2",
+          "detour_eta_s": 118.3,
+          "detour_route": [
+            "int-a4_int-a3",
+            "int-a3_int-a2",
+            "int-a2_int-a1",
+            "int-a1_int-b1",
+            "int-b1_int-c1"
+          ],
+          "normal_eta_s": 118.1,
+          "normal_route": [
+            "int-a4_int-b4",
+            "int-b4_int-b3",
+            "int-b3_int-b2",
+            "int-b2_int-b1",
+            "int-b1_int-c1"
+          ]
+        }
+      },
+      "per_scenario": {
+        "ambulance": {
+          "mae_pct": 9.91,
+          "mean_signed_error_pct": 9.91,
+          "n": 5,
+          "within_stated_uncertainty": "5/5",
+          "worst_pct": 10.82
+        },
+        "fire": {
+          "mae_pct": 8.0,
+          "mean_signed_error_pct": 8.0,
+          "n": 5,
+          "within_stated_uncertainty": "5/5",
+          "worst_pct": 10.2
+        },
+        "police": {
+          "mae_pct": 13.73,
+          "mean_signed_error_pct": 13.73,
+          "n": 5,
+          "within_stated_uncertainty": "4/5",
+          "worst_pct": 27.62
+        }
+      },
+      "pooled": {
+        "mae_pct": 10.55,
+        "mean_signed_error_pct": 10.55,
+        "n": 15,
+        "within_stated_uncertainty": "14/15",
+        "worst_pct": 27.62
+      }
+    },
+    "eta_03_paired_preemption_benefit": {
+      "best_reduction_s": 33.0,
+      "improved": 19,
+      "mean_reduction_pct": 6.1,
+      "mean_reduction_s": 8.13,
+      "median_reduction_s": 6.0,
+      "note": "the corridor is usually already green when the vehicle arrives, so most natural-traffic pairs tie; the adverse-phase case (a cross-street green in progress) is in P07.07/P07.08's evidence",
+      "pairs": 30,
+      "per_scenario_mean_reduction_s": {
+        "ambulance": 7.7,
+        "fire": 10.5,
+        "police": 6.2
+      },
+      "sign_test_one_sided_p": 0.0001,
+      "tied": 9,
+      "worse": 2,
+      "worst_reduction_s": -5.0
+    },
+    "failure_limits": {
+      "adapter_failure": {
+        "baseline_s": 145.0,
+        "command_status": "failed",
+        "error_code": "adapter_unreachable",
+        "retryable": true,
+        "unit_actual_s": 145.0
+      },
+      "heavy_congestion": {
+        "background_rate_per_s": 1.1,
+        "completed": "3/3",
+        "eta_error": {
+          "mae_pct": 6.57,
+          "mean_signed_error_pct": 6.57,
+          "n": 3,
+          "within_stated_uncertainty": "3/3",
+          "worst_pct": 12.01
+        },
+        "etas_s": [
+          56.5,
+          56.3,
+          57.0
+        ],
+        "normal_rate_per_s": 0.6,
+        "unit_actual_s": [
+          59.0,
+          64.0,
+          59.0
+        ],
+        "violations": 0
+      },
+      "no_route": {
+        "call_status": "dispatched",
+        "commands_created": 0,
+        "status": "no_route"
+      },
+      "policy_outage": {
+        "command_status": "requested",
+        "eta_error_pct": 7.98,
+        "eta_s": 87.4,
+        "later_status": "expired",
+        "policy_decision": "policy_unavailable",
+        "unit_actual_s": 95.0
+      },
+      "stale_evidence": {
+        "command_status": "denied",
+        "error_code": "stale_evidence",
+        "unit_actual_s": 60.0
+      }
+    },
+    "outcome_verification": {
+      "effective": 17,
+      "ineffective": 13
+    },
+    "safe_01": {
+      "intersection_state_observations": 162072,
+      "platform_runs": 91,
+      "rules": [
+        "conflicting_green",
+        "no_yellow_before_red",
+        "short_yellow",
+        "short_pedestrian_green",
+        "short_pedestrian_clearance"
+      ],
+      "violations": 0
+    },
+    "traffic_outcomes": {
+      "cross_street_mean_waiting_change_s": {
+        "best_decrease": -2.179,
+        "mean": 0.304,
+        "pairs": 30,
+        "worst_increase": 5.828
+      },
+      "network_mean_waiting_change_s": {
+        "best_decrease": -3.053,
+        "mean": 0.773,
+        "worst_increase": 9.139
+      },
+      "note": "paired, same seed, the same 150 s window after the vehicle departs; positive = pre-emption made general traffic wait longer",
+      "pairs": 30,
+      "window_s": 150
+    }
+  },
+  "notes": {
+    "adapter_failure_fails_the_command_retryably_and_the_unit_continues_unassisted": "{'command_status': 'failed', 'error_code': 'adapter_unreachable', 'retryable': True, 'unit_actual_s': 145.0, 'baseline_s': 145.0}",
+    "eta_01_every_scenario_within_15_percent_individually": "{'ambulance': 3.65, 'fire': 6.91, 'police': 14.63}",
+    "eta_01_pooled_mae_within_15_percent_in_normal_traffic": "{'n': 15, 'mae_pct': 8.4, 'worst_pct': 20.71, 'mean_signed_error_pct': 8.4, 'within_stated_uncertainty': '13/15'}",
+    "eta_02_every_scenario_within_25_percent_individually": "{'ambulance': 9.91, 'fire': 8.0, 'police': 13.73}",
+    "eta_02_pooled_mae_within_25_percent_under_an_active_incident": "{'n': 15, 'mae_pct': 10.55, 'worst_pct': 27.62, 'mean_signed_error_pct': 10.55, 'within_stated_uncertainty': '14/15'}",
+    "eta_03_pre_emption_reduces_travel_time_on_average_and_never_worsens_a_pair_beyond_the_outcome_tolerance": "{'pairs': 30, 'improved': 19, 'tied': 9, 'worse': 2, 'mean_reduction_s': 8.13, 'median_reduction_s': 6.0, 'best_reduction_s': 33.0, 'worst_reduction_s': -5.0, 'mean_reduction_pct': 6.1, 'sign_test_one_sided_p': 0.0001, 'per_scenario_mean_reduction_s': {'ambulance': 7.7, 'fire': 10.5, 'police': 6.2}, 'note': \"the corridor is usually already green when the vehicle arrives, so most natural-traffic pairs tie; the adverse-phase case (a cross-street green in progress) is in P07.07/P07.08's evidence\"}",
+    "eta_03_the_benefit_is_not_explained_by_chance_sign_test": "19 improved / 9 tied / 2 worse, one-sided p=0.0001",
+    "every_executed_preemption_was_independently_verified_and_none_was_left_unknown": "{'ineffective': 13, 'effective': 17}",
+    "every_incident_reroute_avoids_the_blocked_segment_it_learned_from_the_incident_record": "{'ambulance': {'blocked_edge': 'int-a2_int-a3', 'normal_route': ['int-a1_int-a2', 'int-a2_int-a3', 'int-a3_int-a4'], 'detour_route': ['int-a1_int-b1', 'int-b1_int-b2', 'int-b2_int-b3', 'int-b3_int-b4', 'int-b4_int-a4'], 'normal_eta_s': 56.1, 'detour_eta_s': 119.1}, 'fire': {'blocked_edge': 'int-b2_int-b3', 'normal_route': ['int-c1_int-b1', 'int-b1_int-b2', 'int-b2_int-b3', 'int-b3_int-b4'], 'detour_route': ['int-c1_int-c2', 'int-c2_int-c3', 'int-c3_int-c4', 'int-c4_int-b4'], 'normal_eta_s': 87.4, 'detour_eta_s': 87.7}, 'police': {'blocked_edge': 'int-b3_int-b2', 'normal_route': ['int-a4_int-b4', 'int-b4_int-b3', 'int-b3_int-b2', 'int-b2_int-b1', 'int-b1_int-c1'], 'detour_route': ['int-a4_int-a3', 'int-a3_int-a2', 'int-a2_int-a1', 'int-a1_int-b1', 'int-b1_int-c1'], 'normal_eta_s': 118.1, 'detour_eta_s': 118.3}}",
+    "failure_runs_also_had_zero_signal_safety_violations": "",
+    "general_traffic_effect_was_measured_paired_and_is_reported": "{'pairs': 30, 'window_s': 150, 'network_mean_waiting_change_s': {'mean': 0.773, 'worst_increase': 9.139, 'best_decrease': -3.053}, 'cross_street_mean_waiting_change_s': {'pairs': 30, 'mean': 0.304, 'worst_increase': 5.828, 'best_decrease': -2.179}, 'note': 'paired, same seed, the same 150 s window after the vehicle departs; positive = pre-emption made general traffic wait longer'}",
+    "heavy_congestion_is_run_and_its_eta_error_is_reported_not_hidden": "{'background_rate_per_s': 1.1, 'normal_rate_per_s': 0.6, 'completed': '3/3', 'eta_error': {'n': 3, 'mae_pct': 6.57, 'worst_pct': 12.01, 'mean_signed_error_pct': 6.57, 'within_stated_uncertainty': '3/3'}, 'unit_actual_s': [59.0, 64.0, 59.0], 'etas_s': [56.5, 56.3, 57.0], 'violations': 0}",
+    "no_open_route_is_reported_not_guessed_and_nothing_is_pre_empted": "{'status': 'no_route', 'call_status': 'dispatched', 'commands_created': 0}",
+    "policy_outage_fails_closed_the_command_never_executes_and_later_expires": "{'command_status': 'requested', 'policy_decision': 'policy_unavailable', 'later_status': 'expired', 'unit_actual_s': 95.0, 'eta_s': 87.4, 'eta_error_pct': 7.98}",
+    "safe_01_zero_signal_safety_violations_over_every_step_of_every_platform_run": "0 violations over 162072 intersection-state observations",
+    "staged_response_holds_ems_back_until_fire_has_arrived_then_releases_it": "{'patrol-2': 'on_scene', 'engine-1': 'on_scene', 'ambulance-2': 'on_scene'}",
+    "stale_evidence_denies_the_preemption_and_the_unit_drives_on_unassisted": "command denied/stale_evidence, actual 60.0s = baseline 60.0s",
+    "the_recorded_assignment_timeline_equals_the_simulated_travel_and_carries_the_predicted_eta": "recorded 58.0s vs simulated 58.0s; stored ETA 56.1s vs 56.1s"
+  },
+  "task": "P07.10"
+}

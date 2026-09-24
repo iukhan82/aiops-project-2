@@ -1,0 +1,57 @@
+{
+  "all_passed": true,
+  "checks": {
+    "B1_a_call_can_be_cancelled_and_cancelled_is_terminal": true,
+    "B1_no_transition_is_allowed_out_of_cancelled": true,
+    "B2_an_assignment_can_become_unavailable_mid_response": true,
+    "B2_the_call_can_still_be_reassigned_after_a_unit_goes_unavailable": true,
+    "B3_a_handover_record_persists_with_its_required_fields": true,
+    "all_three_call_types_present_and_every_call_reached_a_terminal_status": true,
+    "api_call_detail_includes_assignments_and_transitions": true,
+    "api_call_type_filter_works": true,
+    "api_lists_real_calls_with_correct_schema": true,
+    "api_unknown_call_is_404": true,
+    "assignment_6f225eda_history_matches_its_stored_timestamps": true,
+    "assignment_carries_its_own_timeline_distinct_from_the_calls": true,
+    "avl_events_are_real_device_bound_telemetry_not_a_position_column_on_the_call": true,
+    "avl_telemetry_ingested_through_the_real_write_path": true,
+    "call_history_is_append_only_and_starts_at_received": true,
+    "every_assignment_has_five_transitions_assigned_through_clear": true,
+    "every_call_and_assignment_replayed_without_a_rejected_transition": true,
+    "re_running_the_replay_on_an_already_loaded_dataset_is_rejected_not_silently_duplicated": true,
+    "reingesting_avl_telemetry_is_idempotent": true,
+    "synthetic_calls_are_removed_after_the_test": true
+  },
+  "generated_at": "2026-09-20T09:59:19Z",
+  "metrics": {
+    "dataset": {
+      "assignments": 9,
+      "avl_events": 238,
+      "calls": 9,
+      "devices": 6
+    }
+  },
+  "notes": {
+    "B1_a_call_can_be_cancelled_and_cancelled_is_terminal": "",
+    "B1_no_transition_is_allowed_out_of_cancelled": "",
+    "B2_an_assignment_can_become_unavailable_mid_response": "",
+    "B2_the_call_can_still_be_reassigned_after_a_unit_goes_unavailable": "",
+    "B3_a_handover_record_persists_with_its_required_fields": "",
+    "all_three_call_types_present_and_every_call_reached_a_terminal_status": "{'fire': 3, 'ambulance': 3, 'police': 3}, {'cleared': 9}",
+    "api_call_detail_includes_assignments_and_transitions": "",
+    "api_call_type_filter_works": "",
+    "api_lists_real_calls_with_correct_schema": "",
+    "api_unknown_call_is_404": "",
+    "assignment_6f225eda_history_matches_its_stored_timestamps": "",
+    "assignment_carries_its_own_timeline_distinct_from_the_calls": "",
+    "avl_events_are_real_device_bound_telemetry_not_a_position_column_on_the_call": "238 events from 6 AVL devices",
+    "avl_telemetry_ingested_through_the_real_write_path": "{'inserted': 238}",
+    "call_history_is_append_only_and_starts_at_received": "",
+    "every_assignment_has_five_transitions_assigned_through_clear": "45 rows",
+    "every_call_and_assignment_replayed_without_a_rejected_transition": "9/9 calls, 9/9 assignments, 81 transitions, errors=[]",
+    "re_running_the_replay_on_an_already_loaded_dataset_is_rejected_not_silently_duplicated": "99 rejected re-creations (unique key), e.g. ['call:193fe884-4675-5032-bdef-eb64c20665cb -> received @ 2026-09-18T09:02:21.900000+00:00: already exists (duplicate key value violates unique constraint \"emergency_calls_pkey\")']",
+    "reingesting_avl_telemetry_is_idempotent": "",
+    "synthetic_calls_are_removed_after_the_test": ""
+  },
+  "task": "P07.01"
+}

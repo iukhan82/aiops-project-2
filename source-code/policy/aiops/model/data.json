@@ -1,0 +1,414 @@
+{
+  "actionable_recommendation_statuses": [
+    "proposed",
+    "requested"
+  ],
+  "adapter_target_kind": {
+    "diversion_adapter": "segment",
+    "emergency_preemption_adapter": "corridor",
+    "signal_controller_adapter": "intersection",
+    "transit_priority_adapter": "corridor",
+    "vms_adapter": "segment"
+  },
+  "approve_roles": {
+    "SC-0": [
+      "operator",
+      "supervisor"
+    ],
+    "SC-1": [
+      "supervisor"
+    ],
+    "SC-2": [
+      "incident_commander",
+      "supervisor"
+    ]
+  },
+  "capabilities": {
+    "analytics.view": {
+      "roles": [
+        "auditor",
+        "demo_operator",
+        "dispatcher",
+        "incident_commander",
+        "operator",
+        "supervisor"
+      ]
+    },
+    "audit.export": {
+      "roles": [
+        "auditor"
+      ]
+    },
+    "audit.view": {
+      "roles": [
+        "auditor"
+      ]
+    },
+    "commands.override": {
+      "roles": [
+        "incident_commander"
+      ]
+    },
+    "commands.request": {
+      "roles": [
+        "dispatcher",
+        "operator"
+      ]
+    },
+    "commands.review": {
+      "roles": [
+        "incident_commander",
+        "operator",
+        "supervisor"
+      ]
+    },
+    "commands.view": {
+      "roles": [
+        "auditor",
+        "dispatcher",
+        "incident_commander",
+        "operator",
+        "supervisor"
+      ]
+    },
+    "demo.control": {
+      "roles": [
+        "demo_operator"
+      ]
+    },
+    "emergency.dispatch": {
+      "roles": [
+        "dispatcher",
+        "incident_commander"
+      ]
+    },
+    "emergency.view": {
+      "roles": [
+        "auditor",
+        "dispatcher",
+        "field_responder",
+        "incident_commander",
+        "operator",
+        "supervisor"
+      ]
+    },
+    "handover.view": {
+      "roles": [
+        "auditor",
+        "dispatcher",
+        "field_responder",
+        "incident_commander",
+        "operator",
+        "supervisor"
+      ]
+    },
+    "handover.write": {
+      "roles": [
+        "dispatcher",
+        "incident_commander",
+        "operator",
+        "supervisor"
+      ]
+    },
+    "incidents.manage": {
+      "roles": [
+        "incident_commander",
+        "operator",
+        "supervisor"
+      ]
+    },
+    "incidents.view": {
+      "roles": [
+        "auditor",
+        "dispatcher",
+        "field_responder",
+        "incident_commander",
+        "operator",
+        "supervisor"
+      ]
+    },
+    "map.view": {
+      "roles": [
+        "auditor",
+        "demo_operator",
+        "dispatcher",
+        "field_responder",
+        "incident_commander",
+        "operator",
+        "supervisor"
+      ]
+    },
+    "ops.view": {
+      "roles": [
+        "auditor",
+        "incident_commander",
+        "operator",
+        "supervisor"
+      ]
+    },
+    "outcomes.view": {
+      "roles": [
+        "auditor",
+        "dispatcher",
+        "incident_commander",
+        "operator",
+        "supervisor"
+      ]
+    },
+    "recommendations.view": {
+      "roles": [
+        "auditor",
+        "dispatcher",
+        "incident_commander",
+        "operator",
+        "supervisor"
+      ]
+    },
+    "routes.view": {
+      "roles": [
+        "dispatcher",
+        "field_responder",
+        "incident_commander",
+        "operator",
+        "supervisor"
+      ]
+    }
+  },
+  "endpoints": {
+    "api GET /api/v1/audit": {
+      "capability": "audit.view",
+      "public": false
+    },
+    "api GET /api/v1/audit/export": {
+      "capability": "audit.export",
+      "public": false
+    },
+    "api GET /api/v1/candidates": {
+      "capability": "analytics.view",
+      "public": false
+    },
+    "api GET /api/v1/commands": {
+      "capability": "commands.view",
+      "public": false
+    },
+    "api GET /api/v1/commands/{command_id}": {
+      "capability": "commands.view",
+      "public": false
+    },
+    "api GET /api/v1/devices": {
+      "capability": "map.view",
+      "public": false
+    },
+    "api GET /api/v1/devices/{device_id}": {
+      "capability": "analytics.view",
+      "public": false
+    },
+    "api GET /api/v1/emergency/calls": {
+      "capability": "emergency.view",
+      "public": false
+    },
+    "api GET /api/v1/emergency/calls/{call_id}": {
+      "capability": "emergency.view",
+      "public": false
+    },
+    "api GET /api/v1/forecasts/corridors": {
+      "capability": "analytics.view",
+      "public": false
+    },
+    "api GET /api/v1/handovers": {
+      "capability": "handover.view",
+      "public": false
+    },
+    "api GET /api/v1/health": {
+      "capability": null,
+      "public": true
+    },
+    "api GET /api/v1/incidents": {
+      "capability": "incidents.view",
+      "public": false
+    },
+    "api GET /api/v1/incidents/{incident_id}": {
+      "capability": "incidents.view",
+      "public": false
+    },
+    "api GET /api/v1/kpis/corridors": {
+      "capability": "map.view",
+      "public": false
+    },
+    "api GET /api/v1/me": {
+      "capability": null,
+      "public": false
+    },
+    "api GET /api/v1/network-state": {
+      "capability": "map.view",
+      "public": false
+    },
+    "api GET /api/v1/network-state/{network_element_type}/{network_element_id}": {
+      "capability": "map.view",
+      "public": false
+    },
+    "api GET /api/v1/network/topology": {
+      "capability": "map.view",
+      "public": false
+    },
+    "api GET /api/v1/observations": {
+      "capability": "map.view",
+      "public": false
+    },
+    "api GET /api/v1/ops/status": {
+      "capability": "ops.view",
+      "public": false
+    },
+    "api GET /api/v1/outcomes": {
+      "capability": "outcomes.view",
+      "public": false
+    },
+    "api GET /api/v1/outcomes/{outcome_id}": {
+      "capability": "outcomes.view",
+      "public": false
+    },
+    "api GET /api/v1/recommendations": {
+      "capability": "recommendations.view",
+      "public": false
+    },
+    "api GET /api/v1/routes": {
+      "capability": "routes.view",
+      "public": false
+    },
+    "api POST /api/v1/commands": {
+      "capability": "commands.request",
+      "public": false
+    },
+    "api POST /api/v1/commands/{command_id}/override": {
+      "capability": "commands.override",
+      "public": false
+    },
+    "api POST /api/v1/commands/{command_id}/review": {
+      "capability": "commands.review",
+      "public": false
+    },
+    "api POST /api/v1/emergency/assignments/{assignment_id}/route": {
+      "capability": "emergency.dispatch",
+      "public": false
+    },
+    "api POST /api/v1/emergency/assignments/{assignment_id}/transition": {
+      "capability": "emergency.dispatch",
+      "public": false
+    },
+    "api POST /api/v1/emergency/calls": {
+      "capability": "emergency.dispatch",
+      "public": false
+    },
+    "api POST /api/v1/emergency/calls/{call_id}/assignments": {
+      "capability": "emergency.dispatch",
+      "public": false
+    },
+    "api POST /api/v1/emergency/calls/{call_id}/transition": {
+      "capability": "emergency.dispatch",
+      "public": false
+    },
+    "api POST /api/v1/handovers": {
+      "capability": "handover.write",
+      "public": false
+    },
+    "api POST /api/v1/handovers/{handover_id}/acknowledge": {
+      "capability": "handover.write",
+      "public": false
+    },
+    "api POST /api/v1/incidents/{incident_id}/notes": {
+      "capability": "incidents.manage",
+      "public": false
+    },
+    "api POST /api/v1/incidents/{incident_id}/owner": {
+      "capability": "incidents.manage",
+      "public": false
+    },
+    "api POST /api/v1/incidents/{incident_id}/transition": {
+      "capability": "incidents.manage",
+      "public": false
+    },
+    "api POST /api/v1/recommendations/{recommendation_id}/request": {
+      "capability": "commands.request",
+      "public": false
+    },
+    "api WEBSOCKET /api/v1/live": {
+      "capability": "map.view",
+      "public": false
+    },
+    "scenario-control GET /scenario-control/v1/audit": {
+      "capability": "demo.control",
+      "public": false
+    },
+    "scenario-control GET /scenario-control/v1/health": {
+      "capability": null,
+      "public": true
+    },
+    "scenario-control GET /scenario-control/v1/runs": {
+      "capability": "demo.control",
+      "public": false
+    },
+    "scenario-control GET /scenario-control/v1/runs/{run_id}": {
+      "capability": "demo.control",
+      "public": false
+    },
+    "scenario-control POST /scenario-control/v1/runs": {
+      "capability": "demo.control",
+      "public": false
+    },
+    "scenario-control POST /scenario-control/v1/runs/{run_id}/replay": {
+      "capability": "demo.control",
+      "public": false
+    },
+    "scenario-control POST /scenario-control/v1/runs/{run_id}/reset": {
+      "capability": "demo.control",
+      "public": false
+    }
+  },
+  "executor": "system:command-executor",
+  "four_eyes_classes": [
+    "SC-1",
+    "SC-2"
+  ],
+  "override_roles": {
+    "SC-0": [],
+    "SC-1": [],
+    "SC-2": [
+      "incident_commander"
+    ]
+  },
+  "request_roles": {
+    "SC-0": [
+      "operator"
+    ],
+    "SC-1": [
+      "operator"
+    ],
+    "SC-2": [
+      "dispatcher",
+      "operator"
+    ]
+  },
+  "roles": [
+    "auditor",
+    "demo_operator",
+    "dispatcher",
+    "field_responder",
+    "incident_commander",
+    "operator",
+    "supervisor",
+    "system:aiops-remediation",
+    "system:command-executor",
+    "system:emergency-engine",
+    "system:optimization-engine",
+    "system:outcome-verifier"
+  ],
+  "safety_class_of_action": {
+    "diversion": "SC-1",
+    "emergency_preemption": "SC-2",
+    "other": "SC-1",
+    "signal_plan_change": "SC-1",
+    "transit_priority": "SC-1",
+    "variable_message_sign": "SC-0"
+  },
+  "version": "fef068b27e9d1d8e"
+}

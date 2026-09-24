@@ -1,0 +1,24 @@
+{
+  "_invalid_because": "the measurement item omits 'unit'; every measurement value must carry an explicit unit per docs/PROJECT_CONTEXT.md engineering invariants.",
+  "schema_version": "1.0.0",
+  "event_id": "0f8fad5b-d9cb-469f-a165-70867728950e",
+  "event_type": "traffic.loop_detector.count",
+  "device_id": "corridor-a-int-03-loop-02",
+  "agency_scope": "city-traffic-ops",
+  "observation_time": "2026-09-18T09:00:12.500Z",
+  "ingest_time": "2026-09-18T09:00:12.850Z",
+  "sequence_number": 104332,
+  "clock_quality": "synced",
+  "geometry_version": "2026-09-18.1",
+  "location": {
+    "coordinate_reference": "EPSG:4326",
+    "latitude": 31.5204,
+    "longitude": 74.3587
+  },
+  "measurements": [
+    { "name": "vehicle_count", "value": 3, "quality": "valid", "confidence": 0.98 }
+  ],
+  "truth_label": "simulated",
+  "privacy_classification": "none",
+  "retention_class": "standard"
+}

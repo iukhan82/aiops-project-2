@@ -1,0 +1,37 @@
+{
+  "schema_version": "1.0.0",
+  "assignment_id": "9c8b7a6f-5e4d-4c3b-8a2b-1c0d9e8f7a6b",
+  "call_id": "4d8f6a2e-1c3b-4e5f-9a7b-2c1d0e3f4a5b",
+  "unit_id": "ambulance-12",
+  "agency": "city-ems",
+  "capability": ["advanced_life_support"],
+  "status": "en_route",
+  "assigned_at": "2026-09-18T09:12:10Z",
+  "acknowledged_at": "2026-09-18T09:12:25Z",
+  "route_alternatives": [
+    {
+      "route_id": "route-primary",
+      "geometry_version": "2026-09-18.1",
+      "distance_m": 2400,
+      "eta_seconds": 210,
+      "eta_uncertainty_seconds": 45,
+      "constraints_applied": ["bridge-weight-limit"],
+      "selected": true
+    },
+    {
+      "route_id": "route-alt-corridor-c",
+      "geometry_version": "2026-09-18.1",
+      "distance_m": 2900,
+      "eta_seconds": 260,
+      "eta_uncertainty_seconds": 50,
+      "selected": false
+    }
+  ],
+  "handover": {
+    "from_agency": "city-traffic-ops",
+    "to_agency": "city-ems",
+    "handover_at": "2026-09-18T09:12:20Z",
+    "acknowledged_by": "dispatcher-rkhan"
+  },
+  "truth_label": "simulated"
+}

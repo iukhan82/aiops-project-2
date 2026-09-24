@@ -1,0 +1,25 @@
+{
+  "task": "P05.04",
+  "generated_at": "2026-09-19T18:50:41Z",
+  "checks": {
+    "all_migrations_create_expected_tables": true,
+    "rerun_is_idempotent_no_new_applies": true,
+    "bad_enum_value_rejected_by_check_constraint": true,
+    "dangling_foreign_key_rejected": true,
+    "expires_before_requested_rejected": true,
+    "hand_edited_applied_migration_is_detected": true,
+    "seed_runs_against_real_sumo_network": true,
+    "seed_rerun_is_idempotent": true
+  },
+  "notes": {
+    "all_migrations_create_expected_tables": "missing=set()",
+    "rerun_is_idempotent_no_new_applies": "second run applied=[]",
+    "bad_enum_value_rejected_by_check_constraint": "",
+    "dangling_foreign_key_rejected": "",
+    "expires_before_requested_rejected": "",
+    "hand_edited_applied_migration_is_detected": "",
+    "seed_runs_against_real_sumo_network": "{'skipped': False, 'geometry_version': '2026-09-18.1', 'intersections_seeded': 12}",
+    "seed_rerun_is_idempotent": "count_after_two_runs=12"
+  },
+  "all_passed": true
+}

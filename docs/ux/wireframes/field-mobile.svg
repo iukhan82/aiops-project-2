@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="390" height="844" viewBox="0 0 390 844" role="img" aria-labelledby="t d" data-role="field_responder">
+<title id="t">Field view - mobile (390x844)</title>
+<desc id="d">Read-only responder view: assigned call, status, route summary with ETA, route steps as a list, and what changed. No control panels.</desc>
+<rect width="390" height="844" fill="#0F172A"/>
+<g id="region-header" data-region="banner">
+<rect x="0" y="0" width="390" height="56" rx="0" fill="#1B2336" stroke="#475569" stroke-width="1"/>
+<text x="16" y="34" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="18" font-weight="700" fill="#F8FAFC" text-anchor="start">Field view</text>
+<circle cx="126" cy="29" r="5" fill="#22C55E"/>
+<text x="138" y="34" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="14" font-weight="400" fill="#F8FAFC" text-anchor="start">Live 4 s</text>
+<rect x="288" y="14" width="88" height="28" rx="14" fill="#272F42" stroke="#38BDF8" stroke-width="1"/>
+<text x="332" y="33" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="11" font-weight="700" fill="#38BDF8" text-anchor="middle">SIMULATED</text>
+</g>
+<g id="region-assignment" data-region="assignment">
+<rect x="12" y="68" width="366" height="176" rx="10" fill="#1B2336" stroke="#475569" stroke-width="1"/>
+<text x="28" y="100" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="17" font-weight="700" fill="#F8FAFC" text-anchor="start">Structure fire - critical</text>
+<text x="28" y="124" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="14" font-weight="400" fill="#94A3B8" text-anchor="start">Unit engine-1 - fire-dispatch</text>
+<text x="28" y="150" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="400" fill="#94A3B8" text-anchor="start">Status</text>
+<circle cx="34" cy="174" r="8" fill="#22C55E" stroke="#22C55E" stroke-width="2"/>
+<text x="34" y="204" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="11" font-weight="400" fill="#F8FAFC" text-anchor="middle">Assigned</text>
+<circle cx="120" cy="174" r="8" fill="#22C55E" stroke="#22C55E" stroke-width="2"/>
+<text x="120" y="204" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="11" font-weight="400" fill="#F8FAFC" text-anchor="middle">Acknowledged</text>
+<circle cx="206" cy="174" r="8" fill="#22C55E" stroke="#22C55E" stroke-width="2"/>
+<text x="206" y="204" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="11" font-weight="400" fill="#F8FAFC" text-anchor="middle">En route</text>
+<circle cx="292" cy="174" r="8" fill="none" stroke="#94A3B8" stroke-width="2"/>
+<text x="292" y="204" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="11" font-weight="400" fill="#94A3B8" text-anchor="middle">On scene</text>
+<text x="28" y="232" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="12" font-weight="400" fill="#94A3B8" text-anchor="start">Updated 09:14:52 UTC - fresh</text>
+</g>
+<g id="region-route" data-region="route summary">
+<rect x="12" y="256" width="366" height="132" rx="10" fill="#1B2336" stroke="#475569" stroke-width="1"/>
+<text x="28" y="288" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="15" font-weight="700" fill="#F8FAFC" text-anchor="start">Route and ETA</text>
+<text x="28" y="326" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="34" font-weight="700" fill="#F8FAFC" text-anchor="start">1:34</text>
+<text x="112" y="326" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="15" font-weight="400" fill="#94A3B8" text-anchor="start">+/- 0:14  predicted</text>
+<text x="28" y="352" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="12" font-weight="400" fill="#94A3B8" text-anchor="start">1,245 m via corridor C - 3 signals - avoids closed B2-B3</text>
+<text x="28" y="374" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="12" font-weight="400" fill="#94A3B8" text-anchor="start">Recalculated 09:14:40 - alternative route available</text>
+</g>
+<g id="region-route-steps" data-region="route steps list (text alternative to the map)">
+<rect x="12" y="400" width="366" height="232" rx="10" fill="#1B2336" stroke="#475569" stroke-width="1"/>
+<text x="28" y="432" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="15" font-weight="700" fill="#F8FAFC" text-anchor="start">Route steps</text>
+<text x="28" y="466" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="400" fill="#F8FAFC" text-anchor="start">1. Depart int-c1 east on Corridor C</text>
+<text x="362" y="466" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="13" font-weight="400" fill="#94A3B8" text-anchor="end">300 m</text>
+<text x="28" y="508" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="400" fill="#F8FAFC" text-anchor="start">2. Continue through int-c2, int-c3</text>
+<text x="362" y="508" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="13" font-weight="400" fill="#94A3B8" text-anchor="end">600 m</text>
+<text x="28" y="550" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="400" fill="#F8FAFC" text-anchor="start">3. Turn onto cross street at int-c4</text>
+<text x="362" y="550" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="13" font-weight="400" fill="#94A3B8" text-anchor="end">300 m</text>
+<text x="28" y="592" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="400" fill="#F8FAFC" text-anchor="start">4. Arrive int-b4</text>
+<text x="362" y="592" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="13" font-weight="400" fill="#94A3B8" text-anchor="end">45 m</text>
+</g>
+<g id="region-changes" data-region="what changed">
+<rect x="12" y="644" width="366" height="100" rx="10" fill="#1B2336" stroke="#475569" stroke-width="1"/>
+<text x="28" y="676" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="15" font-weight="700" fill="#F8FAFC" text-anchor="start">What changed</text>
+<polygon points="34,691 40,702 28,702" fill="#F59E0B"/>
+<text x="46" y="702" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="12" font-weight="400" fill="#F8FAFC" text-anchor="start">Route changed 09:14:40 (segment closed)</text>
+<text x="28" y="726" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="12" font-weight="400" fill="#94A3B8" text-anchor="start">Pre-emption executed at int-c2, int-c3</text>
+</g>
+<g id="region-bottom-nav" data-region="navigation">
+<rect x="0" y="764" width="390" height="80" rx="0" fill="#1B2336" stroke="#475569" stroke-width="1"/>
+<rect x="12" y="776" width="116" height="56" rx="10" fill="#272F42" stroke="#22C55E" stroke-width="2"/>
+<text x="70" y="810" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#F8FAFC" text-anchor="middle">Assignment</text>
+<rect x="134" y="776" width="116" height="56" rx="10" fill="none" stroke="#475569" stroke-width="2"/>
+<text x="192" y="810" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="14" font-weight="400" fill="#F8FAFC" text-anchor="middle">Incidents</text>
+<rect x="256" y="776" width="116" height="56" rx="10" fill="none" stroke="#475569" stroke-width="2"/>
+<text x="314" y="810" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="14" font-weight="400" fill="#F8FAFC" text-anchor="middle">Handover</text>
+</g>
+<g id="callout-1"><circle cx="12" cy="4" r="11" fill="#F59E0B" stroke="#0F172A" stroke-width="2"/><text x="12" y="9" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="700" fill="#0F172A" text-anchor="middle">1</text></g>
+<g id="callout-2"><circle cx="12" cy="68" r="11" fill="#F59E0B" stroke="#0F172A" stroke-width="2"/><text x="12" y="73" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="700" fill="#0F172A" text-anchor="middle">2</text></g>
+<g id="callout-3"><circle cx="12" cy="256" r="11" fill="#F59E0B" stroke="#0F172A" stroke-width="2"/><text x="12" y="261" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="700" fill="#0F172A" text-anchor="middle">3</text></g>
+<g id="callout-4"><circle cx="12" cy="400" r="11" fill="#F59E0B" stroke="#0F172A" stroke-width="2"/><text x="12" y="405" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="700" fill="#0F172A" text-anchor="middle">4</text></g>
+<g id="callout-5"><circle cx="12" cy="644" r="11" fill="#F59E0B" stroke="#0F172A" stroke-width="2"/><text x="12" y="649" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="700" fill="#0F172A" text-anchor="middle">5</text></g>
+<g id="callout-6"><circle cx="12" cy="764" r="11" fill="#F59E0B" stroke="#0F172A" stroke-width="2"/><text x="12" y="769" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="700" fill="#0F172A" text-anchor="middle">6</text></g>
+</svg>

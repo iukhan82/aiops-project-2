@@ -1,0 +1,908 @@
+{
+  "candidates_validation": [
+    {
+      "index": 0,
+      "kind": "logistic_regression",
+      "params": {
+        "C": 0.1,
+        "class_weight": null
+      },
+      "validation_alarm_episodes": {
+        "false_alarm_episode_share": 0.06666666666666667,
+        "false_alarm_episodes": 2,
+        "incidents": 48,
+        "incidents_detected": 28,
+        "true_alarm_episodes": 28
+      },
+      "validation_at_best_threshold": {
+        "f1": 0.5102639296187683,
+        "fpr": 0.0005699861574790326,
+        "precision": 0.925531914893617,
+        "recall": 0.3522267206477733
+      },
+      "validation_average_precision": 0.5377172468248536,
+      "validation_best_threshold": 0.5664715963602165
+    },
+    {
+      "index": 1,
+      "kind": "logistic_regression",
+      "params": {
+        "C": 0.1,
+        "class_weight": "balanced"
+      },
+      "validation_alarm_episodes": {
+        "false_alarm_episode_share": 0.0967741935483871,
+        "false_alarm_episodes": 3,
+        "incidents": 48,
+        "incidents_detected": 28,
+        "true_alarm_episodes": 28
+      },
+      "validation_at_best_threshold": {
+        "f1": 0.42724458204334365,
+        "fpr": 0.0005699861574790326,
+        "precision": 0.9078947368421053,
+        "recall": 0.2793522267206478
+      },
+      "validation_average_precision": 0.5343761752163534,
+      "validation_best_threshold": 0.9965473175048828
+    },
+    {
+      "index": 2,
+      "kind": "logistic_regression",
+      "params": {
+        "C": 1.0,
+        "class_weight": null
+      },
+      "validation_alarm_episodes": {
+        "false_alarm_episode_share": 0.09090909090909091,
+        "false_alarm_episodes": 3,
+        "incidents": 48,
+        "incidents_detected": 30,
+        "true_alarm_episodes": 30
+      },
+      "validation_at_best_threshold": {
+        "f1": 0.5229885057471265,
+        "fpr": 0.000814265939255761,
+        "precision": 0.900990099009901,
+        "recall": 0.3684210526315789
+      },
+      "validation_average_precision": 0.5433533400478263,
+      "validation_best_threshold": 0.5628189363479585
+    },
+    {
+      "index": 3,
+      "kind": "logistic_regression",
+      "params": {
+        "C": 1.0,
+        "class_weight": "balanced"
+      },
+      "validation_alarm_episodes": {
+        "false_alarm_episode_share": 0.09090909090909091,
+        "false_alarm_episodes": 3,
+        "incidents": 48,
+        "incidents_detected": 29,
+        "true_alarm_episodes": 30
+      },
+      "validation_at_best_threshold": {
+        "f1": 0.42724458204334365,
+        "fpr": 0.0005699861574790326,
+        "precision": 0.9078947368421053,
+        "recall": 0.2793522267206478
+      },
+      "validation_average_precision": 0.5330970568303696,
+      "validation_best_threshold": 0.9963245924711227
+    },
+    {
+      "index": 4,
+      "kind": "logistic_regression",
+      "params": {
+        "C": 10.0,
+        "class_weight": null
+      },
+      "validation_alarm_episodes": {
+        "false_alarm_episode_share": 0.06451612903225806,
+        "false_alarm_episodes": 2,
+        "incidents": 48,
+        "incidents_detected": 29,
+        "true_alarm_episodes": 29
+      },
+      "validation_at_best_threshold": {
+        "f1": 0.5102639296187683,
+        "fpr": 0.0005699861574790326,
+        "precision": 0.925531914893617,
+        "recall": 0.3522267206477733
+      },
+      "validation_average_precision": 0.5431491444141167,
+      "validation_best_threshold": 0.6138531009852887
+    },
+    {
+      "index": 5,
+      "kind": "logistic_regression",
+      "params": {
+        "C": 10.0,
+        "class_weight": "balanced"
+      },
+      "validation_alarm_episodes": {
+        "false_alarm_episode_share": 0.09375,
+        "false_alarm_episodes": 3,
+        "incidents": 48,
+        "incidents_detected": 29,
+        "true_alarm_episodes": 29
+      },
+      "validation_at_best_threshold": {
+        "f1": 0.42724458204334365,
+        "fpr": 0.0005699861574790326,
+        "precision": 0.9078947368421053,
+        "recall": 0.2793522267206478
+      },
+      "validation_average_precision": 0.5321571378809091,
+      "validation_best_threshold": 0.9964340990781784
+    },
+    {
+      "index": 6,
+      "kind": "random_forest",
+      "params": {
+        "class_weight": null,
+        "max_depth": 6,
+        "min_samples_leaf": 5,
+        "n_estimators": 150
+      },
+      "validation_alarm_episodes": {
+        "false_alarm_episode_share": 0.09090909090909091,
+        "false_alarm_episodes": 2,
+        "incidents": 48,
+        "incidents_detected": 19,
+        "true_alarm_episodes": 20
+      },
+      "validation_at_best_threshold": {
+        "f1": 0.4177215189873418,
+        "fpr": 0.0002442797817767283,
+        "precision": 0.9565217391304348,
+        "recall": 0.26720647773279355
+      },
+      "validation_average_precision": 0.5481538312095784,
+      "validation_best_threshold": 0.6631900443621642
+    },
+    {
+      "index": 7,
+      "kind": "random_forest",
+      "params": {
+        "class_weight": "balanced_subsample",
+        "max_depth": 6,
+        "min_samples_leaf": 5,
+        "n_estimators": 150
+      },
+      "validation_alarm_episodes": {
+        "false_alarm_episode_share": 0.06896551724137931,
+        "false_alarm_episodes": 2,
+        "incidents": 48,
+        "incidents_detected": 27,
+        "true_alarm_episodes": 27
+      },
+      "validation_at_best_threshold": {
+        "f1": 0.48358208955223875,
+        "fpr": 0.0005699861574790326,
+        "precision": 0.9204545454545454,
+        "recall": 0.32793522267206476
+      },
+      "validation_average_precision": 0.5578149071843974,
+      "validation_best_threshold": 0.9300036263302432
+    },
+    {
+      "index": 8,
+      "kind": "random_forest",
+      "params": {
+        "class_weight": null,
+        "max_depth": 6,
+        "min_samples_leaf": 20,
+        "n_estimators": 150
+      },
+      "validation_alarm_episodes": {
+        "false_alarm_episode_share": 0.08695652173913043,
+        "false_alarm_episodes": 2,
+        "incidents": 48,
+        "incidents_detected": 21,
+        "true_alarm_episodes": 21
+      },
+      "validation_at_best_threshold": {
+        "f1": 0.4458204334365325,
+        "fpr": 0.0003257063757023044,
+        "precision": 0.9473684210526315,
+        "recall": 0.291497975708502
+      },
+      "validation_average_precision": 0.5433098662933518,
+      "validation_best_threshold": 0.5985623691282731
+    },
+    {
+      "index": 9,
+      "kind": "random_forest",
+      "params": {
+        "class_weight": "balanced_subsample",
+        "max_depth": 6,
+        "min_samples_leaf": 20,
+        "n_estimators": 150
+      },
+      "validation_alarm_episodes": {
+        "false_alarm_episode_share": 0.03571428571428571,
+        "false_alarm_episodes": 1,
+        "incidents": 48,
+        "incidents_detected": 26,
+        "true_alarm_episodes": 27
+      },
+      "validation_at_best_threshold": {
+        "f1": 0.40506329113924056,
+        "fpr": 0.0004071329696278805,
+        "precision": 0.927536231884058,
+        "recall": 0.2591093117408907
+      },
+      "validation_average_precision": 0.5506658701250459,
+      "validation_best_threshold": 0.9351075929989978
+    },
+    {
+      "index": 10,
+      "kind": "random_forest",
+      "params": {
+        "class_weight": null,
+        "max_depth": 10,
+        "min_samples_leaf": 5,
+        "n_estimators": 150
+      },
+      "validation_alarm_episodes": {
+        "false_alarm_episode_share": 0.08695652173913043,
+        "false_alarm_episodes": 2,
+        "incidents": 48,
+        "incidents_detected": 21,
+        "true_alarm_episodes": 21
+      },
+      "validation_at_best_threshold": {
+        "f1": 0.4458204334365325,
+        "fpr": 0.0003257063757023044,
+        "precision": 0.9473684210526315,
+        "recall": 0.291497975708502
+      },
+      "validation_average_precision": 0.5701597006438966,
+      "validation_best_threshold": 0.6832035663304336
+    },
+    {
+      "index": 11,
+      "kind": "random_forest",
+      "params": {
+        "class_weight": "balanced_subsample",
+        "max_depth": 10,
+        "min_samples_leaf": 5,
+        "n_estimators": 150
+      },
+      "validation_alarm_episodes": {
+        "false_alarm_episode_share": 0.08333333333333333,
+        "false_alarm_episodes": 2,
+        "incidents": 48,
+        "incidents_detected": 22,
+        "true_alarm_episodes": 22
+      },
+      "validation_at_best_threshold": {
+        "f1": 0.40506329113924056,
+        "fpr": 0.0004071329696278805,
+        "precision": 0.927536231884058,
+        "recall": 0.2591093117408907
+      },
+      "validation_average_precision": 0.5529404468477164,
+      "validation_best_threshold": 0.9466352502850266
+    },
+    {
+      "index": 12,
+      "kind": "random_forest",
+      "params": {
+        "class_weight": null,
+        "max_depth": 10,
+        "min_samples_leaf": 20,
+        "n_estimators": 150
+      },
+      "validation_alarm_episodes": {
+        "false_alarm_episode_share": 0.0,
+        "false_alarm_episodes": 0,
+        "incidents": 48,
+        "incidents_detected": 15,
+        "true_alarm_episodes": 15
+      },
+      "validation_at_best_threshold": {
+        "f1": 0.375,
+        "fpr": 0.0,
+        "precision": 1.0,
+        "recall": 0.23076923076923078
+      },
+      "validation_average_precision": 0.5562985697220832,
+      "validation_best_threshold": 0.7816432993588454
+    },
+    {
+      "index": 13,
+      "kind": "random_forest",
+      "params": {
+        "class_weight": "balanced_subsample",
+        "max_depth": 10,
+        "min_samples_leaf": 20,
+        "n_estimators": 150
+      },
+      "validation_alarm_episodes": {
+        "false_alarm_episode_share": 0.0625,
+        "false_alarm_episodes": 2,
+        "incidents": 48,
+        "incidents_detected": 28,
+        "true_alarm_episodes": 30
+      },
+      "validation_at_best_threshold": {
+        "f1": 0.5161290322580645,
+        "fpr": 0.0004885595635534566,
+        "precision": 0.9361702127659575,
+        "recall": 0.3562753036437247
+      },
+      "validation_average_precision": 0.5550020270358264,
+      "validation_best_threshold": 0.9356655074613384
+    },
+    {
+      "index": 14,
+      "kind": "gradient_boosting",
+      "params": {
+        "learning_rate": 0.05,
+        "max_depth": 2,
+        "n_estimators": 60,
+        "positive_weight": 1.0
+      },
+      "validation_alarm_episodes": {
+        "false_alarm_episode_share": 0.09523809523809523,
+        "false_alarm_episodes": 2,
+        "incidents": 48,
+        "incidents_detected": 19,
+        "true_alarm_episodes": 19
+      },
+      "validation_at_best_threshold": {
+        "f1": 0.41139240506329117,
+        "fpr": 0.0003257063757023044,
+        "precision": 0.9420289855072463,
+        "recall": 0.2631578947368421
+      },
+      "validation_average_precision": 0.5024066491920018,
+      "validation_best_threshold": 0.7951163980699835
+    },
+    {
+      "index": 15,
+      "kind": "gradient_boosting",
+      "params": {
+        "learning_rate": 0.05,
+        "max_depth": 2,
+        "n_estimators": 60,
+        "positive_weight": 8.0
+      },
+      "validation_alarm_episodes": {
+        "false_alarm_episode_share": 0.047619047619047616,
+        "false_alarm_episodes": 1,
+        "incidents": 48,
+        "incidents_detected": 20,
+        "true_alarm_episodes": 20
+      },
+      "validation_at_best_threshold": {
+        "f1": 0.4177215189873418,
+        "fpr": 0.0002442797817767283,
+        "precision": 0.9565217391304348,
+        "recall": 0.26720647773279355
+      },
+      "validation_average_precision": 0.5228424234684722,
+      "validation_best_threshold": 0.8449047053989236
+    },
+    {
+      "index": 16,
+      "kind": "gradient_boosting",
+      "params": {
+        "learning_rate": 0.1,
+        "max_depth": 2,
+        "n_estimators": 60,
+        "positive_weight": 1.0
+      },
+      "validation_alarm_episodes": {
+        "false_alarm_episode_share": 0.0,
+        "false_alarm_episodes": 0,
+        "incidents": 48,
+        "incidents_detected": 15,
+        "true_alarm_episodes": 15
+      },
+      "validation_at_best_threshold": {
+        "f1": 0.2666666666666667,
+        "fpr": 0.0,
+        "precision": 1.0,
+        "recall": 0.15384615384615385
+      },
+      "validation_average_precision": 0.5308312040246331,
+      "validation_best_threshold": 0.9681474137387
+    },
+    {
+      "index": 17,
+      "kind": "gradient_boosting",
+      "params": {
+        "learning_rate": 0.1,
+        "max_depth": 2,
+        "n_estimators": 60,
+        "positive_weight": 8.0
+      },
+      "validation_alarm_episodes": {
+        "false_alarm_episode_share": 0.07692307692307693,
+        "false_alarm_episodes": 2,
+        "incidents": 48,
+        "incidents_detected": 23,
+        "true_alarm_episodes": 24
+      },
+      "validation_at_best_threshold": {
+        "f1": 0.42767295597484273,
+        "fpr": 0.0002442797817767283,
+        "precision": 0.9577464788732394,
+        "recall": 0.27530364372469635
+      },
+      "validation_average_precision": 0.5478401995391359,
+      "validation_best_threshold": 0.9230090714487555
+    },
+    {
+      "index": 18,
+      "kind": "gradient_boosting",
+      "params": {
+        "learning_rate": 0.05,
+        "max_depth": 3,
+        "n_estimators": 60,
+        "positive_weight": 1.0
+      },
+      "validation_alarm_episodes": {
+        "false_alarm_episode_share": 0.08333333333333333,
+        "false_alarm_episodes": 2,
+        "incidents": 48,
+        "incidents_detected": 22,
+        "true_alarm_episodes": 22
+      },
+      "validation_at_best_threshold": {
+        "f1": 0.4458204334365325,
+        "fpr": 0.0003257063757023044,
+        "precision": 0.9473684210526315,
+        "recall": 0.291497975708502
+      },
+      "validation_average_precision": 0.5374014666684243,
+      "validation_best_threshold": 0.7629087855344746
+    },
+    {
+      "index": 19,
+      "kind": "gradient_boosting",
+      "params": {
+        "learning_rate": 0.05,
+        "max_depth": 3,
+        "n_estimators": 60,
+        "positive_weight": 8.0
+      },
+      "validation_alarm_episodes": {
+        "false_alarm_episode_share": 0.041666666666666664,
+        "false_alarm_episodes": 1,
+        "incidents": 48,
+        "incidents_detected": 21,
+        "true_alarm_episodes": 23
+      },
+      "validation_at_best_threshold": {
+        "f1": 0.39228295819935693,
+        "fpr": 0.0002442797817767283,
+        "precision": 0.953125,
+        "recall": 0.24696356275303644
+      },
+      "validation_average_precision": 0.5472101116118434,
+      "validation_best_threshold": 0.8827224626685708
+    },
+    {
+      "index": 20,
+      "kind": "gradient_boosting",
+      "params": {
+        "learning_rate": 0.1,
+        "max_depth": 3,
+        "n_estimators": 60,
+        "positive_weight": 1.0
+      },
+      "validation_alarm_episodes": {
+        "false_alarm_episode_share": 0.08695652173913043,
+        "false_alarm_episodes": 2,
+        "incidents": 48,
+        "incidents_detected": 21,
+        "true_alarm_episodes": 21
+      },
+      "validation_at_best_threshold": {
+        "f1": 0.4520123839009288,
+        "fpr": 0.0002442797817767283,
+        "precision": 0.9605263157894737,
+        "recall": 0.29554655870445345
+      },
+      "validation_average_precision": 0.5447317277439707,
+      "validation_best_threshold": 0.8720022839256711
+    },
+    {
+      "index": 21,
+      "kind": "gradient_boosting",
+      "params": {
+        "learning_rate": 0.1,
+        "max_depth": 3,
+        "n_estimators": 60,
+        "positive_weight": 8.0
+      },
+      "validation_alarm_episodes": {
+        "false_alarm_episode_share": 0.06451612903225806,
+        "false_alarm_episodes": 2,
+        "incidents": 48,
+        "incidents_detected": 27,
+        "true_alarm_episodes": 29
+      },
+      "validation_at_best_threshold": {
+        "f1": 0.4895522388059701,
+        "fpr": 0.0004885595635534566,
+        "precision": 0.9318181818181818,
+        "recall": 0.3319838056680162
+      },
+      "validation_average_precision": 0.5603795711269752,
+      "validation_best_threshold": 0.905175931392417
+    },
+    {
+      "index": 22,
+      "kind": "gradient_boosting",
+      "params": {
+        "learning_rate": 0.05,
+        "max_depth": 2,
+        "n_estimators": 150,
+        "positive_weight": 1.0
+      },
+      "validation_alarm_episodes": {
+        "false_alarm_episode_share": 0.05555555555555555,
+        "false_alarm_episodes": 1,
+        "incidents": 48,
+        "incidents_detected": 17,
+        "true_alarm_episodes": 17
+      },
+      "validation_at_best_threshold": {
+        "f1": 0.368421052631579,
+        "fpr": 8.14265939255761e-05,
+        "precision": 0.9824561403508771,
+        "recall": 0.22672064777327935
+      },
+      "validation_average_precision": 0.5355319261196722,
+      "validation_best_threshold": 0.9253562186851707
+    },
+    {
+      "index": 23,
+      "kind": "gradient_boosting",
+      "params": {
+        "learning_rate": 0.05,
+        "max_depth": 2,
+        "n_estimators": 150,
+        "positive_weight": 8.0
+      },
+      "validation_alarm_episodes": {
+        "false_alarm_episode_share": 0.04,
+        "false_alarm_episodes": 1,
+        "incidents": 48,
+        "incidents_detected": 23,
+        "true_alarm_episodes": 24
+      },
+      "validation_at_best_threshold": {
+        "f1": 0.4177215189873418,
+        "fpr": 0.0002442797817767283,
+        "precision": 0.9565217391304348,
+        "recall": 0.26720647773279355
+      },
+      "validation_average_precision": 0.5557083000532111,
+      "validation_best_threshold": 0.9256562305990066
+    },
+    {
+      "index": 24,
+      "kind": "gradient_boosting",
+      "params": {
+        "learning_rate": 0.1,
+        "max_depth": 2,
+        "n_estimators": 150,
+        "positive_weight": 1.0
+      },
+      "validation_alarm_episodes": {
+        "false_alarm_episode_share": 0.09523809523809523,
+        "false_alarm_episodes": 2,
+        "incidents": 48,
+        "incidents_detected": 19,
+        "true_alarm_episodes": 19
+      },
+      "validation_at_best_threshold": {
+        "f1": 0.4177215189873418,
+        "fpr": 0.0002442797817767283,
+        "precision": 0.9565217391304348,
+        "recall": 0.26720647773279355
+      },
+      "validation_average_precision": 0.5548052414251432,
+      "validation_best_threshold": 0.8997952819544915
+    },
+    {
+      "index": 25,
+      "kind": "gradient_boosting",
+      "params": {
+        "learning_rate": 0.1,
+        "max_depth": 2,
+        "n_estimators": 150,
+        "positive_weight": 8.0
+      },
+      "validation_alarm_episodes": {
+        "false_alarm_episode_share": 0.041666666666666664,
+        "false_alarm_episodes": 1,
+        "incidents": 48,
+        "incidents_detected": 23,
+        "true_alarm_episodes": 23
+      },
+      "validation_at_best_threshold": {
+        "f1": 0.42405063291139233,
+        "fpr": 0.0001628531878511522,
+        "precision": 0.9710144927536232,
+        "recall": 0.27125506072874495
+      },
+      "validation_average_precision": 0.5667514526979336,
+      "validation_best_threshold": 0.947657940194188
+    },
+    {
+      "index": 26,
+      "kind": "gradient_boosting",
+      "params": {
+        "learning_rate": 0.05,
+        "max_depth": 3,
+        "n_estimators": 150,
+        "positive_weight": 1.0
+      },
+      "validation_alarm_episodes": {
+        "false_alarm_episode_share": 0.08695652173913043,
+        "false_alarm_episodes": 2,
+        "incidents": 48,
+        "incidents_detected": 21,
+        "true_alarm_episodes": 21
+      },
+      "validation_at_best_threshold": {
+        "f1": 0.4520123839009288,
+        "fpr": 0.0002442797817767283,
+        "precision": 0.9605263157894737,
+        "recall": 0.29554655870445345
+      },
+      "validation_average_precision": 0.5560665910760928,
+      "validation_best_threshold": 0.8608906415390811
+    },
+    {
+      "index": 27,
+      "kind": "gradient_boosting",
+      "params": {
+        "learning_rate": 0.05,
+        "max_depth": 3,
+        "n_estimators": 150,
+        "positive_weight": 8.0
+      },
+      "validation_alarm_episodes": {
+        "false_alarm_episode_share": 0.07692307692307693,
+        "false_alarm_episodes": 2,
+        "incidents": 48,
+        "incidents_detected": 24,
+        "true_alarm_episodes": 24
+      },
+      "validation_at_best_threshold": {
+        "f1": 0.4741641337386017,
+        "fpr": 0.0003257063757023044,
+        "precision": 0.9512195121951219,
+        "recall": 0.3157894736842105
+      },
+      "validation_average_precision": 0.566382740825007,
+      "validation_best_threshold": 0.922574752200191
+    },
+    {
+      "index": 28,
+      "kind": "gradient_boosting",
+      "params": {
+        "learning_rate": 0.1,
+        "max_depth": 3,
+        "n_estimators": 150,
+        "positive_weight": 1.0
+      },
+      "validation_alarm_episodes": {
+        "false_alarm_episode_share": 0.3333333333333333,
+        "false_alarm_episodes": 2,
+        "incidents": 48,
+        "incidents_detected": 4,
+        "true_alarm_episodes": 4
+      },
+      "validation_at_best_threshold": {
+        "f1": 0.03937007874015748,
+        "fpr": 0.0001628531878511522,
+        "precision": 0.7142857142857143,
+        "recall": 0.020242914979757085
+      },
+      "validation_average_precision": 0.5047291727446699,
+      "validation_best_threshold": 0.9971828990201732
+    },
+    {
+      "index": 29,
+      "kind": "gradient_boosting",
+      "params": {
+        "learning_rate": 0.1,
+        "max_depth": 3,
+        "n_estimators": 150,
+        "positive_weight": 8.0
+      },
+      "validation_alarm_episodes": {
+        "false_alarm_episode_share": 0.1,
+        "false_alarm_episodes": 3,
+        "incidents": 48,
+        "incidents_detected": 27,
+        "true_alarm_episodes": 27
+      },
+      "validation_at_best_threshold": {
+        "f1": 0.4955223880597015,
+        "fpr": 0.0004071329696278805,
+        "precision": 0.9431818181818182,
+        "recall": 0.3360323886639676
+      },
+      "validation_average_precision": 0.5574892139958351,
+      "validation_best_threshold": 0.9312214058396022
+    }
+  ],
+  "data": {
+    "dataset_sha256": "4c3cc8a38e84c11ed7bdd34475da5673d8759ca2486b1ace4cd539c332942bc2",
+    "dropped_insufficient_rows": 1944,
+    "feature_names": [
+      "count_last",
+      "count_mean",
+      "count_max",
+      "count_delta",
+      "occ_last",
+      "occ_mean",
+      "occ_max",
+      "occ_delta",
+      "speed_last",
+      "speed_mean",
+      "speed_min",
+      "speed_delta",
+      "zero_flow_run",
+      "high_occ_run",
+      "missing_fraction",
+      "speed_imputed_fraction",
+      "down_available",
+      "down_count_mean",
+      "down_occ_last",
+      "down_zero_flow_run",
+      "count_gap_down",
+      "up_available",
+      "up_count_mean",
+      "up_occ_last"
+    ],
+    "feature_version": "loop-window/2",
+    "positives": {
+      "test": 239,
+      "train": 589,
+      "validation": 247
+    },
+    "rows": {
+      "test": 12528,
+      "train": 31320,
+      "validation": 12528
+    },
+    "split_seeds": {
+      "test": [
+        20260925,
+        20260926
+      ],
+      "train": [
+        20260918,
+        20260919,
+        20260920,
+        20260921,
+        20260922
+      ],
+      "validation": [
+        20260923,
+        20260924
+      ]
+    }
+  },
+  "decision_policy": {
+    "abstain_if_probability_in": [
+      0.28140946817397927,
+      0.5628189363479585
+    ],
+    "alarm_if_probability_at_least": 0.5628189363479585,
+    "clear_below": 0.28140946817397927,
+    "validation": {
+      "abstain_lower_threshold": 0.28140946817397927,
+      "abstain_rate": 0.0026340996168582377,
+      "alarm_threshold": 0.5628189363479585,
+      "positive_rate_among_abstained": 0.5757575757575758,
+      "reliability": {
+        "bins": [
+          {
+            "mean_predicted": 0.009680744260549545,
+            "n": 12058,
+            "observed_rate": 0.008873776745728977,
+            "range": [
+              0.0,
+              0.05
+            ]
+          },
+          {
+            "mean_predicted": 0.06890848278999329,
+            "n": 228,
+            "observed_rate": 0.02631578947368421,
+            "range": [
+              0.05,
+              0.1
+            ]
+          },
+          {
+            "mean_predicted": 0.14039988815784454,
+            "n": 73,
+            "observed_rate": 0.1643835616438356,
+            "range": [
+              0.1,
+              0.2
+            ]
+          },
+          {
+            "mean_predicted": 0.26372984051704407,
+            "n": 52,
+            "observed_rate": 0.40384615384615385,
+            "range": [
+              0.2,
+              0.4
+            ]
+          },
+          {
+            "mean_predicted": 0.4926697611808777,
+            "n": 19,
+            "observed_rate": 0.631578947368421,
+            "range": [
+              0.4,
+              0.6
+            ]
+          },
+          {
+            "mean_predicted": 0.7222648859024048,
+            "n": 32,
+            "observed_rate": 0.8125,
+            "range": [
+              0.6,
+              0.8
+            ]
+          },
+          {
+            "mean_predicted": 0.9563286900520325,
+            "n": 66,
+            "observed_rate": 0.9545454545454546,
+            "range": [
+              0.8,
+              1.0
+            ]
+          }
+        ],
+        "brier": 0.011720915324985981,
+        "ece": 0.002723730568289947
+      }
+    }
+  },
+  "environment": {
+    "numpy": "2.5.3",
+    "python": "3.12.3",
+    "scikit_learn": "1.9.1"
+  },
+  "estimator_joblib_sha256_local_only": "9fc9af639972deadf46100a7ea7783f6fa96dedee53581eeeb06a92727b6f824",
+  "model_id": "traffic-safety-blockage",
+  "model_version": "1.0.0",
+  "procedure": {
+    "candidates_tried": 30,
+    "fit": "train split only",
+    "operating_constraint": "alarm-episode false share <= 0.1 on validation (mirrors FA-01)",
+    "test": "opened once for the final model-vs-baseline comparison (test_split_ledger.json)",
+    "tuning": "hyperparameters, alarm threshold and abstention band on validation only"
+  },
+  "reproducible_refit_bitwise_identical": true,
+  "seed": 20260918,
+  "selected": {
+    "index": 2,
+    "kind": "logistic_regression",
+    "params": {
+      "C": 1.0,
+      "class_weight": null
+    }
+  }
+}

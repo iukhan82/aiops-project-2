@@ -1,0 +1,710 @@
+{
+  "confidence_calibration": {
+    "method": "precision of validation detections by severity (overall precision where <5 detections)",
+    "severity_precision": {
+      "critical": 0.75,
+      "high": 0.75,
+      "low": 0.75,
+      "medium": 0.75
+    }
+  },
+  "dataset_sha256": "f361f3b87cc8c0727727999ed8b8c090faa3f2b7f3954380e1efd405676fc6e2",
+  "detector": "rule:congestion/1",
+  "grid_search": [
+    {
+      "params": {
+        "n_off": 2,
+        "n_on": 2,
+        "occ_off_frac": 0.6,
+        "occ_on": 0.2,
+        "speed_on": 4.0
+      },
+      "train_f1": 0.541,
+      "validation_f1": 0.375,
+      "validation_false_alarms": 2,
+      "validation_missed": 8
+    },
+    {
+      "params": {
+        "n_off": 2,
+        "n_on": 3,
+        "occ_off_frac": 0.6,
+        "occ_on": 0.2,
+        "speed_on": 4.0
+      },
+      "train_f1": 0.457,
+      "validation_f1": 0.4,
+      "validation_false_alarms": 1,
+      "validation_missed": 8
+    },
+    {
+      "params": {
+        "n_off": 2,
+        "n_on": 2,
+        "occ_off_frac": 0.6,
+        "occ_on": 0.2,
+        "speed_on": 8.0
+      },
+      "train_f1": 0.541,
+      "validation_f1": 0.375,
+      "validation_false_alarms": 2,
+      "validation_missed": 8
+    },
+    {
+      "params": {
+        "n_off": 2,
+        "n_on": 3,
+        "occ_off_frac": 0.6,
+        "occ_on": 0.2,
+        "speed_on": 8.0
+      },
+      "train_f1": 0.457,
+      "validation_f1": 0.375,
+      "validation_false_alarms": 2,
+      "validation_missed": 8
+    },
+    {
+      "params": {
+        "n_off": 2,
+        "n_on": 2,
+        "occ_off_frac": 0.6,
+        "occ_on": 0.2,
+        "speed_on": 12.0
+      },
+      "train_f1": 0.579,
+      "validation_f1": 0.375,
+      "validation_false_alarms": 2,
+      "validation_missed": 8
+    },
+    {
+      "params": {
+        "n_off": 2,
+        "n_on": 3,
+        "occ_off_frac": 0.6,
+        "occ_on": 0.2,
+        "speed_on": 12.0
+      },
+      "train_f1": 0.457,
+      "validation_f1": 0.375,
+      "validation_false_alarms": 2,
+      "validation_missed": 8
+    },
+    {
+      "params": {
+        "n_off": 2,
+        "n_on": 2,
+        "occ_off_frac": 0.6,
+        "occ_on": 0.3,
+        "speed_on": 4.0
+      },
+      "train_f1": 0.5,
+      "validation_f1": 0.375,
+      "validation_false_alarms": 2,
+      "validation_missed": 8
+    },
+    {
+      "params": {
+        "n_off": 2,
+        "n_on": 3,
+        "occ_off_frac": 0.6,
+        "occ_on": 0.3,
+        "speed_on": 4.0
+      },
+      "train_f1": 0.457,
+      "validation_f1": 0.4,
+      "validation_false_alarms": 1,
+      "validation_missed": 8
+    },
+    {
+      "params": {
+        "n_off": 2,
+        "n_on": 2,
+        "occ_off_frac": 0.6,
+        "occ_on": 0.3,
+        "speed_on": 8.0
+      },
+      "train_f1": 0.5,
+      "validation_f1": 0.375,
+      "validation_false_alarms": 2,
+      "validation_missed": 8
+    },
+    {
+      "params": {
+        "n_off": 2,
+        "n_on": 3,
+        "occ_off_frac": 0.6,
+        "occ_on": 0.3,
+        "speed_on": 8.0
+      },
+      "train_f1": 0.457,
+      "validation_f1": 0.4,
+      "validation_false_alarms": 1,
+      "validation_missed": 8
+    },
+    {
+      "params": {
+        "n_off": 2,
+        "n_on": 2,
+        "occ_off_frac": 0.6,
+        "occ_on": 0.3,
+        "speed_on": 12.0
+      },
+      "train_f1": 0.5,
+      "validation_f1": 0.375,
+      "validation_false_alarms": 2,
+      "validation_missed": 8
+    },
+    {
+      "params": {
+        "n_off": 2,
+        "n_on": 3,
+        "occ_off_frac": 0.6,
+        "occ_on": 0.3,
+        "speed_on": 12.0
+      },
+      "train_f1": 0.457,
+      "validation_f1": 0.4,
+      "validation_false_alarms": 1,
+      "validation_missed": 8
+    },
+    {
+      "params": {
+        "n_off": 2,
+        "n_on": 2,
+        "occ_off_frac": 0.6,
+        "occ_on": 0.4,
+        "speed_on": 4.0
+      },
+      "train_f1": 0.5,
+      "validation_f1": 0.375,
+      "validation_false_alarms": 2,
+      "validation_missed": 8
+    },
+    {
+      "params": {
+        "n_off": 2,
+        "n_on": 3,
+        "occ_off_frac": 0.6,
+        "occ_on": 0.4,
+        "speed_on": 4.0
+      },
+      "train_f1": 0.457,
+      "validation_f1": 0.4,
+      "validation_false_alarms": 1,
+      "validation_missed": 8
+    },
+    {
+      "params": {
+        "n_off": 2,
+        "n_on": 2,
+        "occ_off_frac": 0.6,
+        "occ_on": 0.4,
+        "speed_on": 8.0
+      },
+      "train_f1": 0.5,
+      "validation_f1": 0.375,
+      "validation_false_alarms": 2,
+      "validation_missed": 8
+    },
+    {
+      "params": {
+        "n_off": 2,
+        "n_on": 3,
+        "occ_off_frac": 0.6,
+        "occ_on": 0.4,
+        "speed_on": 8.0
+      },
+      "train_f1": 0.457,
+      "validation_f1": 0.4,
+      "validation_false_alarms": 1,
+      "validation_missed": 8
+    },
+    {
+      "params": {
+        "n_off": 2,
+        "n_on": 2,
+        "occ_off_frac": 0.6,
+        "occ_on": 0.4,
+        "speed_on": 12.0
+      },
+      "train_f1": 0.5,
+      "validation_f1": 0.375,
+      "validation_false_alarms": 2,
+      "validation_missed": 8
+    },
+    {
+      "params": {
+        "n_off": 2,
+        "n_on": 3,
+        "occ_off_frac": 0.6,
+        "occ_on": 0.4,
+        "speed_on": 12.0
+      },
+      "train_f1": 0.457,
+      "validation_f1": 0.4,
+      "validation_false_alarms": 1,
+      "validation_missed": 8
+    }
+  ],
+  "limitations": [
+    "Loops sit 10 m past the upstream stop line: a queue is invisible until it grows back to the loop, so recall is bounded by physics, not tuning.",
+    "Congestion is rare in the synthetic data; episode counts are small and confidence intervals wide (Wilson 95%).",
+    "Truth is SUMO's edge-wide waiting-vehicle queue, an independent sensor but the same simulation.",
+    "No claim about real roads."
+  ],
+  "schema": "congestion-detector-evaluation-v1",
+  "selected_params": {
+    "n_off": 2,
+    "n_on": 3,
+    "occ_off_frac": 0.6,
+    "occ_on": 0.2,
+    "speed_on": 4.0
+  },
+  "selected_spillback_params": {
+    "min_duration_s": 120.0,
+    "min_peak_occupancy": 0.4
+  },
+  "spillback_grid_search": [
+    {
+      "params": {
+        "min_duration_s": 120.0,
+        "min_peak_occupancy": 0.4
+      },
+      "train_f1": 0.5,
+      "validation_f1": 0.571,
+      "validation_false_alarms": 1
+    },
+    {
+      "params": {
+        "min_duration_s": 120.0,
+        "min_peak_occupancy": 0.6
+      },
+      "train_f1": 0.5,
+      "validation_f1": 0.571,
+      "validation_false_alarms": 1
+    },
+    {
+      "params": {
+        "min_duration_s": 120.0,
+        "min_peak_occupancy": 0.8
+      },
+      "train_f1": 0.5,
+      "validation_f1": 0.571,
+      "validation_false_alarms": 1
+    },
+    {
+      "params": {
+        "min_duration_s": 180.0,
+        "min_peak_occupancy": 0.4
+      },
+      "train_f1": 0.667,
+      "validation_f1": 0.571,
+      "validation_false_alarms": 1
+    },
+    {
+      "params": {
+        "min_duration_s": 180.0,
+        "min_peak_occupancy": 0.6
+      },
+      "train_f1": 0.667,
+      "validation_f1": 0.571,
+      "validation_false_alarms": 1
+    },
+    {
+      "params": {
+        "min_duration_s": 180.0,
+        "min_peak_occupancy": 0.8
+      },
+      "train_f1": 0.667,
+      "validation_f1": 0.571,
+      "validation_false_alarms": 1
+    },
+    {
+      "params": {
+        "min_duration_s": 240.0,
+        "min_peak_occupancy": 0.4
+      },
+      "train_f1": 0.8,
+      "validation_f1": 0.4,
+      "validation_false_alarms": 0
+    },
+    {
+      "params": {
+        "min_duration_s": 240.0,
+        "min_peak_occupancy": 0.6
+      },
+      "train_f1": 0.8,
+      "validation_f1": 0.4,
+      "validation_false_alarms": 0
+    },
+    {
+      "params": {
+        "min_duration_s": 240.0,
+        "min_peak_occupancy": 0.8
+      },
+      "train_f1": 0.8,
+      "validation_f1": 0.4,
+      "validation_false_alarms": 0
+    },
+    {
+      "params": {
+        "min_duration_s": 300.0,
+        "min_peak_occupancy": 0.4
+      },
+      "train_f1": 0.5,
+      "validation_f1": 0.0,
+      "validation_false_alarms": 0
+    },
+    {
+      "params": {
+        "min_duration_s": 300.0,
+        "min_peak_occupancy": 0.6
+      },
+      "train_f1": 0.5,
+      "validation_f1": 0.0,
+      "validation_false_alarms": 0
+    },
+    {
+      "params": {
+        "min_duration_s": 300.0,
+        "min_peak_occupancy": 0.8
+      },
+      "train_f1": 0.5,
+      "validation_f1": 0.0,
+      "validation_false_alarms": 0
+    }
+  ],
+  "test": {
+    "am-peak": {
+      "detected_episodes": 1,
+      "detection_delay_s_median": 450.0,
+      "detection_delay_s_p90": 450.0,
+      "matched": 1,
+      "precision": 1.0,
+      "precision_ci95": [
+        0.207,
+        1.0
+      ],
+      "recall": 0.143,
+      "recall_by_truth_severity": {
+        "critical": {
+          "matched": 0,
+          "truth": 0
+        },
+        "high": {
+          "matched": 1,
+          "truth": 2
+        },
+        "low": {
+          "matched": 0,
+          "truth": 3
+        },
+        "medium": {
+          "matched": 0,
+          "truth": 2
+        }
+      },
+      "recall_ci95": [
+        0.026,
+        0.513
+      ],
+      "runs": 2,
+      "severity_within_one_level": 1.0,
+      "spillback": {
+        "detected": 1,
+        "matched": 0,
+        "precision": 0.0,
+        "recall": null,
+        "truth": 0
+      },
+      "truth_episodes": 7
+    },
+    "am-peak-blockage": {
+      "detected_episodes": 7,
+      "detection_delay_s_median": 90.0,
+      "detection_delay_s_p90": 300.0,
+      "matched": 7,
+      "precision": 1.0,
+      "precision_ci95": [
+        0.646,
+        1.0
+      ],
+      "recall": 0.368,
+      "recall_by_truth_severity": {
+        "critical": {
+          "matched": 0,
+          "truth": 0
+        },
+        "high": {
+          "matched": 2,
+          "truth": 5
+        },
+        "low": {
+          "matched": 5,
+          "truth": 7
+        },
+        "medium": {
+          "matched": 0,
+          "truth": 7
+        }
+      },
+      "recall_ci95": [
+        0.191,
+        0.59
+      ],
+      "runs": 2,
+      "severity_within_one_level": 0.286,
+      "spillback": {
+        "detected": 4,
+        "matched": 3,
+        "precision": 0.75,
+        "recall": 0.75,
+        "truth": 4
+      },
+      "truth_episodes": 19
+    },
+    "midday-steady": {
+      "detected_episodes": 0,
+      "detection_delay_s_median": null,
+      "detection_delay_s_p90": null,
+      "matched": 0,
+      "precision": null,
+      "precision_ci95": null,
+      "recall": null,
+      "recall_by_truth_severity": {
+        "critical": {
+          "matched": 0,
+          "truth": 0
+        },
+        "high": {
+          "matched": 0,
+          "truth": 0
+        },
+        "low": {
+          "matched": 0,
+          "truth": 0
+        },
+        "medium": {
+          "matched": 0,
+          "truth": 0
+        }
+      },
+      "recall_ci95": null,
+      "runs": 2,
+      "severity_within_one_level": null,
+      "spillback": {
+        "detected": 0,
+        "matched": 0,
+        "precision": null,
+        "recall": null,
+        "truth": 0
+      },
+      "truth_episodes": 0
+    },
+    "pm-double": {
+      "detected_episodes": 0,
+      "detection_delay_s_median": null,
+      "detection_delay_s_p90": null,
+      "matched": 0,
+      "precision": null,
+      "precision_ci95": null,
+      "recall": null,
+      "recall_by_truth_severity": {
+        "critical": {
+          "matched": 0,
+          "truth": 0
+        },
+        "high": {
+          "matched": 0,
+          "truth": 0
+        },
+        "low": {
+          "matched": 0,
+          "truth": 0
+        },
+        "medium": {
+          "matched": 0,
+          "truth": 0
+        }
+      },
+      "recall_ci95": null,
+      "runs": 2,
+      "severity_within_one_level": null,
+      "spillback": {
+        "detected": 0,
+        "matched": 0,
+        "precision": null,
+        "recall": null,
+        "truth": 0
+      },
+      "truth_episodes": 0
+    }
+  },
+  "truth_definition": "standing queue >= 30 m (SUMO waiting vehicles x 3.5 m/lane), >= 2 consecutive 30 s intervals, gaps <= 60 s merged; spillback = upstream segment's episode starting 0-180 s after its downstream neighbour's, overlapping",
+  "validation": {
+    "am-peak": {
+      "detected_episodes": 0,
+      "detection_delay_s_median": null,
+      "detection_delay_s_p90": null,
+      "matched": 0,
+      "precision": null,
+      "precision_ci95": null,
+      "recall": null,
+      "recall_by_truth_severity": {
+        "critical": {
+          "matched": 0,
+          "truth": 0
+        },
+        "high": {
+          "matched": 0,
+          "truth": 0
+        },
+        "low": {
+          "matched": 0,
+          "truth": 0
+        },
+        "medium": {
+          "matched": 0,
+          "truth": 0
+        }
+      },
+      "recall_ci95": null,
+      "runs": 2,
+      "severity_within_one_level": null,
+      "spillback": {
+        "detected": 0,
+        "matched": 0,
+        "precision": null,
+        "recall": null,
+        "truth": 0
+      },
+      "truth_episodes": 0
+    },
+    "am-peak-blockage": {
+      "detected_episodes": 3,
+      "detection_delay_s_median": 120.0,
+      "detection_delay_s_p90": 120.0,
+      "matched": 2,
+      "precision": 0.667,
+      "precision_ci95": [
+        0.208,
+        0.939
+      ],
+      "recall": 0.2,
+      "recall_by_truth_severity": {
+        "critical": {
+          "matched": 0,
+          "truth": 1
+        },
+        "high": {
+          "matched": 0,
+          "truth": 2
+        },
+        "low": {
+          "matched": 2,
+          "truth": 6
+        },
+        "medium": {
+          "matched": 0,
+          "truth": 1
+        }
+      },
+      "recall_ci95": [
+        0.057,
+        0.51
+      ],
+      "runs": 2,
+      "severity_within_one_level": 0.0,
+      "spillback": {
+        "detected": 2,
+        "matched": 2,
+        "precision": 1.0,
+        "recall": 0.5,
+        "truth": 4
+      },
+      "truth_episodes": 10
+    },
+    "midday-steady": {
+      "detected_episodes": 0,
+      "detection_delay_s_median": null,
+      "detection_delay_s_p90": null,
+      "matched": 0,
+      "precision": null,
+      "precision_ci95": null,
+      "recall": null,
+      "recall_by_truth_severity": {
+        "critical": {
+          "matched": 0,
+          "truth": 0
+        },
+        "high": {
+          "matched": 0,
+          "truth": 0
+        },
+        "low": {
+          "matched": 0,
+          "truth": 0
+        },
+        "medium": {
+          "matched": 0,
+          "truth": 0
+        }
+      },
+      "recall_ci95": null,
+      "runs": 2,
+      "severity_within_one_level": null,
+      "spillback": {
+        "detected": 0,
+        "matched": 0,
+        "precision": null,
+        "recall": null,
+        "truth": 0
+      },
+      "truth_episodes": 0
+    },
+    "pm-double": {
+      "detected_episodes": 1,
+      "detection_delay_s_median": 690.0,
+      "detection_delay_s_p90": 690.0,
+      "matched": 1,
+      "precision": 1.0,
+      "precision_ci95": [
+        0.207,
+        1.0
+      ],
+      "recall": 1.0,
+      "recall_by_truth_severity": {
+        "critical": {
+          "matched": 0,
+          "truth": 0
+        },
+        "high": {
+          "matched": 1,
+          "truth": 1
+        },
+        "low": {
+          "matched": 0,
+          "truth": 0
+        },
+        "medium": {
+          "matched": 0,
+          "truth": 0
+        }
+      },
+      "recall_ci95": [
+        0.207,
+        1.0
+      ],
+      "runs": 2,
+      "severity_within_one_level": 1.0,
+      "spillback": {
+        "detected": 1,
+        "matched": 0,
+        "precision": 0.0,
+        "recall": null,
+        "truth": 0
+      },
+      "truth_episodes": 1
+    }
+  }
+}

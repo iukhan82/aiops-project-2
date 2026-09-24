@@ -1,0 +1,34 @@
+{
+  "all_passed": true,
+  "checks": {
+    "a_command_that_is_not_approved_is_refused_before_any_simulator_dispatch": true,
+    "a_human_identity_cannot_execute_only_system_command_executor_can": true,
+    "a_real_signal_command_is_approved_by_policy": true,
+    "a_target_the_real_simulator_does_not_recognize_fails_the_command_not_silently_succeeds": true,
+    "an_unregistered_adapter_is_refused_before_any_simulator_dispatch": true,
+    "re_executing_the_same_idempotency_key_is_a_replay_the_ledger_is_unchanged": true,
+    "the_command_status_reflects_real_simulator_acknowledgement": true,
+    "the_diversion_adapter_actually_closed_the_real_general_traffic_lanes": true,
+    "the_replayed_result_matches_the_original_observation": true,
+    "the_signal_adapter_actually_moved_a_real_traffic_lights_next_switch": true,
+    "the_vms_adapter_completes_and_honestly_reports_no_simulator_actuation": true
+  },
+  "generated_at": "2026-09-20T15:16:14Z",
+  "metrics": {
+    "ledger_entries_after_test": 14
+  },
+  "notes": {
+    "a_command_that_is_not_approved_is_refused_before_any_simulator_dispatch": "",
+    "a_human_identity_cannot_execute_only_system_command_executor_can": "",
+    "a_real_signal_command_is_approved_by_policy": "",
+    "a_target_the_real_simulator_does_not_recognize_fails_the_command_not_silently_succeeds": "",
+    "an_unregistered_adapter_is_refused_before_any_simulator_dispatch": "",
+    "re_executing_the_same_idempotency_key_is_a_replay_the_ledger_is_unchanged": "ledger lines before/after: 11/11",
+    "the_command_status_reflects_real_simulator_acknowledgement": "",
+    "the_diversion_adapter_actually_closed_the_real_general_traffic_lanes": "{'edge_id': 'int-a2_int-a3', 'lanes_closed': ['int-a2_int-a3_2', 'int-a2_int-a3_3'], 'observed_disallowed': {'int-a2_int-a3_2': ['passenger'], 'int-a2_int-a3_3': ['passenger']}, 'observed_at': 20.0, 'vehicles_still_on_edge': 1, 'confirmed_at': 30.0}",
+    "the_replayed_result_matches_the_original_observation": "",
+    "the_signal_adapter_actually_moved_a_real_traffic_lights_next_switch": "{'tl_id': 'int-a2', 'deviation_applied_s': 15.0, 'phase': 0, 'next_switch_before': 20.0, 'next_switch_after': 35.0, 'observed_at': 20.0, 'confirmed_at': 30.0}",
+    "the_vms_adapter_completes_and_honestly_reports_no_simulator_actuation": ""
+  },
+  "task": "P07.06"
+}

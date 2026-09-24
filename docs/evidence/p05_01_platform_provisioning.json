@@ -1,0 +1,22 @@
+{
+  "task": "P05.01",
+  "generated_at": "2026-09-19T18:16:54Z",
+  "images": {
+    "mqtt_broker": "eclipse-mosquitto:2.0.18@sha256:d12c8f80dfc65b768bb9acecc7ef182b976f71fb681640b66358e5e0cf94e9e9",
+    "kafka_broker": "docker.redpanda.com/redpandadata/redpanda:v24.2.18@sha256:0270951e8793c77f0dd9178d137198018fa7ffd920e5a2a3b02a050ec76195b8",
+    "postgres": "postgis/postgis:16-3.4@sha256:44126d872ac91993766c341e369c539e8196614321765d36a6f1bab0419a5fa5"
+  },
+  "resource_limits": [{"container":"aiops-mqtt-broker","nano_cpus":150000000,"memory_bytes":201326592,"matches_config":true},{"container":"aiops-kafka-broker","nano_cpus":750000000,"memory_bytes":1073741824,"matches_config":true},{"container":"aiops-postgres","nano_cpus":750000000,"memory_bytes":1073741824,"matches_config":true}],
+  "smoke_tests": {
+    "mqtt_round_trip": true,
+    "kafka_round_trip": true,
+    "postgis_active": true,
+    "postgis_version": "3.4 USE_GEOS=1 USE_PROJ=1 USE_STATS=1"
+  },
+  "persistence_after_restart": {
+    "mqtt_retained_message_survived": true,
+    "kafka_topic_log_survived": true,
+    "postgres_row_survived": true
+  },
+  "all_passed": true
+}

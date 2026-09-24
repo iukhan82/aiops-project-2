@@ -1,0 +1,13 @@
+{
+  "schema_version": "1.0.0",
+  "slo_id": "slo-ingest-latency-p95",
+  "service": "ingestion-service",
+  "objective_type": "latency",
+  "target_value": 2,
+  "target_unit": "s",
+  "window_seconds": 1800,
+  "measurement_query_ref": "observability/queries/ingest_latency_p95.promql",
+  "related_acceptance_target_id": "LAT-02",
+  "owner_role": "OPS",
+  "effective_from": "2026-09-18T00:00:00Z"
+}

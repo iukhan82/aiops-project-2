@@ -1,0 +1,9 @@
+{
+  "detector": "fusion:stall/1",
+  "params": {
+    "k_min": 3,
+    "require_corroboration": false,
+    "solo_probability": 0.9
+  },
+  "dataset_sha256": "f361f3b87cc8c0727727999ed8b8c090faa3f2b7f3954380e1efd405676fc6e2"
+}

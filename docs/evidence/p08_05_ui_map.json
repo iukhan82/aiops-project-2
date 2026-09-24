@@ -1,0 +1,107 @@
+{
+  "task": "P08.05",
+  "generated_at": "2026-09-21T15:30:47Z",
+  "browser": {
+    "channel": "chrome",
+    "headless": true,
+    "viewport": null
+  },
+  "stack": "real Chrome, real Keycloak (Authorization Code + PKCE), real API on the demo database fed by backend/demo/feeder.py",
+  "tests_total": 13,
+  "tests_passed": 13,
+  "all_passed": true,
+  "tests": [
+    {
+      "title": "map.spec.ts > live operations map (P08.05) > draws the whole network, says what it knows, and the live feed connects",
+      "file": "map.spec.ts",
+      "status": "passed",
+      "duration_ms": 4036,
+      "error": null
+    },
+    {
+      "title": "map.spec.ts > live operations map (P08.05) > selecting a segment shows value, unit, observed time, truth label and freshness",
+      "file": "map.spec.ts",
+      "status": "passed",
+      "duration_ms": 4383,
+      "error": null
+    },
+    {
+      "title": "map.spec.ts > live operations map (P08.05) > the list carries every element with status, freshness and truth label, sorts and filters, and keeps the selection",
+      "file": "map.spec.ts",
+      "status": "passed",
+      "duration_ms": 5760,
+      "error": null
+    },
+    {
+      "title": "map.spec.ts > live operations map (P08.05) > keyboard: the canvas zooms and pans, elements are reachable with Tab and selected with Enter, Escape clears",
+      "file": "map.spec.ts",
+      "status": "passed",
+      "duration_ms": 3641,
+      "error": null
+    },
+    {
+      "title": "map.spec.ts > live operations map (P08.05) > the Map/List control is one Tab stop and moves with the arrow keys",
+      "file": "map.spec.ts",
+      "status": "passed",
+      "duration_ms": 4294,
+      "error": null
+    },
+    {
+      "title": "map.spec.ts > live operations map (P08.05) > layers show and hide elements, and a hidden layer stays in the list",
+      "file": "map.spec.ts",
+      "status": "passed",
+      "duration_ms": 4361,
+      "error": null
+    },
+    {
+      "title": "map.spec.ts > live operations map (P08.05) > pause stops updates and says so; resume catches up",
+      "file": "map.spec.ts",
+      "status": "passed",
+      "duration_ms": 4354,
+      "error": null
+    },
+    {
+      "title": "map.spec.ts > live operations map (P08.05) > replay is labelled not live everywhere and only replays what history can support",
+      "file": "map.spec.ts",
+      "status": "passed",
+      "duration_ms": 4714,
+      "error": null
+    },
+    {
+      "title": "map.spec.ts > live operations map (P08.05) > a dropped connection is shown as reconnecting and then resumes from the last event it received, with no gap",
+      "file": "map.spec.ts",
+      "status": "passed",
+      "duration_ms": 5612,
+      "error": null
+    },
+    {
+      "title": "map.spec.ts > live operations map (P08.05) > roles: incident and emergency layers and the queue appear only for roles that may see them",
+      "file": "map.spec.ts",
+      "status": "passed",
+      "duration_ms": 3288,
+      "error": null
+    },
+    {
+      "title": "map.spec.ts > live operations map (P08.05) > the operator sees the queue with critical incidents first, linked to their detail",
+      "file": "map.spec.ts",
+      "status": "passed",
+      "duration_ms": 4294,
+      "error": null
+    },
+    {
+      "title": "map.spec.ts > live operations map (P08.05) > the wall display variant has no controls",
+      "file": "map.spec.ts",
+      "status": "passed",
+      "duration_ms": 3896,
+      "error": null
+    },
+    {
+      "title": "map.spec.ts > live operations map (P08.05) > no accessibility violations on the map or the list",
+      "file": "map.spec.ts",
+      "status": "passed",
+      "duration_ms": 12564,
+      "error": null
+    }
+  ],
+  "metrics": {}
+}

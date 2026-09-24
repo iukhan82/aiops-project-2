@@ -1,0 +1,18 @@
+# P10.03: local Prometheus. Backend services (api/gateway/ingestion/
+# scenario-control) have no long-running container yet (P11.01), so there
+# is nothing at a fixed address to scrape - they PUSH via OTLP instead
+# (backend/observability.py already supports OTEL_EXPORTER_OTLP_ENDPOINT;
+# Prometheus's own OTLP receiver, enabled by --web.enable-otlp-receiver on
+# the container command, is the ingestion point). This file's scrape_configs
+# cover only Prometheus's and Tempo's own operational metrics.
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+scrape_configs:
+  - job_name: prometheus
+    static_configs:
+      - targets: ["localhost:9090"]
+  - job_name: tempo
+    static_configs:
+      - targets: ["tempo:3200"]

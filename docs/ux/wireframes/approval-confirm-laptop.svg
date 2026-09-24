@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1366" height="768" viewBox="0 0 1366 768" role="img" aria-labelledby="t d" data-role="supervisor">
+<title id="t">Command approval confirmation - laptop (1366x768)</title>
+<desc id="d">Modal confirmation for approving a command: target, safety class, reason, expected effect and harm, constraints, expiry, four-eyes note, policy status, and Cancel/Deny/Approve with Cancel as the default focus.</desc>
+<rect width="1366" height="768" fill="#0F172A"/>
+<g id="region-header" data-region="banner">
+<rect x="0" y="0" width="1366" height="48" rx="0" fill="#1B2336" stroke="#475569" stroke-width="1"/>
+<rect x="12" y="10" width="28" height="28" rx="6" fill="#22C55E" stroke="#22C55E" stroke-width="1"/>
+<text x="52" y="30.0" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="17" font-weight="700" fill="#F8FAFC" text-anchor="start">Traffic Operations</text>
+<circle cx="470" cy="24" r="5" fill="#22C55E"/>
+<text x="482" y="29" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="14" font-weight="400" fill="#F8FAFC" text-anchor="start">Connected - updated 2 s ago</text>
+<rect x="792" y="12" width="92" height="24" rx="12" fill="#272F42" stroke="#38BDF8" stroke-width="1"/>
+<text x="838" y="29" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="12" font-weight="700" fill="#38BDF8" text-anchor="middle">SIMULATED</text>
+<text x="1310" y="29.0" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="14" font-weight="400" fill="#94A3B8" text-anchor="end">sam.okafor - supervisor</text>
+<rect x="1322" y="10" width="32" height="28" rx="6" fill="none" stroke="#94A3B8" stroke-width="2"/>
+<text x="1338" y="30" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#F8FAFC" text-anchor="middle">v</text>
+</g>
+<g id="region-nav" data-region="navigation">
+<rect x="0" y="48" width="200" height="720" rx="0" fill="#1B2336" stroke="#475569" stroke-width="1"/>
+<text x="16" y="74" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="12" font-weight="400" fill="#94A3B8" text-anchor="start">Signed in as supervisor</text>
+<rect x="8" y="96" width="184" height="34" rx="6" fill="none" stroke="none" stroke-width="2"/>
+<text x="24" y="118" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="14" font-weight="400" fill="#F8FAFC" text-anchor="start">Map</text>
+<rect x="8" y="136" width="184" height="34" rx="6" fill="none" stroke="none" stroke-width="2"/>
+<text x="24" y="158" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="14" font-weight="400" fill="#F8FAFC" text-anchor="start">Analytics</text>
+<rect x="8" y="176" width="184" height="34" rx="6" fill="none" stroke="none" stroke-width="2"/>
+<text x="24" y="198" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="14" font-weight="400" fill="#F8FAFC" text-anchor="start">Incidents</text>
+<rect x="8" y="216" width="184" height="34" rx="6" fill="none" stroke="none" stroke-width="2"/>
+<text x="24" y="238" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="14" font-weight="400" fill="#F8FAFC" text-anchor="start">Dispatch</text>
+<rect x="8" y="256" width="184" height="34" rx="6" fill="#272F42" stroke="#22C55E" stroke-width="2"/>
+<text x="24" y="278" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#F8FAFC" text-anchor="start">Actions</text>
+<text x="172" y="278" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="10" font-weight="400" fill="#94A3B8" text-anchor="end">current</text>
+<rect x="8" y="296" width="184" height="34" rx="6" fill="none" stroke="none" stroke-width="2"/>
+<text x="24" y="318" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="14" font-weight="400" fill="#F8FAFC" text-anchor="start">Handover</text>
+<rect x="8" y="336" width="184" height="34" rx="6" fill="none" stroke="none" stroke-width="2"/>
+<text x="24" y="358" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="14" font-weight="400" fill="#F8FAFC" text-anchor="start">Operations</text>
+</g>
+<g id="region-background" data-region="command detail (inert behind the dialog)">
+<rect x="216" y="60" width="1134" height="696" rx="8" fill="#1B2336" stroke="#475569" stroke-width="1"/>
+<text x="232" y="96" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="20" font-weight="700" fill="#F8FAFC" text-anchor="start">Command 9c1f... - diversion</text>
+<polygon points="238,113 244,124 232,124" fill="#F59E0B"/>
+<text x="250" y="124" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="400" fill="#F8FAFC" text-anchor="start">Requested - waiting for approval</text>
+</g>
+<rect x="0" y="48" width="1366" height="720" fill="#000000" fill-opacity="0.6"/>
+<g id="region-dialog" data-region="dialog">
+<rect x="383" y="84" width="600" height="640" rx="14" fill="#1B2336" stroke="#F8FAFC" stroke-width="2"/>
+<text x="407" y="124" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="22" font-weight="700" fill="#F8FAFC" text-anchor="start">Approve this command?</text>
+<text x="407" y="148" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="400" fill="#94A3B8" text-anchor="start">Review before you decide. Approval passes the command to policy; it does not execute it.</text>
+<text x="407" y="186" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="400" fill="#94A3B8" text-anchor="start">Target</text>
+<text x="560" y="186" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#F8FAFC" text-anchor="start">diversion_adapter -&gt; int-b2_int-b3</text>
+<text x="407" y="220" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="400" fill="#94A3B8" text-anchor="start">Action</text>
+<text x="560" y="220" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#F8FAFC" text-anchor="start">Diversion (SC-1, traffic-influencing)</text>
+<text x="407" y="254" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="400" fill="#94A3B8" text-anchor="start">Requested by</text>
+<text x="560" y="254" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#F8FAFC" text-anchor="start">operator alex (role operator)</text>
+<text x="407" y="288" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="400" fill="#94A3B8" text-anchor="start">Reason</text>
+<text x="560" y="288" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#F8FAFC" text-anchor="start">Stalled vehicle blocks both lanes</text>
+<text x="407" y="322" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="400" fill="#94A3B8" text-anchor="start">Expected benefit</text>
+<text x="560" y="322" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#F8FAFC" text-anchor="start">-74 s corridor delay (predicted)</text>
+<text x="407" y="356" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="400" fill="#94A3B8" text-anchor="start">Expected harm</text>
+<text x="560" y="356" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#F8FAFC" text-anchor="start">+12 s cross-street delay (predicted)</text>
+<text x="407" y="390" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="400" fill="#94A3B8" text-anchor="start">Constraints</text>
+<text x="560" y="390" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#F8FAFC" text-anchor="start">min pedestrian clearance 7 s - within bounds</text>
+<text x="407" y="424" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="400" fill="#94A3B8" text-anchor="start">Expires</text>
+<text x="560" y="424" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#F8FAFC" text-anchor="start">09:24:00 UTC (in 8:14)</text>
+<line x1="407" y1="466" x2="959" y2="466" stroke="#475569" stroke-width="1"/>
+<circle cx="413" cy="489" r="5" fill="#22C55E"/>
+<text x="425" y="494" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="400" fill="#F8FAFC" text-anchor="start">You are a different person from the requester - four-eyes satisfied</text>
+<polygon points="413,510 419,516 413,522 407,516" fill="#38BDF8"/>
+<text x="425" y="522" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="400" fill="#F8FAFC" text-anchor="start">Policy is checked at submit: role, evidence freshness, target validity</text>
+<text x="407" y="556" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="400" fill="#94A3B8" text-anchor="start">Decision reason (required to deny)</text>
+<rect x="407" y="566" width="552" height="64" rx="6" fill="none" stroke="#94A3B8" stroke-width="1"/>
+<g class="control">
+<rect x="407" y="660" width="130" height="44" rx="8" fill="none" stroke="#94A3B8" stroke-width="2"/>
+<text x="472.0" y="687.0" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="15" font-weight="600" fill="#F8FAFC" text-anchor="middle">Cancel</text>
+</g>
+<g class="control">
+<rect x="669" y="660" width="130" height="44" rx="8" fill="none" stroke="#94A3B8" stroke-width="2"/>
+<text x="734.0" y="687.0" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="15" font-weight="600" fill="#F8FAFC" text-anchor="middle">Deny...</text>
+</g>
+<g class="control">
+<rect x="811" y="660" width="148" height="44" rx="8" fill="#22C55E" stroke="#22C55E" stroke-width="2"/>
+<text x="885.0" y="687.0" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="15" font-weight="600" fill="#0F172A" text-anchor="middle">Approve</text>
+</g>
+</g>
+<g id="callout-1"><circle cx="383" cy="84" r="11" fill="#F59E0B" stroke="#0F172A" stroke-width="2"/><text x="383" y="89" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="700" fill="#0F172A" text-anchor="middle">1</text></g>
+<g id="callout-2"><circle cx="383" cy="170" r="11" fill="#F59E0B" stroke="#0F172A" stroke-width="2"/><text x="383" y="175" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="700" fill="#0F172A" text-anchor="middle">2</text></g>
+<g id="callout-3"><circle cx="383" cy="480" r="11" fill="#F59E0B" stroke="#0F172A" stroke-width="2"/><text x="383" y="485" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="700" fill="#0F172A" text-anchor="middle">3</text></g>
+<g id="callout-4"><circle cx="383" cy="660" r="11" fill="#F59E0B" stroke="#0F172A" stroke-width="2"/><text x="383" y="665" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="700" fill="#0F172A" text-anchor="middle">4</text></g>
+</svg>

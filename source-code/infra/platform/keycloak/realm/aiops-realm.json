@@ -1,0 +1,364 @@
+{
+  "realm": "aiops",
+  "enabled": true,
+  "displayName": "AIOPS Traffic Operations (academic demo)",
+  "sslRequired": "external",
+  "registrationAllowed": false,
+  "resetPasswordAllowed": false,
+  "editUsernameAllowed": false,
+  "loginWithEmailAllowed": true,
+  "duplicateEmailsAllowed": false,
+  "bruteForceProtected": true,
+  "failureFactor": 5,
+  "maxFailureWaitSeconds": 900,
+  "minimumQuickLoginWaitSeconds": 60,
+  "accessTokenLifespan": 300,
+  "accessCodeLifespan": 60,
+  "ssoSessionIdleTimeout": 1800,
+  "ssoSessionMaxLifespan": 28800,
+  "revokeRefreshToken": true,
+  "refreshTokenMaxReuse": 0,
+  "defaultSignatureAlgorithm": "RS256",
+  "passwordPolicy": "length(14) and notUsername",
+  "eventsEnabled": true,
+  "eventsExpiration": 604800,
+  "enabledEventTypes": [
+    "LOGIN",
+    "LOGIN_ERROR",
+    "LOGOUT",
+    "CODE_TO_TOKEN",
+    "CODE_TO_TOKEN_ERROR",
+    "REFRESH_TOKEN",
+    "REFRESH_TOKEN_ERROR",
+    "INTROSPECT_TOKEN_ERROR"
+  ],
+  "adminEventsEnabled": true,
+  "adminEventsDetailsEnabled": false,
+  "roles": {
+    "realm": [
+      {
+        "name": "operator",
+        "description": "Traffic operations: REQUEST (SC-0, SC-1; SC-2 as requester). docs/security/ROLES_AND_ACTION_AUTHORITY.md"
+      },
+      {
+        "name": "supervisor",
+        "description": "Traffic operations lead: REQUEST, APPROVE (SC-0, SC-1); APPROVE only for SC-2."
+      },
+      {
+        "name": "dispatcher",
+        "description": "Emergency dispatch: REQUEST for SC-2 emergency-only actions."
+      },
+      {
+        "name": "incident_commander",
+        "description": "Emergency command: REQUEST, APPROVE, OVERRIDE (SC-2)."
+      },
+      {
+        "name": "field_responder",
+        "description": "Field, read-only: no REQUEST/APPROVE/EXECUTE/OVERRIDE."
+      },
+      {
+        "name": "auditor",
+        "description": "Cross-domain, read-only: AUDIT only."
+      },
+      {
+        "name": "demo_operator",
+        "description": "Presentation only: DEMO, scoped to the scenario-control API."
+      },
+      {
+        "name": "system:optimization-engine",
+        "description": "Service identity: RECOMMEND (traffic actions)."
+      },
+      {
+        "name": "system:emergency-engine",
+        "description": "Service identity: RECOMMEND (emergency actions)."
+      },
+      {
+        "name": "system:command-executor",
+        "description": "Service identity: EXECUTE only; the only identity permitted to call an infrastructure adapter."
+      },
+      {
+        "name": "system:aiops-remediation",
+        "description": "Service identity: REQUEST, EXECUTE for platform-remediation actions only."
+      },
+      {
+        "name": "system:outcome-verifier",
+        "description": "Service identity: writes independent outcome/v1 records only; holds none of REQUEST/APPROVE/EXECUTE/OVERRIDE."
+      }
+    ]
+  },
+  "clients": [
+    {
+      "clientId": "aiops-ui",
+      "name": "AIOPS operator UI",
+      "description": "Public single-page client. Authorization Code with PKCE (S256) only: no implicit flow, no direct password grant, no client secret.",
+      "enabled": true,
+      "protocol": "openid-connect",
+      "publicClient": true,
+      "standardFlowEnabled": true,
+      "implicitFlowEnabled": false,
+      "directAccessGrantsEnabled": false,
+      "serviceAccountsEnabled": false,
+      "fullScopeAllowed": false,
+      "redirectUris": [
+        "http://localhost:5173/callback",
+        "http://127.0.0.1:5173/callback",
+        "http://localhost:4173/callback",
+        "http://127.0.0.1:4173/callback"
+      ],
+      "webOrigins": [
+        "http://localhost:5173",
+        "http://127.0.0.1:5173",
+        "http://localhost:4173",
+        "http://127.0.0.1:4173"
+      ],
+      "attributes": {
+        "pkce.code.challenge.method": "S256",
+        "post.logout.redirect.uris": "http://localhost:5173/login##http://127.0.0.1:5173/login##http://localhost:4173/login##http://127.0.0.1:4173/login",
+        "access.token.lifespan": "300",
+        "client.session.idle.timeout": "1800"
+      },
+      "protocolMappers": [
+        {
+          "name": "aiops-api-audience",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-audience-mapper",
+          "consentRequired": false,
+          "config": {
+            "included.client.audience": "aiops-api",
+            "id.token.claim": "false",
+            "access.token.claim": "true",
+            "introspection.token.claim": "true"
+          }
+        }
+      ]
+    },
+    {
+      "clientId": "aiops-api",
+      "name": "AIOPS API (resource server)",
+      "description": "Bearer-only resource server. It never initiates a login; it is the audience tokens must carry.",
+      "enabled": true,
+      "protocol": "openid-connect",
+      "bearerOnly": true,
+      "publicClient": false,
+      "standardFlowEnabled": false,
+      "directAccessGrantsEnabled": false,
+      "serviceAccountsEnabled": false
+    },
+    {
+      "clientId": "system-command-executor",
+      "name": "Command executor service",
+      "enabled": true,
+      "protocol": "openid-connect",
+      "publicClient": false,
+      "clientAuthenticatorType": "client-secret",
+      "standardFlowEnabled": false,
+      "directAccessGrantsEnabled": false,
+      "serviceAccountsEnabled": true,
+      "fullScopeAllowed": false,
+      "protocolMappers": [
+        {
+          "name": "aiops-api-audience",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-audience-mapper",
+          "consentRequired": false,
+          "config": {
+            "included.client.audience": "aiops-api",
+            "id.token.claim": "false",
+            "access.token.claim": "true",
+            "introspection.token.claim": "true"
+          }
+        }
+      ]
+    },
+    {
+      "clientId": "system-outcome-verifier",
+      "name": "Outcome verifier service",
+      "enabled": true,
+      "protocol": "openid-connect",
+      "publicClient": false,
+      "clientAuthenticatorType": "client-secret",
+      "standardFlowEnabled": false,
+      "directAccessGrantsEnabled": false,
+      "serviceAccountsEnabled": true,
+      "fullScopeAllowed": false,
+      "protocolMappers": [
+        {
+          "name": "aiops-api-audience",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-audience-mapper",
+          "consentRequired": false,
+          "config": {
+            "included.client.audience": "aiops-api",
+            "id.token.claim": "false",
+            "access.token.claim": "true",
+            "introspection.token.claim": "true"
+          }
+        }
+      ]
+    },
+    {
+      "clientId": "system-optimization-engine",
+      "name": "Traffic optimization engine",
+      "enabled": true,
+      "protocol": "openid-connect",
+      "publicClient": false,
+      "clientAuthenticatorType": "client-secret",
+      "standardFlowEnabled": false,
+      "directAccessGrantsEnabled": false,
+      "serviceAccountsEnabled": true,
+      "fullScopeAllowed": false,
+      "protocolMappers": [
+        {
+          "name": "aiops-api-audience",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-audience-mapper",
+          "consentRequired": false,
+          "config": {
+            "included.client.audience": "aiops-api",
+            "id.token.claim": "false",
+            "access.token.claim": "true",
+            "introspection.token.claim": "true"
+          }
+        }
+      ]
+    },
+    {
+      "clientId": "system-emergency-engine",
+      "name": "Emergency engine",
+      "enabled": true,
+      "protocol": "openid-connect",
+      "publicClient": false,
+      "clientAuthenticatorType": "client-secret",
+      "standardFlowEnabled": false,
+      "directAccessGrantsEnabled": false,
+      "serviceAccountsEnabled": true,
+      "fullScopeAllowed": false,
+      "protocolMappers": [
+        {
+          "name": "aiops-api-audience",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-audience-mapper",
+          "consentRequired": false,
+          "config": {
+            "included.client.audience": "aiops-api",
+            "id.token.claim": "false",
+            "access.token.claim": "true",
+            "introspection.token.claim": "true"
+          }
+        }
+      ]
+    },
+    {
+      "clientId": "system-aiops-remediation",
+      "name": "AIOps remediation service",
+      "enabled": true,
+      "protocol": "openid-connect",
+      "publicClient": false,
+      "clientAuthenticatorType": "client-secret",
+      "standardFlowEnabled": false,
+      "directAccessGrantsEnabled": false,
+      "serviceAccountsEnabled": true,
+      "fullScopeAllowed": false,
+      "protocolMappers": [
+        {
+          "name": "aiops-api-audience",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-audience-mapper",
+          "consentRequired": false,
+          "config": {
+            "included.client.audience": "aiops-api",
+            "id.token.claim": "false",
+            "access.token.claim": "true",
+            "introspection.token.claim": "true"
+          }
+        }
+      ]
+    }
+  ],
+  "scopeMappings": [
+    {
+      "client": "aiops-ui",
+      "roles": [
+        "operator",
+        "supervisor",
+        "dispatcher",
+        "incident_commander",
+        "field_responder",
+        "auditor",
+        "demo_operator"
+      ]
+    },
+    {
+      "client": "system-command-executor",
+      "roles": [
+        "system:command-executor"
+      ]
+    },
+    {
+      "client": "system-outcome-verifier",
+      "roles": [
+        "system:outcome-verifier"
+      ]
+    },
+    {
+      "client": "system-optimization-engine",
+      "roles": [
+        "system:optimization-engine"
+      ]
+    },
+    {
+      "client": "system-emergency-engine",
+      "roles": [
+        "system:emergency-engine"
+      ]
+    },
+    {
+      "client": "system-aiops-remediation",
+      "roles": [
+        "system:aiops-remediation"
+      ]
+    }
+  ],
+  "users": [
+    {
+      "username": "service-account-system-command-executor",
+      "enabled": true,
+      "serviceAccountClientId": "system-command-executor",
+      "realmRoles": [
+        "system:command-executor"
+      ]
+    },
+    {
+      "username": "service-account-system-outcome-verifier",
+      "enabled": true,
+      "serviceAccountClientId": "system-outcome-verifier",
+      "realmRoles": [
+        "system:outcome-verifier"
+      ]
+    },
+    {
+      "username": "service-account-system-optimization-engine",
+      "enabled": true,
+      "serviceAccountClientId": "system-optimization-engine",
+      "realmRoles": [
+        "system:optimization-engine"
+      ]
+    },
+    {
+      "username": "service-account-system-emergency-engine",
+      "enabled": true,
+      "serviceAccountClientId": "system-emergency-engine",
+      "realmRoles": [
+        "system:emergency-engine"
+      ]
+    },
+    {
+      "username": "service-account-system-aiops-remediation",
+      "enabled": true,
+      "serviceAccountClientId": "system-aiops-remediation",
+      "realmRoles": [
+        "system:aiops-remediation"
+      ]
+    }
+  ]
+}

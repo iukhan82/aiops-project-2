@@ -1,0 +1,17 @@
+{
+  "_invalid_because": "call_type is 'medical_transport', not one of the enumerated ambulance/fire/police values used across this project's three mandatory scenarios.",
+  "schema_version": "1.0.0",
+  "call_id": "4d8f6a2e-1c3b-4e5f-9a7b-2c1d0e3f4a5b",
+  "call_type": "medical_transport",
+  "priority": "critical",
+  "location": {
+    "coordinate_reference": "EPSG:4326",
+    "latitude": 31.5198,
+    "longitude": 74.3601
+  },
+  "geometry_version": "2026-09-18.1",
+  "reported_at": "2026-09-18T09:12:00Z",
+  "source_reliability": "verified_dispatch",
+  "status": "received",
+  "truth_label": "simulated"
+}

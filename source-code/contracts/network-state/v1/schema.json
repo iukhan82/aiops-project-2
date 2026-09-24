@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://project2.local/contracts/network-state/v1/schema.json",
+  "title": "Network state",
+  "description": "Current aggregated state of one lane, segment or intersection over a bounded window, per REFERENCE_ARCHITECTURE.md's network-state service. Carries source time, quality and geometry so staleness and provenance survive aggregation.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "record_id",
+    "network_element_type",
+    "network_element_id",
+    "geometry_version",
+    "window_seconds",
+    "observation_time",
+    "ingest_time",
+    "measurements",
+    "truth_label",
+    "freshness_status",
+    "max_staleness_seconds"
+  ],
+  "properties": {
+    "schema_version": { "const": "1.0.0" },
+    "record_id": { "type": "string", "format": "uuid" },
+    "network_element_type": {
+      "type": "string",
+      "enum": ["lane", "segment", "intersection", "corridor"]
+    },
+    "network_element_id": { "type": "string", "minLength": 1 },
+    "geometry_version": { "type": "string", "minLength": 1 },
+    "window_seconds": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "description": "Length of the trailing aggregation window this record summarizes."
+    },
+    "observation_time": {
+      "type": "string",
+      "format": "date-time",
+      "description": "End time of the aggregation window."
+    },
+    "ingest_time": { "type": "string", "format": "date-time" },
+    "measurements": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "value", "unit", "quality", "confidence", "sample_count"],
+        "properties": {
+          "name": { "type": "string", "minLength": 1 },
+          "value": { "type": "number" },
+          "unit": { "type": "string", "minLength": 1 },
+          "quality": { "type": "string", "enum": ["valid", "suspect", "invalid"] },
+          "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+          "sample_count": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Number of underlying observations this aggregate value is computed from; 0 means carried-forward/no fresh samples."
+          }
+        }
+      }
+    },
+    "truth_label": {
+      "type": "string",
+      "enum": ["simulated", "measured", "inferred", "predicted", "operator_entered", "verified"]
+    },
+    "freshness_status": {
+      "type": "string",
+      "enum": ["fresh", "stale", "unknown"]
+    },
+    "max_staleness_seconds": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    }
+  }
+}

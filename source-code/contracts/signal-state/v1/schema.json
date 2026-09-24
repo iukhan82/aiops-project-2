@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://project2.local/contracts/signal-state/v1/schema.json",
+  "title": "Signal phase and timing (SPaT) and controller state",
+  "description": "Dynamic per-intersection signal/controller state, per docs/SENSOR_AND_DATA_CATALOG.md section 3. References the road-geometry/v1 geometry_version it was produced against, so a geometry change is detectable as a version mismatch.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "record_id",
+    "intersection_id",
+    "geometry_version",
+    "observation_time",
+    "ingest_time",
+    "controller_mode",
+    "movements",
+    "truth_label",
+    "freshness_status",
+    "max_staleness_seconds"
+  ],
+  "properties": {
+    "schema_version": { "const": "1.0.0" },
+    "record_id": { "type": "string", "format": "uuid" },
+    "intersection_id": { "type": "string", "minLength": 1 },
+    "geometry_version": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Must match the road-geometry/v1 record's geometry_version this state was computed against."
+    },
+    "observation_time": { "type": "string", "format": "date-time" },
+    "ingest_time": { "type": "string", "format": "date-time" },
+    "controller_mode": {
+      "type": "string",
+      "enum": ["coordinated", "actuated", "manual", "flash", "dark", "pre-emption", "fault"]
+    },
+    "plan_id": { "type": "string" },
+    "cycle_length_s": { "type": "number", "exclusiveMinimum": 0 },
+    "offset_s": { "type": "number", "minimum": 0 },
+    "movements": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["movement_id", "phase_state", "elapsed_s"],
+        "properties": {
+          "movement_id": { "type": "string", "minLength": 1 },
+          "phase_state": {
+            "type": "string",
+            "enum": [
+              "stop",
+              "protected_movement_allowed",
+              "permissive_movement_allowed",
+              "stop_and_remain",
+              "pre_movement",
+              "permissive_clearance",
+              "protected_clearance",
+              "caution_conflicting_traffic",
+              "unavailable"
+            ]
+          },
+          "elapsed_s": { "type": "number", "minimum": 0 },
+          "min_end_s": { "type": "number", "minimum": 0 },
+          "max_end_s": { "type": "number", "minimum": 0 },
+          "next_change_s": { "type": "number", "minimum": 0 },
+          "detector_call": { "type": "boolean" },
+          "pedestrian_call": { "type": "boolean" }
+        }
+      }
+    },
+    "transit_priority_active": { "type": "boolean" },
+    "emergency_preemption_active": { "type": "boolean" },
+    "cabinet_fault": { "type": "boolean" },
+    "truth_label": {
+      "type": "string",
+      "enum": ["simulated", "measured", "inferred", "predicted", "operator_entered", "verified"]
+    },
+    "freshness_status": {
+      "type": "string",
+      "enum": ["fresh", "stale", "unknown"],
+      "description": "Consumer-facing freshness at read time; 'unknown' when no observation has been received since startup/reconnect."
+    },
+    "max_staleness_seconds": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "description": "Threshold beyond which this element's controller state must be treated as stale/fail-safe, per docs/PROJECT_CONTEXT.md."
+    }
+  }
+}

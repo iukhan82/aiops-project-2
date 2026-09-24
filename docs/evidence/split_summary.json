@@ -1,0 +1,56 @@
+{
+  "deterministic": true,
+  "leakage_check": {
+    "passed": true,
+    "problems": []
+  },
+  "split_stats": {
+    "test": {
+      "demand_count": 144,
+      "fault_event_count": 28,
+      "fault_ground_truth_count": 14,
+      "seeds": [
+        20260925,
+        20260926
+      ]
+    },
+    "train": {
+      "demand_count": 360,
+      "fault_event_count": 70,
+      "fault_ground_truth_count": 35,
+      "seeds": [
+        20260918,
+        20260919,
+        20260920,
+        20260921,
+        20260922
+      ]
+    },
+    "validation": {
+      "demand_count": 144,
+      "fault_event_count": 28,
+      "fault_ground_truth_count": 14,
+      "seeds": [
+        20260923,
+        20260924
+      ]
+    }
+  },
+  "splits": {
+    "test": [
+      20260925,
+      20260926
+    ],
+    "train": [
+      20260918,
+      20260919,
+      20260920,
+      20260921,
+      20260922
+    ],
+    "validation": [
+      20260923,
+      20260924
+    ]
+  }
+}

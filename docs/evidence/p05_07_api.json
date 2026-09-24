@@ -1,0 +1,31 @@
+{
+  "task": "P05.07",
+  "generated_at": "2026-09-19T19:01:43Z",
+  "checks": {
+    "unknown_device_returns_404": true,
+    "known_device_returns_real_data": true,
+    "device_pagination_no_gap_no_duplicate": true,
+    "observation_history_pagination_returns_exact_set": true,
+    "network_state_endpoint_returns_real_aggregate": true,
+    "network_state_unknown_element_returns_404": true,
+    "network_state_segment_returns_501_not_silently_wrong": true,
+    "live_feed_sends_backlog_on_connect": true,
+    "reconnect_with_since_receives_missed_event_not_old_ones": true,
+    "reconnect_never_redelivers_already_seen_events": true,
+    "live_feed_device_scoping_excludes_other_devices": true
+  },
+  "notes": {
+    "unknown_device_returns_404": "",
+    "known_device_returns_real_data": "{'device_id': 'verify-api-device', 'device_type': 'traffic_loop', 'deployment_type': 'simulated', 'agency_scope': 'city-traffic-ops', 'status': 'active', 'corridor_id': None, 'intersection_id': None, 'lane_id': 'verify-api-lane', 'registered_at': '2026-09-19T19:00:16.294313+00:00'}",
+    "device_pagination_no_gap_no_duplicate": "n_devices=3",
+    "observation_history_pagination_returns_exact_set": "expected=3 got=3",
+    "network_state_endpoint_returns_real_aggregate": "{'schema_version': '1.0.0', 'record_id': '636a7f8a-3297-4d06-a875-3605c6a07ba1', 'network_element_type': 'lane', 'network_element_id': 'verify-api-lane', 'geometry_version': '2026-09-18.1', 'window_seconds': 300.0, 'observation_time': '2026-09-19T19:01:41.187345Z', 'ingest_time': '2026-09-19T19:01:41.190702Z', 'measurements': [{'name': 'vehicle_count', 'value': 1.0, 'unit': 'count', 'quality': 'valid', 'confidence': 0.9, 'sample_count': 3}], 'truth_label': 'simulated', 'freshness_status': 'fresh', 'max_staleness_seconds': 120.0}",
+    "network_state_unknown_element_returns_404": "",
+    "network_state_segment_returns_501_not_silently_wrong": "",
+    "live_feed_sends_backlog_on_connect": "got=3",
+    "reconnect_with_since_receives_missed_event_not_old_ones": "seen_second=['21bf9380-f484-4d91-a14c-f221497a6d70'] expected=[21bf9380-f484-4d91-a14c-f221497a6d70]",
+    "reconnect_never_redelivers_already_seen_events": "",
+    "live_feed_device_scoping_excludes_other_devices": ""
+  },
+  "all_passed": true
+}

@@ -1,0 +1,25 @@
+{
+  "task": "P05.10",
+  "generated_at": "2026-09-19T19:11:42Z",
+  "checks": {
+    "short_class_event_purged_past_its_window": true,
+    "audit_class_never_purged": true,
+    "aggregation_rollup_created_before_deletion": true,
+    "terminal_command_purged_past_window": true,
+    "active_command_preserved_regardless_of_projected_age": true,
+    "resolved_incident_purged_past_window": true,
+    "active_incident_preserved_regardless_of_projected_age": true,
+    "storage_pressure_shortens_effective_window_and_purges_more": true
+  },
+  "notes": {
+    "short_class_event_purged_past_its_window": "{'purged': True, 'window_days': 7, 'rolled_up': 1, 'deleted': 1}",
+    "audit_class_never_purged": "",
+    "aggregation_rollup_created_before_deletion": "",
+    "terminal_command_purged_past_window": "",
+    "active_command_preserved_regardless_of_projected_age": "",
+    "resolved_incident_purged_past_window": "",
+    "active_incident_preserved_regardless_of_projected_age": "",
+    "storage_pressure_shortens_effective_window_and_purges_more": "normal_pressure=False forced_pressure=True"
+  },
+  "all_passed": true
+}

@@ -1,0 +1,95 @@
+{
+  "all_passed": true,
+  "checks": {
+    "every_control_treats_at_least_one_threat": true,
+    "every_implemented_or_partial_control_has_existing_implementation_files_and_passing_named_evidence": true,
+    "every_planned_or_partial_control_names_a_registered_task_what_is_missing_and_a_due_date": true,
+    "every_threat_category_is_used_stride_plus_safety_ai_and_supply_chain": true,
+    "every_threat_names_a_known_boundary_assets_controls_owner_due_date_and_both_impacts": true,
+    "every_trust_zone_in_the_security_diagram_has_a_boundary_and_threats": true,
+    "residual_risk_is_computed_from_control_state_a_planned_control_earns_no_credit": true,
+    "safety_impact_is_scored_separately_from_security_impact": true,
+    "the_control_catalogue_is_well_formed_with_unique_ids_layers_statuses_owners_and_baseline_items": true,
+    "the_generated_tables_in_the_threat_model_and_risk_register_documents_are_current": true,
+    "the_pytest_files_cited_as_evidence_pass_when_run_now": true,
+    "the_thirteen_areas_the_security_baseline_requires_each_have_at_least_two_threats": true
+  },
+  "generated_at": "2026-09-23T17:43:17Z",
+  "metrics": {
+    "areas": {
+      "API": 8,
+      "broker": 4,
+      "controller adapter": 7,
+      "device": 5,
+      "edge": 4,
+      "external integration": 3,
+      "identity": 5,
+      "model": 4,
+      "operator": 3,
+      "policy": 3,
+      "stream": 4,
+      "supply chain": 3,
+      "web": 5
+    },
+    "assets": 14,
+    "boundaries": 18,
+    "controls": {
+      "implemented": 31,
+      "partial": 8,
+      "planned": 8
+    },
+    "evidence_items_named": 154,
+    "high_residual": [
+      "T-20 Database credentials are read from configuration or the process environment",
+      "T-27 A user of one agency reads or changes another agency's records",
+      "T-59 A secret is committed or a CI token is abused",
+      "T-71 Lateral movement between services",
+      "T-72 Secrets are readable from cluster or host state"
+    ],
+    "residual_risk": {
+      "high": 5,
+      "low": 23,
+      "medium": 48
+    },
+    "threats": 76,
+    "threats_open_no_implemented_control": [
+      "T-16",
+      "T-20",
+      "T-23",
+      "T-27",
+      "T-42",
+      "T-55",
+      "T-59",
+      "T-68",
+      "T-71",
+      "T-72",
+      "T-73"
+    ],
+    "zones": {
+      "TZ0": 9,
+      "TZ1": 4,
+      "TZ2": 4,
+      "TZ3": 21,
+      "TZ4": 7,
+      "TZ5": 8,
+      "TZ6": 7,
+      "TZ7": 8,
+      "TZ8": 2
+    }
+  },
+  "notes": {
+    "every_control_treats_at_least_one_threat": "unused: []",
+    "every_implemented_or_partial_control_has_existing_implementation_files_and_passing_named_evidence": "",
+    "every_planned_or_partial_control_names_a_registered_task_what_is_missing_and_a_due_date": "",
+    "every_threat_category_is_used_stride_plus_safety_ai_and_supply_chain": "[]",
+    "every_threat_names_a_known_boundary_assets_controls_owner_due_date_and_both_impacts": "",
+    "every_trust_zone_in_the_security_diagram_has_a_boundary_and_threats": "{'TZ0': 9, 'TZ1': 4, 'TZ2': 4, 'TZ3': 21, 'TZ4': 7, 'TZ5': 8, 'TZ6': 7, 'TZ7': 8, 'TZ8': 2}",
+    "residual_risk_is_computed_from_control_state_a_planned_control_earns_no_credit": "rule in threat_model.json scales",
+    "safety_impact_is_scored_separately_from_security_impact": "24 threats with high safety impact",
+    "the_control_catalogue_is_well_formed_with_unique_ids_layers_statuses_owners_and_baseline_items": "",
+    "the_generated_tables_in_the_threat_model_and_risk_register_documents_are_current": "run with --render to refresh them",
+    "the_pytest_files_cited_as_evidence_pass_when_run_now": "9 files: 158 passed in 14.64s",
+    "the_thirteen_areas_the_security_baseline_requires_each_have_at_least_two_threats": "{'device': 5, 'edge': 4, 'broker': 4, 'stream': 4, 'API': 8, 'web': 5, 'identity': 5, 'policy': 3, 'model': 4, 'supply chain': 3, 'operator': 3, 'controller adapter': 7, 'external integration': 3}"
+  },
+  "task": "P09.01"
+}

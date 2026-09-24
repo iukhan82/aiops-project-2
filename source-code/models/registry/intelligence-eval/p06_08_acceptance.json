@@ -1,0 +1,166 @@
+{
+  "ACC-02_forecast_beats_or_is_rejected_against_baseline": {
+    "1800:density_veh_km": {
+      "baseline_mae": 8.307,
+      "model_mae": 8.8731,
+      "served": "model accepted",
+      "verdict": "model significantly worse"
+    },
+    "1800:travel_time_s": {
+      "baseline_mae": 3.8711,
+      "model_mae": 4.5459,
+      "served": "model rejected, baseline served",
+      "verdict": "model significantly worse"
+    },
+    "1800:volume_veh_h": {
+      "baseline_mae": 257.1175,
+      "model_mae": 233.0205,
+      "served": "model accepted",
+      "verdict": "no significant difference"
+    },
+    "300:density_veh_km": {
+      "baseline_mae": 4.8673,
+      "model_mae": 4.6679,
+      "served": "model accepted",
+      "verdict": "no significant difference"
+    },
+    "300:travel_time_s": {
+      "baseline_mae": 3.4871,
+      "model_mae": 3.5227,
+      "served": "model rejected, baseline served",
+      "verdict": "no significant difference"
+    },
+    "300:volume_veh_h": {
+      "baseline_mae": 161.2267,
+      "model_mae": 136.641,
+      "served": "model accepted",
+      "verdict": "model significantly better"
+    },
+    "900:density_veh_km": {
+      "baseline_mae": 8.6503,
+      "model_mae": 8.0668,
+      "served": "model accepted",
+      "verdict": "model significantly better"
+    },
+    "900:travel_time_s": {
+      "baseline_mae": 3.606,
+      "model_mae": 4.2053,
+      "served": "model rejected, baseline served",
+      "verdict": "model significantly worse"
+    },
+    "900:volume_veh_h": {
+      "baseline_mae": 263.9573,
+      "model_mae": 185.9927,
+      "served": "model accepted",
+      "verdict": "model significantly better"
+    }
+  },
+  "ACC-03_congestion_spillback_precision_recall_per_scenario_class": {
+    "congestion_by_scenario_class": {
+      "am-peak": {
+        "precision": 1.0,
+        "recall": 0.143,
+        "truth_episodes": 7
+      },
+      "am-peak-blockage": {
+        "precision": 1.0,
+        "recall": 0.368,
+        "truth_episodes": 19
+      },
+      "midday-steady": {
+        "precision": null,
+        "recall": null,
+        "truth_episodes": 0
+      },
+      "pm-double": {
+        "precision": null,
+        "recall": null,
+        "truth_episodes": 0
+      }
+    },
+    "stall_fusion": {
+      "precision": 0.385,
+      "recall": 0.833
+    },
+    "vru_conflict_event_level": {
+      "precision": 0.14,
+      "recall": 0.132
+    }
+  },
+  "FA-01_incident_false_positive_rate": {
+    "caveat": "only 7 incidents were raised on TEST (2 blockage-seed runs, 6 measured physical blockages plus queue episodes): the interval is wide ([0.0, 0.354]) and 0% should be read as 'no false positives observed on a small sample', not as a tight bound.",
+    "met": true,
+    "target": "<= 10% of raised incidents, counted after correlation/deduplication",
+    "test": {
+      "ci95": [
+        0.0,
+        0.354
+      ],
+      "false_positive_rate": 0.0,
+      "n": 7
+    },
+    "train": {
+      "ci95": [
+        0.0,
+        0.354
+      ],
+      "false_positive_rate": 0.0,
+      "n": 7
+    },
+    "validation": {
+      "ci95": [
+        0.0,
+        0.562
+      ],
+      "false_positive_rate": 0.0,
+      "n": 3
+    }
+  },
+  "FA-02_data_quality_incident_false_positive_rate": {
+    "reason": "no data-quality incident detector exists yet - P10.07 ('Correlate platform signals into incidents') builds it from OpenTelemetry/health signals (P10.01-P10.06). P03.06's fault catalog (7 types, byte-identical ground truth, source-code/simulator/faults/) is ready as that stage's held-out set; it is unused here because using it now would mean inventing a detector to satisfy the metric.",
+    "status": "not measurable in this phase"
+  },
+  "LAT-03_candidate_to_incident_latency": {
+    "caveat": "measured for event-driven correlation (sync() called per new/changed candidate). The Part-A replay in verify_incidents.py polls every 5 minutes for demonstration convenience and would itself violate this target - deployment MUST trigger sync() on candidate write, not on a timer.",
+    "met": true,
+    "target": "P95 < 5 s, last contributing evidence event to incident record creation, nominal load",
+    "test": {
+      "max": 0.0,
+      "median": 0.0,
+      "n": 7,
+      "note": "last contributing evidence event's observation_time to incident opened_at; event-driven correlation (no polling delay), nominal load",
+      "p95": 0.0
+    }
+  },
+  "SAFE-03_stale_state_triggers_fail_safe": {
+    "gap": "No dependent service currently reads freshness_status and refuses to act on it - that gate belongs to P07.05's command execution policy ('fresh state' check) and P07's route/recommendation consumers. SAFE-03 cannot be closed here; it is carried to P07.05/P07.09 and P12.02's fault-injection suite.",
+    "measured": "P05.06/P05.07 (verify_network_state.py, verify_api.py) prove freshness_status flips to 'stale' past the staleness budget and the API reports it correctly.",
+    "status": "partially measurable now, not yet enforced"
+  },
+  "cross_references": {
+    "P06.02_forecast_baselines": "models/registry/traffic-forecast/baseline_evaluation.json",
+    "P06.03_forecast_model": "models/registry/traffic-forecast/training_report.json",
+    "P06.04_congestion": "models/registry/congestion-detector/evaluation.json",
+    "P06.05_stall_and_overlays": "models/registry/stall-fusion/evaluation.json, models/registry/overlay-detectors/evaluation.json",
+    "P06.06_vru_conflict": "models/registry/vru-conflict/evaluation.json",
+    "P06.07_incident_policy": "backend/analytics/artifacts/incident_policy.json",
+    "P06.08_incident_level": "models/registry/intelligence-eval/incident_evaluation.json"
+  },
+  "incident_level_recall_TEST": {
+    "blockage_recall": 0.833,
+    "blockage_recall_ci95": [
+      0.436,
+      0.97
+    ],
+    "incidents_by_type": {
+      "stalled_vehicle": 7
+    },
+    "queue_recall": 0.731,
+    "queue_recall_ci95": [
+      0.539,
+      0.863
+    ]
+  },
+  "overlay_kinds_note": "collision/wrong_way/flooding/low_visibility are specification-tested (P06.05), not scenario-scored: 216/216 injected signatures detected exactly, 0 false alarms - no ACC-03/FA-01 claim is made for them beyond that.",
+  "schema": "p06-08-acceptance-v1"
+}

@@ -1,0 +1,114 @@
+{
+  "task": "P08.09",
+  "generated_at": "2026-09-21T15:38:10Z",
+  "browser": {
+    "channel": "chrome",
+    "headless": true,
+    "viewport": null
+  },
+  "stack": "real Chrome, real Keycloak (Authorization Code + PKCE), real API on the demo database fed by backend/demo/feeder.py",
+  "tests_total": 14,
+  "tests_passed": 14,
+  "all_passed": true,
+  "tests": [
+    {
+      "title": "govern.spec.ts > audit trail (P08.09) > lists what people and services did newest first, with who, what and the result, and refusals are in it",
+      "file": "govern.spec.ts",
+      "status": "passed",
+      "duration_ms": 9129,
+      "error": null
+    },
+    {
+      "title": "govern.spec.ts > audit trail (P08.09) > filters by who, what it concerns, the result and time; a start after the end is refused; focus stays on the control that was used",
+      "file": "govern.spec.ts",
+      "status": "passed",
+      "duration_ms": 9984,
+      "error": null
+    },
+    {
+      "title": "govern.spec.ts > audit trail (P08.09) > 'Only this' narrows the trail to one entity, and a linked entity opens its own screen",
+      "file": "govern.spec.ts",
+      "status": "passed",
+      "duration_ms": 5388,
+      "error": null
+    },
+    {
+      "title": "govern.spec.ts > audit trail (P08.09) > nothing on the screen can change a record, and a role without audit.view is told which capability it lacks",
+      "file": "govern.spec.ts",
+      "status": "passed",
+      "duration_ms": 7878,
+      "error": null
+    },
+    {
+      "title": "govern.spec.ts > platform status (P08.09) > shows real probes: dependencies, worker heartbeats, freshness per source and ingestion measured from what arrived",
+      "file": "govern.spec.ts",
+      "status": "passed",
+      "duration_ms": 5769,
+      "error": null
+    },
+    {
+      "title": "govern.spec.ts > platform status (P08.09) > 'Check now' checks again, updates can be paused, and the page says when it was last checked",
+      "file": "govern.spec.ts",
+      "status": "passed",
+      "duration_ms": 5874,
+      "error": null
+    },
+    {
+      "title": "govern.spec.ts > platform status (P08.09) > an unreachable API is said plainly, and the last status stays readable with its check time",
+      "file": "govern.spec.ts",
+      "status": "passed",
+      "duration_ms": 5118,
+      "error": null
+    },
+    {
+      "title": "govern.spec.ts > platform status (P08.09) > operators, supervisors, commanders and auditors may read it; a dispatcher is told which capability it lacks",
+      "file": "govern.spec.ts",
+      "status": "passed",
+      "duration_ms": 13964,
+      "error": null
+    },
+    {
+      "title": "govern.spec.ts > shift handover (P08.09) > a supervisor writes one with open items, the author cannot acknowledge it, a different person does by name, and a late second acknowledgement is a conflict that names who was first",
+      "file": "govern.spec.ts",
+      "status": "passed",
+      "duration_ms": 17714,
+      "error": null
+    },
+    {
+      "title": "govern.spec.ts > shift handover (P08.09) > a role that may only read handovers sees them and no control that writes or acknowledges",
+      "file": "govern.spec.ts",
+      "status": "passed",
+      "duration_ms": 7693,
+      "error": null
+    },
+    {
+      "title": "govern.spec.ts > shift handover (P08.09) > the demo operator does not hold handover.view",
+      "file": "govern.spec.ts",
+      "status": "passed",
+      "duration_ms": 3910,
+      "error": null
+    },
+    {
+      "title": "govern.spec.ts > demo controls (P08.09) > its own identity and banner; start, replay and reset a run, each one confirmed, and the demo trail records them by name",
+      "file": "govern.spec.ts",
+      "status": "passed",
+      "duration_ms": 10647,
+      "error": null
+    },
+    {
+      "title": "govern.spec.ts > demo controls (P08.09) > when the bound is reached the service refuses a new run and says why, and the refusal is in the demo trail",
+      "file": "govern.spec.ts",
+      "status": "passed",
+      "duration_ms": 9870,
+      "error": null
+    },
+    {
+      "title": "govern.spec.ts > demo controls (P08.09) > the two identities do not cross: operating roles cannot open the demo controls, and the demo operator cannot open operations",
+      "file": "govern.spec.ts",
+      "status": "passed",
+      "duration_ms": 13737,
+      "error": null
+    }
+  ],
+  "metrics": {}
+}

@@ -1,0 +1,51 @@
+{
+  "all_passed": true,
+  "checks": {
+    "a_403_names_the_missing_capability_and_the_callers_roles": true,
+    "a_garbage_token_is_401": true,
+    "a_protected_endpoint_without_a_token_is_401_with_a_bearer_challenge": true,
+    "a_real_token_issued_by_the_realm_to_another_client_with_no_api_audience_is_refused": true,
+    "a_real_token_with_a_tampered_payload_is_refused": true,
+    "a_route_missing_from_the_inventory_is_denied_by_default": true,
+    "after_logout_the_refresh_token_no_longer_works": true,
+    "an_unreachable_identity_provider_fails_closed_503_never_open": true,
+    "control_a_locally_signed_valid_token_is_accepted_so_the_refusals_below_are_about_the_claims_not_the_setup": true,
+    "expired_wrong_issuer_wrong_audience_unknown_client_missing_claim_alg_none_and_key_confusion_are_each_refused_with_the_right_reason": true,
+    "health_is_public_and_reports_authentication_is_on_and_the_database_reachable": true,
+    "me_reports_exactly_the_real_role_the_capabilities_it_adds_up_to_and_the_home_screen": true,
+    "me_without_a_token_is_401": true,
+    "real_tokens_are_short_lived_audience_bound_and_carry_only_the_operating_role_nothing_else": true,
+    "the_api_enforces_exactly_the_inventorys_capability_for_every_implemented_get_endpoint_and_every_role": true,
+    "the_command_executor_service_identity_authenticates_but_holds_no_ui_capability": true,
+    "the_live_websocket_needs_a_valid_token_with_map_view": true
+  },
+  "generated_at": "2026-09-21T16:14:20Z",
+  "metrics": {
+    "enforcement_matrix": {
+      "combinations": 154,
+      "endpoints": 22,
+      "mismatches": 0,
+      "roles": 7
+    }
+  },
+  "notes": {
+    "a_403_names_the_missing_capability_and_the_callers_roles": "{'error': 'forbidden', 'message': \"your role does not hold the 'commands.view' capability\", 'capability': 'commands.view', 'roles': ['field_responder']}",
+    "a_garbage_token_is_401": "",
+    "a_protected_endpoint_without_a_token_is_401_with_a_bearer_challenge": "{'detail': {'error': 'unauthenticated', 'message': 'a Bearer access token is required'}}",
+    "a_real_token_issued_by_the_realm_to_another_client_with_no_api_audience_is_refused": "{'detail': {'error': 'invalid_token', 'message': 'Token is missing the \"aud\" claim'}}",
+    "a_real_token_with_a_tampered_payload_is_refused": "",
+    "a_route_missing_from_the_inventory_is_denied_by_default": "",
+    "after_logout_the_refresh_token_no_longer_works": "logout 204, refresh 400",
+    "an_unreachable_identity_provider_fails_closed_503_never_open": "",
+    "control_a_locally_signed_valid_token_is_accepted_so_the_refusals_below_are_about_the_claims_not_the_setup": "",
+    "expired_wrong_issuer_wrong_audience_unknown_client_missing_claim_alg_none_and_key_confusion_are_each_refused_with_the_right_reason": "{}",
+    "health_is_public_and_reports_authentication_is_on_and_the_database_reachable": "{'status': 'ok', 'time': '2026-09-21T16:14:10Z', 'auth_mode': 'oidc', 'database': 'ok'}",
+    "me_reports_exactly_the_real_role_the_capabilities_it_adds_up_to_and_the_home_screen": "{'operator': True, 'supervisor': True, 'demo_operator': True, 'auditor': True, 'field_responder': True, 'incident_commander': True, 'dispatcher': True}",
+    "me_without_a_token_is_401": "",
+    "real_tokens_are_short_lived_audience_bound_and_carry_only_the_operating_role_nothing_else": "{'operator': ['operator'], 'supervisor': ['supervisor'], 'demo_operator': ['demo_operator'], 'auditor': ['auditor'], 'field_responder': ['field_responder'], 'incident_commander': ['incident_commander'], 'dispatcher': ['dispatcher']}",
+    "the_api_enforces_exactly_the_inventorys_capability_for_every_implemented_get_endpoint_and_every_role": "154 endpoint-role combinations; []",
+    "the_command_executor_service_identity_authenticates_but_holds_no_ui_capability": "{'sub': '16d55356-ccb8-467e-89d3-74d6dfdcba54', 'username': 'service-account-system-command-executor', 'name': 'service-account-system-command-executor', 'roles': ['system:command-executor'], 'capabilities': [], 'home': None, 'expires_at': 1790007558, 'client': 'system-command-executor', 'auth_mode': 'oidc'}",
+    "the_live_websocket_needs_a_valid_token_with_map_view": "{'no_token': 'refused 403', 'garbage': 'refused 403', 'operator': 'connected', 'field_responder': 'connected', 'service': 'refused 403'}"
+  },
+  "task": "P08.04"
+}

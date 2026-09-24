@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- P03.02 transit stops for line-1 (route-a-to-b-east-cross) and
+     line-2 (route-b-to-c-east-cross). Lane index 2 is a general-traffic
+     lane on every corridor edge (see source-code/simulator/network/README.md). -->
+<additional>
+  <busStop id="stop-line1-a" lane="int-a3_int-a4_2" startPos="20" endPos="35"/>
+  <busStop id="stop-line1-b" lane="int-b4_int-b3_2" startPos="20" endPos="35"/>
+  <busStop id="stop-line2-b" lane="int-b3_int-b4_2" startPos="20" endPos="35"/>
+  <busStop id="stop-line2-c" lane="int-c4_int-c3_2" startPos="20" endPos="35"/>
+</additional>

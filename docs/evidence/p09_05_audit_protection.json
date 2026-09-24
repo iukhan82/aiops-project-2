@@ -1,0 +1,268 @@
+{
+  "all_passed": true,
+  "checks": {
+    "a_command_that_was_never_executed_cannot_be_overridden": true,
+    "a_justification_under_the_minimum_length_is_refused_by_validation": true,
+    "a_jwt_shaped_string_anywhere_in_free_text_is_redacted": true,
+    "a_row_rewritten_after_disabling_its_own_trigger_is_caught_by_the_independent_hash_recompute": true,
+    "a_second_override_of_the_same_now_rolled_back_command_is_refused": true,
+    "a_supervisor_may_not_override_even_though_a_supervisor_may_approve_sc2": true,
+    "an_export_without_a_bound_or_with_too_wide_a_range_is_refused": true,
+    "an_operator_holds_no_override_capability_and_is_refused_at_the_door": true,
+    "an_sc0_command_has_no_override_and_is_refused_as_not_available_not_as_a_role_problem": true,
+    "command_transitions_and_incident_transitions_still_refuse_update_and_truncate": true,
+    "command_transitions_chain_stays_intact_meaning_the_cascade_gap_is_reported_as_a_gap_not_a_break": true,
+    "every_chained_history_is_intact_on_the_real_database_before_this_run_touches_anything": true,
+    "every_chained_history_is_still_intact_after_this_entire_run": true,
+    "export_mode_additionally_drops_locations": true,
+    "only_the_auditor_role_may_export_every_other_role_is_refused": true,
+    "redact_removes_secrets_recursively_through_nested_dicts_but_keeps_locations_in_audit_mode": true,
+    "restoring_the_original_content_restores_an_intact_chain_the_check_is_not_a_false_positive": true,
+    "retention_runs_itself_is_chained_append_only_and_grew_by_one_row_recording_what_was_purged": true,
+    "retention_runs_refuses_update_and_delete_like_the_other_audit_tables": true,
+    "retentions_own_cascade_delete_of_a_terminal_commands_transitions_still_works_with_the_new_triggers_in_place": true,
+    "the_database_itself_refuses_a_raw_insert_carrying_a_bearer_credential_defense_in_depth_for_ctl_16": true,
+    "the_export_caps_its_row_count_and_says_so_rather_than_silently_truncating": true,
+    "the_export_itself_left_an_audited_attributed_row": true,
+    "the_export_names_who_exported_it_when_and_under_which_filters": true,
+    "the_incident_commander_overrides_an_executed_sc2_command_with_a_justification": true,
+    "the_log_redaction_filter_removes_a_token_from_a_log_records_rendered_message": true,
+    "the_ordinary_trail_shows_the_raw_location_but_the_export_replaces_it": true,
+    "the_override_audit_entry_names_the_justification_and_is_honest_that_no_physical_undo_was_attempted": true,
+    "the_override_moved_the_command_to_rolled_back_and_left_a_permit_decision_naming_the_role": true,
+    "two_freshly_inserted_rows_chain_correctly_and_verify_intact": true,
+    "workflow_audit_redacts_a_secret_before_the_row_is_written_not_only_when_asked_to": true
+  },
+  "generated_at": "2026-09-22T04:29:26Z",
+  "metrics": {
+    "redaction_write_path_sample": {
+      "location": {
+        "lat": 1,
+        "lon": 2
+      },
+      "password": "[redacted]"
+    }
+  },
+  "notes": {
+    "a_command_that_was_never_executed_cannot_be_overridden": "{\"detail\":{\"error\":\"invalid_transition\",\"message\":\"This command is requested; only an executed command awaiting verification can be overridden.\",\"current_status\":\"requested\"}}",
+    "a_justification_under_the_minimum_length_is_refused_by_validation": "",
+    "a_jwt_shaped_string_anywhere_in_free_text_is_redacted": "",
+    "a_row_rewritten_after_disabling_its_own_trigger_is_caught_by_the_independent_hash_recompute": {
+      "broken_links": [],
+      "gaps": [],
+      "hash_mismatches": [
+        620
+      ],
+      "intact": false,
+      "legacy_rows": 614,
+      "rows": 690,
+      "table": "operator_audit"
+    },
+    "a_second_override_of_the_same_now_rolled_back_command_is_refused": "{\"detail\":{\"error\":\"invalid_transition\",\"message\":\"This command is rolled_back; only an executed command awaiting verification can be overridden.\",\"current_status\":\"rolled_back\"}}",
+    "a_supervisor_may_not_override_even_though_a_supervisor_may_approve_sc2": "{\"detail\":{\"error\":\"forbidden\",\"message\":\"your role does not hold the 'commands.override' capability\",\"capability\":\"commands.override\",\"roles\":[\"supervisor\"]}}",
+    "an_export_without_a_bound_or_with_too_wide_a_range_is_refused": [
+      422,
+      422
+    ],
+    "an_operator_holds_no_override_capability_and_is_refused_at_the_door": "{\"detail\":{\"error\":\"forbidden\",\"message\":\"your role does not hold the 'commands.override' capability\",\"capability\":\"commands.override\",\"roles\":[\"operator\"]}}",
+    "an_sc0_command_has_no_override_and_is_refused_as_not_available_not_as_a_role_problem": "{\"detail\":{\"error\":\"override_not_available\",\"message\":\"There is no override for a SC-0 action; cancel and resubmit instead.\",\"safety_class\":\"SC-0\"}}",
+    "command_transitions_and_incident_transitions_still_refuse_update_and_truncate": "",
+    "command_transitions_chain_stays_intact_meaning_the_cascade_gap_is_reported_as_a_gap_not_a_break": {
+      "broken_links": [],
+      "gaps": [
+        780,
+        784,
+        794,
+        812,
+        815,
+        819,
+        828,
+        834,
+        852,
+        855,
+        859,
+        868
+      ],
+      "hash_mismatches": [],
+      "intact": true,
+      "legacy_rows": 269,
+      "rows": 186,
+      "table": "command_transitions"
+    },
+    "every_chained_history_is_intact_on_the_real_database_before_this_run_touches_anything": {},
+    "every_chained_history_is_still_intact_after_this_entire_run": {},
+    "export_mode_additionally_drops_locations": "",
+    "only_the_auditor_role_may_export_every_other_role_is_refused": {
+      "approver": 403,
+      "commander": 403,
+      "requester": 403,
+      "second_operator": 403
+    },
+    "redact_removes_secrets_recursively_through_nested_dicts_but_keeps_locations_in_audit_mode": {
+      "email": "[email]",
+      "location": {
+        "lat": 31.5,
+        "lon": 74.3
+      },
+      "nested": {
+        "api_key": "[redacted]",
+        "count": 3
+      },
+      "note": "call it Authorization: Bearer [redacted] and done",
+      "password": "[redacted]"
+    },
+    "restoring_the_original_content_restores_an_intact_chain_the_check_is_not_a_false_positive": {
+      "broken_links": [],
+      "gaps": [],
+      "hash_mismatches": [],
+      "intact": true,
+      "legacy_rows": 614,
+      "rows": 690,
+      "table": "operator_audit"
+    },
+    "retention_runs_itself_is_chained_append_only_and_grew_by_one_row_recording_what_was_purged": {
+      "after": 9,
+      "before": 8
+    },
+    "retention_runs_refuses_update_and_delete_like_the_other_audit_tables": "",
+    "retentions_own_cascade_delete_of_a_terminal_commands_transitions_still_works_with_the_new_triggers_in_place": {
+      "commands_deleted": 1,
+      "database_size_bytes": 24883683,
+      "events_deleted": 0,
+      "events_rolled_up": 0,
+      "incidents_deleted": 0,
+      "per_class": {
+        "audit": {
+          "purged": false,
+          "reason": "audit class is never purged"
+        },
+        "extended": {
+          "deleted": 0,
+          "purged": true,
+          "rolled_up": 0,
+          "window_days": 365
+        },
+        "short": {
+          "deleted": 0,
+          "purged": true,
+          "rolled_up": 0,
+          "window_days": 7
+        },
+        "standard": {
+          "deleted": 0,
+          "purged": true,
+          "rolled_up": 0,
+          "window_days": 90
+        }
+      },
+      "run_id": 9,
+      "storage_pressure": false
+    },
+    "the_database_itself_refuses_a_raw_insert_carrying_a_bearer_credential_defense_in_depth_for_ctl_16": "",
+    "the_export_caps_its_row_count_and_says_so_rather_than_silently_truncating": {
+      "exported_at": "2026-09-22T04:29:15.071Z",
+      "exported_by": "ana.petrov",
+      "filters": {
+        "actor": null,
+        "entity_id": "p0905-b922fe0d",
+        "entity_type": null,
+        "outcome": null,
+        "since": "2026-09-22T04:24:14.023Z",
+        "until": "2026-09-22T04:34:14.023Z"
+      },
+      "items": [
+        {
+          "action": "verify.export_location_fixture",
+          "actor": "verify-p0905",
+          "actor_roles": [
+            "auditor"
+          ],
+          "at": "2026-09-22T04:29:14.014Z",
+          "audit_id": "operator:1306",
+          "detail": {
+            "location": "[location]",
+            "note": "p0905-b922fe0d"
+          },
+          "entity_id": "p0905-b922fe0d",
+          "entity_type": "test",
+          "outcome": "allowed",
+          "source": "operator"
+        }
+      ],
+      "redaction": "export",
+      "row_count": 1,
+      "truncated": false
+    },
+    "the_export_itself_left_an_audited_attributed_row": [
+      "audit.export",
+      "GET /api/v1/audit/export",
+      "GET /api/v1/audit/export",
+      "GET /api/v1/audit/export",
+      "GET /api/v1/audit/export",
+      "audit.export",
+      "verify.export_location_fixture",
+      "verify.secret_write",
+      "chain.fixture",
+      "chain.fixture"
+    ],
+    "the_export_names_who_exported_it_when_and_under_which_filters": {
+      "exported_at": "2026-09-22T04:29:14.479Z",
+      "exported_by": "ana.petrov",
+      "filters": {
+        "actor": null,
+        "entity_id": "p0905-b922fe0d",
+        "entity_type": null,
+        "outcome": null,
+        "since": "2026-09-22T04:24:14.023Z",
+        "until": "2026-09-22T04:34:14.023Z"
+      }
+    },
+    "the_incident_commander_overrides_an_executed_sc2_command_with_a_justification": "{\"command_id\":\"599af217-2e68-4748-9455-2b785b6fa859\",\"status\":\"rolled_back\",\"safety_class\":\"SC-2\",\"overridden_by\":\"eve.laurent\",\"overridden_role\":\"incident_commander\"}",
+    "the_log_redaction_filter_removes_a_token_from_a_log_records_rendered_message": [
+      "GET /ws?access_token=[redacted]"
+    ],
+    "the_ordinary_trail_shows_the_raw_location_but_the_export_replaces_it": {
+      "export": {
+        "location": "[location]",
+        "note": "p0905-b922fe0d"
+      },
+      "trail": {
+        "location": {
+          "lat": 12.34,
+          "lon": 56.78
+        },
+        "note": "p0905-b922fe0d"
+      }
+    },
+    "the_override_audit_entry_names_the_justification_and_is_honest_that_no_physical_undo_was_attempted": {
+      "justification": "verify-p0905: visible hazard on scene, not waiting for automated verification",
+      "physical_undo": "not attempted: this prototype's adapter holds no live session to drive a further reversal",
+      "role": "incident_commander",
+      "safety_class": "SC-2"
+    },
+    "the_override_moved_the_command_to_rolled_back_and_left_a_permit_decision_naming_the_role": [
+      [
+        "command_override",
+        "permit",
+        "permit"
+      ]
+    ],
+    "two_freshly_inserted_rows_chain_correctly_and_verify_intact": {
+      "broken_links": [],
+      "gaps": [],
+      "hash_mismatches": [],
+      "intact": true,
+      "legacy_rows": 614,
+      "rows": 690,
+      "table": "operator_audit"
+    },
+    "workflow_audit_redacts_a_secret_before_the_row_is_written_not_only_when_asked_to": {
+      "location": {
+        "lat": 1,
+        "lon": 2
+      },
+      "password": "[redacted]"
+    }
+  },
+  "task": "P09.05"
+}

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  P03.01 feasibility demand: one car, one cyclist and one transit bus proving
+  the district network is drivable end to end, that the dedicated bicycle
+  lane is used exclusively, and that a scheduled transit route with stops
+  completes. This is not the deterministic multi-mode demand model (P03.02).
+-->
+<routes>
+  <route id="route-corridor-a" edges="int-a1_int-a2 int-a2_int-a3 int-a3_int-a4"/>
+  <route id="route-bus-a-to-c" edges="int-a1_int-b1 int-b1_int-c1 int-c1_int-c2"/>
+
+  <vehicle id="veh-car-1" type="passenger" route="route-corridor-a" depart="0"/>
+  <vehicle id="veh-cyclist-1" type="cyclist" route="route-corridor-a" depart="0"/>
+
+  <vehicle id="veh-bus-1" type="transit-bus" route="route-bus-a-to-c" depart="5">
+    <stop busStop="stop-crossing-bc" duration="20"/>
+    <stop busStop="stop-corridor-c" duration="20"/>
+  </vehicle>
+</routes>

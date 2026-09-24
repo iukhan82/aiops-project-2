@@ -1,0 +1,27 @@
+{
+  "task": "P05.03",
+  "generated_at": "2026-09-19T18:43:05Z",
+  "checks": {
+    "validation_rejects_invalid_event": true,
+    "valid_events_get_accepted_ack": true,
+    "valid_events_land_in_kafka": true,
+    "rejected_event_not_in_kafka": true,
+    "device_partitioning_consistent": true,
+    "backpressure_no_premature_ack_and_gateway_alive": true,
+    "backpressure_drains_after_recovery": true,
+    "outage_events_eventually_in_kafka": true,
+    "replay_from_earliest_is_reproducible": true
+  },
+  "notes": {
+    "validation_rejects_invalid_event": "{'event_id': '20e8d9c0-f02b-47b1-8916-8fe8e01a2595', 'status': 'rejected', 'reason': \"schema_invalid: 'measurements' is a required property\"}",
+    "valid_events_get_accepted_ack": "",
+    "valid_events_land_in_kafka": "",
+    "rejected_event_not_in_kafka": "",
+    "device_partitioning_consistent": "device A partitions={1}, device B partitions={0}",
+    "backpressure_no_premature_ack_and_gateway_alive": "approx_pending=3",
+    "backpressure_drains_after_recovery": "",
+    "outage_events_eventually_in_kafka": "",
+    "replay_from_earliest_is_reproducible": "n=9"
+  },
+  "all_passed": true
+}

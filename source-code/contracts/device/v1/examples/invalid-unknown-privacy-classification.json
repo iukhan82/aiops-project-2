@@ -1,0 +1,19 @@
+{
+  "_invalid_because": "privacy_classification uses an undefined value ('unclassified') instead of one of the enum: none, aggregated, pseudonymous, sensitive.",
+  "schema_version": "1.0.0",
+  "device_id": "corridor-a-int-03-cam-01",
+  "device_type": "edge_camera",
+  "deployment_type": "simulated",
+  "agency_scope": "city-traffic-ops",
+  "location": {
+    "geometry_version": "2026-09-18.1",
+    "coordinate_reference": "EPSG:4326",
+    "latitude": 31.5204,
+    "longitude": 74.3587
+  },
+  "capabilities": ["vehicle_count"],
+  "status": "active",
+  "registered_at": "2026-09-18T09:00:00Z",
+  "privacy_classification": "unclassified",
+  "retention_class": "standard"
+}

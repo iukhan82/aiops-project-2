@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://project2.local/contracts/policy-decision/v1/schema.json",
+  "title": "OPA policy input and decision",
+  "description": "One authorization evaluation for a protected action, per docs/SECURITY_COMPLIANCE_BASELINE.md control 3 (default-deny policies) and REFERENCE_ARCHITECTURE.md's command safety path. Records the input evaluated and the decision reached so both are auditable together; policy_unavailable never resolves to permit.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "decision_id",
+    "policy_package",
+    "policy_bundle_version",
+    "evaluated_at",
+    "input",
+    "decision"
+  ],
+  "properties": {
+    "schema_version": { "const": "1.0.0" },
+    "decision_id": { "type": "string", "format": "uuid" },
+    "policy_package": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]*(\\.[a-z][a-z0-9_]*)*$",
+      "description": "e.g. 'traffic.command.authz'."
+    },
+    "policy_bundle_version": { "type": "string", "minLength": 1 },
+    "evaluated_at": { "type": "string", "format": "date-time" },
+    "input": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["role", "action_type", "target", "evidence_freshness_seconds"],
+      "properties": {
+        "role": { "type": "string", "minLength": 1 },
+        "action_type": {
+          "type": "string",
+          "enum": ["signal_plan_change", "diversion", "transit_priority", "emergency_preemption", "variable_message_sign", "other"]
+        },
+        "target": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["adapter", "entity_id"],
+          "properties": {
+            "adapter": { "type": "string", "minLength": 1 },
+            "entity_id": { "type": "string", "minLength": 1 }
+          }
+        },
+        "evidence_freshness_seconds": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Age of the evidence the request relies on at evaluation time."
+        },
+        "command_id": { "type": "string", "format": "uuid" },
+        "idempotency_key": { "type": "string" }
+      }
+    },
+    "decision": {
+      "type": "string",
+      "enum": ["permit", "deny"],
+      "description": "Only two outcomes exist. A policy-engine outage or error is not represented here as a decision; the caller records policy_decision='policy_unavailable' on command/v1 instead and treats it as a denial."
+    },
+    "reason": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Required when decision is 'deny'."
+    }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "decision": { "const": "deny" } } },
+      "then": { "required": ["reason"] }
+    }
+  ]
+}

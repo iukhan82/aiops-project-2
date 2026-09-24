@@ -1,0 +1,125 @@
+{
+  "all_passed": true,
+  "checks": {
+    "a_command_that_is_not_yet_executed_cannot_be_verified": true,
+    "a_paired_transit_priority_run_is_effective_and_not_rolled_back": true,
+    "a_post_action_telemetry_gap_is_unknown_and_escalated_never_defaulted_to_effective": true,
+    "a_real_signal_extension_within_the_noise_band_is_ineffective_and_not_rolled_back": true,
+    "a_refused_verification_leaves_no_outcome_and_no_state_change": true,
+    "an_undo_that_does_not_restore_leaves_the_command_executed_and_escalates": true,
+    "an_unsafe_outcome_on_a_non_actuating_adapter_is_rolled_back_with_the_no_physical_undo_stated": true,
+    "api_bad_command_id_is_400": true,
+    "api_detail_exposes_thresholds_and_the_physical_undo_evidence": true,
+    "api_filters_by_classification": true,
+    "api_filters_by_command": true,
+    "api_outcomes_are_contract_valid": true,
+    "api_paginates_with_a_cursor": true,
+    "api_unknown_id_is_404": true,
+    "api_unknown_outcome_carries_its_escalation_reason": true,
+    "even_the_verifier_identity_is_refused_for_a_command_it_executed_itself": true,
+    "impossible_window_ordering_is_refused": true,
+    "kpi_windows_are_read_from_the_platforms_own_corridor_kpis": true,
+    "lat_04_cold_start_path_is_measured_and_reported_whatever_it_shows": true,
+    "lat_04_warm_adapter_session_p95_is_under_3_s": true,
+    "no_undo_available_for_a_reversible_adapter_leaves_the_command_executed_and_escalates": true,
+    "only_system_outcome_verifier_records_outcomes_never_the_requester_approver_or_executor": true,
+    "outcome_records_rollback_and_the_undo_evidence": true,
+    "real_closure_worsens_waiting_far_beyond_the_noise_band": true,
+    "the_closure_was_really_applied_in_the_live_simulator": true,
+    "the_ineffective_verdict_matches_a_same_seed_no_action_control": true,
+    "the_lanes_were_physically_closed_before_and_reopened_after_the_undo_read_back_from_traci": true,
+    "the_missing_window_is_recorded_as_a_zero_sample_count_and_is_still_contract_valid": true,
+    "the_repository_independently_refuses_the_commands_own_requester_approver_and_executor": true,
+    "thresholds_are_derived_from_measured_no_action_noise": true,
+    "unsafe_command_moved_executed_to_rolled_back_by_the_verifier": true,
+    "waiting_measurably_recovers_after_the_rollback": true
+  },
+  "generated_at": "2026-09-20T15:17:15Z",
+  "metrics": {
+    "ineffective_scenario": {
+      "control_no_action": {
+        "post_waiting": 15.9333,
+        "pre_waiting": 7.4417
+      },
+      "note": "the before/after difference is time drift in the demand, not the action: the same-seed control drifts identically",
+      "post_waiting": 15.9333,
+      "pre_waiting": 7.4417
+    },
+    "lat_04": {
+      "cold_container_per_action": {
+        "max_s": 2.72,
+        "n": 5,
+        "p50_s": 2.533,
+        "p95_s": 2.72
+      },
+      "target_p95_s": 3.0,
+      "warm_session": {
+        "max_s": 0.0574,
+        "n": 24,
+        "p50_s": 0.0421,
+        "p95_s": 0.0557
+      }
+    },
+    "noise_calibration": {
+      "deltas": [
+        2.59,
+        -7.39,
+        0.11,
+        -1.33,
+        2.79,
+        -0.01,
+        4.88,
+        2.14,
+        -3.31
+      ],
+      "noise_band": 7.39,
+      "note": "seeds 3-5, no action, four consecutive 120 s windows each; threshold = ceil(2 x max |delta|)",
+      "threshold": 15
+    },
+    "unsafe_scenario": {
+      "post_waiting": 459.3083,
+      "pre_waiting": 10.0417,
+      "recovery_waiting_after_rollback": 89.0083,
+      "vehicles_in_network": {
+        "post": 84,
+        "pre": 78,
+        "recovery": 80
+      }
+    }
+  },
+  "notes": {
+    "a_command_that_is_not_yet_executed_cannot_be_verified": "",
+    "a_paired_transit_priority_run_is_effective_and_not_rolled_back": "baseline 109.0s -> priority 79.0s",
+    "a_post_action_telemetry_gap_is_unknown_and_escalated_never_defaulted_to_effective": "insufficient evidence to classify: missing measurement (pre=20.0, post=None)",
+    "a_real_signal_extension_within_the_noise_band_is_ineffective_and_not_rolled_back": "pre 7.4417 -> post 15.9333 vehicle_s (threshold 15)",
+    "a_refused_verification_leaves_no_outcome_and_no_state_change": "",
+    "an_undo_that_does_not_restore_leaves_the_command_executed_and_escalates": "",
+    "an_unsafe_outcome_on_a_non_actuating_adapter_is_rolled_back_with_the_no_physical_undo_stated": "",
+    "api_bad_command_id_is_400": "",
+    "api_detail_exposes_thresholds_and_the_physical_undo_evidence": "{'kind': 'simulator_undo', 'mode': 'reopened_lanes', 'evidence': {'observed_disallowed': {'int-b2_int-b3_2': ['pedestrian', 'bicycle'], 'int-b2_int-b3_3': ['pedestrian', 'bicycle']}, 'original_disallo",
+    "api_filters_by_classification": "",
+    "api_filters_by_command": "",
+    "api_outcomes_are_contract_valid": "7 records; []",
+    "api_paginates_with_a_cursor": "",
+    "api_unknown_id_is_404": "",
+    "api_unknown_outcome_carries_its_escalation_reason": "",
+    "even_the_verifier_identity_is_refused_for_a_command_it_executed_itself": "",
+    "impossible_window_ordering_is_refused": "{'windows_out_of_order': True, 'verified_before_the_post_window_closed': True}",
+    "kpi_windows_are_read_from_the_platforms_own_corridor_kpis": "20.0 -> 90.0 s (fixture rows)",
+    "lat_04_cold_start_path_is_measured_and_reported_whatever_it_shows": "cold p95 2.72s (target 3s: met)",
+    "lat_04_warm_adapter_session_p95_is_under_3_s": "p95 0.056s over 24 commands",
+    "no_undo_available_for_a_reversible_adapter_leaves_the_command_executed_and_escalates": "",
+    "only_system_outcome_verifier_records_outcomes_never_the_requester_approver_or_executor": "{'requester': True, 'approver': True, 'executor': True}",
+    "outcome_records_rollback_and_the_undo_evidence": "",
+    "real_closure_worsens_waiting_far_beyond_the_noise_band": "pre 10.0417 -> post 459.3083 vehicle_s (threshold 15)",
+    "the_closure_was_really_applied_in_the_live_simulator": "['int-b2_int-b3_2', 'int-b2_int-b3_3']",
+    "the_ineffective_verdict_matches_a_same_seed_no_action_control": "treated post 15.9333 vs control post 15.9333 vehicle_s (control drift 7.4417 -> 15.9333)",
+    "the_lanes_were_physically_closed_before_and_reopened_after_the_undo_read_back_from_traci": "before {'int-b2_int-b3_2': ['passenger'], 'int-b2_int-b3_3': ['passenger']} after {'int-b2_int-b3_2': ['pedestrian', 'bicycle'], 'int-b2_int-b3_3': ['pedestrian', 'bicycle']}",
+    "the_missing_window_is_recorded_as_a_zero_sample_count_and_is_still_contract_valid": "",
+    "the_repository_independently_refuses_the_commands_own_requester_approver_and_executor": "{'requester': True, 'approver': True, 'executor': True}",
+    "thresholds_are_derived_from_measured_no_action_noise": "noise band 7.39 -> threshold 15",
+    "unsafe_command_moved_executed_to_rolled_back_by_the_verifier": "",
+    "waiting_measurably_recovers_after_the_rollback": "post 459.3083 -> recovery 89.0083 vehicle_s (baseline 10.0417)"
+  },
+  "task": "P07.09"
+}

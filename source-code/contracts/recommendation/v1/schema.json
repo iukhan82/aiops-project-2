@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://project2.local/contracts/recommendation/v1/schema.json",
+  "title": "Traffic/emergency action recommendation",
+  "description": "Candidate action with alternatives, uncertainty, constraints and safety bounds, per REFERENCE_ARCHITECTURE.md's command safety path. A recommendation cannot invoke an adapter directly; only a command/v1 record, created from an operator request, can.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "recommendation_id",
+    "action_type",
+    "generated_at",
+    "expires_at",
+    "status",
+    "alternatives",
+    "safety_bounds"
+  ],
+  "properties": {
+    "schema_version": { "const": "1.0.0" },
+    "recommendation_id": { "type": "string", "format": "uuid" },
+    "trigger_incident_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "incident/v1 incident_id this recommendation responds to, when applicable."
+    },
+    "trigger_emergency_call_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "emergency-call/v1 call_id this recommendation responds to, when applicable."
+    },
+    "action_type": {
+      "type": "string",
+      "enum": [
+        "signal_plan_change", "diversion", "transit_priority",
+        "emergency_preemption", "variable_message_sign", "other"
+      ]
+    },
+    "generated_at": { "type": "string", "format": "date-time" },
+    "expires_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "A recommendation not acted on before this time must not be executed."
+    },
+    "status": {
+      "type": "string",
+      "enum": ["proposed", "requested", "superseded", "expired"]
+    },
+    "alternatives": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["alternative_id", "description", "predicted_benefit", "predicted_harm", "confidence"],
+        "properties": {
+          "alternative_id": { "type": "string", "minLength": 1 },
+          "description": { "type": "string", "minLength": 1 },
+          "predicted_benefit": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["name", "value", "unit"],
+              "properties": {
+                "name": { "type": "string", "minLength": 1 },
+                "value": { "type": "number" },
+                "unit": { "type": "string", "minLength": 1 }
+              }
+            }
+          },
+          "predicted_harm": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["name", "value", "unit"],
+              "properties": {
+                "name": { "type": "string", "minLength": 1 },
+                "value": { "type": "number" },
+                "unit": { "type": "string", "minLength": 1 }
+              }
+            }
+          },
+          "confidence": { "type": "number", "minimum": 0, "maximum": 1 }
+        }
+      }
+    },
+    "constraints": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "description": "Human-readable constraint identifiers applied when generating alternatives, e.g. pedestrian-clearance-preserved."
+    },
+    "safety_bounds": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["min_pedestrian_clearance_s", "max_signal_deviation_s"],
+      "properties": {
+        "min_pedestrian_clearance_s": { "type": "number", "minimum": 0 },
+        "max_signal_deviation_s": { "type": "number", "minimum": 0 }
+      }
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "_invalid_because": "decision is 'deny' but reason is absent; a denial without a recorded reason cannot be audited or appealed.",
+  "schema_version": "1.0.0",
+  "decision_id": "6e2f8b1a-4d3c-4e5f-9a8b-7c6d5e4f3a2b",
+  "policy_package": "traffic.command.authz",
+  "policy_bundle_version": "2026.09.18-1",
+  "evaluated_at": "2026-09-18T09:09:03Z",
+  "input": {
+    "role": "operator",
+    "action_type": "emergency_preemption",
+    "target": { "adapter": "simulator-signal-adapter", "entity_id": "int-03" },
+    "evidence_freshness_seconds": 90
+  },
+  "decision": "deny"
+}

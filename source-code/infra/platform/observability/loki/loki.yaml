@@ -1,0 +1,41 @@
+# P10.03: local, short-retention Loki (single-binary, filesystem backend) -
+# the log side of "traces/log links" (Grafana correlates a trace_id in a
+# log line back to the matching Tempo trace). Wiring a real long-running
+# backend service's own stdout into this is P11.01 scope (those services
+# have no container image yet); this config only needs to run and accept
+# real pushed/queried log lines, proven in verify_observability_stack.py.
+auth_enabled: false
+
+server:
+  http_listen_port: 3100
+
+common:
+  path_prefix: /loki
+  storage:
+    filesystem:
+      chunks_directory: /loki/chunks
+      rules_directory: /loki/rules
+  replication_factor: 1
+  ring:
+    kvstore:
+      store: inmemory
+
+schema_config:
+  configs:
+    - from: 2024-01-01
+      store: tsdb
+      object_store: filesystem
+      schema: v13
+      index:
+        prefix: index_
+        period: 24h
+
+limits_config:
+  retention_period: 24h
+  reject_old_samples: true
+  reject_old_samples_max_age: 168h
+
+compactor:
+  working_directory: /loki/compactor
+  retention_enabled: true
+  delete_request_store: filesystem

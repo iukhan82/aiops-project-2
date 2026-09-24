@@ -1,0 +1,1204 @@
+{
+  "schema_version": "1.0.0",
+  "description": "P08.01: the single source of truth for who may see and do what in the operator UI. The backend derives its role->capability matrix from this file (backend/api/authz.py), the frontend derives navigation and route guards from it, and tools/inventory.py proves it against docs/security/ROLES_AND_ACTION_AUTHORITY.md (roles) and the running FastAPI app's OpenAPI (endpoints).",
+  "roles": {
+    "operator": {
+      "home": "map",
+      "summary": "Traffic operations: watches the network, works incidents, requests SC-0/SC-1 actions (and, for SC-2, only as the requester)."
+    },
+    "supervisor": {
+      "home": "actions-commands",
+      "summary": "Traffic operations lead: approves SC-1/SC-2 commands as the second person, reviews outcomes, owns shift handover."
+    },
+    "dispatcher": {
+      "home": "dispatch",
+      "summary": "Emergency dispatch: takes calls, assigns units, requests SC-2 emergency actions such as signal pre-emption."
+    },
+    "incident_commander": {
+      "home": "incidents",
+      "summary": "Emergency command: approves SC-2 actions, works critical incidents. Override authority exists in P02.08 and is not in this UI (P09.05)."
+    },
+    "field_responder": {
+      "home": "field",
+      "summary": "In the field, read-only: sees the incident, assignment, route and ETA. Holds no REQUEST/APPROVE/EXECUTE/OVERRIDE."
+    },
+    "auditor": {
+      "home": "audit",
+      "summary": "Cross-domain, read-only: reads incidents, commands, policy decisions, outcomes and the audit trail. AUDIT never grants anything else."
+    },
+    "demo_operator": {
+      "home": "demo",
+      "summary": "Presentation only: starts/resets/replays simulated scenarios through the separate scenario-control API; can see the picture, never reaches the operational command path."
+    }
+  },
+  "capabilities": {
+    "map.view": {
+      "description": "Live operations map, layers, replay, accessible list, live feed.",
+      "roles": [
+        "operator",
+        "supervisor",
+        "dispatcher",
+        "incident_commander",
+        "field_responder",
+        "auditor",
+        "demo_operator"
+      ]
+    },
+    "analytics.view": {
+      "description": "Corridor, intersection and device analytics, forecasts, detection candidates.",
+      "roles": [
+        "operator",
+        "supervisor",
+        "dispatcher",
+        "incident_commander",
+        "auditor",
+        "demo_operator"
+      ]
+    },
+    "incidents.view": {
+      "description": "Incident list, detail, evidence and timeline.",
+      "roles": [
+        "operator",
+        "supervisor",
+        "dispatcher",
+        "incident_commander",
+        "field_responder",
+        "auditor"
+      ]
+    },
+    "incidents.manage": {
+      "description": "Acknowledge, assign ownership, transition and annotate incidents.",
+      "roles": [
+        "operator",
+        "supervisor",
+        "incident_commander"
+      ]
+    },
+    "emergency.view": {
+      "description": "Emergency calls, unit assignments, route alternatives and status.",
+      "roles": [
+        "operator",
+        "supervisor",
+        "dispatcher",
+        "incident_commander",
+        "field_responder",
+        "auditor"
+      ]
+    },
+    "emergency.dispatch": {
+      "description": "Create calls, assign units with routes, record call/assignment status.",
+      "roles": [
+        "dispatcher",
+        "incident_commander"
+      ]
+    },
+    "routes.view": {
+      "description": "Fastest-safe route and ETA queries.",
+      "roles": [
+        "operator",
+        "supervisor",
+        "dispatcher",
+        "incident_commander",
+        "field_responder"
+      ]
+    },
+    "recommendations.view": {
+      "description": "System recommendations with predicted benefit, harm and safety bounds.",
+      "roles": [
+        "operator",
+        "supervisor",
+        "dispatcher",
+        "incident_commander",
+        "auditor"
+      ]
+    },
+    "commands.view": {
+      "description": "Commands, their policy decision, state history and errors.",
+      "roles": [
+        "operator",
+        "supervisor",
+        "dispatcher",
+        "incident_commander",
+        "auditor"
+      ]
+    },
+    "commands.request": {
+      "description": "Turn a recommendation or an operator judgement into a requested command (role and safety class enforced by policy).",
+      "roles": [
+        "operator",
+        "dispatcher"
+      ]
+    },
+    "commands.review": {
+      "description": "Approve or deny a requested command (approver role and four-eyes enforced by policy).",
+      "roles": [
+        "operator",
+        "supervisor",
+        "incident_commander"
+      ]
+    },
+    "outcomes.view": {
+      "description": "Independent pre/post outcome verification and rollback evidence.",
+      "roles": [
+        "operator",
+        "supervisor",
+        "dispatcher",
+        "incident_commander",
+        "auditor"
+      ]
+    },
+    "audit.view": {
+      "description": "Unified append-only audit trail.",
+      "roles": [
+        "auditor"
+      ]
+    },
+    "ops.view": {
+      "description": "Platform status: service health, data freshness, ingestion.",
+      "roles": [
+        "operator",
+        "supervisor",
+        "incident_commander",
+        "auditor"
+      ]
+    },
+    "handover.view": {
+      "description": "Shift handover notes.",
+      "roles": [
+        "operator",
+        "supervisor",
+        "dispatcher",
+        "incident_commander",
+        "field_responder",
+        "auditor"
+      ]
+    },
+    "handover.write": {
+      "description": "Write and acknowledge shift handover notes.",
+      "roles": [
+        "operator",
+        "supervisor",
+        "dispatcher",
+        "incident_commander"
+      ]
+    },
+    "demo.control": {
+      "description": "Start, replay and reset simulated scenarios (scenario-control API, separate from operations).",
+      "roles": [
+        "demo_operator"
+      ]
+    },
+    "audit.export": {
+      "description": "Export the audit trail as a redacted, attributed evidence bundle.",
+      "roles": [
+        "auditor"
+      ]
+    },
+    "commands.override": {
+      "description": "Countermand an executed SC-2 command before independent verification completes, with a mandatory justification. incident_commander only; no override exists for SC-0 or SC-1.",
+      "roles": [
+        "incident_commander"
+      ]
+    }
+  },
+  "common_states": [
+    "loading",
+    "empty",
+    "error",
+    "forbidden",
+    "stale",
+    "reconnecting"
+  ],
+  "screens": [
+    {
+      "id": "login",
+      "path": "/login",
+      "title": "Sign in",
+      "capability": null,
+      "task": "P08.04",
+      "live": false,
+      "api": [],
+      "states": [
+        "signing-in",
+        "redirecting",
+        "error"
+      ],
+      "notes": "Public. Hands off to Keycloak (Authorization Code + PKCE); never handles a password.",
+      "optional_api": []
+    },
+    {
+      "id": "forbidden",
+      "path": "/forbidden",
+      "title": "Not permitted",
+      "capability": null,
+      "task": "P08.04",
+      "live": false,
+      "api": [],
+      "states": [
+        "forbidden"
+      ],
+      "notes": "Shown when a signed-in role lacks the capability for a screen; names the capability, not just 'denied'.",
+      "optional_api": []
+    },
+    {
+      "id": "session-expired",
+      "path": "/session-expired",
+      "title": "Session ended",
+      "capability": null,
+      "task": "P08.04",
+      "live": false,
+      "api": [],
+      "states": [
+        "expired"
+      ],
+      "notes": "Token refresh failed or the session was ended elsewhere; offers sign-in again and preserves the intended destination.",
+      "optional_api": []
+    },
+    {
+      "id": "not-found",
+      "path": "*",
+      "title": "Page not found",
+      "capability": null,
+      "task": "P08.04",
+      "live": false,
+      "api": [],
+      "states": [
+        "not-found"
+      ],
+      "notes": "Any unknown path.",
+      "optional_api": []
+    },
+    {
+      "id": "map",
+      "path": "/map",
+      "title": "Live operations map",
+      "capability": "map.view",
+      "task": "P08.05",
+      "live": true,
+      "api": [
+        "topology",
+        "network-state",
+        "network-state.list",
+        "devices.list",
+        "kpis.corridors",
+        "observations.list",
+        "live"
+      ],
+      "states": [
+        "loading",
+        "empty",
+        "error",
+        "forbidden",
+        "stale",
+        "reconnecting",
+        "replay",
+        "paused"
+      ],
+      "notes": "Schematic map plus a synchronised, sortable list/table that carries every fact the map shows.",
+      "optional_api": [
+        "incidents.list",
+        "emergency.calls.list"
+      ]
+    },
+    {
+      "id": "analytics-corridors",
+      "path": "/analytics/corridors",
+      "title": "Corridor analytics",
+      "capability": "analytics.view",
+      "task": "P08.06",
+      "live": true,
+      "api": [
+        "kpis.corridors",
+        "forecasts.corridors",
+        "candidates.list"
+      ],
+      "states": [
+        "loading",
+        "empty",
+        "error",
+        "forbidden",
+        "stale",
+        "reconnecting",
+        "forecast-abstained",
+        "quality-suspect"
+      ],
+      "notes": "Current, history and forecast with uncertainty; every chart has a table alternative.",
+      "optional_api": []
+    },
+    {
+      "id": "analytics-intersections",
+      "path": "/analytics/intersections",
+      "title": "Intersection analytics",
+      "capability": "analytics.view",
+      "task": "P08.06",
+      "live": true,
+      "api": [
+        "network-state",
+        "devices.list",
+        "observations.list"
+      ],
+      "states": [
+        "loading",
+        "empty",
+        "error",
+        "forbidden",
+        "stale",
+        "reconnecting"
+      ],
+      "notes": "Signal state, movements and the devices at one intersection.",
+      "optional_api": []
+    },
+    {
+      "id": "analytics-devices",
+      "path": "/analytics/devices",
+      "title": "Device health",
+      "capability": "analytics.view",
+      "task": "P08.06",
+      "live": true,
+      "api": [
+        "devices.list",
+        "devices.detail",
+        "observations.list"
+      ],
+      "states": [
+        "loading",
+        "empty",
+        "error",
+        "forbidden",
+        "stale",
+        "reconnecting",
+        "certificate-expiring"
+      ],
+      "notes": "Freshness, status, certificate validity and recent observations per device.",
+      "optional_api": []
+    },
+    {
+      "id": "incidents",
+      "path": "/incidents",
+      "title": "Incidents",
+      "capability": "incidents.view",
+      "task": "P08.07",
+      "live": true,
+      "api": [
+        "incidents.list"
+      ],
+      "states": [
+        "loading",
+        "empty",
+        "error",
+        "forbidden",
+        "stale",
+        "reconnecting"
+      ],
+      "notes": "Persistent critical-first queue with ownership and status.",
+      "optional_api": []
+    },
+    {
+      "id": "incident-detail",
+      "path": "/incidents/:incidentId",
+      "title": "Incident investigation",
+      "capability": "incidents.view",
+      "task": "P08.07",
+      "live": true,
+      "api": [
+        "incidents.detail"
+      ],
+      "states": [
+        "loading",
+        "empty",
+        "error",
+        "forbidden",
+        "not-found",
+        "stale",
+        "conflict"
+      ],
+      "notes": "Evidence, hypotheses (never a verified cause), timeline, ownership, status workflow. Actions need incidents.manage.",
+      "optional_api": [
+        "incidents.transition",
+        "incidents.owner",
+        "incidents.notes",
+        "recommendations.list",
+        "commands.list"
+      ]
+    },
+    {
+      "id": "dispatch",
+      "path": "/dispatch",
+      "title": "Emergency dispatch",
+      "capability": "emergency.view",
+      "task": "P08.07",
+      "live": true,
+      "api": [
+        "emergency.calls.list"
+      ],
+      "states": [
+        "loading",
+        "empty",
+        "error",
+        "forbidden",
+        "stale",
+        "reconnecting"
+      ],
+      "notes": "Calls by type and status; a new call needs emergency.dispatch.",
+      "optional_api": [
+        "emergency.calls.create"
+      ]
+    },
+    {
+      "id": "dispatch-detail",
+      "path": "/dispatch/:callId",
+      "title": "Call, units and routes",
+      "capability": "emergency.view",
+      "task": "P08.07",
+      "live": true,
+      "api": [
+        "emergency.calls.detail"
+      ],
+      "states": [
+        "loading",
+        "empty",
+        "error",
+        "forbidden",
+        "not-found",
+        "stale",
+        "no-route",
+        "conflict"
+      ],
+      "notes": "Route alternatives with ETA and uncertainty, unit assignment, status timeline.",
+      "optional_api": [
+        "emergency.calls.assign",
+        "emergency.calls.transition",
+        "emergency.assignments.transition",
+        "routes.query",
+        "emergency.assignments.route"
+      ]
+    },
+    {
+      "id": "field",
+      "path": "/field",
+      "title": "Field view",
+      "capability": "emergency.view",
+      "task": "P08.07",
+      "live": true,
+      "api": [
+        "emergency.calls.list",
+        "emergency.calls.detail"
+      ],
+      "states": [
+        "loading",
+        "empty",
+        "error",
+        "forbidden",
+        "stale",
+        "reconnecting",
+        "offline"
+      ],
+      "notes": "Mobile-first, read-only: the call, the route, the ETA and what changed. No control panels.",
+      "optional_api": [
+        "incidents.list",
+        "routes.query"
+      ]
+    },
+    {
+      "id": "actions-recommendations",
+      "path": "/actions/recommendations",
+      "title": "Recommendations",
+      "capability": "recommendations.view",
+      "task": "P08.08",
+      "live": true,
+      "api": [
+        "recommendations.list"
+      ],
+      "states": [
+        "loading",
+        "empty",
+        "error",
+        "forbidden",
+        "stale",
+        "expired",
+        "superseded"
+      ],
+      "notes": "Alternatives with predicted benefit and harm and the safety bounds they were checked against. A recommendation is never shown as an executed command.",
+      "optional_api": [
+        "recommendations.request"
+      ]
+    },
+    {
+      "id": "actions-commands",
+      "path": "/actions/commands",
+      "title": "Commands and approvals",
+      "capability": "commands.view",
+      "task": "P08.08",
+      "live": true,
+      "api": [
+        "commands.list"
+      ],
+      "states": [
+        "loading",
+        "empty",
+        "error",
+        "forbidden",
+        "stale",
+        "reconnecting"
+      ],
+      "notes": "Pending approvals first. Every lifecycle state is distinct: requested, policy-unavailable, approved, denied, expired, executing, executed, failed, rolled back.",
+      "optional_api": [
+        "commands.create",
+        "commands.review"
+      ]
+    },
+    {
+      "id": "actions-command-detail",
+      "path": "/actions/commands/:commandId",
+      "title": "Command detail",
+      "capability": "commands.view",
+      "task": "P08.08",
+      "live": true,
+      "api": [
+        "commands.detail"
+      ],
+      "states": [
+        "loading",
+        "error",
+        "forbidden",
+        "not-found",
+        "stale",
+        "conflict"
+      ],
+      "notes": "Target, requester/approver roles, policy result, state history, error, and the verified outcome.",
+      "optional_api": [
+        "commands.review",
+        "outcomes.list",
+        "commands.override"
+      ]
+    },
+    {
+      "id": "actions-outcomes",
+      "path": "/actions/outcomes",
+      "title": "Verified outcomes",
+      "capability": "outcomes.view",
+      "task": "P08.08",
+      "live": false,
+      "api": [
+        "outcomes.list",
+        "outcomes.detail"
+      ],
+      "states": [
+        "loading",
+        "empty",
+        "error",
+        "forbidden"
+      ],
+      "notes": "Effective, ineffective, unsafe (rolled back) and unknown (escalated) with pre/post measurements and the physical undo evidence.",
+      "optional_api": []
+    },
+    {
+      "id": "audit",
+      "path": "/audit",
+      "title": "Audit trail",
+      "capability": "audit.view",
+      "task": "P08.09",
+      "live": false,
+      "api": [
+        "audit.list"
+      ],
+      "states": [
+        "loading",
+        "empty",
+        "error",
+        "forbidden"
+      ],
+      "notes": "Append-only. Filter by actor, entity and time; nothing here can be edited.",
+      "optional_api": [
+        "audit.export"
+      ]
+    },
+    {
+      "id": "operations",
+      "path": "/operations",
+      "title": "Platform status",
+      "capability": "ops.view",
+      "task": "P08.09",
+      "live": true,
+      "api": [
+        "ops.status"
+      ],
+      "states": [
+        "loading",
+        "error",
+        "forbidden",
+        "stale",
+        "degraded"
+      ],
+      "notes": "Service health, data freshness and ingestion lag from real probes; nothing is invented when a probe is unavailable.",
+      "optional_api": []
+    },
+    {
+      "id": "handover",
+      "path": "/handover",
+      "title": "Shift handover",
+      "capability": "handover.view",
+      "task": "P08.09",
+      "live": false,
+      "api": [
+        "handovers.list"
+      ],
+      "states": [
+        "loading",
+        "empty",
+        "error",
+        "forbidden",
+        "conflict"
+      ],
+      "notes": "Structured handover with open items; the incoming shift acknowledges by name.",
+      "optional_api": [
+        "handovers.create",
+        "handovers.acknowledge",
+        "incidents.list",
+        "commands.list",
+        "emergency.calls.list"
+      ]
+    },
+    {
+      "id": "demo",
+      "path": "/demo",
+      "title": "Demo controls",
+      "capability": "demo.control",
+      "task": "P08.09",
+      "live": false,
+      "api": [
+        "demo.runs.list",
+        "demo.runs.start",
+        "demo.runs.detail",
+        "demo.runs.replay",
+        "demo.runs.reset",
+        "demo.audit"
+      ],
+      "states": [
+        "loading",
+        "error",
+        "forbidden",
+        "bound-reached"
+      ],
+      "notes": "Visibly separate from operations: its own banner, its own identity, its own audit trail, its own API.",
+      "optional_api": []
+    }
+  ],
+  "apis": [
+    {
+      "id": "health",
+      "method": "GET",
+      "path": "/api/v1/health",
+      "capability": null,
+      "status": "implemented",
+      "public": true
+    },
+    {
+      "id": "me",
+      "method": "GET",
+      "path": "/api/v1/me",
+      "capability": null,
+      "status": "implemented"
+    },
+    {
+      "id": "topology",
+      "method": "GET",
+      "path": "/api/v1/network/topology",
+      "capability": "map.view",
+      "status": "implemented"
+    },
+    {
+      "id": "devices.list",
+      "method": "GET",
+      "path": "/api/v1/devices",
+      "capability": "map.view",
+      "status": "implemented"
+    },
+    {
+      "id": "devices.detail",
+      "method": "GET",
+      "path": "/api/v1/devices/{device_id}",
+      "capability": "analytics.view",
+      "status": "implemented"
+    },
+    {
+      "id": "network-state",
+      "method": "GET",
+      "path": "/api/v1/network-state/{network_element_type}/{network_element_id}",
+      "capability": "map.view",
+      "status": "implemented"
+    },
+    {
+      "id": "network-state.list",
+      "method": "GET",
+      "path": "/api/v1/network-state",
+      "capability": "map.view",
+      "status": "implemented"
+    },
+    {
+      "id": "kpis.corridors",
+      "method": "GET",
+      "path": "/api/v1/kpis/corridors",
+      "capability": "map.view",
+      "status": "implemented"
+    },
+    {
+      "id": "forecasts.corridors",
+      "method": "GET",
+      "path": "/api/v1/forecasts/corridors",
+      "capability": "analytics.view",
+      "status": "implemented"
+    },
+    {
+      "id": "candidates.list",
+      "method": "GET",
+      "path": "/api/v1/candidates",
+      "capability": "analytics.view",
+      "status": "implemented"
+    },
+    {
+      "id": "observations.list",
+      "method": "GET",
+      "path": "/api/v1/observations",
+      "capability": "map.view",
+      "status": "implemented"
+    },
+    {
+      "id": "incidents.list",
+      "method": "GET",
+      "path": "/api/v1/incidents",
+      "capability": "incidents.view",
+      "status": "implemented"
+    },
+    {
+      "id": "incidents.detail",
+      "method": "GET",
+      "path": "/api/v1/incidents/{incident_id}",
+      "capability": "incidents.view",
+      "status": "implemented"
+    },
+    {
+      "id": "incidents.transition",
+      "method": "POST",
+      "path": "/api/v1/incidents/{incident_id}/transition",
+      "capability": "incidents.manage",
+      "status": "implemented"
+    },
+    {
+      "id": "incidents.owner",
+      "method": "POST",
+      "path": "/api/v1/incidents/{incident_id}/owner",
+      "capability": "incidents.manage",
+      "status": "implemented"
+    },
+    {
+      "id": "incidents.notes",
+      "method": "POST",
+      "path": "/api/v1/incidents/{incident_id}/notes",
+      "capability": "incidents.manage",
+      "status": "implemented"
+    },
+    {
+      "id": "emergency.calls.list",
+      "method": "GET",
+      "path": "/api/v1/emergency/calls",
+      "capability": "emergency.view",
+      "status": "implemented"
+    },
+    {
+      "id": "emergency.calls.detail",
+      "method": "GET",
+      "path": "/api/v1/emergency/calls/{call_id}",
+      "capability": "emergency.view",
+      "status": "implemented"
+    },
+    {
+      "id": "emergency.calls.create",
+      "method": "POST",
+      "path": "/api/v1/emergency/calls",
+      "capability": "emergency.dispatch",
+      "status": "implemented"
+    },
+    {
+      "id": "emergency.calls.assign",
+      "method": "POST",
+      "path": "/api/v1/emergency/calls/{call_id}/assignments",
+      "capability": "emergency.dispatch",
+      "status": "implemented"
+    },
+    {
+      "id": "emergency.calls.transition",
+      "method": "POST",
+      "path": "/api/v1/emergency/calls/{call_id}/transition",
+      "capability": "emergency.dispatch",
+      "status": "implemented"
+    },
+    {
+      "id": "emergency.assignments.transition",
+      "method": "POST",
+      "path": "/api/v1/emergency/assignments/{assignment_id}/transition",
+      "capability": "emergency.dispatch",
+      "status": "implemented"
+    },
+    {
+      "id": "emergency.assignments.route",
+      "method": "POST",
+      "path": "/api/v1/emergency/assignments/{assignment_id}/route",
+      "capability": "emergency.dispatch",
+      "status": "implemented"
+    },
+    {
+      "id": "routes.query",
+      "method": "GET",
+      "path": "/api/v1/routes",
+      "capability": "routes.view",
+      "status": "implemented"
+    },
+    {
+      "id": "recommendations.list",
+      "method": "GET",
+      "path": "/api/v1/recommendations",
+      "capability": "recommendations.view",
+      "status": "implemented"
+    },
+    {
+      "id": "recommendations.request",
+      "method": "POST",
+      "path": "/api/v1/recommendations/{recommendation_id}/request",
+      "capability": "commands.request",
+      "status": "implemented"
+    },
+    {
+      "id": "commands.list",
+      "method": "GET",
+      "path": "/api/v1/commands",
+      "capability": "commands.view",
+      "status": "implemented"
+    },
+    {
+      "id": "commands.detail",
+      "method": "GET",
+      "path": "/api/v1/commands/{command_id}",
+      "capability": "commands.view",
+      "status": "implemented"
+    },
+    {
+      "id": "commands.create",
+      "method": "POST",
+      "path": "/api/v1/commands",
+      "capability": "commands.request",
+      "status": "implemented"
+    },
+    {
+      "id": "commands.review",
+      "method": "POST",
+      "path": "/api/v1/commands/{command_id}/review",
+      "capability": "commands.review",
+      "status": "implemented"
+    },
+    {
+      "id": "commands.override",
+      "method": "POST",
+      "path": "/api/v1/commands/{command_id}/override",
+      "capability": "commands.override",
+      "status": "implemented"
+    },
+    {
+      "id": "outcomes.list",
+      "method": "GET",
+      "path": "/api/v1/outcomes",
+      "capability": "outcomes.view",
+      "status": "implemented"
+    },
+    {
+      "id": "outcomes.detail",
+      "method": "GET",
+      "path": "/api/v1/outcomes/{outcome_id}",
+      "capability": "outcomes.view",
+      "status": "implemented"
+    },
+    {
+      "id": "audit.list",
+      "method": "GET",
+      "path": "/api/v1/audit",
+      "capability": "audit.view",
+      "status": "implemented"
+    },
+    {
+      "id": "audit.export",
+      "method": "GET",
+      "path": "/api/v1/audit/export",
+      "capability": "audit.export",
+      "status": "implemented"
+    },
+    {
+      "id": "ops.status",
+      "method": "GET",
+      "path": "/api/v1/ops/status",
+      "capability": "ops.view",
+      "status": "implemented"
+    },
+    {
+      "id": "handovers.list",
+      "method": "GET",
+      "path": "/api/v1/handovers",
+      "capability": "handover.view",
+      "status": "implemented"
+    },
+    {
+      "id": "handovers.create",
+      "method": "POST",
+      "path": "/api/v1/handovers",
+      "capability": "handover.write",
+      "status": "implemented"
+    },
+    {
+      "id": "handovers.acknowledge",
+      "method": "POST",
+      "path": "/api/v1/handovers/{handover_id}/acknowledge",
+      "capability": "handover.write",
+      "status": "implemented"
+    },
+    {
+      "id": "live",
+      "method": "WEBSOCKET",
+      "path": "/api/v1/live",
+      "capability": "map.view",
+      "status": "implemented"
+    },
+    {
+      "id": "demo.runs.start",
+      "method": "POST",
+      "path": "/scenario-control/v1/runs",
+      "capability": "demo.control",
+      "status": "implemented",
+      "service": "scenario-control"
+    },
+    {
+      "id": "demo.runs.detail",
+      "method": "GET",
+      "path": "/scenario-control/v1/runs/{run_id}",
+      "capability": "demo.control",
+      "status": "implemented",
+      "service": "scenario-control"
+    },
+    {
+      "id": "demo.runs.replay",
+      "method": "POST",
+      "path": "/scenario-control/v1/runs/{run_id}/replay",
+      "capability": "demo.control",
+      "status": "implemented",
+      "service": "scenario-control"
+    },
+    {
+      "id": "demo.runs.reset",
+      "method": "POST",
+      "path": "/scenario-control/v1/runs/{run_id}/reset",
+      "capability": "demo.control",
+      "status": "implemented",
+      "service": "scenario-control"
+    },
+    {
+      "id": "demo.runs.list",
+      "method": "GET",
+      "path": "/scenario-control/v1/runs",
+      "capability": "demo.control",
+      "status": "implemented",
+      "service": "scenario-control"
+    },
+    {
+      "id": "demo.audit",
+      "method": "GET",
+      "path": "/scenario-control/v1/audit",
+      "capability": "demo.control",
+      "status": "implemented",
+      "service": "scenario-control"
+    },
+    {
+      "id": "demo.health",
+      "method": "GET",
+      "path": "/scenario-control/v1/health",
+      "capability": null,
+      "status": "implemented",
+      "public": true,
+      "service": "scenario-control"
+    }
+  ],
+  "journeys": [
+    {
+      "role": "operator",
+      "goal": "Notice a problem on the network, understand it, and get a safe action taken.",
+      "steps": [
+        {
+          "screen": "map",
+          "action": "Watch layers for congestion, closures and stale sensors; open the accessible list when the map is not the right tool."
+        },
+        {
+          "screen": "incidents",
+          "action": "Open the highest-severity unacknowledged incident.",
+          "capability": "incidents.view"
+        },
+        {
+          "screen": "incident-detail",
+          "action": "Read evidence and ranked hypotheses; acknowledge and take ownership.",
+          "capability": "incidents.manage"
+        },
+        {
+          "screen": "actions-recommendations",
+          "action": "Compare alternatives (benefit, harm, bounds); choose one and request it.",
+          "capability": "commands.request"
+        },
+        {
+          "screen": "actions-command-detail",
+          "action": "Follow the command through approval, execution and the verified outcome."
+        }
+      ],
+      "failure_cases": [
+        "live feed drops: the map says it is reconnecting and shows the age of every value",
+        "a target has no fresh evidence: the command is denied as stale_evidence and says why",
+        "the policy engine is down: the command stays requested and is labelled policy unavailable, never approved"
+      ]
+    },
+    {
+      "role": "supervisor",
+      "goal": "Be the second person: approve or refuse what an operator requested, and verify it worked.",
+      "steps": [
+        {
+          "screen": "actions-commands",
+          "action": "Open the pending-approval queue (home).",
+          "capability": "commands.view"
+        },
+        {
+          "screen": "actions-command-detail",
+          "action": "Read target, reason, expected effect, constraints and expiry; approve or deny with a recorded reason after an explicit confirmation.",
+          "capability": "commands.review"
+        },
+        {
+          "screen": "actions-outcomes",
+          "action": "Check the independent outcome; an unsafe outcome shows the rollback and the physical undo evidence.",
+          "capability": "outcomes.view"
+        },
+        {
+          "screen": "handover",
+          "action": "Write the shift handover with open items.",
+          "capability": "handover.write"
+        }
+      ],
+      "failure_cases": [
+        "approving your own request: refused by policy and shown as four-eyes, not hidden",
+        "the command expired while open: shown as expired, approval disabled"
+      ]
+    },
+    {
+      "role": "dispatcher",
+      "goal": "Get the right unit to the scene by the fastest safe route.",
+      "steps": [
+        {
+          "screen": "dispatch",
+          "action": "Take or open a call (home); create one when it arrives.",
+          "capability": "emergency.dispatch"
+        },
+        {
+          "screen": "dispatch-detail",
+          "action": "Compare route alternatives with ETA and uncertainty; assign the unit; record status changes.",
+          "capability": "emergency.dispatch"
+        },
+        {
+          "screen": "actions-commands",
+          "action": "Request signal pre-emption for the selected route (SC-2, needs a second person).",
+          "capability": "commands.request"
+        },
+        {
+          "screen": "dispatch-detail",
+          "action": "Watch the unit and the pre-emption command until the unit is on scene."
+        }
+      ],
+      "failure_cases": [
+        "no open route: the screen says so and asks for a human decision; nothing is guessed",
+        "the unit becomes unavailable: the call stays open and can be reassigned"
+      ]
+    },
+    {
+      "role": "incident_commander",
+      "goal": "Own critical incidents and approve safety-critical emergency actions.",
+      "steps": [
+        {
+          "screen": "incidents",
+          "action": "Open the critical queue (home).",
+          "capability": "incidents.view"
+        },
+        {
+          "screen": "incident-detail",
+          "action": "Escalate, assign and annotate; see linked recommendations and commands.",
+          "capability": "incidents.manage"
+        },
+        {
+          "screen": "actions-commands",
+          "action": "Approve an SC-2 command requested by someone else.",
+          "capability": "commands.review"
+        }
+      ],
+      "failure_cases": [
+        "requesting and approving as the same person: refused, four-eyes holds for commanders too"
+      ]
+    },
+    {
+      "role": "field_responder",
+      "goal": "Know where to go, by which route, when to arrive, and what changed.",
+      "steps": [
+        {
+          "screen": "field",
+          "action": "Read the assigned call, route, ETA and status (home). Read-only on purpose.",
+          "capability": "emergency.view"
+        }
+      ],
+      "failure_cases": [
+        "connectivity lost: the view says offline and shows the age of what it last had, never presenting it as live"
+      ]
+    },
+    {
+      "role": "auditor",
+      "goal": "Reconstruct who did what, when, and under which policy decision.",
+      "steps": [
+        {
+          "screen": "audit",
+          "action": "Filter the append-only trail by actor, entity and time (home).",
+          "capability": "audit.view"
+        },
+        {
+          "screen": "actions-commands",
+          "action": "Open a command and read its policy decision, roles and state history.",
+          "capability": "commands.view"
+        },
+        {
+          "screen": "actions-outcomes",
+          "action": "Read the independent outcome and any rollback evidence.",
+          "capability": "outcomes.view"
+        }
+      ],
+      "failure_cases": [
+        "an attempt to act: every control is absent, not merely disabled, because the role holds none of REQUEST/APPROVE/EXECUTE/OVERRIDE"
+      ]
+    },
+    {
+      "role": "demo_operator",
+      "goal": "Run a simulated scenario for a presentation without touching operations.",
+      "steps": [
+        {
+          "screen": "demo",
+          "action": "Start, replay or reset a scenario (home), under a permanent 'simulated' banner.",
+          "capability": "demo.control"
+        },
+        {
+          "screen": "map",
+          "action": "Show the picture the scenario produced.",
+          "capability": "map.view"
+        }
+      ],
+      "failure_cases": [
+        "too many concurrent runs: the bound is shown, not hidden"
+      ]
+    }
+  ],
+  "_comment_api": "`api` = calls every role that may open the screen is allowed to make; `optional_api` = calls made only when the signed-in role also holds that API's capability (the layer or control is absent otherwise)."
+}

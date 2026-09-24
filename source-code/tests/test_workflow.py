@@ -15,7 +15,12 @@ def test_workflow_has_least_privilege_and_required_jobs() -> None:
     workflow = load_workflow()
 
     assert workflow["permissions"] == {"contents": "read"}
-    assert set(workflow["jobs"]) == {"python", "frontend", "repository-security"}
+    assert set(workflow["jobs"]) == {
+        "python",
+        "frontend",
+        "repository-security",
+        "supply-chain",
+    }
     assert all("permissions" not in job for job in workflow["jobs"].values())
 
 
@@ -32,5 +37,6 @@ def test_workflow_runs_exact_install_and_security_gates() -> None:
         "--skip-dirs /workspace/.venv",
         "--skip-dirs /workspace/source-code/frontend/node_modules",
         "persist-credentials: false",
+        "python3 source-code/security/supply_chain/build_release.py",
     }
     assert not [item for item in sorted(required) if item not in text]

@@ -1,0 +1,11 @@
+{
+  "schema_version": "1.0.0",
+  "metric_name": "command_execution_latency_seconds",
+  "service_name": "command-service",
+  "labels": {
+    "service_name": "command-service",
+    "deployment_type": "simulated",
+    "action_type": "signal_plan_change",
+    "policy_decision": "approved"
+  }
+}

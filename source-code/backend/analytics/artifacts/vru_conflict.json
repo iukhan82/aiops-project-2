@@ -1,0 +1,81 @@
+{
+  "detector": "edge:vru_conflict/1",
+  "params": {
+    "pet_pred_s": 4.0,
+    "severe_pet_s": 1.5,
+    "horizon_s": 6.0,
+    "min_vehicle_speed": 1.0,
+    "min_vru_speed": 0.3,
+    "smooth_frames": 3,
+    "range_m": 35.0,
+    "min_sin_angle": 0.2,
+    "vehicle_model": "constant_turn_rate",
+    "use_acceleration": false,
+    "min_score": 0.1
+  },
+  "scorer": {
+    "features": [
+      "pet_pred",
+      "tau_vehicle",
+      "tau_vru",
+      "vehicle_speed",
+      "vru_speed",
+      "vehicle_accel",
+      "sin_angle",
+      "distance",
+      "abs_yaw_rate",
+      "is_cyclist",
+      "vru_first"
+    ],
+    "mean": [
+      1.754697,
+      2.047677,
+      2.351018,
+      8.129187,
+      1.336468,
+      -1.213286,
+      0.778115,
+      14.013321,
+      0.192597,
+      0.032347,
+      0.452462
+    ],
+    "scale": [
+      1.10002,
+      1.349397,
+      1.854279,
+      4.404944,
+      0.805772,
+      2.102677,
+      0.252046,
+      8.488805,
+      0.224539,
+      0.176919,
+      0.497735
+    ],
+    "coef": [
+      -0.073622,
+      -0.30337,
+      -0.514215,
+      0.024553,
+      0.097372,
+      0.394178,
+      -0.305464,
+      -0.729519,
+      -0.107946,
+      -0.729697,
+      0.035018
+    ],
+    "intercept": -4.124645
+  },
+  "dataset_sha256": "db4064a0ed9c80e303d5c4a3eb533d4bc0cdff9752855c6f352ab56f2c6fd2bf",
+  "selected": "scorer@0.1",
+  "event_precision": 0.228,
+  "event_precision_ci95": [
+    0.149,
+    0.332
+  ],
+  "window_precision": 0.5,
+  "window_precision_basis": "validation site x 5-min windows flagged by the detector that contained a true conflict",
+  "cyclist_mode_validated": false
+}

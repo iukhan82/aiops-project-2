@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://project2.local/contracts/emergency-call/v1/schema.json",
+  "title": "Emergency call",
+  "description": "Vendor-neutral CAD/AVL call abstraction, per docs/SENSOR_AND_DATA_CATALOG.md section 6. Deliberately patient-free: no patient identifier, medical record or health data field exists in this schema, and none may be added without a separate authorization and safety-case decision (AGENTS.md).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "call_id",
+    "call_type",
+    "priority",
+    "location",
+    "geometry_version",
+    "reported_at",
+    "source_reliability",
+    "status",
+    "truth_label"
+  ],
+  "properties": {
+    "schema_version": { "const": "1.0.0" },
+    "call_id": { "type": "string", "format": "uuid" },
+    "call_type": {
+      "type": "string",
+      "enum": ["ambulance", "fire", "police"]
+    },
+    "call_subtype": {
+      "type": "string",
+      "description": "Free-text operational subtype (e.g. 'structure_fire', 'traffic_collision'); never a diagnosis or medical detail."
+    },
+    "priority": { "type": "string", "enum": ["low", "medium", "high", "critical"] },
+    "location": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["coordinate_reference", "latitude", "longitude"],
+      "properties": {
+        "coordinate_reference": { "type": "string", "const": "EPSG:4326" },
+        "latitude": { "type": "number", "minimum": -90, "maximum": 90 },
+        "longitude": { "type": "number", "minimum": -180, "maximum": 180 },
+        "intersection_id": { "type": "string" },
+        "corridor_id": { "type": "string" }
+      }
+    },
+    "geometry_version": { "type": "string", "minLength": 1 },
+    "reported_at": { "type": "string", "format": "date-time" },
+    "source_reliability": {
+      "type": "string",
+      "enum": ["verified_dispatch", "unverified_report", "automated_detection"]
+    },
+    "status": {
+      "type": "string",
+      "enum": ["received", "dispatched", "unit_assigned", "en_route", "on_scene", "cleared", "cancelled"]
+    },
+    "truth_label": {
+      "type": "string",
+      "enum": ["simulated", "measured", "inferred", "predicted", "operator_entered", "verified"]
+    }
+  }
+}

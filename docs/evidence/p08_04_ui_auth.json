@@ -1,0 +1,128 @@
+{
+  "task": "P08.04",
+  "generated_at": "2026-09-21T15:29:36Z",
+  "browser": {
+    "channel": "chrome",
+    "headless": true,
+    "viewport": null
+  },
+  "stack": "real Chrome, real Keycloak (Authorization Code + PKCE), real API on the demo database fed by backend/demo/feeder.py",
+  "tests_total": 16,
+  "tests_passed": 16,
+  "all_passed": true,
+  "tests": [
+    {
+      "title": "auth.spec.ts > sign-in, session and access (P08.04) > an unauthenticated visitor to a protected screen is sent to sign in, and the page never asks for a password itself",
+      "file": "auth.spec.ts",
+      "status": "passed",
+      "duration_ms": 2956,
+      "error": null
+    },
+    {
+      "title": "auth.spec.ts > sign-in, session and access (P08.04) > the first Tab stop is the skip link and it moves focus to main",
+      "file": "auth.spec.ts",
+      "status": "passed",
+      "duration_ms": 1548,
+      "error": null
+    },
+    {
+      "title": "auth.spec.ts > sign-in, session and access (P08.04) > operator: lands on its own home screen with exactly the navigation its capabilities allow",
+      "file": "auth.spec.ts",
+      "status": "passed",
+      "duration_ms": 5102,
+      "error": null
+    },
+    {
+      "title": "auth.spec.ts > sign-in, session and access (P08.04) > supervisor: lands on its own home screen with exactly the navigation its capabilities allow",
+      "file": "auth.spec.ts",
+      "status": "passed",
+      "duration_ms": 4197,
+      "error": null
+    },
+    {
+      "title": "auth.spec.ts > sign-in, session and access (P08.04) > dispatcher: lands on its own home screen with exactly the navigation its capabilities allow",
+      "file": "auth.spec.ts",
+      "status": "passed",
+      "duration_ms": 4236,
+      "error": null
+    },
+    {
+      "title": "auth.spec.ts > sign-in, session and access (P08.04) > incident_commander: lands on its own home screen with exactly the navigation its capabilities allow",
+      "file": "auth.spec.ts",
+      "status": "passed",
+      "duration_ms": 3330,
+      "error": null
+    },
+    {
+      "title": "auth.spec.ts > sign-in, session and access (P08.04) > field_responder: lands on its own home screen with exactly the navigation its capabilities allow",
+      "file": "auth.spec.ts",
+      "status": "passed",
+      "duration_ms": 3633,
+      "error": null
+    },
+    {
+      "title": "auth.spec.ts > sign-in, session and access (P08.04) > auditor: lands on its own home screen with exactly the navigation its capabilities allow",
+      "file": "auth.spec.ts",
+      "status": "passed",
+      "duration_ms": 5630,
+      "error": null
+    },
+    {
+      "title": "auth.spec.ts > sign-in, session and access (P08.04) > demo_operator: lands on its own home screen with exactly the navigation its capabilities allow",
+      "file": "auth.spec.ts",
+      "status": "passed",
+      "duration_ms": 3449,
+      "error": null
+    },
+    {
+      "title": "auth.spec.ts > sign-in, session and access (P08.04) > a deep link is kept across sign-in",
+      "file": "auth.spec.ts",
+      "status": "passed",
+      "duration_ms": 2079,
+      "error": null
+    },
+    {
+      "title": "auth.spec.ts > sign-in, session and access (P08.04) > a screen the role does not hold the capability for says which capability is missing",
+      "file": "auth.spec.ts",
+      "status": "passed",
+      "duration_ms": 4560,
+      "error": null
+    },
+    {
+      "title": "auth.spec.ts > sign-in, session and access (P08.04) > a field responder is refused the command screens, by capability",
+      "file": "auth.spec.ts",
+      "status": "passed",
+      "duration_ms": 3915,
+      "error": null
+    },
+    {
+      "title": "auth.spec.ts > sign-in, session and access (P08.04) > an unknown path shows page-not-found in the shell when signed in, and in the public frame when not",
+      "file": "auth.spec.ts",
+      "status": "passed",
+      "duration_ms": 3941,
+      "error": null
+    },
+    {
+      "title": "auth.spec.ts > sign-in, session and access (P08.04) > a reload keeps the session through the identity provider without asking for the password again",
+      "file": "auth.spec.ts",
+      "status": "passed",
+      "duration_ms": 4413,
+      "error": null
+    },
+    {
+      "title": "auth.spec.ts > sign-in, session and access (P08.04) > when the identity provider has ended the session, a reload asks for sign-in and the destination survives it",
+      "file": "auth.spec.ts",
+      "status": "passed",
+      "duration_ms": 8427,
+      "error": null
+    },
+    {
+      "title": "auth.spec.ts > sign-in, session and access (P08.04) > signing out ends the session at the identity provider too",
+      "file": "auth.spec.ts",
+      "status": "passed",
+      "duration_ms": 3365,
+      "error": null
+    }
+  ],
+  "metrics": {}
+}

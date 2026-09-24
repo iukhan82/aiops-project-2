@@ -1,0 +1,691 @@
+{
+  "acc01_verdict": {
+    "baseline_f1": 0.4797507788161993,
+    "baseline_incident_recall": 0.5,
+    "model_beats_baseline_on_incident_recall": true,
+    "model_beats_baseline_on_row_f1": true,
+    "model_f1": 0.5235294117647059,
+    "model_incident_recall": 0.6041666666666666,
+    "note": "Reported as measured; the comparison stands whether or not the model wins."
+  },
+  "average_precision_model": 0.5232262418428565,
+  "baseline": {
+    "by_demand_scale": [
+      {
+        "f1": 0.0,
+        "fn": 0,
+        "fp": 0,
+        "fpr": 0.0,
+        "n": 1044,
+        "positives": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "tn": 1044,
+        "tp": 0,
+        "value": 1.0
+      },
+      {
+        "f1": 0.18181818181818182,
+        "fn": 53,
+        "fp": 1,
+        "fpr": 0.0004928536224741252,
+        "n": 2088,
+        "positives": 59,
+        "precision": 0.8571428571428571,
+        "recall": 0.1016949152542373,
+        "tn": 2028,
+        "tp": 6,
+        "value": 3.0
+      },
+      {
+        "f1": 0.4146341463414634,
+        "fn": 46,
+        "fp": 2,
+        "fpr": 0.0006516780710329097,
+        "n": 3132,
+        "positives": 63,
+        "precision": 0.8947368421052632,
+        "recall": 0.2698412698412698,
+        "tn": 3067,
+        "tp": 17,
+        "value": 6.0
+      },
+      {
+        "f1": 0.4878048780487804,
+        "fn": 40,
+        "fp": 2,
+        "fpr": 0.0006510416666666666,
+        "n": 3132,
+        "positives": 60,
+        "precision": 0.9090909090909091,
+        "recall": 0.3333333333333333,
+        "tn": 3070,
+        "tp": 20,
+        "value": 12.0
+      },
+      {
+        "f1": 0.7472527472527472,
+        "fn": 23,
+        "fp": 0,
+        "fpr": 0.0,
+        "n": 3132,
+        "positives": 57,
+        "precision": 1.0,
+        "recall": 0.5964912280701754,
+        "tn": 3075,
+        "tp": 34,
+        "value": 24.0
+      }
+    ],
+    "episodes": {
+      "false_alarm_episode_share": 0.10714285714285714,
+      "false_alarm_episodes": 3,
+      "false_alarm_episodes_per_device_hour": 0.029294491008218734,
+      "incident_recall": 0.5,
+      "incidents": 48,
+      "incidents_detected": 24,
+      "median_detection_delay_s": 74.0,
+      "missed_incident_ids": [
+        "p04-test-s20260925-blockage-12x-a-inc-corridor-b",
+        "p04-test-s20260925-blockage-12x-a-inc-corridor-c",
+        "p04-test-s20260925-blockage-12x-b-inc-corridor-a",
+        "p04-test-s20260925-blockage-12x-b-inc-corridor-c",
+        "p04-test-s20260925-blockage-24x-a-inc-corridor-b",
+        "p04-test-s20260925-blockage-24x-b-inc-corridor-a",
+        "p04-test-s20260925-blockage-3x-a-inc-corridor-a",
+        "p04-test-s20260925-blockage-3x-b-inc-corridor-c",
+        "p04-test-s20260925-blockage-6x-a-inc-corridor-a",
+        "p04-test-s20260925-blockage-6x-a-inc-corridor-c",
+        "p04-test-s20260925-blockage-6x-b-inc-corridor-a",
+        "p04-test-s20260926-blockage-12x-a-inc-corridor-c",
+        "p04-test-s20260926-blockage-12x-b-inc-corridor-a",
+        "p04-test-s20260926-blockage-12x-b-inc-corridor-c",
+        "p04-test-s20260926-blockage-24x-a-inc-corridor-a",
+        "p04-test-s20260926-blockage-3x-a-inc-corridor-a",
+        "p04-test-s20260926-blockage-3x-a-inc-corridor-b",
+        "p04-test-s20260926-blockage-3x-a-inc-corridor-c",
+        "p04-test-s20260926-blockage-3x-b-inc-corridor-a",
+        "p04-test-s20260926-blockage-3x-b-inc-corridor-b",
+        "p04-test-s20260926-blockage-3x-b-inc-corridor-c",
+        "p04-test-s20260926-blockage-6x-a-inc-corridor-a",
+        "p04-test-s20260926-blockage-6x-a-inc-corridor-c",
+        "p04-test-s20260926-blockage-6x-b-inc-corridor-a"
+      ],
+      "p90_detection_delay_s": 158.4,
+      "true_alarm_episodes": 25
+    },
+    "recall_by_stall_distance_m": [
+      {
+        "f1": 0.6713286713286714,
+        "fn": 47,
+        "fp": 0,
+        "fpr": 0.0,
+        "n": 95,
+        "positives": 95,
+        "precision": 1.0,
+        "recall": 0.5052631578947369,
+        "tn": 0,
+        "tp": 48,
+        "value": 25
+      },
+      {
+        "f1": 0.6292134831460674,
+        "fn": 33,
+        "fp": 0,
+        "fpr": 0.0,
+        "n": 61,
+        "positives": 61,
+        "precision": 1.0,
+        "recall": 0.45901639344262296,
+        "tn": 0,
+        "tp": 28,
+        "value": 45
+      },
+      {
+        "f1": 0.02380952380952381,
+        "fn": 82,
+        "fp": 0,
+        "fpr": 0.0,
+        "n": 83,
+        "positives": 83,
+        "precision": 1.0,
+        "recall": 0.012048192771084338,
+        "tn": 0,
+        "tp": 1,
+        "value": 70
+      }
+    ],
+    "rows": {
+      "f1": 0.4797507788161993,
+      "fn": 162,
+      "fp": 5,
+      "fpr": 0.0004068679306697046,
+      "n": 12528,
+      "positives": 239,
+      "precision": 0.9390243902439024,
+      "recall": 0.32217573221757323,
+      "tn": 12284,
+      "tp": 77
+    },
+    "rows_ci95": {
+      "f1": [
+        0.34459396193946756,
+        0.5965299277605779
+      ],
+      "precision": [
+        0.8790940766550522,
+        0.9773013407455854
+      ],
+      "recall": [
+        0.2129513888888889,
+        0.4315781363306743
+      ]
+    }
+  },
+  "failure_cases_baseline": {
+    "false_alarm_episodes_total": 3,
+    "false_alarm_episodes_worst": [
+      {
+        "demand_scale": 12.0,
+        "device_id": "loop-int-c3-int-c2",
+        "intervals": 1,
+        "max_occ": 0.23430000245571136,
+        "min_speed": 0.6399999856948853,
+        "run_id": "p04-test-s20260925-blockage-12x-b",
+        "run_spec": "blockage-12x-b",
+        "start": "2026-09-18T09:06:00.000Z"
+      },
+      {
+        "demand_scale": 12.0,
+        "device_id": "loop-int-c3-int-c4",
+        "intervals": 1,
+        "max_occ": 0.05590000003576279,
+        "min_speed": 2.680000066757202,
+        "run_id": "p04-test-s20260926-blockage-12x-a",
+        "run_spec": "blockage-12x-a",
+        "start": "2026-09-18T09:10:00.000Z"
+      },
+      {
+        "demand_scale": 6.0,
+        "device_id": "loop-int-a3-int-a4",
+        "intervals": 1,
+        "max_occ": 0.05040000006556511,
+        "min_speed": 2.9800000190734863,
+        "run_id": "p04-test-s20260926-blockage-6x-a",
+        "run_spec": "blockage-6x-a",
+        "start": "2026-09-18T09:07:30.000Z"
+      }
+    ],
+    "missed_incidents_total": 24,
+    "missed_incidents_worst": [
+      {
+        "demand_scale": 3.0,
+        "incident_id": "p04-test-s20260925-blockage-3x-a-inc-corridor-a",
+        "max_occ_during_incident": 0.008999999612569809,
+        "min_speed_during_incident": 13.899999618530273,
+        "positive_intervals": 8,
+        "run_spec": "blockage-3x-a",
+        "stall_distance_from_loop_m": 70
+      },
+      {
+        "demand_scale": 3.0,
+        "incident_id": "p04-test-s20260925-blockage-3x-b-inc-corridor-c",
+        "max_occ_during_incident": 0.02710000053048134,
+        "min_speed_during_incident": 5.539999961853027,
+        "positive_intervals": 8,
+        "run_spec": "blockage-3x-b",
+        "stall_distance_from_loop_m": 70
+      },
+      {
+        "demand_scale": 6.0,
+        "incident_id": "p04-test-s20260925-blockage-6x-b-inc-corridor-a",
+        "max_occ_during_incident": 0.012299999594688416,
+        "min_speed_during_incident": 12.210000038146973,
+        "positive_intervals": 8,
+        "run_spec": "blockage-6x-b",
+        "stall_distance_from_loop_m": 70
+      },
+      {
+        "demand_scale": 12.0,
+        "incident_id": "p04-test-s20260926-blockage-12x-b-inc-corridor-a",
+        "max_occ_during_incident": 0.00989999994635582,
+        "min_speed_during_incident": 13.899999618530273,
+        "positive_intervals": 8,
+        "run_spec": "blockage-12x-b",
+        "stall_distance_from_loop_m": 25
+      },
+      {
+        "demand_scale": 12.0,
+        "incident_id": "p04-test-s20260925-blockage-12x-b-inc-corridor-a",
+        "max_occ_during_incident": 0.016699999570846558,
+        "min_speed_during_incident": 9.0,
+        "positive_intervals": 6,
+        "run_spec": "blockage-12x-b",
+        "stall_distance_from_loop_m": 70
+      },
+      {
+        "demand_scale": 12.0,
+        "incident_id": "p04-test-s20260925-blockage-12x-b-inc-corridor-c",
+        "max_occ_during_incident": 0.04190000146627426,
+        "min_speed_during_incident": 3.5799999237060547,
+        "positive_intervals": 5,
+        "run_spec": "blockage-12x-b",
+        "stall_distance_from_loop_m": 70
+      },
+      {
+        "demand_scale": 24.0,
+        "incident_id": "p04-test-s20260925-blockage-24x-a-inc-corridor-b",
+        "max_occ_during_incident": 0.04879999905824661,
+        "min_speed_during_incident": 8.020000457763672,
+        "positive_intervals": 5,
+        "run_spec": "blockage-24x-a",
+        "stall_distance_from_loop_m": 25
+      },
+      {
+        "demand_scale": 12.0,
+        "incident_id": "p04-test-s20260926-blockage-12x-a-inc-corridor-c",
+        "max_occ_during_incident": 0.04529999941587448,
+        "min_speed_during_incident": 3.309999942779541,
+        "positive_intervals": 5,
+        "run_spec": "blockage-12x-a",
+        "stall_distance_from_loop_m": 70
+      }
+    ]
+  },
+  "failure_cases_model": {
+    "false_alarm_episodes_total": 4,
+    "false_alarm_episodes_worst": [
+      {
+        "demand_scale": 24.0,
+        "device_id": "loop-int-a3-int-a4",
+        "intervals": 3,
+        "max_occ": 0.0421999990940094,
+        "min_speed": 3.559999942779541,
+        "run_id": "p04-test-s20260926-blockage-24x-b",
+        "run_spec": "blockage-24x-b",
+        "start": "2026-09-18T09:03:30.000Z"
+      },
+      {
+        "demand_scale": 12.0,
+        "device_id": "loop-int-b3-int-b4",
+        "intervals": 1,
+        "max_occ": 0.3741999864578247,
+        "min_speed": 2.930000066757202,
+        "run_id": "p04-test-s20260926-blockage-12x-a",
+        "run_spec": "blockage-12x-a",
+        "start": "2026-09-18T09:08:00.000Z"
+      },
+      {
+        "demand_scale": 6.0,
+        "device_id": "loop-int-b3-int-b4",
+        "intervals": 1,
+        "max_occ": 0.04360000044107437,
+        "min_speed": 3.440000057220459,
+        "run_id": "p04-test-s20260926-blockage-6x-b",
+        "run_spec": "blockage-6x-b",
+        "start": "2026-09-18T09:14:30.000Z"
+      },
+      {
+        "demand_scale": 6.0,
+        "device_id": "loop-int-c2-int-c1",
+        "intervals": 1,
+        "max_occ": 0.03909999877214432,
+        "min_speed": 3.8399999141693115,
+        "run_id": "p04-test-s20260925-blockage-6x-a",
+        "run_spec": "blockage-6x-a",
+        "start": "2026-09-18T09:15:00.000Z"
+      }
+    ],
+    "missed_incidents_total": 19,
+    "missed_incidents_worst": [
+      {
+        "demand_scale": 3.0,
+        "incident_id": "p04-test-s20260925-blockage-3x-a-inc-corridor-a",
+        "max_occ_during_incident": 0.008999999612569809,
+        "min_speed_during_incident": 13.899999618530273,
+        "positive_intervals": 8,
+        "run_spec": "blockage-3x-a",
+        "stall_distance_from_loop_m": 70
+      },
+      {
+        "demand_scale": 3.0,
+        "incident_id": "p04-test-s20260925-blockage-3x-b-inc-corridor-c",
+        "max_occ_during_incident": 0.02710000053048134,
+        "min_speed_during_incident": 5.539999961853027,
+        "positive_intervals": 8,
+        "run_spec": "blockage-3x-b",
+        "stall_distance_from_loop_m": 70
+      },
+      {
+        "demand_scale": 6.0,
+        "incident_id": "p04-test-s20260925-blockage-6x-b-inc-corridor-a",
+        "max_occ_during_incident": 0.012299999594688416,
+        "min_speed_during_incident": 12.210000038146973,
+        "positive_intervals": 8,
+        "run_spec": "blockage-6x-b",
+        "stall_distance_from_loop_m": 70
+      },
+      {
+        "demand_scale": 6.0,
+        "incident_id": "p04-test-s20260925-blockage-6x-b-inc-corridor-c",
+        "max_occ_during_incident": 0.06970000267028809,
+        "min_speed_during_incident": 5.739999771118164,
+        "positive_intervals": 8,
+        "run_spec": "blockage-6x-b",
+        "stall_distance_from_loop_m": 70
+      },
+      {
+        "demand_scale": 12.0,
+        "incident_id": "p04-test-s20260926-blockage-12x-b-inc-corridor-a",
+        "max_occ_during_incident": 0.00989999994635582,
+        "min_speed_during_incident": 13.899999618530273,
+        "positive_intervals": 8,
+        "run_spec": "blockage-12x-b",
+        "stall_distance_from_loop_m": 25
+      },
+      {
+        "demand_scale": 12.0,
+        "incident_id": "p04-test-s20260925-blockage-12x-b-inc-corridor-a",
+        "max_occ_during_incident": 0.016699999570846558,
+        "min_speed_during_incident": 9.0,
+        "positive_intervals": 6,
+        "run_spec": "blockage-12x-b",
+        "stall_distance_from_loop_m": 70
+      },
+      {
+        "demand_scale": 24.0,
+        "incident_id": "p04-test-s20260925-blockage-24x-a-inc-corridor-b",
+        "max_occ_during_incident": 0.04879999905824661,
+        "min_speed_during_incident": 8.020000457763672,
+        "positive_intervals": 5,
+        "run_spec": "blockage-24x-a",
+        "stall_distance_from_loop_m": 25
+      },
+      {
+        "demand_scale": 3.0,
+        "incident_id": "p04-test-s20260926-blockage-3x-a-inc-corridor-b",
+        "max_occ_during_incident": 0.09860000014305115,
+        "min_speed_during_incident": 6.269999980926514,
+        "positive_intervals": 5,
+        "run_spec": "blockage-3x-a",
+        "stall_distance_from_loop_m": 45
+      }
+    ]
+  },
+  "model": {
+    "by_demand_scale": [
+      {
+        "f1": 0.0,
+        "fn": 0,
+        "fp": 0,
+        "fpr": 0.0,
+        "n": 1044,
+        "positives": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "tn": 1044,
+        "tp": 0,
+        "value": 1.0
+      },
+      {
+        "f1": 0.2352941176470588,
+        "fn": 51,
+        "fp": 1,
+        "fpr": 0.0004928536224741252,
+        "n": 2088,
+        "positives": 59,
+        "precision": 0.8888888888888888,
+        "recall": 0.13559322033898305,
+        "tn": 2028,
+        "tp": 8,
+        "value": 3.0
+      },
+      {
+        "f1": 0.37037037037037035,
+        "fn": 48,
+        "fp": 3,
+        "fpr": 0.0009775171065493646,
+        "n": 3132,
+        "positives": 63,
+        "precision": 0.8333333333333334,
+        "recall": 0.23809523809523808,
+        "tn": 3066,
+        "tp": 15,
+        "value": 6.0
+      },
+      {
+        "f1": 0.5747126436781609,
+        "fn": 35,
+        "fp": 2,
+        "fpr": 0.0006510416666666666,
+        "n": 3132,
+        "positives": 60,
+        "precision": 0.9259259259259259,
+        "recall": 0.4166666666666667,
+        "tn": 3070,
+        "tp": 25,
+        "value": 12.0
+      },
+      {
+        "f1": 0.7884615384615385,
+        "fn": 16,
+        "fp": 6,
+        "fpr": 0.001951219512195122,
+        "n": 3132,
+        "positives": 57,
+        "precision": 0.8723404255319149,
+        "recall": 0.7192982456140351,
+        "tn": 3069,
+        "tp": 41,
+        "value": 24.0
+      }
+    ],
+    "episodes": {
+      "false_alarm_episode_share": 0.12121212121212122,
+      "false_alarm_episodes": 4,
+      "false_alarm_episodes_per_device_hour": 0.039059321344291645,
+      "incident_recall": 0.6041666666666666,
+      "incidents": 48,
+      "incidents_detected": 29,
+      "median_detection_delay_s": 64.0,
+      "missed_incident_ids": [
+        "p04-test-s20260925-blockage-12x-a-inc-corridor-b",
+        "p04-test-s20260925-blockage-12x-b-inc-corridor-a",
+        "p04-test-s20260925-blockage-24x-a-inc-corridor-b",
+        "p04-test-s20260925-blockage-3x-a-inc-corridor-a",
+        "p04-test-s20260925-blockage-3x-b-inc-corridor-c",
+        "p04-test-s20260925-blockage-6x-a-inc-corridor-a",
+        "p04-test-s20260925-blockage-6x-a-inc-corridor-c",
+        "p04-test-s20260925-blockage-6x-b-inc-corridor-a",
+        "p04-test-s20260925-blockage-6x-b-inc-corridor-c",
+        "p04-test-s20260926-blockage-12x-b-inc-corridor-a",
+        "p04-test-s20260926-blockage-3x-a-inc-corridor-a",
+        "p04-test-s20260926-blockage-3x-a-inc-corridor-b",
+        "p04-test-s20260926-blockage-3x-a-inc-corridor-c",
+        "p04-test-s20260926-blockage-3x-b-inc-corridor-a",
+        "p04-test-s20260926-blockage-3x-b-inc-corridor-b",
+        "p04-test-s20260926-blockage-3x-b-inc-corridor-c",
+        "p04-test-s20260926-blockage-6x-a-inc-corridor-a",
+        "p04-test-s20260926-blockage-6x-a-inc-corridor-c",
+        "p04-test-s20260926-blockage-6x-b-inc-corridor-a"
+      ],
+      "p90_detection_delay_s": 151.4,
+      "true_alarm_episodes": 29
+    },
+    "recall_by_stall_distance_m": [
+      {
+        "f1": 0.6986301369863014,
+        "fn": 44,
+        "fp": 0,
+        "fpr": 0.0,
+        "n": 95,
+        "positives": 95,
+        "precision": 1.0,
+        "recall": 0.5368421052631579,
+        "tn": 0,
+        "tp": 51,
+        "value": 25
+      },
+      {
+        "f1": 0.6593406593406593,
+        "fn": 31,
+        "fp": 0,
+        "fpr": 0.0,
+        "n": 61,
+        "positives": 61,
+        "precision": 1.0,
+        "recall": 0.4918032786885246,
+        "tn": 0,
+        "tp": 30,
+        "value": 45
+      },
+      {
+        "f1": 0.1758241758241758,
+        "fn": 75,
+        "fp": 0,
+        "fpr": 0.0,
+        "n": 83,
+        "positives": 83,
+        "precision": 1.0,
+        "recall": 0.0963855421686747,
+        "tn": 0,
+        "tp": 8,
+        "value": 70
+      }
+    ],
+    "rows": {
+      "f1": 0.5235294117647059,
+      "fn": 150,
+      "fp": 12,
+      "fpr": 0.0009764830336072911,
+      "n": 12528,
+      "positives": 239,
+      "precision": 0.8811881188118812,
+      "recall": 0.3723849372384937,
+      "tn": 12277,
+      "tp": 89
+    },
+    "rows_ci95": {
+      "f1": [
+        0.37858036272670426,
+        0.6472820604118449
+      ],
+      "precision": [
+        0.8332943925233646,
+        0.9367286392405063
+      ],
+      "recall": [
+        0.2431629785324611,
+        0.5088493348503411
+      ]
+    }
+  },
+  "model_abstention": {
+    "abstain_rate": 0.0026340996168582377,
+    "positive_rate_among_abstained": 0.48484848484848486,
+    "row_metrics_if_abstain_counted_as_alarm": {
+      "f1": 0.5630026809651475,
+      "fn": 134,
+      "fp": 29,
+      "fpr": 0.002359833997884287,
+      "n": 12528,
+      "positives": 239,
+      "precision": 0.7835820895522388,
+      "recall": 0.4393305439330544,
+      "tn": 12260,
+      "tp": 105
+    }
+  },
+  "model_reliability": {
+    "bins": [
+      {
+        "mean_predicted": 0.009857190772891045,
+        "n": 12056,
+        "observed_rate": 0.00829462508294625,
+        "range": [
+          0.0,
+          0.05
+        ]
+      },
+      {
+        "mean_predicted": 0.06837966293096542,
+        "n": 238,
+        "observed_rate": 0.09243697478991597,
+        "range": [
+          0.05,
+          0.1
+        ]
+      },
+      {
+        "mean_predicted": 0.14332982897758484,
+        "n": 85,
+        "observed_rate": 0.10588235294117647,
+        "range": [
+          0.1,
+          0.2
+        ]
+      },
+      {
+        "mean_predicted": 0.2908274531364441,
+        "n": 33,
+        "observed_rate": 0.30303030303030304,
+        "range": [
+          0.2,
+          0.4
+        ]
+      },
+      {
+        "mean_predicted": 0.49228084087371826,
+        "n": 17,
+        "observed_rate": 0.6470588235294118,
+        "range": [
+          0.4,
+          0.6
+        ]
+      },
+      {
+        "mean_predicted": 0.7163920402526855,
+        "n": 21,
+        "observed_rate": 0.8095238095238095,
+        "range": [
+          0.6,
+          0.8
+        ]
+      },
+      {
+        "mean_predicted": 0.9563647508621216,
+        "n": 78,
+        "observed_rate": 0.8974358974358975,
+        "range": [
+          0.8,
+          1.0
+        ]
+      }
+    ],
+    "brier": 0.011807393282651901,
+    "ece": 0.002979973269243503
+  },
+  "paired_delta_model_minus_baseline_cluster_bootstrap": {
+    "f1": {
+      "ci95": [
+        0.006565122332964071,
+        0.08503653835455784
+      ],
+      "mean": 0.04409621384460206
+    },
+    "precision": {
+      "ci95": [
+        -0.12103990637876182,
+        0.027859386548410876
+      ],
+      "mean": -0.0528695177957038
+    },
+    "recall": {
+      "ci95": [
+        0.009439895294986239,
+        0.10066229976249431
+      ],
+      "mean": 0.05140211704710298
+    }
+  }
+}

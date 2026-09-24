@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  P03.01 versioned 12-intersection / three-corridor district: node (junction) definitions.
+  geometry_version: 2026-09-18.1 (matches source-code/contracts/road-geometry/v1 semantics)
+
+  Layout: three parallel east-west corridors (A, B, C) of four intersections
+  each, connected by two north-south cross-streets at the west (x=0) and
+  east (x=900) columns. All twelve intersections are traffic-light controlled.
+-->
+<nodes>
+  <!-- Corridor A (y=0) -->
+  <node id="int-a1" x="0"   y="0"   type="traffic_light"/>
+  <node id="int-a2" x="300" y="0"   type="traffic_light"/>
+  <node id="int-a3" x="600" y="0"   type="traffic_light"/>
+  <node id="int-a4" x="900" y="0"   type="traffic_light"/>
+
+  <!-- Corridor B (y=400) -->
+  <node id="int-b1" x="0"   y="400" type="traffic_light"/>
+  <node id="int-b2" x="300" y="400" type="traffic_light"/>
+  <node id="int-b3" x="600" y="400" type="traffic_light"/>
+  <node id="int-b4" x="900" y="400" type="traffic_light"/>
+
+  <!-- Corridor C (y=800) -->
+  <node id="int-c1" x="0"   y="800" type="traffic_light"/>
+  <node id="int-c2" x="300" y="800" type="traffic_light"/>
+  <node id="int-c3" x="600" y="800" type="traffic_light"/>
+  <node id="int-c4" x="900" y="800" type="traffic_light"/>
+</nodes>

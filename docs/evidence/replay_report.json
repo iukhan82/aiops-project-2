@@ -1,0 +1,12 @@
+{
+  "event_stream_count": 4,
+  "manifest_sha256": "195ec38ea6c67f473b6af9dba02447c06a3eb4a50f2f1d34d8ea18e669c42d70",
+  "manifest_verified": true,
+  "replay_accepted_count": 1715,
+  "replay_accepted_sha256": "443fb2999c5c85d08356dfa78affcad86191643107f690897ca4f9a855ae43ff",
+  "replay_deterministic": true,
+  "replay_idempotent_under_duplication": true,
+  "replay_rejected_count": 0,
+  "source_file_count": 12,
+  "total_events": 1715
+}

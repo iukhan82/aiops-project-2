@@ -1,0 +1,20 @@
+{
+  "_invalid_because": "classification is 'probably_fine', not one of the enumerated effective/ineffective/unsafe/unknown values; a free-text classification would let a real outcome go unclassified.",
+  "schema_version": "1.0.0",
+  "outcome_id": "5a4b3c2d-1e0f-4a9b-8c7d-6e5f4a3b2c1d",
+  "command_id": "2e1a4c3b-6f5d-4e2a-8b3c-9d0e1f2a3b4c",
+  "pre_window": {
+    "from": "2026-09-18T09:04:00Z",
+    "to": "2026-09-18T09:09:00Z",
+    "measurements": [{ "name": "queue_length", "value": 9, "unit": "vehicle_count" }]
+  },
+  "post_window": {
+    "from": "2026-09-18T09:10:00Z",
+    "to": "2026-09-18T09:15:00Z",
+    "measurements": [{ "name": "queue_length", "value": 4, "unit": "vehicle_count" }]
+  },
+  "classification": "probably_fine",
+  "verified_at": "2026-09-18T09:15:30Z",
+  "verifier": "outcome-verifier-service",
+  "rollback_triggered": false
+}

@@ -1,0 +1,213 @@
+{
+  "dataset_sha256": "f361f3b87cc8c0727727999ed8b8c090faa3f2b7f3954380e1efd405676fc6e2",
+  "detector": "fusion:stall/1",
+  "edge_model": "traffic-safety-blockage/1.0.0 (P04.03/04, trained on the P04 dataset; every run here is unseen by it)",
+  "grid_search": [
+    {
+      "params": {
+        "k_min": 1,
+        "require_corroboration": false,
+        "solo_probability": 0.9
+      },
+      "train_f1": 0.359,
+      "train_recall": 0.933,
+      "validation_f1": 0.333,
+      "validation_false_alarms_per_free_hour": 1.167,
+      "validation_recall": 1.0
+    },
+    {
+      "params": {
+        "k_min": 2,
+        "require_corroboration": false,
+        "solo_probability": 0.9
+      },
+      "train_f1": 0.586,
+      "train_recall": 0.8,
+      "validation_f1": 0.5,
+      "validation_false_alarms_per_free_hour": 0.444,
+      "validation_recall": 0.833
+    },
+    {
+      "params": {
+        "k_min": 3,
+        "require_corroboration": false,
+        "solo_probability": 0.9
+      },
+      "train_f1": 0.628,
+      "train_recall": 0.733,
+      "validation_f1": 0.615,
+      "validation_false_alarms_per_free_hour": 0.111,
+      "validation_recall": 0.667
+    },
+    {
+      "params": {
+        "k_min": 1,
+        "require_corroboration": true,
+        "solo_probability": 0.9
+      },
+      "train_f1": 0.545,
+      "train_recall": 0.6,
+      "validation_f1": 0.462,
+      "validation_false_alarms_per_free_hour": 0.167,
+      "validation_recall": 0.5
+    },
+    {
+      "params": {
+        "k_min": 1,
+        "require_corroboration": true,
+        "solo_probability": 0.97
+      },
+      "train_f1": 0.5,
+      "train_recall": 0.467,
+      "validation_f1": 0.462,
+      "validation_false_alarms_per_free_hour": 0.167,
+      "validation_recall": 0.5
+    },
+    {
+      "params": {
+        "k_min": 2,
+        "require_corroboration": true,
+        "solo_probability": 0.9
+      },
+      "train_f1": 0.6,
+      "train_recall": 0.6,
+      "validation_f1": 0.545,
+      "validation_false_alarms_per_free_hour": 0.111,
+      "validation_recall": 0.5
+    },
+    {
+      "params": {
+        "k_min": 2,
+        "require_corroboration": true,
+        "solo_probability": 0.97
+      },
+      "train_f1": 0.5,
+      "train_recall": 0.467,
+      "validation_f1": 0.545,
+      "validation_false_alarms_per_free_hour": 0.111,
+      "validation_recall": 0.5
+    },
+    {
+      "params": {
+        "k_min": 3,
+        "require_corroboration": true,
+        "solo_probability": 0.9
+      },
+      "train_f1": 0.571,
+      "train_recall": 0.533,
+      "validation_f1": 0.6,
+      "validation_false_alarms_per_free_hour": 0.056,
+      "validation_recall": 0.5
+    },
+    {
+      "params": {
+        "k_min": 3,
+        "require_corroboration": true,
+        "solo_probability": 0.97
+      },
+      "train_f1": 0.519,
+      "train_recall": 0.467,
+      "validation_f1": 0.6,
+      "validation_false_alarms_per_free_hour": 0.056,
+      "validation_recall": 0.5
+    }
+  ],
+  "limitations": [
+    "Only 33 measured incidents across TRAIN+VALIDATION+TEST blockage runs (6 in TEST): intervals are wide.",
+    "Recall is bounded by loop placement: a blockage 70 m past the loop shows only once the queue grows back to it (see recall by distance).",
+    "The edge model was trained on 900 s uniform-demand runs; these are 180 min peak-shaped runs (a real distribution shift).",
+    "Synthetic physics only; no claim about real roads."
+  ],
+  "post_hoc_analyses": [
+    "adjacent-segment precision was added after the first TEST scoring (parameters and TEST candidates unchanged); TEST was scored again, non-selecting, to report it"
+  ],
+  "schema": "stall-fusion-evaluation-v1",
+  "selected_params": {
+    "k_min": 3,
+    "require_corroboration": false,
+    "solo_probability": 0.9
+  },
+  "test": {
+    "candidates": 13,
+    "candidates_matched": 5,
+    "candidates_on_an_adjacent_segment_during_an_incident": 0,
+    "detection_delay_s_median": 139.0,
+    "detection_delay_s_p90": 145.0,
+    "false_alarms_in_incident_free_runs": 3,
+    "false_alarms_per_incident_free_hour": 0.167,
+    "incident_free_hours": 18.0,
+    "incidents": 6,
+    "incidents_detected": 5,
+    "mean_confidence_true_vs_false": {
+      "matched": 0.979,
+      "unmatched": 0.978
+    },
+    "precision": 0.385,
+    "precision_ci95": [
+      0.177,
+      0.645
+    ],
+    "precision_if_adjacent_segment_counts": 0.385,
+    "recall": 0.833,
+    "recall_by_blockage_distance_m": {
+      "25": {
+        "detected": 2,
+        "incidents": 2
+      },
+      "45": {
+        "detected": 3,
+        "incidents": 3
+      },
+      "70": {
+        "detected": 0,
+        "incidents": 1
+      }
+    },
+    "recall_ci95": [
+      0.436,
+      0.97
+    ]
+  },
+  "truth": "SUMO stop-output measured blockage windows (incidents.jsonl); a candidate matches an incident on the same segment overlapping it +-60 s",
+  "validation": {
+    "candidates": 7,
+    "candidates_matched": 4,
+    "candidates_on_an_adjacent_segment_during_an_incident": 1,
+    "detection_delay_s_median": 134.5,
+    "detection_delay_s_p90": 135.0,
+    "false_alarms_in_incident_free_runs": 2,
+    "false_alarms_per_incident_free_hour": 0.111,
+    "incident_free_hours": 18.0,
+    "incidents": 6,
+    "incidents_detected": 4,
+    "mean_confidence_true_vs_false": {
+      "matched": 0.952,
+      "unmatched": 0.805
+    },
+    "precision": 0.571,
+    "precision_ci95": [
+      0.25,
+      0.842
+    ],
+    "precision_if_adjacent_segment_counts": 0.714,
+    "recall": 0.667,
+    "recall_by_blockage_distance_m": {
+      "25": {
+        "detected": 1,
+        "incidents": 1
+      },
+      "45": {
+        "detected": 3,
+        "incidents": 4
+      },
+      "70": {
+        "detected": 0,
+        "incidents": 1
+      }
+    },
+    "recall_ci95": [
+      0.3,
+      0.903
+    ]
+  }
+}

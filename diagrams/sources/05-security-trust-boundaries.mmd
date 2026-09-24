@@ -1,0 +1,60 @@
+%%{init: {"flowchart": {"htmlLabels": true, "curve": "linear"}} }%%
+flowchart TB
+  subgraph TZ0["Trust zone 0: Device/edge (per-device mTLS identity, ADR-0002/P05.02)"]
+    DEV["Simulated devices"]
+    EDGE["Edge runtime + inference\nnon-root container (P09.04)"]
+  end
+
+  subgraph TZ1["Trust zone 1: Broker (mTLS termination, topic ACL)"]
+    MQTT["MQTT broker\ndefault-deny topic ACL"]
+  end
+
+  subgraph TZ2["Trust zone 2: Central backbone (internal-only network policy)"]
+    KAFKA["Kafka-compatible stream"]
+  end
+
+  subgraph TZ3["Trust zone 3: Central services (K8s RBAC + network policy, P09.04)"]
+    SVC["Ingestion / state / analytics / incident / emergency / optimization / command / outcome services\nscoped DB roles, least privilege"]
+  end
+
+  subgraph TZ4["Trust zone 4: Adapter (most restricted; only system:command-executor identity reaches it, P02.08)"]
+    ADAPT["Simulator adapters"]
+  end
+
+  subgraph TZ5["Trust zone 5: Identity and policy (Keycloak realm, OPA bundle)"]
+    KC["Keycloak\nOIDC/OAuth2, PKCE, short-lived tokens"]
+    OPA["OPA\ndefault-deny, policy_unavailable = deny"]
+  end
+
+  subgraph TZ6["Trust zone 6: Data (not public, scoped roles)"]
+    PG["PostgreSQL/PostGIS"]
+    OBJ["Object storage"]
+    AUD[("Audit\nappend-only, P09.05")]
+  end
+
+  subgraph TZ7["Trust zone 7: Authenticated user (browser, OIDC token, role-scoped)"]
+    USER["Operator/Dispatcher/Supervisor/Incident Commander/Auditor/Field/Demo\n(P02.08 role separation)"]
+  end
+
+  subgraph TZ8["Trust zone 8: Demo/scenario-control (isolated identity, P05.09)"]
+    DEMO["Scenario control API\nno path to command/v1 or adapters"]
+  end
+
+  DEV -->|"TLS 8883, cert auth"| MQTT
+  EDGE -->|"TLS 8883, cert auth"| MQTT
+  MQTT -->|"validated only"| KAFKA
+  KAFKA --> SVC
+  SVC -->|"internal only"| ADAPT
+  SVC -->|"policy query"| OPA
+  SVC -->|"token validation"| KC
+  USER -->|"HTTPS + OIDC token"| SVC
+  SVC -->|"scoped role, TLS"| PG
+  SVC -->|"scoped role, TLS"| OBJ
+  SVC -->|"append-only writes"| AUD
+  USER -->|"AUDIT role: read-only"| AUD
+  USER -->|"DEMO role only"| DEMO
+  DEMO -.->|"structurally no route"| ADAPT
+  DEMO -.->|"structurally no route"| SVC
+
+  classDef restricted fill:#fee,stroke:#844,stroke-width:2px
+  class TZ4,TZ5,TZ6 restricted

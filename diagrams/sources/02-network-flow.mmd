@@ -1,0 +1,60 @@
+%%{init: {"flowchart": {"htmlLabels": true, "curve": "linear"}} }%%
+flowchart LR
+  subgraph EDGEZONE["Edge zone (per logical site, loopback/LAN dev; isolated node network on target)"]
+    DEV["Simulated devices\nloop/radar/camera/signal/weather adapters"]
+    EDGESVC["Edge runtime + inference"]
+    DEV -->|"local process calls"| EDGESVC
+  end
+
+  subgraph GWZONE["Gateway zone"]
+    MQTTB["MQTT broker\nport 8883, mTLS, per-device cert, topic ACL (ADR-0002, P05.02)"]
+    GW["Event gateway"]
+  end
+  EDGESVC -->|"MQTT QoS1 / TLS 8883\ndevice cert auth"| MQTTB --> GW
+
+  subgraph BACKBONEZONE["Central backbone zone (internal only, docs/environment/TOPOLOGY.md)"]
+    KAFKA["Kafka-compatible broker\ninternal, not public"]
+  end
+  GW -->|"validated events"| KAFKA
+
+  subgraph CENTRALZONE["Central services zone"]
+    SVC["Ingestion / state / analytics / incident / emergency / optimization / command / outcome services"]
+  end
+  KAFKA --> SVC
+
+  subgraph DATAZONE["Data zone (not public)"]
+    PG["PostgreSQL/PostGIS\nTLS wire protocol"]
+  end
+  SVC -->|"PostgreSQL TLS"| PG
+
+  subgraph IDPZONE["Identity/policy zone"]
+    KC["Keycloak\nOIDC/OAuth2, PKCE"]
+    OPA["OPA\npolicy decision"]
+  end
+  SVC -->|"policy query"| OPA
+  APIZONE -->|"OIDC auth code + PKCE"| KC
+
+  subgraph APIZONE["API zone"]
+    API["Staff API / BFF\nHTTPS"]
+  end
+  SVC --> API
+
+  subgraph USERZONE["User zone (authenticated browsers)"]
+    OP["Operator / dispatcher / supervisor / field / auditor"]
+  end
+  OP -->|"HTTPS, OIDC token"| API
+  API -->|"WebSocket/SSE, authenticated"| OP
+
+  subgraph OBSZONE["Observability zone"]
+    OTEL["OTel Collector\nOTLP HTTP/gRPC"]
+    GRAF["Prometheus/Grafana/Tempo\nHTTPS, authenticated"]
+  end
+  EDGESVC -.->|OTLP| OTEL
+  SVC -.->|OTLP| OTEL
+  OTEL --> GRAF
+  OP -.->|"HTTPS auth"| GRAF
+
+  subgraph ADAPTZONE["Simulator adapter zone (isolated, no public route)"]
+    ADAPT["Simulator signal/diversion/VMS adapters"]
+  end
+  SVC -->|"internal only, system:command-executor identity"| ADAPT

@@ -1,0 +1,35 @@
+{
+  "schema_version": "1.0.0",
+  "record_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "intersection_id": "int-03",
+  "geometry_version": "2026-09-18.1",
+  "observation_time": "2026-09-18T09:00:12.000Z",
+  "ingest_time": "2026-09-18T09:00:12.300Z",
+  "controller_mode": "coordinated",
+  "plan_id": "plan-am-peak",
+  "cycle_length_s": 90,
+  "offset_s": 12,
+  "movements": [
+    {
+      "movement_id": "int-03-mv-n-through",
+      "phase_state": "protected_movement_allowed",
+      "elapsed_s": 14,
+      "min_end_s": 10,
+      "max_end_s": 40,
+      "next_change_s": 26,
+      "detector_call": true,
+      "pedestrian_call": false
+    },
+    {
+      "movement_id": "int-03-mv-n-left",
+      "phase_state": "stop",
+      "elapsed_s": 14
+    }
+  ],
+  "transit_priority_active": false,
+  "emergency_preemption_active": false,
+  "cabinet_fault": false,
+  "truth_label": "simulated",
+  "freshness_status": "fresh",
+  "max_staleness_seconds": 5
+}

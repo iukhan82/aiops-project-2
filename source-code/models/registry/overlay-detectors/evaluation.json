@@ -1,0 +1,298 @@
+{
+  "detector": "rule:overlay/1",
+  "fault_events_checked": 126,
+  "fault_streams_safety_candidates": 0,
+  "injection_totals": {
+    "candidates_from_hard_negatives": 0,
+    "detected_exactly": 216,
+    "hard_negative_events": 270,
+    "injected": 216,
+    "unexplained_candidates_in_positive_pass": 0
+  },
+  "limitations": [
+    "Signatures are the explicit flags P03.05's overlay generator writes; passing shows correct handling around a flag, not the ability to find one in raw physics.",
+    "Only the collision/wrong-way loop overlays sit on real SUMO telemetry (for corroboration); flood/visibility are stand-alone series.",
+    "No claim about real sensors, real collisions or real weather."
+  ],
+  "nature": "specification test on synthetic signatures; no thresholds were fitted, so no validation/test selection applies",
+  "p03_05_overlays": {
+    "collision": {
+      "candidates_with_exact_onset_and_clear": 1,
+      "device_matches": true
+    },
+    "flooding": {
+      "candidates_with_exact_onset_and_clear": 1,
+      "device_matches": true
+    },
+    "low_visibility": {
+      "candidates_with_exact_onset_and_clear": 1,
+      "device_matches": true
+    },
+    "wrong_way": {
+      "candidates_with_exact_onset_and_clear": 1,
+      "device_matches": true
+    }
+  },
+  "p03_05_signal_overlay_safety_candidates": 0,
+  "p03_normal_events_checked": 1453,
+  "p03_normal_run_safety_candidates": 0,
+  "schema": "overlay-detector-specification-test-v1",
+  "seeded_injection_by_split": {
+    "test": [
+      {
+        "candidates": 24,
+        "candidates_from_hard_negatives": 0,
+        "hard_negative_events": 30,
+        "injected": 24,
+        "matched": 24,
+        "per_kind": {
+          "collision": {
+            "detected_exactly": 6,
+            "injected": 6
+          },
+          "flooding": {
+            "detected_exactly": 6,
+            "injected": 6
+          },
+          "low_visibility": {
+            "detected_exactly": 6,
+            "injected": 6
+          },
+          "wrong_way": {
+            "detected_exactly": 6,
+            "injected": 6
+          }
+        },
+        "seed": 20260925,
+        "unexplained_candidates": 0
+      },
+      {
+        "candidates": 24,
+        "candidates_from_hard_negatives": 0,
+        "hard_negative_events": 30,
+        "injected": 24,
+        "matched": 24,
+        "per_kind": {
+          "collision": {
+            "detected_exactly": 6,
+            "injected": 6
+          },
+          "flooding": {
+            "detected_exactly": 6,
+            "injected": 6
+          },
+          "low_visibility": {
+            "detected_exactly": 6,
+            "injected": 6
+          },
+          "wrong_way": {
+            "detected_exactly": 6,
+            "injected": 6
+          }
+        },
+        "seed": 20260926,
+        "unexplained_candidates": 0
+      }
+    ],
+    "train": [
+      {
+        "candidates": 24,
+        "candidates_from_hard_negatives": 0,
+        "hard_negative_events": 30,
+        "injected": 24,
+        "matched": 24,
+        "per_kind": {
+          "collision": {
+            "detected_exactly": 6,
+            "injected": 6
+          },
+          "flooding": {
+            "detected_exactly": 6,
+            "injected": 6
+          },
+          "low_visibility": {
+            "detected_exactly": 6,
+            "injected": 6
+          },
+          "wrong_way": {
+            "detected_exactly": 6,
+            "injected": 6
+          }
+        },
+        "seed": 20260918,
+        "unexplained_candidates": 0
+      },
+      {
+        "candidates": 24,
+        "candidates_from_hard_negatives": 0,
+        "hard_negative_events": 30,
+        "injected": 24,
+        "matched": 24,
+        "per_kind": {
+          "collision": {
+            "detected_exactly": 6,
+            "injected": 6
+          },
+          "flooding": {
+            "detected_exactly": 6,
+            "injected": 6
+          },
+          "low_visibility": {
+            "detected_exactly": 6,
+            "injected": 6
+          },
+          "wrong_way": {
+            "detected_exactly": 6,
+            "injected": 6
+          }
+        },
+        "seed": 20260919,
+        "unexplained_candidates": 0
+      },
+      {
+        "candidates": 24,
+        "candidates_from_hard_negatives": 0,
+        "hard_negative_events": 30,
+        "injected": 24,
+        "matched": 24,
+        "per_kind": {
+          "collision": {
+            "detected_exactly": 6,
+            "injected": 6
+          },
+          "flooding": {
+            "detected_exactly": 6,
+            "injected": 6
+          },
+          "low_visibility": {
+            "detected_exactly": 6,
+            "injected": 6
+          },
+          "wrong_way": {
+            "detected_exactly": 6,
+            "injected": 6
+          }
+        },
+        "seed": 20260920,
+        "unexplained_candidates": 0
+      },
+      {
+        "candidates": 24,
+        "candidates_from_hard_negatives": 0,
+        "hard_negative_events": 30,
+        "injected": 24,
+        "matched": 24,
+        "per_kind": {
+          "collision": {
+            "detected_exactly": 6,
+            "injected": 6
+          },
+          "flooding": {
+            "detected_exactly": 6,
+            "injected": 6
+          },
+          "low_visibility": {
+            "detected_exactly": 6,
+            "injected": 6
+          },
+          "wrong_way": {
+            "detected_exactly": 6,
+            "injected": 6
+          }
+        },
+        "seed": 20260921,
+        "unexplained_candidates": 0
+      },
+      {
+        "candidates": 24,
+        "candidates_from_hard_negatives": 0,
+        "hard_negative_events": 30,
+        "injected": 24,
+        "matched": 24,
+        "per_kind": {
+          "collision": {
+            "detected_exactly": 6,
+            "injected": 6
+          },
+          "flooding": {
+            "detected_exactly": 6,
+            "injected": 6
+          },
+          "low_visibility": {
+            "detected_exactly": 6,
+            "injected": 6
+          },
+          "wrong_way": {
+            "detected_exactly": 6,
+            "injected": 6
+          }
+        },
+        "seed": 20260922,
+        "unexplained_candidates": 0
+      }
+    ],
+    "validation": [
+      {
+        "candidates": 24,
+        "candidates_from_hard_negatives": 0,
+        "hard_negative_events": 30,
+        "injected": 24,
+        "matched": 24,
+        "per_kind": {
+          "collision": {
+            "detected_exactly": 6,
+            "injected": 6
+          },
+          "flooding": {
+            "detected_exactly": 6,
+            "injected": 6
+          },
+          "low_visibility": {
+            "detected_exactly": 6,
+            "injected": 6
+          },
+          "wrong_way": {
+            "detected_exactly": 6,
+            "injected": 6
+          }
+        },
+        "seed": 20260923,
+        "unexplained_candidates": 0
+      },
+      {
+        "candidates": 24,
+        "candidates_from_hard_negatives": 0,
+        "hard_negative_events": 30,
+        "injected": 24,
+        "matched": 24,
+        "per_kind": {
+          "collision": {
+            "detected_exactly": 6,
+            "injected": 6
+          },
+          "flooding": {
+            "detected_exactly": 6,
+            "injected": 6
+          },
+          "low_visibility": {
+            "detected_exactly": 6,
+            "injected": 6
+          },
+          "wrong_way": {
+            "detected_exactly": 6,
+            "injected": 6
+          }
+        },
+        "seed": 20260924,
+        "unexplained_candidates": 0
+      }
+    ]
+  },
+  "stuck_and_contradiction": {
+    "contradicted_flood_confidence": 0.45,
+    "stuck_flag_candidates": 1,
+    "stuck_flag_confidence": 0.3612,
+    "stuck_flag_suspect": true,
+    "uncontradicted_reference_confidence": 0.9
+  }
+}

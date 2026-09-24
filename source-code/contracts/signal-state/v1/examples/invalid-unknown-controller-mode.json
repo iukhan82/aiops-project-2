@@ -1,0 +1,16 @@
+{
+  "_invalid_because": "controller_mode uses 'offline' which is not in the enum (coordinated, actuated, manual, flash, dark, pre-emption, fault); an unrecognized mode must not silently pass validation.",
+  "schema_version": "1.0.0",
+  "record_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "intersection_id": "int-03",
+  "geometry_version": "2026-09-18.1",
+  "observation_time": "2026-09-18T09:00:12.000Z",
+  "ingest_time": "2026-09-18T09:00:12.300Z",
+  "controller_mode": "offline",
+  "movements": [
+    { "movement_id": "int-03-mv-n-through", "phase_state": "stop", "elapsed_s": 0 }
+  ],
+  "truth_label": "simulated",
+  "freshness_status": "unknown",
+  "max_staleness_seconds": 5
+}

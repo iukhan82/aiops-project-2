@@ -1,0 +1,53 @@
+%%{init: {"flowchart": {"htmlLabels": true, "curve": "linear"}} }%%
+flowchart TB
+  subgraph NODE["K3s single-node target (docs/environment/TOPOLOGY.md assessment profile)\nnot HA; disclosed limitation"]
+    subgraph NSEDGE["namespace: edge-sim (x3 logical Deployments)"]
+      E1["edge-runtime pod\nnon-root, PVC outbox"]
+    end
+
+    subgraph NSMSG["namespace: messaging"]
+      M1["Mosquitto StatefulSet\nPVC, mTLS"]
+      M2["Kafka-compatible broker StatefulSet\nPVC"]
+    end
+
+    subgraph NSDATA["namespace: data"]
+      D1["PostgreSQL/PostGIS StatefulSet\nPVC"]
+    end
+
+    subgraph NSPLATFORM["namespace: platform"]
+      S1["ingestion / state / traffic / incident / emergency / optimization / command / outcome Deployments\nHPA-ready, resource limits (RESOURCE_BUDGET.md)"]
+      S2["Staff API/BFF Deployment"]
+    end
+
+    subgraph NSIDENTITY["namespace: identity"]
+      K1["Keycloak Deployment\nPVC"]
+      K2["OPA Deployment\nbundle sidecar/service"]
+    end
+
+    subgraph NSOBS["namespace: observability"]
+      O1["OTel Collector Deployment"]
+      O2["Prometheus/Tempo StatefulSet\nPVC, bounded retention"]
+      O3["Grafana Deployment"]
+    end
+
+    subgraph NSFRONT["namespace: frontend"]
+      F1["Operator UI Deployment"]
+    end
+
+    NODEAGENT["Falco DaemonSet\nnode-level, per P01.07 target-native requirement"]
+  end
+
+  ING["Ingress controller\nTLS termination, LAN/local-only per TOPOLOGY.md"]
+  ING --> S2
+  ING --> F1
+  ING --> O3
+  E1 -->|mTLS| M1 --> S1
+  M2 <--> S1
+  S1 --> D1
+  S1 --> K2
+  S2 --> K1
+  S1 -.->|OTLP| O1 --> O2 --> O3
+  NODEAGENT -.->|runtime events| O2
+
+  classDef ns fill:#eef,stroke:#448
+  class NSEDGE,NSMSG,NSDATA,NSPLATFORM,NSIDENTITY,NSOBS,NSFRONT ns

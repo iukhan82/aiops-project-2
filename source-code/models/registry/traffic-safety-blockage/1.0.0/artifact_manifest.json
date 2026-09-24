@@ -1,0 +1,15 @@
+{
+  "files": {
+    "golden_vectors.json": "d21e6f368be5b3a6ca6e29b52517c917cda5c0c17c7c421fcd30ae6b169ed487",
+    "io_schema.json": "924264ccd58fef33712b6d0f855d8590522828f42f982d2db9914de89d86123e",
+    "model.onnx": "e3ab6a4ac96a0ea7f06ad1235404f7f0ac17122ddab8573b1a07c8a682350e44"
+  },
+  "format": "edge-model-package/1",
+  "identity": {
+    "abstain_lower": 0.28140946817397927,
+    "alarm_threshold": 0.5628189363479585,
+    "feature_version": "loop-window/2",
+    "model_id": "traffic-safety-blockage",
+    "model_version": "1.0.0"
+  }
+}

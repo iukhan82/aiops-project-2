@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1366" height="768" viewBox="0 0 1366 768" role="img" aria-labelledby="t d" data-role="dispatcher">
+<title id="t">Emergency dispatch detail - laptop (1366x768)</title>
+<desc id="d">Call summary, route alternatives with ETA and uncertainty and a mini map, unit assignment with status controls, the pre-emption command&#x27;s lifecycle, and a shared timeline.</desc>
+<rect width="1366" height="768" fill="#0F172A"/>
+<g id="region-header" data-region="banner">
+<rect x="0" y="0" width="1366" height="48" rx="0" fill="#1B2336" stroke="#475569" stroke-width="1"/>
+<rect x="12" y="10" width="28" height="28" rx="6" fill="#22C55E" stroke="#22C55E" stroke-width="1"/>
+<text x="52" y="30.0" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="17" font-weight="700" fill="#F8FAFC" text-anchor="start">Traffic Operations</text>
+<circle cx="470" cy="24" r="5" fill="#22C55E"/>
+<text x="482" y="29" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="14" font-weight="400" fill="#F8FAFC" text-anchor="start">Connected - updated 2 s ago</text>
+<rect x="792" y="12" width="92" height="24" rx="12" fill="#272F42" stroke="#38BDF8" stroke-width="1"/>
+<text x="838" y="29" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="12" font-weight="700" fill="#38BDF8" text-anchor="middle">SIMULATED</text>
+<text x="1310" y="29.0" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="14" font-weight="400" fill="#94A3B8" text-anchor="end">dana.rivera - dispatcher</text>
+<rect x="1322" y="10" width="32" height="28" rx="6" fill="none" stroke="#94A3B8" stroke-width="2"/>
+<text x="1338" y="30" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#F8FAFC" text-anchor="middle">v</text>
+</g>
+<g id="region-nav" data-region="navigation">
+<rect x="0" y="48" width="200" height="720" rx="0" fill="#1B2336" stroke="#475569" stroke-width="1"/>
+<text x="16" y="74" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="12" font-weight="400" fill="#94A3B8" text-anchor="start">Signed in as dispatcher</text>
+<rect x="8" y="96" width="184" height="34" rx="6" fill="none" stroke="none" stroke-width="2"/>
+<text x="24" y="118" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="14" font-weight="400" fill="#F8FAFC" text-anchor="start">Map</text>
+<rect x="8" y="136" width="184" height="34" rx="6" fill="none" stroke="none" stroke-width="2"/>
+<text x="24" y="158" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="14" font-weight="400" fill="#F8FAFC" text-anchor="start">Analytics</text>
+<rect x="8" y="176" width="184" height="34" rx="6" fill="none" stroke="none" stroke-width="2"/>
+<text x="24" y="198" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="14" font-weight="400" fill="#F8FAFC" text-anchor="start">Incidents</text>
+<rect x="8" y="216" width="184" height="34" rx="6" fill="#272F42" stroke="#22C55E" stroke-width="2"/>
+<text x="24" y="238" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#F8FAFC" text-anchor="start">Dispatch</text>
+<text x="172" y="238" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="10" font-weight="400" fill="#94A3B8" text-anchor="end">current</text>
+<rect x="8" y="256" width="184" height="34" rx="6" fill="none" stroke="none" stroke-width="2"/>
+<text x="24" y="278" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="14" font-weight="400" fill="#F8FAFC" text-anchor="start">Actions</text>
+<rect x="8" y="296" width="184" height="34" rx="6" fill="none" stroke="none" stroke-width="2"/>
+<text x="24" y="318" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="14" font-weight="400" fill="#F8FAFC" text-anchor="start">Handover</text>
+</g>
+<g id="region-call" data-region="call summary">
+<rect x="216" y="60" width="1134" height="84" rx="8" fill="#1B2336" stroke="#475569" stroke-width="1"/>
+<text x="232" y="92" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="20" font-weight="700" fill="#F8FAFC" text-anchor="start">Structure fire - call 3f9a...</text>
+<rect x="232" y="109" width="11" height="11" fill="#EF4444"/>
+<text x="250" y="120" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="400" fill="#F8FAFC" text-anchor="start">Critical</text>
+<text x="340" y="120" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="400" fill="#94A3B8" text-anchor="start">Status: Unit assigned - reported 09:10:21 UTC - source reliability: verified dispatch - simulated</text>
+</g>
+<g id="region-routes" data-region="route alternatives">
+<rect x="216" y="156" width="640" height="330" rx="8" fill="#1B2336" stroke="#475569" stroke-width="1"/>
+<text x="232" y="188" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="16" font-weight="700" fill="#F8FAFC" text-anchor="start">Route alternatives for engine-1</text>
+<rect x="228" y="204" width="616" height="82" rx="8" fill="#272F42" stroke="#22C55E" stroke-width="2"/>
+<text x="244" y="230" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="14" font-weight="700" fill="#F8FAFC" text-anchor="start">Route 1 (selected)</text>
+<text x="244" y="254" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="13" font-weight="400" fill="#F8FAFC" text-anchor="start">ETA 1:34 +/- 0:14 - predicted - 1,245 m</text>
+<text x="244" y="274" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="12" font-weight="400" fill="#94A3B8" text-anchor="start">avoids closed B2-B3</text>
+<g class="control">
+<rect x="716" y="228" width="116" height="34" rx="8" fill="#22C55E" stroke="#22C55E" stroke-width="2" stroke-dasharray="4 3"/>
+<text x="774.0" y="249.33333333333334" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="600" fill="#0F172A" text-anchor="middle">Selected</text>
+</g>
+<rect x="228" y="296" width="616" height="82" rx="8" fill="none" stroke="#475569" stroke-width="2"/>
+<text x="244" y="322" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="14" font-weight="700" fill="#F8FAFC" text-anchor="start">Route 2</text>
+<text x="244" y="346" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="13" font-weight="400" fill="#F8FAFC" text-anchor="start">ETA 1:58 +/- 0:19 - predicted - 1,510 m</text>
+<text x="244" y="366" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="12" font-weight="400" fill="#94A3B8" text-anchor="start">through hazard: congestion A3</text>
+<g class="control">
+<rect x="716" y="320" width="116" height="34" rx="8" fill="none" stroke="#94A3B8" stroke-width="2"/>
+<text x="774.0" y="341.3333333333333" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="600" fill="#F8FAFC" text-anchor="middle">Select</text>
+</g>
+<rect x="228" y="388" width="616" height="82" rx="8" fill="none" stroke="#475569" stroke-width="2"/>
+<text x="244" y="414" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="14" font-weight="700" fill="#F8FAFC" text-anchor="start">Route 3</text>
+<text x="244" y="438" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="13" font-weight="400" fill="#F8FAFC" text-anchor="start">ETA 2:21 +/- 0:25 - predicted - 1,802 m</text>
+<text x="244" y="458" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="12" font-weight="400" fill="#94A3B8" text-anchor="start">through hazard: congestion A3</text>
+<g class="control">
+<rect x="716" y="412" width="116" height="34" rx="8" fill="none" stroke="#94A3B8" stroke-width="2"/>
+<text x="774.0" y="433.3333333333333" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="600" fill="#F8FAFC" text-anchor="middle">Select</text>
+</g>
+</g>
+<g id="region-mini-map" data-region="route on map">
+<rect x="216" y="498" width="640" height="258" rx="8" fill="#1B2336" stroke="#475569" stroke-width="1"/>
+<g id="region-map" data-region="map canvas">
+<rect x="228" y="510" width="616" height="234" rx="8" fill="#0B1220" stroke="#475569" stroke-width="1"/>
+<line x1="301.92" y1="561.48" x2="462.08000000000004" y2="561.48" stroke="#94A3B8" stroke-width="4"/>
+<line x1="462.08000000000004" y1="561.48" x2="622.24" y2="561.48" stroke="#94A3B8" stroke-width="4"/>
+<line x1="622.24" y1="561.48" x2="782.4" y2="561.48" stroke="#94A3B8" stroke-width="4"/>
+<line x1="301.92" y1="627.0" x2="462.08000000000004" y2="627.0" stroke="#94A3B8" stroke-width="4"/>
+<line x1="462.08000000000004" y1="627.0" x2="622.24" y2="627.0" stroke="#F59E0B" stroke-width="4" stroke-dasharray="10 6"/>
+<line x1="622.24" y1="627.0" x2="782.4" y2="627.0" stroke="#94A3B8" stroke-width="4"/>
+<line x1="301.92" y1="692.52" x2="462.08000000000004" y2="692.52" stroke="#94A3B8" stroke-width="4"/>
+<line x1="462.08000000000004" y1="692.52" x2="622.24" y2="692.52" stroke="#94A3B8" stroke-width="4"/>
+<line x1="622.24" y1="692.52" x2="782.4" y2="692.52" stroke="#94A3B8" stroke-width="4"/>
+<line x1="301.92" y1="561.48" x2="301.92" y2="627.0" stroke="#94A3B8" stroke-width="3"/>
+<line x1="301.92" y1="627.0" x2="301.92" y2="692.52" stroke="#94A3B8" stroke-width="3"/>
+<line x1="782.4" y1="561.48" x2="782.4" y2="627.0" stroke="#94A3B8" stroke-width="3"/>
+<line x1="782.4" y1="627.0" x2="782.4" y2="692.52" stroke="#94A3B8" stroke-width="3"/>
+<circle cx="301.92" cy="561.48" r="9" fill="#1B2336" stroke="#F8FAFC" stroke-width="2"/>
+<circle cx="462.08000000000004" cy="561.48" r="9" fill="#1B2336" stroke="#F8FAFC" stroke-width="2"/>
+<circle cx="622.24" cy="561.48" r="9" fill="#1B2336" stroke="#F8FAFC" stroke-width="2"/>
+<circle cx="782.4" cy="561.48" r="9" fill="#1B2336" stroke="#F8FAFC" stroke-width="2"/>
+<circle cx="301.92" cy="627.0" r="9" fill="#1B2336" stroke="#F8FAFC" stroke-width="2"/>
+<circle cx="462.08000000000004" cy="627.0" r="9" fill="#1B2336" stroke="#F8FAFC" stroke-width="2"/>
+<circle cx="622.24" cy="627.0" r="9" fill="#1B2336" stroke="#F8FAFC" stroke-width="2"/>
+<circle cx="782.4" cy="627.0" r="9" fill="#1B2336" stroke="#F8FAFC" stroke-width="2"/>
+<circle cx="301.92" cy="692.52" r="9" fill="#1B2336" stroke="#F8FAFC" stroke-width="2"/>
+<circle cx="462.08000000000004" cy="692.52" r="9" fill="#1B2336" stroke="#F8FAFC" stroke-width="2"/>
+<circle cx="622.24" cy="692.52" r="9" fill="#1B2336" stroke="#F8FAFC" stroke-width="2"/>
+<circle cx="782.4" cy="692.52" r="9" fill="#1B2336" stroke="#F8FAFC" stroke-width="2"/>
+<polygon points="542.1600000000001,611.0 556.1600000000001,637.0 528.1600000000001,637.0" fill="#EF4444" stroke="#F8FAFC" stroke-width="2"/>
+<rect x="776.4" y="555.48" width="12" height="12" fill="#38BDF8" stroke="#F8FAFC"/>
+</g>
+</g>
+<g id="region-unit" data-region="unit assignment">
+<rect x="868" y="156" width="482" height="200" rx="8" fill="#1B2336" stroke="#475569" stroke-width="1"/>
+<text x="884" y="188" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="16" font-weight="700" fill="#F8FAFC" text-anchor="start">Unit engine-1</text>
+<text x="884" y="212" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="400" fill="#94A3B8" text-anchor="start">fire-dispatch - capability: suppression</text>
+<circle cx="890" cy="244" r="8" fill="#22C55E" stroke="#22C55E" stroke-width="2"/>
+<text x="890" y="272" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="12" font-weight="400" fill="#F8FAFC" text-anchor="middle">Assigned</text>
+<circle cx="1002" cy="244" r="8" fill="#22C55E" stroke="#22C55E" stroke-width="2"/>
+<text x="1002" y="272" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="12" font-weight="400" fill="#F8FAFC" text-anchor="middle">Acknowledged</text>
+<circle cx="1114" cy="244" r="8" fill="none" stroke="#94A3B8" stroke-width="2"/>
+<text x="1114" y="272" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="12" font-weight="400" fill="#94A3B8" text-anchor="middle">En route</text>
+<circle cx="1226" cy="244" r="8" fill="none" stroke="#94A3B8" stroke-width="2"/>
+<text x="1226" y="272" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="12" font-weight="400" fill="#94A3B8" text-anchor="middle">On scene</text>
+<g class="control">
+<rect x="884" y="296" width="200" height="40" rx="8" fill="#22C55E" stroke="#22C55E" stroke-width="2"/>
+<text x="984.0" y="320.3333333333333" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="600" fill="#0F172A" text-anchor="middle">Record: en route</text>
+</g>
+<g class="control">
+<rect x="1096" y="296" width="240" height="40" rx="8" fill="none" stroke="#94A3B8" stroke-width="2"/>
+<text x="1216.0" y="320.3333333333333" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="600" fill="#F8FAFC" text-anchor="middle">Mark unavailable...</text>
+</g>
+</g>
+<g id="region-preemption" data-region="pre-emption command">
+<rect x="868" y="368" width="482" height="200" rx="8" fill="#1B2336" stroke="#475569" stroke-width="1"/>
+<text x="884" y="400" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="16" font-weight="700" fill="#F8FAFC" text-anchor="start">Signal pre-emption (SC-2)</text>
+<text x="884" y="424" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="400" fill="#94A3B8" text-anchor="start">Needs a second person: supervisor or incident commander</text>
+<rect x="884" y="440" width="104" height="30" rx="15" fill="none" stroke="#22C55E" stroke-width="2"/>
+<text x="936" y="460" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="12" font-weight="400" fill="#F8FAFC" text-anchor="middle">Requested</text>
+<rect x="996" y="440" width="104" height="30" rx="15" fill="#272F42" stroke="#22C55E" stroke-width="2"/>
+<text x="1048" y="460" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="12" font-weight="600" fill="#F8FAFC" text-anchor="middle">Approved</text>
+<rect x="1108" y="440" width="104" height="30" rx="15" fill="none" stroke="#475569" stroke-width="2"/>
+<text x="1160" y="460" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="12" font-weight="400" fill="#F8FAFC" text-anchor="middle">Executing</text>
+<rect x="1220" y="440" width="104" height="30" rx="15" fill="none" stroke="#475569" stroke-width="2"/>
+<text x="1272" y="460" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="12" font-weight="400" fill="#F8FAFC" text-anchor="middle">Executed</text>
+<circle cx="890" cy="495" r="5" fill="#22C55E"/>
+<text x="902" y="500" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="400" fill="#F8FAFC" text-anchor="start">Approved by incident_commander eve</text>
+<text x="884" y="524" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="12" font-weight="400" fill="#94A3B8" text-anchor="start">Executed by the command executor, never by a person</text>
+<g class="control">
+<rect x="884" y="536" width="236" height="28" rx="8" fill="none" stroke="#94A3B8" stroke-width="2"/>
+<text x="1002.0" y="554.3333333333334" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="600" fill="#F8FAFC" text-anchor="middle">Open command detail</text>
+</g>
+</g>
+<g id="region-timeline" data-region="shared timeline">
+<rect x="868" y="580" width="482" height="176" rx="8" fill="#1B2336" stroke="#475569" stroke-width="1"/>
+<text x="884" y="610" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="15" font-weight="700" fill="#F8FAFC" text-anchor="start">Timeline (dispatch and traffic operations)</text>
+<text x="884" y="636" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="12" font-weight="400" fill="#F8FAFC" text-anchor="start">09:14:40  Route recalculated: segment closed</text>
+<text x="884" y="662" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="12" font-weight="400" fill="#94A3B8" text-anchor="start">09:12:30  Pre-emption requested by dispatcher dana</text>
+<text x="884" y="688" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="12" font-weight="400" fill="#94A3B8" text-anchor="start">09:11:02  Unit engine-1 acknowledged</text>
+<text x="884" y="714" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="12" font-weight="400" fill="#94A3B8" text-anchor="start">09:10:21  Call received, dispatched</text>
+</g>
+<g id="callout-1"><circle cx="216" cy="60" r="11" fill="#F59E0B" stroke="#0F172A" stroke-width="2"/><text x="216" y="65" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="700" fill="#0F172A" text-anchor="middle">1</text></g>
+<g id="callout-2"><circle cx="216" cy="156" r="11" fill="#F59E0B" stroke="#0F172A" stroke-width="2"/><text x="216" y="161" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="700" fill="#0F172A" text-anchor="middle">2</text></g>
+<g id="callout-3"><circle cx="216" cy="498" r="11" fill="#F59E0B" stroke="#0F172A" stroke-width="2"/><text x="216" y="503" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="700" fill="#0F172A" text-anchor="middle">3</text></g>
+<g id="callout-4"><circle cx="868" cy="156" r="11" fill="#F59E0B" stroke="#0F172A" stroke-width="2"/><text x="868" y="161" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="700" fill="#0F172A" text-anchor="middle">4</text></g>
+<g id="callout-5"><circle cx="868" cy="368" r="11" fill="#F59E0B" stroke="#0F172A" stroke-width="2"/><text x="868" y="373" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="700" fill="#0F172A" text-anchor="middle">5</text></g>
+<g id="callout-6"><circle cx="868" cy="580" r="11" fill="#F59E0B" stroke="#0F172A" stroke-width="2"/><text x="868" y="585" font-family="IBM Plex Sans, Inter, system-ui, sans-serif" font-size="13" font-weight="700" fill="#0F172A" text-anchor="middle">6</text></g>
+</svg>

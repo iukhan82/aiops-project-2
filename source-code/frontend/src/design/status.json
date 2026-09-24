@@ -1,0 +1,483 @@
+{
+  "schema_version": "1.0.0",
+  "description": "P08.03: the status vocabulary. Every state a backend record can be in has a label, a shape and a tone here, so status is never colour alone. tools/design.py proves every backend enumeration is covered and that the command and outcome lifecycles are visually distinct in greyscale (shape plus label).",
+  "shapes": [
+    "circle",
+    "ring",
+    "triangle",
+    "square",
+    "diamond",
+    "cross",
+    "dash",
+    "half",
+    "pause",
+    "check",
+    "arrow-left",
+    "hexagon"
+  ],
+  "tones": [
+    "ok",
+    "warn",
+    "danger",
+    "info",
+    "neutral"
+  ],
+  "domains": {
+    "command": {
+      "requested": {
+        "label": "Pending approval",
+        "shape": "half",
+        "tone": "warn",
+        "meaning": "Waiting for a second person. Not approved."
+      },
+      "requested_policy_unavailable": {
+        "label": "Policy unavailable",
+        "shape": "hexagon",
+        "tone": "warn",
+        "meaning": "The policy engine could not decide. Not approved; never silently approved."
+      },
+      "approved": {
+        "label": "Approved",
+        "shape": "check",
+        "tone": "ok",
+        "meaning": "Policy approved. Waiting for the executor."
+      },
+      "denied": {
+        "label": "Denied",
+        "shape": "cross",
+        "tone": "danger",
+        "meaning": "A reviewer or policy refused it. The reason is shown."
+      },
+      "expired": {
+        "label": "Expired",
+        "shape": "dash",
+        "tone": "neutral",
+        "meaning": "Not acted on before it expired."
+      },
+      "executing": {
+        "label": "Executing",
+        "shape": "pause",
+        "tone": "info",
+        "meaning": "The command executor dispatched it to the adapter."
+      },
+      "executed": {
+        "label": "Executed",
+        "shape": "circle",
+        "tone": "ok",
+        "meaning": "The adapter acknowledged. The outcome is still to be verified."
+      },
+      "failed": {
+        "label": "Failed",
+        "shape": "square",
+        "tone": "danger",
+        "meaning": "The adapter failed. Error code and whether it is retryable are shown."
+      },
+      "rolled_back": {
+        "label": "Rolled back",
+        "shape": "arrow-left",
+        "tone": "warn",
+        "meaning": "Independent verification found it unsafe and it was undone."
+      }
+    },
+    "recommendation": {
+      "proposed": {
+        "label": "Proposed",
+        "shape": "diamond",
+        "tone": "info",
+        "meaning": "A system recommendation. Not a command, not executed."
+      },
+      "requested": {
+        "label": "Command requested",
+        "shape": "half",
+        "tone": "warn",
+        "meaning": "A command now exists for it."
+      },
+      "superseded": {
+        "label": "Superseded",
+        "shape": "ring",
+        "tone": "neutral",
+        "meaning": "A fresher recommendation replaced it."
+      },
+      "expired": {
+        "label": "Expired",
+        "shape": "dash",
+        "tone": "neutral",
+        "meaning": "Past its validity window."
+      }
+    },
+    "outcome": {
+      "effective": {
+        "label": "Effective",
+        "shape": "check",
+        "tone": "ok",
+        "meaning": "Independently verified as an improvement."
+      },
+      "ineffective": {
+        "label": "Ineffective",
+        "shape": "dash",
+        "tone": "neutral",
+        "meaning": "No change beyond the measured noise band."
+      },
+      "unsafe": {
+        "label": "Unsafe (rolled back)",
+        "shape": "arrow-left",
+        "tone": "danger",
+        "meaning": "Made things worse beyond the threshold and was rolled back."
+      },
+      "unknown": {
+        "label": "Unknown (escalated)",
+        "shape": "hexagon",
+        "tone": "warn",
+        "meaning": "Insufficient evidence to classify. Escalated. Never shown as success."
+      }
+    },
+    "incident": {
+      "open": {
+        "label": "Open",
+        "shape": "square",
+        "tone": "danger",
+        "meaning": "Raised and not yet acknowledged."
+      },
+      "acknowledged": {
+        "label": "Acknowledged",
+        "shape": "half",
+        "tone": "warn",
+        "meaning": "Someone has taken notice."
+      },
+      "investigating": {
+        "label": "Investigating",
+        "shape": "diamond",
+        "tone": "info",
+        "meaning": "Under active investigation."
+      },
+      "escalated": {
+        "label": "Escalated",
+        "shape": "triangle",
+        "tone": "danger",
+        "meaning": "Raised to a higher level of attention."
+      },
+      "resolved": {
+        "label": "Resolved",
+        "shape": "check",
+        "tone": "ok",
+        "meaning": "Resolved. A merged duplicate shows the surviving incident."
+      },
+      "reopened": {
+        "label": "Reopened",
+        "shape": "arrow-left",
+        "tone": "warn",
+        "meaning": "Evidence returned after resolution."
+      }
+    },
+    "severity": {
+      "critical": {
+        "label": "Critical",
+        "shape": "square",
+        "tone": "danger",
+        "meaning": "Highest severity."
+      },
+      "high": {
+        "label": "High",
+        "shape": "triangle",
+        "tone": "warn",
+        "meaning": "High severity."
+      },
+      "medium": {
+        "label": "Medium",
+        "shape": "diamond",
+        "tone": "info",
+        "meaning": "Medium severity."
+      },
+      "low": {
+        "label": "Low",
+        "shape": "ring",
+        "tone": "neutral",
+        "meaning": "Low severity."
+      }
+    },
+    "call": {
+      "received": {
+        "label": "Received",
+        "shape": "ring",
+        "tone": "info",
+        "meaning": "The call has arrived."
+      },
+      "dispatched": {
+        "label": "Dispatched",
+        "shape": "half",
+        "tone": "info",
+        "meaning": "Sent for assignment."
+      },
+      "unit_assigned": {
+        "label": "Unit assigned",
+        "shape": "diamond",
+        "tone": "info",
+        "meaning": "A unit has been assigned."
+      },
+      "en_route": {
+        "label": "En route",
+        "shape": "arrow-left",
+        "tone": "info",
+        "meaning": "A unit is on its way."
+      },
+      "on_scene": {
+        "label": "On scene",
+        "shape": "circle",
+        "tone": "ok",
+        "meaning": "A unit has arrived."
+      },
+      "cleared": {
+        "label": "Cleared",
+        "shape": "check",
+        "tone": "ok",
+        "meaning": "The call is finished."
+      },
+      "cancelled": {
+        "label": "Cancelled",
+        "shape": "cross",
+        "tone": "neutral",
+        "meaning": "The call was cancelled."
+      }
+    },
+    "assignment": {
+      "assigned": {
+        "label": "Assigned",
+        "shape": "ring",
+        "tone": "info",
+        "meaning": "Assigned, not yet acknowledged."
+      },
+      "acknowledged": {
+        "label": "Acknowledged",
+        "shape": "half",
+        "tone": "info",
+        "meaning": "The unit acknowledged."
+      },
+      "en_route": {
+        "label": "En route",
+        "shape": "arrow-left",
+        "tone": "info",
+        "meaning": "The unit is on its way."
+      },
+      "staged": {
+        "label": "Staged",
+        "shape": "pause",
+        "tone": "warn",
+        "meaning": "Held until another agency's unit arrives."
+      },
+      "on_scene": {
+        "label": "On scene",
+        "shape": "circle",
+        "tone": "ok",
+        "meaning": "The unit has arrived."
+      },
+      "clear": {
+        "label": "Clear",
+        "shape": "check",
+        "tone": "ok",
+        "meaning": "The unit has cleared."
+      },
+      "unavailable": {
+        "label": "Unavailable",
+        "shape": "cross",
+        "tone": "danger",
+        "meaning": "The unit cannot respond. Reassign."
+      }
+    },
+    "freshness": {
+      "fresh": {
+        "label": "Fresh",
+        "shape": "circle",
+        "tone": "ok",
+        "meaning": "Within the freshness budget."
+      },
+      "stale": {
+        "label": "Stale",
+        "shape": "triangle",
+        "tone": "warn",
+        "meaning": "Past the freshness budget. Shown with its age, never as live."
+      },
+      "unknown": {
+        "label": "Unknown",
+        "shape": "ring",
+        "tone": "neutral",
+        "meaning": "Nothing received. No number is invented."
+      }
+    },
+    "feed": {
+      "connected": {
+        "label": "Live feed connected",
+        "shape": "circle",
+        "tone": "ok",
+        "meaning": "Updates are arriving."
+      },
+      "reconnecting": {
+        "label": "Reconnecting",
+        "shape": "triangle",
+        "tone": "warn",
+        "meaning": "Values may be older than shown."
+      },
+      "paused": {
+        "label": "Updates paused",
+        "shape": "pause",
+        "tone": "info",
+        "meaning": "The operator paused updates."
+      },
+      "offline": {
+        "label": "Offline",
+        "shape": "cross",
+        "tone": "danger",
+        "meaning": "No connection. The last data is shown with its age."
+      }
+    },
+    "device": {
+      "active": {
+        "label": "Active",
+        "shape": "circle",
+        "tone": "ok",
+        "meaning": "In service."
+      },
+      "inactive": {
+        "label": "Inactive",
+        "shape": "ring",
+        "tone": "neutral",
+        "meaning": "Not in service."
+      },
+      "maintenance": {
+        "label": "Maintenance",
+        "shape": "hexagon",
+        "tone": "info",
+        "meaning": "Being maintained."
+      },
+      "decommissioned": {
+        "label": "Decommissioned",
+        "shape": "cross",
+        "tone": "neutral",
+        "meaning": "Retired."
+      }
+    },
+    "truth": {
+      "simulated": {
+        "label": "Simulated",
+        "shape": "hexagon",
+        "tone": "info",
+        "meaning": "Produced by the simulator."
+      },
+      "measured": {
+        "label": "Measured",
+        "shape": "circle",
+        "tone": "ok",
+        "meaning": "Measured by a device."
+      },
+      "inferred": {
+        "label": "Inferred",
+        "shape": "diamond",
+        "tone": "warn",
+        "meaning": "Derived from evidence; not verified."
+      },
+      "predicted": {
+        "label": "Predicted",
+        "shape": "half",
+        "tone": "info",
+        "meaning": "A forecast or ETA, with its uncertainty."
+      },
+      "operator_entered": {
+        "label": "Operator entered",
+        "shape": "square",
+        "tone": "neutral",
+        "meaning": "Typed by a person; attributed."
+      },
+      "verified": {
+        "label": "Verified",
+        "shape": "check",
+        "tone": "ok",
+        "meaning": "Independently verified."
+      }
+    },
+    "service": {
+      "healthy": {
+        "label": "Healthy",
+        "shape": "circle",
+        "tone": "ok",
+        "meaning": "The probe just made succeeded."
+      },
+      "degraded": {
+        "label": "Degraded",
+        "shape": "triangle",
+        "tone": "warn",
+        "meaning": "It answers, but late or with a fault. Look at the detail."
+      },
+      "down": {
+        "label": "Down",
+        "shape": "cross",
+        "tone": "danger",
+        "meaning": "The probe just made failed, or it has stopped reporting."
+      },
+      "unknown": {
+        "label": "Unknown",
+        "shape": "ring",
+        "tone": "neutral",
+        "meaning": "It has never reported, so its state is not known. Not shown as healthy."
+      }
+    },
+    "audit": {
+      "allowed": {
+        "label": "Allowed",
+        "shape": "circle",
+        "tone": "ok",
+        "meaning": "The action was accepted and recorded."
+      },
+      "denied": {
+        "label": "Refused",
+        "shape": "square",
+        "tone": "warn",
+        "meaning": "The action was refused: a role, a rule or the state of the thing did not allow it."
+      },
+      "failed": {
+        "label": "Failed",
+        "shape": "cross",
+        "tone": "danger",
+        "meaning": "The action was allowed but could not be completed."
+      }
+    },
+    "handover": {
+      "awaiting_acknowledgement": {
+        "label": "Awaiting acknowledgement",
+        "shape": "half",
+        "tone": "warn",
+        "meaning": "Written, and the incoming shift has not acknowledged it by name yet."
+      },
+      "acknowledged": {
+        "label": "Acknowledged",
+        "shape": "check",
+        "tone": "ok",
+        "meaning": "The incoming person acknowledged it by name."
+      }
+    },
+    "run": {
+      "running": {
+        "label": "Running",
+        "shape": "half",
+        "tone": "info",
+        "meaning": "The scenario is being replayed."
+      },
+      "completed": {
+        "label": "Completed",
+        "shape": "check",
+        "tone": "ok",
+        "meaning": "The replay finished and its accepted set is recorded."
+      },
+      "failed": {
+        "label": "Failed",
+        "shape": "cross",
+        "tone": "danger",
+        "meaning": "The replay did not finish."
+      },
+      "reset": {
+        "label": "Reset",
+        "shape": "arrow-left",
+        "tone": "neutral",
+        "meaning": "The run was reset by the demo operator."
+      }
+    }
+  }
+}

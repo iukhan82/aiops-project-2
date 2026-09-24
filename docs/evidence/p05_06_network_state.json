@@ -1,0 +1,37 @@
+{
+  "task": "P05.06",
+  "generated_at": "2026-09-19T18:56:51Z",
+  "checks": {
+    "never_observed_returns_none": true,
+    "fresh_window_returns_record": true,
+    "aggregation_averages_in_window_values": true,
+    "sample_count_reflects_contributing_rows": true,
+    "freshness_is_fresh_within_staleness_budget": true,
+    "observation_time_is_window_end_not_now": true,
+    "geometry_version_preserved": true,
+    "record_validates_against_real_contract_schema": true,
+    "carried_forward_when_window_empty": true,
+    "carried_forward_sample_count_is_zero": true,
+    "carried_forward_value_is_last_known": true,
+    "freshness_is_stale_beyond_budget": true,
+    "worst_quality_wins_over_valid_samples": true,
+    "segment_raises_not_implemented_rather_than_fabricating": true
+  },
+  "notes": {
+    "never_observed_returns_none": "",
+    "fresh_window_returns_record": "",
+    "aggregation_averages_in_window_values": "{'name': 'vehicle_count', 'value': 6.0, 'unit': 'count', 'quality': 'valid', 'confidence': 0.9, 'sample_count': 2}",
+    "sample_count_reflects_contributing_rows": "{'name': 'vehicle_count', 'value': 6.0, 'unit': 'count', 'quality': 'valid', 'confidence': 0.9, 'sample_count': 2}",
+    "freshness_is_fresh_within_staleness_budget": "",
+    "observation_time_is_window_end_not_now": "",
+    "geometry_version_preserved": "",
+    "record_validates_against_real_contract_schema": "",
+    "carried_forward_when_window_empty": "",
+    "carried_forward_sample_count_is_zero": "{'name': 'vehicle_count', 'value': 7, 'unit': 'count', 'quality': 'valid', 'confidence': 0.9, 'sample_count': 0}",
+    "carried_forward_value_is_last_known": "{'name': 'vehicle_count', 'value': 7, 'unit': 'count', 'quality': 'valid', 'confidence': 0.9, 'sample_count': 0}",
+    "freshness_is_stale_beyond_budget": "",
+    "worst_quality_wins_over_valid_samples": "{'name': 'vehicle_count', 'value': 7.333333, 'unit': 'count', 'quality': 'suspect', 'confidence': 0.733333, 'sample_count': 3}",
+    "segment_raises_not_implemented_rather_than_fabricating": ""
+  },
+  "all_passed": true
+}

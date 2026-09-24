@@ -1,0 +1,43 @@
+%%{init: {"flowchart": {"htmlLabels": true, "curve": "linear"}} }%%
+flowchart LR
+  A["Sensing\nSUMO-simulated traffic/VRU/signal/weather\ntruth_label=simulated"]
+  B["Edge feature extraction\nprivacy-preserving metadata, no raw video retained"]
+  C["Edge inference\nbaseline + ONNX model\ntruth_label=inferred"]
+  D["Durable outbox\nSQLite WAL, ordered, ack-tracked"]
+  E["MQTT publish\nobservation-envelope/v1"]
+  F["Gateway validation\nschema + identity check"]
+  G["Kafka-compatible transmission\npartitioned, replayable"]
+  H["Central ingestion\ndedup by event_id, idempotent"]
+  I["network-state/v1\ncurrent state, freshness_status"]
+  J["Traffic analytics\naggregates, KPIs"]
+  K["Forecast service\ntruth_label=predicted, uncertainty required"]
+  L["Safety detector\ncandidate evidence"]
+  M["Incident correlation\nincident/v1, root_cause_hypothesis != verified_cause"]
+  N["Recommendation\nrecommendation/v1, alternatives + safety_bounds"]
+  O["Operator decision\nREQUEST (P02.08 authority)"]
+  P["Policy evaluation\npolicy-decision/v1, OPA"]
+  Q["Command\ncommand/v1, idempotency_key"]
+  R["Adapter execution\nsystem:command-executor only"]
+  S["Outcome verification\noutcome/v1, independent pre/post window"]
+  T["Audit\nappend-only, all decision points"]
+
+  A --> B --> C --> D --> E --> F --> G --> H --> I
+  I --> J --> K
+  I --> L --> M
+  M --> N
+  N --> O --> P --> Q --> R --> S
+  S -->|"rollback"| Q
+  S -->|"escalate"| M
+  P -.-> T
+  Q -.-> T
+  M -.-> T
+  S -.-> T
+
+  classDef simulated fill:#eef,stroke:#448
+  classDef inferred fill:#fee,stroke:#844
+  classDef predicted fill:#efe,stroke:#484
+  classDef decision fill:#ffd,stroke:#884
+  class A simulated
+  class C inferred
+  class K predicted
+  class O,P,Q decision

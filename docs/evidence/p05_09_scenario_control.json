@@ -1,0 +1,31 @@
+{
+  "task": "P05.09",
+  "generated_at": "2026-09-20T15:18:03Z",
+  "checks": {
+    "start_without_role_header_is_refused": true,
+    "start_with_unauthorized_role_is_refused": true,
+    "start_with_authorized_role_succeeds": true,
+    "start_replays_the_real_p03_07_manifest": true,
+    "status_is_readable_by_a_broader_role": true,
+    "status_on_unknown_run_is_404": true,
+    "replay_by_unauthorized_role_is_refused": true,
+    "replay_is_deterministic_same_accepted_set": true,
+    "reset_by_authorized_role_succeeds": true,
+    "every_action_is_audited": true,
+    "concurrent_starts_are_bounded": true
+  },
+  "notes": {
+    "start_without_role_header_is_refused": "",
+    "start_with_unauthorized_role_is_refused": "",
+    "start_with_authorized_role_succeeds": "200",
+    "start_replays_the_real_p03_07_manifest": "{'input_count': 1715, 'accepted_count': 1715, 'rejected_count': 0, 'accepted_sha256': '443fb2999c5c85d08356dfa78affcad86191643107f690897ca4f9a855ae43ff', 'rejected_reasons': []}",
+    "status_is_readable_by_a_broader_role": "",
+    "status_on_unknown_run_is_404": "",
+    "replay_by_unauthorized_role_is_refused": "",
+    "replay_is_deterministic_same_accepted_set": "first=443fb2999c5c second=443fb2999c5c",
+    "reset_by_authorized_role_succeeds": "",
+    "every_action_is_audited": "[('start', 'demo_operator', 'allowed'), ('status', 'auditor', 'allowed'), ('replay', 'auditor', 'denied_role'), ('replay', 'demo_operator', 'allowed'), ('reset', 'demo_operator', 'allowed')]",
+    "concurrent_starts_are_bounded": "statuses=[200, 200, 429] max=2"
+  },
+  "all_passed": true
+}

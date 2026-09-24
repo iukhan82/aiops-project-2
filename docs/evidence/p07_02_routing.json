@@ -1,0 +1,82 @@
+{
+  "all_passed": true,
+  "checks": {
+    "a_hazard_route_is_still_returned_and_reroutes_around_a_comparable_alternative_when_one_exists": true,
+    "a_kpi_window_older_than_the_live_budget_is_not_used": true,
+    "a_medium_severity_congestion_incident_is_a_hazard_not_a_closure": true,
+    "a_real_high_severity_incident_marks_its_segment_closed": true,
+    "a_recent_corridor_kpi_overrides_free_flow_travel_time_for_its_segments": true,
+    "api_serves_contract_shaped_route_alternatives": true,
+    "api_unknown_node_is_404": true,
+    "baseline_route_exists_on_the_real_26_segment_network": true,
+    "multiple_genuinely_different_alternatives_exist_on_the_real_grid": true,
+    "the_router_never_uses_a_closed_segment_and_the_grid_still_finds_a_way_through": true,
+    "uncertainty_uses_the_stated_default_margin_when_no_live_kpi_exists": true
+  },
+  "generated_at": "2026-09-20T10:03:44Z",
+  "metrics": {
+    "baseline_alternatives": [
+      {
+        "constraints_applied": [],
+        "distance_m": 1620.6,
+        "eta_seconds": 118.1,
+        "eta_uncertainty_seconds": 17.7,
+        "geometry_version": "2026-09-18.1",
+        "route_id": "route-a569b121-9b89-43ad-8177-87ae8d9e0a5a",
+        "selected": true
+      },
+      {
+        "constraints_applied": [],
+        "distance_m": 1620.6,
+        "eta_seconds": 118.1,
+        "eta_uncertainty_seconds": 17.7,
+        "geometry_version": "2026-09-18.1",
+        "route_id": "route-5755acdf-0fea-4c9f-bdb3-0f49ececdb1e",
+        "selected": false
+      },
+      {
+        "constraints_applied": [],
+        "distance_m": 1620.6,
+        "eta_seconds": 118.1,
+        "eta_uncertainty_seconds": 17.7,
+        "geometry_version": "2026-09-18.1",
+        "route_id": "route-284faecc-3233-43e0-a530-63843a92d0a6",
+        "selected": false
+      }
+    ],
+    "rerouted_after_closure": [
+      {
+        "constraints_applied": [],
+        "distance_m": 1620.6,
+        "eta_seconds": 118.1,
+        "eta_uncertainty_seconds": 17.7,
+        "geometry_version": "2026-09-18.1",
+        "route_id": "route-38805fad-4759-4b1e-8a78-80f6810915e8",
+        "selected": true
+      },
+      {
+        "constraints_applied": [],
+        "distance_m": 1620.6,
+        "eta_seconds": 118.1,
+        "eta_uncertainty_seconds": 17.7,
+        "geometry_version": "2026-09-18.1",
+        "route_id": "route-3fc664d7-2adc-4847-9d8d-dbc03a6a1d69",
+        "selected": false
+      }
+    ]
+  },
+  "notes": {
+    "a_hazard_route_is_still_returned_and_reroutes_around_a_comparable_alternative_when_one_exists": "",
+    "a_kpi_window_older_than_the_live_budget_is_not_used": "",
+    "a_medium_severity_congestion_incident_is_a_hazard_not_a_closure": "",
+    "a_real_high_severity_incident_marks_its_segment_closed": "",
+    "a_recent_corridor_kpi_overrides_free_flow_travel_time_for_its_segments": "",
+    "api_serves_contract_shaped_route_alternatives": "3 alternatives",
+    "api_unknown_node_is_404": "",
+    "baseline_route_exists_on_the_real_26_segment_network": "3 alternatives, fastest ('int-a1_int-a2', 'int-a2_int-a3', 'int-a3_int-a4', 'int-a4_int-b4', 'int-b4_int-c4')",
+    "multiple_genuinely_different_alternatives_exist_on_the_real_grid": "",
+    "the_router_never_uses_a_closed_segment_and_the_grid_still_finds_a_way_through": "rerouted via ('int-a1_int-b1', 'int-b1_int-b2', 'int-b2_int-b3', 'int-b3_int-b4', 'int-b4_int-c4')",
+    "uncertainty_uses_the_stated_default_margin_when_no_live_kpi_exists": ""
+  },
+  "task": "P07.02"
+}

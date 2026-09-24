@@ -1,0 +1,318 @@
+# Pinned central platform services for Phase 05 (P05.01).
+#
+# Resource limits follow docs/environment/RESOURCE_BUDGET.md's development
+# workstation budget line items. Images are pinned by digest (ADR-0002,
+# ADR-0003); tag is kept alongside the digest for human readability only.
+#
+# This stack is the local dev/test fixture referenced by ADR-0002's plain-
+# MQTT carve-out. It is not the K3s deployment target (that is P11.02/P11.03).
+
+name: aiops-platform
+
+networks:
+  aiops-platform-net:
+    name: aiops-platform-net
+
+volumes:
+  mosquitto-data:
+  redpanda-data:
+  postgres-data:
+  keycloak-data:
+  prometheus-data:
+  tempo-data:
+  loki-data:
+  grafana-data:
+
+services:
+  mqtt-broker:
+    image: eclipse-mosquitto:2.0.18@sha256:d12c8f80dfc65b768bb9acecc7ef182b976f71fb681640b66358e5e0cf94e9e9
+    container_name: aiops-mqtt-broker
+    restart: unless-stopped
+    networks: [aiops-platform-net]
+    ports:
+      - "127.0.0.1:1883:1883"
+      - "127.0.0.1:8883:8883"
+    volumes:
+      - ./mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
+      - ./mosquitto/acl.conf:/mosquitto/config/acl.conf:ro
+      - ./mosquitto/certs:/mosquitto/certs:ro
+      - mosquitto-data:/mosquitto/data
+    cpus: "0.15"
+    mem_limit: "192m"
+    mem_reservation: "64m"
+    healthcheck:
+      test: ["CMD-SHELL", "mosquitto_sub -h 127.0.0.1 -p 1883 -t '$$SYS/broker/uptime' -C 1 -W 3 -i healthcheck | grep -q . || exit 1"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 5s
+
+  kafka-broker:
+    image: docker.redpanda.com/redpandadata/redpanda:v24.2.18@sha256:0270951e8793c77f0dd9178d137198018fa7ffd920e5a2a3b02a050ec76195b8
+    container_name: aiops-kafka-broker
+    restart: unless-stopped
+    networks: [aiops-platform-net]
+    command:
+      - redpanda
+      - start
+      - --mode
+      - dev-container
+      - --smp
+      - "1"
+      - --memory
+      - "800M"
+      - --reserve-memory
+      - "0M"
+      - --node-id
+      - "0"
+      - --check=false
+      - --kafka-addr
+      - internal://0.0.0.0:9092,external://0.0.0.0:19092
+      - --advertise-kafka-addr
+      - internal://kafka-broker:9092,external://127.0.0.1:19092
+      - --rpc-addr
+      - kafka-broker:33145
+      - --advertise-rpc-addr
+      - kafka-broker:33145
+    ports:
+      - "127.0.0.1:19092:19092"
+      - "127.0.0.1:9644:9644"
+    volumes:
+      - redpanda-data:/var/lib/redpanda/data
+    cpus: "0.75"
+    mem_limit: "1024m"
+    mem_reservation: "512m"
+    healthcheck:
+      test: ["CMD-SHELL", "curl -sf http://localhost:9644/v1/status/ready | grep -q '\"status\":\"ready\"' || exit 1"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 10s
+
+  postgres:
+    image: postgis/postgis:16-3.4@sha256:44126d872ac91993766c341e369c539e8196614321765d36a6f1bab0419a5fa5
+    container_name: aiops-postgres
+    restart: unless-stopped
+    networks: [aiops-platform-net]
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-aiops}
+      POSTGRES_USER: ${POSTGRES_USER:-aiops_app}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in .env, see .env.example}
+    ports:
+      - "127.0.0.1:5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./postgres/certs:/certs-src:ro
+    # P09.04 (CTL-11): the cert files are bind-mounted read-only from the host, where their Unix permissions cannot be
+    # trusted (this stack also runs from a Windows-mounted path); Postgres refuses a key file it does not own with
+    # tight permissions, so this copies them into the container's own filesystem and fixes ownership/mode there,
+    # before handing off to the image's normal entrypoint (which still does initdb etc. exactly as before) with
+    # ssl=on. Proven in isolation first (a disposable container, torn down, not this one) before applying here.
+    command:
+      - bash
+      - -c
+      - >
+        set -e;
+        mkdir -p /var/lib/postgresql/ssl;
+        cp /certs-src/server.crt /certs-src/server.key /certs-src/ca.crt /var/lib/postgresql/ssl/;
+        chown postgres:postgres /var/lib/postgresql/ssl/*;
+        chmod 600 /var/lib/postgresql/ssl/server.key;
+        exec docker-entrypoint.sh postgres
+        -c ssl=on
+        -c ssl_cert_file=/var/lib/postgresql/ssl/server.crt
+        -c ssl_key_file=/var/lib/postgresql/ssl/server.key
+        -c ssl_ca_file=/var/lib/postgresql/ssl/ca.crt
+    cpus: "0.75"
+    mem_limit: "1024m"
+    mem_reservation: "256m"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-aiops_app} -d ${POSTGRES_DB:-aiops}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 5s
+
+  # P09.02 (pulled forward for P08.04): OIDC identity provider for the operator UI and API.
+  # start-dev = embedded H2 on a named volume: a dev/test fixture like the rest of this stack,
+  # not the K3s deployment target. The realm (roles, clients) is imported from keycloak/realm/;
+  # demo identities and their generated passwords are created by keycloak/provision.py, never
+  # committed. Host port 8180 (8080 is another project's on this shared workstation).
+  keycloak:
+    image: quay.io/keycloak/keycloak:26.0.8@sha256:09a381c715ab0b111835b70f2905955274843a219c6f27efb348e4d9f4086858
+    container_name: aiops-keycloak
+    restart: unless-stopped
+    networks: [aiops-platform-net]
+    command:
+      - start-dev
+      - --import-realm
+      - --http-enabled=true
+      - --hostname=http://localhost:8180
+      - --health-enabled=true
+    environment:
+      KC_BOOTSTRAP_ADMIN_USERNAME: ${KEYCLOAK_ADMIN:?set KEYCLOAK_ADMIN in .env, see .env.example}
+      KC_BOOTSTRAP_ADMIN_PASSWORD: ${KEYCLOAK_ADMIN_PASSWORD:?set KEYCLOAK_ADMIN_PASSWORD in .env, see .env.example}
+      JAVA_OPTS_KC_HEAP: "-XX:MaxRAMPercentage=65 -XX:InitialRAMPercentage=30"
+    ports:
+      - "127.0.0.1:8180:8080"
+    volumes:
+      - ./keycloak/realm:/opt/keycloak/data/import:ro
+      - keycloak-data:/opt/keycloak/data
+    cpus: "1.0"
+    mem_limit: "1024m"
+    mem_reservation: "512m"
+    healthcheck:
+      test: ["CMD-SHELL", "exec 3<>/dev/tcp/127.0.0.1/9000 && printf 'GET /health/ready HTTP/1.1\r\nHost: localhost\r\nConnection: close\r\n\r\n' >&3 && grep -q '\"status\": \"UP\"' <&3"]
+      interval: 10s
+      timeout: 5s
+      retries: 20
+      start_period: 40s
+
+  # P09.03: the policy decision point. The API and the command executor ask this service whether a request, an approval or an
+  # execution is permitted; the policies are in source-code/policy (Rego) and read the role, route and adapter tables generated
+  # by policy/build_data.py. Distroless image (no shell), so no container healthcheck: up.sh and the verify scripts ask it for the
+  # loaded policy version instead. Host port 8181, bound to loopback only.
+  opa:
+    image: openpolicyagent/opa:1.20.2-static@sha256:2de1e6619246955695b982d0bcb6c73bcee22aa34ff96f2455996616ec1d21c1
+    container_name: aiops-opa
+    restart: unless-stopped
+    networks: [aiops-platform-net]
+    command:
+      - run
+      - --server
+      - --addr=0.0.0.0:8181
+      - --log-level=info
+      - --log-format=json
+      - --set=decision_logs.console=true
+      - --ignore=*_test.rego
+      - --bundle
+      - /policy
+    ports:
+      - "127.0.0.1:8181:8181"
+    volumes:
+      - ../../policy:/policy:ro
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: ["no-new-privileges:true"]
+    cpus: "0.25"
+    mem_limit: "128m"
+    mem_reservation: "32m"
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # P10.03: OTLP receiver for backend/edge metrics (backend/observability.py,
+  # OTEL_EXPORTER_OTLP_ENDPOINT) - no service has a long-running container yet
+  # (P11.01), so metrics are pushed, not scraped, except Prometheus's/Tempo's
+  # own operational metrics (observability/prometheus/prometheus.yml).
+  prometheus:
+    image: prom/prometheus:v3.7.3@sha256:49214755b6153f90a597adcbff0252cc61069f8ab69ce8411285cd4a560e8038
+    container_name: aiops-prometheus
+    restart: unless-stopped
+    networks: [aiops-platform-net]
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+      - --storage.tsdb.path=/prometheus
+      - --storage.tsdb.retention.time=24h
+      - --web.enable-otlp-receiver
+    ports:
+      - "127.0.0.1:9090:9090"
+    volumes:
+      - ./observability/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus-data:/prometheus
+    cpus: "0.20"
+    mem_limit: "384m"
+    mem_reservation: "128m"
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q -O- http://127.0.0.1:9090/-/ready || exit 1"]
+      interval: 5s
+      timeout: 5s
+      retries: 15
+      start_period: 5s
+
+  # P10.03: trace storage (OTLP receiver on 4317/4318), local backend, short
+  # retention (docs/environment/RESOURCE_BUDGET.md).
+  tempo:
+    image: grafana/tempo:2.9.2@sha256:3f0825e14397d3459e11e96f99ddd3976ec0cb75e328459e173298d9fb74b407
+    container_name: aiops-tempo
+    restart: unless-stopped
+    networks: [aiops-platform-net]
+    command: ["-config.file=/etc/tempo/tempo.yaml"]
+    ports:
+      - "127.0.0.1:3200:3200"
+      - "127.0.0.1:4317:4317"
+      - "127.0.0.1:4318:4318"
+    volumes:
+      - ./observability/tempo/tempo.yaml:/etc/tempo/tempo.yaml:ro
+      - tempo-data:/var/tempo
+    cpus: "0.20"
+    mem_limit: "384m"
+    mem_reservation: "128m"
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O-", "http://127.0.0.1:3200/ready"]
+      interval: 5s
+      timeout: 5s
+      retries: 15
+      start_period: 5s
+
+  # P10.03: log storage, single-binary/filesystem, short retention. No
+  # backend service has a long-running container to ship real logs from yet
+  # (P11.01); this proves the push/query mechanism and Grafana's trace<->log
+  # correlation, not a fully wired production log pipeline.
+  loki:
+    image: grafana/loki:3.5.7@sha256:0eaee7bf39cc83aaef46914fb58f287d4f4c4be6ec96b86c2ed55719a75e49c8
+    container_name: aiops-loki
+    restart: unless-stopped
+    networks: [aiops-platform-net]
+    command: ["-config.file=/etc/loki/loki.yaml"]
+    ports:
+      - "127.0.0.1:3100:3100"
+    volumes:
+      - ./observability/loki/loki.yaml:/etc/loki/loki.yaml:ro
+      - loki-data:/loki
+    cpus: "0.15"
+    mem_limit: "256m"
+    mem_reservation: "64m"
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q -O- http://127.0.0.1:3100/ready || exit 1"]
+      interval: 5s
+      timeout: 5s
+      retries: 15
+      start_period: 5s
+
+  # P10.03: dashboards, provisioned datasources (Prometheus/Tempo/Loki) and
+  # trace<->log correlation - not clicked through, so it is reproducible.
+  grafana:
+    image: grafana/grafana:12.2.1@sha256:35c41e0fd0295f5d0ee5db7e780cf33506abfaf47686196f825364889dee878b
+    container_name: aiops-grafana
+    restart: unless-stopped
+    networks: [aiops-platform-net]
+    environment:
+      GF_SECURITY_ADMIN_USER: ${GRAFANA_ADMIN:-admin}
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PASSWORD:?set GRAFANA_ADMIN_PASSWORD in .env, see .env.example}
+      GF_AUTH_ANONYMOUS_ENABLED: "false"
+      GF_USERS_ALLOW_SIGN_UP: "false"
+      GF_FEATURE_TOGGLES_ENABLE: "traceqlEditor"
+    ports:
+      - "127.0.0.1:3000:3000"
+    volumes:
+      - ./observability/grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./observability/grafana/dashboards:/etc/grafana/dashboards:ro
+      - grafana-data:/var/lib/grafana
+    depends_on:
+      prometheus:
+        condition: service_healthy
+      tempo:
+        condition: service_healthy
+      loki:
+        condition: service_healthy
+    cpus: "0.20"
+    mem_limit: "512m"
+    mem_reservation: "128m"
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q -O- http://127.0.0.1:3000/api/health || exit 1"]
+      interval: 5s
+      timeout: 5s
+      retries: 15
+      start_period: 10s

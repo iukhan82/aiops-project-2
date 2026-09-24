@@ -1,0 +1,6 @@
+{
+  "artifact": "models.joblib",
+  "sha256": "226dde0369e1e15cb9f56b36c1579b9ee906e184a39bfd36c2cbaeb5834c2ac5",
+  "model_id": "traffic-forecast",
+  "model_version": "1.0.0"
+}

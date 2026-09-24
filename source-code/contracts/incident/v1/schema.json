@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://project2.local/contracts/incident/v1/schema.json",
+  "title": "Traffic/safety/data-quality incident",
+  "description": "Correlated incident lifecycle record (P06.07). Keeps root_cause_hypothesis distinct from verified_cause, per docs/PROJECT_CONTEXT.md: 'Root-cause hypotheses are not verified causes.'",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "incident_id",
+    "incident_type",
+    "severity",
+    "status",
+    "network_element_type",
+    "network_element_id",
+    "geometry_version",
+    "opened_at",
+    "updated_at",
+    "evidence_event_ids",
+    "owner_role",
+    "confidence"
+  ],
+  "properties": {
+    "schema_version": { "const": "1.0.0" },
+    "incident_id": { "type": "string", "format": "uuid" },
+    "incident_type": {
+      "type": "string",
+      "enum": [
+        "congestion", "spillback", "collision", "stalled_vehicle", "wrong_way",
+        "pedestrian_conflict", "hazard", "flooding", "low_visibility",
+        "signal_fault", "device_fault", "data_quality", "other"
+      ]
+    },
+    "severity": { "type": "string", "enum": ["low", "medium", "high", "critical"] },
+    "status": {
+      "type": "string",
+      "enum": ["open", "acknowledged", "investigating", "escalated", "resolved", "reopened"]
+    },
+    "network_element_type": {
+      "type": "string",
+      "enum": ["lane", "segment", "intersection", "corridor", "device"]
+    },
+    "network_element_id": { "type": "string", "minLength": 1 },
+    "geometry_version": { "type": "string", "minLength": 1 },
+    "opened_at": { "type": "string", "format": "date-time" },
+    "updated_at": { "type": "string", "format": "date-time" },
+    "resolved_at": { "type": "string", "format": "date-time" },
+    "evidence_event_ids": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "format": "uuid" },
+      "uniqueItems": true,
+      "description": "observation-envelope/v1 event_id or network-state/v1 record_id values this incident was correlated from."
+    },
+    "root_cause_hypothesis": {
+      "type": "string",
+      "description": "An unverified working theory. Never read by any consumer as a confirmed cause."
+    },
+    "verified_cause": {
+      "type": "string",
+      "description": "Only set once independently confirmed; absent otherwise."
+    },
+    "owner_role": {
+      "type": "string",
+      "enum": ["BACKEND", "OPS", "EMERG", "CONTROL", "SEC"]
+    },
+    "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+    "duplicate_of": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Set when this incident was merged into another; status must then be 'resolved'."
+    }
+  }
+}

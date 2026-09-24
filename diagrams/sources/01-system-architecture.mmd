@@ -1,0 +1,83 @@
+%%{init: {"flowchart": {"htmlLabels": true, "curve": "linear"}} }%%
+flowchart TB
+  subgraph EDGE["Edge site (x3 logical: per corridor/intersection group)"]
+    SENSORS["Traffic / VRU / signal / weather / road sensors\n(simulated via SUMO, P03)"]
+    EDGERT["Edge runtime\nadapters, validation, feature extraction"]
+    EDGEML["Edge inference\nONNX Runtime, baseline + trained model (ADR-0005)"]
+    OUTBOX[("Durable outbox\nSQLite WAL (ADR-0006)")]
+    SENSORS --> EDGERT --> EDGEML --> OUTBOX
+  end
+
+  GATEWAY["Event gateway\nMQTT mTLS ingest, ack (ADR-0002)"]
+  OUTBOX -->|"MQTT QoS1 mTLS"| GATEWAY
+
+  subgraph BACKBONE["Central event backbone"]
+    KAFKA[("Kafka-compatible stream\npartitioned by device/corridor (ADR-0002)")]
+  end
+  GATEWAY -->|"validated events"| KAFKA
+
+  subgraph CENTRAL["Central services (tested: local K3s, see diagram 06)"]
+    DEVREG["Device registry\n(device/v1)"]
+    NETSTATE["Network state service\n(network-state/v1, signal-state/v1)"]
+    GEO["Geospatial service\n(road-geometry/v1)"]
+    ANALYTICS["Traffic analytics\naggregates, KPIs (P06.01)"]
+    FORECAST["Forecast service\n(forecast/v1)"]
+    SAFETY["Safety detector\ncollision/hazard candidates"]
+    INCIDENT["Incident service\n(incident/v1)"]
+    EMERG["Emergency service\n(emergency-call/v1, emergency-unit-assignment/v1)"]
+    OPT["Optimization service\n(recommendation/v1)"]
+    CMD["Command service\n(command/v1)"]
+    OUTVER["Outcome verifier\n(outcome/v1)"]
+    MODELSVC["Model service\nregistry, activation, rollback"]
+    AUDIT[("Audit service\nappend-only (P09.05)")]
+    AIOPS["AIOps engine\n(P10)"]
+  end
+
+  KAFKA --> DEVREG
+  KAFKA --> NETSTATE
+  NETSTATE --> ANALYTICS --> FORECAST
+  NETSTATE --> SAFETY --> INCIDENT
+  GEO --> NETSTATE
+  INCIDENT --> OPT
+  EMERG --> OPT
+  OPT -->|"recommendation/v1"| CMD
+  CMD -->|"approved command"| ADAPTER["Simulator adapters\nsignal / diversion / VMS (P07.06)"]
+  ADAPTER -->|"observed state"| OUTVER
+  OUTVER -->|"rollback/escalate"| CMD
+  CMD --> AUDIT
+  INCIDENT --> AUDIT
+  MODELSVC --> EDGEML
+  AIOPS --> CMD
+
+  subgraph STORES["Data stores (ADR-0003)"]
+    PG[("PostgreSQL/PostGIS\ntopology, incidents, commands, audit")]
+    OBJ[("Object storage\nmodel artifacts, evidence")]
+  end
+  DEVREG --> PG
+  NETSTATE --> PG
+  INCIDENT --> PG
+  CMD --> PG
+  OUTVER --> PG
+  AUDIT --> PG
+  MODELSVC --> OBJ
+
+  subgraph MON["Observability (P10)"]
+    OTEL["OpenTelemetry Collector"]
+    PROM[("Prometheus / Tempo / logs")]
+    GRAF["Grafana dashboards"]
+  end
+  EDGERT -.->|traces/metrics| OTEL
+  CENTRAL -.->|traces/metrics| OTEL
+  OTEL --> PROM --> GRAF
+
+  subgraph OPUI["Staff API / BFF and UI"]
+    API["Staff API / BFF"]
+    UI["Operator / dispatcher / supervisor / field UI (P08)"]
+  end
+  NETSTATE --> API
+  INCIDENT --> API
+  EMERG --> API
+  CMD --> API
+  OUTVER --> API
+  API --> UI
+  GRAF -.-> UI

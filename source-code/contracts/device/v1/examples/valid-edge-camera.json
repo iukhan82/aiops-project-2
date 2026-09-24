@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0.0",
+  "device_id": "corridor-a-int-03-cam-01",
+  "device_type": "edge_camera",
+  "deployment_type": "simulated",
+  "agency_scope": "city-traffic-ops",
+  "location": {
+    "geometry_version": "2026-09-18.1",
+    "coordinate_reference": "EPSG:4326",
+    "latitude": 31.5204,
+    "longitude": 74.3587,
+    "intersection_id": "int-03",
+    "corridor_id": "corridor-a",
+    "lane_id": "int-03-approach-n-lane-1"
+  },
+  "capabilities": ["vehicle_count", "queue_length", "turning_movement", "wrong_way_event"],
+  "certificate": {
+    "fingerprint_sha256": "3e6c5c6ccb968f95e578b99f2721a7e267d452fb1d39ed8a5b56366a4a6d8740",
+    "not_before": "2026-09-18T00:00:00Z",
+    "not_after": "2027-09-18T00:00:00Z"
+  },
+  "configuration_version": "edge-camera-profile-1.2.0",
+  "status": "active",
+  "registered_at": "2026-09-18T09:00:00Z",
+  "privacy_classification": "aggregated",
+  "retention_class": "standard"
+}

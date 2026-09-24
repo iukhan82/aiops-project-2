@@ -1,0 +1,131 @@
+{
+  "schema_version": "1.0.0",
+  "description": "P10.02: platform SLOs, each a real contracts/slo-definition/v1 record, verified by verify_slos.py against the real schema, the real metric names P10.01's instrumentation emits, and docs/requirements/ACCEPTANCE_TARGETS.md's real IDs. measurement_query_ref points to the exact PromQL P10.03 wires against a real Prometheus once one exists; until then it is inspectable as source text, not a live query, and verify_slos.py checks the metric name it names is one this codebase genuinely emits today - a query cannot silently drift onto a metric nobody produces.",
+  "slos": [
+    {
+      "schema_version": "1.0.0",
+      "slo_id": "edge-model-inference-latency-p95",
+      "service": "edge-runtime",
+      "objective_type": "latency",
+      "target_value": 100,
+      "target_unit": "ms",
+      "window_seconds": 60,
+      "measurement_query_ref": "histogram_quantile(0.95, sum(rate(edge_model_inference_latency_ms_bucket[1m])) by (le))",
+      "related_acceptance_target_id": "LAT-01",
+      "owner_role": "OPS",
+      "effective_from": "2026-09-23T00:00:00Z"
+    },
+    {
+      "schema_version": "1.0.0",
+      "slo_id": "edge-pending-devices-saturation",
+      "service": "edge-runtime",
+      "objective_type": "saturation",
+      "target_value": 70,
+      "target_unit": "count",
+      "window_seconds": 60,
+      "measurement_query_ref": "max_over_time(edge_pending_devices[1m])",
+      "owner_role": "OPS",
+      "effective_from": "2026-09-23T00:00:00Z"
+    },
+    {
+      "schema_version": "1.0.0",
+      "slo_id": "ingestion-ingest-latency-p95",
+      "service": "ingestion",
+      "objective_type": "latency",
+      "target_value": 2000,
+      "target_unit": "ms",
+      "window_seconds": 300,
+      "measurement_query_ref": "histogram_quantile(0.95, sum(rate(ingestion_ingest_latency_bucket[5m])) by (le))",
+      "related_acceptance_target_id": "LAT-02",
+      "owner_role": "OPS",
+      "effective_from": "2026-09-23T00:00:00Z"
+    },
+    {
+      "schema_version": "1.0.0",
+      "slo_id": "ingestion-rejection-rate",
+      "service": "ingestion",
+      "objective_type": "error_rate",
+      "target_value": 5,
+      "target_unit": "percent",
+      "window_seconds": 300,
+      "measurement_query_ref": "sum(rate(ingestion_events_rejected_schema[5m]) + rate(ingestion_events_rejected_unknown_device[5m]) + rate(ingestion_events_rejected_content_conflict[5m])) / sum(rate(ingestion_events_inserted[5m]) + rate(ingestion_events_duplicate_ok[5m]) + rate(ingestion_events_rejected_schema[5m]) + rate(ingestion_events_rejected_unknown_device[5m]) + rate(ingestion_events_rejected_content_conflict[5m])) * 100",
+      "owner_role": "OPS",
+      "effective_from": "2026-09-23T00:00:00Z"
+    },
+    {
+      "schema_version": "1.0.0",
+      "slo_id": "network-state-freshness-share",
+      "service": "api",
+      "objective_type": "freshness",
+      "target_value": 95,
+      "target_unit": "percent",
+      "window_seconds": 300,
+      "measurement_query_ref": "sum(rate(network_state_records{freshness_status=\"fresh\"}[5m])) / sum(rate(network_state_records[5m])) * 100",
+      "related_acceptance_target_id": "SAFE-03",
+      "owner_role": "OPS",
+      "effective_from": "2026-09-23T00:00:00Z"
+    },
+    {
+      "schema_version": "1.0.0",
+      "slo_id": "api-http-latency-p95",
+      "service": "api",
+      "objective_type": "latency",
+      "target_value": 2000,
+      "target_unit": "ms",
+      "window_seconds": 300,
+      "measurement_query_ref": "histogram_quantile(0.95, sum(rate(api_http_request_duration_bucket[5m])) by (le))",
+      "owner_role": "OPS",
+      "effective_from": "2026-09-23T00:00:00Z"
+    },
+    {
+      "schema_version": "1.0.0",
+      "slo_id": "api-http-error-rate",
+      "service": "api",
+      "objective_type": "error_rate",
+      "target_value": 1,
+      "target_unit": "percent",
+      "window_seconds": 300,
+      "measurement_query_ref": "sum(rate(api_http_requests_total{http_status_code=~\"5..\"}[5m])) / sum(rate(api_http_requests_total[5m])) * 100",
+      "owner_role": "OPS",
+      "effective_from": "2026-09-23T00:00:00Z"
+    },
+    {
+      "schema_version": "1.0.0",
+      "slo_id": "api-availability",
+      "service": "api",
+      "objective_type": "availability",
+      "target_value": 99,
+      "target_unit": "percent",
+      "window_seconds": 86400,
+      "measurement_query_ref": "avg_over_time(up{service=\"api\"}[24h]) * 100",
+      "owner_role": "OPS",
+      "effective_from": "2026-09-23T00:00:00Z"
+    },
+    {
+      "schema_version": "1.0.0",
+      "slo_id": "command-adapter-acknowledgement-p95",
+      "service": "control",
+      "objective_type": "acknowledgement",
+      "target_value": 3000,
+      "target_unit": "ms",
+      "window_seconds": 3600,
+      "measurement_query_ref": "docs/evidence/p07_09_outcomes.json#warm_live_session_p95_ms - no live metric exists yet for this path (P07.06/07.09 measure it directly, not through Prometheus); wiring a real histogram here is P10.03/P10.04 scope, not invented ahead of a collector to query it",
+      "related_acceptance_target_id": "LAT-04",
+      "owner_role": "OPS",
+      "effective_from": "2026-09-23T00:00:00Z"
+    },
+    {
+      "schema_version": "1.0.0",
+      "slo_id": "emergency-route-eta-accuracy",
+      "service": "control",
+      "objective_type": "eta_accuracy",
+      "target_value": 15,
+      "target_unit": "percent",
+      "window_seconds": 3600,
+      "measurement_query_ref": "docs/evidence/p07_10_scenarios.json#pooled_mae_percent - measured per scenario run, not a live streaming query; P10.03/P10.04 scope to wire a running metric",
+      "related_acceptance_target_id": "ETA-01",
+      "owner_role": "OPS",
+      "effective_from": "2026-09-23T00:00:00Z"
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "all_passed": true,
+  "checks": {
+    "admission_gate_rejects_tampered_artifact": true,
+    "artifacts_signed": true,
+    "build_context_hashed": true,
+    "cosign_keys_ready": true,
+    "edge_image_builds": true,
+    "no_fixable_critical_high": true,
+    "provenance_generated": true,
+    "sast_edge_clean": true,
+    "sbom_frontend_generated": true,
+    "sbom_image_generated": true,
+    "signatures_verify": true,
+    "trivy_image_scan_ran": true
+  },
+  "generated_at": "2026-09-23T17:42:26Z",
+  "metrics": {
+    "git": {
+      "dirty": true,
+      "head": "f7e1950723ecfcaaed8a8af57cbb96693c4307d5",
+      "uncommitted_paths": 96
+    },
+    "image": {
+      "digest": "sha256:c870b8053d9d82aee9ef868029a2ff2fc988c6def5b1459aa0b4ab1c56e8ceff",
+      "tag": "aiops-edge:9e204f36c48e",
+      "tree_sha256": "9e204f36c48ed221f6c6263e6fa9c676eb43ce7cdded1b585cafcb82ee3ef1c8"
+    },
+    "trivy": {
+      "fixable": 0,
+      "path": "/mnt/d/AIOPS Project/AIOPS-Project-2/source-code/security/supply_chain/output/trivy_image.json",
+      "total": 44,
+      "unfixable_ids": [
+        "CVE-2025-69720",
+        "CVE-2026-16742",
+        "CVE-2026-54369",
+        "CVE-2026-76642",
+        "CVE-2026-78408",
+        "CVE-2026-78409",
+        "CVE-2026-78410",
+        "CVE-2026-9538"
+      ]
+    }
+  },
+  "notes": {
+    "admission_gate_proof": "genuine admitted=True, tampered admitted=False",
+    "admission_gate_rejects_tampered_artifact": "genuine admitted=True, tampered admitted=False",
+    "artifacts_signed": "3/3 signed",
+    "build_context_hashed": "69 files, tree_sha256=9e204f36c48ed221...",
+    "cosign_keys_ready": "/mnt/d/AIOPS Project/AIOPS-Project-2/source-code/security/supply_chain/keys/cosign.pub",
+    "edge_image_builds": "aiops-edge:9e204f36c48e -> sha256:c870b8053d9d82aee9ef868029a2ff2fc988c6def5b1459aa0b4ab1c56e8ceff",
+    "git_dirty": "True",
+    "git_head": "f7e1950723ecfcaaed8a8af57cbb96693c4307d5",
+    "no_fixable_critical_high": "0 fixable; 44 unfixable upstream-NOFIX (ids: ['CVE-2025-69720', 'CVE-2026-16742', 'CVE-2026-54369', 'CVE-2026-76642', 'CVE-2026-78408'])",
+    "provenance_generated": "/mnt/d/AIOPS Project/AIOPS-Project-2/source-code/security/supply_chain/output/provenance.json",
+    "sast_edge_clean": "0 findings over 2932 lines",
+    "sbom_frontend_generated": "35 components",
+    "sbom_image_generated": "107 components",
+    "signatures_verify": "3 artifacts, all genuine signatures verify OK",
+    "trivy_image_scan_ran": "44 CRITICAL/HIGH found, 0 fixable"
+  },
+  "task": "P09.08"
+}

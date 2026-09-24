@@ -1,0 +1,122 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://project2.local/contracts/road-geometry/v1/schema.json",
+  "title": "Road geometry (MAP)",
+  "description": "Versioned intersection geometry: approaches, lanes, movements, stop lines and crossing zones, per REFERENCE_ARCHITECTURE.md section 4 'Signal SPaT/MAP'. A signal-state/v1 record references the geometry_version it was produced against.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "geometry_version",
+    "intersection_id",
+    "coordinate_reference",
+    "centroid",
+    "approaches",
+    "movements",
+    "effective_from"
+  ],
+  "properties": {
+    "schema_version": { "const": "1.0.0" },
+    "geometry_version": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Version identifier for this intersection's geometry snapshot. Bumped on any approach/lane/movement/stop-line change."
+    },
+    "intersection_id": { "type": "string", "minLength": 1 },
+    "corridor_id": { "type": "string" },
+    "coordinate_reference": { "type": "string", "const": "EPSG:4326" },
+    "centroid": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["latitude", "longitude"],
+      "properties": {
+        "latitude": { "type": "number", "minimum": -90, "maximum": 90 },
+        "longitude": { "type": "number", "minimum": -180, "maximum": 180 }
+      }
+    },
+    "approaches": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["approach_id", "bearing_degrees", "lanes"],
+        "properties": {
+          "approach_id": { "type": "string", "minLength": 1 },
+          "bearing_degrees": { "type": "number", "minimum": 0, "exclusiveMaximum": 360 },
+          "lanes": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["lane_id", "lane_type", "movement_ids"],
+              "properties": {
+                "lane_id": { "type": "string", "minLength": 1 },
+                "lane_type": {
+                  "type": "string",
+                  "enum": ["through", "left", "right", "shared", "bike", "transit", "pedestrian_crossing"]
+                },
+                "movement_ids": {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": { "type": "string", "minLength": 1 },
+                  "uniqueItems": true
+                },
+                "stop_line": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": ["latitude", "longitude"],
+                  "properties": {
+                    "latitude": { "type": "number", "minimum": -90, "maximum": 90 },
+                    "longitude": { "type": "number", "minimum": -180, "maximum": 180 }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "movements": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["movement_id", "from_approach_id", "conflict_group"],
+        "properties": {
+          "movement_id": { "type": "string", "minLength": 1 },
+          "from_approach_id": { "type": "string", "minLength": 1 },
+          "to_approach_id": { "type": "string" },
+          "conflict_group": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Identifier shared by movements that cannot receive a protected green simultaneously."
+          },
+          "permitted": { "type": "boolean" }
+        }
+      }
+    },
+    "crossing_zones": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["crossing_id", "approach_id", "latitude", "longitude", "accessible_device"],
+        "properties": {
+          "crossing_id": { "type": "string", "minLength": 1 },
+          "approach_id": { "type": "string", "minLength": 1 },
+          "latitude": { "type": "number", "minimum": -90, "maximum": 90 },
+          "longitude": { "type": "number", "minimum": -180, "maximum": 180 },
+          "accessible_device": { "type": "boolean" }
+        }
+      }
+    },
+    "effective_from": { "type": "string", "format": "date-time" },
+    "superseded_by": {
+      "type": "string",
+      "description": "geometry_version that replaces this one, once superseded. Absent while current."
+    }
+  }
+}

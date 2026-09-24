@@ -1,0 +1,1432 @@
+{
+  "dataset_sha256": "db4064a0ed9c80e303d5c4a3eb533d4bc0cdff9752855c6f352ab56f2c6fd2bf",
+  "detector": "edge:vru_conflict/1",
+  "grid_search": [
+    {
+      "name": "raw:0",
+      "params": {
+        "horizon_s": 6.0,
+        "min_score": 0.0,
+        "min_sin_angle": 0.25,
+        "min_vehicle_speed": 2.0,
+        "min_vru_speed": 0.3,
+        "pet_pred_s": 1.5,
+        "range_m": 35.0,
+        "severe_pet_s": 1.5,
+        "smooth_frames": 3,
+        "use_acceleration": false,
+        "vehicle_model": "constant_velocity"
+      },
+      "scorer": false,
+      "train": {
+        "events": 2330,
+        "f1": 0.059,
+        "matched": 77,
+        "precision": 0.033,
+        "recall": 0.256
+      },
+      "validation": {
+        "events": 945,
+        "f1": 0.061,
+        "matched": 32,
+        "precision": 0.034,
+        "recall": 0.327
+      }
+    },
+    {
+      "name": "raw:1",
+      "params": {
+        "horizon_s": 6.0,
+        "min_score": 0.0,
+        "min_sin_angle": 0.25,
+        "min_vehicle_speed": 4.0,
+        "min_vru_speed": 0.3,
+        "pet_pred_s": 1.5,
+        "range_m": 35.0,
+        "severe_pet_s": 1.5,
+        "smooth_frames": 3,
+        "use_acceleration": false,
+        "vehicle_model": "constant_velocity"
+      },
+      "scorer": false,
+      "train": {
+        "events": 1926,
+        "f1": 0.049,
+        "matched": 55,
+        "precision": 0.029,
+        "recall": 0.183
+      },
+      "validation": {
+        "events": 776,
+        "f1": 0.059,
+        "matched": 26,
+        "precision": 0.034,
+        "recall": 0.265
+      }
+    },
+    {
+      "name": "raw:2",
+      "params": {
+        "horizon_s": 6.0,
+        "min_score": 0.0,
+        "min_sin_angle": 0.25,
+        "min_vehicle_speed": 2.0,
+        "min_vru_speed": 0.3,
+        "pet_pred_s": 1.5,
+        "range_m": 35.0,
+        "severe_pet_s": 1.5,
+        "smooth_frames": 3,
+        "use_acceleration": true,
+        "vehicle_model": "constant_velocity"
+      },
+      "scorer": false,
+      "train": {
+        "events": 1908,
+        "f1": 0.058,
+        "matched": 64,
+        "precision": 0.034,
+        "recall": 0.213
+      },
+      "validation": {
+        "events": 754,
+        "f1": 0.068,
+        "matched": 29,
+        "precision": 0.038,
+        "recall": 0.296
+      }
+    },
+    {
+      "name": "raw:3",
+      "params": {
+        "horizon_s": 6.0,
+        "min_score": 0.0,
+        "min_sin_angle": 0.25,
+        "min_vehicle_speed": 4.0,
+        "min_vru_speed": 0.3,
+        "pet_pred_s": 1.5,
+        "range_m": 35.0,
+        "severe_pet_s": 1.5,
+        "smooth_frames": 3,
+        "use_acceleration": true,
+        "vehicle_model": "constant_velocity"
+      },
+      "scorer": false,
+      "train": {
+        "events": 1650,
+        "f1": 0.053,
+        "matched": 52,
+        "precision": 0.032,
+        "recall": 0.173
+      },
+      "validation": {
+        "events": 653,
+        "f1": 0.067,
+        "matched": 25,
+        "precision": 0.038,
+        "recall": 0.255
+      }
+    },
+    {
+      "name": "raw:4",
+      "params": {
+        "horizon_s": 6.0,
+        "min_score": 0.0,
+        "min_sin_angle": 0.25,
+        "min_vehicle_speed": 2.0,
+        "min_vru_speed": 0.3,
+        "pet_pred_s": 1.5,
+        "range_m": 35.0,
+        "severe_pet_s": 1.5,
+        "smooth_frames": 3,
+        "use_acceleration": false,
+        "vehicle_model": "constant_turn_rate"
+      },
+      "scorer": false,
+      "train": {
+        "events": 2643,
+        "f1": 0.063,
+        "matched": 93,
+        "precision": 0.035,
+        "recall": 0.309
+      },
+      "validation": {
+        "events": 1003,
+        "f1": 0.064,
+        "matched": 35,
+        "precision": 0.035,
+        "recall": 0.357
+      }
+    },
+    {
+      "name": "raw:5",
+      "params": {
+        "horizon_s": 6.0,
+        "min_score": 0.0,
+        "min_sin_angle": 0.25,
+        "min_vehicle_speed": 4.0,
+        "min_vru_speed": 0.3,
+        "pet_pred_s": 1.5,
+        "range_m": 35.0,
+        "severe_pet_s": 1.5,
+        "smooth_frames": 3,
+        "use_acceleration": false,
+        "vehicle_model": "constant_turn_rate"
+      },
+      "scorer": false,
+      "train": {
+        "events": 2244,
+        "f1": 0.054,
+        "matched": 69,
+        "precision": 0.031,
+        "recall": 0.229
+      },
+      "validation": {
+        "events": 865,
+        "f1": 0.062,
+        "matched": 30,
+        "precision": 0.035,
+        "recall": 0.306
+      }
+    },
+    {
+      "name": "raw:6",
+      "params": {
+        "horizon_s": 6.0,
+        "min_score": 0.0,
+        "min_sin_angle": 0.25,
+        "min_vehicle_speed": 2.0,
+        "min_vru_speed": 0.3,
+        "pet_pred_s": 1.5,
+        "range_m": 35.0,
+        "severe_pet_s": 1.5,
+        "smooth_frames": 3,
+        "use_acceleration": true,
+        "vehicle_model": "constant_turn_rate"
+      },
+      "scorer": false,
+      "train": {
+        "events": 2171,
+        "f1": 0.063,
+        "matched": 78,
+        "precision": 0.036,
+        "recall": 0.259
+      },
+      "validation": {
+        "events": 820,
+        "f1": 0.07,
+        "matched": 32,
+        "precision": 0.039,
+        "recall": 0.327
+      }
+    },
+    {
+      "name": "raw:7",
+      "params": {
+        "horizon_s": 6.0,
+        "min_score": 0.0,
+        "min_sin_angle": 0.25,
+        "min_vehicle_speed": 4.0,
+        "min_vru_speed": 0.3,
+        "pet_pred_s": 1.5,
+        "range_m": 35.0,
+        "severe_pet_s": 1.5,
+        "smooth_frames": 3,
+        "use_acceleration": true,
+        "vehicle_model": "constant_turn_rate"
+      },
+      "scorer": false,
+      "train": {
+        "events": 1867,
+        "f1": 0.057,
+        "matched": 62,
+        "precision": 0.033,
+        "recall": 0.206
+      },
+      "validation": {
+        "events": 725,
+        "f1": 0.066,
+        "matched": 27,
+        "precision": 0.037,
+        "recall": 0.276
+      }
+    },
+    {
+      "name": "raw:8",
+      "params": {
+        "horizon_s": 6.0,
+        "min_score": 0.0,
+        "min_sin_angle": 0.25,
+        "min_vehicle_speed": 2.0,
+        "min_vru_speed": 0.3,
+        "pet_pred_s": 2.0,
+        "range_m": 35.0,
+        "severe_pet_s": 1.5,
+        "smooth_frames": 3,
+        "use_acceleration": false,
+        "vehicle_model": "constant_velocity"
+      },
+      "scorer": false,
+      "train": {
+        "events": 2900,
+        "f1": 0.056,
+        "matched": 89,
+        "precision": 0.031,
+        "recall": 0.296
+      },
+      "validation": {
+        "events": 1166,
+        "f1": 0.059,
+        "matched": 37,
+        "precision": 0.032,
+        "recall": 0.378
+      }
+    },
+    {
+      "name": "raw:9",
+      "params": {
+        "horizon_s": 6.0,
+        "min_score": 0.0,
+        "min_sin_angle": 0.25,
+        "min_vehicle_speed": 4.0,
+        "min_vru_speed": 0.3,
+        "pet_pred_s": 2.0,
+        "range_m": 35.0,
+        "severe_pet_s": 1.5,
+        "smooth_frames": 3,
+        "use_acceleration": false,
+        "vehicle_model": "constant_velocity"
+      },
+      "scorer": false,
+      "train": {
+        "events": 2429,
+        "f1": 0.048,
+        "matched": 66,
+        "precision": 0.027,
+        "recall": 0.219
+      },
+      "validation": {
+        "events": 975,
+        "f1": 0.058,
+        "matched": 31,
+        "precision": 0.032,
+        "recall": 0.316
+      }
+    },
+    {
+      "name": "raw:10",
+      "params": {
+        "horizon_s": 6.0,
+        "min_score": 0.0,
+        "min_sin_angle": 0.25,
+        "min_vehicle_speed": 2.0,
+        "min_vru_speed": 0.3,
+        "pet_pred_s": 2.0,
+        "range_m": 35.0,
+        "severe_pet_s": 1.5,
+        "smooth_frames": 3,
+        "use_acceleration": true,
+        "vehicle_model": "constant_velocity"
+      },
+      "scorer": false,
+      "train": {
+        "events": 2448,
+        "f1": 0.055,
+        "matched": 76,
+        "precision": 0.031,
+        "recall": 0.252
+      },
+      "validation": {
+        "events": 966,
+        "f1": 0.064,
+        "matched": 34,
+        "precision": 0.035,
+        "recall": 0.347
+      }
+    },
+    {
+      "name": "raw:11",
+      "params": {
+        "horizon_s": 6.0,
+        "min_score": 0.0,
+        "min_sin_angle": 0.25,
+        "min_vehicle_speed": 4.0,
+        "min_vru_speed": 0.3,
+        "pet_pred_s": 2.0,
+        "range_m": 35.0,
+        "severe_pet_s": 1.5,
+        "smooth_frames": 3,
+        "use_acceleration": true,
+        "vehicle_model": "constant_velocity"
+      },
+      "scorer": false,
+      "train": {
+        "events": 2122,
+        "f1": 0.051,
+        "matched": 62,
+        "precision": 0.029,
+        "recall": 0.206
+      },
+      "validation": {
+        "events": 840,
+        "f1": 0.066,
+        "matched": 31,
+        "precision": 0.037,
+        "recall": 0.316
+      }
+    },
+    {
+      "name": "raw:12",
+      "params": {
+        "horizon_s": 6.0,
+        "min_score": 0.0,
+        "min_sin_angle": 0.25,
+        "min_vehicle_speed": 2.0,
+        "min_vru_speed": 0.3,
+        "pet_pred_s": 2.0,
+        "range_m": 35.0,
+        "severe_pet_s": 1.5,
+        "smooth_frames": 3,
+        "use_acceleration": false,
+        "vehicle_model": "constant_turn_rate"
+      },
+      "scorer": false,
+      "train": {
+        "events": 3301,
+        "f1": 0.058,
+        "matched": 105,
+        "precision": 0.032,
+        "recall": 0.349
+      },
+      "validation": {
+        "events": 1262,
+        "f1": 0.065,
+        "matched": 44,
+        "precision": 0.035,
+        "recall": 0.449
+      }
+    },
+    {
+      "name": "raw:13",
+      "params": {
+        "horizon_s": 6.0,
+        "min_score": 0.0,
+        "min_sin_angle": 0.25,
+        "min_vehicle_speed": 4.0,
+        "min_vru_speed": 0.3,
+        "pet_pred_s": 2.0,
+        "range_m": 35.0,
+        "severe_pet_s": 1.5,
+        "smooth_frames": 3,
+        "use_acceleration": false,
+        "vehicle_model": "constant_turn_rate"
+      },
+      "scorer": false,
+      "train": {
+        "events": 2839,
+        "f1": 0.05,
+        "matched": 79,
+        "precision": 0.028,
+        "recall": 0.262
+      },
+      "validation": {
+        "events": 1100,
+        "f1": 0.063,
+        "matched": 38,
+        "precision": 0.035,
+        "recall": 0.388
+      }
+    },
+    {
+      "name": "raw:14",
+      "params": {
+        "horizon_s": 6.0,
+        "min_score": 0.0,
+        "min_sin_angle": 0.25,
+        "min_vehicle_speed": 2.0,
+        "min_vru_speed": 0.3,
+        "pet_pred_s": 2.0,
+        "range_m": 35.0,
+        "severe_pet_s": 1.5,
+        "smooth_frames": 3,
+        "use_acceleration": true,
+        "vehicle_model": "constant_turn_rate"
+      },
+      "scorer": false,
+      "train": {
+        "events": 2754,
+        "f1": 0.064,
+        "matched": 97,
+        "precision": 0.035,
+        "recall": 0.322
+      },
+      "validation": {
+        "events": 1073,
+        "f1": 0.067,
+        "matched": 39,
+        "precision": 0.036,
+        "recall": 0.398
+      }
+    },
+    {
+      "name": "raw:15",
+      "params": {
+        "horizon_s": 6.0,
+        "min_score": 0.0,
+        "min_sin_angle": 0.25,
+        "min_vehicle_speed": 4.0,
+        "min_vru_speed": 0.3,
+        "pet_pred_s": 2.0,
+        "range_m": 35.0,
+        "severe_pet_s": 1.5,
+        "smooth_frames": 3,
+        "use_acceleration": true,
+        "vehicle_model": "constant_turn_rate"
+      },
+      "scorer": false,
+      "train": {
+        "events": 2391,
+        "f1": 0.058,
+        "matched": 78,
+        "precision": 0.033,
+        "recall": 0.259
+      },
+      "validation": {
+        "events": 949,
+        "f1": 0.065,
+        "matched": 34,
+        "precision": 0.036,
+        "recall": 0.347
+      }
+    },
+    {
+      "name": "raw:16",
+      "params": {
+        "horizon_s": 6.0,
+        "min_score": 0.0,
+        "min_sin_angle": 0.25,
+        "min_vehicle_speed": 2.0,
+        "min_vru_speed": 0.3,
+        "pet_pred_s": 3.0,
+        "range_m": 35.0,
+        "severe_pet_s": 1.5,
+        "smooth_frames": 3,
+        "use_acceleration": false,
+        "vehicle_model": "constant_velocity"
+      },
+      "scorer": false,
+      "train": {
+        "events": 3818,
+        "f1": 0.053,
+        "matched": 109,
+        "precision": 0.029,
+        "recall": 0.362
+      },
+      "validation": {
+        "events": 1537,
+        "f1": 0.054,
+        "matched": 44,
+        "precision": 0.029,
+        "recall": 0.449
+      }
+    },
+    {
+      "name": "raw:17",
+      "params": {
+        "horizon_s": 6.0,
+        "min_score": 0.0,
+        "min_sin_angle": 0.25,
+        "min_vehicle_speed": 4.0,
+        "min_vru_speed": 0.3,
+        "pet_pred_s": 3.0,
+        "range_m": 35.0,
+        "severe_pet_s": 1.5,
+        "smooth_frames": 3,
+        "use_acceleration": false,
+        "vehicle_model": "constant_velocity"
+      },
+      "scorer": false,
+      "train": {
+        "events": 3272,
+        "f1": 0.045,
+        "matched": 81,
+        "precision": 0.025,
+        "recall": 0.269
+      },
+      "validation": {
+        "events": 1293,
+        "f1": 0.05,
+        "matched": 35,
+        "precision": 0.027,
+        "recall": 0.357
+      }
+    },
+    {
+      "name": "raw:18",
+      "params": {
+        "horizon_s": 6.0,
+        "min_score": 0.0,
+        "min_sin_angle": 0.25,
+        "min_vehicle_speed": 2.0,
+        "min_vru_speed": 0.3,
+        "pet_pred_s": 3.0,
+        "range_m": 35.0,
+        "severe_pet_s": 1.5,
+        "smooth_frames": 3,
+        "use_acceleration": true,
+        "vehicle_model": "constant_velocity"
+      },
+      "scorer": false,
+      "train": {
+        "events": 3365,
+        "f1": 0.052,
+        "matched": 96,
+        "precision": 0.029,
+        "recall": 0.319
+      },
+      "validation": {
+        "events": 1312,
+        "f1": 0.054,
+        "matched": 38,
+        "precision": 0.029,
+        "recall": 0.388
+      }
+    },
+    {
+      "name": "raw:19",
+      "params": {
+        "horizon_s": 6.0,
+        "min_score": 0.0,
+        "min_sin_angle": 0.25,
+        "min_vehicle_speed": 4.0,
+        "min_vru_speed": 0.3,
+        "pet_pred_s": 3.0,
+        "range_m": 35.0,
+        "severe_pet_s": 1.5,
+        "smooth_frames": 3,
+        "use_acceleration": true,
+        "vehicle_model": "constant_velocity"
+      },
+      "scorer": false,
+      "train": {
+        "events": 2924,
+        "f1": 0.048,
+        "matched": 78,
+        "precision": 0.027,
+        "recall": 0.259
+      },
+      "validation": {
+        "events": 1143,
+        "f1": 0.055,
+        "matched": 34,
+        "precision": 0.03,
+        "recall": 0.347
+      }
+    },
+    {
+      "name": "raw:20",
+      "params": {
+        "horizon_s": 6.0,
+        "min_score": 0.0,
+        "min_sin_angle": 0.25,
+        "min_vehicle_speed": 2.0,
+        "min_vru_speed": 0.3,
+        "pet_pred_s": 3.0,
+        "range_m": 35.0,
+        "severe_pet_s": 1.5,
+        "smooth_frames": 3,
+        "use_acceleration": false,
+        "vehicle_model": "constant_turn_rate"
+      },
+      "scorer": false,
+      "train": {
+        "events": 4378,
+        "f1": 0.057,
+        "matched": 133,
+        "precision": 0.03,
+        "recall": 0.442
+      },
+      "validation": {
+        "events": 1677,
+        "f1": 0.057,
+        "matched": 51,
+        "precision": 0.03,
+        "recall": 0.52
+      }
+    },
+    {
+      "name": "raw:21",
+      "params": {
+        "horizon_s": 6.0,
+        "min_score": 0.0,
+        "min_sin_angle": 0.25,
+        "min_vehicle_speed": 4.0,
+        "min_vru_speed": 0.3,
+        "pet_pred_s": 3.0,
+        "range_m": 35.0,
+        "severe_pet_s": 1.5,
+        "smooth_frames": 3,
+        "use_acceleration": false,
+        "vehicle_model": "constant_turn_rate"
+      },
+      "scorer": false,
+      "train": {
+        "events": 3798,
+        "f1": 0.051,
+        "matched": 104,
+        "precision": 0.027,
+        "recall": 0.346
+      },
+      "validation": {
+        "events": 1475,
+        "f1": 0.053,
+        "matched": 42,
+        "precision": 0.028,
+        "recall": 0.429
+      }
+    },
+    {
+      "name": "raw:22",
+      "params": {
+        "horizon_s": 6.0,
+        "min_score": 0.0,
+        "min_sin_angle": 0.25,
+        "min_vehicle_speed": 2.0,
+        "min_vru_speed": 0.3,
+        "pet_pred_s": 3.0,
+        "range_m": 35.0,
+        "severe_pet_s": 1.5,
+        "smooth_frames": 3,
+        "use_acceleration": true,
+        "vehicle_model": "constant_turn_rate"
+      },
+      "scorer": false,
+      "train": {
+        "events": 3729,
+        "f1": 0.058,
+        "matched": 117,
+        "precision": 0.031,
+        "recall": 0.389
+      },
+      "validation": {
+        "events": 1459,
+        "f1": 0.055,
+        "matched": 43,
+        "precision": 0.029,
+        "recall": 0.439
+      }
+    },
+    {
+      "name": "raw:23",
+      "params": {
+        "horizon_s": 6.0,
+        "min_score": 0.0,
+        "min_sin_angle": 0.25,
+        "min_vehicle_speed": 4.0,
+        "min_vru_speed": 0.3,
+        "pet_pred_s": 3.0,
+        "range_m": 35.0,
+        "severe_pet_s": 1.5,
+        "smooth_frames": 3,
+        "use_acceleration": true,
+        "vehicle_model": "constant_turn_rate"
+      },
+      "scorer": false,
+      "train": {
+        "events": 3248,
+        "f1": 0.055,
+        "matched": 97,
+        "precision": 0.03,
+        "recall": 0.322
+      },
+      "validation": {
+        "events": 1269,
+        "f1": 0.054,
+        "matched": 37,
+        "precision": 0.029,
+        "recall": 0.378
+      }
+    },
+    {
+      "name": "scorer@0.05",
+      "params": {
+        "horizon_s": 6.0,
+        "min_score": 0.05,
+        "min_sin_angle": 0.2,
+        "min_vehicle_speed": 1.0,
+        "min_vru_speed": 0.3,
+        "pet_pred_s": 4.0,
+        "range_m": 35.0,
+        "severe_pet_s": 1.5,
+        "smooth_frames": 3,
+        "use_acceleration": false,
+        "vehicle_model": "constant_turn_rate"
+      },
+      "scorer": true,
+      "train": {
+        "events": 1150,
+        "f1": 0.121,
+        "matched": 88,
+        "precision": 0.077,
+        "recall": 0.292
+      },
+      "validation": {
+        "events": 431,
+        "f1": 0.121,
+        "matched": 32,
+        "precision": 0.074,
+        "recall": 0.327
+      }
+    },
+    {
+      "name": "scorer@0.075",
+      "params": {
+        "horizon_s": 6.0,
+        "min_score": 0.075,
+        "min_sin_angle": 0.2,
+        "min_vehicle_speed": 1.0,
+        "min_vru_speed": 0.3,
+        "pet_pred_s": 4.0,
+        "range_m": 35.0,
+        "severe_pet_s": 1.5,
+        "smooth_frames": 3,
+        "use_acceleration": false,
+        "vehicle_model": "constant_turn_rate"
+      },
+      "scorer": true,
+      "train": {
+        "events": 538,
+        "f1": 0.15,
+        "matched": 63,
+        "precision": 0.117,
+        "recall": 0.209
+      },
+      "validation": {
+        "events": 186,
+        "f1": 0.162,
+        "matched": 23,
+        "precision": 0.124,
+        "recall": 0.235
+      }
+    },
+    {
+      "name": "scorer@0.1",
+      "params": {
+        "horizon_s": 6.0,
+        "min_score": 0.1,
+        "min_sin_angle": 0.2,
+        "min_vehicle_speed": 1.0,
+        "min_vru_speed": 0.3,
+        "pet_pred_s": 4.0,
+        "range_m": 35.0,
+        "severe_pet_s": 1.5,
+        "smooth_frames": 3,
+        "use_acceleration": false,
+        "vehicle_model": "constant_turn_rate"
+      },
+      "scorer": true,
+      "train": {
+        "events": 265,
+        "f1": 0.148,
+        "matched": 42,
+        "precision": 0.158,
+        "recall": 0.14
+      },
+      "validation": {
+        "events": 79,
+        "f1": 0.203,
+        "matched": 18,
+        "precision": 0.228,
+        "recall": 0.184
+      }
+    },
+    {
+      "name": "scorer@0.15",
+      "params": {
+        "horizon_s": 6.0,
+        "min_score": 0.15,
+        "min_sin_angle": 0.2,
+        "min_vehicle_speed": 1.0,
+        "min_vru_speed": 0.3,
+        "pet_pred_s": 4.0,
+        "range_m": 35.0,
+        "severe_pet_s": 1.5,
+        "smooth_frames": 3,
+        "use_acceleration": false,
+        "vehicle_model": "constant_turn_rate"
+      },
+      "scorer": true,
+      "train": {
+        "events": 70,
+        "f1": 0.081,
+        "matched": 15,
+        "precision": 0.214,
+        "recall": 0.05
+      },
+      "validation": {
+        "events": 14,
+        "f1": 0.107,
+        "matched": 6,
+        "precision": 0.429,
+        "recall": 0.061
+      }
+    },
+    {
+      "name": "scorer@0.2",
+      "params": {
+        "horizon_s": 6.0,
+        "min_score": 0.2,
+        "min_sin_angle": 0.2,
+        "min_vehicle_speed": 1.0,
+        "min_vru_speed": 0.3,
+        "pet_pred_s": 4.0,
+        "range_m": 35.0,
+        "severe_pet_s": 1.5,
+        "smooth_frames": 3,
+        "use_acceleration": false,
+        "vehicle_model": "constant_turn_rate"
+      },
+      "scorer": true,
+      "train": {
+        "events": 12,
+        "f1": 0.026,
+        "matched": 4,
+        "precision": 0.333,
+        "recall": 0.013
+      },
+      "validation": {
+        "events": 3,
+        "f1": 0.04,
+        "matched": 2,
+        "precision": 0.667,
+        "recall": 0.02
+      }
+    },
+    {
+      "name": "scorer@0.3",
+      "params": {
+        "horizon_s": 6.0,
+        "min_score": 0.3,
+        "min_sin_angle": 0.2,
+        "min_vehicle_speed": 1.0,
+        "min_vru_speed": 0.3,
+        "pet_pred_s": 4.0,
+        "range_m": 35.0,
+        "severe_pet_s": 1.5,
+        "smooth_frames": 3,
+        "use_acceleration": false,
+        "vehicle_model": "constant_turn_rate"
+      },
+      "scorer": true,
+      "train": {
+        "events": 2,
+        "f1": 0.007,
+        "matched": 1,
+        "precision": 0.5,
+        "recall": 0.003
+      },
+      "validation": {
+        "events": 0,
+        "f1": 0.0,
+        "matched": 0,
+        "precision": null,
+        "recall": 0.0
+      }
+    }
+  ],
+  "limitations": [
+    "Truth is SUMO's behaviour model: drivers yield to pedestrians on crossings by rule, so realized conflicts are yield-and-go interplay plus the assertive-driver share (25%, a modelling assumption); real near-miss rates differ.",
+    "SUMO's separated bike lanes give cyclists >= 2.35 m clearance and no path crossing with any vehicle: there are NO real cyclist-vehicle conflicts in this world, so cyclist recall is unmeasurable and only cyclist specificity is reported.",
+    "Positions are 2-D tracks with Gaussian noise and random dropout; no occlusion, night, weather or camera-geometry effects are simulated.",
+    "Pedestrians are single-speed SUMO walkers (normal 1.39 m/s, slow 0.8 m/s); children, wheelchair users, groups and running are not modelled.",
+    "Constant-velocity/turn-rate prediction cannot anticipate a pedestrian who waits at the kerb or a driver who decides late; that is the dominant miss and false-alarm mechanism."
+  ],
+  "post_hoc_analyses": [
+    "the risk-weighted truth (vehicle speed >= 4 m/s) was fixed after inspecting the VALIDATION PET/speed distribution, before any TEST scoring",
+    "bias, noise-sensitivity and window-level analyses were run on TEST for the frozen choice (non-selecting)"
+  ],
+  "schema": "vru-conflict-evaluation-v1",
+  "scorer": {
+    "coef": [
+      -0.073622,
+      -0.30337,
+      -0.514215,
+      0.024553,
+      0.097372,
+      0.394178,
+      -0.305464,
+      -0.729519,
+      -0.107946,
+      -0.729697,
+      0.035018
+    ],
+    "features": [
+      "pet_pred",
+      "tau_vehicle",
+      "tau_vru",
+      "vehicle_speed",
+      "vru_speed",
+      "vehicle_accel",
+      "sin_angle",
+      "distance",
+      "abs_yaw_rate",
+      "is_cyclist",
+      "vru_first"
+    ],
+    "intercept": -4.124645,
+    "mean": [
+      1.754697,
+      2.047677,
+      2.351018,
+      8.129187,
+      1.336468,
+      -1.213286,
+      0.778115,
+      14.013321,
+      0.192597,
+      0.032347,
+      0.452462
+    ],
+    "scale": [
+      1.10002,
+      1.349397,
+      1.854279,
+      4.404944,
+      0.805772,
+      2.102677,
+      0.252046,
+      8.488805,
+      0.224539,
+      0.176919,
+      0.497735
+    ]
+  },
+  "scorer_diagnostics": {
+    "candidate_rows_train": 7636,
+    "candidate_rows_validation": 3007,
+    "positive_rate_train": 0.0284,
+    "validation_frame_level_average_precision": {
+      "base_rate": 0.0266,
+      "gradient_boosting_ceiling_not_deployed": 0.141,
+      "logistic_deployed": 0.143
+    }
+  },
+  "selected": "scorer@0.1",
+  "selected_params": {
+    "horizon_s": 6.0,
+    "min_score": 0.1,
+    "min_sin_angle": 0.2,
+    "min_vehicle_speed": 1.0,
+    "min_vru_speed": 0.3,
+    "pet_pred_s": 4.0,
+    "range_m": 35.0,
+    "severe_pet_s": 1.5,
+    "smooth_frames": 3,
+    "use_acceleration": false,
+    "vehicle_model": "constant_turn_rate"
+  },
+  "test": {
+    "events": 100,
+    "events_by_mode": {
+      "pedestrian": {
+        "events": 100,
+        "fp": 58,
+        "tp": 14
+      }
+    },
+    "f1": 0.136,
+    "interacted_but_not_positive": 28,
+    "lead_time_s_median": -0.011500000000069122,
+    "matched": 14,
+    "never_interacted": 58,
+    "precision": 0.14,
+    "precision_ci95": [
+      0.085,
+      0.221
+    ],
+    "recall": 0.132,
+    "recall_ci95": [
+      0.08,
+      0.21
+    ],
+    "share_alerted_before_the_first_user_reaches_the_conflict_point": 0.5,
+    "truth_conflicts": 106
+  },
+  "test_bias": {
+    "driver_type": {
+      "passenger": {
+        "conflicts": 78,
+        "detected": 10,
+        "recall": 0.128,
+        "recall_ci95": [
+          0.071,
+          0.22
+        ]
+      },
+      "passenger-assertive": {
+        "conflicts": 28,
+        "detected": 4,
+        "recall": 0.143,
+        "recall_ci95": [
+          0.057,
+          0.315
+        ]
+      }
+    },
+    "false_alarm_events_by_vru_class": {
+      "pedestrian": 58
+    },
+    "pet_band": {
+      "1.5-3 s": {
+        "conflicts": 77,
+        "detected": 9,
+        "recall": 0.117,
+        "recall_ci95": [
+          0.063,
+          0.207
+        ]
+      },
+      "<=1.5 s": {
+        "conflicts": 29,
+        "detected": 5,
+        "recall": 0.172,
+        "recall_ci95": [
+          0.076,
+          0.345
+        ]
+      }
+    },
+    "run_spec": {
+      "offpeak": {
+        "conflicts": 12,
+        "detected": 0,
+        "recall": 0.0,
+        "recall_ci95": [
+          0.0,
+          0.243
+        ]
+      },
+      "peak": {
+        "conflicts": 94,
+        "detected": 14,
+        "recall": 0.149,
+        "recall_ci95": [
+          0.091,
+          0.235
+        ]
+      }
+    },
+    "vehicle_speed_at_crossing": {
+      "4-6 m/s": {
+        "conflicts": 39,
+        "detected": 7,
+        "recall": 0.179,
+        "recall_ci95": [
+          0.09,
+          0.327
+        ]
+      },
+      "6-9 m/s": {
+        "conflicts": 32,
+        "detected": 3,
+        "recall": 0.094,
+        "recall_ci95": [
+          0.032,
+          0.242
+        ]
+      },
+      ">=9 m/s": {
+        "conflicts": 35,
+        "detected": 4,
+        "recall": 0.114,
+        "recall_ci95": [
+          0.045,
+          0.26
+        ]
+      }
+    },
+    "vru_speed_class": {
+      "ped-normal": {
+        "conflicts": 100,
+        "detected": 14,
+        "recall": 0.14,
+        "recall_ci95": [
+          0.085,
+          0.221
+        ]
+      },
+      "ped-slow": {
+        "conflicts": 6,
+        "detected": 0,
+        "recall": 0.0,
+        "recall_ci95": [
+          0.0,
+          0.39
+        ]
+      }
+    },
+    "who_reaches_the_conflict_point_first": {
+      "vehicle": {
+        "conflicts": 24,
+        "detected": 6,
+        "recall": 0.25,
+        "recall_ci95": [
+          0.12,
+          0.449
+        ]
+      },
+      "vru": {
+        "conflicts": 82,
+        "detected": 8,
+        "recall": 0.098,
+        "recall_ci95": [
+          0.05,
+          0.181
+        ]
+      }
+    }
+  },
+  "test_cyclists": {
+    "cyclist_alerts": 0,
+    "cyclist_site_visits": 968,
+    "real_cyclist_vehicle_interactions_with_pet_up_to_3s": 0
+  },
+  "test_noise_sensitivity": [
+    {
+      "events": 84,
+      "f1": 0.179,
+      "matched": 17,
+      "precision": 0.202,
+      "recall": 0.16,
+      "tracker": {
+        "dropout": 0.05,
+        "frame_s": 1.0,
+        "position_sigma_m": 0.2
+      }
+    },
+    {
+      "events": 100,
+      "f1": 0.136,
+      "matched": 14,
+      "precision": 0.14,
+      "recall": 0.132,
+      "tracker": {
+        "dropout": 0.05,
+        "frame_s": 1.0,
+        "position_sigma_m": 0.4
+      }
+    },
+    {
+      "events": 328,
+      "f1": 0.092,
+      "matched": 20,
+      "precision": 0.061,
+      "recall": 0.189,
+      "tracker": {
+        "dropout": 0.05,
+        "frame_s": 1.0,
+        "position_sigma_m": 0.8
+      }
+    },
+    {
+      "events": 693,
+      "f1": 0.04,
+      "matched": 16,
+      "precision": 0.023,
+      "recall": 0.151,
+      "tracker": {
+        "dropout": 0.05,
+        "frame_s": 1.0,
+        "position_sigma_m": 1.2
+      }
+    },
+    {
+      "events": 107,
+      "f1": 0.113,
+      "matched": 12,
+      "precision": 0.112,
+      "recall": 0.113,
+      "tracker": {
+        "dropout": 0.0,
+        "frame_s": 1.0,
+        "position_sigma_m": 0.4
+      }
+    },
+    {
+      "events": 84,
+      "f1": 0.095,
+      "matched": 9,
+      "precision": 0.107,
+      "recall": 0.085,
+      "tracker": {
+        "dropout": 0.15,
+        "frame_s": 1.0,
+        "position_sigma_m": 0.4
+      }
+    },
+    {
+      "events": 55,
+      "f1": 0.087,
+      "matched": 7,
+      "precision": 0.127,
+      "recall": 0.066,
+      "tracker": {
+        "dropout": 0.3,
+        "frame_s": 1.0,
+        "position_sigma_m": 0.4
+      }
+    },
+    {
+      "events": 66,
+      "f1": 0.093,
+      "matched": 8,
+      "precision": 0.121,
+      "recall": 0.075,
+      "tracker": {
+        "dropout": 0.05,
+        "frame_s": 2.0,
+        "position_sigma_m": 0.4
+      }
+    }
+  ],
+  "test_plain_pet_3s_truth": {
+    "events": 100,
+    "events_by_mode": {
+      "pedestrian": {
+        "events": 100,
+        "fp": 58,
+        "tp": 30
+      }
+    },
+    "f1": 0.13,
+    "interacted_but_not_positive": 12,
+    "lead_time_s_median": -0.16949999999999932,
+    "matched": 30,
+    "never_interacted": 58,
+    "precision": 0.3,
+    "precision_ci95": [
+      0.219,
+      0.396
+    ],
+    "recall": 0.083,
+    "recall_ci95": [
+      0.059,
+      0.116
+    ],
+    "share_alerted_before_the_first_user_reaches_the_conflict_point": 0.367,
+    "truth_conflicts": 360
+  },
+  "test_window_level": {
+    "k_anonymity_floor": {
+      "by_run_spec": {
+        "offpeak": {
+          "true_conflicts": 12,
+          "true_conflicts_suppressed": 0,
+          "windows": 141,
+          "windows_suppressed": 21
+        },
+        "peak": {
+          "true_conflicts": 94,
+          "true_conflicts_suppressed": 0,
+          "windows": 144,
+          "windows_suppressed": 0
+        }
+      },
+      "detected_events_lost_to_the_floor": 0,
+      "detected_events_total": 100,
+      "min_cohort": 3,
+      "share_of_true_conflicts_lost_to_the_floor": 0.0,
+      "true_conflicts_in_suppressed_windows": 0,
+      "true_conflicts_total": 106,
+      "windows_suppressed": 21
+    },
+    "pearson_detected_vs_true_conflicts_per_window": 0.474,
+    "spearman_detected_vs_true_conflicts_per_window": 0.407,
+    "window_s": 300.0,
+    "windows": 285,
+    "windows_with_a_true_conflict": 58,
+    "windows_with_a_true_conflict_that_also_have_a_detected_one": 28,
+    "windows_without_a_true_conflict_that_have_a_detected_one": 28
+  },
+  "tracker": {
+    "dropout": 0.05,
+    "frame_s": 1.0,
+    "position_sigma_m": 0.4
+  },
+  "truth": {
+    "definition": "realized PET (both actual paths cross; |t_vru - t_vehicle|) from clean 4 Hz SUMO trajectories; a conflict is PET <= 3 s AND vehicle speed at the crossing >= 4 m/s",
+    "interactions_by_severity": {
+      "test": {
+        "low_speed": 254,
+        "mild": 362,
+        "serious": 77,
+        "severe": 29
+      },
+      "validation": {
+        "low_speed": 236,
+        "mild": 339,
+        "serious": 77,
+        "severe": 21
+      }
+    },
+    "risk_weighting_chosen_after_inspecting_validation": true
+  },
+  "validation": {
+    "events": 79,
+    "events_by_mode": {
+      "pedestrian": {
+        "events": 79,
+        "fp": 37,
+        "tp": 18
+      }
+    },
+    "f1": 0.203,
+    "interacted_but_not_positive": 24,
+    "lead_time_s_median": 0.14350000000001728,
+    "matched": 18,
+    "never_interacted": 37,
+    "precision": 0.228,
+    "precision_ci95": [
+      0.149,
+      0.332
+    ],
+    "recall": 0.184,
+    "recall_ci95": [
+      0.119,
+      0.272
+    ],
+    "share_alerted_before_the_first_user_reaches_the_conflict_point": 0.611,
+    "truth_conflicts": 98
+  },
+  "validation_window_level": {
+    "k_anonymity_floor": {
+      "by_run_spec": {
+        "offpeak": {
+          "true_conflicts": 13,
+          "true_conflicts_suppressed": 1,
+          "windows": 142,
+          "windows_suppressed": 24
+        },
+        "peak": {
+          "true_conflicts": 85,
+          "true_conflicts_suppressed": 0,
+          "windows": 144,
+          "windows_suppressed": 0
+        }
+      },
+      "detected_events_lost_to_the_floor": 0,
+      "detected_events_total": 79,
+      "min_cohort": 3,
+      "share_of_true_conflicts_lost_to_the_floor": 0.01,
+      "true_conflicts_in_suppressed_windows": 1,
+      "true_conflicts_total": 98,
+      "windows_suppressed": 24
+    },
+    "pearson_detected_vs_true_conflicts_per_window": 0.54,
+    "spearman_detected_vs_true_conflicts_per_window": 0.375,
+    "window_s": 300.0,
+    "windows": 286,
+    "windows_with_a_true_conflict": 57,
+    "windows_with_a_true_conflict_that_also_have_a_detected_one": 24,
+    "windows_without_a_true_conflict_that_have_a_detected_one": 24
+  }
+}

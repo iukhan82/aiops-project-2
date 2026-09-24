@@ -1,0 +1,33 @@
+{
+  "dataset_sha256": "f361f3b87cc8c0727727999ed8b8c090faa3f2b7f3954380e1efd405676fc6e2",
+  "fitted_on_seeds": [
+    20260918,
+    20260919,
+    20260920,
+    20260921,
+    20260922
+  ],
+  "fitted_on_split": "train",
+  "lane_share": {
+    "int-a1_int-a2": 0.6312,
+    "int-a2_int-a1": 0.1757,
+    "int-a2_int-a3": 0.2394,
+    "int-a3_int-a2": 0.1991,
+    "int-a3_int-a4": 0.2112,
+    "int-a4_int-a3": 0.2016,
+    "int-b1_int-b2": 0.4592,
+    "int-b2_int-b1": 0.2951,
+    "int-b2_int-b3": 0.2945,
+    "int-b3_int-b2": 0.2967,
+    "int-b3_int-b4": 0.4856,
+    "int-b4_int-b3": 0.4294,
+    "int-c1_int-c2": 0.2095,
+    "int-c2_int-c1": 0.2233,
+    "int-c2_int-c3": 0.1991,
+    "int-c3_int-c2": 0.2501,
+    "int-c3_int-c4": 0.179,
+    "int-c4_int-c3": 0.3607
+  },
+  "method": "share = sum(loop vehicle_count) / sum(SUMO edgeData entered+departed), TRAIN runs only",
+  "runs": 20
+}

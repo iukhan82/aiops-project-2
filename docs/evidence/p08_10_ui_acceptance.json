@@ -1,0 +1,866 @@
+{
+  "task": "P08.10",
+  "generated_at": "2026-09-21T16:13:56Z",
+  "browser": {
+    "channel": "chrome",
+    "headless": true,
+    "viewport": null
+  },
+  "stack": "real Chrome, real Keycloak (Authorization Code + PKCE), real API on the demo database fed by backend/demo/feeder.py",
+  "tests_total": 19,
+  "tests_passed": 19,
+  "all_passed": true,
+  "retried_after_a_failed_first_attempt": [
+    {
+      "title": "latency.spec.ts > LAT-05 and LOAD-04: the live update P95 stays under 2 s at nominal load and with ten concurrent authenticated sessions across roles, with no measurable regression",
+      "first_attempt": "failed",
+      "first_error": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mnot\u001b[2m.\u001b[22mtoBeNull\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mnull\u001b[39m\n\nCall Log:\n- Timeout 15000ms exceeded while waiting on the predicate",
+      "later_attempt": "passed"
+    },
+    {
+      "title": "acceptance.spec.ts > UX-04 responsive and reflow > auditor: its screens fit 1366x768, 1920x1080, a 390x844 phone and 200% and 400% zoom with no page-level horizontal scroll and no clipped or unreachable control",
+      "first_attempt": "failed",
+      "first_error": "TimeoutError: page.waitForURL: Timeout 30000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation until \"load\"\n  navigated to \"chrome-error://chromewebdata/\"\n============================================================",
+      "later_attempt": "passed"
+    }
+  ],
+  "tests": [
+    {
+      "title": "acceptance.spec.ts > UX-01 accessibility, every screen, per role > operator: every screen it may open passes axe (WCAG 2.2 AA), is fully reachable by keyboard with a visible focus indicator, has no keyboard trap, and is a built screen",
+      "file": "acceptance.spec.ts",
+      "status": "passed",
+      "duration_ms": 78290,
+      "error": null
+    },
+    {
+      "title": "acceptance.spec.ts > UX-01 accessibility, every screen, per role > supervisor: every screen it may open passes axe (WCAG 2.2 AA), is fully reachable by keyboard with a visible focus indicator, has no keyboard trap, and is a built screen",
+      "file": "acceptance.spec.ts",
+      "status": "passed",
+      "duration_ms": 80654,
+      "error": null
+    },
+    {
+      "title": "acceptance.spec.ts > UX-01 accessibility, every screen, per role > dispatcher: every screen it may open passes axe (WCAG 2.2 AA), is fully reachable by keyboard with a visible focus indicator, has no keyboard trap, and is a built screen",
+      "file": "acceptance.spec.ts",
+      "status": "passed",
+      "duration_ms": 68935,
+      "error": null
+    },
+    {
+      "title": "acceptance.spec.ts > UX-01 accessibility, every screen, per role > incident_commander: every screen it may open passes axe (WCAG 2.2 AA), is fully reachable by keyboard with a visible focus indicator, has no keyboard trap, and is a built screen",
+      "file": "acceptance.spec.ts",
+      "status": "passed",
+      "duration_ms": 85691,
+      "error": null
+    },
+    {
+      "title": "acceptance.spec.ts > UX-01 accessibility, every screen, per role > field_responder: every screen it may open passes axe (WCAG 2.2 AA), is fully reachable by keyboard with a visible focus indicator, has no keyboard trap, and is a built screen",
+      "file": "acceptance.spec.ts",
+      "status": "passed",
+      "duration_ms": 37079,
+      "error": null
+    },
+    {
+      "title": "acceptance.spec.ts > UX-01 accessibility, every screen, per role > auditor: every screen it may open passes axe (WCAG 2.2 AA), is fully reachable by keyboard with a visible focus indicator, has no keyboard trap, and is a built screen",
+      "file": "acceptance.spec.ts",
+      "status": "passed",
+      "duration_ms": 80734,
+      "error": null
+    },
+    {
+      "title": "acceptance.spec.ts > UX-01 accessibility, every screen, per role > demo_operator: every screen it may open passes axe (WCAG 2.2 AA), is fully reachable by keyboard with a visible focus indicator, has no keyboard trap, and is a built screen",
+      "file": "acceptance.spec.ts",
+      "status": "passed",
+      "duration_ms": 27549,
+      "error": null
+    },
+    {
+      "title": "acceptance.spec.ts > UX-04 responsive and reflow > supervisor: its screens fit 1366x768, 1920x1080, a 390x844 phone and 200% and 400% zoom with no page-level horizontal scroll and no clipped or unreachable control",
+      "file": "acceptance.spec.ts",
+      "status": "passed",
+      "duration_ms": 62357,
+      "error": null
+    },
+    {
+      "title": "acceptance.spec.ts > UX-04 responsive and reflow > auditor: its screens fit 1366x768, 1920x1080, a 390x844 phone and 200% and 400% zoom with no page-level horizontal scroll and no clipped or unreachable control",
+      "file": "acceptance.spec.ts",
+      "status": "passed",
+      "duration_ms": 8956,
+      "error": null
+    },
+    {
+      "title": "acceptance.spec.ts > UX-04 responsive and reflow > demo_operator: its screens fit 1366x768, 1920x1080, a 390x844 phone and 200% and 400% zoom with no page-level horizontal scroll and no clipped or unreachable control",
+      "file": "acceptance.spec.ts",
+      "status": "passed",
+      "duration_ms": 25808,
+      "error": null
+    },
+    {
+      "title": "acceptance.spec.ts > UX-04 confirmation dialogs at 400% zoom > the controls of the longest confirmation dialogs stay reachable, by keyboard and by scrolling inside the dialog, at 320x256",
+      "file": "acceptance.spec.ts",
+      "status": "passed",
+      "duration_ms": 14450,
+      "error": null
+    },
+    {
+      "title": "acceptance.spec.ts > UX-01 reduced motion > with reduced motion requested no animation or transition longer than a blink runs on any screen; without the request the same check does see motion",
+      "file": "acceptance.spec.ts",
+      "status": "passed",
+      "duration_ms": 38338,
+      "error": null
+    },
+    {
+      "title": "failures.spec.ts > failure workflows (P08.10) > the API becoming unreachable is said plainly: the rows stay, the header says values may be older, it goes offline after three failures, and it recovers on its own",
+      "file": "failures.spec.ts",
+      "status": "passed",
+      "duration_ms": 25047,
+      "error": null
+    },
+    {
+      "title": "failures.spec.ts > failure workflows (P08.10) > a screen that cannot load at all says what could not be loaded and offers a retry that works",
+      "file": "failures.spec.ts",
+      "status": "passed",
+      "duration_ms": 3591,
+      "error": null
+    },
+    {
+      "title": "failures.spec.ts > failure workflows (P08.10) > stale data is never left looking live: thirty minutes without a new reading turns every fresh device stale, on screen",
+      "file": "failures.spec.ts",
+      "status": "passed",
+      "duration_ms": 8653,
+      "error": null
+    },
+    {
+      "title": "failures.spec.ts > failure workflows (P08.10) > a token that cannot be renewed because the session ended elsewhere leads to the session-ended screen, keeps the destination, and signing in again returns to it",
+      "file": "failures.spec.ts",
+      "status": "passed",
+      "duration_ms": 9018,
+      "error": null
+    },
+    {
+      "title": "failures.spec.ts > failure workflows (P08.10) > an identity provider that cannot be reached when the token needs renewing is told apart from an ended session, and Try again returns to where the person was",
+      "file": "failures.spec.ts",
+      "status": "passed",
+      "duration_ms": 4858,
+      "error": null
+    },
+    {
+      "title": "failures.spec.ts > failure workflows (P08.10) > an identity provider that is down when a page is opened says so on the sign-in screen, and signing in once it is back lands on the page that was asked for",
+      "file": "failures.spec.ts",
+      "status": "passed",
+      "duration_ms": 5913,
+      "error": null
+    },
+    {
+      "title": "latency.spec.ts > LAT-05 and LOAD-04: the live update P95 stays under 2 s at nominal load and with ten concurrent authenticated sessions across roles, with no measurable regression",
+      "file": "latency.spec.ts",
+      "status": "passed",
+      "duration_ms": 205433,
+      "error": null
+    }
+  ],
+  "metrics": {
+    "accessibility.operator": {
+      "screens_checked": 15,
+      "axe_violations": 0,
+      "screens": [
+        {
+          "screen": "map",
+          "tab_stops": 44,
+          "distinct_stops": 44
+        },
+        {
+          "screen": "analytics-corridors",
+          "tab_stops": 43,
+          "distinct_stops": 29
+        },
+        {
+          "screen": "analytics-intersections",
+          "tab_stops": 42,
+          "distinct_stops": 19
+        },
+        {
+          "screen": "analytics-devices",
+          "tab_stops": 44,
+          "distinct_stops": 44
+        },
+        {
+          "screen": "incidents",
+          "tab_stops": 43,
+          "distinct_stops": 37
+        },
+        {
+          "screen": "incident-detail",
+          "tab_stops": 44,
+          "distinct_stops": 44
+        },
+        {
+          "screen": "dispatch",
+          "tab_stops": 43,
+          "distinct_stops": 33
+        },
+        {
+          "screen": "dispatch-detail",
+          "tab_stops": 44,
+          "distinct_stops": 44
+        },
+        {
+          "screen": "field",
+          "tab_stops": 42,
+          "distinct_stops": 17
+        },
+        {
+          "screen": "actions-recommendations",
+          "tab_stops": 43,
+          "distinct_stops": 26
+        },
+        {
+          "screen": "actions-commands",
+          "tab_stops": 43,
+          "distinct_stops": 43
+        },
+        {
+          "screen": "actions-command-detail",
+          "tab_stops": 42,
+          "distinct_stops": 17
+        },
+        {
+          "screen": "actions-outcomes",
+          "tab_stops": 43,
+          "distinct_stops": 31
+        },
+        {
+          "screen": "operations",
+          "tab_stops": 42,
+          "distinct_stops": 22
+        },
+        {
+          "screen": "handover",
+          "tab_stops": 42,
+          "distinct_stops": 18
+        }
+      ]
+    },
+    "accessibility.supervisor": {
+      "screens_checked": 15,
+      "axe_violations": 0,
+      "screens": [
+        {
+          "screen": "map",
+          "tab_stops": 44,
+          "distinct_stops": 44
+        },
+        {
+          "screen": "analytics-corridors",
+          "tab_stops": 43,
+          "distinct_stops": 29
+        },
+        {
+          "screen": "analytics-intersections",
+          "tab_stops": 42,
+          "distinct_stops": 19
+        },
+        {
+          "screen": "analytics-devices",
+          "tab_stops": 44,
+          "distinct_stops": 44
+        },
+        {
+          "screen": "incidents",
+          "tab_stops": 43,
+          "distinct_stops": 38
+        },
+        {
+          "screen": "incident-detail",
+          "tab_stops": 44,
+          "distinct_stops": 44
+        },
+        {
+          "screen": "dispatch",
+          "tab_stops": 43,
+          "distinct_stops": 32
+        },
+        {
+          "screen": "dispatch-detail",
+          "tab_stops": 44,
+          "distinct_stops": 44
+        },
+        {
+          "screen": "field",
+          "tab_stops": 42,
+          "distinct_stops": 17
+        },
+        {
+          "screen": "actions-recommendations",
+          "tab_stops": 43,
+          "distinct_stops": 20
+        },
+        {
+          "screen": "actions-commands",
+          "tab_stops": 44,
+          "distinct_stops": 44
+        },
+        {
+          "screen": "actions-command-detail",
+          "tab_stops": 42,
+          "distinct_stops": 18
+        },
+        {
+          "screen": "actions-outcomes",
+          "tab_stops": 43,
+          "distinct_stops": 33
+        },
+        {
+          "screen": "operations",
+          "tab_stops": 43,
+          "distinct_stops": 22
+        },
+        {
+          "screen": "handover",
+          "tab_stops": 42,
+          "distinct_stops": 18
+        }
+      ]
+    },
+    "accessibility.dispatcher": {
+      "screens_checked": 14,
+      "axe_violations": 0,
+      "screens": [
+        {
+          "screen": "map",
+          "tab_stops": 44,
+          "distinct_stops": 44
+        },
+        {
+          "screen": "analytics-corridors",
+          "tab_stops": 43,
+          "distinct_stops": 29
+        },
+        {
+          "screen": "analytics-intersections",
+          "tab_stops": 42,
+          "distinct_stops": 18
+        },
+        {
+          "screen": "analytics-devices",
+          "tab_stops": 44,
+          "distinct_stops": 44
+        },
+        {
+          "screen": "incidents",
+          "tab_stops": 43,
+          "distinct_stops": 38
+        },
+        {
+          "screen": "incident-detail",
+          "tab_stops": 44,
+          "distinct_stops": 44
+        },
+        {
+          "screen": "dispatch",
+          "tab_stops": 43,
+          "distinct_stops": 32
+        },
+        {
+          "screen": "dispatch-detail",
+          "tab_stops": 44,
+          "distinct_stops": 44
+        },
+        {
+          "screen": "field",
+          "tab_stops": 42,
+          "distinct_stops": 16
+        },
+        {
+          "screen": "actions-recommendations",
+          "tab_stops": 43,
+          "distinct_stops": 25
+        },
+        {
+          "screen": "actions-commands",
+          "tab_stops": 43,
+          "distinct_stops": 43
+        },
+        {
+          "screen": "actions-command-detail",
+          "tab_stops": 42,
+          "distinct_stops": 16
+        },
+        {
+          "screen": "actions-outcomes",
+          "tab_stops": 43,
+          "distinct_stops": 33
+        },
+        {
+          "screen": "handover",
+          "tab_stops": 42,
+          "distinct_stops": 17
+        }
+      ]
+    },
+    "accessibility.incident_commander": {
+      "screens_checked": 15,
+      "axe_violations": 0,
+      "screens": [
+        {
+          "screen": "map",
+          "tab_stops": 44,
+          "distinct_stops": 44
+        },
+        {
+          "screen": "analytics-corridors",
+          "tab_stops": 43,
+          "distinct_stops": 29
+        },
+        {
+          "screen": "analytics-intersections",
+          "tab_stops": 42,
+          "distinct_stops": 19
+        },
+        {
+          "screen": "analytics-devices",
+          "tab_stops": 44,
+          "distinct_stops": 44
+        },
+        {
+          "screen": "incidents",
+          "tab_stops": 43,
+          "distinct_stops": 37
+        },
+        {
+          "screen": "incident-detail",
+          "tab_stops": 44,
+          "distinct_stops": 44
+        },
+        {
+          "screen": "dispatch",
+          "tab_stops": 43,
+          "distinct_stops": 31
+        },
+        {
+          "screen": "dispatch-detail",
+          "tab_stops": 44,
+          "distinct_stops": 44
+        },
+        {
+          "screen": "field",
+          "tab_stops": 42,
+          "distinct_stops": 17
+        },
+        {
+          "screen": "actions-recommendations",
+          "tab_stops": 43,
+          "distinct_stops": 20
+        },
+        {
+          "screen": "actions-commands",
+          "tab_stops": 44,
+          "distinct_stops": 44
+        },
+        {
+          "screen": "actions-command-detail",
+          "tab_stops": 42,
+          "distinct_stops": 18
+        },
+        {
+          "screen": "actions-outcomes",
+          "tab_stops": 43,
+          "distinct_stops": 33
+        },
+        {
+          "screen": "operations",
+          "tab_stops": 43,
+          "distinct_stops": 22
+        },
+        {
+          "screen": "handover",
+          "tab_stops": 42,
+          "distinct_stops": 18
+        }
+      ]
+    },
+    "accessibility.field_responder": {
+      "screens_checked": 7,
+      "axe_violations": 0,
+      "screens": [
+        {
+          "screen": "map",
+          "tab_stops": 44,
+          "distinct_stops": 39
+        },
+        {
+          "screen": "incidents",
+          "tab_stops": 43,
+          "distinct_stops": 32
+        },
+        {
+          "screen": "incident-detail",
+          "tab_stops": 44,
+          "distinct_stops": 39
+        },
+        {
+          "screen": "dispatch",
+          "tab_stops": 43,
+          "distinct_stops": 25
+        },
+        {
+          "screen": "dispatch-detail",
+          "tab_stops": 44,
+          "distinct_stops": 39
+        },
+        {
+          "screen": "field",
+          "tab_stops": 41,
+          "distinct_stops": 10
+        },
+        {
+          "screen": "handover",
+          "tab_stops": 41,
+          "distinct_stops": 10
+        }
+      ]
+    },
+    "accessibility.auditor": {
+      "screens_checked": 16,
+      "axe_violations": 0,
+      "screens": [
+        {
+          "screen": "map",
+          "tab_stops": 44,
+          "distinct_stops": 44
+        },
+        {
+          "screen": "analytics-corridors",
+          "tab_stops": 43,
+          "distinct_stops": 29
+        },
+        {
+          "screen": "analytics-intersections",
+          "tab_stops": 42,
+          "distinct_stops": 20
+        },
+        {
+          "screen": "analytics-devices",
+          "tab_stops": 44,
+          "distinct_stops": 44
+        },
+        {
+          "screen": "incidents",
+          "tab_stops": 43,
+          "distinct_stops": 37
+        },
+        {
+          "screen": "incident-detail",
+          "tab_stops": 44,
+          "distinct_stops": 44
+        },
+        {
+          "screen": "dispatch",
+          "tab_stops": 43,
+          "distinct_stops": 30
+        },
+        {
+          "screen": "dispatch-detail",
+          "tab_stops": 44,
+          "distinct_stops": 44
+        },
+        {
+          "screen": "field",
+          "tab_stops": 42,
+          "distinct_stops": 18
+        },
+        {
+          "screen": "actions-recommendations",
+          "tab_stops": 43,
+          "distinct_stops": 21
+        },
+        {
+          "screen": "actions-commands",
+          "tab_stops": 43,
+          "distinct_stops": 42
+        },
+        {
+          "screen": "actions-command-detail",
+          "tab_stops": 42,
+          "distinct_stops": 18
+        },
+        {
+          "screen": "actions-outcomes",
+          "tab_stops": 43,
+          "distinct_stops": 33
+        },
+        {
+          "screen": "audit",
+          "tab_stops": 44,
+          "distinct_stops": 32
+        },
+        {
+          "screen": "operations",
+          "tab_stops": 43,
+          "distinct_stops": 23
+        },
+        {
+          "screen": "handover",
+          "tab_stops": 42,
+          "distinct_stops": 18
+        }
+      ]
+    },
+    "accessibility.demo_operator": {
+      "screens_checked": 5,
+      "axe_violations": 0,
+      "screens": [
+        {
+          "screen": "map",
+          "tab_stops": 44,
+          "distinct_stops": 39
+        },
+        {
+          "screen": "analytics-corridors",
+          "tab_stops": 43,
+          "distinct_stops": 23
+        },
+        {
+          "screen": "analytics-intersections",
+          "tab_stops": 41,
+          "distinct_stops": 12
+        },
+        {
+          "screen": "analytics-devices",
+          "tab_stops": 44,
+          "distinct_stops": 39
+        },
+        {
+          "screen": "demo",
+          "tab_stops": 43,
+          "distinct_stops": 23
+        }
+      ]
+    },
+    "responsive.supervisor": {
+      "screens": [
+        "map",
+        "analytics-corridors",
+        "analytics-intersections",
+        "analytics-devices",
+        "incidents",
+        "incident-detail",
+        "dispatch",
+        "dispatch-detail",
+        "field",
+        "actions-recommendations",
+        "actions-commands",
+        "actions-command-detail",
+        "actions-outcomes",
+        "operations",
+        "handover"
+      ],
+      "viewports": [
+        "laptop 1366x768",
+        "projector 1920x1080",
+        "phone 390x844",
+        "200% zoom (640x512)",
+        "400% zoom (320x256)"
+      ],
+      "checks": 75,
+      "page_scroll_failures": 0,
+      "offenders": 0
+    },
+    "responsive.demo_operator": {
+      "screens": [
+        "demo"
+      ],
+      "viewports": [
+        "laptop 1366x768",
+        "projector 1920x1080",
+        "phone 390x844",
+        "200% zoom (640x512)",
+        "400% zoom (320x256)"
+      ],
+      "checks": 5,
+      "page_scroll_failures": 0,
+      "offenders": 0
+    },
+    "dialogs_400_percent_zoom": {
+      "dialogs_checked": [
+        "Request a command",
+        "Write a shift handover"
+      ],
+      "controls_reachable": true
+    },
+    "reduced_motion": {
+      "screens_checked": 15,
+      "animations_running": 0,
+      "control_probe_detected_motion_without_the_preference": true
+    },
+    "failure_workflows": {
+      "api_unreachable_then_recovers": true,
+      "screen_that_cannot_load_retries": true,
+      "fresh_badges_before": true,
+      "no_fresh_badge_after_thirty_minutes_without_data": true,
+      "session_ended_mid_use_keeps_destination": true,
+      "identity_provider_unreachable_then_returns_to_destination": true,
+      "identity_provider_down_at_open_then_returns_to_destination": true
+    },
+    "responsive.auditor": {
+      "screens": [
+        "audit"
+      ],
+      "viewports": [
+        "laptop 1366x768",
+        "projector 1920x1080",
+        "phone 390x844",
+        "200% zoom (640x512)",
+        "400% zoom (320x256)"
+      ],
+      "checks": 5,
+      "page_scroll_failures": 0,
+      "offenders": 0
+    },
+    "LAT-05": {
+      "target": "operator UI live update P95 < 2 s, backend event to rendered UI change, nominal load",
+      "method": "a real loop-detector count written through the platform's ingestion; time from the event's observation time to the device's new reading rendered in the map's accessible list in a real Chrome page fed by the live WebSocket",
+      "device": "probe-loop-latency",
+      "nominal_load": {
+        "sessions": 1,
+        "n": 30,
+        "p50_ms": 674,
+        "p95_ms": 990,
+        "max_ms": 1128
+      },
+      "met": true,
+      "samples_ms": [
+        349,
+        703,
+        710,
+        873,
+        526,
+        841,
+        543,
+        883,
+        593,
+        799,
+        911,
+        895,
+        850,
+        1128,
+        547,
+        652,
+        633,
+        514,
+        545,
+        990,
+        674,
+        656,
+        601,
+        403,
+        539,
+        762,
+        712,
+        594,
+        742,
+        712
+      ]
+    },
+    "LOAD-04": {
+      "target": "ten concurrent authenticated sessions across roles without measurable UI latency regression (LAT-05)",
+      "sessions": 10,
+      "roles": [
+        "operator",
+        "supervisor",
+        "dispatcher",
+        "incident_commander",
+        "field_responder",
+        "auditor",
+        "demo_operator"
+      ],
+      "screens": [
+        "/map (operator)",
+        "/actions/commands (supervisor)",
+        "/dispatch (dispatcher)",
+        "/map (incident_commander)",
+        "/field (field_responder)",
+        "/operations (auditor)",
+        "/map (demo_operator)",
+        "/operations (supervisor)",
+        "/analytics/corridors (operator)",
+        "/map (operator)"
+      ],
+      "live_update_under_load": {
+        "n": 30,
+        "p50_ms": 731,
+        "p95_ms": 1023,
+        "max_ms": 1101
+      },
+      "live_update_nominal": {
+        "n": 30,
+        "p50_ms": 674,
+        "p95_ms": 990,
+        "max_ms": 1128
+      },
+      "regression_allowance_ms": 250,
+      "live_update_p95_change_ms": 33,
+      "api_request_time_nominal": {
+        "n": 66,
+        "p50_ms": 80,
+        "p95_ms": 333,
+        "max_ms": 445
+      },
+      "api_request_time_under_load": {
+        "n": 321,
+        "p50_ms": 136,
+        "p95_ms": 687,
+        "max_ms": 1607
+      },
+      "sessions_still_healthy": [
+        "supervisor:/actions/commands",
+        "dispatcher:/dispatch",
+        "incident_commander:/map",
+        "field_responder:/field",
+        "auditor:/operations",
+        "demo_operator:/map",
+        "supervisor:/operations",
+        "operator:/analytics/corridors",
+        "operator:/map"
+      ],
+      "met": true,
+      "samples_ms": [
+        670,
+        408,
+        692,
+        954,
+        981,
+        741,
+        418,
+        910,
+        772,
+        438,
+        649,
+        577,
+        598,
+        739,
+        771,
+        968,
+        480,
+        932,
+        731,
+        617,
+        1023,
+        686,
+        722,
+        763,
+        743,
+        856,
+        910,
+        414,
+        1101,
+        687
+      ]
+    },
+    "environment_notes": {
+      "measurement_attempts": "LAT-05/LOAD-04 needed five attempts. Two were disturbed while Postgres was in crash recovery (a backend aborted twice on a glibc malloc assertion, 14:32 and 16:00 UTC; the platform's workers reconnected each time), two failed on the first reading not appearing within 15 s while the host disk was stalling (Postgres checkpoint writes took 38-74 s in the same period; cause not isolated), the fifth ran clean and is the one reported, with its raw samples. Sign-in also hit a browser error page once during a Keycloak disk stall; that test passed on rerun.",
+      "host": "16 GB Windows 11 host, WSL2 Docker shared with unrelated projects; physical disk queue length 8-18 during the period, about 0.5 GB free memory",
+      "reruns": "tests that failed first and passed on a rerun are listed with their first error in retried_after_a_failed_first_attempt"
+    }
+  }
+}

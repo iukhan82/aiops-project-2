@@ -1,0 +1,45 @@
+{
+  "all_passed": true,
+  "checks": {
+    "a_real_route_yields_real_corridor_steps_at_a_genuine_multi_approach_intersection": true,
+    "both_paired_runs_completed": true,
+    "both_runs_sampled_the_same_fixed_window_so_the_harm_comparison_is_like_for_like": true,
+    "cross_street_traffic_harm_was_actually_measured_not_assumed_zero": true,
+    "every_phase_transition_during_priority_follows_the_programs_own_defined_sequence": true,
+    "no_safety_violation_was_reported_by_the_adapter_itself": true,
+    "signal_safety_monitor_reports_zero_violations_in_the_baseline_and_priority_runs": true,
+    "the_command_status_reflects_the_real_completed_corridor": true,
+    "the_target_phase_gives_the_buss_actual_movement_a_green": true,
+    "the_transit_priority_command_is_approved_by_real_policy": true,
+    "transit_priority_measurably_reduces_the_transit_vehicles_travel_time": true
+  },
+  "generated_at": "2026-09-20T15:17:44Z",
+  "metrics": {
+    "balanced_measurement": {
+      "cross_traffic_harm": {
+        "baseline_mean_wait_s": 5.616,
+        "note": "the same 150 s window after the bus departs in both runs",
+        "priority_mean_wait_s": 2.086,
+        "window_s": 150
+      },
+      "transit_benefit": {
+        "baseline_travel_time_s": 109.0,
+        "priority_travel_time_s": 79.0
+      }
+    }
+  },
+  "notes": {
+    "a_real_route_yields_real_corridor_steps_at_a_genuine_multi_approach_intersection": "['int-b1', 'int-b2']",
+    "both_paired_runs_completed": "baseline=109.0s priority=79.0s",
+    "both_runs_sampled_the_same_fixed_window_so_the_harm_comparison_is_like_for_like": "151 vs 151 one-second samples",
+    "cross_street_traffic_harm_was_actually_measured_not_assumed_zero": "baseline mean wait 5.616s (151 samples), priority mean wait 2.086s (151 samples)",
+    "every_phase_transition_during_priority_follows_the_programs_own_defined_sequence": "[]",
+    "no_safety_violation_was_reported_by_the_adapter_itself": "",
+    "signal_safety_monitor_reports_zero_violations_in_the_baseline_and_priority_runs": "baseline 0, priority 0",
+    "the_command_status_reflects_the_real_completed_corridor": "",
+    "the_target_phase_gives_the_buss_actual_movement_a_green": "{'int-b1': 0, 'int-b2': 0}",
+    "the_transit_priority_command_is_approved_by_real_policy": "{'command_id': UUID('fba01273-789a-4c36-b91a-a4fd6a0b376b'), 'idempotency_key': 'verify-p0708-priority-1789917458.440406', 'recommendation_id': None, 'action_type': 'transit_priority', 'target_adapter': 'transit_priority_adapter', 'target_entity_id': 'corridor-b', 'requested_by': 'operator:alice', 'requested_at': datetime.datetime(2026, 9, 20, 15, 17, 38, 440406, tzinfo=zoneinfo.ZoneInfo(key='Etc/UTC')), 'approved_by': 'supervisor:bob', 'approved_at': datetime.datetime(2026, 9, 20, 15, 17, 40, 440406, tzinfo=zoneinfo.ZoneInfo(key='Etc/UTC')), 'expires_at': datetime.datetime(2026, 9, 20, 15, 19, 38, 440406, tzinfo=zoneinfo.ZoneInfo(key='Etc/UTC')), 'policy_decision': 'approved', 'status': 'approved', 'acknowledged_at': None, 'rolled_back_at': None, 'error_code': None, 'error_message': None, 'error_retryable': None, 'requested_by_role': 'operator', 'approved_by_role': 'supervisor'}",
+    "transit_priority_measurably_reduces_the_transit_vehicles_travel_time": "baseline 109.0s -> priority 79.0s (28% faster)"
+  },
+  "task": "P07.08"
+}

@@ -1,0 +1,88 @@
+{
+  "entries": [
+    {
+      "dataset_sha256": "4c3cc8a38e84c11ed7bdd34475da5673d8759ca2486b1ace4cd539c332942bc2",
+      "detail": {
+        "model_id": "traffic-safety-blockage",
+        "model_version": "1.0.0",
+        "selected_candidate": 2
+      },
+      "feature_version": "loop-window/2",
+      "purpose": "final_comparison"
+    },
+    {
+      "dataset_sha256": "4c3cc8a38e84c11ed7bdd34475da5673d8759ca2486b1ace4cd539c332942bc2",
+      "detail": {
+        "max_abs_diff": 6.556510925292969e-07,
+        "model_id": "traffic-safety-blockage",
+        "model_version": "1.0.0"
+      },
+      "feature_version": "loop-window/2",
+      "purpose": "onnx_parity"
+    },
+    {
+      "dataset_sha256": "f361f3b87cc8c0727727999ed8b8c090faa3f2b7f3954380e1efd405676fc6e2",
+      "detail": {
+        "note": "selection on validation; test scored once, non-selecting",
+        "task": "P06.02"
+      },
+      "feature_version": "forecast-kpi/1",
+      "purpose": "baseline_report"
+    },
+    {
+      "dataset_sha256": "f361f3b87cc8c0727727999ed8b8c090faa3f2b7f3954380e1efd405676fc6e2",
+      "detail": {
+        "purpose": "model vs P06.02 baseline",
+        "task": "P06.03"
+      },
+      "feature_version": "forecast-kpi/1",
+      "purpose": "final_comparison"
+    },
+    {
+      "dataset_sha256": "f361f3b87cc8c0727727999ed8b8c090faa3f2b7f3954380e1efd405676fc6e2",
+      "detail": {
+        "note": "non-selecting: PSI and monitor behaviour",
+        "task": "P06.03"
+      },
+      "feature_version": "forecast-kpi/1",
+      "purpose": "drift_analysis"
+    },
+    {
+      "dataset_sha256": "f361f3b87cc8c0727727999ed8b8c090faa3f2b7f3954380e1efd405676fc6e2",
+      "detail": {
+        "note": "params chosen on validation; test scored once",
+        "task": "P06.04"
+      },
+      "feature_version": "congestion-rule/1",
+      "purpose": "detector_report"
+    },
+    {
+      "dataset_sha256": "f361f3b87cc8c0727727999ed8b8c090faa3f2b7f3954380e1efd405676fc6e2",
+      "detail": {
+        "note": "fusion params chosen on validation; test scored once",
+        "task": "P06.05"
+      },
+      "feature_version": "stall-fusion/1",
+      "purpose": "stall_report"
+    },
+    {
+      "dataset_sha256": "db4064a0ed9c80e303d5c4a3eb533d4bc0cdff9752855c6f352ab56f2c6fd2bf",
+      "detail": {
+        "note": "indicator chosen on validation; test scored once",
+        "task": "P06.06"
+      },
+      "feature_version": "vru-conflict/1",
+      "purpose": "conflict_report"
+    },
+    {
+      "dataset_sha256": "f361f3b87cc8c0727727999ed8b8c090faa3f2b7f3954380e1efd405676fc6e2",
+      "detail": {
+        "note": "policy fixed before TEST; test scored once",
+        "task": "P06.08"
+      },
+      "feature_version": "incident-eval/1",
+      "purpose": "incident_report"
+    }
+  ],
+  "format": "test-split-ledger/1"
+}

@@ -1,0 +1,26 @@
+{
+  "all_passed": true,
+  "checks": {
+    "all_four_observability_containers_are_healthy": true,
+    "combined_resource_limits_match_the_real_budget_line": true,
+    "every_dashboard_panel_query_parses_and_executes_on_the_real_prometheus": true,
+    "grafana_has_all_three_real_datasources_provisioned": true,
+    "log_push_to_loki_succeeds": true,
+    "pushed_log_line_is_queryable_and_carries_the_same_trace_id_as_the_real_pushed_trace": true,
+    "pushed_metric_is_queryable_back_from_prometheus": true,
+    "pushed_trace_is_queryable_back_from_tempo_by_its_own_id": true
+  },
+  "generated_at": "2026-09-23T18:53:02Z",
+  "metrics": {},
+  "notes": {
+    "all_four_observability_containers_are_healthy": "{'aiops-prometheus': 'healthy', 'aiops-tempo': 'healthy', 'aiops-loki': 'healthy', 'aiops-grafana': 'healthy'}",
+    "combined_resource_limits_match_the_real_budget_line": "cpus=0.75 mem_mib=1536.0",
+    "every_dashboard_panel_query_parses_and_executes_on_the_real_prometheus": "[]",
+    "grafana_has_all_three_real_datasources_provisioned": "{'loki', 'tempo', 'prometheus'}",
+    "log_push_to_loki_succeeds": "status=204",
+    "pushed_log_line_is_queryable_and_carries_the_same_trace_id_as_the_real_pushed_trace": "trace_id=d6ba2c868956b174690338c77d2768d4",
+    "pushed_metric_is_queryable_back_from_prometheus": "[{'metric': {'__name__': 'p10_03_verify_events_total', 'http_route': '/verify', 'instance': '72dbef5d-abaa-456a-88fc-0fc1da6da645', 'job': 'p10-03-verify-d41fdb3a'}, 'value': [1790189581.082, '1']}]",
+    "pushed_trace_is_queryable_back_from_tempo_by_its_own_id": "status=200"
+  },
+  "task": "P10.03"
+}

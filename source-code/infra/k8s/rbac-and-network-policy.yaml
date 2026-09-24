@@ -1,0 +1,319 @@
+# P09.04 (CTL-13's "policies" half; deployment - the Deployments/StatefulSets these attach to, and live-cluster testing
+# of them - is P11.02). Namespace, one ServiceAccount per real service this platform runs, default-deny network
+# policy for the namespace, then the explicit egress/ingress each service actually needs and nothing else.
+#
+# RBAC (Kubernetes API access, not this platform's own OWN roles/capabilities - see docs/security/
+# ROLES_AND_ACTION_AUTHORITY.md for those): no component in this platform calls the Kubernetes API at runtime -
+# configuration and secrets arrive as mounted volumes/env, not API calls - so the correct, minimal RBAC posture is
+# that none of these ServiceAccounts can reach the API server at all (`automountServiceAccountToken: false`), not a
+# hand-crafted Role for access nothing needs. If a future component genuinely needs API access (e.g. a leader-
+# election sidecar), it gets its own ServiceAccount with a Role scoped to exactly that verb/resource, not a shared
+# broad one.
+#
+# Egress DNS (port 53) is allowed cluster-wide for every workload below (Kubernetes' own service discovery), listed
+# once via the namespace default rather than repeated per policy.
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: aiops
+  labels:
+    app.kubernetes.io/part-of: aiops-platform
+
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: aiops-api
+  namespace: aiops
+automountServiceAccountToken: false
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: aiops-command-executor
+  namespace: aiops
+automountServiceAccountToken: false
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: aiops-outcome-verifier
+  namespace: aiops
+automountServiceAccountToken: false
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: aiops-scenario-control
+  namespace: aiops
+automountServiceAccountToken: false
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: aiops-ingestion-gateway
+  namespace: aiops
+automountServiceAccountToken: false
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: aiops-opa
+  namespace: aiops
+automountServiceAccountToken: false
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: aiops-postgres
+  namespace: aiops
+automountServiceAccountToken: false
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: aiops-keycloak
+  namespace: aiops
+automountServiceAccountToken: false
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: aiops-mqtt-broker
+  namespace: aiops
+automountServiceAccountToken: false
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: aiops-kafka-broker
+  namespace: aiops
+automountServiceAccountToken: false
+
+---
+# Default deny: a pod with no matching NetworkPolicy below sends and receives nothing, including from outside the
+# namespace. Every policy after this one is an explicit exception, not a starting point that happens to be open.
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: default-deny-all
+  namespace: aiops
+spec:
+  podSelector: {}
+  policyTypes: [Ingress, Egress]
+
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-dns-egress
+  namespace: aiops
+spec:
+  podSelector: {}
+  policyTypes: [Egress]
+  egress:
+    - to:
+        - namespaceSelector: {}
+      ports:
+        - {protocol: UDP, port: 53}
+        - {protocol: TCP, port: 53}
+
+---
+# The operator API: reached by the UI/ingress; reads/writes Postgres as itself (CTL-12) and asks OPA every request
+# (P09.03); reaches Keycloak only to fetch the realm's published signing keys (JWKS), never a password grant.
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: aiops-api
+  namespace: aiops
+spec:
+  podSelector:
+    matchLabels: {app.kubernetes.io/name: aiops-api}
+  policyTypes: [Ingress, Egress]
+  ingress:
+    - from:
+        - namespaceSelector:
+            matchLabels: {kubernetes.io/metadata.name: ingress-nginx}
+      ports: [{protocol: TCP, port: 8100}]
+  egress:
+    - to: [{podSelector: {matchLabels: {app.kubernetes.io/name: aiops-postgres}}}]
+      ports: [{protocol: TCP, port: 5432}]
+    - to: [{podSelector: {matchLabels: {app.kubernetes.io/name: aiops-opa}}}]
+      ports: [{protocol: TCP, port: 8181}]
+    - to: [{podSelector: {matchLabels: {app.kubernetes.io/name: aiops-keycloak}}}]
+      ports: [{protocol: TCP, port: 8080}]
+
+---
+# The command executor and outcome verifier poll the database - nothing calls them, so they have no ingress rule at
+# all (not even from the API). Each reaches only Postgres (as itself, CTL-12) and OPA (P09.03's execution gate /
+# independent-verifier identity check is a Python-level guard, not a network one, but the service still asks OPA).
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: aiops-command-executor
+  namespace: aiops
+spec:
+  podSelector:
+    matchLabels: {app.kubernetes.io/name: aiops-command-executor}
+  policyTypes: [Ingress, Egress]
+  egress:
+    - to: [{podSelector: {matchLabels: {app.kubernetes.io/name: aiops-postgres}}}]
+      ports: [{protocol: TCP, port: 5432}]
+    - to: [{podSelector: {matchLabels: {app.kubernetes.io/name: aiops-opa}}}]
+      ports: [{protocol: TCP, port: 8181}]
+
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: aiops-outcome-verifier
+  namespace: aiops
+spec:
+  podSelector:
+    matchLabels: {app.kubernetes.io/name: aiops-outcome-verifier}
+  policyTypes: [Ingress, Egress]
+  egress:
+    - to: [{podSelector: {matchLabels: {app.kubernetes.io/name: aiops-postgres}}}]
+      ports: [{protocol: TCP, port: 5432}]
+    - to: [{podSelector: {matchLabels: {app.kubernetes.io/name: aiops-opa}}}]
+      ports: [{protocol: TCP, port: 8181}]
+
+---
+# Scenario-control: reached only by the UI/ingress (never by any other backend service - P05.09/P08.09's structural
+# separation from the operational path), reaches Postgres as itself and OPA.
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: aiops-scenario-control
+  namespace: aiops
+spec:
+  podSelector:
+    matchLabels: {app.kubernetes.io/name: aiops-scenario-control}
+  policyTypes: [Ingress, Egress]
+  ingress:
+    - from:
+        - namespaceSelector:
+            matchLabels: {kubernetes.io/metadata.name: ingress-nginx}
+      ports: [{protocol: TCP, port: 8101}]
+  egress:
+    - to: [{podSelector: {matchLabels: {app.kubernetes.io/name: aiops-postgres}}}]
+      ports: [{protocol: TCP, port: 5432}]
+    - to: [{podSelector: {matchLabels: {app.kubernetes.io/name: aiops-opa}}}]
+      ports: [{protocol: TCP, port: 8181}]
+
+---
+# The ingestion gateway: reached by device/edge traffic (MQTT/Kafka - P11's real transport, not the API's own
+# ingress), reaches Postgres as itself. It never reaches OPA or the command path - ingestion has no authority over
+# any command.
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: aiops-ingestion-gateway
+  namespace: aiops
+spec:
+  podSelector:
+    matchLabels: {app.kubernetes.io/name: aiops-ingestion-gateway}
+  policyTypes: [Ingress, Egress]
+  ingress:
+    - from: [{podSelector: {matchLabels: {app.kubernetes.io/name: aiops-mqtt-broker}}}]
+    - from: [{podSelector: {matchLabels: {app.kubernetes.io/name: aiops-kafka-broker}}}]
+  egress:
+    - to: [{podSelector: {matchLabels: {app.kubernetes.io/name: aiops-postgres}}}]
+      ports: [{protocol: TCP, port: 5432}]
+
+---
+# The policy engine: reached only by the four services that ask it a decision; it asks nothing else (its policy
+# bundle is a mounted ConfigMap/volume, not fetched from a bundle server) - egress-none is correct, not an oversight.
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: aiops-opa
+  namespace: aiops
+spec:
+  podSelector:
+    matchLabels: {app.kubernetes.io/name: aiops-opa}
+  policyTypes: [Ingress, Egress]
+  ingress:
+    - from:
+        - podSelector:
+            matchExpressions:
+              - key: app.kubernetes.io/name
+                operator: In
+                values: [aiops-api, aiops-command-executor, aiops-outcome-verifier, aiops-scenario-control]
+      ports: [{protocol: TCP, port: 8181}]
+
+---
+# The device brokers (P05.01/P05.02 - mTLS to the MQTT broker is CTL-09, already proven): reached by devices and the
+# edge gateway from outside this namespace entirely, so their ingress is not scoped to an in-namespace podSelector
+# the way the platform's own services are - that boundary is the broker's own TLS/ACL (CTL-09), not this policy.
+# What this policy adds is that only the ingestion gateway may reach them FROM inside the namespace, and nothing else
+# here may reach a broker at all.
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: aiops-mqtt-broker
+  namespace: aiops
+spec:
+  podSelector:
+    matchLabels: {app.kubernetes.io/name: aiops-mqtt-broker}
+  policyTypes: [Ingress, Egress]
+  ingress:
+    - {}
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: aiops-kafka-broker
+  namespace: aiops
+spec:
+  podSelector:
+    matchLabels: {app.kubernetes.io/name: aiops-kafka-broker}
+  policyTypes: [Ingress, Egress]
+  ingress:
+    - {}
+
+---
+# Keycloak: reached by the API (JWKS/token validation) and the UI's own proxy; it initiates no connection this
+# platform's own network policy needs to name (no outbound integration is configured).
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: aiops-keycloak
+  namespace: aiops
+spec:
+  podSelector:
+    matchLabels: {app.kubernetes.io/name: aiops-keycloak}
+  policyTypes: [Ingress, Egress]
+  ingress:
+    - from: [{podSelector: {matchLabels: {app.kubernetes.io/name: aiops-api}}}]
+      ports: [{protocol: TCP, port: 8080}]
+    - from:
+        - namespaceSelector:
+            matchLabels: {kubernetes.io/metadata.name: ingress-nginx}
+      ports: [{protocol: TCP, port: 8080}]
+
+---
+# The database: reached only by the five services that hold a real workload-identity role (CTL-12) or the migration
+# job; it initiates no connection of its own.
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: aiops-postgres
+  namespace: aiops
+spec:
+  podSelector:
+    matchLabels: {app.kubernetes.io/name: aiops-postgres}
+  policyTypes: [Ingress, Egress]
+  ingress:
+    - from:
+        - podSelector:
+            matchExpressions:
+              - key: app.kubernetes.io/name
+                operator: In
+                values:
+                  - aiops-api
+                  - aiops-command-executor
+                  - aiops-outcome-verifier
+                  - aiops-scenario-control
+                  - aiops-ingestion-gateway
+      ports: [{protocol: TCP, port: 5432}]

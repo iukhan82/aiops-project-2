@@ -1,0 +1,27 @@
+%%{init: {"flowchart": {"htmlLabels": true, "curve": "linear"}} }%%
+flowchart TB
+  subgraph TESTED["TESTED: deployed on local K3s target (ADR-0007, ADR-0008)\nsee diagram 07 for pod-level detail"]
+    direction TB
+    T1["Edge sites x3 (logical, same host)"]
+    T2["Central K3s namespace\nall central services, PostgreSQL/PostGIS, Keycloak, OPA, MQTT, Kafka-compatible broker"]
+    T3["Observability stack\nPrometheus/Grafana/Tempo/OTel"]
+    T1 --> T2 --> T3
+  end
+
+  subgraph PROPOSED["PROPOSED production reference only — NOT DEPLOYED (ADR-0007)\nsee P13.02 for full detail; never claimed as running"]
+    direction TB
+    P1["Distributed edge nodes\nreal intersection/corridor hardware"]
+    P2["Redundant regional gateways\ndevice trust termination"]
+    P3["Multi-zone central backbone\nseparate failure zones"]
+    P4["Managed cloud services\nidentity, policy, observability, backup - account not authorized"]
+    P5["Certified controller/CAD/AVL adapters\nnot tested, not authorized"]
+    P1 --> P2 --> P3 --> P4
+    P3 --> P5
+  end
+
+  TESTED -.->|"design basis for, never promoted silently into"| PROPOSED
+
+  classDef tested fill:#efe,stroke:#484,stroke-width:2px
+  classDef proposed fill:#fee,stroke:#844,stroke-width:2px,stroke-dasharray: 5 5
+  class TESTED tested
+  class PROPOSED proposed

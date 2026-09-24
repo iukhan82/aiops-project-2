@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0.0",
+  "command_id": "2e1a4c3b-6f5d-4e2a-8b3c-9d0e1f2a3b4c",
+  "idempotency_key": "int-03-signal-plan-change-2026-09-18T09:09:00Z",
+  "recommendation_id": "1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed",
+  "action_type": "signal_plan_change",
+  "target": { "adapter": "simulator-signal-adapter", "entity_id": "int-03" },
+  "requested_by": "operator-jsmith",
+  "requested_at": "2026-09-18T09:09:00Z",
+  "approved_by": "supervisor-akhan",
+  "approved_at": "2026-09-18T09:09:05Z",
+  "expires_at": "2026-09-18T09:10:00Z",
+  "policy_decision": "approved",
+  "status": "executed",
+  "acknowledged_at": "2026-09-18T09:09:07Z"
+}

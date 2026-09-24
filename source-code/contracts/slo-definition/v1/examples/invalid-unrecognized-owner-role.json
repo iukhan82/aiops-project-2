@@ -1,0 +1,13 @@
+{
+  "_invalid_because": "owner_role is 'PLATFORM', which is not one of the sixteen role codes defined in TASK_REGISTER.md's Role owners table.",
+  "schema_version": "1.0.0",
+  "slo_id": "slo-ingest-latency-p95",
+  "service": "ingestion-service",
+  "objective_type": "latency",
+  "target_value": 2,
+  "target_unit": "s",
+  "window_seconds": 1800,
+  "measurement_query_ref": "observability/queries/ingest_latency_p95.promql",
+  "owner_role": "PLATFORM",
+  "effective_from": "2026-09-18T00:00:00Z"
+}

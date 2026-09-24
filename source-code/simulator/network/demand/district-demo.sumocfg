@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <input>
+    <net-file value="../output/district.net.xml"/>
+    <route-files value="district-demo.rou.xml"/>
+    <additional-files value="vtypes.add.xml,stops.add.xml"/>
+  </input>
+  <time>
+    <begin value="0"/>
+    <end value="300"/>
+  </time>
+  <random_number>
+    <seed value="20260918"/>
+  </random_number>
+  <output>
+    <fcd-output value="../output/demo-fcd.xml"/>
+    <tripinfo-output value="../output/demo-tripinfo.xml"/>
+    <stop-output value="../output/demo-stopinfo.xml"/>
+    <statistic-output value="../output/demo-statistics.xml"/>
+  </output>
+</configuration>

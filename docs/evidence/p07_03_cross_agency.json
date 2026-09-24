@@ -1,0 +1,30 @@
+{
+  "all_passed": true,
+  "checks": {
+    "all_three_units_reached_a_terminal_status": true,
+    "fire_and_ambulance_are_both_blocked_from_on_scene_before_their_real_prerequisite_arrives": true,
+    "fire_proceeds_on_scene_once_police_has_actually_arrived": true,
+    "handovers_persist_with_every_required_field_and_the_right_agencies": true,
+    "no_patient_or_medical_field_anywhere_in_the_case_file": true,
+    "synthetic_case_removed_after_the_test": true,
+    "the_derived_call_timeline_uses_the_first_arrival_and_the_last_clearance_across_three_agencies": true,
+    "the_staged_attempt_is_recorded_in_the_audit_trail_not_silently_dropped": true,
+    "the_unit_with_no_prerequisite_reaches_on_scene_directly": true,
+    "three_agency_assignments_created_in_dependency_order": true
+  },
+  "generated_at": "2026-09-20T10:07:10Z",
+  "metrics": {},
+  "notes": {
+    "all_three_units_reached_a_terminal_status": "",
+    "fire_and_ambulance_are_both_blocked_from_on_scene_before_their_real_prerequisite_arrives": "",
+    "fire_proceeds_on_scene_once_police_has_actually_arrived": "",
+    "handovers_persist_with_every_required_field_and_the_right_agencies": "",
+    "no_patient_or_medical_field_anywhere_in_the_case_file": "",
+    "synthetic_case_removed_after_the_test": "",
+    "the_derived_call_timeline_uses_the_first_arrival_and_the_last_clearance_across_three_agencies": "on_scene at +90.0s, cleared at +500.0s",
+    "the_staged_attempt_is_recorded_in_the_audit_trail_not_silently_dropped": "",
+    "the_unit_with_no_prerequisite_reaches_on_scene_directly": "",
+    "three_agency_assignments_created_in_dependency_order": ""
+  },
+  "task": "P07.03"
+}

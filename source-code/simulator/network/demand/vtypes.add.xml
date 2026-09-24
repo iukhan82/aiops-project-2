@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<additional>
+  <vType id="passenger" vClass="passenger" length="4.5" maxSpeed="16.7" guiShape="passenger"/>
+  <vType id="cyclist" vClass="bicycle" length="1.8" maxSpeed="6.0" guiShape="bicycle"/>
+  <vType id="transit-bus" vClass="bus" length="12.0" maxSpeed="14.0" guiShape="bus"/>
+</additional>

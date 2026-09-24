@@ -1,0 +1,32 @@
+# P10.03: local, short-retention Tempo - trace storage for the dev/test
+# stack (docs/environment/RESOURCE_BUDGET.md: "Development traces/logs use
+# short retention"). Not the K3s deployment target.
+server:
+  http_listen_port: 3200
+
+memberlist:
+  abort_if_cluster_join_fails: false
+
+distributor:
+  receivers:
+    otlp:
+      protocols:
+        grpc:
+          endpoint: 0.0.0.0:4317
+        http:
+          endpoint: 0.0.0.0:4318
+
+ingester:
+  max_block_duration: 5m
+
+compactor:
+  compaction:
+    block_retention: 24h
+
+storage:
+  trace:
+    backend: local
+    local:
+      path: /var/tempo/traces
+    wal:
+      path: /var/tempo/wal

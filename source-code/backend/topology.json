@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0.0",
+  "description": "P10.02: the platform's real service dependency graph, cross-checked by verify_slos.py against the actual connection constants each service's own source names (not hand-drawn and left to drift). Scoped to the five services this repository can currently run as separate processes (api, gateway, ingestion, scenario-control, edge-runtime) plus the infrastructure they connect to; P11.01's own service images (backend workers, frontend) extend this graph without changing the shape.",
+  "nodes": [
+    {
+      "id": "edge-runtime",
+      "kind": "service",
+      "note": "one process per simulated edge site; its own durable outbox (P04.07) has no drain-to-MQTT wired in this repository yet - a real, undrawn gap, not asserted as an edge below"
+    },
+    { "id": "gateway", "kind": "service" },
+    { "id": "ingestion", "kind": "service" },
+    { "id": "api", "kind": "service" },
+    { "id": "scenario-control", "kind": "service", "note": "demo-only, no operational authority" },
+    { "id": "mosquitto", "kind": "infra", "note": "MQTT broker, mTLS" },
+    { "id": "kafka", "kind": "infra", "note": "Redpanda, Kafka-compatible" },
+    { "id": "postgres", "kind": "infra", "note": "PostGIS" },
+    { "id": "opa", "kind": "infra", "note": "policy decision point" },
+    { "id": "keycloak", "kind": "infra", "note": "identity provider" }
+  ],
+  "edges": [
+    {
+      "from": "gateway",
+      "to": "mosquitto",
+      "verify": { "file": "source-code/backend/gateway/gateway.py", "grep": "mqtt_host" }
+    },
+    {
+      "from": "gateway",
+      "to": "kafka",
+      "verify": { "file": "source-code/backend/gateway/gateway.py", "grep": "kafka_bootstrap" }
+    },
+    {
+      "from": "ingestion",
+      "to": "kafka",
+      "verify": { "file": "source-code/backend/ingestion/ingest.py", "grep": "Consumer(" }
+    },
+    {
+      "from": "ingestion",
+      "to": "postgres",
+      "verify": { "file": "source-code/backend/ingestion/ingest.py", "grep": "dsn_from_env" }
+    },
+    {
+      "from": "api",
+      "to": "postgres",
+      "verify": { "file": "source-code/backend/api/db.py", "grep": "dsn_from_env" }
+    },
+    {
+      "from": "api",
+      "to": "opa",
+      "verify": { "file": "source-code/backend/pdp.py", "grep": "OPA_URL" }
+    },
+    {
+      "from": "api",
+      "to": "keycloak",
+      "verify": { "file": "source-code/backend/api/auth.py", "grep": "KEYCLOAK_ISSUER" }
+    },
+    {
+      "from": "scenario-control",
+      "to": "postgres",
+      "verify": { "file": "source-code/backend/scenario_control/app.py", "grep": "dsn_from_env" }
+    },
+    {
+      "from": "scenario-control",
+      "to": "opa",
+      "verify": { "file": "source-code/backend/scenario_control/app.py", "grep": "policy_for" }
+    },
+    {
+      "from": "scenario-control",
+      "to": "keycloak",
+      "verify": { "file": "source-code/backend/scenario_control/app.py", "grep": "KEYCLOAK_ISSUER|verify_token" }
+    }
+  ]
+}

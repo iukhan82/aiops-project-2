@@ -1,0 +1,87 @@
+{
+  "all_passed": true,
+  "checks": {
+    "every_access_capability_a_category_names_exists_in_the_ux_inventory": true,
+    "every_categorys_privacy_classification_is_in_the_device_contracts_enum": true,
+    "every_categorys_retention_class_is_a_real_retention_py_window": true,
+    "every_device_type_a_category_names_is_a_real_device_v1_enum_value": true,
+    "every_device_v1_enum_value_is_covered_by_some_category_or_is_the_aiops_internal_agent_type": true,
+    "every_live_device_type_privacy_retention_combination_in_either_database_is_covered_by_a_category": true,
+    "the_emergency_call_and_unit_assignment_contracts_really_carry_no_caller_or_crew_identifier_field": true,
+    "the_generated_tables_in_the_data_inventory_document_are_current": true,
+    "the_retention_class_review_table_names_exactly_retention_pys_own_classes_with_matching_day_counts": true
+  },
+  "generated_at": "2026-09-22T04:13:27Z",
+  "metrics": {
+    "categories": 7,
+    "personal_data_categories": 3,
+    "retention_classes": {
+      "audit": null,
+      "extended": 365,
+      "short": 7,
+      "standard": 90
+    }
+  },
+  "notes": {
+    "every_access_capability_a_category_names_exists_in_the_ux_inventory": [],
+    "every_categorys_privacy_classification_is_in_the_device_contracts_enum": [],
+    "every_categorys_retention_class_is_a_real_retention_py_window": [],
+    "every_device_type_a_category_names_is_a_real_device_v1_enum_value": [],
+    "every_device_v1_enum_value_is_covered_by_some_category_or_is_the_aiops_internal_agent_type": [
+      "aiops_agent",
+      "operator_report_intake"
+    ],
+    "every_live_device_type_privacy_retention_combination_in_either_database_is_covered_by_a_category": {},
+    "the_emergency_call_and_unit_assignment_contracts_really_carry_no_caller_or_crew_identifier_field": {
+      "assignment_fields": [
+        "acknowledged_at",
+        "agency",
+        "arrived_at",
+        "assigned_at",
+        "assignment_id",
+        "call_id",
+        "capability",
+        "cleared_at",
+        "handover",
+        "route_alternatives",
+        "schema_version",
+        "status",
+        "truth_label",
+        "unit_id"
+      ],
+      "call_fields": [
+        "call_id",
+        "call_subtype",
+        "call_type",
+        "geometry_version",
+        "location",
+        "priority",
+        "reported_at",
+        "schema_version",
+        "source_reliability",
+        "status",
+        "truth_label"
+      ]
+    },
+    "the_generated_tables_in_the_data_inventory_document_are_current": "",
+    "the_retention_class_review_table_names_exactly_retention_pys_own_classes_with_matching_day_counts": {
+      "audit": [
+        null,
+        null
+      ],
+      "extended": [
+        365,
+        365
+      ],
+      "short": [
+        7,
+        7
+      ],
+      "standard": [
+        90,
+        90
+      ]
+    }
+  },
+  "task": "P09.06"
+}

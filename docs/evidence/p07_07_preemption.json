@@ -1,0 +1,69 @@
+{
+  "all_passed": true,
+  "checks": {
+    "a_real_route_through_the_real_network_yields_real_corridor_steps": true,
+    "a_route_that_starts_on_a_cross_street_targets_the_corridor_it_actually_needs": true,
+    "abort_restores_every_touched_intersection_to_its_own_original_program": true,
+    "an_aborted_command_ends_failed_never_reported_as_a_successful_execution": true,
+    "both_paired_runs_completed": true,
+    "every_phase_transition_still_follows_the_programs_own_defined_sequence": true,
+    "negative_control_the_monitor_catches_the_old_mechanism_in_the_real_simulator": true,
+    "negative_control_the_old_mechanism_passes_the_phase_order_check": true,
+    "pre_emption_measurably_reduces_the_emergency_vehicles_travel_time": true,
+    "signal_safety_monitor_reports_zero_violations_during_preemption": true,
+    "signal_safety_monitor_reports_zero_violations_in_the_baseline_run": true,
+    "the_command_status_reflects_the_real_completed_corridor": true,
+    "the_preemption_command_is_approved_by_real_policy": true,
+    "the_target_phase_gives_the_vehicles_actual_movement_a_green": true
+  },
+  "generated_at": "2026-09-20T15:17:33Z",
+  "metrics": {
+    "baseline_vs_preemption": {
+      "baseline_travel_time_s": 81.0,
+      "preemption_travel_time_s": 76.0,
+      "traffic_baseline": {
+        "harm_edges_mean_waiting_s": 1.562,
+        "network_mean_waiting_s": 2.6694,
+        "samples": 121,
+        "window_s": 120.0
+      },
+      "traffic_preemption": {
+        "harm_edges_mean_waiting_s": 2.4215,
+        "network_mean_waiting_s": 3.5207,
+        "samples": 121,
+        "window_s": 120.0
+      }
+    },
+    "negative_control": {
+      "examples": [
+        "short_pedestrian_clearance at int-b1 t=14.0: link 0 turned green 2.0s after crossing 16 ended (design minimum 5.0s)",
+        "short_pedestrian_clearance at int-b1 t=14.0: link 0 turned green 2.0s after crossing 18 ended (design minimum 5.0s)",
+        "short_pedestrian_clearance at int-b1 t=14.0: link 1 turned green 2.0s after crossing 16 ended (design minimum 5.0s)",
+        "short_pedestrian_clearance at int-b1 t=14.0: link 1 turned green 2.0s after crossing 18 ended (design minimum 5.0s)",
+        "short_yellow at int-b1 t=14.0: link 5 yellow lasted 1.0s (design minimum 3.0s)"
+      ],
+      "travel_time_s": 76.0,
+      "violations_by_kind": {
+        "short_pedestrian_clearance": 8,
+        "short_yellow": 6
+      }
+    }
+  },
+  "notes": {
+    "a_real_route_through_the_real_network_yields_real_corridor_steps": "[('int-b1', 'int-a1_int-b1', 'int-b1_int-b2'), ('int-b2', 'int-b1_int-b2', 'int-b2_int-b3')]",
+    "a_route_that_starts_on_a_cross_street_targets_the_corridor_it_actually_needs": "",
+    "abort_restores_every_touched_intersection_to_its_own_original_program": "{'int-b1': '0'}",
+    "an_aborted_command_ends_failed_never_reported_as_a_successful_execution": "",
+    "both_paired_runs_completed": "baseline=81.0s preempt=76.0s",
+    "every_phase_transition_still_follows_the_programs_own_defined_sequence": "{'int-b1': [[3, 4], [4, 5], [5, 0]], 'int-b2': []}",
+    "negative_control_the_monitor_catches_the_old_mechanism_in_the_real_simulator": "{'short_pedestrian_clearance': 8, 'short_yellow': 6} ['short_pedestrian_clearance at int-b1 t=14.0: link 0 turned green 2.0s after crossing 16 ended (design minimum 5.0s)']",
+    "negative_control_the_old_mechanism_passes_the_phase_order_check": "{'int-b1': [[3, 4], [4, 5], [5, 0], [0, 1]], 'int-b2': []}",
+    "pre_emption_measurably_reduces_the_emergency_vehicles_travel_time": "baseline 81.0s -> pre-emption 76.0s (6% faster)",
+    "signal_safety_monitor_reports_zero_violations_during_preemption": "{'observations': 1572, 'violation_count': 0, 'violations_by_kind': {}, 'examples': [], 'design': {'min_yellow_s': 3.0, 'min_ped_green_s': 5.0, 'min_ped_clearance_s': 5.0}}",
+    "signal_safety_monitor_reports_zero_violations_in_the_baseline_run": "{'observations': 1572, 'violation_count': 0, 'violations_by_kind': {}, 'examples': [], 'design': {'min_yellow_s': 3.0, 'min_ped_green_s': 5.0, 'min_ped_clearance_s': 5.0}}",
+    "the_command_status_reflects_the_real_completed_corridor": "",
+    "the_preemption_command_is_approved_by_real_policy": "{'command_id': UUID('d34a83bc-e62c-4468-9409-38163c4eac4d'), 'idempotency_key': 'verify-p0707-preempt-1789917442.008401', 'recommendation_id': None, 'action_type': 'emergency_preemption', 'target_adapter': 'emergency_preemption_adapter', 'target_entity_id': 'corridor-b', 'requested_by': 'dispatcher:dana', 'requested_at': datetime.datetime(2026, 9, 20, 15, 17, 22, 8401, tzinfo=zoneinfo.ZoneInfo(key='Etc/UTC')), 'approved_by': 'commander:eve', 'approved_at': datetime.datetime(2026, 9, 20, 15, 17, 24, 8401, tzinfo=zoneinfo.ZoneInfo(key='Etc/UTC')), 'expires_at': datetime.datetime(2026, 9, 20, 15, 19, 22, 8401, tzinfo=zoneinfo.ZoneInfo(key='Etc/UTC')), 'policy_decision': 'approved', 'status': 'approved', 'acknowledged_at': None, 'rolled_back_at': None, 'error_code': None, 'error_message': None, 'error_retryable': None, 'requested_by_role': 'dispatcher', 'approved_by_role': 'incident_commander'}",
+    "the_target_phase_gives_the_vehicles_actual_movement_a_green": "target phases {'int-b1': 0, 'int-b2': 0} served {'int-b1': True, 'int-b2': True}"
+  },
+  "task": "P07.07"
+}

@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0.0",
+  "incident_id": "b3b1c6b4-3e2a-4a2e-9c2b-0e1f2a3b4c5d",
+  "incident_type": "congestion",
+  "severity": "medium",
+  "status": "investigating",
+  "network_element_type": "corridor",
+  "network_element_id": "corridor-a",
+  "geometry_version": "2026-09-18.1",
+  "opened_at": "2026-09-18T09:05:00Z",
+  "updated_at": "2026-09-18T09:07:30Z",
+  "evidence_event_ids": [
+    "7c9e6679-7425-40de-944b-e07fc1f90ae7",
+    "8f14e45f-ceea-467e-add1-b5d5d9f4472a"
+  ],
+  "root_cause_hypothesis": "Elevated queue growth rate on int-03 north approach consistent with a downstream signal timing mismatch.",
+  "owner_role": "BACKEND",
+  "confidence": 0.72
+}

@@ -1,0 +1,17 @@
+{
+  "task": "P05.02",
+  "generated_at": "2026-09-19T18:28:58Z",
+  "mechanism": {
+    "listener": "8883",
+    "auth": "mTLS, require_certificate + use_identity_as_username (client cert CN becomes MQTT username)",
+    "authorization": "mosquitto acl_file, pattern readwrite devices/%u/#"
+  },
+  "note": "SUBACK return code is granted optimistically by this broker version for any topic filter; enforcement is verified at message delivery time, not via the SUBACK code.",
+  "tests": {
+    "valid_device_own_topic_round_trip": true,
+    "cross_device_publish_blocked": true,
+    "cross_device_subscribe_blocked": true,
+    "untrusted_ca_cert_rejected": true
+  },
+  "all_passed": true
+}

@@ -1,0 +1,93 @@
+{
+  "task": "P08.08",
+  "generated_at": "2026-09-21T15:35:57Z",
+  "browser": {
+    "channel": "chrome",
+    "headless": true,
+    "viewport": null
+  },
+  "stack": "real Chrome, real Keycloak (Authorization Code + PKCE), real API on the demo database fed by backend/demo/feeder.py",
+  "tests_total": 11,
+  "tests_passed": 11,
+  "all_passed": true,
+  "tests": [
+    {
+      "title": "actions.spec.ts > recommendations, commands and outcomes (P08.08) > the list shows every lifecycle state as its own shape and word, waiting commands first",
+      "file": "actions.spec.ts",
+      "status": "passed",
+      "duration_ms": 11480,
+      "error": null
+    },
+    {
+      "title": "actions.spec.ts > recommendations, commands and outcomes (P08.08) > a person who requested a command sees they cannot decide it, and no Review control",
+      "file": "actions.spec.ts",
+      "status": "passed",
+      "duration_ms": 6374,
+      "error": null
+    },
+    {
+      "title": "actions.spec.ts > recommendations, commands and outcomes (P08.08) > approval is a confirmation that restates everything, defaults to Cancel, shows the four-eyes and policy facts, and the executor - not a person - executes",
+      "file": "actions.spec.ts",
+      "status": "passed",
+      "duration_ms": 20583,
+      "error": null
+    },
+    {
+      "title": "actions.spec.ts > recommendations, commands and outcomes (P08.08) > denying needs a reason, records who denied and why, and the requester sees it",
+      "file": "actions.spec.ts",
+      "status": "passed",
+      "duration_ms": 10614,
+      "error": null
+    },
+    {
+      "title": "actions.spec.ts > recommendations, commands and outcomes (P08.08) > a role that cannot review is shown no Review button anywhere; an auditor can read but not act",
+      "file": "actions.spec.ts",
+      "status": "passed",
+      "duration_ms": 3930,
+      "error": null
+    },
+    {
+      "title": "actions.spec.ts > recommendations, commands and outcomes (P08.08) > failed, expired and policy-unavailable commands each say what happened and whether retrying can help",
+      "file": "actions.spec.ts",
+      "status": "passed",
+      "duration_ms": 9331,
+      "error": null
+    },
+    {
+      "title": "actions.spec.ts > recommendations, commands and outcomes (P08.08) > recommendations show benefit, harm, confidence and the safety bounds, never present as executed, and 'take no action' cannot be requested",
+      "file": "actions.spec.ts",
+      "status": "passed",
+      "duration_ms": 4967,
+      "error": null
+    },
+    {
+      "title": "actions.spec.ts > recommendations, commands and outcomes (P08.08) > requesting from a recommendation is a confirmation, needs no double submit, and leaves the command waiting for someone else",
+      "file": "actions.spec.ts",
+      "status": "passed",
+      "duration_ms": 4243,
+      "error": null
+    },
+    {
+      "title": "actions.spec.ts > recommendations, commands and outcomes (P08.08) > a role that may read recommendations but not request has no request control, and says why",
+      "file": "actions.spec.ts",
+      "status": "passed",
+      "duration_ms": 3301,
+      "error": null
+    },
+    {
+      "title": "actions.spec.ts > recommendations, commands and outcomes (P08.08) > outcomes name all four classes, and each selected outcome shows what was measured, the thresholds, and any physical undo",
+      "file": "actions.spec.ts",
+      "status": "passed",
+      "duration_ms": 5540,
+      "error": null
+    },
+    {
+      "title": "actions.spec.ts > recommendations, commands and outcomes (P08.08) > no accessibility violations on the command list, the detail and the review dialog",
+      "file": "actions.spec.ts",
+      "status": "passed",
+      "duration_ms": 11776,
+      "error": null
+    }
+  ],
+  "metrics": {}
+}

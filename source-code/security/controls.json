@@ -1,0 +1,1194 @@
+{
+  "schema_version": "1.0.0",
+  "description": "The security control catalogue (P09.01). Each control is one thing the platform does to prevent, detect or limit a threat, with where it lives and the runtime evidence that it is enforced. `implemented` needs evidence that passes today; `partial` names what exists and what is missing; `planned` names the task that builds it. `verify_threat_model.py` checks every reference, every evidence check and every planned task against the registers, so this file cannot drift from the code or the evidence. Nothing here claims a standard is met: see docs/security/CONTROL_MAPPING.md (P09.07).",
+  "controls": [
+    {
+      "id": "CTL-01",
+      "title": "Strict OIDC access-token validation at the API",
+      "layer": "identity",
+      "baseline": [
+        5
+      ],
+      "status": "implemented",
+      "task": "P08.04",
+      "owner": "SEC",
+      "implementation": [
+        "source-code/backend/api/auth.py"
+      ],
+      "evidence": [
+        {
+          "file": "docs/evidence/p08_04_auth_api.json",
+          "checks": [
+            "expired_wrong_issuer_wrong_audience_unknown_client_missing_claim_alg_none_and_key_confusion_are_each_refused_with_the_right_reason",
+            "a_real_token_with_a_tampered_payload_is_refused",
+            "a_garbage_token_is_401",
+            "a_protected_endpoint_without_a_token_is_401_with_a_bearer_challenge",
+            "an_unreachable_identity_provider_fails_closed_503_never_open"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CTL-02",
+      "title": "Hardened identity provider: PKCE S256 only, exact redirect URIs, no implicit or password grants, lockout, refresh-token rotation",
+      "layer": "identity",
+      "baseline": [
+        5
+      ],
+      "status": "implemented",
+      "task": "P09.02",
+      "owner": "SEC",
+      "implementation": [
+        "source-code/infra/platform/keycloak/realm/aiops-realm.json",
+        "source-code/infra/platform/keycloak/provision.py"
+      ],
+      "evidence": [
+        {
+          "file": "docs/evidence/p09_02_keycloak.json",
+          "checks": [
+            "authorization_request_without_a_pkce_challenge_is_refused",
+            "authorization_request_with_the_plain_challenge_method_is_refused",
+            "implicit_flow_response_type_token_is_refused",
+            "an_unregistered_redirect_uri_is_refused_and_never_redirected_to",
+            "repeated_wrong_passwords_lock_the_account_even_against_the_correct_password_afterwards",
+            "the_old_refresh_token_is_refused_after_rotation",
+            "an_authorization_code_works_once_and_a_replay_is_refused",
+            "replaying_a_code_also_revokes_the_tokens_it_had_already_produced"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CTL-03",
+      "title": "Default-deny endpoint authorization from one inventory (capability per endpoint, unlisted route denied)",
+      "layer": "authorization",
+      "baseline": [
+        3,
+        4
+      ],
+      "status": "implemented",
+      "task": "P08.04",
+      "owner": "SEC",
+      "implementation": [
+        "source-code/backend/api/authz.py",
+        "source-code/frontend/src/config/inventory.json"
+      ],
+      "evidence": [
+        {
+          "file": "docs/evidence/p08_04_auth_api.json",
+          "checks": [
+            "a_route_missing_from_the_inventory_is_denied_by_default",
+            "the_api_enforces_exactly_the_inventorys_capability_for_every_implemented_get_endpoint_and_every_role",
+            "a_403_names_the_missing_capability_and_the_callers_roles"
+          ]
+        },
+        {
+          "file": "docs/evidence/p09_03_policy.json",
+          "checks": [
+            "a_route_missing_from_the_inventory_is_denied_by_default_even_to_a_supervisor",
+            "roles_without_the_review_capability_never_reach_a_decision"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CTL-04",
+      "title": "Open Policy Agent as the policy decision point for the API and the command executor, fail closed when it is unavailable",
+      "layer": "authorization",
+      "baseline": [
+        3,
+        7
+      ],
+      "status": "implemented",
+      "task": "P09.03",
+      "owner": "SEC",
+      "implementation": [
+        "source-code/policy/aiops/api/authz.rego",
+        "source-code/policy/aiops/command/command.rego",
+        "source-code/policy/build_data.py",
+        "source-code/backend/pdp.py",
+        "source-code/backend/api/auth.py",
+        "source-code/backend/control/policy.py",
+        "source-code/backend/control/executor_worker.py"
+      ],
+      "evidence": [
+        {
+          "file": "docs/evidence/p09_03_policy.json",
+          "checks": [
+            "opa_check_strict_reports_no_problem_in_any_policy",
+            "every_rego_unit_test_passes_when_opa_runs_them",
+            "the_running_engine_is_the_image_pinned_by_digest_in_the_compose_file",
+            "engine_and_reference_agree_on_every_endpoint_and_role_set_of_the_access_inventory",
+            "engine_and_reference_agree_on_who_may_request_or_review_each_action_in_each_safety_class",
+            "engine_and_reference_agree_on_thousands_of_generated_command_contexts_decision_code_and_message",
+            "an_empty_or_garbage_api_input_is_a_denial_never_a_permit_or_an_undefined_answer",
+            "the_engine_denies_an_unlisted_route_on_its_own_when_the_enforcement_points_table_would_have_let_it_through",
+            "with_the_engine_stopped_every_role_is_refused_with_503_policy_unavailable_never_served",
+            "during_the_outage_the_executor_holds_an_approved_command_it_does_not_execute_or_refuse_it",
+            "an_engine_that_answers_nothing_an_error_html_a_bare_string_or_a_loosely_typed_permit_is_treated_as_unavailable",
+            "a_role_holding_the_review_capability_but_not_authority_over_this_class_is_refused_by_the_engine"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CTL-05",
+      "title": "Structural four-eyes and role gates per safety class (requester is never the approver; the role must hold APPROVE for the class)",
+      "layer": "authorization",
+      "baseline": [
+        7
+      ],
+      "status": "implemented",
+      "task": "P07.05",
+      "owner": "CONTROL",
+      "implementation": [
+        "source-code/backend/control/policy.py",
+        "source-code/backend/roles.py",
+        "source-code/backend/repositories/commands.py"
+      ],
+      "evidence": [
+        {
+          "file": "docs/evidence/p07_05_commands.json",
+          "checks": [
+            "the_requester_reviewing_their_own_command_is_genuinely_denied_not_silently_approved",
+            "sc_2_four_eyes_holds_even_for_an_incident_commander",
+            "an_operator_may_not_approve_an_sc_2_action",
+            "an_operator_may_not_approve_an_sc_1_action_only_a_supervisor_may"
+          ]
+        },
+        {
+          "file": "docs/evidence/p08_08_command_workflow_api.json",
+          "checks": [
+            "the_requester_cannot_approve_their_own_command_even_when_their_role_could_approve_that_class",
+            "two_approvers_deciding_at_once_one_wins_and_the_other_is_told_it_is_already_decided"
+          ]
+        },
+        {
+          "file": "docs/evidence/p09_03_policy.json",
+          "checks": [
+            "the_executor_refuses_a_command_whose_recorded_approver_is_its_requester",
+            "the_executor_refuses_a_command_approved_in_a_role_that_could_not_approve_its_class"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CTL-06",
+      "title": "Execution-time policy re-evaluation: expiry, target validity, safe bounds, fresh evidence; an outage never approves",
+      "layer": "safety",
+      "baseline": [
+        7,
+        15
+      ],
+      "status": "implemented",
+      "task": "P07.05",
+      "owner": "CONTROL",
+      "implementation": [
+        "source-code/backend/control/policy.py",
+        "source-code/backend/control/command_service.py"
+      ],
+      "evidence": [
+        {
+          "file": "docs/evidence/p07_05_commands.json",
+          "checks": [
+            "a_policy_engine_outage_leaves_the_command_requested_not_approved_fail_closed",
+            "a_real_target_with_no_recent_kpi_window_is_denied_stale_evidence_safe_03",
+            "a_target_entity_that_does_not_exist_on_the_real_network_is_an_invalid_target",
+            "an_unknown_adapter_is_an_invalid_target",
+            "a_never_reviewed_command_past_its_own_expiry_is_swept_to_expired"
+          ]
+        },
+        {
+          "file": "docs/evidence/p09_03_policy.json",
+          "checks": [
+            "the_executor_refuses_a_command_whose_evidence_went_stale_after_approval_and_marks_it_retryable",
+            "the_executor_refuses_a_command_whose_target_is_not_a_real_registered_target",
+            "the_executor_refuses_a_command_naming_an_unregistered_adapter"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CTL-07",
+      "title": "Only system:command-executor executes; no human path reaches an adapter; the verifier is independent of everyone who touched the command",
+      "layer": "authorization",
+      "baseline": [
+        1,
+        7
+      ],
+      "status": "implemented",
+      "task": "P08.08",
+      "owner": "CONTROL",
+      "implementation": [
+        "source-code/backend/control/executor_worker.py",
+        "source-code/backend/control/verifier_worker.py",
+        "source-code/backend/roles.py"
+      ],
+      "evidence": [
+        {
+          "file": "docs/evidence/p08_08_command_workflow_api.json",
+          "checks": [
+            "there_is_no_way_for_a_person_to_execute_a_command_through_the_api",
+            "only_the_command_executor_identity_appears_as_the_executor_never_a_person"
+          ]
+        },
+        {
+          "file": "docs/evidence/p07_09_outcomes.json",
+          "checks": [
+            "only_system_outcome_verifier_records_outcomes_never_the_requester_approver_or_executor",
+            "the_repository_independently_refuses_the_commands_own_requester_approver_and_executor"
+          ]
+        },
+        {
+          "file": "docs/evidence/p09_03_policy.json",
+          "checks": [
+            "a_caller_that_is_not_the_executor_identity_is_refused_execution_even_for_a_perfect_command",
+            "the_refusal_is_attributed_to_the_executor_identity_and_names_the_policy_version"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CTL-08",
+      "title": "Demo and scenario control isolated: its own service, verified identity, audit trail and no operational reach in either direction",
+      "layer": "authorization",
+      "baseline": [
+        1,
+        3
+      ],
+      "status": "implemented",
+      "task": "P08.09",
+      "owner": "SEC",
+      "implementation": [
+        "source-code/backend/scenario_control/app.py",
+        "source-code/database/migrations/0022_scenario_control_identity.sql"
+      ],
+      "evidence": [
+        {
+          "file": "docs/evidence/p08_09_demo_controls.json",
+          "checks": [
+            "a_forged_role_header_beside_an_operators_token_changes_nothing",
+            "a_request_with_no_token_is_401_and_the_role_header_is_not_an_identity",
+            "no_operating_role_can_start_a_demo_run",
+            "the_demo_operators_token_reaches_nothing_operational_it_only_sees_the_picture",
+            "the_demo_controls_wrote_nothing_to_the_operational_tables"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CTL-09",
+      "title": "MQTT per-device mTLS identity with default-deny topic ACLs",
+      "layer": "transport",
+      "baseline": [
+        1,
+        2,
+        3
+      ],
+      "status": "implemented",
+      "task": "P05.02",
+      "owner": "DATA",
+      "implementation": [
+        "source-code/infra/platform/mosquitto",
+        "source-code/infra/platform/docker-compose.yml"
+      ],
+      "evidence": [
+        {
+          "file": "docs/evidence/p05_02_mqtt_mtls_acl.json",
+          "checks": [
+            "valid_device_own_topic_round_trip",
+            "cross_device_publish_blocked",
+            "cross_device_subscribe_blocked",
+            "untrusted_ca_cert_rejected"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CTL-10",
+      "title": "Validated central ingestion: schema, registered device identity, content-conflict rejection, idempotent replay",
+      "layer": "data",
+      "baseline": [
+        3,
+        13
+      ],
+      "status": "implemented",
+      "task": "P05.05",
+      "owner": "DATA",
+      "implementation": [
+        "source-code/backend/ingestion/ingest.py",
+        "source-code/backend/gateway"
+      ],
+      "evidence": [
+        {
+          "file": "docs/evidence/p05_05_ingestion.json",
+          "checks": [
+            "schema_conflict_rejected",
+            "identity_conflict_rejected",
+            "content_conflict_rejected",
+            "original_content_not_overwritten_by_conflict",
+            "identical_replay_is_idempotent"
+          ]
+        },
+        {
+          "file": "docs/evidence/p05_03_gateway.json",
+          "checks": [
+            "validation_rejects_invalid_event",
+            "rejected_event_not_in_kafka",
+            "backpressure_no_premature_ack_and_gateway_alive"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CTL-11",
+      "title": "TLS to the database and between services; service-to-service mutual authentication",
+      "layer": "transport",
+      "baseline": [
+        2
+      ],
+      "status": "planned",
+      "task": "P09.04",
+      "owner": "SEC",
+      "gap": "The database, broker-to-service and service-to-service links inside the platform network are plain today; only device-to-broker is mTLS.",
+      "due": "2026-09-30"
+    },
+    {
+      "id": "CTL-12",
+      "title": "Workload identity for services: each service authenticates as its own Keycloak client, not as a shared database role name",
+      "layer": "identity",
+      "baseline": [
+        1,
+        4
+      ],
+      "status": "planned",
+      "task": "P09.04",
+      "owner": "SEC",
+      "gap": "The executor and verifier record a service name in the audit trail but authenticate to the database with the shared application role; the service clients exist and are proven (CTL-02) but are not yet used by the workers.",
+      "due": "2026-09-30"
+    },
+    {
+      "id": "CTL-13",
+      "title": "Kubernetes RBAC, default-deny network policy, non-root and read-only workloads, admission checks",
+      "layer": "runtime",
+      "baseline": [
+        3,
+        4
+      ],
+      "status": "planned",
+      "task": "P11.02",
+      "owner": "SEC",
+      "gap": "No cluster workload exists yet; manifests, policies and their negative tests are P09.04 (policies) and P11.02 (manifests).",
+      "due": "2026-10-12"
+    },
+    {
+      "id": "CTL-14",
+      "title": "Secrets generated at deployment, kept out of Git and out of committed realm/config files, rotated on a schedule",
+      "layer": "operations",
+      "baseline": [
+        6
+      ],
+      "status": "partial",
+      "task": "P09.04",
+      "owner": "SEC",
+      "implementation": [
+        "source-code/infra/platform/keycloak/provision.py",
+        ".gitignore"
+      ],
+      "evidence": [
+        {
+          "file": "docs/evidence/p09_02_keycloak.json",
+          "checks": [
+            "no_generated_password_admin_password_or_client_secret_appears_in_any_tracked_file",
+            "the_files_holding_those_secrets_are_git_ignored",
+            "the_committed_realm_file_holds_no_client_secret_and_no_user_but_credential_less_service_accounts"
+          ]
+        }
+      ],
+      "gap": "Generation and exclusion from Git are proven; rotation (database password, client secrets, device certificates) and a secret-scan gate are not yet exercised.",
+      "due": "2026-09-30"
+    },
+    {
+      "id": "CTL-15",
+      "title": "Append-only operator audit and state-transition histories, enforced by the database, not by convention",
+      "layer": "data",
+      "baseline": [
+        9
+      ],
+      "status": "implemented",
+      "task": "P09.05",
+      "owner": "SEC",
+      "implementation": [
+        "source-code/database/migrations/0020_operator_workflows.sql",
+        "source-code/database/migrations/0022_scenario_control_identity.sql",
+        "source-code/database/migrations/0008_audit_trails.sql",
+        "source-code/database/migrations/0024_policy_decisions.sql",
+        "source-code/database/migrations/0026_audit_hash_chain.sql",
+        "source-code/database/migrations/0027_policy_decisions_override_point.sql",
+        "source-code/backend/audit_chain.py"
+      ],
+      "evidence": [
+        {
+          "file": "docs/evidence/p09_05_audit_protection.json",
+          "checks": [
+            "every_chained_history_is_intact_on_the_real_database_before_this_run_touches_anything",
+            "two_freshly_inserted_rows_chain_correctly_and_verify_intact",
+            "a_row_rewritten_after_disabling_its_own_trigger_is_caught_by_the_independent_hash_recompute",
+            "restoring_the_original_content_restores_an_intact_chain_the_check_is_not_a_false_positive",
+            "command_transitions_and_incident_transitions_still_refuse_update_and_truncate",
+            "retentions_own_cascade_delete_of_a_terminal_commands_transitions_still_works_with_the_new_triggers_in_place",
+            "command_transitions_chain_stays_intact_meaning_the_cascade_gap_is_reported_as_a_gap_not_a_break",
+            "retention_runs_itself_is_chained_append_only_and_grew_by_one_row_recording_what_was_purged",
+            "retention_runs_refuses_update_and_delete_like_the_other_audit_tables",
+            "every_chained_history_is_still_intact_after_this_entire_run"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CTL-16",
+      "title": "Recursive redaction of tokens, credentials, identifiers and locations in audit records, logs, error responses and evidence bundles",
+      "layer": "data",
+      "baseline": [
+        6,
+        10
+      ],
+      "status": "implemented",
+      "task": "P09.05",
+      "owner": "SEC",
+      "implementation": [
+        "source-code/backend/redaction.py",
+        "source-code/database/migrations/0026_audit_hash_chain.sql",
+        "source-code/backend/api/workflow.py",
+        "source-code/backend/scenario_control/app.py",
+        "source-code/backend/control/policy.py",
+        "source-code/backend/api/serve.py",
+        "source-code/backend/scenario_control/serve.py"
+      ],
+      "evidence": [
+        {
+          "file": "docs/evidence/p09_05_audit_protection.json",
+          "checks": [
+            "redact_removes_secrets_recursively_through_nested_dicts_but_keeps_locations_in_audit_mode",
+            "export_mode_additionally_drops_locations",
+            "a_jwt_shaped_string_anywhere_in_free_text_is_redacted",
+            "the_log_redaction_filter_removes_a_token_from_a_log_records_rendered_message",
+            "workflow_audit_redacts_a_secret_before_the_row_is_written_not_only_when_asked_to",
+            "the_database_itself_refuses_a_raw_insert_carrying_a_bearer_credential_defense_in_depth_for_ctl_16"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CTL-17",
+      "title": "Role-limited evidence access: the trail is readable by the auditor role only; exports are redacted and attributed",
+      "layer": "authorization",
+      "baseline": [
+        10
+      ],
+      "status": "implemented",
+      "task": "P09.05",
+      "owner": "SEC",
+      "implementation": [
+        "source-code/backend/api/routes_govern.py",
+        "source-code/backend/redaction.py"
+      ],
+      "evidence": [
+        {
+          "file": "docs/evidence/p09_05_audit_protection.json",
+          "checks": [
+            "the_ordinary_trail_shows_the_raw_location_but_the_export_replaces_it",
+            "the_export_names_who_exported_it_when_and_under_which_filters",
+            "only_the_auditor_role_may_export_every_other_role_is_refused",
+            "an_export_without_a_bound_or_with_too_wide_a_range_is_refused",
+            "the_export_caps_its_row_count_and_says_so_rather_than_silently_truncating",
+            "the_export_itself_left_an_audited_attributed_row"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CTL-18",
+      "title": "Retention windows per class, aggregation before deletion, audit class never purged, active records never purged",
+      "layer": "data",
+      "baseline": [
+        10
+      ],
+      "status": "implemented",
+      "task": "P05.10",
+      "owner": "DATA",
+      "implementation": [
+        "source-code/database/retention.py"
+      ],
+      "evidence": [
+        {
+          "file": "docs/evidence/p05_10_retention.json",
+          "checks": [
+            "audit_class_never_purged",
+            "aggregation_rollup_created_before_deletion",
+            "active_command_preserved_regardless_of_projected_age",
+            "short_class_event_purged_past_its_window"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CTL-19",
+      "title": "Privacy-preserving edge processing: privacy-zone suppression, per-window ephemeral identity, k-anonymity floor",
+      "layer": "data",
+      "baseline": [
+        10
+      ],
+      "status": "implemented",
+      "task": "P04.06",
+      "owner": "EDGE",
+      "implementation": [
+        "source-code/edge/vision_privacy.py"
+      ],
+      "evidence": [
+        {
+          "pytest": "source-code/tests/test_edge_vision_privacy.py"
+        }
+      ]
+    },
+    {
+      "id": "CTL-20",
+      "title": "Recommendation safety bounds enforced by dropping over-bound alternatives (first of two independent safety checks)",
+      "layer": "safety",
+      "baseline": [
+        7
+      ],
+      "status": "implemented",
+      "task": "P07.04",
+      "owner": "CONTROL",
+      "implementation": [
+        "source-code/backend/control/engine.py"
+      ],
+      "evidence": [
+        {
+          "file": "docs/evidence/p07_04_recommendations.json",
+          "checks": [
+            "no_alternative_exceeding_the_signal_deviation_bound_survives_enforcement",
+            "an_all_unsafe_alternative_set_is_rejected_outright",
+            "pedestrian_clearance_is_preserved_on_every_signal_alternative"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CTL-21",
+      "title": "Independent outcome verification with rollback or escalation; a rollback is claimed only when the undo is confirmed",
+      "layer": "safety",
+      "baseline": [
+        7,
+        15
+      ],
+      "status": "implemented",
+      "task": "P07.09",
+      "owner": "CONTROL",
+      "implementation": [
+        "source-code/backend/control/outcome_verification.py"
+      ],
+      "evidence": [
+        {
+          "file": "docs/evidence/p07_09_outcomes.json",
+          "checks": [
+            "unsafe_command_moved_executed_to_rolled_back_by_the_verifier",
+            "a_post_action_telemetry_gap_is_unknown_and_escalated_never_defaulted_to_effective",
+            "an_undo_that_does_not_restore_leaves_the_command_executed_and_escalates"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CTL-22",
+      "title": "Independent signal safety monitor and safe-by-construction pre-emption (only ever shortens the current phase; abort restores the original program)",
+      "layer": "safety",
+      "baseline": [
+        7,
+        15
+      ],
+      "status": "implemented",
+      "task": "P07.07",
+      "owner": "EMERG",
+      "implementation": [
+        "source-code/simulator/control_adapters/signal_safety.py",
+        "source-code/backend/control/preemption.py"
+      ],
+      "evidence": [
+        {
+          "file": "docs/evidence/p07_07_preemption.json",
+          "checks": [
+            "signal_safety_monitor_reports_zero_violations_during_preemption",
+            "negative_control_the_monitor_catches_the_old_mechanism_in_the_real_simulator",
+            "abort_restores_every_touched_intersection_to_its_own_original_program"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CTL-23",
+      "title": "Fail-safe degraded behaviour in the UI: stale data is never shown as live, an unreachable API or identity provider is said plainly",
+      "layer": "safety",
+      "baseline": [
+        15
+      ],
+      "status": "implemented",
+      "task": "P08.10",
+      "owner": "UI",
+      "implementation": [
+        "source-code/frontend/src/components/badges.tsx",
+        "source-code/frontend/src/auth/AuthContext.tsx"
+      ],
+      "evidence": [
+        {
+          "file": "docs/evidence/p08_10_ui_acceptance.json",
+          "tests": [
+            "stale data is never left looking live",
+            "the API becoming unreachable is said plainly",
+            "an identity provider that cannot be reached when the token needs renewing is told apart from an ended session"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CTL-24",
+      "title": "Command expiry, idempotency keys and replay protection enforced at the database",
+      "layer": "safety",
+      "baseline": [
+        7
+      ],
+      "status": "implemented",
+      "task": "P07.05",
+      "owner": "CONTROL",
+      "implementation": [
+        "source-code/database/migrations/0004_commands_outcomes.sql",
+        "source-code/backend/control/command_service.py"
+      ],
+      "evidence": [
+        {
+          "file": "docs/evidence/p07_05_commands.json",
+          "checks": [
+            "exactly_one_row_exists_for_that_idempotency_key_at_the_database_level",
+            "resubmitting_the_same_idempotency_key_returns_the_existing_command_not_a_new_one",
+            "a_command_reviewed_after_its_own_expiry_moves_to_the_expired_status_not_denied"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CTL-25",
+      "title": "Model integrity: verified ONNX artifact hash, verify-then-commit activation, rollback to the previous model",
+      "layer": "ai",
+      "baseline": [
+        8
+      ],
+      "status": "implemented",
+      "task": "P04.08",
+      "owner": "EDGE",
+      "implementation": [
+        "source-code/edge/activation.py",
+        "source-code/edge/model_runtime.py"
+      ],
+      "evidence": [
+        {
+          "pytest": "source-code/tests/test_edge_activation.py"
+        },
+        {
+          "pytest": "source-code/tests/test_edge_model_runtime.py"
+        }
+      ]
+    },
+    {
+      "id": "CTL-26",
+      "title": "Dataset integrity: disjoint seed splits with a leakage check, and a test-split ledger that refuses a reopen",
+      "layer": "ai",
+      "baseline": [
+        8
+      ],
+      "status": "implemented",
+      "task": "P03.08",
+      "owner": "SIM",
+      "implementation": [
+        "source-code/simulator/datasets",
+        "source-code/models/registry/test_split_ledger.json"
+      ],
+      "evidence": [
+        {
+          "pytest": "source-code/tests/test_dataset_splits.py"
+        },
+        {
+          "file": "docs/evidence/p06_03_forecast_model.json",
+          "checks": []
+        }
+      ]
+    },
+    {
+      "id": "CTL-27",
+      "title": "Pinned dependencies and container images (exact locks; image digests in the platform compose file)",
+      "layer": "supply-chain",
+      "baseline": [
+        11
+      ],
+      "status": "partial",
+      "task": "P09.08",
+      "owner": "DEVOPS",
+      "implementation": [
+        "source-code/requirements-lock.txt",
+        "source-code/frontend/package-lock.json",
+        "source-code/infra/platform/docker-compose.yml",
+        "source-code/edge/Dockerfile"
+      ],
+      "evidence": [
+        {
+          "pytest": "source-code/tests/test_foundation.py"
+        },
+        {
+          "file": "docs/evidence/p09_08_supply_chain.json",
+          "checks": [
+            "edge_image_builds"
+          ]
+        }
+      ],
+      "gap": "Third-party images and the edge runtime image (P09.08) are pinned by digest; the backend and frontend service images do not exist yet (P11.01).",
+      "due": "2026-10-19"
+    },
+    {
+      "id": "CTL-28",
+      "title": "CI security gates: secret, dependency, IaC and configuration scanning with least-privilege tokens",
+      "layer": "supply-chain",
+      "baseline": [
+        11
+      ],
+      "status": "partial",
+      "task": "P01.05",
+      "owner": "DEVOPS",
+      "implementation": [
+        ".github/workflows/check.yml",
+        "workflows/SECURITY_GATES.md"
+      ],
+      "gap": "The workflow (now including the P09.08 supply-chain job: SAST, SBOM, provenance and signing) is built and passes locally; it has not run on a hosted runner because nothing has been pushed yet.",
+      "due": "2026-10-05"
+    },
+    {
+      "id": "CTL-29",
+      "title": "SBOM, build provenance, artifact signing and admission verification gate release artifacts",
+      "layer": "supply-chain",
+      "baseline": [
+        11
+      ],
+      "status": "implemented",
+      "task": "P09.08",
+      "owner": "DEVOPS",
+      "implementation": [
+        "source-code/security/supply_chain/build_release.py",
+        "source-code/security/supply_chain/admission-policy.yaml",
+        "source-code/security/supply_chain/README.md"
+      ],
+      "evidence": [
+        {
+          "file": "docs/evidence/p09_08_supply_chain.json",
+          "checks": [
+            "sbom_image_generated",
+            "sbom_frontend_generated",
+            "trivy_image_scan_ran",
+            "no_fixable_critical_high",
+            "sast_edge_clean",
+            "provenance_generated",
+            "artifacts_signed",
+            "signatures_verify",
+            "admission_gate_rejects_tampered_artifact"
+          ]
+        }
+      ],
+      "gap": "Covers the one release artifact that exists (the edge image): SBOM, scan, SAST, signed provenance and a proven local admission gate. The image itself carries no OCI signature yet (no registry to push to - P13.06/P13.07), and the Kyverno admission-policy.yaml is written but not applied to any cluster (P11.02 does not exist yet). Extends automatically to the backend/frontend images once P11.01 builds them.",
+      "due": "2026-11-02"
+    },
+    {
+      "id": "CTL-30",
+      "title": "Runtime detection with Falco: scoped rules for unexpected shells, sensitive-file reads and writes to binary directories",
+      "layer": "runtime",
+      "baseline": [
+        12
+      ],
+      "status": "partial",
+      "task": "P09.09",
+      "owner": "SEC",
+      "implementation": [
+        "docs/environment/CONTAINER_K3S_FALCO_FEASIBILITY.md"
+      ],
+      "gap": "Live syscall capture was proven on the real Ubuntu host in P01.07 (a triggered read of /etc/shadow produced a matching alert); platform-scoped rules and their target-native positive and negative checks are P09.09.",
+      "due": "2026-09-30"
+    },
+    {
+      "id": "CTL-31",
+      "title": "Non-root, read-only, resource-limited containers for the edge runtime",
+      "layer": "runtime",
+      "baseline": [
+        4
+      ],
+      "status": "implemented",
+      "task": "P04.09",
+      "owner": "EDGE",
+      "implementation": [
+        "source-code/edge/Dockerfile"
+      ],
+      "evidence": [
+        {
+          "file": "docs/evidence/edge_benchmark_report.json",
+          "checks": []
+        }
+      ]
+    },
+    {
+      "id": "CTL-32",
+      "title": "Input validation and output handling: closed request schemas, validated cursors and time ranges, escaped search text, no client-named authors",
+      "layer": "data",
+      "baseline": [
+        13
+      ],
+      "status": "implemented",
+      "task": "P08.09",
+      "owner": "BACKEND",
+      "implementation": [
+        "source-code/backend/api/routes_govern.py",
+        "source-code/backend/api/routes_commands.py",
+        "source-code/backend/api/routes_incidents.py"
+      ],
+      "evidence": [
+        {
+          "file": "docs/evidence/p08_09_govern_api.json",
+          "checks": [
+            "a_percent_sign_in_the_actor_filter_is_text_not_a_wildcard",
+            "a_malformed_cursor_is_refused",
+            "the_client_cannot_name_the_author",
+            "an_incomplete_or_untrue_handover_is_refused_with_a_reason"
+          ]
+        },
+        {
+          "file": "docs/evidence/p08_08_command_workflow_api.json",
+          "checks": [
+            "unknown_alternative_short_key_forged_requester_and_unknown_recommendation_are_refused",
+            "commands_with_missing_or_out_of_range_parameters_or_an_unsupported_action_are_refused"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CTL-33",
+      "title": "Rate limits, request-size limits, security response headers and strict cross-origin policy at the API",
+      "layer": "authorization",
+      "baseline": [
+        13
+      ],
+      "status": "implemented",
+      "task": "P09.03",
+      "owner": "SEC",
+      "implementation": [
+        "source-code/backend/api/hardening.py",
+        "source-code/backend/api/auth.py"
+      ],
+      "evidence": [
+        {
+          "file": "docs/evidence/p09_03_policy.json",
+          "checks": [
+            "every_response_kind_carries_the_security_headers",
+            "no_cross_origin_access_is_granted_to_any_origin_not_even_for_a_preflight",
+            "the_interactive_docs_and_the_schema_are_not_served",
+            "a_body_over_the_size_limit_is_refused_with_413_before_it_is_parsed_and_a_small_one_is_not",
+            "a_flood_of_writes_by_one_person_is_throttled_with_429_and_a_retry_after",
+            "someone_else_is_unaffected_while_that_person_is_throttled",
+            "guessing_tokens_is_answered_401_for_a_burst_then_throttled_with_429",
+            "a_signed_in_person_at_the_same_address_is_not_locked_out_by_someone_elses_failed_guesses"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CTL-34",
+      "title": "Override (incident commander, SC-2 only) with a mandatory justification and independent audit; no override exists for SC-0 or SC-1",
+      "layer": "safety",
+      "baseline": [
+        7
+      ],
+      "status": "implemented",
+      "task": "P09.05",
+      "owner": "SEC",
+      "implementation": [
+        "source-code/backend/api/routes_commands.py",
+        "source-code/backend/roles.py",
+        "source-code/policy/aiops/command/command.rego",
+        "source-code/policy/build_data.py"
+      ],
+      "evidence": [
+        {
+          "file": "docs/evidence/p09_05_audit_protection.json",
+          "checks": [
+            "the_incident_commander_overrides_an_executed_sc2_command_with_a_justification",
+            "the_override_moved_the_command_to_rolled_back_and_left_a_permit_decision_naming_the_role",
+            "the_override_audit_entry_names_the_justification_and_is_honest_that_no_physical_undo_was_attempted",
+            "a_second_override_of_the_same_now_rolled_back_command_is_refused",
+            "a_supervisor_may_not_override_even_though_a_supervisor_may_approve_sc2",
+            "an_operator_holds_no_override_capability_and_is_refused_at_the_door",
+            "an_sc0_command_has_no_override_and_is_refused_as_not_available_not_as_a_role_problem",
+            "a_command_that_was_never_executed_cannot_be_overridden",
+            "a_justification_under_the_minimum_length_is_refused_by_validation"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CTL-35",
+      "title": "Encrypted, tested backups with restore evidence and restricted access",
+      "layer": "operations",
+      "baseline": [
+        14
+      ],
+      "status": "planned",
+      "task": "P11.05",
+      "owner": "DEVOPS",
+      "gap": "No backup or restore has been exercised.",
+      "due": "2026-10-12"
+    },
+    {
+      "id": "CTL-36",
+      "title": "One time source for audit evidence: the database clock stamps every audit and history row",
+      "layer": "data",
+      "baseline": [
+        9
+      ],
+      "status": "partial",
+      "task": "P11.03",
+      "owner": "DEVOPS",
+      "implementation": [
+        "source-code/database/migrations/0020_operator_workflows.sql"
+      ],
+      "gap": "Audit rows are stamped by the database clock (default now()); clock synchronisation of the hosts (NTP) is not configured or monitored.",
+      "due": "2026-10-12"
+    },
+    {
+      "id": "CTL-37",
+      "title": "Telemetry hygiene: bounded low-cardinality metric labels by contract; no credentials, tokens or personal identifiers in logs, metrics or traces",
+      "layer": "operations",
+      "baseline": [
+        6,
+        10
+      ],
+      "status": "partial",
+      "task": "P10.01",
+      "owner": "OPS",
+      "implementation": [
+        "source-code/contracts/metric-label-set/v1"
+      ],
+      "evidence": [
+        {
+          "pytest": "source-code/tests/test_contracts.py"
+        }
+      ],
+      "gap": "The label contract exists and is tested; nothing scans emitted logs, traces or metrics for secrets or identifiers because the pipeline is P10.01-P10.03.",
+      "due": "2026-10-05"
+    },
+    {
+      "id": "CTL-38",
+      "title": "Bounded, policy-controlled AIOps remediation: registered actions only, approvals, blast-radius limits",
+      "layer": "safety",
+      "baseline": [
+        7
+      ],
+      "status": "planned",
+      "task": "P10.08",
+      "owner": "OPS",
+      "gap": "No remediation worker exists.",
+      "due": "2026-10-05"
+    },
+    {
+      "id": "CTL-39",
+      "title": "IoT/OT device security profile: unique identity, certificate lifecycle and revocation, secure update and support policy",
+      "layer": "transport",
+      "baseline": [
+        1,
+        8
+      ],
+      "status": "partial",
+      "task": "P11.02",
+      "owner": "GRC",
+      "gap": "Registration (a device must be in `devices` before ingestion accepts its data), per-device certificate identity and ACL scoping (CTL-09), and lifecycle status (`active`/`inactive`/`maintenance`/`decommissioned`) are real and evidenced. Certificate rotation and decommissioning are documented procedures, not automated. Revocation is not enforced: there is no CRL or OCSP-equivalent check at the broker, so a leaked or decommissioned device's certificate still authenticates until the CA itself is rotated - see docs/security/DATA_INVENTORY_AND_DPIA.md's Device lifecycle section.",
+      "due": "2026-10-12",
+      "implementation": [
+        "docs/security/DATA_INVENTORY_AND_DPIA.md",
+        "source-code/infra/platform/mosquitto/gen-certs.sh",
+        "source-code/infra/platform/mosquitto/acl.conf",
+        "source-code/database/migrations/0002_devices.sql",
+        "source-code/backend/ingestion/ingest.py"
+      ],
+      "evidence": [
+        {
+          "file": "docs/evidence/p09_06_data_inventory.json",
+          "checks": [
+            "every_device_type_a_category_names_is_a_real_device_v1_enum_value",
+            "every_device_v1_enum_value_is_covered_by_some_category_or_is_the_aiops_internal_agent_type"
+          ]
+        },
+        {
+          "pytest": "source-code/tests/test_gateway.py"
+        }
+      ]
+    },
+    {
+      "id": "CTL-40",
+      "title": "External integrations stay simulated: no real CAD, controller, public-alert or V2X adapter is authorized, so none is connected",
+      "layer": "authorization",
+      "baseline": [
+        1,
+        2
+      ],
+      "status": "implemented",
+      "task": "P05.09",
+      "owner": "ARCH",
+      "implementation": [
+        "source-code/simulator/control_adapters",
+        "source-code/backend/emergency/cad_avl_adapter.py"
+      ],
+      "evidence": [
+        {
+          "file": "docs/evidence/p07_06_simulator_adapters.json",
+          "checks": []
+        }
+      ]
+    },
+    {
+      "id": "CTL-41",
+      "title": "Durable, ordered, bounded edge outbox and safe offline behaviour (buffer, acknowledge, replay without duplicates)",
+      "layer": "safety",
+      "baseline": [
+        8,
+        15
+      ],
+      "status": "implemented",
+      "task": "P04.07",
+      "owner": "EDGE",
+      "implementation": [
+        "source-code/edge/outbox.py",
+        "source-code/edge/runtime.py"
+      ],
+      "evidence": [
+        {
+          "pytest": "source-code/tests/test_edge_outbox.py"
+        },
+        {
+          "pytest": "source-code/tests/test_edge_runtime.py"
+        }
+      ]
+    },
+    {
+      "id": "CTL-42",
+      "title": "Honest platform status: probes made at request time, a check with no answer is unknown and never healthy, freshness budgets shared with the map",
+      "layer": "operations",
+      "baseline": [
+        12
+      ],
+      "status": "implemented",
+      "task": "P08.09",
+      "owner": "OPS",
+      "implementation": [
+        "source-code/backend/api/routes_govern.py"
+      ],
+      "evidence": [
+        {
+          "file": "docs/evidence/p08_09_govern_api.json",
+          "checks": [
+            "a_worker_that_never_reported_is_unknown_not_healthy",
+            "a_probe_that_cannot_connect_says_down_with_the_reason_and_the_others_still_report",
+            "a_source_that_never_reported_is_unknown_and_no_age_is_invented",
+            "the_stale_after_budgets_equal_the_ones_the_map_and_device_screens_use"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CTL-43",
+      "title": "Browser token handling: authorization code with PKCE, token held in memory only, the console never asks for a password itself",
+      "layer": "identity",
+      "baseline": [
+        5
+      ],
+      "status": "implemented",
+      "task": "P08.04",
+      "owner": "UI",
+      "implementation": [
+        "source-code/frontend/src/auth/keycloak.ts",
+        "source-code/frontend/src/api/client.ts"
+      ],
+      "evidence": [
+        {
+          "file": "docs/evidence/p08_04_ui_auth.json",
+          "tests": [
+            "an unauthenticated visitor to a protected screen is sent to sign in, and the page never asks for a password itself",
+            "signing out ends the session at the identity provider too"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CTL-44",
+      "title": "Model drift, confidence-collapse, feature-loss and data-quality monitoring with staged activation",
+      "layer": "ai",
+      "baseline": [
+        8
+      ],
+      "status": "planned",
+      "task": "P10.06",
+      "owner": "OPS",
+      "gap": "Detectors are evaluated on held-out data (P06.08); nothing monitors them in operation.",
+      "due": "2026-10-05"
+    },
+    {
+      "id": "CTL-45",
+      "title": "Performance reported per scenario class and per road user, never blended; geographic and modal fairness review",
+      "layer": "ai",
+      "baseline": [
+        8
+      ],
+      "status": "partial",
+      "task": "P12.04",
+      "owner": "QA",
+      "implementation": [
+        "source-code/backend/analytics/evaluate_p06_08.py"
+      ],
+      "evidence": [
+        {
+          "file": "docs/evidence/p06_08_acceptance.json",
+          "checks": []
+        }
+      ],
+      "gap": "Metrics are reported per scenario class and road user (P06.08); the geographic and modal outcome review across the whole platform is P12.04.",
+      "due": "2026-10-19"
+    },
+    {
+      "id": "CTL-46",
+      "title": "Access review and joiner-mover-leaver procedure for operating roles",
+      "layer": "operations",
+      "baseline": [
+        4
+      ],
+      "status": "planned",
+      "task": "P09.07",
+      "owner": "GRC",
+      "gap": "Roles are provisioned and separated (CTL-02, CTL-05) but no periodic access review or leaver procedure is written or exercised.",
+      "due": "2026-09-30"
+    },
+    {
+      "id": "CTL-47",
+      "title": "Agency scope on emergency records: a per-user agency attribute checked by policy on every read and change",
+      "layer": "authorization",
+      "baseline": [
+        3
+      ],
+      "status": "planned",
+      "task": "P09.06",
+      "owner": "SEC",
+      "gap": "Roles are global and the token carries no agency. Call and unit records carry an agency, but the API neither filters nor checks it per user. The policy engine (P09.03) is now the decision point, so the rule is a policy and data change once there is a second operating agency; the Keycloak attribute and the per-record filter are not built.",
+      "due": "2026-10-05"
+    }
+  ]
+}

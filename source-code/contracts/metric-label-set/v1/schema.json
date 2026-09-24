@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://project2.local/contracts/metric-label-set/v1/schema.json",
+  "title": "Bounded metric label set",
+  "description": "The label set attached to one OpenTelemetry metric emission. propertyNames is restricted to a fixed, low-cardinality key enum so a high-cardinality key (vehicle_id, track_id, event_id) structurally cannot pass validation, per docs/environment/RESOURCE_BUDGET.md: 'vehicle/track IDs never become metric labels.' Trace and log attributes are not bound by this contract; only metric labels carry this cardinality risk.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "metric_name", "service_name", "labels"],
+  "properties": {
+    "schema_version": { "const": "1.0.0" },
+    "metric_name": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_.]*$"
+    },
+    "service_name": { "type": "string", "minLength": 1 },
+    "labels": {
+      "type": "object",
+      "propertyNames": {
+        "enum": [
+          "service_name",
+          "service_version",
+          "deployment_type",
+          "agency_scope",
+          "network_element_type",
+          "device_type",
+          "action_type",
+          "policy_decision",
+          "http_route",
+          "http_status_code",
+          "severity",
+          "truth_label",
+          "freshness_status"
+        ]
+      },
+      "additionalProperties": { "type": "string", "maxLength": 128 },
+      "description": "Every key must be one of the enumerated low-cardinality dimensions. device_id and intersection_id are intentionally excluded here; per-device/intersection breakdowns belong on traces/logs, not unbounded metric label sets, unless a separate cardinality test explicitly approves a named exception."
+    }
+  }
+}

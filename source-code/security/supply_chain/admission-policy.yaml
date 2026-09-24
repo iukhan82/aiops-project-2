@@ -1,0 +1,63 @@
+# P09.08: the K3s admission policy this project's images and manifests will
+# be checked against once P11.02 builds a real cluster. Written now so the
+# rule is reviewable and versioned with the mechanism it enforces; NOT yet
+# applied anywhere, because no cluster exists yet (`kubectl apply` of this
+# file is a P11.02 step, not a P09.08 one). The check it performs -
+# "does this artifact's signature verify against our cosign public key" -
+# is proven working right now, offline, by
+# `build_release.py`'s `admit()`/tamper test (see `docs/evidence/
+# p09_08_supply_chain.json`): this file asks Kyverno to run the identical
+# cosign verification, just triggered by the cluster's own admission
+# webhook instead of by this script.
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: aiops-supply-chain-gate
+  annotations:
+    policies.kyverno.io/title: AIOPS supply-chain admission gate
+    policies.kyverno.io/description: >-
+      Refuses to admit an aiops-* workload unless its image is referenced by
+      digest (never a floating tag) and its signature verifies against the
+      project's cosign public key (source-code/security/supply_chain/keys/cosign.pub).
+      Applies to the aiops namespace only; DEMO_STATUS/simulated workloads
+      are unaffected. Not yet applied to a cluster - see P11.02.
+spec:
+  validationFailureAction: Enforce
+  background: false
+  rules:
+    - name: require-digest-pinned-image
+      match:
+        any:
+          - resources:
+              kinds: ["Pod"]
+              namespaces: ["aiops"]
+      validate:
+        message: >-
+          Image reference must be pinned by digest (repo@sha256:...), not a
+          floating tag - a floating tag cannot be the subject of a signed
+          provenance attestation.
+        pattern:
+          spec:
+            containers:
+              - image: "*@sha256:*"
+    - name: require-cosign-signature
+      match:
+        any:
+          - resources:
+              kinds: ["Pod"]
+              namespaces: ["aiops"]
+      verifyImages:
+        - imageReferences:
+            - "*/aiops-edge@*"
+            - "*/aiops-backend@*"
+            - "*/aiops-frontend@*"
+          attestors:
+            - count: 1
+              entries:
+                - keys:
+                    publicKeys: |-
+                      {{ .cosignPublicKey }}
+          # {{ .cosignPublicKey }} is a placeholder for the real PEM in
+          # source-code/security/supply_chain/keys/cosign.pub, substituted at
+          # apply time (the key is git-ignored, never inlined into this
+          # committed file).

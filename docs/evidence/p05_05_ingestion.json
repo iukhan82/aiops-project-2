@@ -1,0 +1,29 @@
+{
+  "task": "P05.05",
+  "generated_at": "2026-09-19T18:54:32Z",
+  "checks": {
+    "valid_event_inserted": true,
+    "identical_replay_is_idempotent": true,
+    "content_conflict_rejected": true,
+    "schema_conflict_rejected": true,
+    "identity_conflict_rejected": true,
+    "exactly_one_row_survives_conflict_attempt": true,
+    "original_content_not_overwritten_by_conflict": true,
+    "content_conflict_recorded_in_rejections": true,
+    "full_topic_replay_from_new_consumer_group_is_idempotent": true,
+    "replay_never_duplicates_the_row": true
+  },
+  "notes": {
+    "valid_event_inserted": "{'inserted': 1, 'duplicate_ok': 1, 'rejected_content_conflict': 1, 'rejected_schema': 1, 'rejected_unknown_device': 1}",
+    "identical_replay_is_idempotent": "{'inserted': 1, 'duplicate_ok': 1, 'rejected_content_conflict': 1, 'rejected_schema': 1, 'rejected_unknown_device': 1}",
+    "content_conflict_rejected": "{'inserted': 1, 'duplicate_ok': 1, 'rejected_content_conflict': 1, 'rejected_schema': 1, 'rejected_unknown_device': 1}",
+    "schema_conflict_rejected": "{'inserted': 1, 'duplicate_ok': 1, 'rejected_content_conflict': 1, 'rejected_schema': 1, 'rejected_unknown_device': 1}",
+    "identity_conflict_rejected": "{'inserted': 1, 'duplicate_ok': 1, 'rejected_content_conflict': 1, 'rejected_schema': 1, 'rejected_unknown_device': 1}",
+    "exactly_one_row_survives_conflict_attempt": "rows=1",
+    "original_content_not_overwritten_by_conflict": "stored value=1",
+    "content_conflict_recorded_in_rejections": "rejection rows=1",
+    "full_topic_replay_from_new_consumer_group_is_idempotent": "{'duplicate_ok': 2, 'rejected_content_conflict': 1, 'rejected_schema': 1, 'rejected_unknown_device': 1}",
+    "replay_never_duplicates_the_row": "rows=1"
+  },
+  "all_passed": true
+}

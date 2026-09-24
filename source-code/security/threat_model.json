@@ -1,0 +1,1735 @@
+{
+  "schema_version": "1.0.0",
+  "description": "The platform threat model (P09.01): boundaries taken from diagrams/sources/05-security-trust-boundaries.mmd and the baseline's required areas, the assets worth protecting, and threats with their treatments. Risk is scored from likelihood and impact; safety impact is scored separately from information-security impact. The verifier computes each threat's status and residual risk from the state of its controls - a planned control earns no credit - so this file states the threats and the treatments and never the outcome.",
+  "scales": {
+    "likelihood": {
+      "low": 1,
+      "medium": 2,
+      "high": 3
+    },
+    "impact": {
+      "none": 1,
+      "low": 1,
+      "medium": 2,
+      "high": 3
+    },
+    "levels": {
+      "low": [
+        1,
+        2
+      ],
+      "medium": [
+        3,
+        4
+      ],
+      "high": [
+        6,
+        9
+      ]
+    },
+    "control_credit": "Each implemented treating control lowers likelihood by one step, at most two steps. A partial or planned control lowers nothing."
+  },
+  "boundaries": [
+    {
+      "id": "B01",
+      "name": "Devices and sensors",
+      "zone": "TZ0",
+      "area": "device",
+      "description": "Simulated loop detectors, signal controllers, weather, road-condition, pedestrian and cycle sensors, and the AVL units of emergency vehicles; in a real deployment, roadside equipment."
+    },
+    {
+      "id": "B02",
+      "name": "Edge runtime and local models",
+      "zone": "TZ0",
+      "area": "edge",
+      "description": "The edge container that validates, extracts features, runs the ONNX model or baseline, and keeps a durable outbox; no camera frame leaves it."
+    },
+    {
+      "id": "B03",
+      "name": "MQTT broker and gateway",
+      "zone": "TZ1",
+      "area": "broker",
+      "description": "The mTLS MQTT listener with per-device identity and topic ACLs, and the gateway that validates events and forwards them to the stream."
+    },
+    {
+      "id": "B04",
+      "name": "Event backbone and ingestion",
+      "zone": "TZ2",
+      "area": "stream",
+      "description": "The Kafka-compatible stream and the consumer that validates and persists observations exactly once by meaning."
+    },
+    {
+      "id": "B05",
+      "name": "Data stores and audit evidence",
+      "zone": "TZ6",
+      "area": "data",
+      "description": "PostgreSQL/PostGIS records (topology, telemetry, incidents, commands, outcomes, calls) and the append-only audit and history tables."
+    },
+    {
+      "id": "B06",
+      "name": "Staff API and live feed",
+      "zone": "TZ3",
+      "area": "API",
+      "description": "The FastAPI service that answers the operator console: REST, WebSocket, authorization, workflow endpoints and the governance endpoints."
+    },
+    {
+      "id": "B07",
+      "name": "Operator web application",
+      "zone": "TZ7",
+      "area": "web",
+      "description": "The browser console: sign-in, live map, dispatch, approvals, audit, platform status."
+    },
+    {
+      "id": "B08",
+      "name": "Identity provider",
+      "zone": "TZ5",
+      "area": "identity",
+      "description": "Keycloak: realm, roles, demo identities, the browser client and the service clients."
+    },
+    {
+      "id": "B09",
+      "name": "Policy decision point",
+      "zone": "TZ5",
+      "area": "policy",
+      "description": "The execution-time command policy today and Open Policy Agent (P09.03): who may do what to which target, now."
+    },
+    {
+      "id": "B10",
+      "name": "Command path and controller adapters",
+      "zone": "TZ4",
+      "area": "controller adapter",
+      "description": "Request, approval, the executor worker, the verifier worker and the simulator signal, diversion and sign adapters."
+    },
+    {
+      "id": "B11",
+      "name": "Models and datasets",
+      "zone": "TZ3",
+      "area": "model",
+      "description": "Training data, evaluation ledgers, ONNX artifacts, forecast and detector packages."
+    },
+    {
+      "id": "B12",
+      "name": "Build, dependencies and images",
+      "zone": "CI",
+      "area": "supply chain",
+      "description": "Source repository, Python and Node dependencies, base images, CI workflows and release artifacts."
+    },
+    {
+      "id": "B13",
+      "name": "Human operators and administrators",
+      "zone": "TZ7",
+      "area": "operator",
+      "description": "The people behind the roles: operators, supervisors, dispatchers, incident commanders, auditors, field responders and platform administrators."
+    },
+    {
+      "id": "B14",
+      "name": "External integrations",
+      "zone": "EXT",
+      "area": "external integration",
+      "description": "CAD/AVL feeds, public-warning channels, transit and V2X feeds. All simulated today; none is authorized as a real connection."
+    },
+    {
+      "id": "B15",
+      "name": "Demo and scenario control",
+      "zone": "TZ8",
+      "area": "demo",
+      "description": "The separate scenario-control service and the demo operator identity."
+    },
+    {
+      "id": "B16",
+      "name": "AIOps engine and remediation workers",
+      "zone": "TZ3",
+      "area": "aiops",
+      "description": "Platform-incident correlation and bounded remediation (Phase 10)."
+    },
+    {
+      "id": "B17",
+      "name": "Cluster and host runtime",
+      "zone": "TZ3",
+      "area": "runtime",
+      "description": "Kubernetes or Docker hosts, container runtime, network and secrets storage (Phase 11)."
+    },
+    {
+      "id": "B18",
+      "name": "Observability pipeline",
+      "zone": "TZ3",
+      "area": "observability",
+      "description": "Logs, metrics and traces and their storage and dashboards (Phase 10)."
+    }
+  ],
+  "assets": [
+    {
+      "id": "A01",
+      "name": "Safe operation of signals and the road-user safety it protects",
+      "class": "safety-critical"
+    },
+    {
+      "id": "A02",
+      "name": "Command records, approvals and outcomes",
+      "class": "integrity"
+    },
+    {
+      "id": "A03",
+      "name": "Emergency call and unit data (no patient or medical data is held)",
+      "class": "confidential"
+    },
+    {
+      "id": "A04",
+      "name": "Telemetry and network state",
+      "class": "integrity"
+    },
+    {
+      "id": "A05",
+      "name": "Location and trajectory data",
+      "class": "privacy"
+    },
+    {
+      "id": "A06",
+      "name": "Camera-derived features",
+      "class": "privacy"
+    },
+    {
+      "id": "A07",
+      "name": "Credentials, tokens and private keys",
+      "class": "confidential"
+    },
+    {
+      "id": "A08",
+      "name": "Audit evidence",
+      "class": "integrity"
+    },
+    {
+      "id": "A09",
+      "name": "Models, datasets and evaluation ledgers",
+      "class": "integrity"
+    },
+    {
+      "id": "A10",
+      "name": "Policy rules and authorization data",
+      "class": "integrity"
+    },
+    {
+      "id": "A11",
+      "name": "Availability of the platform and its identity, policy and data services",
+      "class": "availability"
+    },
+    {
+      "id": "A12",
+      "name": "Configuration, device registry and inventory",
+      "class": "integrity"
+    },
+    {
+      "id": "A13",
+      "name": "Source, dependencies, images and release artifacts",
+      "class": "integrity"
+    },
+    {
+      "id": "A14",
+      "name": "The truthfulness of what an operator sees (freshness, source, identity)",
+      "class": "safety-critical"
+    }
+  ],
+  "threats": [
+    {
+      "id": "T-01",
+      "boundary": "B01",
+      "category": "Spoofing",
+      "title": "A device is impersonated to inject false readings",
+      "description": "An attacker presents another detector's identity or invents a device to report counts, phases or positions that are not real.",
+      "assets": [
+        "A04",
+        "A14"
+      ],
+      "safety_impact": "medium",
+      "security_impact": "medium",
+      "likelihood": "medium",
+      "treatments": [
+        "CTL-09",
+        "CTL-10"
+      ],
+      "owner": "SEC",
+      "due": "2026-09-28"
+    },
+    {
+      "id": "T-02",
+      "boundary": "B01",
+      "category": "Tampering",
+      "title": "Captured telemetry is replayed",
+      "description": "Recorded valid events are sent again to make a road look quiet or busy, or to bury a real reading.",
+      "assets": [
+        "A04"
+      ],
+      "safety_impact": "low",
+      "security_impact": "medium",
+      "likelihood": "medium",
+      "treatments": [
+        "CTL-10",
+        "CTL-09"
+      ],
+      "owner": "DATA",
+      "due": "2026-09-28"
+    },
+    {
+      "id": "T-03",
+      "boundary": "B01",
+      "category": "Tampering",
+      "title": "A device is stolen or opened and its key extracted",
+      "description": "Physical access to roadside equipment yields the device's private key, which then authenticates as that device.",
+      "assets": [
+        "A07",
+        "A04"
+      ],
+      "safety_impact": "low",
+      "security_impact": "medium",
+      "likelihood": "low",
+      "treatments": [
+        "CTL-09",
+        "CTL-39"
+      ],
+      "owner": "SEC",
+      "due": "2026-09-30"
+    },
+    {
+      "id": "T-04",
+      "boundary": "B01",
+      "category": "Information disclosure",
+      "title": "Camera-derived data or tracks identify individuals",
+      "description": "Vehicle or pedestrian tracks, plates or faces, if kept or sent, single out identifiable people.",
+      "assets": [
+        "A05",
+        "A06"
+      ],
+      "safety_impact": "none",
+      "security_impact": "high",
+      "likelihood": "medium",
+      "treatments": [
+        "CTL-19",
+        "CTL-18"
+      ],
+      "owner": "GRC",
+      "due": "2026-09-30"
+    },
+    {
+      "id": "T-05",
+      "boundary": "B01",
+      "category": "Denial of service",
+      "title": "A faulty or compromised device floods the platform",
+      "description": "One device sends events far above its normal rate and crowds out the rest.",
+      "assets": [
+        "A11",
+        "A04"
+      ],
+      "safety_impact": "medium",
+      "security_impact": "medium",
+      "likelihood": "medium",
+      "treatments": [
+        "CTL-10",
+        "CTL-33"
+      ],
+      "owner": "DATA",
+      "due": "2026-09-28"
+    },
+    {
+      "id": "T-06",
+      "boundary": "B02",
+      "category": "Tampering",
+      "title": "A tampered model is activated at an edge site",
+      "description": "An unverified or substituted model artifact changes detections at the edge.",
+      "assets": [
+        "A09",
+        "A01"
+      ],
+      "safety_impact": "medium",
+      "security_impact": "high",
+      "likelihood": "low",
+      "treatments": [
+        "CTL-25"
+      ],
+      "owner": "EDGE",
+      "due": "2026-09-28"
+    },
+    {
+      "id": "T-07",
+      "boundary": "B02",
+      "category": "Tampering",
+      "title": "The edge outbox is altered on disk",
+      "description": "Buffered events are removed or forged while the site is offline.",
+      "assets": [
+        "A04"
+      ],
+      "safety_impact": "low",
+      "security_impact": "medium",
+      "likelihood": "low",
+      "treatments": [
+        "CTL-31",
+        "CTL-41",
+        "CTL-10"
+      ],
+      "owner": "EDGE",
+      "due": "2026-09-28"
+    },
+    {
+      "id": "T-08",
+      "boundary": "B02",
+      "category": "Denial of service",
+      "title": "The edge loses the network, identity or central services",
+      "description": "An intersection keeps running while cut off; telemetry piles up and central views go stale.",
+      "assets": [
+        "A11",
+        "A14",
+        "A01"
+      ],
+      "safety_impact": "high",
+      "security_impact": "medium",
+      "likelihood": "medium",
+      "treatments": [
+        "CTL-41",
+        "CTL-23",
+        "CTL-06"
+      ],
+      "owner": "EDGE",
+      "due": "2026-09-28"
+    },
+    {
+      "id": "T-09",
+      "boundary": "B02",
+      "category": "Information disclosure",
+      "title": "Raw camera frames or intermediate data are retained locally",
+      "description": "Frames or features are kept longer than needed or copied off the device.",
+      "assets": [
+        "A06",
+        "A05"
+      ],
+      "safety_impact": "none",
+      "security_impact": "high",
+      "likelihood": "low",
+      "treatments": [
+        "CTL-19",
+        "CTL-31"
+      ],
+      "owner": "EDGE",
+      "due": "2026-09-30"
+    },
+    {
+      "id": "T-10",
+      "boundary": "B03",
+      "category": "Spoofing",
+      "title": "A device publishes under another device's identity or topic",
+      "description": "A valid client certificate is used to publish on a topic that belongs to a different device.",
+      "assets": [
+        "A04"
+      ],
+      "safety_impact": "medium",
+      "security_impact": "high",
+      "likelihood": "medium",
+      "treatments": [
+        "CTL-09"
+      ],
+      "owner": "DATA",
+      "due": "2026-09-28"
+    },
+    {
+      "id": "T-11",
+      "boundary": "B03",
+      "category": "Information disclosure",
+      "title": "A client subscribes to other devices' topics",
+      "description": "A wildcard or guessed topic lets a device read telemetry or commands meant for others.",
+      "assets": [
+        "A04",
+        "A05"
+      ],
+      "safety_impact": "low",
+      "security_impact": "medium",
+      "likelihood": "medium",
+      "treatments": [
+        "CTL-09"
+      ],
+      "owner": "DATA",
+      "due": "2026-09-28"
+    },
+    {
+      "id": "T-12",
+      "boundary": "B03",
+      "category": "Denial of service",
+      "title": "The broker or gateway is flooded or a consumer stalls",
+      "description": "Publishing faster than the gateway or stream can absorb loses or delays events.",
+      "assets": [
+        "A11",
+        "A04"
+      ],
+      "safety_impact": "medium",
+      "security_impact": "medium",
+      "likelihood": "medium",
+      "treatments": [
+        "CTL-10",
+        "CTL-33",
+        "CTL-42"
+      ],
+      "owner": "DATA",
+      "due": "2026-09-28"
+    },
+    {
+      "id": "T-13",
+      "boundary": "B03",
+      "category": "Spoofing",
+      "title": "A certificate from an untrusted authority is accepted",
+      "description": "A rogue or self-signed certificate authenticates a device.",
+      "assets": [
+        "A07",
+        "A04"
+      ],
+      "safety_impact": "medium",
+      "security_impact": "high",
+      "likelihood": "low",
+      "treatments": [
+        "CTL-09"
+      ],
+      "owner": "SEC",
+      "due": "2026-09-28"
+    },
+    {
+      "id": "T-14",
+      "boundary": "B04",
+      "category": "Tampering",
+      "title": "A poisoned or conflicting event overwrites a stored observation",
+      "description": "An event reusing an existing identifier with different content replaces the original record.",
+      "assets": [
+        "A04",
+        "A08"
+      ],
+      "safety_impact": "medium",
+      "security_impact": "high",
+      "likelihood": "medium",
+      "treatments": [
+        "CTL-10"
+      ],
+      "owner": "DATA",
+      "due": "2026-09-28"
+    },
+    {
+      "id": "T-15",
+      "boundary": "B04",
+      "category": "Repudiation",
+      "title": "Redelivery duplicates or reorders events",
+      "description": "At-least-once delivery produces duplicate rows or out-of-order state that later cannot be explained.",
+      "assets": [
+        "A04"
+      ],
+      "safety_impact": "low",
+      "security_impact": "medium",
+      "likelihood": "high",
+      "treatments": [
+        "CTL-10"
+      ],
+      "owner": "DATA",
+      "due": "2026-09-28"
+    },
+    {
+      "id": "T-16",
+      "boundary": "B04",
+      "category": "Information disclosure",
+      "title": "An unauthorized consumer reads the stream",
+      "description": "The stream carries every device's telemetry and is reachable inside the platform network without transport protection or ACLs.",
+      "assets": [
+        "A04",
+        "A05"
+      ],
+      "safety_impact": "none",
+      "security_impact": "medium",
+      "likelihood": "medium",
+      "treatments": [
+        "CTL-11",
+        "CTL-13"
+      ],
+      "owner": "SEC",
+      "due": "2026-09-30"
+    },
+    {
+      "id": "T-17",
+      "boundary": "B04",
+      "category": "Denial of service",
+      "title": "Ingestion lag hides fresh data behind old data",
+      "description": "A backlog makes central state older than it looks.",
+      "assets": [
+        "A14",
+        "A11"
+      ],
+      "safety_impact": "medium",
+      "security_impact": "medium",
+      "likelihood": "medium",
+      "treatments": [
+        "CTL-42",
+        "CTL-23"
+      ],
+      "owner": "OPS",
+      "due": "2026-09-28"
+    },
+    {
+      "id": "T-18",
+      "boundary": "B05",
+      "category": "Tampering",
+      "title": "Audit or history rows are rewritten to hide an action",
+      "description": "Someone with database rights changes or deletes evidence of a command, approval or refusal.",
+      "assets": [
+        "A08",
+        "A02"
+      ],
+      "safety_impact": "medium",
+      "security_impact": "high",
+      "likelihood": "low",
+      "treatments": [
+        "CTL-15"
+      ],
+      "owner": "SEC",
+      "due": "2026-09-28"
+    },
+    {
+      "id": "T-19",
+      "boundary": "B05",
+      "category": "Repudiation",
+      "title": "A person denies having requested, approved or denied a command",
+      "description": "Without a reliable record of who did what in which role, accountability is lost.",
+      "assets": [
+        "A08",
+        "A02"
+      ],
+      "safety_impact": "medium",
+      "security_impact": "high",
+      "likelihood": "medium",
+      "treatments": [
+        "CTL-15",
+        "CTL-05",
+        "CTL-36"
+      ],
+      "owner": "SEC",
+      "due": "2026-09-28"
+    },
+    {
+      "id": "T-20",
+      "boundary": "B05",
+      "category": "Information disclosure",
+      "title": "Database credentials are read from configuration or the process environment",
+      "description": "The shared application password is used to read or change any table.",
+      "assets": [
+        "A07",
+        "A02",
+        "A08"
+      ],
+      "safety_impact": "medium",
+      "security_impact": "high",
+      "likelihood": "medium",
+      "treatments": [
+        "CTL-14",
+        "CTL-11",
+        "CTL-12"
+      ],
+      "owner": "SEC",
+      "due": "2026-09-30"
+    },
+    {
+      "id": "T-21",
+      "boundary": "B05",
+      "category": "Information disclosure",
+      "title": "Audit details or exports carry tokens, identifiers or locations",
+      "description": "Free-text or structured detail written to audit records exposes secrets or personal data to whoever can read them.",
+      "assets": [
+        "A07",
+        "A05",
+        "A08"
+      ],
+      "safety_impact": "none",
+      "security_impact": "high",
+      "likelihood": "medium",
+      "treatments": [
+        "CTL-16",
+        "CTL-17"
+      ],
+      "owner": "SEC",
+      "due": "2026-09-28"
+    },
+    {
+      "id": "T-22",
+      "boundary": "B05",
+      "category": "Tampering",
+      "title": "SQL injection through an API parameter",
+      "description": "A crafted filter, cursor or identifier reaches a query as code.",
+      "assets": [
+        "A02",
+        "A04",
+        "A08"
+      ],
+      "safety_impact": "medium",
+      "security_impact": "high",
+      "likelihood": "low",
+      "treatments": [
+        "CTL-32"
+      ],
+      "owner": "BACKEND",
+      "due": "2026-09-28"
+    },
+    {
+      "id": "T-23",
+      "boundary": "B05",
+      "category": "Denial of service",
+      "title": "Data is lost with no restorable backup",
+      "description": "A storage failure or destructive change cannot be recovered from.",
+      "assets": [
+        "A11",
+        "A02",
+        "A08"
+      ],
+      "safety_impact": "medium",
+      "security_impact": "high",
+      "likelihood": "low",
+      "treatments": [
+        "CTL-35"
+      ],
+      "owner": "DEVOPS",
+      "due": "2026-10-12"
+    },
+    {
+      "id": "T-24",
+      "boundary": "B05",
+      "category": "Information disclosure",
+      "title": "Location or trajectory data is kept beyond its purpose",
+      "description": "Retention that never expires turns operational data into a movement history.",
+      "assets": [
+        "A05"
+      ],
+      "safety_impact": "none",
+      "security_impact": "medium",
+      "likelihood": "medium",
+      "treatments": [
+        "CTL-18"
+      ],
+      "owner": "GRC",
+      "due": "2026-09-30"
+    },
+    {
+      "id": "T-25",
+      "boundary": "B06",
+      "category": "Spoofing",
+      "title": "A forged, expired or wrong-audience token is accepted",
+      "description": "A token signed with the wrong key, minted for another client, or past its lifetime reaches a protected endpoint.",
+      "assets": [
+        "A07",
+        "A02"
+      ],
+      "safety_impact": "high",
+      "security_impact": "high",
+      "likelihood": "medium",
+      "treatments": [
+        "CTL-01"
+      ],
+      "owner": "SEC",
+      "due": "2026-09-28"
+    },
+    {
+      "id": "T-26",
+      "boundary": "B06",
+      "category": "Elevation of privilege",
+      "title": "A role calls a capability it does not hold",
+      "description": "An operator, field responder or demo operator reaches an approval, dispatch or audit endpoint.",
+      "assets": [
+        "A02",
+        "A08"
+      ],
+      "safety_impact": "high",
+      "security_impact": "high",
+      "likelihood": "medium",
+      "treatments": [
+        "CTL-03",
+        "CTL-04"
+      ],
+      "owner": "SEC",
+      "due": "2026-09-28"
+    },
+    {
+      "id": "T-27",
+      "boundary": "B06",
+      "category": "Elevation of privilege",
+      "title": "A user of one agency reads or changes another agency's records",
+      "description": "Roles are global; call and unit data carry an agency scope that the API does not yet enforce per user.",
+      "assets": [
+        "A03",
+        "A02"
+      ],
+      "safety_impact": "medium",
+      "security_impact": "high",
+      "likelihood": "medium",
+      "treatments": [
+        "CTL-47"
+      ],
+      "owner": "SEC",
+      "due": "2026-10-05",
+      "accepted": "This prototype is one operating organisation: emergency-service collaboration is modelled as handover messages (P07.03), not as separate user populations, so no user can belong to a different agency. It becomes a real gap the day a second agency signs in."
+    },
+    {
+      "id": "T-28",
+      "boundary": "B06",
+      "category": "Information disclosure",
+      "title": "Responses carry more than the caller needs",
+      "description": "Internal addresses, identifiers or stack traces reach roles that do not need them.",
+      "assets": [
+        "A12",
+        "A05"
+      ],
+      "safety_impact": "none",
+      "security_impact": "medium",
+      "likelihood": "medium",
+      "treatments": [
+        "CTL-16",
+        "CTL-17"
+      ],
+      "owner": "BACKEND",
+      "due": "2026-09-28"
+    },
+    {
+      "id": "T-29",
+      "boundary": "B06",
+      "category": "Denial of service",
+      "title": "A request flood or oversized body exhausts the API",
+      "description": "An authenticated client, or many, overwhelms the service or its database connections.",
+      "assets": [
+        "A11"
+      ],
+      "safety_impact": "medium",
+      "security_impact": "medium",
+      "likelihood": "medium",
+      "treatments": [
+        "CTL-33"
+      ],
+      "owner": "SEC",
+      "due": "2026-09-28"
+    },
+    {
+      "id": "T-30",
+      "boundary": "B06",
+      "category": "Tampering",
+      "title": "Mass assignment: a client names its own author, requester or status",
+      "description": "A request body supplies fields the server must decide (author, requester, role, status).",
+      "assets": [
+        "A02",
+        "A08"
+      ],
+      "safety_impact": "medium",
+      "security_impact": "high",
+      "likelihood": "medium",
+      "treatments": [
+        "CTL-32",
+        "CTL-03"
+      ],
+      "owner": "BACKEND",
+      "due": "2026-09-28"
+    },
+    {
+      "id": "T-31",
+      "boundary": "B06",
+      "category": "Information disclosure",
+      "title": "The access token in the WebSocket URL is logged or cached",
+      "description": "A browser cannot set headers on a WebSocket, so the short-lived token rides in the query string, where proxies and logs may keep it.",
+      "assets": [
+        "A07"
+      ],
+      "safety_impact": "low",
+      "security_impact": "medium",
+      "likelihood": "medium",
+      "treatments": [
+        "CTL-01",
+        "CTL-37"
+      ],
+      "owner": "SEC",
+      "due": "2026-10-05",
+      "accepted": "Tokens live 300 s and are audience-bound; the alternative (a ticket endpoint) is recorded as a design option for P11 when a real reverse proxy exists."
+    },
+    {
+      "id": "T-32",
+      "boundary": "B06",
+      "category": "Elevation of privilege",
+      "title": "A new endpoint ships without an authorization decision",
+      "description": "A developer adds a route and forgets the policy entry.",
+      "assets": [
+        "A02",
+        "A08"
+      ],
+      "safety_impact": "high",
+      "security_impact": "high",
+      "likelihood": "medium",
+      "treatments": [
+        "CTL-03"
+      ],
+      "owner": "BACKEND",
+      "due": "2026-09-28"
+    },
+    {
+      "id": "T-33",
+      "boundary": "B07",
+      "category": "Tampering",
+      "title": "Cross-site scripting steals or misuses the session",
+      "description": "Injected script reads the access token or acts as the operator.",
+      "assets": [
+        "A07",
+        "A02"
+      ],
+      "safety_impact": "high",
+      "security_impact": "high",
+      "likelihood": "low",
+      "treatments": [
+        "CTL-43",
+        "CTL-33"
+      ],
+      "owner": "UI",
+      "due": "2026-09-28"
+    },
+    {
+      "id": "T-34",
+      "boundary": "B07",
+      "category": "Tampering",
+      "title": "The console is framed or spoofed by another origin",
+      "description": "Clickjacking or a look-alike page tricks an operator into approving.",
+      "assets": [
+        "A02"
+      ],
+      "safety_impact": "high",
+      "security_impact": "high",
+      "likelihood": "low",
+      "treatments": [
+        "CTL-33",
+        "CTL-02"
+      ],
+      "owner": "UI",
+      "due": "2026-09-28"
+    },
+    {
+      "id": "T-35",
+      "boundary": "B07",
+      "category": "Safety",
+      "title": "The screen shows old or cached data as if it were live",
+      "description": "An operator acts on a picture that is minutes old without knowing.",
+      "assets": [
+        "A14",
+        "A01"
+      ],
+      "safety_impact": "high",
+      "security_impact": "medium",
+      "likelihood": "medium",
+      "treatments": [
+        "CTL-23",
+        "CTL-42"
+      ],
+      "owner": "UI",
+      "due": "2026-09-28"
+    },
+    {
+      "id": "T-36",
+      "boundary": "B07",
+      "category": "Spoofing",
+      "title": "Phishing or an open redirect during sign-in",
+      "description": "The person is sent to a look-alike identity page or the code is delivered to another origin.",
+      "assets": [
+        "A07"
+      ],
+      "safety_impact": "medium",
+      "security_impact": "high",
+      "likelihood": "low",
+      "treatments": [
+        "CTL-02",
+        "CTL-43"
+      ],
+      "owner": "SEC",
+      "due": "2026-09-28"
+    },
+    {
+      "id": "T-37",
+      "boundary": "B07",
+      "category": "Safety",
+      "title": "A demonstration screen or simulated data is mistaken for real operations",
+      "description": "The demo identity or the simulated feed is read as a live city.",
+      "assets": [
+        "A14"
+      ],
+      "safety_impact": "medium",
+      "security_impact": "low",
+      "likelihood": "medium",
+      "treatments": [
+        "CTL-08",
+        "CTL-23"
+      ],
+      "owner": "UI",
+      "due": "2026-09-28"
+    },
+    {
+      "id": "T-38",
+      "boundary": "B08",
+      "category": "Spoofing",
+      "title": "Passwords are guessed or stuffed against operator accounts",
+      "description": "Repeated attempts try to take over a role.",
+      "assets": [
+        "A07",
+        "A02"
+      ],
+      "safety_impact": "high",
+      "security_impact": "high",
+      "likelihood": "medium",
+      "treatments": [
+        "CTL-02"
+      ],
+      "owner": "SEC",
+      "due": "2026-09-28"
+    },
+    {
+      "id": "T-39",
+      "boundary": "B08",
+      "category": "Elevation of privilege",
+      "title": "A client or redirect misconfiguration leaks tokens or codes",
+      "description": "A wildcard redirect, implicit grant or missing PKCE lets an attacker capture a token.",
+      "assets": [
+        "A07"
+      ],
+      "safety_impact": "high",
+      "security_impact": "high",
+      "likelihood": "low",
+      "treatments": [
+        "CTL-02"
+      ],
+      "owner": "SEC",
+      "due": "2026-09-28"
+    },
+    {
+      "id": "T-40",
+      "boundary": "B08",
+      "category": "Denial of service",
+      "title": "The identity provider is down when tokens expire",
+      "description": "Nobody can sign in or renew; the console cannot tell an ended session from an outage.",
+      "assets": [
+        "A11",
+        "A14"
+      ],
+      "safety_impact": "medium",
+      "security_impact": "medium",
+      "likelihood": "medium",
+      "treatments": [
+        "CTL-01",
+        "CTL-23"
+      ],
+      "owner": "SEC",
+      "due": "2026-09-28"
+    },
+    {
+      "id": "T-41",
+      "boundary": "B08",
+      "category": "Tampering",
+      "title": "The realm drifts from the reviewed configuration",
+      "description": "A setting is loosened in the running realm and the file in Git no longer describes it.",
+      "assets": [
+        "A12",
+        "A07"
+      ],
+      "safety_impact": "medium",
+      "security_impact": "high",
+      "likelihood": "medium",
+      "treatments": [
+        "CTL-02"
+      ],
+      "owner": "SEC",
+      "due": "2026-09-28"
+    },
+    {
+      "id": "T-42",
+      "boundary": "B08",
+      "category": "Information disclosure",
+      "title": "The administrator console or its credentials are exposed",
+      "description": "Whoever holds them can create users and roles.",
+      "assets": [
+        "A07",
+        "A12"
+      ],
+      "safety_impact": "medium",
+      "security_impact": "high",
+      "likelihood": "low",
+      "treatments": [
+        "CTL-14"
+      ],
+      "owner": "SEC",
+      "due": "2026-09-30"
+    },
+    {
+      "id": "T-43",
+      "boundary": "B09",
+      "category": "Elevation of privilege",
+      "title": "A protected action skips the policy decision",
+      "description": "A code path, worker or endpoint performs an action without asking.",
+      "assets": [
+        "A10",
+        "A02"
+      ],
+      "safety_impact": "high",
+      "security_impact": "high",
+      "likelihood": "medium",
+      "treatments": [
+        "CTL-03",
+        "CTL-04",
+        "CTL-06"
+      ],
+      "owner": "SEC",
+      "due": "2026-09-28"
+    },
+    {
+      "id": "T-44",
+      "boundary": "B09",
+      "category": "Safety",
+      "title": "The policy engine fails open",
+      "description": "When the decision point is down, a high-impact command is approved anyway.",
+      "assets": [
+        "A01",
+        "A10"
+      ],
+      "safety_impact": "high",
+      "security_impact": "high",
+      "likelihood": "low",
+      "treatments": [
+        "CTL-06",
+        "CTL-04"
+      ],
+      "owner": "SEC",
+      "due": "2026-09-28"
+    },
+    {
+      "id": "T-45",
+      "boundary": "B09",
+      "category": "Tampering",
+      "title": "The policy rules or their data are altered",
+      "description": "A changed rule or role table silently widens what is allowed.",
+      "assets": [
+        "A10",
+        "A12"
+      ],
+      "safety_impact": "high",
+      "security_impact": "high",
+      "likelihood": "low",
+      "treatments": [
+        "CTL-04",
+        "CTL-29",
+        "CTL-03"
+      ],
+      "owner": "SEC",
+      "due": "2026-09-28"
+    },
+    {
+      "id": "T-46",
+      "boundary": "B10",
+      "category": "Tampering",
+      "title": "A command is aimed at a target it was not approved for",
+      "description": "The target entity, adapter or parameters change between approval and execution.",
+      "assets": [
+        "A01",
+        "A02"
+      ],
+      "safety_impact": "high",
+      "security_impact": "high",
+      "likelihood": "medium",
+      "treatments": [
+        "CTL-06",
+        "CTL-24"
+      ],
+      "owner": "CONTROL",
+      "due": "2026-09-28"
+    },
+    {
+      "id": "T-47",
+      "boundary": "B10",
+      "category": "Elevation of privilege",
+      "title": "A requester approves their own command, or two low roles collude",
+      "description": "Separation of duties is bypassed for a high-class action.",
+      "assets": [
+        "A02",
+        "A01"
+      ],
+      "safety_impact": "high",
+      "security_impact": "high",
+      "likelihood": "medium",
+      "treatments": [
+        "CTL-05"
+      ],
+      "owner": "CONTROL",
+      "due": "2026-09-28"
+    },
+    {
+      "id": "T-48",
+      "boundary": "B10",
+      "category": "Safety",
+      "title": "An old approved command is replayed",
+      "description": "A command that was valid once is executed again later or twice.",
+      "assets": [
+        "A01",
+        "A02"
+      ],
+      "safety_impact": "high",
+      "security_impact": "medium",
+      "likelihood": "medium",
+      "treatments": [
+        "CTL-24",
+        "CTL-06"
+      ],
+      "owner": "CONTROL",
+      "due": "2026-09-28"
+    },
+    {
+      "id": "T-49",
+      "boundary": "B10",
+      "category": "Safety",
+      "title": "A signal change creates an unsafe state",
+      "description": "A phase change shortens pedestrian clearance or produces conflicting greens.",
+      "assets": [
+        "A01"
+      ],
+      "safety_impact": "high",
+      "security_impact": "medium",
+      "likelihood": "low",
+      "treatments": [
+        "CTL-20",
+        "CTL-22"
+      ],
+      "owner": "CONTROL",
+      "due": "2026-09-28"
+    },
+    {
+      "id": "T-50",
+      "boundary": "B10",
+      "category": "Safety",
+      "title": "An action makes things worse and is not undone",
+      "description": "A closure or timing change worsens traffic and stays in place.",
+      "assets": [
+        "A01",
+        "A14"
+      ],
+      "safety_impact": "high",
+      "security_impact": "low",
+      "likelihood": "medium",
+      "treatments": [
+        "CTL-21"
+      ],
+      "owner": "CONTROL",
+      "due": "2026-09-28"
+    },
+    {
+      "id": "T-51",
+      "boundary": "B10",
+      "category": "Elevation of privilege",
+      "title": "A person or another service reaches an adapter",
+      "description": "Anything other than the executor identity calls a signal, sign or diversion adapter.",
+      "assets": [
+        "A01",
+        "A02"
+      ],
+      "safety_impact": "high",
+      "security_impact": "high",
+      "likelihood": "low",
+      "treatments": [
+        "CTL-07",
+        "CTL-08"
+      ],
+      "owner": "CONTROL",
+      "due": "2026-09-28"
+    },
+    {
+      "id": "T-52",
+      "boundary": "B10",
+      "category": "Safety",
+      "title": "The adapter is unreachable or does not acknowledge",
+      "description": "The controller's real state becomes unknown after a command.",
+      "assets": [
+        "A01",
+        "A14"
+      ],
+      "safety_impact": "medium",
+      "security_impact": "low",
+      "likelihood": "medium",
+      "treatments": [
+        "CTL-21",
+        "CTL-06"
+      ],
+      "owner": "CONTROL",
+      "due": "2026-09-28"
+    },
+    {
+      "id": "T-53",
+      "boundary": "B11",
+      "category": "AI",
+      "title": "Training data is poisoned or leaks into evaluation",
+      "description": "Manipulated or overlapping data inflates a detector's or forecaster's apparent quality.",
+      "assets": [
+        "A09"
+      ],
+      "safety_impact": "medium",
+      "security_impact": "medium",
+      "likelihood": "low",
+      "treatments": [
+        "CTL-26"
+      ],
+      "owner": "SIM",
+      "due": "2026-09-28"
+    },
+    {
+      "id": "T-54",
+      "boundary": "B11",
+      "category": "AI",
+      "title": "A model drifts or is fooled by unusual input",
+      "description": "Accuracy degrades in operation without anyone noticing.",
+      "assets": [
+        "A09",
+        "A01"
+      ],
+      "safety_impact": "medium",
+      "security_impact": "medium",
+      "likelihood": "medium",
+      "treatments": [
+        "CTL-44",
+        "CTL-20",
+        "CTL-21",
+        "CTL-25"
+      ],
+      "owner": "OPS",
+      "due": "2026-10-05"
+    },
+    {
+      "id": "T-55",
+      "boundary": "B11",
+      "category": "AI",
+      "title": "Service quality is unequal across areas or road users",
+      "description": "A detector or forecast performs worse for some roads, modes or scenarios.",
+      "assets": [
+        "A09"
+      ],
+      "safety_impact": "medium",
+      "security_impact": "medium",
+      "likelihood": "medium",
+      "treatments": [
+        "CTL-45"
+      ],
+      "owner": "QA",
+      "due": "2026-10-19"
+    },
+    {
+      "id": "T-56",
+      "boundary": "B11",
+      "category": "AI",
+      "title": "Operators over-rely on a recommendation",
+      "description": "A ranked suggestion is accepted without weighing its harm or uncertainty (automation bias).",
+      "assets": [
+        "A01",
+        "A02"
+      ],
+      "safety_impact": "high",
+      "security_impact": "low",
+      "likelihood": "medium",
+      "treatments": [
+        "CTL-05",
+        "CTL-20",
+        "CTL-21"
+      ],
+      "owner": "UI",
+      "due": "2026-09-28"
+    },
+    {
+      "id": "T-57",
+      "boundary": "B12",
+      "category": "Supply chain",
+      "title": "A malicious or vulnerable dependency is installed",
+      "description": "A compromised package or a known-vulnerable version enters the build.",
+      "assets": [
+        "A13"
+      ],
+      "safety_impact": "medium",
+      "security_impact": "high",
+      "likelihood": "medium",
+      "treatments": [
+        "CTL-27",
+        "CTL-28",
+        "CTL-29"
+      ],
+      "owner": "DEVOPS",
+      "due": "2026-10-05"
+    },
+    {
+      "id": "T-58",
+      "boundary": "B12",
+      "category": "Supply chain",
+      "title": "A tampered image or artifact is deployed",
+      "description": "An image differs from what was built and reviewed.",
+      "assets": [
+        "A13",
+        "A01"
+      ],
+      "safety_impact": "medium",
+      "security_impact": "high",
+      "likelihood": "low",
+      "treatments": [
+        "CTL-29",
+        "CTL-27"
+      ],
+      "owner": "DEVOPS",
+      "due": "2026-10-05"
+    },
+    {
+      "id": "T-59",
+      "boundary": "B12",
+      "category": "Supply chain",
+      "title": "A secret is committed or a CI token is abused",
+      "description": "A credential in history or a broad token lets someone act as the project.",
+      "assets": [
+        "A07",
+        "A13"
+      ],
+      "safety_impact": "low",
+      "security_impact": "high",
+      "likelihood": "medium",
+      "treatments": [
+        "CTL-14",
+        "CTL-28"
+      ],
+      "owner": "DEVOPS",
+      "due": "2026-10-05"
+    },
+    {
+      "id": "T-60",
+      "boundary": "B13",
+      "category": "Elevation of privilege",
+      "title": "An insider approves harmful commands",
+      "description": "Coercion, fatigue or malice leads a legitimate approver to approve something unsafe.",
+      "assets": [
+        "A01",
+        "A02"
+      ],
+      "safety_impact": "high",
+      "security_impact": "high",
+      "likelihood": "low",
+      "treatments": [
+        "CTL-05",
+        "CTL-06",
+        "CTL-21",
+        "CTL-15"
+      ],
+      "owner": "SEC",
+      "due": "2026-09-28"
+    },
+    {
+      "id": "T-61",
+      "boundary": "B13",
+      "category": "Repudiation",
+      "title": "An override is used without a record",
+      "description": "A commander bypasses a gate and nothing shows it.",
+      "assets": [
+        "A08",
+        "A01"
+      ],
+      "safety_impact": "high",
+      "security_impact": "high",
+      "likelihood": "low",
+      "treatments": [
+        "CTL-34",
+        "CTL-15"
+      ],
+      "owner": "SEC",
+      "due": "2026-09-28"
+    },
+    {
+      "id": "T-62",
+      "boundary": "B13",
+      "category": "Elevation of privilege",
+      "title": "Accounts keep roles they no longer need",
+      "description": "A person who changed job or left still holds an operating role.",
+      "assets": [
+        "A07",
+        "A02"
+      ],
+      "safety_impact": "medium",
+      "security_impact": "medium",
+      "likelihood": "medium",
+      "treatments": [
+        "CTL-46",
+        "CTL-02"
+      ],
+      "owner": "GRC",
+      "due": "2026-09-30"
+    },
+    {
+      "id": "T-63",
+      "boundary": "B14",
+      "category": "Spoofing",
+      "title": "A forged CAD or AVL feed creates false calls or moves units",
+      "description": "An outside feed is trusted without authentication.",
+      "assets": [
+        "A03",
+        "A01"
+      ],
+      "safety_impact": "medium",
+      "security_impact": "medium",
+      "likelihood": "low",
+      "treatments": [
+        "CTL-40",
+        "CTL-10"
+      ],
+      "owner": "ARCH",
+      "due": "2026-09-30",
+      "accepted": "No real CAD/AVL integration is authorized or connected; the prototype's feeds are simulated and labelled as such. Any real adapter needs its own authenticated, tested integration before this risk applies."
+    },
+    {
+      "id": "T-64",
+      "boundary": "B14",
+      "category": "Tampering",
+      "title": "A false public warning is sent through a notification channel",
+      "description": "A message reaches the public that no one approved.",
+      "assets": [
+        "A01"
+      ],
+      "safety_impact": "high",
+      "security_impact": "high",
+      "likelihood": "low",
+      "treatments": [
+        "CTL-40"
+      ],
+      "owner": "ARCH",
+      "due": "2026-09-30",
+      "accepted": "No public-warning adapter exists; nothing can be sent to the public. Building one would need its own threat review."
+    },
+    {
+      "id": "T-65",
+      "boundary": "B14",
+      "category": "Information disclosure",
+      "title": "An integration credential leaks",
+      "description": "A key for an external system is committed or logged.",
+      "assets": [
+        "A07"
+      ],
+      "safety_impact": "low",
+      "security_impact": "medium",
+      "likelihood": "low",
+      "treatments": [
+        "CTL-14",
+        "CTL-40"
+      ],
+      "owner": "SEC",
+      "due": "2026-09-30"
+    },
+    {
+      "id": "T-66",
+      "boundary": "B15",
+      "category": "Elevation of privilege",
+      "title": "Demo controls reach the operational command path",
+      "description": "A demonstration action changes real incidents, commands or devices.",
+      "assets": [
+        "A02",
+        "A01"
+      ],
+      "safety_impact": "high",
+      "security_impact": "high",
+      "likelihood": "low",
+      "treatments": [
+        "CTL-08"
+      ],
+      "owner": "SEC",
+      "due": "2026-09-28"
+    },
+    {
+      "id": "T-67",
+      "boundary": "B15",
+      "category": "Repudiation",
+      "title": "Demo activity is mixed into the operational audit trail",
+      "description": "Evidence of real actions is diluted or confused with demonstrations.",
+      "assets": [
+        "A08"
+      ],
+      "safety_impact": "low",
+      "security_impact": "medium",
+      "likelihood": "low",
+      "treatments": [
+        "CTL-08"
+      ],
+      "owner": "SEC",
+      "due": "2026-09-28"
+    },
+    {
+      "id": "T-68",
+      "boundary": "B16",
+      "category": "Safety",
+      "title": "A wrong or runaway remediation worsens an outage",
+      "description": "An automatic restart, failover or scale action makes a platform incident larger.",
+      "assets": [
+        "A11",
+        "A01"
+      ],
+      "safety_impact": "medium",
+      "security_impact": "medium",
+      "likelihood": "medium",
+      "treatments": [
+        "CTL-38"
+      ],
+      "owner": "OPS",
+      "due": "2026-10-05"
+    },
+    {
+      "id": "T-69",
+      "boundary": "B16",
+      "category": "Elevation of privilege",
+      "title": "The remediation identity is used to reach traffic actions",
+      "description": "A service allowed to restart platform parts is used to change signals.",
+      "assets": [
+        "A01",
+        "A02"
+      ],
+      "safety_impact": "high",
+      "security_impact": "high",
+      "likelihood": "low",
+      "treatments": [
+        "CTL-07",
+        "CTL-38",
+        "CTL-02"
+      ],
+      "owner": "SEC",
+      "due": "2026-10-05"
+    },
+    {
+      "id": "T-70",
+      "boundary": "B17",
+      "category": "Elevation of privilege",
+      "title": "A container escape or over-privileged workload",
+      "description": "A compromised service breaks out or holds rights it does not need.",
+      "assets": [
+        "A11",
+        "A07"
+      ],
+      "safety_impact": "medium",
+      "security_impact": "high",
+      "likelihood": "low",
+      "treatments": [
+        "CTL-13",
+        "CTL-31",
+        "CTL-30"
+      ],
+      "owner": "SEC",
+      "due": "2026-10-12"
+    },
+    {
+      "id": "T-71",
+      "boundary": "B17",
+      "category": "Tampering",
+      "title": "Lateral movement between services",
+      "description": "A compromised component reaches databases or adapters it should not.",
+      "assets": [
+        "A02",
+        "A08",
+        "A01"
+      ],
+      "safety_impact": "medium",
+      "security_impact": "high",
+      "likelihood": "medium",
+      "treatments": [
+        "CTL-13",
+        "CTL-11",
+        "CTL-12"
+      ],
+      "owner": "SEC",
+      "due": "2026-10-12"
+    },
+    {
+      "id": "T-72",
+      "boundary": "B17",
+      "category": "Information disclosure",
+      "title": "Secrets are readable from cluster or host state",
+      "description": "Keys and passwords sit in manifests, environment or storage that many can read.",
+      "assets": [
+        "A07"
+      ],
+      "safety_impact": "medium",
+      "security_impact": "high",
+      "likelihood": "medium",
+      "treatments": [
+        "CTL-14",
+        "CTL-13"
+      ],
+      "owner": "SEC",
+      "due": "2026-10-12"
+    },
+    {
+      "id": "T-73",
+      "boundary": "B17",
+      "category": "Repudiation",
+      "title": "Malicious runtime behaviour goes unnoticed",
+      "description": "A shell in a container, a read of a sensitive file or a write to a binary directory produces no alert.",
+      "assets": [
+        "A11",
+        "A07"
+      ],
+      "safety_impact": "low",
+      "security_impact": "medium",
+      "likelihood": "medium",
+      "treatments": [
+        "CTL-30"
+      ],
+      "owner": "SEC",
+      "due": "2026-09-30"
+    },
+    {
+      "id": "T-74",
+      "boundary": "B17",
+      "category": "Denial of service",
+      "title": "Resource exhaustion starves safety-critical services",
+      "description": "A noisy workload takes the memory, disk or CPU that identity, policy or the command path need.",
+      "assets": [
+        "A11",
+        "A01"
+      ],
+      "safety_impact": "medium",
+      "security_impact": "medium",
+      "likelihood": "medium",
+      "treatments": [
+        "CTL-13",
+        "CTL-31"
+      ],
+      "owner": "DEVOPS",
+      "due": "2026-10-12"
+    },
+    {
+      "id": "T-75",
+      "boundary": "B18",
+      "category": "Information disclosure",
+      "title": "Logs, metrics or traces contain tokens or personal identifiers",
+      "description": "Telemetry about the platform leaks what the platform protects.",
+      "assets": [
+        "A07",
+        "A05"
+      ],
+      "safety_impact": "none",
+      "security_impact": "high",
+      "likelihood": "medium",
+      "treatments": [
+        "CTL-37",
+        "CTL-16"
+      ],
+      "owner": "OPS",
+      "due": "2026-10-05"
+    },
+    {
+      "id": "T-76",
+      "boundary": "B18",
+      "category": "Tampering",
+      "title": "Telemetry is poisoned to mislead operators or AIOps",
+      "description": "Forged health or metrics make a fault look fine or a fine system look faulty.",
+      "assets": [
+        "A14",
+        "A11"
+      ],
+      "safety_impact": "medium",
+      "security_impact": "medium",
+      "likelihood": "low",
+      "treatments": [
+        "CTL-10",
+        "CTL-38",
+        "CTL-42"
+      ],
+      "owner": "OPS",
+      "due": "2026-10-05"
+    }
+  ]
+}

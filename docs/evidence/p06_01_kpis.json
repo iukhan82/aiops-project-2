@@ -1,0 +1,493 @@
+{
+  "all_passed": true,
+  "checks": {
+    "api_kpis_paginate_all_windows_no_duplicates": true,
+    "api_kpis_validate_against_network_state_contract": true,
+    "api_serves_historical_kpis_as_stale_never_fresh": true,
+    "congested_regime_error_is_reported_not_hidden": true,
+    "db_kpis_equal_pure_function_kpis_from_dataset_file": true,
+    "duplicate_events_never_double_count": true,
+    "events_ingested_through_real_write_path": true,
+    "every_kpi_validates_as_network_state_v1": true,
+    "freshness_is_computed_at_read_time": true,
+    "held_out_density_veh_km_meets_gate": true,
+    "held_out_speed_m_s_meets_gate": true,
+    "held_out_throughput_veh_h_meets_gate": true,
+    "held_out_travel_time_s_meets_gate": true,
+    "held_out_volume_veh_h_meets_gate": true,
+    "kpi_computation_is_deterministic": true,
+    "kpi_values_are_finite_and_in_range": true,
+    "lane_share_calibrated_on_train_split_only": true,
+    "majority_missing_segments_is_invalid": true,
+    "missing_segment_degrades_quality_not_silently_valid": true,
+    "recompute_is_idempotent_no_duplicate_rows": true,
+    "reliability_needs_six_trailing_windows_then_appears": true,
+    "segment_state_carries_forward_with_zero_samples_for_old_data": true,
+    "segment_state_now_supported_and_contract_valid": true,
+    "segments_loaded_from_database": true
+  },
+  "generated_at": "2026-09-20T06:34:11Z",
+  "metrics": {
+    "truth_validation_by_split": {
+      "test": {
+        "by_regime": {
+          "congested": {
+            "speed_m_s": {
+              "bias": 4.11,
+              "mae": 4.141,
+              "mape": 0.7394,
+              "n": 35,
+              "pearson_r": 0.87
+            },
+            "travel_time_s": {
+              "bias": -71.029,
+              "mae": 75.731,
+              "mape": 0.3784,
+              "n": 35,
+              "pearson_r": 0.8823
+            },
+            "volume_veh_h": {
+              "bias": 374.015,
+              "mae": 377.223,
+              "mape": 0.5092,
+              "n": 35,
+              "pearson_r": 0.9011
+            },
+            "windows": 35
+          },
+          "free_flow": {
+            "speed_m_s": {
+              "bias": 0.62,
+              "mae": 0.994,
+              "mape": 0.0712,
+              "n": 1693,
+              "pearson_r": -0.0802
+            },
+            "travel_time_s": {
+              "bias": -2.455,
+              "mae": 4.197,
+              "mape": 0.0674,
+              "n": 1693,
+              "pearson_r": -0.0807
+            },
+            "volume_veh_h": {
+              "bias": 2.67,
+              "mae": 100.971,
+              "mape": 0.2376,
+              "n": 1693,
+              "pearson_r": 0.961
+            },
+            "windows": 1693
+          }
+        },
+        "lane_scaling": "per-segment lane share (calibrated on TRAIN) or default 1/2",
+        "per_kpi": {
+          "delay_s": {
+            "bias": -3.789,
+            "mae": 5.592,
+            "mape": 0.6974,
+            "n": 1728,
+            "pearson_r": 0.8862,
+            "truth_mean": 8.921
+          },
+          "density_veh_km": {
+            "bias": 1.472,
+            "mae": 3.596,
+            "mape": 0.2666,
+            "n": 1728,
+            "pearson_r": 0.8695,
+            "truth_mean": 9.692
+          },
+          "speed_m_s": {
+            "bias": 0.691,
+            "mae": 1.058,
+            "mape": 0.0847,
+            "n": 1728,
+            "pearson_r": 0.5895,
+            "truth_mean": 13.991
+          },
+          "throughput_veh_h": {
+            "bias": 13.988,
+            "mae": 152.663,
+            "mape": 0.3476,
+            "n": 1728,
+            "pearson_r": 0.9177,
+            "truth_mean": 461.917
+          },
+          "travel_time_s": {
+            "bias": -3.844,
+            "mae": 5.646,
+            "mape": 0.0737,
+            "n": 1728,
+            "pearson_r": 0.8859,
+            "truth_mean": 64.525
+          },
+          "volume_veh_h": {
+            "bias": 10.192,
+            "mae": 106.566,
+            "mape": 0.2431,
+            "n": 1728,
+            "pearson_r": 0.959,
+            "truth_mean": 462.456
+          }
+        },
+        "queue_indicator": {
+          "spearman_r_vs_truth_waiting_vehicles": 0.1968,
+          "windows_with_queue_at_loop": 22
+        },
+        "windows_compared": 1728
+      },
+      "train": {
+        "by_regime": {
+          "congested": {
+            "speed_m_s": {
+              "bias": 5.359,
+              "mae": 5.433,
+              "mape": 1.5791,
+              "n": 43,
+              "pearson_r": 0.5341
+            },
+            "travel_time_s": {
+              "bias": -123.871,
+              "mae": 125.205,
+              "mape": 0.4592,
+              "n": 43,
+              "pearson_r": 0.4538
+            },
+            "volume_veh_h": {
+              "bias": 346.42,
+              "mae": 348.625,
+              "mape": 0.4929,
+              "n": 43,
+              "pearson_r": 0.8667
+            },
+            "windows": 43
+          },
+          "free_flow": {
+            "speed_m_s": {
+              "bias": 0.629,
+              "mae": 0.991,
+              "mape": 0.0709,
+              "n": 4277,
+              "pearson_r": -0.0674
+            },
+            "travel_time_s": {
+              "bias": -2.505,
+              "mae": 4.157,
+              "mape": 0.0668,
+              "n": 4277,
+              "pearson_r": -0.0674
+            },
+            "volume_veh_h": {
+              "bias": -3.501,
+              "mae": 93.207,
+              "mape": 0.2343,
+              "n": 4277,
+              "pearson_r": 0.9622
+            },
+            "windows": 4277
+          }
+        },
+        "lane_scaling": "per-segment lane share (calibrated on TRAIN) or default 1/2",
+        "per_kpi": {
+          "delay_s": {
+            "bias": -3.661,
+            "mae": 5.309,
+            "mape": 0.6965,
+            "n": 4320,
+            "pearson_r": 0.5395,
+            "truth_mean": 7.446
+          },
+          "density_veh_km": {
+            "bias": 0.366,
+            "mae": 2.47,
+            "mape": 0.2551,
+            "n": 4320,
+            "pearson_r": 0.7926,
+            "truth_mean": 9.102
+          },
+          "speed_m_s": {
+            "bias": 0.676,
+            "mae": 1.036,
+            "mape": 0.0859,
+            "n": 4320,
+            "pearson_r": 0.3197,
+            "truth_mean": 14.089
+          },
+          "throughput_veh_h": {
+            "bias": -0.059,
+            "mae": 137.486,
+            "mape": 0.338,
+            "n": 4320,
+            "pearson_r": 0.9171,
+            "truth_mean": 450.55
+          },
+          "travel_time_s": {
+            "bias": -3.713,
+            "mae": 5.362,
+            "mape": 0.0707,
+            "n": 4320,
+            "pearson_r": 0.5386,
+            "truth_mean": 63.049
+          },
+          "volume_veh_h": {
+            "bias": -0.018,
+            "mae": 95.749,
+            "mape": 0.2369,
+            "n": 4320,
+            "pearson_r": 0.9577,
+            "truth_mean": 451.094
+          }
+        },
+        "queue_indicator": {
+          "spearman_r_vs_truth_waiting_vehicles": 0.1164,
+          "windows_with_queue_at_loop": 19
+        },
+        "windows_compared": 4320
+      },
+      "validation": {
+        "by_regime": {
+          "congested": {
+            "speed_m_s": {
+              "bias": 5.706,
+              "mae": 5.706,
+              "mape": 1.2475,
+              "n": 16,
+              "pearson_r": 0.6666
+            },
+            "travel_time_s": {
+              "bias": -95.765,
+              "mae": 95.765,
+              "mape": 0.4744,
+              "n": 16,
+              "pearson_r": 0.4448
+            },
+            "volume_veh_h": {
+              "bias": 352.323,
+              "mae": 352.323,
+              "mape": 0.4474,
+              "n": 16,
+              "pearson_r": 0.8484
+            },
+            "windows": 16
+          },
+          "free_flow": {
+            "speed_m_s": {
+              "bias": 0.645,
+              "mae": 1.021,
+              "mape": 0.0733,
+              "n": 1712,
+              "pearson_r": -0.0703
+            },
+            "travel_time_s": {
+              "bias": -2.553,
+              "mae": 4.323,
+              "mape": 0.0692,
+              "n": 1712,
+              "pearson_r": -0.0644
+            },
+            "volume_veh_h": {
+              "bias": 1.196,
+              "mae": 92.511,
+              "mape": 0.2289,
+              "n": 1712,
+              "pearson_r": 0.9604
+            },
+            "windows": 1712
+          }
+        },
+        "lane_scaling": "per-segment lane share (calibrated on TRAIN) or default 1/2",
+        "per_kpi": {
+          "delay_s": {
+            "bias": -3.353,
+            "mae": 5.106,
+            "mape": 0.7143,
+            "n": 1728,
+            "pearson_r": 0.3546,
+            "truth_mean": 6.993
+          },
+          "density_veh_km": {
+            "bias": 0.167,
+            "mae": 2.187,
+            "mape": 0.2428,
+            "n": 1728,
+            "pearson_r": 0.8526,
+            "truth_mean": 9.301
+          },
+          "speed_m_s": {
+            "bias": 0.691,
+            "mae": 1.065,
+            "mape": 0.0842,
+            "n": 1728,
+            "pearson_r": 0.2271,
+            "truth_mean": 14.079
+          },
+          "throughput_veh_h": {
+            "bias": 9.073,
+            "mae": 138.81,
+            "mape": 0.3311,
+            "n": 1728,
+            "pearson_r": 0.9144,
+            "truth_mean": 462.326
+          },
+          "travel_time_s": {
+            "bias": -3.416,
+            "mae": 5.17,
+            "mape": 0.073,
+            "n": 1728,
+            "pearson_r": 0.3518,
+            "truth_mean": 62.597
+          },
+          "volume_veh_h": {
+            "bias": 4.447,
+            "mae": 94.917,
+            "mape": 0.2309,
+            "n": 1728,
+            "pearson_r": 0.9571,
+            "truth_mean": 462.91
+          }
+        },
+        "queue_indicator": {
+          "spearman_r_vs_truth_waiting_vehicles": 0.1182,
+          "windows_with_queue_at_loop": 8
+        },
+        "windows_compared": 1728
+      }
+    },
+    "truth_validation_held_out_pooled": {
+      "by_regime": {
+        "congested": {
+          "speed_m_s": {
+            "bias": 4.611,
+            "mae": 4.632,
+            "mape": 0.8988,
+            "n": 51,
+            "pearson_r": 0.81
+          },
+          "travel_time_s": {
+            "bias": -78.789,
+            "mae": 82.016,
+            "mape": 0.4085,
+            "n": 51,
+            "pearson_r": 0.8204
+          },
+          "volume_veh_h": {
+            "bias": 367.21,
+            "mae": 369.411,
+            "mape": 0.4898,
+            "n": 51,
+            "pearson_r": 0.8751
+          },
+          "windows": 51
+        },
+        "free_flow": {
+          "speed_m_s": {
+            "bias": 0.632,
+            "mae": 1.008,
+            "mape": 0.0723,
+            "n": 3405,
+            "pearson_r": -0.0749
+          },
+          "travel_time_s": {
+            "bias": -2.504,
+            "mae": 4.261,
+            "mape": 0.0683,
+            "n": 3405,
+            "pearson_r": -0.072
+          },
+          "volume_veh_h": {
+            "bias": 1.929,
+            "mae": 96.717,
+            "mape": 0.2332,
+            "n": 3405,
+            "pearson_r": 0.9603
+          },
+          "windows": 3405
+        }
+      },
+      "lane_scaling": "per-segment lane share (calibrated on TRAIN) or default 1/2",
+      "per_kpi": {
+        "delay_s": {
+          "bias": -3.571,
+          "mae": 5.349,
+          "mape": 0.7058,
+          "n": 3456,
+          "pearson_r": 0.8153,
+          "truth_mean": 7.957
+        },
+        "density_veh_km": {
+          "bias": 0.819,
+          "mae": 2.892,
+          "mape": 0.2547,
+          "n": 3456,
+          "pearson_r": 0.8462,
+          "truth_mean": 9.497
+        },
+        "speed_m_s": {
+          "bias": 0.691,
+          "mae": 1.061,
+          "mape": 0.0845,
+          "n": 3456,
+          "pearson_r": 0.465,
+          "truth_mean": 14.035
+        },
+        "throughput_veh_h": {
+          "bias": 11.531,
+          "mae": 145.736,
+          "mape": 0.3394,
+          "n": 3456,
+          "pearson_r": 0.9158,
+          "truth_mean": 462.122
+        },
+        "travel_time_s": {
+          "bias": -3.63,
+          "mae": 5.408,
+          "mape": 0.0733,
+          "n": 3456,
+          "pearson_r": 0.8148,
+          "truth_mean": 63.561
+        },
+        "volume_veh_h": {
+          "bias": 7.319,
+          "mae": 100.742,
+          "mape": 0.237,
+          "n": 3456,
+          "pearson_r": 0.9577,
+          "truth_mean": 462.683
+        }
+      },
+      "queue_indicator": {
+        "spearman_r_vs_truth_waiting_vehicles": 0.1626,
+        "windows_with_queue_at_loop": 30
+      },
+      "windows_compared": 3456
+    }
+  },
+  "notes": {
+    "api_kpis_paginate_all_windows_no_duplicates": "n=36",
+    "api_kpis_validate_against_network_state_contract": "invalid=0",
+    "api_serves_historical_kpis_as_stale_never_fresh": "",
+    "congested_regime_error_is_reported_not_hidden": "congested windows=51 travel_time mape=0.4085 (gate-free, documented limit)",
+    "db_kpis_equal_pure_function_kpis_from_dataset_file": "windows=216",
+    "duplicate_events_never_double_count": "",
+    "events_ingested_through_real_write_path": "{'inserted': 6480} in 148s",
+    "every_kpi_validates_as_network_state_v1": "216 records",
+    "freshness_is_computed_at_read_time": "latest={'fresh'} 1h-old={'stale'}",
+    "held_out_density_veh_km_meets_gate": "{'mape': 0.2547, 'bias': 0.819, 'pearson_r': 0.8462, 'truth_mean': 9.497} gate={'max_mape': 0.35, 'min_r': 0.7}",
+    "held_out_speed_m_s_meets_gate": "{'mape': 0.0845, 'bias': 0.691, 'pearson_r': 0.465, 'truth_mean': 14.035} gate={'max_mape': 0.15}",
+    "held_out_throughput_veh_h_meets_gate": "{'mape': 0.3394, 'bias': 11.531, 'pearson_r': 0.9158, 'truth_mean': 462.122} gate={'min_r': 0.85}",
+    "held_out_travel_time_s_meets_gate": "{'mape': 0.0733, 'bias': -3.63, 'pearson_r': 0.8148, 'truth_mean': 63.561} gate={'max_mape': 0.12}",
+    "held_out_volume_veh_h_meets_gate": "{'mape': 0.237, 'bias': 7.319, 'pearson_r': 0.9577, 'truth_mean': 462.683} gate={'max_rel_bias': 0.05, 'max_mape': 0.3, 'min_r': 0.9}",
+    "kpi_computation_is_deterministic": "",
+    "kpi_values_are_finite_and_in_range": "",
+    "lane_share_calibrated_on_train_split_only": "",
+    "majority_missing_segments_is_invalid": "invalid",
+    "missing_segment_degrades_quality_not_silently_valid": "suspect 2/3",
+    "recompute_is_idempotent_no_duplicate_rows": "rows 216 -> 216",
+    "reliability_needs_six_trailing_windows_then_appears": "186/216 windows carry TTI/PTI/BI",
+    "segment_state_carries_forward_with_zero_samples_for_old_data": "",
+    "segment_state_now_supported_and_contract_valid": "status=200",
+    "segments_loaded_from_database": ""
+  },
+  "task": "P06.01"
+}
