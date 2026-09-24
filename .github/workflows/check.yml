@@ -45,12 +45,16 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 15
     needs: [python, frontend]
+    # SONAR_TOKEN lives in the "Docker" environment's secrets, not repo-level
+    # secrets - a job only sees an environment's secrets when it declares
+    # that environment here.
+    environment: Docker
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
       - name: SonarQube Cloud Scan
-        uses: SonarSource/sonarqube-scan-action@v6
+        uses: SonarSource/sonarqube-scan-action@fd88b7d7ccbaefd23d8f36f73b59db7a3d246602 # v6.0.0
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
@@ -79,6 +83,9 @@ jobs:
   supply-chain:
     runs-on: ubuntu-24.04
     timeout-minutes: 20
+    # DOCKERHUB_USERNAME/DOCKERHUB_TOKEN live in the "Docker" environment's
+    # secrets, not repo-level secrets - see the sonarqube job's comment above.
+    environment: Docker
     env:
       DOCKERHUB_IMAGE: iukhan82/aiops-edge
     steps:
@@ -105,7 +112,7 @@ jobs:
       # Docker Hub before it's merged.
       - name: Log in to Docker Hub
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-        uses: docker/login-action@v3
+        uses: docker/login-action@c94ce9fb468520275223c153574b00df6fe4bcc9 # v3.7.0
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}

@@ -174,8 +174,9 @@ def test_exported_event_is_schema_valid_and_carries_no_identity_or_position() ->
 
 def test_identity_is_rehashed_every_window() -> None:
     gate = PrivacyGate([], 300.0, b"test-salt")
+    first, second = gate.ephemeral_id("ped-1", 0), gate.ephemeral_id("ped-1", 0)
     assert gate.ephemeral_id("ped-1", 0) != gate.ephemeral_id("ped-1", 1)
-    assert gate.ephemeral_id("ped-1", 0) == gate.ephemeral_id("ped-1", 0)
+    assert first == second
     assert PrivacyGate([], 300.0, b"other-salt").ephemeral_id("ped-1", 0) != gate.ephemeral_id(
         "ped-1", 0
     )

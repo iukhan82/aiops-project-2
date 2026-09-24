@@ -33,7 +33,7 @@ export function commandSteps(command: Pick<CommandRecord, "status" | "policy_dec
     default:
       path = [...MAIN];
   }
-  const at = path.indexOf(state === "requested_policy_unavailable" ? state : state);
+  const at = path.indexOf(state);
   return path.map((id, index) => ({ id, label: commandLabel(id), state: index < at ? "done" : index === at ? "current" : "upcoming" }));
 }
 

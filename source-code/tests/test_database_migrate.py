@@ -24,8 +24,9 @@ def test_every_migration_file_is_numbered() -> None:
 
 
 def test_checksum_is_deterministic_and_content_sensitive() -> None:
-    assert _checksum("select 1;") == _checksum("select 1;")
-    assert _checksum("select 1;") != _checksum("select 2;")
+    first, second = _checksum("select 1;"), _checksum("select 1;")
+    assert first == second
+    assert first != _checksum("select 2;")
 
 
 def test_discovered_checksums_match_current_file_content() -> None:
