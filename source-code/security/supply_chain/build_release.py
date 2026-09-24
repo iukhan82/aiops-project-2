@@ -267,6 +267,8 @@ def cosign_sign_blob(path: Path) -> Path:
             "run",
             "--rm",
             "-i",
+            "--user",
+            f"{os.getuid()}:{os.getgid()}",
             "-e",
             "COSIGN_PASSWORD",
             "-e",

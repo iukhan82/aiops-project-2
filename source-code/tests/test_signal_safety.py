@@ -17,6 +17,8 @@ NET = Path(__file__).resolve().parents[1] / "simulator" / "network" / "output" /
 
 @pytest.fixture(scope="module")
 def design() -> Design:
+    if not NET.is_file():
+        pytest.skip("network not built (gitignored); run simulator/network/run_container.sh first")
     return load_design(NET)
 
 

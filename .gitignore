@@ -33,7 +33,6 @@ source-code/frontend/.metrics/
 tmp/
 data/generated/
 artifacts/runtime/
-**/models/**/*.onnx
 source-code/simulator/**/output/
 
 # IDE and OS

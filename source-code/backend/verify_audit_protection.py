@@ -216,7 +216,7 @@ async def main() -> int:  # noqa: PLR0915
             cur.execute("ALTER TABLE operator_audit ENABLE TRIGGER operator_audit_no_update")
             cur.execute(
                 "SELECT refuses_embedded_secrets(%s)",
-                ("Authorization: Bearer sk_live_abcdef01234567890",),
+                ("Authorization: Bearer test-fixture-credential-000000",),
             )
             db_refuses_bearer = cur.fetchone()[0]
         db.commit()
