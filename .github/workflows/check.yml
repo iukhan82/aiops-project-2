@@ -16,8 +16,8 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 15
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
           cache: pip
@@ -32,8 +32,8 @@ jobs:
       run:
         working-directory: source-code/frontend
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
         with:
           node-version: "22"
           cache: npm
@@ -50,7 +50,7 @@ jobs:
     # that environment here.
     environment: Docker
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 0
       - name: SonarQube Cloud Scan
@@ -62,7 +62,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 15
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           persist-credentials: false
       - name: Scan dependencies, configuration and secrets
@@ -89,10 +89,10 @@ jobs:
     env:
       DOCKERHUB_IMAGE: iukhan82/aiops-edge
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           persist-credentials: false
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
           cache: pip
@@ -100,7 +100,7 @@ jobs:
       - run: python -m pip install --disable-pip-version-check -r source-code/requirements-lock.txt
       - name: Build, scan, SBOM, sign and admission-gate the edge release image (P09.08)
         run: python3 source-code/security/supply_chain/build_release.py
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v6
         if: always()
         with:
           name: supply-chain-evidence
