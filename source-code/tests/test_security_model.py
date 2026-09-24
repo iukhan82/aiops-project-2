@@ -75,6 +75,10 @@ def test_the_shipped_files_reference_only_things_that_exist() -> None:
     assert vtm.zones_in_diagram() <= {b["zone"] for b in MODEL["boundaries"]}
 
 
+DOCS_ABSENT = "markdown project documents are not stored in the repository"
+
+
+@pytest.mark.skipif(not vtm.REGISTER.is_file(), reason=DOCS_ABSENT)
 @pytest.mark.parametrize(
     "control",
     [c for c in CONTROLS.values() if c["status"] in ("planned", "partial")],
@@ -85,6 +89,7 @@ def test_every_open_control_names_a_registered_task_and_what_is_missing(control:
     assert control["gap"] and control["due"]
 
 
+@pytest.mark.skipif(not (vtm.RISK_DOC.is_file() and vtm.THREAT_DOC.is_file()), reason=DOCS_ABSENT)
 def test_the_document_tables_are_current() -> None:
     rows = vtm.rows_of(MODEL, CONTROLS)
     assert vtm.apply_blocks(vtm.RISK_DOC, vtm.generated_risk_tables(rows, CONTROLS), write=False)

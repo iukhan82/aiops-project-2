@@ -105,6 +105,9 @@ def validate_links(errors: list[str]) -> None:
 
 
 def main() -> int:
+    if not (ROOT / "TASK_REGISTER.md").is_file():
+        print("Management validation skipped: markdown project documents are not in this checkout")
+        return 0
     errors: list[str] = []
     missing = sorted(name for name in REQUIRED_ROOTS if not (ROOT / name).is_dir())
     if missing:
