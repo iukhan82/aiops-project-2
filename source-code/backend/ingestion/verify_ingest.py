@@ -102,7 +102,7 @@ def ensure_known_device(conn: psycopg.Connection) -> None:
                 device_id, device_type, deployment_type, agency_scope, geometry_version,
                 location, status, registered_at, privacy_classification, retention_class
             ) VALUES (
-                %s, 'traffic_loop', 'simulated', 'city-traffic-ops', %s,
+                %s, 'inductive_loop', 'simulated', 'city-traffic-ops', %s,
                 ST_SetSRID(ST_MakePoint(74.3587, 31.5204), 4326)::geography,
                 'active', now(), 'none', 'standard'
             )

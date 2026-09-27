@@ -17,6 +17,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import secrets
 import sys
 from pathlib import Path
@@ -31,11 +32,33 @@ from database.migrate import dsn_from_env  # noqa: E402
 
 OUTPUT_DIR = SOURCE_ROOT / "infra" / "platform" / "output"
 SECRETS_PATH = OUTPUT_DIR / "service_role_secrets.json"
-ROLES = ("svc_command_executor", "svc_outcome_verifier", "svc_scenario_control")
+ROLES = (
+    "svc_command_executor",
+    "svc_outcome_verifier",
+    "svc_scenario_control",
+    "svc_platform_correlator",
+    "svc_remediation_worker",
+)
+
+
+def record(role: str, password: str) -> None:
+    """Persist one role's password in the git-ignored secrets file: a temp file in the same directory, then an atomic
+    replace, so a crash never leaves a half-written file that would lock every service out."""
+    existing = (
+        json.loads(SECRETS_PATH.read_text(encoding="utf-8")) if SECRETS_PATH.is_file() else {}
+    )
+    existing[role] = password
+    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+    tmp = SECRETS_PATH.with_suffix(".json.tmp")
+    tmp.write_text(json.dumps(existing, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    os.replace(tmp, SECRETS_PATH)
 
 
 def rotate(conn: psycopg.Connection, role: str) -> str:
-    """`ALTER ROLE ... PASSWORD` takes a literal, not a bind parameter (it is not valid in that position in Postgres's
+    """Changes the role's password in Postgres AND records it in the secrets file, in this one function: a caller cannot
+    rotate the database side and forget the file, which would leave every service unable to connect as that role.
+
+    `ALTER ROLE ... PASSWORD` takes a literal, not a bind parameter (it is not valid in that position in Postgres's
     grammar) - `sql.Literal` still escapes it safely, the same protection a bound parameter would give."""
     password = secrets.token_urlsafe(32)
     with conn.cursor() as cur:
@@ -43,6 +66,7 @@ def rotate(conn: psycopg.Connection, role: str) -> str:
             sql.SQL("ALTER ROLE {} PASSWORD {}").format(sql.Identifier(role), sql.Literal(password))
         )
     conn.commit()
+    record(role, password)
     return password
 
 
@@ -54,16 +78,11 @@ def main() -> int:
     args = parser.parse_args()
     targets = args.roles or list(ROLES)
 
-    existing = (
-        json.loads(SECRETS_PATH.read_text(encoding="utf-8")) if SECRETS_PATH.is_file() else {}
-    )
     with psycopg.connect(dsn_from_env()) as conn:
         for role in targets:
-            existing[role] = rotate(conn, role)
+            rotate(conn, role)
             print(f"rotated {role}", flush=True)
 
-    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-    SECRETS_PATH.write_text(json.dumps(existing, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     print(f">> wrote {SECRETS_PATH}")
     return 0
 

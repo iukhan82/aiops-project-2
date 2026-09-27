@@ -175,6 +175,11 @@ def main() -> int:
     with psycopg.connect(dsn_from_env()) as conn:
         register_devices(conn, devices)
         reset_simulated_loops(conn)  # one simulated timeline in the DB at a time
+        with conn.cursor() as cur:
+            # KPI windows are derived data: other verifiers seed windows of their own (the policy, command and pre-emption checks need "fresh evidence")
+            # and this one counts rows and pages through all of them, so it starts from none rather than from whatever ran before it
+            cur.execute("DELETE FROM corridor_kpis WHERE geometry_version = %s", (GEOMETRY,))
+        conn.commit()
         t0 = time.time()
         outcomes = load_events(conn, events)
         ev.check(

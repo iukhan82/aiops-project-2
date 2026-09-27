@@ -1,0 +1,75 @@
+# P09.09 (target): Falco as a DaemonSet, so it reads the node's own container runtime and resolves every pod to its Kubernetes namespace and name.
+#
+# Falco run from the HOST of a kind node sees a pod's processes but cannot name the pod (the pods are one runtime deeper: verify_falco_target.py
+# proved that empty-handed). Inside the node, with the CRI socket mounted, `k8s.ns.name` and `k8s.pod.name` resolve and the platform rules match the
+# pods themselves.
+#
+# It is PRIVILEGED by necessity (it loads an eBPF program into the node's kernel and reads every process), so it lives in its own namespace, which is
+# the one namespace of this deployment that Pod Security does not hold to `restricted`. Nothing else runs there and no platform workload can reach it.
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: aiops-falco
+  labels:
+    app.kubernetes.io/part-of: aiops-platform
+    pod-security.kubernetes.io/enforce: privileged
+    pod-security.kubernetes.io/audit: privileged
+    pod-security.kubernetes.io/warn: privileged
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: aiops-falco
+  namespace: aiops-falco
+automountServiceAccountToken: false
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: aiops-falco
+  namespace: aiops-falco
+  labels:
+    app.kubernetes.io/name: aiops-falco
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: aiops-falco
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: aiops-falco
+    spec:
+      serviceAccountName: aiops-falco
+      automountServiceAccountToken: false
+      hostPID: true
+      containers:
+        - name: falco
+          image: falcosecurity/falco:0.44.1
+          imagePullPolicy: IfNotPresent
+          args:
+            - falco
+            - -r
+            - /etc/falco/falco_rules.yaml
+            - -r
+            - /rules/aiops_rules.yaml
+            - -o
+            - rule_matching=all
+            - -o
+            - json_output=true
+            - -o
+            - stdout_output.enabled=true
+          securityContext:
+            privileged: true
+          resources:
+            requests: {cpu: 100m, memory: 256Mi}
+            limits: {cpu: 500m, memory: 768Mi}
+          volumeMounts:
+            - {name: proc, mountPath: /host/proc, readOnly: true}
+            - {name: etc, mountPath: /host/etc, readOnly: true}
+            - {name: containerd, mountPath: /host/run/containerd/containerd.sock}
+            - {name: rules, mountPath: /rules, readOnly: true}
+      volumes:
+        - {name: proc, hostPath: {path: /proc}}
+        - {name: etc, hostPath: {path: /etc}}
+        - {name: containerd, hostPath: {path: /run/containerd/containerd.sock, type: Socket}}
+        - {name: rules, configMap: {name: aiops-falco-rules}}

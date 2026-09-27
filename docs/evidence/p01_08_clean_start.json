@@ -1,0 +1,39 @@
+{
+  "all_passed": true,
+  "checks": {
+    "clean_environment_A_tree_with_markdown_documents_install_and_smoke_check_succeeds": true,
+    "clean_environment_B_tree_without_markdown_documents_install_and_smoke_check_succeeds": true,
+    "frontend_npm_ci_and_check_succeed_in_a_clean_node_22_container": true,
+    "with_the_documents_present_the_management_validation_runs_and_passes": true,
+    "without_the_documents_the_management_validation_skips_instead_of_failing": true
+  },
+  "generated_at": "2026-09-25T11:17:21Z",
+  "metrics": {
+    "A_tree_with_markdown_documents": {
+      "management_validation": "passed",
+      "pytest_passed": 648,
+      "pytest_skipped": 67,
+      "seconds": 49,
+      "tail": "SKIPPED [6] source-code/tests/test_sensor_catalog.py:35: sensor catalog not generated; run source-code/simulator/sensors/run_container.sh first\nSKIPPED [1] source-code/tests/test_sensor_catalog.py:107: second run output not present; run_container.sh produces both run-a and run-b\nSKIPPED [1] source-code/tests/test_signal_safety.py:37: network not built (gitignored); run simulator/network/run_container.sh first\nSKIPPED [1] source-code/tests/test_signal_safety.py:44: network not built (gitignored); run simulator/network/run_container.sh first\n648 passed, 67 skipped, 3 warnings in 13.49s\nManagement validation passed: 133 tasks, 16 skills, links OK"
+    },
+    "B_tree_without_markdown_documents": {
+      "management_validation": "skipped",
+      "pytest_passed": 632,
+      "pytest_skipped": 83,
+      "seconds": 42,
+      "tail": "SKIPPED [6] source-code/tests/test_sensor_catalog.py:35: sensor catalog not generated; run source-code/simulator/sensors/run_container.sh first\nSKIPPED [1] source-code/tests/test_sensor_catalog.py:107: second run output not present; run_container.sh produces both run-a and run-b\nSKIPPED [1] source-code/tests/test_signal_safety.py:37: network not built (gitignored); run simulator/network/run_container.sh first\nSKIPPED [1] source-code/tests/test_signal_safety.py:44: network not built (gitignored); run simulator/network/run_container.sh first\n632 passed, 83 skipped, 3 warnings in 12.41s\nManagement validation skipped: markdown project documents are not in this checkout"
+    },
+    "environment": {
+      "os": "Ubuntu 26.04 LTS",
+      "python": "Python 3.14.4"
+    }
+  },
+  "notes": {
+    "clean_environment_A_tree_with_markdown_documents_install_and_smoke_check_succeeds": "49 s; pytest 648 passed, 67 skipped; management passed",
+    "clean_environment_B_tree_without_markdown_documents_install_and_smoke_check_succeeds": "42 s; pytest 632 passed, 83 skipped; management skipped",
+    "frontend_npm_ci_and_check_succeed_in_a_clean_node_22_container": "30 s; vitest 41 tests passed",
+    "with_the_documents_present_the_management_validation_runs_and_passes": "",
+    "without_the_documents_the_management_validation_skips_instead_of_failing": ""
+  },
+  "task": "P01.08"
+}

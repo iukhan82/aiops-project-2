@@ -1,0 +1,152 @@
+{
+  "all_passed": true,
+  "checks": {
+    "a_backup_that_was_changed_by_one_bit_is_refused": true,
+    "a_rollout_to_an_image_that_does_not_exist_leaves_the_old_api_serving_throughout": true,
+    "after_a_restart_of_aiops-api_it_is_ready_and_the_end_to_end_check_passes": true,
+    "after_a_restart_of_aiops-ingestion-gateway_it_is_ready_and_the_end_to_end_check_passes": true,
+    "after_a_restart_of_aiops-kafka-broker_it_is_ready_and_the_end_to_end_check_passes": true,
+    "after_a_restart_of_aiops-keycloak_it_is_ready_and_the_end_to_end_check_passes": true,
+    "after_a_restart_of_aiops-mqtt-broker_it_is_ready_and_the_end_to_end_check_passes": true,
+    "after_a_restart_of_aiops-mqtt-gateway_it_is_ready_and_the_end_to_end_check_passes": true,
+    "after_a_restart_of_aiops-opa_it_is_ready_and_the_end_to_end_check_passes": true,
+    "after_a_restart_of_aiops-postgres_it_is_ready_and_the_end_to_end_check_passes": true,
+    "after_the_loss_of_the_volume_the_database_is_empty": true,
+    "data_written_after_the_backup_is_gone_that_is_the_recovery_point_and_it_is_the_age_of_the_backup": true,
+    "every_row_written_before_the_backup_is_back_in_the_restored_database": true,
+    "rollout_undo_restores_the_previous_revision_and_the_api_is_healthy": true,
+    "the_audit_hash_chains_are_intact_after_the_restore": true,
+    "the_audit_hash_chains_are_intact_before_the_backup": true,
+    "the_audit_hash_chains_verify_intact_on_the_restored_copy": true,
+    "the_backup_is_encrypted_restricted_and_matches_its_manifest": true,
+    "the_backup_restores_into_a_scratch_database": true,
+    "the_data_survived_every_restart_and_the_audit_chains_are_intact": true,
+    "the_database_has_real_content_before_the_backup": true,
+    "the_database_is_restored_from_the_encrypted_backup_roles_and_all": true,
+    "the_end_to_end_check_passes_after_the_restore": true,
+    "the_platform_is_given_real_content_through_the_real_path_before_the_backup": true,
+    "the_platform_passes_the_end_to_end_check_after_everything": true,
+    "the_restored_copy_has_exactly_the_rows_and_content_of_the_original_in_every_table": true,
+    "the_same_fault_on_a_recreate_worker_is_an_outage_until_it_is_undone_and_it_is_recorded_as_one": true
+  },
+  "generated_at": "2026-09-26T04:50:43Z",
+  "metrics": {
+    "backup": {
+      "cipher": "aes-256-cbc pbkdf2",
+      "files": {
+        "aiops.dump.enc": {
+          "bytes": 356592,
+          "plain_bytes": 356561,
+          "sha256": "742039e3687821a62807da63d792823254e4b53e2b17489918ce42ab2418df5d"
+        },
+        "globals.sql.enc": {
+          "bytes": 2016,
+          "plain_bytes": 1996,
+          "sha256": "033e7cf7027f297ba8fb895a4ba971ea54ab6ba0844693dfd1af11e80e02d810"
+        }
+      },
+      "format": "pg_dump -Fc + pg_dumpall --globals-only",
+      "seconds": 1.25,
+      "taken_at": "2026-09-26T04:40:14Z"
+    },
+    "disaster": {
+      "recovery_point_seconds_age_of_backup": 2.3,
+      "restore_seconds": 82.17,
+      "seconds_from_loss_of_the_volume_to_a_passing_end_to_end_check": 203.2
+    },
+    "restarts": {
+      "aiops-api": {
+        "end_to_end": true,
+        "healthy_end_to_end_seconds": 31.1,
+        "ready_seconds": 13.2
+      },
+      "aiops-ingestion-gateway": {
+        "end_to_end": true,
+        "healthy_end_to_end_seconds": 19.1,
+        "ready_seconds": 1.5
+      },
+      "aiops-kafka-broker": {
+        "end_to_end": true,
+        "healthy_end_to_end_seconds": 21.3,
+        "ready_seconds": 3.4
+      },
+      "aiops-keycloak": {
+        "end_to_end": true,
+        "healthy_end_to_end_seconds": 61.2,
+        "ready_seconds": 43.3
+      },
+      "aiops-mqtt-broker": {
+        "end_to_end": true,
+        "healthy_end_to_end_seconds": 20.1,
+        "ready_seconds": 2.2
+      },
+      "aiops-mqtt-gateway": {
+        "end_to_end": true,
+        "healthy_end_to_end_seconds": 20.1,
+        "ready_seconds": 2.8
+      },
+      "aiops-opa": {
+        "end_to_end": true,
+        "healthy_end_to_end_seconds": 20.1,
+        "ready_seconds": 2.2
+      },
+      "aiops-postgres": {
+        "end_to_end": true,
+        "healthy_end_to_end_seconds": 32.9,
+        "ready_seconds": 3.6,
+        "rows_after": 2495,
+        "rows_before": 2494
+      }
+    },
+    "restore_into_scratch_seconds": 3.49,
+    "rollout": {
+      "api_answers_during_bad_rollout": 20,
+      "api_failures_during_bad_rollout": 0,
+      "api_undo_seconds": 0.2,
+      "executor_outage_seconds": 47.1
+    },
+    "tables": {
+      "devices": 10,
+      "geometry_versions": 1,
+      "observation_events": 2401,
+      "operator_audit": 36,
+      "platform_incident_events": 3,
+      "platform_incident_signals": 2,
+      "platform_incidents": 1,
+      "schema_migrations": 30,
+      "service_heartbeats": 2
+    }
+  },
+  "notes": {
+    "a_backup_that_was_changed_by_one_bit_is_refused": "",
+    "a_rollout_to_an_image_that_does_not_exist_leaves_the_old_api_serving_throughout": "20 answers, 0 failures during 45 s; pods:\naiops-api-6cb9b95476-nk2f5   1/1   Running            0     2m1s\naiops-api-6cffcb4f98-ppdf7   0/1   ImagePullBackOff   0     47s",
+    "after_a_restart_of_aiops-api_it_is_ready_and_the_end_to_end_check_passes": "ready in 13.2 s, healthy end to end in 31.1 s",
+    "after_a_restart_of_aiops-ingestion-gateway_it_is_ready_and_the_end_to_end_check_passes": "ready in 1.5 s, healthy end to end in 19.1 s",
+    "after_a_restart_of_aiops-kafka-broker_it_is_ready_and_the_end_to_end_check_passes": "ready in 3.4 s, healthy end to end in 21.3 s",
+    "after_a_restart_of_aiops-keycloak_it_is_ready_and_the_end_to_end_check_passes": "ready in 43.3 s, healthy end to end in 61.2 s",
+    "after_a_restart_of_aiops-mqtt-broker_it_is_ready_and_the_end_to_end_check_passes": "ready in 2.2 s, healthy end to end in 20.1 s",
+    "after_a_restart_of_aiops-mqtt-gateway_it_is_ready_and_the_end_to_end_check_passes": "ready in 2.8 s, healthy end to end in 20.1 s",
+    "after_a_restart_of_aiops-opa_it_is_ready_and_the_end_to_end_check_passes": "ready in 2.2 s, healthy end to end in 20.1 s",
+    "after_a_restart_of_aiops-postgres_it_is_ready_and_the_end_to_end_check_passes": "ready in 3.6 s, healthy end to end in 32.9 s; rows 2494 -> 2495",
+    "after_the_loss_of_the_volume_the_database_is_empty": "0 tables in the new instance",
+    "data_written_after_the_backup_is_gone_that_is_the_recovery_point_and_it_is_the_age_of_the_backup": "the marker row written 2.3 s after the backup is absent",
+    "every_row_written_before_the_backup_is_back_in_the_restored_database": "33 tables identical, 5 grew after the restart: ['observation_events', 'platform_incident_events', 'platform_incident_signals', 'platform_incidents', 'service_heartbeats']",
+    "not_proven": "one node, one volume: no replica, no failover, no node loss; the backup key is on the same host as the archive; the data set is small, so restore times do not extrapolate; an operator following the runbook (P11.08) was not timed; Keycloak's embedded database is not backed up here",
+    "recovery_objectives": "Recovery point: the age of the newest backup - here 2.3 s because the backup was taken just before the loss; there is NO scheduled backup, so in real use it is however long ago someone took one. Recovery time for the loss of the database volume: 203.2 s on this data set (small), from the loss to a passing end-to-end check, done by a script, not an operator following a runbook.",
+    "rollout_undo_restores_the_previous_revision_and_the_api_is_healthy": "rolled back in 0.2 s",
+    "the_audit_hash_chains_are_intact_after_the_restore": "every chained history is intact",
+    "the_audit_hash_chains_are_intact_before_the_backup": "every chained history is intact",
+    "the_audit_hash_chains_verify_intact_on_the_restored_copy": "every chained history is intact",
+    "the_backup_is_encrypted_restricted_and_matches_its_manifest": "356592 bytes in 1.25 s",
+    "the_backup_restores_into_a_scratch_database": "3.49 s ",
+    "the_data_survived_every_restart_and_the_audit_chains_are_intact": "every chained history is intact",
+    "the_database_has_real_content_before_the_backup": "38 tables, 2486 rows",
+    "the_database_is_restored_from_the_encrypted_backup_roles_and_all": "82.17 s",
+    "the_end_to_end_check_passes_after_the_restore": "32.8 s for the check",
+    "the_platform_is_given_real_content_through_the_real_path_before_the_backup": "2400 of 2400 events arrived",
+    "the_platform_passes_the_end_to_end_check_after_everything": "",
+    "the_restored_copy_has_exactly_the_rows_and_content_of_the_original_in_every_table": "38 tables; differing []",
+    "the_same_fault_on_a_recreate_worker_is_an_outage_until_it_is_undone_and_it_is_recorded_as_one": "executor down 47.1 s including the undo; pods during the fault: aiops-command-executor-58954d68fc-9f54c   0/1   ImagePullBackOff   0     27s"
+  },
+  "task": "P11.05"
+}

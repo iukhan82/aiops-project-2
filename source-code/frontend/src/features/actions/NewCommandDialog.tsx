@@ -46,6 +46,11 @@ export function NewCommandDialog({ open, onClose, onDone }: { open: boolean; onC
     if (kind === "signal_plan_change" && (!Number.isFinite(seconds) || seconds <= 0 || seconds > 20)) found.deviation = "Give the seconds of green to move, more than 0 and at most 20.";
     setErrors(found);
     if (Object.keys(found).length > 0) return;
+    if (!chosen) {
+      // Found by the P12.01 sweep: pressing the button before the list of targets had loaded sent an empty target and showed the API's validation text.
+      setResult({ tone: "danger", title: "Not requested", message: topology.loading ? "The list of targets is still loading. Nothing was requested; try again in a moment." : "There is no target to choose. Nothing was requested." });
+      return;
+    }
     const outcome = await save.run(() =>
       api<{ command_id: string; safety_class: string }>("/api/v1/commands", {
         method: "POST",

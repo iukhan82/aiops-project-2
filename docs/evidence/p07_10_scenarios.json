@@ -20,7 +20,7 @@
     "stale_evidence_denies_the_preemption_and_the_unit_drives_on_unassisted": true,
     "the_recorded_assignment_timeline_equals_the_simulated_travel_and_carries_the_predicted_eta": true
   },
-  "generated_at": "2026-09-20T15:23:27Z",
+  "generated_at": "2026-09-26T09:12:42Z",
   "metrics": {
     "eta_01_normal_traffic": {
       "against_the_unassisted_baseline_instead": {

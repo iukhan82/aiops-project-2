@@ -13,7 +13,7 @@
     "the_transit_priority_command_is_approved_by_real_policy": true,
     "transit_priority_measurably_reduces_the_transit_vehicles_travel_time": true
   },
-  "generated_at": "2026-09-20T15:17:44Z",
+  "generated_at": "2026-09-26T09:05:58Z",
   "metrics": {
     "balanced_measurement": {
       "cross_traffic_harm": {
@@ -38,7 +38,7 @@
     "signal_safety_monitor_reports_zero_violations_in_the_baseline_and_priority_runs": "baseline 0, priority 0",
     "the_command_status_reflects_the_real_completed_corridor": "",
     "the_target_phase_gives_the_buss_actual_movement_a_green": "{'int-b1': 0, 'int-b2': 0}",
-    "the_transit_priority_command_is_approved_by_real_policy": "{'command_id': UUID('fba01273-789a-4c36-b91a-a4fd6a0b376b'), 'idempotency_key': 'verify-p0708-priority-1789917458.440406', 'recommendation_id': None, 'action_type': 'transit_priority', 'target_adapter': 'transit_priority_adapter', 'target_entity_id': 'corridor-b', 'requested_by': 'operator:alice', 'requested_at': datetime.datetime(2026, 9, 20, 15, 17, 38, 440406, tzinfo=zoneinfo.ZoneInfo(key='Etc/UTC')), 'approved_by': 'supervisor:bob', 'approved_at': datetime.datetime(2026, 9, 20, 15, 17, 40, 440406, tzinfo=zoneinfo.ZoneInfo(key='Etc/UTC')), 'expires_at': datetime.datetime(2026, 9, 20, 15, 19, 38, 440406, tzinfo=zoneinfo.ZoneInfo(key='Etc/UTC')), 'policy_decision': 'approved', 'status': 'approved', 'acknowledged_at': None, 'rolled_back_at': None, 'error_code': None, 'error_message': None, 'error_retryable': None, 'requested_by_role': 'operator', 'approved_by_role': 'supervisor'}",
+    "the_transit_priority_command_is_approved_by_real_policy": "{'command_id': UUID('27fd79c9-35f5-4553-a246-174ea98ddc2b'), 'idempotency_key': 'verify-p0708-priority-1790413552.456087', 'recommendation_id': None, 'action_type': 'transit_priority', 'target_adapter': 'transit_priority_adapter', 'target_entity_id': 'corridor-b', 'requested_by': 'operator:alice', 'requested_at': datetime.datetime(2026, 9, 26, 9, 5, 52, 456087, tzinfo=zoneinfo.ZoneInfo(key='Etc/UTC')), 'approved_by': 'supervisor:bob', 'approved_at': datetime.datetime(2026, 9, 26, 9, 5, 54, 456087, tzinfo=zoneinfo.ZoneInfo(key='Etc/UTC')), 'expires_at': datetime.datetime(2026, 9, 26, 9, 7, 52, 456087, tzinfo=zoneinfo.ZoneInfo(key='Etc/UTC')), 'policy_decision': 'approved', 'status': 'approved', 'acknowledged_at': None, 'rolled_back_at': None, 'error_code': None, 'error_message': None, 'error_retryable': None, 'requested_by_role': 'operator', 'approved_by_role': 'supervisor'}",
     "transit_priority_measurably_reduces_the_transit_vehicles_travel_time": "baseline 109.0s -> priority 79.0s (28% faster)"
   },
   "task": "P07.08"

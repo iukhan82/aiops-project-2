@@ -62,6 +62,7 @@ from opentelemetry.sdk.trace.export import (
 )
 from opentelemetry.trace import Span, Status, StatusCode
 
+from backend import trace_sampling
 from backend.redaction import install_log_redaction
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
@@ -140,7 +141,7 @@ def configure(service_name: str, service_version: str = "0.1.0") -> InMemorySpan
         or os.environ.get("OTEL_EXPORTER_OTLP_METRICS_ENDPOINT")
     )
 
-    tracer_provider = TracerProvider(resource=resource)
+    tracer_provider = TracerProvider(resource=resource, sampler=trace_sampling.sampler())
     memory_exporter: InMemorySpanExporter | None = None
     if traces_configured:
         tracer_provider.add_span_processor(BatchSpanProcessor(OTLPSpanExporter()))
@@ -253,6 +254,19 @@ class BoundedHistogram:
     def record(self, value: float, **labels: str) -> None:
         validate_labels(labels)
         self._histogram.record(value, {k: bound_label_value(v) for k, v in labels.items()})
+
+
+class BoundedGauge:
+    """A last-value metric (device counts, ages, sizes, expiry). Same label contract as the counter and histogram: only the
+    enumerated low-cardinality keys, and every value is length-bounded."""
+
+    def __init__(self, name: str, description: str = "", unit: str = "") -> None:
+        meter = _state.get("meter") or metrics.get_meter("aiops")
+        self._gauge = meter.create_gauge(name, description=description, unit=unit)  # type: ignore[union-attr]
+
+    def set(self, value: float, **labels: str) -> None:
+        validate_labels(labels)
+        self._gauge.set(value, {k: bound_label_value(v) for k, v in labels.items()})
 
 
 def _matched_route_template(scope: Mapping[str, object]) -> str | None:

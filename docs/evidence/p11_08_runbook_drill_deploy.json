@@ -1,0 +1,66 @@
+{
+  "all_passed": true,
+  "checks": {
+    "runbook_step_cluster_runs_as_written_and_prints_what_the_runbook_promises": true,
+    "runbook_step_images_runs_as_written_and_prints_what_the_runbook_promises": true,
+    "runbook_step_prepare_runs_as_written_and_prints_what_the_runbook_promises": true,
+    "runbook_step_remove-previous_runs_as_written_and_prints_what_the_runbook_promises": true,
+    "runbook_step_up_runs_as_written_and_prints_what_the_runbook_promises": true,
+    "runbook_step_verify-deployment_runs_as_written_and_prints_what_the_runbook_promises": true,
+    "runbook_step_verify-security_runs_as_written_and_prints_what_the_runbook_promises": true
+  },
+  "generated_at": "2026-09-26T05:50:59Z",
+  "metrics": {
+    "step_seconds": {
+      "cluster": {
+        "exit": 0,
+        "phase": "deploy",
+        "seconds": 104.4
+      },
+      "images": {
+        "exit": 0,
+        "phase": "deploy",
+        "seconds": 158.2
+      },
+      "prepare": {
+        "exit": 0,
+        "phase": "deploy",
+        "seconds": 0.1
+      },
+      "remove-previous": {
+        "exit": 0,
+        "phase": "deploy",
+        "seconds": 89.3
+      },
+      "up": {
+        "exit": 0,
+        "phase": "deploy",
+        "seconds": 372.4
+      },
+      "verify-deployment": {
+        "exit": 0,
+        "phase": "deploy",
+        "seconds": 37.1
+      },
+      "verify-security": {
+        "exit": 0,
+        "phase": "deploy",
+        "seconds": 112.7
+      }
+    },
+    "total_seconds": 874.2
+  },
+  "notes": {
+    "not_proven": "a person other than the author reading it cold: this drill has no judgement to fail on",
+    "phases": "deploy",
+    "runbook_sha256": "d98ea33f73c6edfc156666b686e5c031cbca2f1343b6ca7da8a5abc93dd8f27a",
+    "runbook_step_cluster_runs_as_written_and_prints_what_the_runbook_promises": "104.4 s, exit 0; cluster ready: NAME                      STATUS   ROLES           AGE   VERSION | aiops-p11-control-plane   Ready    control-plane   32s   v1.36.4",
+    "runbook_step_images_runs_as_written_and_prints_what_the_runbook_promises": "158.2 s, exit 0; aiops-frontend:0.1.0 = sha256:92efcf56eed93e745d498f1e89ce08fb845d6ffa4b9101d41a7f8d8df87b6b9c | images loaded into the node",
+    "runbook_step_prepare_runs_as_written_and_prints_what_the_runbook_promises": "0.1 s, exit 0; signed | source-code",
+    "runbook_step_remove-previous_runs_as_written_and_prints_what_the_runbook_promises": "89.3 s, exit 0; Deleted nodes: [\"aiops-p11-control-plane\"] | 0",
+    "runbook_step_up_runs_as_written_and_prints_what_the_runbook_promises": "372.4 s, exit 0; aiops-scenario-control-596db564fc-mtskz    1/1     Running     0               4m56s   10.200.91.136   aiops-p11-control-plane   <none>           <none> | aiops-tempo-0                              1/",
+    "runbook_step_verify-deployment_runs_as_written_and_prints_what_the_runbook_promises": "37.1 s, exit 0; >> Evidence copied to docs/evidence/p11_03_target_deployment.json | P11.03: ALL CHECKS PASSED",
+    "runbook_step_verify-security_runs_as_written_and_prints_what_the_runbook_promises": "112.7 s, exit 0; >> Evidence copied to docs/evidence/p11_04_target_security.json | P11.04: ALL CHECKS PASSED"
+  },
+  "task": "P11.08"
+}

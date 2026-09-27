@@ -82,6 +82,99 @@
       },
       "feature_version": "incident-eval/1",
       "purpose": "incident_report"
+    },
+    {
+      "dataset_sha256": "7ccefb873156b3b0cfda253e72b8ccb54c02fe85a1b645bb3c721d6bcc0d6c0d",
+      "detail": {
+        "model_id": "ops-anomaly-detector",
+        "model_version": "1.0.0",
+        "selected_candidate": "robust_zscore",
+        "selected_on": "validation"
+      },
+      "feature_version": "ops-window/1",
+      "purpose": "final_comparison"
+    },
+    {
+      "dataset_sha256": "7ccefb873156b3b0cfda253e72b8ccb54c02fe85a1b645bb3c721d6bcc0d6c0d",
+      "detail": {
+        "note": "non-selecting: detector, threshold and correlator rules were fixed before this run",
+        "task": "P10.09"
+      },
+      "feature_version": "ops-window/1",
+      "purpose": "fa03_platform_incident_evaluation"
+    },
+    {
+      "dataset_sha256": "ebff75d07e71e85d90dbe7454ee7f75626897b81ad2730e71904c8e9aef30054",
+      "detail": {
+        "model_id": "data-quality-rules",
+        "model_version": "1.0.0",
+        "params": {
+          "cusum_h": 12.0,
+          "cusum_k": 1.5,
+          "gap_grace_s": 120.0,
+          "merge_gap_s": 900.0,
+          "silence_after_s": 180.0,
+          "stuck_run": 4
+        },
+        "selected_on": "train+validation seeds"
+      },
+      "feature_version": "dq-rules/1",
+      "purpose": "final_comparison"
+    },
+    {
+      "dataset_sha256": "ebff75d07e71e85d90dbe7454ee7f75626897b81ad2730e71904c8e9aef30054",
+      "detail": {
+        "by": "verify_data_quality.py",
+        "purpose": "non-selecting reproduction of the recorded test numbers"
+      },
+      "feature_version": "dq-rules/1",
+      "purpose": "reproduction"
+    },
+    {
+      "dataset_sha256": "264d1b5ff08e83b4115b81ab6207c0ae4c24d7a2e4a225eb919f598fb1b83232",
+      "detail": {
+        "model_id": "data-quality-rules",
+        "model_version": "1.0.0",
+        "params": {
+          "cusum_h": 12.0,
+          "cusum_k": 1.5,
+          "gap_grace_s": 120.0,
+          "merge_gap_s": 900.0,
+          "silence_after_s": 180.0,
+          "stuck_run": 4
+        },
+        "selected_on": "train+validation seeds"
+      },
+      "feature_version": "dq-rules/1",
+      "purpose": "final_comparison",
+      "reopen_reason": "device list moved from the generated simulator output to a committed devices.json after the clean-start check (P01.08) found a clean checkout could not run this package; every stream of all 12 seeds verified byte-identical (sha256 f3fbe686...) before and after, so selection and results are expected identical"
+    },
+    {
+      "dataset_sha256": "264d1b5ff08e83b4115b81ab6207c0ae4c24d7a2e4a225eb919f598fb1b83232",
+      "detail": {
+        "by": "verify_data_quality.py",
+        "purpose": "non-selecting reproduction of the recorded test numbers"
+      },
+      "feature_version": "dq-rules/1",
+      "purpose": "reproduction"
+    },
+    {
+      "dataset_sha256": "f361f3b87cc8c0727727999ed8b8c090faa3f2b7f3954380e1efd405676fc6e2",
+      "detail": {
+        "note": "non-selecting: the frozen detector's held-out episodes grouped by corridor and direction; nothing chosen, tuned or changed afterwards",
+        "task": "P12.04"
+      },
+      "feature_version": "congestion-rule/1",
+      "purpose": "corridor_breakdown"
+    },
+    {
+      "dataset_sha256": "7ccefb873156b3b0cfda253e72b8ccb54c02fe85a1b645bb3c721d6bcc0d6c0d",
+      "detail": {
+        "note": "non-selecting reproduction of the recorded test numbers",
+        "task": "P10.06"
+      },
+      "feature_version": "ops-window/1",
+      "purpose": "operations_detector_verification"
     }
   ],
   "format": "test-split-ledger/1"

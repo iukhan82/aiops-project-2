@@ -1,0 +1,62 @@
+{
+  "all_passed": true,
+  "checks": {
+    "Falco_runs_in_the_cluster_loads_its_default_rules_and_the_platform_rules_and_opens_the_modern_eBPF_probe": true,
+    "a_write_below_a_binary_directory_is_refused_by_the_pods_read_only_root_file_system": true,
+    "benign_actions_and_the_platforms_steady_state_raise_none_of_the_platform_rules": true,
+    "every_platform_alert_names_the_pod_the_container_the_process_and_the_numeric_uid": true,
+    "rule_fires_credential_and_names_the_pod_aiops-mqtt-gateway": true,
+    "rule_fires_downloader_and_names_the_pod_aiops-frontend": true,
+    "rule_fires_egress_and_names_the_pod_aiops-edge-runtime": true,
+    "rule_fires_installer_and_names_the_pod_aiops-api": true,
+    "rule_fires_registry_and_names_the_pod_aiops-api": true,
+    "rule_fires_shell_and_names_the_pod_aiops-api": true,
+    "the_interactive_shell_really_had_a_terminal": true,
+    "the_key_read_actually_returned_the_key_so_the_alert_is_about_a_real_read": true,
+    "the_service_user_cannot_read_etc_shadow": true
+  },
+  "generated_at": "2026-09-26T05:52:57Z",
+  "metrics": {
+    "alerts_by_rule_and_pod": {
+      "AIOps edge runtime connecting outside the platform network | aiops-edge-runtime-78d4bcc4b4-fnnq6": 1,
+      "AIOps model registry written at run time | aiops-api-6cb9b95476-67fhw": 1,
+      "AIOps package manager in a platform container | aiops-api-6cb9b95476-67fhw": 1,
+      "AIOps package manager in a platform container | aiops-frontend-75fc979cbc-zxrh4": 1,
+      "AIOps sensitive file read by an unexpected program | aiops-mqtt-gateway-0": 1,
+      "AIOps shell in a platform container | aiops-api-6cb9b95476-67fhw": 1
+    },
+    "falco_image": "falcosecurity/falco:0.44.1",
+    "kernel": "7.0.0-31-generic",
+    "pods": {
+      "aiops-api": "aiops-api-6cb9b95476-67fhw",
+      "aiops-edge-runtime": "aiops-edge-runtime-78d4bcc4b4-fnnq6",
+      "aiops-frontend": "aiops-frontend-75fc979cbc-zxrh4",
+      "aiops-mqtt-gateway": "aiops-mqtt-gateway-0"
+    },
+    "sample_alerts": [
+      "2026-09-26T05:52:34.489942013+0000: Warning Shell in a platform container (container=api image=docker.io/library/import-2026-09-26 user=<NA> uid=10002 shell=sh cmdline=sh -c true parent=<NA> tty=34816) container_id=6a9ddcc36a57 co",
+      "2026-09-26T05:52:34.913567823+0000: Warning Sensitive file read in a platform container (file=/certs/tls.key container=mqtt-gateway user=<NA> uid=10002 proc=cat cmdline=cat /certs/tls.key parent=<NA>) container_id=54c7d5e31cd2 con",
+      "2026-09-26T05:52:35.154914050+0000: Critical Model registry write (file=/tmp/model.onnx container=api user=<NA> uid=10002 proc=python3 cmdline=python3 -c open('/tmp/model.onnx', 'w').write('x')) container_id=6a9ddcc36a57 container",
+      "2026-09-26T05:52:35.491090411+0000: Warning Installer or downloader run in a platform container (container=api user=<NA> uid=10002 proc=pip cmdline=pip /usr/local/bin/pip --version parent=<NA>) container_id=6a9ddcc36a57 container_",
+      "2026-09-26T05:52:40.317654216+0000: Warning Installer or downloader run in a platform container (container=frontend user=<NA> uid=101 proc=wget cmdline=wget -q -T 1 -O /dev/null http://192.0.2.1/ parent=<NA>) container_id=83573e6a",
+      "2026-09-26T05:52:41.585684292+0000: Warning Edge runtime connection outside the platform network (dest=10.200.91.142:36772->1.1.1.1:443 container=edge-runtime proc=python3 user=<NA> uid=10001) container_id=e2a45b7d06cd container_n"
+    ]
+  },
+  "notes": {
+    "Falco_runs_in_the_cluster_loads_its_default_rules_and_the_platform_rules_and_opens_the_modern_eBPF_probe": "   /etc/falco/config.d/falco.container_plugin.yaml | schema validation: ok;    /etc/falco/config.d/falco.iso8601_timeformat.yaml | schema validation: ok;    /et",
+    "a_write_below_a_binary_directory_is_refused_by_the_pods_read_only_root_file_system": "reate /usr/local/bin/aiops-evil: Read-only file system\ncommand terminated with exit code 2",
+    "benign_actions_and_the_platforms_steady_state_raise_none_of_the_platform_rules": "0 platform alert(s) before the first hostile action: []",
+    "every_platform_alert_names_the_pod_the_container_the_process_and_the_numeric_uid": "6 platform alerts",
+    "not_proven": "the actions are performed by this script with kubectl exec, not by an adversary; alert routing to an operator is not built; Falco is privileged, in its own namespace (the one place Pod Security is not `restricted`)",
+    "rule_fires_credential_and_names_the_pod_aiops-mqtt-gateway": "1 alert(s); e.g. 2026-09-26T05:52:34.913567823+0000: Warning Sensitive file read in a platform container (file=/certs/tls.key container=mqtt-gateway user=<NA> uid=10002 proc=cat cmdline=c",
+    "rule_fires_downloader_and_names_the_pod_aiops-frontend": "1 alert(s); e.g. 2026-09-26T05:52:40.317654216+0000: Warning Installer or downloader run in a platform container (container=frontend user=<NA> uid=101 proc=wget cmdline=wget -q -T 1 -O /d",
+    "rule_fires_egress_and_names_the_pod_aiops-edge-runtime": "1 alert(s); e.g. 2026-09-26T05:52:41.585684292+0000: Warning Edge runtime connection outside the platform network (dest=10.200.91.142:36772->1.1.1.1:443 container=edge-runtime proc=python",
+    "rule_fires_installer_and_names_the_pod_aiops-api": "1 alert(s); e.g. 2026-09-26T05:52:35.491090411+0000: Warning Installer or downloader run in a platform container (container=api user=<NA> uid=10002 proc=pip cmdline=pip /usr/local/bin/pip",
+    "rule_fires_registry_and_names_the_pod_aiops-api": "1 alert(s); e.g. 2026-09-26T05:52:35.154914050+0000: Critical Model registry write (file=/tmp/model.onnx container=api user=<NA> uid=10002 proc=python3 cmdline=python3 -c open('/tmp/model",
+    "rule_fires_shell_and_names_the_pod_aiops-api": "1 alert(s); e.g. 2026-09-26T05:52:34.489942013+0000: Warning Shell in a platform container (container=api image=docker.io/library/import-2026-09-26 user=<NA> uid=10002 shell=sh cmdline=sh",
+    "the_interactive_shell_really_had_a_terminal": "^@",
+    "the_key_read_actually_returned_the_key_so_the_alert_is_about_a_real_read": "",
+    "the_service_user_cannot_read_etc_shadow": "cat: /etc/shadow: Permission denied\ncommand terminated with exit code 1"
+  },
+  "task": "P09.09"
+}

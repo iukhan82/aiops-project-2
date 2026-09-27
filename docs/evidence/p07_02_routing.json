@@ -13,7 +13,7 @@
     "the_router_never_uses_a_closed_segment_and_the_grid_still_finds_a_way_through": true,
     "uncertainty_uses_the_stated_default_margin_when_no_live_kpi_exists": true
   },
-  "generated_at": "2026-09-20T10:03:44Z",
+  "generated_at": "2026-09-26T08:42:41Z",
   "metrics": {
     "baseline_alternatives": [
       {
@@ -22,7 +22,7 @@
         "eta_seconds": 118.1,
         "eta_uncertainty_seconds": 17.7,
         "geometry_version": "2026-09-18.1",
-        "route_id": "route-a569b121-9b89-43ad-8177-87ae8d9e0a5a",
+        "route_id": "route-80a89d97-c929-46f8-91e3-7a068376ba23",
         "selected": true
       },
       {
@@ -31,7 +31,7 @@
         "eta_seconds": 118.1,
         "eta_uncertainty_seconds": 17.7,
         "geometry_version": "2026-09-18.1",
-        "route_id": "route-5755acdf-0fea-4c9f-bdb3-0f49ececdb1e",
+        "route_id": "route-5c9b3f88-40e5-4e8c-b7ea-a16ea7689b14",
         "selected": false
       },
       {
@@ -40,7 +40,7 @@
         "eta_seconds": 118.1,
         "eta_uncertainty_seconds": 17.7,
         "geometry_version": "2026-09-18.1",
-        "route_id": "route-284faecc-3233-43e0-a530-63843a92d0a6",
+        "route_id": "route-e3549ae8-009e-424d-a3ff-833abf7bd2cb",
         "selected": false
       }
     ],
@@ -51,7 +51,7 @@
         "eta_seconds": 118.1,
         "eta_uncertainty_seconds": 17.7,
         "geometry_version": "2026-09-18.1",
-        "route_id": "route-38805fad-4759-4b1e-8a78-80f6810915e8",
+        "route_id": "route-919bfc10-4595-4657-afe8-16443181f5c5",
         "selected": true
       },
       {
@@ -60,7 +60,7 @@
         "eta_seconds": 118.1,
         "eta_uncertainty_seconds": 17.7,
         "geometry_version": "2026-09-18.1",
-        "route_id": "route-3fc664d7-2adc-4847-9d8d-dbc03a6a1d69",
+        "route_id": "route-1c2449f6-8596-431a-9b18-bfb34bb3ffad",
         "selected": false
       }
     ]

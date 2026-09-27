@@ -1,0 +1,82 @@
+{
+  "all_passed": true,
+  "checks": {
+    "each_service_identity_is_held_by_exactly_its_own_service_account_and_no_service_client_has_an_interactive_flow": true,
+    "every_operating_role_has_a_holder_and_four_eyes_roles_have_two": true,
+    "no_person_holds_a_system_identity_and_each_holds_exactly_one_operating_role": true,
+    "nobody_can_both_request_and_approve_a_four_eyes_action_and_the_auditor_holds_nothing_else": true,
+    "the_joiner_mover_leaver_procedure_exists_with_its_review_and_leaver_steps": true,
+    "the_live_identity_provider_matches_the_declared_accounts_and_roles_exactly": true,
+    "the_realm_defines_exactly_the_roles_the_code_knows": true,
+    "the_realm_is_hardened_no_self_registration_lockout_tls_short_tokens_refresh_revocation_password_policy": true,
+    "the_review_has_no_open_finding": true
+  },
+  "generated_at": "2026-09-26T17:58:48Z",
+  "metrics": {
+    "findings": [],
+    "holders_by_role": {
+      "auditor": [
+        "ana.petrov"
+      ],
+      "demo_operator": [
+        "dee.moreno"
+      ],
+      "dispatcher": [
+        "dana.rivera"
+      ],
+      "field_responder": [
+        "fin.hassan"
+      ],
+      "incident_commander": [
+        "eve.laurent"
+      ],
+      "operator": [
+        "alex.chen",
+        "alex.two"
+      ],
+      "supervisor": [
+        "sam.okafor",
+        "sam.two"
+      ]
+    },
+    "live_checked": true,
+    "rules": [
+      "R1 role catalogue",
+      "R2 service identities",
+      "R3 human roles",
+      "R4 separation of duties",
+      "R5 holders",
+      "R6 realm hardening",
+      "R7 live equals declared"
+    ],
+    "service_identities": {
+      "system:aiops-remediation": [
+        "service-account-system-aiops-remediation"
+      ],
+      "system:command-executor": [
+        "service-account-system-command-executor"
+      ],
+      "system:emergency-engine": [
+        "service-account-system-emergency-engine"
+      ],
+      "system:optimization-engine": [
+        "service-account-system-optimization-engine"
+      ],
+      "system:outcome-verifier": [
+        "service-account-system-outcome-verifier"
+      ]
+    }
+  },
+  "notes": {
+    "each_service_identity_is_held_by_exactly_its_own_service_account_and_no_service_client_has_an_interactive_flow": "",
+    "every_operating_role_has_a_holder_and_four_eyes_roles_have_two": "{'operator': 2, 'supervisor': 2, 'dispatcher': 1, 'incident_commander': 1, 'field_responder': 1, 'auditor': 1, 'demo_operator': 1}",
+    "no_person_holds_a_system_identity_and_each_holds_exactly_one_operating_role": "",
+    "nobody_can_both_request_and_approve_a_four_eyes_action_and_the_auditor_holds_nothing_else": "5 conflicting role pairs checked",
+    "the_joiner_mover_leaver_procedure_exists_with_its_review_and_leaver_steps": "docs\\security\\ACCESS_REVIEW.md",
+    "the_live_identity_provider_matches_the_declared_accounts_and_roles_exactly": "14 accounts read from the running realm",
+    "the_realm_defines_exactly_the_roles_the_code_knows": "12 roles",
+    "the_realm_is_hardened_no_self_registration_lockout_tls_short_tokens_refresh_revocation_password_policy": "{'registrationAllowed': True, 'bruteForceProtected': True, 'sslRequired': True, 'accessTokenLifespan<=900s': True, 'revokeRefreshToken': True, 'passwordPolicy': True}",
+    "the_review_has_no_open_finding": "0 finding(s)"
+  },
+  "task": "P09.07"
+}

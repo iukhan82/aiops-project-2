@@ -1,6 +1,7 @@
 {
   "all_passed": true,
   "checks": {
+    "a_flooding_incident_on_a_corridor_gets_a_diversion_recommendation_that_avoids_every_segment_of_that_corridor": true,
     "a_recommendation_past_its_expiry_is_marked_expired": true,
     "an_all_unsafe_alternative_set_is_rejected_outright": true,
     "an_incident_kind_with_no_applicable_generator_or_missing_context_returns_none_not_an_error": true,
@@ -19,13 +20,14 @@
     "the_service_call_superseded_the_prior_live_recommendation_for_the_same_incident": true,
     "the_service_generates_and_stores_a_recommendation_for_a_live_incident": true
   },
-  "generated_at": "2026-09-20T10:13:35Z",
+  "generated_at": "2026-09-26T09:47:01Z",
   "metrics": {},
   "notes": {
+    "a_flooding_incident_on_a_corridor_gets_a_diversion_recommendation_that_avoids_every_segment_of_that_corridor": "route ['int-a1_int-b1', 'int-b1_int-b2', 'int-b2_int-b3', 'int-b3_int-b4', 'int-b4_int-c4']",
     "a_recommendation_past_its_expiry_is_marked_expired": "",
     "an_all_unsafe_alternative_set_is_rejected_outright": "",
     "an_incident_kind_with_no_applicable_generator_or_missing_context_returns_none_not_an_error": "",
-    "api_recommendations_are_contract_valid": "4 records; []",
+    "api_recommendations_are_contract_valid": "76 records; []",
     "api_serves_the_recommendation_just_created_with_alternatives_and_bounds": "",
     "diversion_generator_produces_alternatives_with_benefit_and_harm_from_the_real_router": "['closure-respected', 'default-volume-assumption-used']",
     "diversion_recommendation_persists_and_is_readable_back": "",

@@ -44,6 +44,8 @@ CHAINED_TABLES: dict[str, tuple[str, bool]] = {
     "command_transitions": ("id", True),
     "emergency_call_transitions": ("id", True),
     "emergency_assignment_transitions": ("id", True),
+    "platform_incident_events": ("id", True),
+    "remediation_transitions": ("id", True),
 }
 
 # The hash the trigger stored was computed over `row_to_json(NEW)::text` at the moment `row_hash` was still NULL - and
@@ -74,15 +76,18 @@ def verify_table(conn: psycopg.Connection, table: str, order_col: str, deletable
         # legacy row's is NULL, so COALESCE falls back to genesis exactly as if the table had been empty.
         cur.execute(VERIFY_SQL_TEMPLATE.format(order_col=order_col, table=table))  # noqa: S608 - table/col from CHAINED_TABLES, not input
         rows = cur.fetchall()
-    known_hashes = {f"genesis:{table}"}
+    # A link is resolved if it names a row that exists ANYWHERE in the table, not only one with a lower id: the id is assigned
+    # before the commit, so two concurrent writers can commit in the opposite order and the earlier id then links to the later
+    # one (found when the API's rate-limit test wrote commands concurrently and this check called six such rows broken).
+    # A rewritten or deleted row still leaves its successors pointing at a hash that exists nowhere, which is what this catches.
+    known_hashes = {f"genesis:{table}"} | {row_hash for _, _, row_hash, _ in rows}
     unresolved_links: list[int] = []
     hash_mismatches: list[int] = []
-    for seq, prev_hash, row_hash, hash_ok in rows:
+    for seq, prev_hash, _row_hash, hash_ok in rows:
         if prev_hash not in known_hashes:
             unresolved_links.append(seq)
         if not hash_ok:
             hash_mismatches.append(seq)
-        known_hashes.add(row_hash)
     # A row rewritten in place and then spliced back with a fabricated prev_hash produces a hash mismatch on THAT row
     # regardless of whether it also breaks a link, so hash_mismatches alone is decisive; unresolved_links is either
     # certain tampering (not deletable) or an expected retention gap (deletable) - never both at once for one table.

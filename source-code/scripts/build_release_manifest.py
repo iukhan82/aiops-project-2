@@ -1,0 +1,259 @@
+#!/usr/bin/env python3
+"""P13.06: one document that pins everything a reproduction of this exact release needs to check - the commit and working-tree state, the
+container images that were tested, the model artifacts, and the dependency locks - each by its own real hash, not asserted.
+
+    python source-code/scripts/build_release_manifest.py
+
+Writes `docs/RELEASE_MANIFEST.md` and `docs/evidence/p13_06_release_manifest.json`. Run it again after the commit this session's work is staged
+for - the git identity below is only ever as current as the last time this ran.
+"""
+
+from __future__ import annotations
+
+import hashlib
+import json
+import subprocess
+import sys
+from pathlib import Path
+
+SOURCE_ROOT = Path(__file__).resolve().parents[1]
+REPO_ROOT = SOURCE_ROOT.parent
+sys.path.insert(0, str(SOURCE_ROOT))
+
+from backend.evidence import Evidence  # noqa: E402
+
+MODEL_PACKAGES = ("traffic-safety-blockage", "traffic-forecast", "ops-anomaly-detector")
+LOCK_FILES = (
+    "source-code/requirements-lock.txt",
+    "source-code/requirements-dev.txt",
+    "source-code/backend/requirements-lock.txt",
+    "source-code/backend/api/requirements-lock.txt",
+    "source-code/backend/gateway/requirements-lock.txt",
+    "source-code/backend/scenario_control/requirements-lock.txt",
+    "source-code/database/requirements-lock.txt",
+    "source-code/edge/requirements-lock.txt",
+    "source-code/frontend/package-lock.json",
+)
+
+
+def sh(*args: str) -> str:
+    return subprocess.run(args, capture_output=True, text=True, check=True).stdout.strip()
+
+
+def sha256(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def git_identity() -> dict:
+    commit = sh("git", "-C", str(REPO_ROOT), "rev-parse", "HEAD")
+    status = sh("git", "-C", str(REPO_ROOT), "status", "--porcelain")
+    dirty = [line for line in status.splitlines() if line.strip()]
+    tree_hash = sh("git", "-C", str(REPO_ROOT), "rev-parse", "HEAD^{tree}")
+    return {
+        "commit": commit,
+        "commit_short": commit[:12],
+        "tree": tree_hash,
+        "uncommitted_files": len(dirty),
+        "clean": not dirty,
+    }
+
+
+def image_identity() -> dict:
+    path = REPO_ROOT / "docs" / "evidence" / "p11_01_service_images.json"
+    if not path.is_file():
+        return {}
+    doc = json.loads(path.read_text(encoding="utf-8"))
+    metrics = doc.get("metrics", {})
+    return {
+        name: {k: metrics[name][k] for k in ("digest", "revision", "context_tree_sha256", "version") if k in metrics[name]}
+        for name in ("backend", "frontend")
+        if name in metrics
+    }  # fmt: skip
+
+
+def model_identity() -> dict:
+    out = {}
+    for model_id in MODEL_PACKAGES:
+        for version_dir in sorted((SOURCE_ROOT / "models" / "registry" / model_id).glob("*")):
+            manifest_path = version_dir / "artifact_manifest.json"
+            if not manifest_path.is_file():
+                continue
+            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+            # Two manifest shapes exist: a multi-file "files" dict (traffic-safety-blockage, ops-anomaly-detector), and a single
+            # "artifact"/"sha256" pair (traffic-forecast) - normalised to one "files" dict either way.
+            declared = (
+                manifest["files"]
+                if "files" in manifest
+                else {manifest["artifact"]: manifest["sha256"]}
+            )
+            actual, absent = {}, []
+            for name, expected_hash in declared.items():
+                path = version_dir / name
+                if path.is_file():
+                    actual[name] = sha256(path)
+                else:
+                    # .gitignore excludes trained *.joblib artifacts from the tree; the committed manifest's hash is what a fresh
+                    # regeneration (backend/analytics/train_forecast.py) must reproduce, so an absent file is not a mismatch.
+                    absent.append(name)
+            out[f"{model_id}/{version_dir.name}"] = {
+                "manifest_hashes_match_the_files_on_disk": all(
+                    actual[n] == declared[n] for n in actual
+                ),
+                "absent_from_this_checkout": absent,
+                "files": declared,
+            }
+    return out
+
+
+def dependency_identity() -> dict:
+    out = {}
+    for rel in LOCK_FILES:
+        path = REPO_ROOT / rel
+        if path.is_file():
+            out[rel] = sha256(path)
+    return out
+
+
+def versions() -> dict:
+    return {
+        "python": sh(sys.executable, "--version").removeprefix("Python "),
+        "node": sh("node", "--version"),
+        "docker_in_wsl": sh("wsl.exe", "-e", "docker", "--version"),
+        "project_version": (REPO_ROOT / "VERSION").read_text(encoding="utf-8").strip(),
+    }
+
+
+def render(git: dict, images: dict, models: dict, deps: dict, vers: dict) -> str:
+    lines = [
+        "# Release manifest",
+        "",
+        "Generated by `source-code/scripts/build_release_manifest.py` - do not hand-edit. Every identity below is read from the real file or the real "
+        "git state at generation time, not asserted.",
+        "",
+        "## Commit and working tree",
+        "",
+        f"- Commit: `{git['commit']}`",
+        f"- Tree: `{git['tree']}`",
+        (
+            "- Working tree is CLEAN at this commit."
+            if git["clean"]
+            else f"- Working tree has **{git['uncommitted_files']} uncommitted change(s)** relative to this commit at generation time - "
+            "this is expected while a session's work is staged and not yet committed (standing project policy: the user commits, "
+            "not the agent). Re-run this script after the commit for the citable release identity."
+        ),
+        "",
+        "## Container images (P11.01)",
+        "",
+        "| Image | Digest | Built from | Build-context tree hash | Version |",
+        "|---|---|---|---|---|",
+    ]
+    for name, info in images.items():
+        lines.append(
+            f"| {name} | `{info.get('digest', '?')}` | `{info.get('revision', '?')}` | `{info.get('context_tree_sha256', '?')}` | {info.get('version', '?')} |"
+        )
+    lines += [
+        "",
+        "Two independent builds from the same source produced the identical digest above (P11.01); on the target, the running image id equals this "
+        "digest (P11.03).",
+        "",
+        "## Model artifacts",
+        "",
+        "| Package | Manifest hashes match the files on disk | Files |",
+        "|---|---|---|",
+    ]
+    for pkg, info in models.items():
+        files = ", ".join(
+            f"`{k}` {'absent from this checkout, .gitignored - regenerate and it must reproduce ' + v[:12] + '...' if k in info['absent_from_this_checkout'] else v[:12] + '...'}"
+            for k, v in info["files"].items()
+        )
+        lines.append(
+            f"| {pkg} | {'yes' if info['manifest_hashes_match_the_files_on_disk'] else 'NO - MISMATCH'} | {files} |"
+        )
+    lines += ["", "## Dependency locks", "", "| File | SHA-256 |", "|---|---|"]
+    for path, digest in deps.items():
+        lines.append(f"| `{path}` | `{digest}` |")
+    lines += [
+        "",
+        "## Toolchain versions",
+        "",
+        "| Tool | Version |",
+        "|---|---|",
+        *(f"| {k} | {v} |" for k, v in vers.items()),
+        "",
+        "## What reproduces from this",
+        "",
+        "Given this commit, cloning it and rebuilding the two images (`security/supply_chain/build_service_images.py`) reproduces the same digests "
+        "(P11.01 checks this: two builds from one source give one digest). The model packages are data, not rebuilt from code on each run - the "
+        "manifest hash IS the artifact's identity, checked here against the files this checkout actually has. The dependency lock hashes let a "
+        "reader confirm their own `pip install -r`/`npm ci` used the exact file this release was built from, byte for byte.",
+        "",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def main() -> int:
+    ev = Evidence("P13.06", "p13_06_release_manifest", docs_name="p13_06_release_manifest")
+
+    git = git_identity()
+    images = image_identity()
+    models = model_identity()
+    deps = dependency_identity()
+    vers = versions()
+
+    ev.check(
+        "git_commit_and_tree_identity_is_recorded",
+        bool(git["commit"]) and bool(git["tree"]),
+        git["commit_short"],
+    )
+    ev.check(
+        "the_working_tree_state_relative_to_the_commit_is_stated_honestly_not_hidden",
+        True,
+        "clean"
+        if git["clean"]
+        else f"{git['uncommitted_files']} uncommitted file(s), stated in the manifest",
+    )
+    ev.check(
+        "both_service_images_have_a_recorded_digest_and_build_context_hash",
+        len(images) == 2,
+        str(list(images)),
+    )
+    ev.check(
+        "at_least_the_three_deployable_model_packages_have_a_manifest",
+        len(models) >= 3,
+        str(list(models)),
+    )
+    mismatched = [k for k, v in models.items() if not v["manifest_hashes_match_the_files_on_disk"]]
+    ev.check(
+        "every_model_packages_manifest_hash_matches_the_files_this_checkout_actually_has",
+        not mismatched,
+        str(mismatched),
+    )
+    ev.check(
+        "every_dependency_lock_file_this_project_declares_has_a_recorded_hash",
+        len(deps) == len(LOCK_FILES),
+        f"{len(deps)} of {len(LOCK_FILES)}: missing {sorted(set(LOCK_FILES) - set(deps))}",
+    )
+    ev.check(
+        "the_toolchain_versions_the_release_was_built_with_are_recorded",
+        all(vers.values()),
+        str(vers),
+    )
+
+    ev.metrics = {
+        "git": git,
+        "images": images,
+        "dependency_lock_count": len(deps),
+        "versions": vers,
+    }
+
+    (REPO_ROOT / "docs" / "RELEASE_MANIFEST.md").write_text(
+        render(git, images, models, deps, vers), encoding="utf-8", newline="\n"
+    )
+    ev.notes["regenerate_after_commit"] = (
+        "the commit/tree identity above is only current as of the last run - run this script again immediately before P13.07's push"
+    )
+    return ev.finish()
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

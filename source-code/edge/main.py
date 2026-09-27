@@ -13,6 +13,10 @@ CONFIG.json (paths are inside the container/host running the process):
     {"site_id": ..., "runtime_device_id": ..., "geometry_version": ...,
      "registry_path": ..., "baseline_path": ..., "model_dir": ... | null,
      "emit_clear": false, "boot_id": ...}
+
+"model_root" (a `models/registry/<model_id>` directory) may replace "model_dir": the runtime then serves the version the
+activation pointer (`ACTIVE_VERSION`, P04.08) names at start-up, so an activation or rollback takes effect on the next restart.
+A missing pointer is a model error like any other (the runtime degrades to its baseline and counts `model_unavailable`).
 """
 
 from __future__ import annotations
@@ -28,6 +32,7 @@ import time
 from datetime import timedelta
 from pathlib import Path
 
+from edge.activation import ACTIVE_POINTER_FILENAME
 from edge.features import FeatureConfig
 from edge.health import start_health_server
 from edge.outbox import DurableOutbox, OutboxSink, drain
@@ -40,7 +45,12 @@ def load_config(path: Path) -> EdgeConfig:
     raw = json.loads(path.read_text(encoding="utf-8"))
     raw["registry_path"] = Path(raw["registry_path"])
     raw["baseline_path"] = Path(raw["baseline_path"])
+    model_root = raw.pop("model_root", None)
     raw["model_dir"] = Path(raw["model_dir"]) if raw.get("model_dir") else None
+    if model_root:
+        pointer = Path(model_root) / ACTIVE_POINTER_FILENAME
+        version = pointer.read_text(encoding="utf-8").strip() if pointer.is_file() else ""
+        raw["model_dir"] = Path(model_root) / (version or "NO_ACTIVE_VERSION")
     if "feature" in raw:
         raw["feature"] = FeatureConfig(**raw["feature"])
     return EdgeConfig(**raw)

@@ -1,0 +1,30 @@
+{
+  "all_passed": true,
+  "checks": {
+    "at_least_one_model_card_exists": true,
+    "model_card_ops-anomaly-detector_names_its_limitations": true,
+    "model_card_traffic-forecast_names_its_limitations": true,
+    "model_card_traffic-safety-blockage_names_its_limitations": true,
+    "the_data_cards_document_covers_the_simulator_vision_operations_and_emergency_datasets": true,
+    "the_root_readme_links_every_key_evidence_and_reference_document": true,
+    "the_root_readme_states_the_gate_result_and_the_biggest_open_gap_honestly": true,
+    "the_source_readme_layout_table_names_every_top_level_folder": true,
+    "the_source_readme_names_the_real_check_and_run_commands": true
+  },
+  "generated_at": "2026-09-27T06:27:41Z",
+  "metrics": {
+    "model_cards": 3
+  },
+  "notes": {
+    "at_least_one_model_card_exists": "3",
+    "model_card_ops-anomaly-detector_names_its_limitations": "source-code\\models\\registry\\ops-anomaly-detector\\1.0.0\\model_card.json",
+    "model_card_traffic-forecast_names_its_limitations": "source-code\\models\\registry\\traffic-forecast\\1.0.0\\model_card.json",
+    "model_card_traffic-safety-blockage_names_its_limitations": "source-code\\models\\registry\\traffic-safety-blockage\\1.0.0\\model_card.json",
+    "the_data_cards_document_covers_the_simulator_vision_operations_and_emergency_datasets": "[]",
+    "the_root_readme_links_every_key_evidence_and_reference_document": "[]",
+    "the_root_readme_states_the_gate_result_and_the_biggest_open_gap_honestly": "[]",
+    "the_source_readme_layout_table_names_every_top_level_folder": "not in the layout table: []",
+    "the_source_readme_names_the_real_check_and_run_commands": "[]"
+  },
+  "task": "P13.03"
+}

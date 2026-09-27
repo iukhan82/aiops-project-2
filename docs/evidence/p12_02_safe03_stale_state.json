@@ -1,0 +1,58 @@
+{
+  "all_passed": true,
+  "checks": {
+    "a_corridor_kpi_record_is_stale_once_its_window_is_older_than_its_budget_and_is_not_made_fresh_by_being_served_again": true,
+    "a_signal_plan_recommendation_from_old_evidence_says_so_uses_a_stated_default_and_is_less_confident": true,
+    "control_the_forecast_service_does_not_call_input_stale_when_it_is_fresh": true,
+    "policy_evidence_for_a_corridor_is_fresh_with_a_recent_reading_and_not_fresh_two_hours_on": true,
+    "policy_evidence_for_a_corridor_segment_is_fresh_with_a_recent_reading_and_not_fresh_two_hours_on": true,
+    "policy_evidence_for_a_cross_street_segment_with_no_corridor_is_fresh_with_a_recent_reading_and_not_fresh_two_hours_on": true,
+    "policy_evidence_for_a_signal (an intersection)_is_fresh_with_a_recent_reading_and_not_fresh_two_hours_on": true,
+    "routing_uses_a_fresh_measured_delay_and_ignores_the_same_window_once_it_is_old": true,
+    "the_forecast_service_refuses_stale_input_and_gives_no_forecast": true,
+    "the_state_service_serves_a_fresh_reading_as_fresh_and_the_same_reading_two_hours_on_as_stale": true
+  },
+  "generated_at": "2026-09-26T08:44:51Z",
+  "metrics": {
+    "consumers": {
+      "policy": {
+        "a_corridor": [
+          true,
+          false
+        ],
+        "a_corridor_segment": [
+          true,
+          false
+        ],
+        "a_cross_street_segment_with_no_corridor": [
+          true,
+          false
+        ],
+        "a_signal (an intersection)": [
+          true,
+          false
+        ]
+      },
+      "routing_eta_s": {
+        "fresh_5x": 94.56869009584665,
+        "no_evidence": 18.91373801916933,
+        "stale_5x": 18.91373801916933
+      }
+    }
+  },
+  "notes": {
+    "a_corridor_kpi_record_is_stale_once_its_window_is_older_than_its_budget_and_is_not_made_fresh_by_being_served_again": "now -> fresh, later -> stale",
+    "a_signal_plan_recommendation_from_old_evidence_says_so_uses_a_stated_default_and_is_less_confident": "fresh: ['pedestrian-clearance-preserved', 'measured-corridor-delay'], confidence 0.65; stale: ['pedestrian-clearance-preserved', 'default-delay-assumption-used'], confidence 0.3",
+    "cited_elsewhere": "dispatch refuses to route from an old unit position (p08_07_operator_actions_api); the console labels stale values and never leaves them looking live (p08_10_ui_acceptance, failures spec); the command executor re-checks evidence at execution (p12_02_safe02_protected_actions)",
+    "control_the_forecast_service_does_not_call_input_stale_when_it_is_fresh": "0 abstentions, none for staleness",
+    "not_claimed": "a stuck or drifting sensor keeps a reading fresh and wrong: that is a data-quality fault (P10.10 detects it), not staleness; nothing gates a consumer on a data-quality incident",
+    "policy_evidence_for_a_corridor_is_fresh_with_a_recent_reading_and_not_fresh_two_hours_on": "now -> True, two hours on -> False",
+    "policy_evidence_for_a_corridor_segment_is_fresh_with_a_recent_reading_and_not_fresh_two_hours_on": "now -> True, two hours on -> False",
+    "policy_evidence_for_a_cross_street_segment_with_no_corridor_is_fresh_with_a_recent_reading_and_not_fresh_two_hours_on": "now -> True, two hours on -> False",
+    "policy_evidence_for_a_signal (an intersection)_is_fresh_with_a_recent_reading_and_not_fresh_two_hours_on": "now -> True, two hours on -> False",
+    "routing_uses_a_fresh_measured_delay_and_ignores_the_same_window_once_it_is_old": "ETA without evidence 19 s, with a fresh window at 5x 95 s, with the same window two hours old 19 s; segments with a live travel time: 3 fresh, 0 stale",
+    "the_forecast_service_refuses_stale_input_and_gives_no_forecast": "[{'series': '*', 'reason': 'stale input: newest window ended 660s ago'}]",
+    "the_state_service_serves_a_fresh_reading_as_fresh_and_the_same_reading_two_hours_on_as_stale": "fresh -> fresh, later -> stale"
+  },
+  "task": "P12.02"
+}

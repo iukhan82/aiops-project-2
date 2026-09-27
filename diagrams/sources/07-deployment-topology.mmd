@@ -1,53 +1,54 @@
 %%{init: {"flowchart": {"htmlLabels": true, "curve": "linear"}} }%%
 flowchart TB
-  subgraph NODE["K3s single-node target (docs/environment/TOPOLOGY.md assessment profile)\nnot HA; disclosed limitation"]
-    subgraph NSEDGE["namespace: edge-sim (x3 logical Deployments)"]
-      E1["edge-runtime pod\nnon-root, PVC outbox"]
+  subgraph NODE["kind cluster `aiops-p11` (Kubernetes v1.36.4, containerd, Calico for NetworkPolicy, Pod Security `restricted`) - a cluster of its own on a shared Ubuntu LTS host, not the host's own K3s (P11.03; ADR-0008 update). Single control-plane node: disclosed as not production high availability, per TOPOLOGY.md."]
+    subgraph NS["namespace: aiops (all 19 workloads; the first-draft seven-namespace split was not built)"]
+      E1["aiops-edge-runtime Deployment (x1 replica)\nreplays one recorded 10-minute run at 100x; non-root; its durable outbox does NOT drain to MQTT on this target (annotated in the manifest) - that path is proven on the local stack (P05.02/P05.03) and in the REC-01 lab (P12.02), not here"]
+      M1["aiops-mqtt-broker StatefulSet\nPVC; ONE listener, 8883 mTLS only, client cert required (no plaintext 1883 - that is a local-dev-only fixture, ADR-0002)"]
+      M2["aiops-mqtt-gateway StatefulSet\nPVC durable outbox; the only client with an ACL to read every device's topic (cert CN=gateway)"]
+      IG["aiops-ingestion-gateway Deployment\nKafka to PostgreSQL, idempotent by event_id"]
+      K1["aiops-kafka-broker StatefulSet\nPVC, internal only"]
+      D1["aiops-postgres StatefulSet\nPVC, TLS-only (hostssl)"]
+      API["aiops-api Deployment\nthe operator REST/WebSocket API - state, incidents, emergency, recommendations, commands, outcomes all served from here, backed by PostgreSQL"]
+      CX["aiops-command-executor Deployment\nreconciles an orphaned `executing` command at start (D-03, P12.02); driving a real SUMO adapter needs Docker/WSL, which this pod does not have - the protected-action and adapter scenarios (P07.06-P07.10, SAFE-02) run on the local stack, not on this target"]
+      OV["aiops-outcome-verifier Deployment\nindependent pre/post-window verification, rollback/escalate"]
+      SC["aiops-scenario-control Deployment\nseparate identity; structurally no path to command/v1 or an adapter"]
+      PC["aiops-platform-correlator Deployment\nplatform-signal correlation into platform incidents (P10.07), reads Prometheus"]
+      PP["aiops-platform-probe Deployment\nthe gauges the P10.04 alert rules fire on"]
+      FE["aiops-frontend Deployment\noperator console"]
+      KC["aiops-keycloak StatefulSet\nPVC, realm import"]
+      OPA["aiops-opa Deployment\npolicy bundle"]
+      PR["aiops-prometheus StatefulSet\nPVC, bounded retention"]
+      TE["aiops-tempo StatefulSet\nPVC"]
+      LO["aiops-loki StatefulSet\nPVC"]
+      GR["aiops-grafana StatefulSet\nPVC"]
     end
-
-    subgraph NSMSG["namespace: messaging"]
-      M1["Mosquitto StatefulSet\nPVC, mTLS"]
-      M2["Kafka-compatible broker StatefulSet\nPVC"]
-    end
-
-    subgraph NSDATA["namespace: data"]
-      D1["PostgreSQL/PostGIS StatefulSet\nPVC"]
-    end
-
-    subgraph NSPLATFORM["namespace: platform"]
-      S1["ingestion / state / traffic / incident / emergency / optimization / command / outcome Deployments\nHPA-ready, resource limits (RESOURCE_BUDGET.md)"]
-      S2["Staff API/BFF Deployment"]
-    end
-
-    subgraph NSIDENTITY["namespace: identity"]
-      K1["Keycloak Deployment\nPVC"]
-      K2["OPA Deployment\nbundle sidecar/service"]
-    end
-
-    subgraph NSOBS["namespace: observability"]
-      O1["OTel Collector Deployment"]
-      O2["Prometheus/Tempo StatefulSet\nPVC, bounded retention"]
-      O3["Grafana Deployment"]
-    end
-
-    subgraph NSFRONT["namespace: frontend"]
-      F1["Operator UI Deployment"]
-    end
-
-    NODEAGENT["Falco DaemonSet\nnode-level, per P01.07 target-native requirement"]
+    FALCO["Falco DaemonSet (node-level, P09.09/P01.07: pinned >=0.44.1 for this kernel's modern_ebpf driver)\nJSON alerts to its own stdout, read by `kubectl logs` - not shipped to Loki"]
+    JOBS["On-demand Jobs (not standing workloads): aiops-migrate, aiops-load, aiops-security, aiops-e2e"]
   end
 
-  ING["Ingress controller\nTLS termination, LAN/local-only per TOPOLOGY.md"]
-  ING --> S2
-  ING --> F1
-  ING --> O3
-  E1 -->|mTLS| M1 --> S1
-  M2 <--> S1
-  S1 --> D1
-  S1 --> K2
-  S2 --> K1
-  S1 -.->|OTLP| O1 --> O2 --> O3
-  NODEAGENT -.->|runtime events| O2
+  ING["Ingress (NetworkPolicy allows an `ingress-nginx` namespace to reach the API/frontend/Grafana; verification itself used `kubectl exec`/`kubectl logs` into the cluster, not a deployed ingress controller or a browser reaching it - a real gap, not claimed otherwise)"]
+  ING -.-> API
+  ING -.-> FE
+  ING -.-> GR
+
+  E1 -.->|"local stack only, not exercised on this target - see note"| M1
+  M1 --> M2 --> K1 --> IG --> D1
+  API --> D1
+  API --> OPA
+  API --> KC
+  CX --> D1
+  CX --> OPA
+  OV --> D1
+  SC -.->|"no route"| CX
+  PC --> D1
+  PC --> PR
+  PP --> PR
+  API -.->|OTLP directly, no separate collector| TE
+  IG -.->|OTLP directly| TE
+  CX -.->|OTLP directly| TE
+  PR --> GR
+  LO --> GR
+  TE --> GR
 
   classDef ns fill:#eef,stroke:#448
-  class NSEDGE,NSMSG,NSDATA,NSPLATFORM,NSIDENTITY,NSOBS,NSFRONT ns
+  class NS ns

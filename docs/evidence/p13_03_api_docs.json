@@ -1,0 +1,22 @@
+{
+  "all_passed": true,
+  "checks": {
+    "every_endpoint_other_than_health_and_me_declares_a_capability_or_is_public": true,
+    "every_operator_api_path_the_inventory_names_is_a_path_the_app_really_serves": true,
+    "the_api_reference_matches_a_fresh_render_of_the_real_inventory_and_schema": true,
+    "the_openapi_export_exists": true
+  },
+  "generated_at": "2026-09-27T06:24:45Z",
+  "metrics": {
+    "capabilities": 19,
+    "endpoints": 47,
+    "openapi_paths": 36
+  },
+  "notes": {
+    "every_endpoint_other_than_health_and_me_declares_a_capability_or_is_public": "[]",
+    "every_operator_api_path_the_inventory_names_is_a_path_the_app_really_serves": "set()",
+    "the_api_reference_matches_a_fresh_render_of_the_real_inventory_and_schema": "current",
+    "the_openapi_export_exists": "D:\\AIOPS Project\\AIOPS-Project-2\\docs\\api\\openapi.json"
+  },
+  "task": "P13.03"
+}

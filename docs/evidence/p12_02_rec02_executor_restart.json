@@ -1,0 +1,30 @@
+{
+  "all_passed": true,
+  "checks": {
+    "a_command_executing_within_the_adapters_time_limit_is_not_reconciled_while_the_executor_runs": true,
+    "on_start_the_new_executor_reconciles_the_orphan_it_is_failed_not_executed_and_not_retried": true,
+    "precondition_no_command_is_waiting_for_the_executor": true,
+    "the_command_that_arrived_meanwhile_is_executed_exactly_once": true,
+    "the_executor_process_was_killed_while_the_command_was_executing_and_left_it_executing": true,
+    "the_orphan_says_the_outcome_is_unknown_and_that_it_was_not_repeated": true,
+    "the_orphan_was_never_driven_again_the_adapter_was_not_called_for_it": true,
+    "the_orphan_was_reconciled_before_the_next_command_was_executed": true,
+    "without_reconciliation_the_orphan_stays_executing_for_ever_while_the_executor_carries_on_with_the_next_command": true
+  },
+  "generated_at": "2026-09-26T09:46:54Z",
+  "metrics": {},
+  "notes": {
+    "a_command_executing_within_the_adapters_time_limit_is_not_reconciled_while_the_executor_runs": "orphans found: []",
+    "not_proven": "the independent outcome verifier looking at the network for a command that ended failed-unknown: an operator sees the failed command and its message; the verifier verifies only commands that ended executed",
+    "on_start_the_new_executor_reconciles_the_orphan_it_is_failed_not_executed_and_not_retried": "reconciled 1; status failed, retryable False, error internal",
+    "precondition_no_command_is_waiting_for_the_executor": "0 approved or executing",
+    "scope": "one executor process killed with no warning; the adapter is a stand-in, the database, policy engine, state machine and executor code are real; the REC-02 acceptance also names 'observed state reconciled' for the other central services, which the target restarts (P11.05) cover by their end-to-end checks",
+    "the_command_that_arrived_meanwhile_is_executed_exactly_once": "executed",
+    "the_executor_process_was_killed_while_the_command_was_executing_and_left_it_executing": "status after the kill: executing; process exit code 1",
+    "the_orphan_says_the_outcome_is_unknown_and_that_it_was_not_repeated": "the executor was interrupted while running the adapter; the outcome of the action is unknown and it was not repeated",
+    "the_orphan_was_never_driven_again_the_adapter_was_not_called_for_it": "adapter calls for the orphan after the restart: 0",
+    "the_orphan_was_reconciled_before_the_next_command_was_executed": "orphan failed at 09:46:54.799939, next command executing at 09:46:54.831337",
+    "without_reconciliation_the_orphan_stays_executing_for_ever_while_the_executor_carries_on_with_the_next_command": "orphan executing, next command executed"
+  },
+  "task": "P12.02"
+}

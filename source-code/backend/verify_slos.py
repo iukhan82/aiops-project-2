@@ -181,10 +181,37 @@ def measure_lat_02(conn: psycopg.Connection) -> None:
     )
 
 
+def check_query_refs_use_real_prometheus_series_names() -> None:
+    """A reference is only a live query if every series it names exists under the name Prometheus stores (counters end
+    `_total`, a `ms` histogram is `_milliseconds_bucket`, gauges as written). P10.02 wrote these before P10.03 confirmed
+    that naming, so the first version of them named series that would never exist. Prose references (SLOs measured by a
+    scenario run, not a live query) name no PromQL function and are skipped."""
+    from backend.aiops.verify_alerts import expected_metric_names, rule_metric_names
+
+    known = expected_metric_names()
+    promql = re.compile(r"\b(rate|histogram_quantile|avg_over_time|max_over_time|sum)\(")
+    bad = {}
+    checked = 0
+    for slo in load(SLOS)["slos"]:
+        ref = slo["measurement_query_ref"]
+        if not promql.search(ref):
+            continue
+        checked += 1
+        unknown = sorted(rule_metric_names(ref) - {"up"} - known)
+        if unknown:
+            bad[slo["slo_id"]] = unknown
+    ev.check(
+        "every_promql_measurement_query_uses_the_series_names_prometheus_really_stores",
+        not bad and checked > 0,
+        str(bad) or f"{checked} queries checked against names derived from the source",
+    )
+
+
 def main() -> int:
     check_schema()
     check_acceptance_targets_are_real()
     check_metrics_are_real()
+    check_query_refs_use_real_prometheus_series_names()
     check_topology_edges_are_real()
     with psycopg.connect(dsn_from_env()) as conn:
         measure_lat_02(conn)

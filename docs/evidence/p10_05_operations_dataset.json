@@ -1,0 +1,136 @@
+{
+  "all_passed": true,
+  "checks": {
+    "after_the_warm_up_every_signal_of_every_run_is_at_least_95_percent_present": true,
+    "all_runs_of_a_seed_are_in_one_split": true,
+    "every_degraded_run_has_its_fault_window_with_the_right_type_and_length": true,
+    "every_listed_file_exists_and_matches_its_sha256": true,
+    "every_run_carries_a_benign_burst_that_is_not_a_fault": true,
+    "every_run_is_in_the_split_its_seed_belongs_to": true,
+    "every_seed_has_every_scenario_in_every_replicate": true,
+    "in_every_api_errors_run_the_api_error_ratio_signal_moves_by_the_stated_amount_in_the_fault_window": true,
+    "in_every_api_slow_run_the_api_latency_p95_ms_signal_moves_by_the_stated_amount_in_the_fault_window": true,
+    "in_every_gateway_stall_run_the_gateway_delivery_ratio_signal_moves_by_the_stated_amount_in_the_fault_window": true,
+    "in_every_ingest_latency_slow_run_the_ingest_latency_p95_ms_signal_moves_by_the_stated_amount_in_the_fault_window": true,
+    "in_every_ingest_reject_surge_run_the_ingest_reject_ratio_signal_moves_by_the_stated_amount_in_the_fault_window": true,
+    "in_every_state_stale_run_the_state_fresh_share_signal_moves_by_the_stated_amount_in_the_fault_window": true,
+    "no_file_in_the_dataset_is_missing_from_the_manifest": true,
+    "no_run_id_appears_twice_so_no_run_is_in_two_splits": true,
+    "normal_runs_contain_no_fault": true,
+    "the_benign_burst_does_not_raise_the_failure_ratios": true,
+    "the_benign_burst_raises_ingest_load_by_at_least_25_percent_in_the_median_normal_run": true,
+    "the_dataset_hash_is_the_hash_of_the_file_hashes": true,
+    "the_three_splits_share_no_seed": true,
+    "truth_is_never_among_the_signals": true
+  },
+  "generated_at": "2026-09-27T05:04:20Z",
+  "metrics": {
+    "burst_load_ratio": {
+      "max": 1.7914382782645972,
+      "median": 1.3998054248992116,
+      "min": 0.7971315133509571
+    },
+    "dataset_sha256": "7ccefb873156b3b0cfda253e72b8ccb54c02fe85a1b645bb3c721d6bcc0d6c0d",
+    "fault_effects": {
+      "api_errors": {
+        "all_visible": true,
+        "runs": 18,
+        "signal": "api_error_ratio",
+        "weakest": [
+          "ops-20260918-api-errors-r1",
+          0.0029,
+          0.1798,
+          true
+        ]
+      },
+      "api_slow": {
+        "all_visible": true,
+        "runs": 18,
+        "signal": "api_latency_p95_ms",
+        "weakest": [
+          "ops-20260918-api-slow-r0",
+          108.25,
+          2404.1205,
+          true
+        ]
+      },
+      "gateway_stall": {
+        "all_visible": true,
+        "runs": 18,
+        "signal": "gateway_delivery_ratio",
+        "weakest": [
+          "ops-20260920-gateway-stall-r0",
+          0.9944,
+          0.3978,
+          true
+        ]
+      },
+      "ingest_latency_slow": {
+        "all_visible": true,
+        "runs": 18,
+        "signal": "ingest_latency_p95_ms",
+        "weakest": [
+          "ops-20260926-ingest-latency-slow-r0",
+          182.1905,
+          2449.5455,
+          true
+        ]
+      },
+      "ingest_reject_surge": {
+        "all_visible": true,
+        "runs": 18,
+        "signal": "ingest_reject_ratio",
+        "weakest": [
+          "ops-20260924-ingest-reject-surge-r1",
+          0.0083,
+          0.2462,
+          true
+        ]
+      },
+      "state_stale": {
+        "all_visible": true,
+        "runs": 18,
+        "signal": "state_fresh_share",
+        "weakest": [
+          "ops-20260922-state-stale-r0",
+          0.9663,
+          0.4838,
+          true
+        ]
+      }
+    },
+    "normal_runs_with_no_visible_burst": {
+      "count": 6,
+      "of": 18
+    },
+    "runs_per_split": {
+      "test": 28,
+      "train": 70,
+      "validation": 28
+    }
+  },
+  "notes": {
+    "after_the_warm_up_every_signal_of_every_run_is_at_least_95_percent_present": "worst coverage 1.000",
+    "all_runs_of_a_seed_are_in_one_split": "",
+    "every_degraded_run_has_its_fault_window_with_the_right_type_and_length": "[]",
+    "every_listed_file_exists_and_matches_its_sha256": "[]",
+    "every_run_carries_a_benign_burst_that_is_not_a_fault": "",
+    "every_run_is_in_the_split_its_seed_belongs_to": "126 runs",
+    "every_seed_has_every_scenario_in_every_replicate": "126 of 126 runs",
+    "in_every_api_errors_run_the_api_error_ratio_signal_moves_by_the_stated_amount_in_the_fault_window": "18 runs; weakest ('ops-20260918-api-errors-r1', 0.0029, 0.1798, True)",
+    "in_every_api_slow_run_the_api_latency_p95_ms_signal_moves_by_the_stated_amount_in_the_fault_window": "18 runs; weakest ('ops-20260918-api-slow-r0', 108.25, 2404.1205, True)",
+    "in_every_gateway_stall_run_the_gateway_delivery_ratio_signal_moves_by_the_stated_amount_in_the_fault_window": "18 runs; weakest ('ops-20260920-gateway-stall-r0', 0.9944, 0.3978, True)",
+    "in_every_ingest_latency_slow_run_the_ingest_latency_p95_ms_signal_moves_by_the_stated_amount_in_the_fault_window": "18 runs; weakest ('ops-20260926-ingest-latency-slow-r0', 182.1905, 2449.5455, True)",
+    "in_every_ingest_reject_surge_run_the_ingest_reject_ratio_signal_moves_by_the_stated_amount_in_the_fault_window": "18 runs; weakest ('ops-20260924-ingest-reject-surge-r1', 0.0083, 0.2462, True)",
+    "in_every_state_stale_run_the_state_fresh_share_signal_moves_by_the_stated_amount_in_the_fault_window": "18 runs; weakest ('ops-20260922-state-stale-r0', 0.9663, 0.4838, True)",
+    "no_file_in_the_dataset_is_missing_from_the_manifest": "[]",
+    "no_run_id_appears_twice_so_no_run_is_in_two_splits": "",
+    "normal_runs_contain_no_fault": "18 runs",
+    "the_benign_burst_does_not_raise_the_failure_ratios": "largest failure-ratio rise during a burst 0.0086",
+    "the_benign_burst_raises_ingest_load_by_at_least_25_percent_in_the_median_normal_run": "median load ratio 1.40, min 0.80, max 1.79; 6 of 18 normal runs show less than +20% (burst not visible there)",
+    "the_dataset_hash_is_the_hash_of_the_file_hashes": "7ccefb873156b3b0",
+    "the_three_splits_share_no_seed": "train 5 / validation 2 / test 2 seeds",
+    "truth_is_never_among_the_signals": ""
+  },
+  "task": "P10.05"
+}

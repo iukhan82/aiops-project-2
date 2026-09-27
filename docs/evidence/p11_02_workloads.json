@@ -1,0 +1,176 @@
+{
+  "all_passed": true,
+  "checks": {
+    "every_dependency_in_the_platforms_own_topology_graph_between_two_workloads_is_allowed_by_the_network_policy": true,
+    "every_document_validates_strictly_against_the_kubernetes_1_36_openapi_schema": true,
+    "every_egress_rule_has_the_matching_ingress_rule_on_the_server_for_the_same_port": true,
+    "every_network_policy_peer_is_a_real_workload": true,
+    "every_pod_template_meets_the_pod_security_restricted_profile_rule_by_rule": true,
+    "every_service_account_belongs_to_a_workload_and_every_named_network_policy_to_a_workload": true,
+    "every_service_selects_a_real_workload_and_targets_a_port_its_container_declares": true,
+    "every_workload_has_its_own_service_account_and_its_own_network_policy": true,
+    "read_only_root_filesystems_no_service_account_tokens_resource_limits_pinned_images_no_literal_secrets_and_only_emptydir_or_claim_writes": true,
+    "the_database_is_reachable_only_by_the_services_that_hold_a_database_identity": true,
+    "the_files_on_disk_are_exactly_what_the_generator_produces": true,
+    "the_namespace_enforces_pod_security_restricted_so_an_admission_controller_refuses_what_this_check_missed": true,
+    "the_network_policy_allows_no_workload_to_workload_path_the_dependency_specification_does_not_list": true,
+    "the_platform_images_are_versioned_and_every_third_party_image_is_the_digest_pinned_one_the_compose_stack_runs": true
+  },
+  "generated_at": "2026-09-27T05:04:23Z",
+  "metrics": {
+    "resource_totals": {
+      "cpu_limit_m": 8000,
+      "cpu_request_m": 4000,
+      "memory_limit_mi": 9024,
+      "memory_request_mi": 4512
+    },
+    "workloads": {
+      "aiops-api": {
+        "image": "aiops-backend:0.1.0",
+        "kind": "Deployment",
+        "uid": 10002
+      },
+      "aiops-command-executor": {
+        "image": "aiops-backend:0.1.0",
+        "kind": "Deployment",
+        "uid": 10002
+      },
+      "aiops-e2e": {
+        "image": "aiops-backend:0.1.0",
+        "kind": "Job",
+        "uid": 10002
+      },
+      "aiops-edge-runtime": {
+        "image": "aiops-edge:0.1.0",
+        "kind": "Deployment",
+        "uid": 10001
+      },
+      "aiops-frontend": {
+        "image": "aiops-frontend:0.1.0",
+        "kind": "Deployment",
+        "uid": 101
+      },
+      "aiops-grafana": {
+        "image": "grafana/grafana:12.2.1@sha256:35c41e0fd0295f5d0ee5db7e780cf33506abfaf47686196f825364889dee878b",
+        "kind": "StatefulSet",
+        "uid": 472
+      },
+      "aiops-ingestion-gateway": {
+        "image": "aiops-backend:0.1.0",
+        "kind": "Deployment",
+        "uid": 10002
+      },
+      "aiops-kafka-broker": {
+        "image": "docker.redpanda.com/redpandadata/redpanda:v24.2.18@sha256:0270951e8793c77f0dd9178d137198018fa7ffd920e5a2a3b02a050ec76195b8",
+        "kind": "StatefulSet",
+        "uid": 101
+      },
+      "aiops-keycloak": {
+        "image": "quay.io/keycloak/keycloak:26.0.8@sha256:09a381c715ab0b111835b70f2905955274843a219c6f27efb348e4d9f4086858",
+        "kind": "StatefulSet",
+        "uid": 1000
+      },
+      "aiops-load": {
+        "image": "aiops-backend:0.1.0",
+        "kind": "Job",
+        "uid": 10002
+      },
+      "aiops-loki": {
+        "image": "grafana/loki:3.5.7@sha256:0eaee7bf39cc83aaef46914fb58f287d4f4c4be6ec96b86c2ed55719a75e49c8",
+        "kind": "StatefulSet",
+        "uid": 10001
+      },
+      "aiops-migrate": {
+        "image": "aiops-backend:0.1.0",
+        "kind": "Job",
+        "uid": 10002
+      },
+      "aiops-mqtt-broker": {
+        "image": "eclipse-mosquitto:2.0.18@sha256:d12c8f80dfc65b768bb9acecc7ef182b976f71fb681640b66358e5e0cf94e9e9",
+        "kind": "StatefulSet",
+        "uid": 1883
+      },
+      "aiops-mqtt-gateway": {
+        "image": "aiops-backend:0.1.0",
+        "kind": "StatefulSet",
+        "uid": 10002
+      },
+      "aiops-opa": {
+        "image": "openpolicyagent/opa:1.20.2-static@sha256:2de1e6619246955695b982d0bcb6c73bcee22aa34ff96f2455996616ec1d21c1",
+        "kind": "Deployment",
+        "uid": 1000
+      },
+      "aiops-outcome-verifier": {
+        "image": "aiops-backend:0.1.0",
+        "kind": "Deployment",
+        "uid": 10002
+      },
+      "aiops-platform-correlator": {
+        "image": "aiops-backend:0.1.0",
+        "kind": "Deployment",
+        "uid": 10002
+      },
+      "aiops-platform-probe": {
+        "image": "aiops-backend:0.1.0",
+        "kind": "Deployment",
+        "uid": 10002
+      },
+      "aiops-postgres": {
+        "image": "postgis/postgis:16-3.4@sha256:44126d872ac91993766c341e369c539e8196614321765d36a6f1bab0419a5fa5",
+        "kind": "StatefulSet",
+        "uid": 999
+      },
+      "aiops-prometheus": {
+        "image": "prom/prometheus:v3.7.3@sha256:49214755b6153f90a597adcbff0252cc61069f8ab69ce8411285cd4a560e8038",
+        "kind": "StatefulSet",
+        "uid": 65534
+      },
+      "aiops-scenario-control": {
+        "image": "aiops-backend:0.1.0",
+        "kind": "Deployment",
+        "uid": 10002
+      },
+      "aiops-security": {
+        "image": "aiops-backend:0.1.0",
+        "kind": "Job",
+        "uid": 10002
+      },
+      "aiops-tempo": {
+        "image": "grafana/tempo:2.9.2@sha256:3f0825e14397d3459e11e96f99ddd3976ec0cb75e328459e173298d9fb74b407",
+        "kind": "StatefulSet",
+        "uid": 10001
+      }
+    },
+    "workloads_that_can_reach_the_database": [
+      "aiops-api",
+      "aiops-command-executor",
+      "aiops-e2e",
+      "aiops-ingestion-gateway",
+      "aiops-load",
+      "aiops-migrate",
+      "aiops-outcome-verifier",
+      "aiops-platform-correlator",
+      "aiops-platform-probe",
+      "aiops-scenario-control",
+      "aiops-security"
+    ]
+  },
+  "notes": {
+    "every_dependency_in_the_platforms_own_topology_graph_between_two_workloads_is_allowed_by_the_network_policy": "10 topology edges checked; missing []",
+    "every_document_validates_strictly_against_the_kubernetes_1_36_openapi_schema": "85 documents; []",
+    "every_egress_rule_has_the_matching_ingress_rule_on_the_server_for_the_same_port": "[]",
+    "every_network_policy_peer_is_a_real_workload": "[]",
+    "every_pod_template_meets_the_pod_security_restricted_profile_rule_by_rule": "23 workloads; []",
+    "every_service_account_belongs_to_a_workload_and_every_named_network_policy_to_a_workload": "",
+    "every_service_selects_a_real_workload_and_targets_a_port_its_container_declares": "[]",
+    "every_workload_has_its_own_service_account_and_its_own_network_policy": "missing: []",
+    "not_proven": "This file proves the manifests, not the cluster: what a real API server admitted and a real CNI enforced is P11.03 and P11.04 on the target (infra/k8s/target/verify_target.py and verify_security_target.py). Keycloak runs in start-dev mode (embedded database) exactly as in the compose stack, which is not a production Keycloak; the remediation worker (its docker adapter needs a container runtime) and the demo feeder are not part of these workloads.",
+    "read_only_root_filesystems_no_service_account_tokens_resource_limits_pinned_images_no_literal_secrets_and_only_emptydir_or_claim_writes": "[]",
+    "the_database_is_reachable_only_by_the_services_that_hold_a_database_identity": "['aiops-api', 'aiops-command-executor', 'aiops-e2e', 'aiops-ingestion-gateway', 'aiops-load', 'aiops-migrate', 'aiops-outcome-verifier', 'aiops-platform-correlator', 'aiops-platform-probe', 'aiops-scenario-control', 'aiops-security']",
+    "the_files_on_disk_are_exactly_what_the_generator_produces": "",
+    "the_namespace_enforces_pod_security_restricted_so_an_admission_controller_refuses_what_this_check_missed": "",
+    "the_network_policy_allows_no_workload_to_workload_path_the_dependency_specification_does_not_list": "[]",
+    "the_platform_images_are_versioned_and_every_third_party_image_is_the_digest_pinned_one_the_compose_stack_runs": ""
+  },
+  "task": "P11.02"
+}

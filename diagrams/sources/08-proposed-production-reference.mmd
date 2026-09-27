@@ -1,0 +1,56 @@
+%%{init: {"flowchart": {"htmlLabels": true, "curve": "linear"}} }%%
+flowchart TB
+  BANNER["PROPOSED PRODUCTION REFERENCE - DESIGN ONLY, NOT DEPLOYED, NOT AUTHORIZED\nDeployment profile 3 of docs/REFERENCE_ARCHITECTURE.md section 7; decided in ADR-0007; produced by P13.02\nNo cloud account, budget or provider has been authorized by the user. Nothing on this page has ever run."]
+
+  subgraph EDGEREGIONS["Distributed edge (real intersection/corridor hardware, multiple physical sites)"]
+    direction LR
+    ER1["Region A edge nodes\nsafe local signal plans, inference, durable buffering (same design as the tested edge runtime, ADR-0005/0006)"]
+    ER2["Region B edge nodes"]
+    ER3["Region C edge nodes"]
+  end
+
+  subgraph GATEWAYS["Redundant regional gateways\nterminate device trust, bridge into the central backbone"]
+    direction LR
+    GW1["Gateway, region A/B"]
+    GW2["Gateway, region C + failover"]
+  end
+  ER1 --> GW1
+  ER2 --> GW1
+  ER3 --> GW2
+  GW1 -.->|"failover"| GW2
+
+  subgraph BACKBONE["Multi-zone central event backbone\nseparate failure zones, no shared single point of failure"]
+    direction LR
+    ZONEA["Zone A: ingestion, state, analytics"]
+    ZONEB["Zone B: incident, emergency, optimization, command, outcome (same command-safety path as tested, diagram 04)"]
+    ZONEC["Zone C: AIOps, model service"]
+  end
+  GW1 --> ZONEA
+  GW2 --> ZONEA
+  ZONEA --> ZONEB --> ZONEC
+
+  subgraph MANAGED["Managed cloud services (account NOT authorized - shown for the design decision only, ADR-0007)"]
+    direction LR
+    MIDP["Managed identity\n(replaces the tested Keycloak realm)"]
+    MPOL["Managed policy/secrets\n(replaces the tested OPA + k8s Secrets)"]
+    MOBS["Managed observability + backup\n(replaces the tested Prometheus/Tempo/Loki/Grafana and manual backup_restore.py)"]
+  end
+  ZONEB -->|"policy query"| MPOL
+  ZONEB -->|"token validation"| MIDP
+  BACKBONE -.->|"telemetry"| MOBS
+
+  subgraph ADAPTERS["Certified controller/CAD/AVL adapters - NOT tested, NOT authorized, NOT the same code as the tested simulator adapters (P11.07 CLAIMS none of this)"]
+    direction LR
+    NTCIP["NTCIP signal controllers"]
+    CADAVL["Real agency CAD/AVL"]
+    V2XCAP["V2X / GTFS / CAP feeds"]
+  end
+  ZONEB -->|"would need a certified, vendor-specific adapter per protocol - none exists in this repository"| ADAPTERS
+
+  subgraph DR["Disaster recovery"]
+    SITE2["Tested secondary location\nexplicit RPO/RTO targets (design only - the tested restore, P11.05, used one location)"]
+  end
+  BACKBONE -.-> SITE2
+
+  classDef proposed fill:#fee,stroke:#844,stroke-width:2px,stroke-dasharray: 5 5
+  class BANNER,EDGEREGIONS,GATEWAYS,BACKBONE,MANAGED,ADAPTERS,DR proposed

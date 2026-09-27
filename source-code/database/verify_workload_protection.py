@@ -53,7 +53,13 @@ UPDATE_REFUSED_TABLES = FULLY_PROTECTED_TABLES + (
     "emergency_call_transitions",
     "emergency_assignment_transitions",
 )
-SERVICE_ROLES = ("svc_command_executor", "svc_outcome_verifier", "svc_scenario_control")
+SERVICE_ROLES = (
+    "svc_command_executor",
+    "svc_outcome_verifier",
+    "svc_scenario_control",
+    "svc_platform_correlator",
+    "svc_remediation_worker",
+)
 
 
 def dsn_kwargs(**overrides: str) -> dict[str, str]:
@@ -136,7 +142,7 @@ def main() -> int:  # noqa: PLR0915
             )
             rows = {r[0]: r[1:] for r in cur.fetchall()}
         ev.check(
-            "all_three_service_roles_exist_and_none_is_a_superuser_or_can_create_a_database_or_role",
+            "all_service_roles_exist_and_none_is_a_superuser_or_can_create_a_database_or_role",
             set(rows) == set(SERVICE_ROLES) and all(not any(flags) for flags in rows.values()),
             rows,
         )
@@ -236,17 +242,23 @@ def _resolves(host: str) -> bool:
         return False
 
 
-def _connects(dsn: str) -> bool:
+def _open(dsn: str | dict[str, str]) -> psycopg.Connection:
+    if isinstance(dsn, dict):
+        return psycopg.connect(**dsn, connect_timeout=5)
+    return psycopg.connect(dsn, connect_timeout=5)
+
+
+def _connects(dsn: str | dict[str, str]) -> bool:
     try:
-        with psycopg.connect(dsn, connect_timeout=5):
+        with _open(dsn):
             return True
     except psycopg.Error:
         return False
 
 
-def _connects_and(dsn: str, query: str) -> bool:
+def _connects_and(dsn: str | dict[str, str], query: str) -> bool:
     try:
-        with psycopg.connect(dsn, connect_timeout=5) as conn, conn.cursor() as cur:
+        with _open(dsn) as conn, conn.cursor() as cur:
             cur.execute(query)  # noqa: S608 - fixed, non-parameterized diagnostic query
             cur.fetchone()
             return True

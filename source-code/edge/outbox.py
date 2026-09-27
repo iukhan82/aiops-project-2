@@ -161,6 +161,39 @@ class DurableOutbox:
         )
         return True
 
+    def append_many(self, events: list[dict], now: float | None = None) -> list[str]:
+        """Enqueue a batch in ONE transaction (one fsync, not one per event). Returns, per event and in order, "added", "duplicate" (already present:
+        idempotent, and just as safely stored) or "full" (the unacked backlog is at the hard quota: not stored, and the caller must not acknowledge it).
+        The quota is read once and tracked across the batch, so a batch cannot overshoot it by more than one event."""
+        used = self.quota_status().used_bytes
+        stamp = now if now is not None else time.time()
+        outcome: list[str] = []
+        self._conn.execute("BEGIN IMMEDIATE")
+        try:
+            for event in events:
+                event_id = event["event_id"]
+                if self._conn.execute(
+                    "SELECT 1 FROM outbox WHERE event_id = ?", (event_id,)
+                ).fetchone():
+                    outcome.append("duplicate")
+                    continue
+                if used >= self.hard_bytes:
+                    outcome.append("full")
+                    continue
+                payload = json.dumps(event, sort_keys=True)
+                size = len(payload.encode("utf-8"))
+                self._conn.execute(
+                    "INSERT INTO outbox (event_id, payload, payload_bytes, enqueued_at) VALUES (?, ?, ?, ?)",
+                    (event_id, payload, size, stamp),
+                )
+                used += size
+                outcome.append("added")
+            self._conn.execute("COMMIT")
+        except BaseException:
+            self._conn.execute("ROLLBACK")
+            raise
+        return outcome
+
     # -- read / replay path -----------------------------------------------------------
 
     def pending(self, limit: int | None = None) -> list[OutboxEntry]:
@@ -192,7 +225,23 @@ class DurableOutbox:
         return cur.rowcount > 0
 
     def ack_many(self, event_ids: list[str], now: float | None = None) -> int:
-        return sum(self.ack(eid, now) for eid in event_ids)
+        """Acknowledge a batch in one transaction (one fsync). Returns how many rows changed."""
+        if not event_ids:
+            return 0
+        stamp = now if now is not None else time.time()
+        changed = 0
+        self._conn.execute("BEGIN IMMEDIATE")
+        try:
+            for event_id in event_ids:
+                changed += self._conn.execute(
+                    "UPDATE outbox SET acked = 1, acked_at = ?, payload = '' WHERE event_id = ? AND acked = 0",
+                    (stamp, event_id),
+                ).rowcount
+            self._conn.execute("COMMIT")
+        except BaseException:
+            self._conn.execute("ROLLBACK")
+            raise
+        return changed
 
     def prune_acked(self) -> int:
         """Physically remove acked rows (payload is already cleared on ack;

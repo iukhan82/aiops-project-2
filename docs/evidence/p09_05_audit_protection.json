@@ -33,7 +33,7 @@
     "two_freshly_inserted_rows_chain_correctly_and_verify_intact": true,
     "workflow_audit_redacts_a_secret_before_the_row_is_written_not_only_when_asked_to": true
   },
-  "generated_at": "2026-09-22T04:29:26Z",
+  "generated_at": "2026-09-26T17:58:47Z",
   "metrics": {
     "redaction_write_path_sample": {
       "location": {
@@ -51,11 +51,11 @@
       "broken_links": [],
       "gaps": [],
       "hash_mismatches": [
-        620
+        80
       ],
       "intact": false,
-      "legacy_rows": 614,
-      "rows": 690,
+      "legacy_rows": 0,
+      "rows": 1299,
       "table": "operator_audit"
     },
     "a_second_override_of_the_same_now_rolled_back_command_is_refused": "{\"detail\":{\"error\":\"invalid_transition\",\"message\":\"This command is rolled_back; only an executed command awaiting verification can be overridden.\",\"current_status\":\"rolled_back\"}}",
@@ -66,27 +66,47 @@
     ],
     "an_operator_holds_no_override_capability_and_is_refused_at_the_door": "{\"detail\":{\"error\":\"forbidden\",\"message\":\"your role does not hold the 'commands.override' capability\",\"capability\":\"commands.override\",\"roles\":[\"operator\"]}}",
     "an_sc0_command_has_no_override_and_is_refused_as_not_available_not_as_a_role_problem": "{\"detail\":{\"error\":\"override_not_available\",\"message\":\"There is no override for a SC-0 action; cancel and resubmit instead.\",\"safety_class\":\"SC-0\"}}",
-    "command_transitions_and_incident_transitions_still_refuse_update_and_truncate": "",
+    "command_transitions_and_incident_transitions_still_refuse_update_and_truncate": {
+      "command_transitions": "attempted on a real row",
+      "incident_transitions": "attempted on a real row"
+    },
     "command_transitions_chain_stays_intact_meaning_the_cascade_gap_is_reported_as_a_gap_not_a_break": {
       "broken_links": [],
       "gaps": [
-        780,
-        784,
-        794,
-        812,
-        815,
-        819,
-        828,
-        834,
-        852,
-        855,
-        859,
-        868
+        291,
+        295,
+        703,
+        729,
+        755,
+        779,
+        805,
+        837,
+        856,
+        882,
+        908,
+        932,
+        958,
+        994,
+        1013,
+        1039,
+        1065,
+        1089,
+        1115,
+        1141,
+        1155,
+        1181,
+        1207,
+        1231,
+        1257,
+        1283,
+        1309,
+        1347,
+        1368
       ],
       "hash_mismatches": [],
       "intact": true,
-      "legacy_rows": 269,
-      "rows": 186,
+      "legacy_rows": 0,
+      "rows": 744,
       "table": "command_transitions"
     },
     "every_chained_history_is_intact_on_the_real_database_before_this_run_touches_anything": {},
@@ -116,18 +136,18 @@
       "gaps": [],
       "hash_mismatches": [],
       "intact": true,
-      "legacy_rows": 614,
-      "rows": 690,
+      "legacy_rows": 0,
+      "rows": 1299,
       "table": "operator_audit"
     },
     "retention_runs_itself_is_chained_append_only_and_grew_by_one_row_recording_what_was_purged": {
-      "after": 9,
-      "before": 8
+      "after": 12,
+      "before": 11
     },
     "retention_runs_refuses_update_and_delete_like_the_other_audit_tables": "",
     "retentions_own_cascade_delete_of_a_terminal_commands_transitions_still_works_with_the_new_triggers_in_place": {
       "commands_deleted": 1,
-      "database_size_bytes": 24883683,
+      "database_size_bytes": 39465443,
       "events_deleted": 0,
       "events_rolled_up": 0,
       "incidents_deleted": 0,
@@ -155,20 +175,20 @@
           "window_days": 90
         }
       },
-      "run_id": 9,
+      "run_id": 12,
       "storage_pressure": false
     },
     "the_database_itself_refuses_a_raw_insert_carrying_a_bearer_credential_defense_in_depth_for_ctl_16": "",
     "the_export_caps_its_row_count_and_says_so_rather_than_silently_truncating": {
-      "exported_at": "2026-09-22T04:29:15.071Z",
+      "exported_at": "2026-09-26T17:58:36.966Z",
       "exported_by": "ana.petrov",
       "filters": {
         "actor": null,
-        "entity_id": "p0905-b922fe0d",
+        "entity_id": "p0905-f6acc9f5",
         "entity_type": null,
         "outcome": null,
-        "since": "2026-09-22T04:24:14.023Z",
-        "until": "2026-09-22T04:34:14.023Z"
+        "since": "2026-09-26T17:53:36.005Z",
+        "until": "2026-09-26T18:03:36.005Z"
       },
       "items": [
         {
@@ -177,13 +197,13 @@
           "actor_roles": [
             "auditor"
           ],
-          "at": "2026-09-22T04:29:14.014Z",
-          "audit_id": "operator:1306",
+          "at": "2026-09-26T17:58:35.997Z",
+          "audit_id": "operator:1301",
           "detail": {
             "location": "[location]",
-            "note": "p0905-b922fe0d"
+            "note": "p0905-f6acc9f5"
           },
-          "entity_id": "p0905-b922fe0d",
+          "entity_id": "p0905-f6acc9f5",
           "entity_type": "test",
           "outcome": "allowed",
           "source": "operator"
@@ -206,32 +226,32 @@
       "chain.fixture"
     ],
     "the_export_names_who_exported_it_when_and_under_which_filters": {
-      "exported_at": "2026-09-22T04:29:14.479Z",
+      "exported_at": "2026-09-26T17:58:36.381Z",
       "exported_by": "ana.petrov",
       "filters": {
         "actor": null,
-        "entity_id": "p0905-b922fe0d",
+        "entity_id": "p0905-f6acc9f5",
         "entity_type": null,
         "outcome": null,
-        "since": "2026-09-22T04:24:14.023Z",
-        "until": "2026-09-22T04:34:14.023Z"
+        "since": "2026-09-26T17:53:36.005Z",
+        "until": "2026-09-26T18:03:36.005Z"
       }
     },
-    "the_incident_commander_overrides_an_executed_sc2_command_with_a_justification": "{\"command_id\":\"599af217-2e68-4748-9455-2b785b6fa859\",\"status\":\"rolled_back\",\"safety_class\":\"SC-2\",\"overridden_by\":\"eve.laurent\",\"overridden_role\":\"incident_commander\"}",
+    "the_incident_commander_overrides_an_executed_sc2_command_with_a_justification": "{\"command_id\":\"582b2535-7951-4bba-9a2e-caaa57c4878c\",\"status\":\"rolled_back\",\"safety_class\":\"SC-2\",\"overridden_by\":\"eve.laurent\",\"overridden_role\":\"incident_commander\"}",
     "the_log_redaction_filter_removes_a_token_from_a_log_records_rendered_message": [
       "GET /ws?access_token=[redacted]"
     ],
     "the_ordinary_trail_shows_the_raw_location_but_the_export_replaces_it": {
       "export": {
         "location": "[location]",
-        "note": "p0905-b922fe0d"
+        "note": "p0905-f6acc9f5"
       },
       "trail": {
         "location": {
           "lat": 12.34,
           "lon": 56.78
         },
-        "note": "p0905-b922fe0d"
+        "note": "p0905-f6acc9f5"
       }
     },
     "the_override_audit_entry_names_the_justification_and_is_honest_that_no_physical_undo_was_attempted": {
@@ -252,8 +272,8 @@
       "gaps": [],
       "hash_mismatches": [],
       "intact": true,
-      "legacy_rows": 614,
-      "rows": 690,
+      "legacy_rows": 0,
+      "rows": 1299,
       "table": "operator_audit"
     },
     "workflow_audit_redacts_a_secret_before_the_row_is_written_not_only_when_asked_to": {

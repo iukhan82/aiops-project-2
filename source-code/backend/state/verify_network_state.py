@@ -92,7 +92,7 @@ def main() -> int:
             cur.execute(
                 "INSERT INTO devices (device_id, device_type, deployment_type, agency_scope, geometry_version, "
                 "location, lane_id, status, registered_at, privacy_classification, retention_class) VALUES "
-                "('verify-network-state-device', 'traffic_loop', 'simulated', 'city-traffic-ops', %s, "
+                "('verify-network-state-device', 'inductive_loop', 'simulated', 'city-traffic-ops', %s, "
                 "ST_SetSRID(ST_MakePoint(74.3587, 31.5204), 4326)::geography, %s, 'active', now(), 'none', 'standard') "
                 "ON CONFLICT (device_id) DO NOTHING",
                 (GEOMETRY_VERSION, TEST_LANE),

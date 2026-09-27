@@ -1,6 +1,6 @@
 {
   "task": "P08.04",
-  "generated_at": "2026-09-21T15:29:36Z",
+  "generated_at": "2026-09-26T20:04:07Z",
   "browser": {
     "channel": "chrome",
     "headless": true,
@@ -10,117 +10,118 @@
   "tests_total": 16,
   "tests_passed": 16,
   "all_passed": true,
+  "retried_after_a_failed_first_attempt": [],
   "tests": [
     {
       "title": "auth.spec.ts > sign-in, session and access (P08.04) > an unauthenticated visitor to a protected screen is sent to sign in, and the page never asks for a password itself",
       "file": "auth.spec.ts",
       "status": "passed",
-      "duration_ms": 2956,
+      "duration_ms": 1913,
       "error": null
     },
     {
       "title": "auth.spec.ts > sign-in, session and access (P08.04) > the first Tab stop is the skip link and it moves focus to main",
       "file": "auth.spec.ts",
       "status": "passed",
-      "duration_ms": 1548,
+      "duration_ms": 929,
       "error": null
     },
     {
       "title": "auth.spec.ts > sign-in, session and access (P08.04) > operator: lands on its own home screen with exactly the navigation its capabilities allow",
       "file": "auth.spec.ts",
       "status": "passed",
-      "duration_ms": 5102,
+      "duration_ms": 3594,
       "error": null
     },
     {
       "title": "auth.spec.ts > sign-in, session and access (P08.04) > supervisor: lands on its own home screen with exactly the navigation its capabilities allow",
       "file": "auth.spec.ts",
       "status": "passed",
-      "duration_ms": 4197,
+      "duration_ms": 3512,
       "error": null
     },
     {
       "title": "auth.spec.ts > sign-in, session and access (P08.04) > dispatcher: lands on its own home screen with exactly the navigation its capabilities allow",
       "file": "auth.spec.ts",
       "status": "passed",
-      "duration_ms": 4236,
+      "duration_ms": 2903,
       "error": null
     },
     {
       "title": "auth.spec.ts > sign-in, session and access (P08.04) > incident_commander: lands on its own home screen with exactly the navigation its capabilities allow",
       "file": "auth.spec.ts",
       "status": "passed",
-      "duration_ms": 3330,
+      "duration_ms": 2993,
       "error": null
     },
     {
       "title": "auth.spec.ts > sign-in, session and access (P08.04) > field_responder: lands on its own home screen with exactly the navigation its capabilities allow",
       "file": "auth.spec.ts",
       "status": "passed",
-      "duration_ms": 3633,
+      "duration_ms": 2346,
       "error": null
     },
     {
       "title": "auth.spec.ts > sign-in, session and access (P08.04) > auditor: lands on its own home screen with exactly the navigation its capabilities allow",
       "file": "auth.spec.ts",
       "status": "passed",
-      "duration_ms": 5630,
+      "duration_ms": 4561,
       "error": null
     },
     {
       "title": "auth.spec.ts > sign-in, session and access (P08.04) > demo_operator: lands on its own home screen with exactly the navigation its capabilities allow",
       "file": "auth.spec.ts",
       "status": "passed",
-      "duration_ms": 3449,
+      "duration_ms": 5484,
       "error": null
     },
     {
       "title": "auth.spec.ts > sign-in, session and access (P08.04) > a deep link is kept across sign-in",
       "file": "auth.spec.ts",
       "status": "passed",
-      "duration_ms": 2079,
+      "duration_ms": 2114,
       "error": null
     },
     {
       "title": "auth.spec.ts > sign-in, session and access (P08.04) > a screen the role does not hold the capability for says which capability is missing",
       "file": "auth.spec.ts",
       "status": "passed",
-      "duration_ms": 4560,
+      "duration_ms": 3929,
       "error": null
     },
     {
       "title": "auth.spec.ts > sign-in, session and access (P08.04) > a field responder is refused the command screens, by capability",
       "file": "auth.spec.ts",
       "status": "passed",
-      "duration_ms": 3915,
+      "duration_ms": 2865,
       "error": null
     },
     {
       "title": "auth.spec.ts > sign-in, session and access (P08.04) > an unknown path shows page-not-found in the shell when signed in, and in the public frame when not",
       "file": "auth.spec.ts",
       "status": "passed",
-      "duration_ms": 3941,
+      "duration_ms": 3588,
       "error": null
     },
     {
       "title": "auth.spec.ts > sign-in, session and access (P08.04) > a reload keeps the session through the identity provider without asking for the password again",
       "file": "auth.spec.ts",
       "status": "passed",
-      "duration_ms": 4413,
+      "duration_ms": 4116,
       "error": null
     },
     {
       "title": "auth.spec.ts > sign-in, session and access (P08.04) > when the identity provider has ended the session, a reload asks for sign-in and the destination survives it",
       "file": "auth.spec.ts",
       "status": "passed",
-      "duration_ms": 8427,
+      "duration_ms": 5558,
       "error": null
     },
     {
       "title": "auth.spec.ts > sign-in, session and access (P08.04) > signing out ends the session at the identity provider too",
       "file": "auth.spec.ts",
       "status": "passed",
-      "duration_ms": 3365,
+      "duration_ms": 3010,
       "error": null
     }
   ],

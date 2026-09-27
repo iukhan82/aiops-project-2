@@ -22,7 +22,7 @@
     "stall_recall_gate_on_held_out_incidents": true,
     "stall_test_use_is_ledgered_as_non_selecting": true
   },
-  "generated_at": "2026-09-20T07:35:01Z",
+  "generated_at": "2026-09-26T08:26:40Z",
   "metrics": {
     "held_out_stall_test": {
       "candidates": 13,

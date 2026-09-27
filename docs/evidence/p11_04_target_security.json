@@ -1,0 +1,328 @@
+{
+  "all_passed": true,
+  "checks": {
+    "admission_admits_a_pod_that_meets_the_restricted_profile": true,
+    "admission_refuses_a_pod_on_the_host_network": true,
+    "admission_refuses_a_pod_that_may_run_as_root_with_no_hardening": true,
+    "admission_refuses_a_pod_that_mounts_a_host_path": true,
+    "admission_refuses_a_privileged_pod": true,
+    "every_get_endpoint_lets_the_roles_the_inventory_allows_through_and_forbids_every_other_role": true,
+    "keycloak_issues_a_token_to_every_operating_role_by_authorization_code_and_pkce": true,
+    "keycloak_refuses_a_replayed_authorization_code": true,
+    "keycloak_refuses_an_authorization_request_with_no_pkce_challenge": true,
+    "keycloak_refuses_the_password_grant_for_the_console_client": true,
+    "mqtt_a_certificate_from_another_ca_is_refused": true,
+    "mqtt_a_client_that_does_not_trust_the_brokers_ca_refuses_the_broker": true,
+    "mqtt_a_client_with_no_certificate_is_refused": true,
+    "mqtt_a_device_with_a_certificate_from_the_platform_ca_connects": true,
+    "mqtt_negotiates_tls_1_2_or_better": true,
+    "mqtt_plain_mqtt_bytes_on_the_tls_port_get_no_connack": true,
+    "network_a_pod_of_another_namespace_cannot_reach_the_database": true,
+    "network_api_cannot_reach_kafka": true,
+    "network_api_cannot_reach_the_internet": true,
+    "network_api_cannot_reach_the_mqtt_broker": true,
+    "network_api_reaches_the_database": true,
+    "network_api_reaches_the_policy_engine": true,
+    "network_frontend_cannot_reach_the_database": true,
+    "network_frontend_to_api_is_allowed": true,
+    "network_grafana_cannot_reach_the_database": true,
+    "network_grafana_reaches_prometheus": true,
+    "network_ingestion_cannot_reach_keycloak": true,
+    "network_ingestion_reaches_kafka": true,
+    "network_prometheus_cannot_reach_the_database": true,
+    "network_prometheus_scrapes_the_edge_runtime": true,
+    "network_the_edge_runtime_cannot_reach_kafka": true,
+    "network_the_edge_runtime_cannot_reach_the_database": true,
+    "network_the_edge_runtime_cannot_reach_the_internet": true,
+    "network_the_gateway_cannot_reach_the_database": true,
+    "network_the_gateway_reaches_the_broker_on_the_tls_port": true,
+    "no_service_account_token_is_mounted_in_the_api_pod": true,
+    "postgres_refuses_a_connection_that_is_not_tls": true,
+    "postgres_verify_full_against_a_different_ca_fails": true,
+    "postgres_verify_full_against_the_platform_ca_connects_and_the_session_is_tls": true,
+    "rbac_aiops-api_can_do_none_of_read_secrets_create_pods_exec_or_list_nodes": true,
+    "rbac_aiops-ingestion-gateway_can_do_none_of_read_secrets_create_pods_exec_or_list_nodes": true,
+    "rbac_aiops-mqtt-gateway_can_do_none_of_read_secrets_create_pods_exec_or_list_nodes": true,
+    "rbac_aiops-postgres_can_do_none_of_read_secrets_create_pods_exec_or_list_nodes": true,
+    "the_api_refuses_a_request_with_no_token": true,
+    "the_api_refuses_a_token_signed_with_a_key_it_does_not_trust": true,
+    "the_api_refuses_a_token_whose_payload_was_altered": true,
+    "the_api_refuses_an_unsigned_token": true,
+    "the_api_reports_each_token_as_exactly_its_own_role": true,
+    "the_mqtt_broker_listens_on_the_mtls_port_only_there_is_no_plain_listener": true,
+    "the_policy_denies_a_caller_with_no_operating_role": true,
+    "the_policy_denies_an_endpoint_that_is_not_listed_by_default": true,
+    "the_policy_engine_holds_the_policy_version_this_release_was_generated_with": true,
+    "the_policy_forbids_a_role_the_inventory_does_not_allow": true,
+    "the_policy_gives_an_invented_role_nothing": true,
+    "the_policy_permits_a_role_the_inventory_allows": true,
+    "with_the_policy_engine_stopped_a_permitted_request_is_refused_not_waved_through": true
+  },
+  "generated_at": "2026-09-26T05:50:59Z",
+  "metrics": {
+    "admission": {
+      "a_pod_on_the_host_network": "refused by PodSecurity",
+      "a_pod_that_may_run_as_root_with_no_hardening": "refused by PodSecurity",
+      "a_pod_that_meets_the_restricted_profile": "admitted",
+      "a_pod_that_mounts_a_host_path": "refused by PodSecurity",
+      "a_privileged_pod": "refused by PodSecurity"
+    },
+    "mqtt_listening_ports": [
+      8883
+    ],
+    "network": {
+      "api_cannot_reach_kafka": "failed",
+      "api_cannot_reach_the_internet": "failed",
+      "api_cannot_reach_the_mqtt_broker": "failed",
+      "api_reaches_the_database": "connected",
+      "api_reaches_the_policy_engine": "connected",
+      "frontend_cannot_reach_the_database": "failed",
+      "frontend_to_api_is_allowed": "connected",
+      "grafana_cannot_reach_the_database": "failed",
+      "grafana_reaches_prometheus": "connected",
+      "ingestion_cannot_reach_keycloak": "failed",
+      "ingestion_reaches_kafka": "connected",
+      "outsider_namespace_to_postgres": "failed",
+      "prometheus_cannot_reach_the_database": "failed",
+      "prometheus_scrapes_the_edge_runtime": "connected",
+      "the_edge_runtime_cannot_reach_kafka": "failed",
+      "the_edge_runtime_cannot_reach_the_database": "failed",
+      "the_edge_runtime_cannot_reach_the_internet": "failed",
+      "the_gateway_cannot_reach_the_database": "failed",
+      "the_gateway_reaches_the_broker_on_the_tls_port": "connected"
+    },
+    "rbac": {
+      "aiops-api": {
+        "create pods": "no",
+        "create pods/exec": "no",
+        "get secrets": "no",
+        "list nodes": "no",
+        "list secrets": "no"
+      },
+      "aiops-ingestion-gateway": {
+        "create pods": "no",
+        "create pods/exec": "no",
+        "get secrets": "no",
+        "list nodes": "no",
+        "list secrets": "no"
+      },
+      "aiops-mqtt-gateway": {
+        "create pods": "no",
+        "create pods/exec": "no",
+        "get secrets": "no",
+        "list nodes": "no",
+        "list secrets": "no"
+      },
+      "aiops-postgres": {
+        "create pods": "no",
+        "create pods/exec": "no",
+        "get secrets": "no",
+        "list nodes": "no",
+        "list secrets": "no"
+      }
+    },
+    "security_job_main": {
+      "checks": [
+        {
+          "detail": "",
+          "name": "mqtt_a_device_with_a_certificate_from_the_platform_ca_connects",
+          "ok": true
+        },
+        {
+          "detail": "no CONNACK",
+          "name": "mqtt_a_client_with_no_certificate_is_refused",
+          "ok": true
+        },
+        {
+          "detail": "no CONNACK",
+          "name": "mqtt_a_certificate_from_another_ca_is_refused",
+          "ok": true
+        },
+        {
+          "detail": "SSLCertVerificationError",
+          "name": "mqtt_a_client_that_does_not_trust_the_brokers_ca_refuses_the_broker",
+          "ok": true
+        },
+        {
+          "detail": "TLSv1.3",
+          "name": "mqtt_negotiates_tls_1_2_or_better",
+          "ok": true
+        },
+        {
+          "detail": "7 byte(s) back",
+          "name": "mqtt_plain_mqtt_bytes_on_the_tls_port_get_no_connack",
+          "ok": true
+        },
+        {
+          "detail": "",
+          "name": "postgres_verify_full_against_the_platform_ca_connects_and_the_session_is_tls",
+          "ok": true
+        },
+        {
+          "detail": "connection failed: connection to server at \"10.201.187.84\", port 5432 failed: FATAL:  pg_hba.conf rejects connection for",
+          "name": "postgres_refuses_a_connection_that_is_not_tls",
+          "ok": true
+        },
+        {
+          "detail": "",
+          "name": "postgres_verify_full_against_a_different_ca_fails",
+          "ok": true
+        },
+        {
+          "detail": "7/7 roles; []",
+          "name": "keycloak_issues_a_token_to_every_operating_role_by_authorization_code_and_pkce",
+          "ok": true
+        },
+        {
+          "detail": "status 400",
+          "name": "keycloak_refuses_the_password_grant_for_the_console_client",
+          "ok": true
+        },
+        {
+          "detail": "status 302",
+          "name": "keycloak_refuses_an_authorization_request_with_no_pkce_challenge",
+          "ok": true
+        },
+        {
+          "detail": "first 200, replay 400",
+          "name": "keycloak_refuses_a_replayed_authorization_code",
+          "ok": true
+        },
+        {
+          "detail": "",
+          "name": "the_api_reports_each_token_as_exactly_its_own_role",
+          "ok": true
+        },
+        {
+          "detail": "",
+          "name": "the_api_refuses_a_request_with_no_token",
+          "ok": true
+        },
+        {
+          "detail": "",
+          "name": "the_api_refuses_a_token_whose_payload_was_altered",
+          "ok": true
+        },
+        {
+          "detail": "",
+          "name": "the_api_refuses_an_unsigned_token",
+          "ok": true
+        },
+        {
+          "detail": "",
+          "name": "the_api_refuses_a_token_signed_with_a_key_it_does_not_trust",
+          "ok": true
+        },
+        {
+          "detail": "23 endpoints x 7 roles = 161 cells; wrong []",
+          "name": "every_get_endpoint_lets_the_roles_the_inventory_allows_through_and_forbids_every_other_role",
+          "ok": true
+        },
+        {
+          "detail": "engine 1e71a6af37e42419",
+          "name": "the_policy_engine_holds_the_policy_version_this_release_was_generated_with",
+          "ok": true
+        },
+        {
+          "detail": "permit",
+          "name": "the_policy_permits_a_role_the_inventory_allows",
+          "ok": true
+        },
+        {
+          "detail": "forbidden",
+          "name": "the_policy_forbids_a_role_the_inventory_does_not_allow",
+          "ok": true
+        },
+        {
+          "detail": "unlisted_endpoint",
+          "name": "the_policy_denies_an_endpoint_that_is_not_listed_by_default",
+          "ok": true
+        },
+        {
+          "detail": "no_operating_role",
+          "name": "the_policy_denies_a_caller_with_no_operating_role",
+          "ok": true
+        },
+        {
+          "detail": "no_operating_role",
+          "name": "the_policy_gives_an_invented_role_nothing",
+          "ok": true
+        }
+      ],
+      "passed": true,
+      "phase": "main"
+    },
+    "security_job_outage": {
+      "checks": [
+        {
+          "detail": "status 503",
+          "name": "with_the_policy_engine_stopped_a_permitted_request_is_refused_not_waved_through",
+          "ok": true
+        }
+      ],
+      "passed": true,
+      "phase": "outage"
+    }
+  },
+  "notes": {
+    "admission_admits_a_pod_that_meets_the_restricted_profile": "admitted",
+    "admission_refuses_a_pod_on_the_host_network": "refused by PodSecurity",
+    "admission_refuses_a_pod_that_may_run_as_root_with_no_hardening": "refused by PodSecurity",
+    "admission_refuses_a_pod_that_mounts_a_host_path": "refused by PodSecurity",
+    "admission_refuses_a_privileged_pod": "refused by PodSecurity",
+    "every_get_endpoint_lets_the_roles_the_inventory_allows_through_and_forbids_every_other_role": "23 endpoints x 7 roles = 161 cells; wrong []",
+    "keycloak_issues_a_token_to_every_operating_role_by_authorization_code_and_pkce": "7/7 roles; []",
+    "keycloak_refuses_a_replayed_authorization_code": "first 200, replay 400",
+    "keycloak_refuses_an_authorization_request_with_no_pkce_challenge": "status 302",
+    "keycloak_refuses_the_password_grant_for_the_console_client": "status 400",
+    "mqtt_a_certificate_from_another_ca_is_refused": "no CONNACK",
+    "mqtt_a_client_that_does_not_trust_the_brokers_ca_refuses_the_broker": "SSLCertVerificationError",
+    "mqtt_a_client_with_no_certificate_is_refused": "no CONNACK",
+    "mqtt_a_device_with_a_certificate_from_the_platform_ca_connects": "",
+    "mqtt_negotiates_tls_1_2_or_better": "TLSv1.3",
+    "mqtt_plain_mqtt_bytes_on_the_tls_port_get_no_connack": "7 byte(s) back",
+    "network_a_pod_of_another_namespace_cannot_reach_the_database": "got failed",
+    "network_api_cannot_reach_kafka": "expected failed, got failed",
+    "network_api_cannot_reach_the_internet": "expected failed, got failed",
+    "network_api_cannot_reach_the_mqtt_broker": "expected failed, got failed",
+    "network_api_reaches_the_database": "expected connected, got connected",
+    "network_api_reaches_the_policy_engine": "expected connected, got connected",
+    "network_frontend_cannot_reach_the_database": "expected failed, got failed",
+    "network_frontend_to_api_is_allowed": "expected connected, got connected",
+    "network_grafana_cannot_reach_the_database": "expected failed, got failed",
+    "network_grafana_reaches_prometheus": "expected connected, got connected",
+    "network_ingestion_cannot_reach_keycloak": "expected failed, got failed",
+    "network_ingestion_reaches_kafka": "expected connected, got connected",
+    "network_prometheus_cannot_reach_the_database": "expected failed, got failed",
+    "network_prometheus_scrapes_the_edge_runtime": "expected connected, got connected",
+    "network_the_edge_runtime_cannot_reach_kafka": "expected failed, got failed",
+    "network_the_edge_runtime_cannot_reach_the_database": "expected failed, got failed",
+    "network_the_edge_runtime_cannot_reach_the_internet": "expected failed, got failed",
+    "network_the_gateway_cannot_reach_the_database": "expected failed, got failed",
+    "network_the_gateway_reaches_the_broker_on_the_tls_port": "expected connected, got connected",
+    "no_service_account_token_is_mounted_in_the_api_pod": "secrets/kubernetes.io/serviceaccount': No such file or directory\ncommand terminated with exit code 2",
+    "not_covered": "runtime detections on the target are P09.09's own run; nothing about the host's K3s or the other projects' clusters was touched",
+    "postgres_refuses_a_connection_that_is_not_tls": "connection failed: connection to server at \"10.201.187.84\", port 5432 failed: FATAL:  pg_hba.conf rejects connection for",
+    "postgres_verify_full_against_a_different_ca_fails": "",
+    "postgres_verify_full_against_the_platform_ca_connects_and_the_session_is_tls": "",
+    "rbac_aiops-api_can_do_none_of_read_secrets_create_pods_exec_or_list_nodes": "{'get secrets': 'no', 'list secrets': 'no', 'create pods': 'no', 'create pods/exec': 'no', 'list nodes': 'no'}",
+    "rbac_aiops-ingestion-gateway_can_do_none_of_read_secrets_create_pods_exec_or_list_nodes": "{'get secrets': 'no', 'list secrets': 'no', 'create pods': 'no', 'create pods/exec': 'no', 'list nodes': 'no'}",
+    "rbac_aiops-mqtt-gateway_can_do_none_of_read_secrets_create_pods_exec_or_list_nodes": "{'get secrets': 'no', 'list secrets': 'no', 'create pods': 'no', 'create pods/exec': 'no', 'list nodes': 'no'}",
+    "rbac_aiops-postgres_can_do_none_of_read_secrets_create_pods_exec_or_list_nodes": "{'get secrets': 'no', 'list secrets': 'no', 'create pods': 'no', 'create pods/exec': 'no', 'list nodes': 'no'}",
+    "taken_at": "2026-09-26T05:50:59Z",
+    "the_api_refuses_a_request_with_no_token": "",
+    "the_api_refuses_a_token_signed_with_a_key_it_does_not_trust": "",
+    "the_api_refuses_a_token_whose_payload_was_altered": "",
+    "the_api_refuses_an_unsigned_token": "",
+    "the_api_reports_each_token_as_exactly_its_own_role": "",
+    "the_mqtt_broker_listens_on_the_mtls_port_only_there_is_no_plain_listener": "listening [8883]",
+    "the_policy_denies_a_caller_with_no_operating_role": "no_operating_role",
+    "the_policy_denies_an_endpoint_that_is_not_listed_by_default": "unlisted_endpoint",
+    "the_policy_engine_holds_the_policy_version_this_release_was_generated_with": "engine 1e71a6af37e42419",
+    "the_policy_forbids_a_role_the_inventory_does_not_allow": "forbidden",
+    "the_policy_gives_an_invented_role_nothing": "no_operating_role",
+    "the_policy_permits_a_role_the_inventory_allows": "permit",
+    "with_the_policy_engine_stopped_a_permitted_request_is_refused_not_waved_through": "status 503"
+  },
+  "task": "P11.04"
+}

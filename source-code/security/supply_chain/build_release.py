@@ -174,6 +174,8 @@ def trivy_image_scan(image_ref: str, out_file: Path) -> dict:
         "--rm",
         "-v",
         "/var/run/docker.sock:/var/run/docker.sock",
+        "-v",
+        "aiops-trivy-cache:/root/.cache/trivy",  # the vulnerability database is downloaded once, not once per scan
         TRIVY_IMAGE,
         "image",
         "--scanners",

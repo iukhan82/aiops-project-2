@@ -1,0 +1,634 @@
+{
+  "all_passed": true,
+  "checks": {
+    "every_finding_about_missing_positive_or_negative_evidence_names_an_owner_and_a_task": true,
+    "no_implemented_control_has_no_evidence_at_all": true,
+    "re_running_API token enforcement matrix (P08.04)_passes": true,
+    "re_running_access review of the live realm (P09.07)_passes": true,
+    "re_running_audit hash chain, redaction and export (P09.05)_passes": true,
+    "re_running_data inventory against the live database (P09.06)_passes": true,
+    "re_running_identity: the Keycloak realm and the authorization-code attacks (P09.02)_passes": true,
+    "re_running_policy engine (P09.03)_passes": true,
+    "re_running_workload database identities (P09.04)_passes": true
+  },
+  "generated_at": "2026-09-26T17:58:48Z",
+  "metrics": {
+    "coverage": {
+      "controls": 48,
+      "implemented_or_partial": 47,
+      "rows": [
+        {
+          "checks": 5,
+          "cited": 1,
+          "id": "CTL-01",
+          "negative": 4,
+          "positive": 1,
+          "pytest_files": 0,
+          "status": "implemented"
+        },
+        {
+          "checks": 8,
+          "cited": 1,
+          "id": "CTL-02",
+          "negative": 8,
+          "positive": 0,
+          "pytest_files": 0,
+          "status": "implemented"
+        },
+        {
+          "checks": 5,
+          "cited": 2,
+          "id": "CTL-03",
+          "negative": 4,
+          "positive": 1,
+          "pytest_files": 0,
+          "status": "implemented"
+        },
+        {
+          "checks": 12,
+          "cited": 1,
+          "id": "CTL-04",
+          "negative": 6,
+          "positive": 6,
+          "pytest_files": 0,
+          "status": "implemented"
+        },
+        {
+          "checks": 8,
+          "cited": 3,
+          "id": "CTL-05",
+          "negative": 6,
+          "positive": 2,
+          "pytest_files": 0,
+          "status": "implemented"
+        },
+        {
+          "checks": 8,
+          "cited": 2,
+          "id": "CTL-06",
+          "negative": 8,
+          "positive": 0,
+          "pytest_files": 0,
+          "status": "implemented"
+        },
+        {
+          "checks": 6,
+          "cited": 3,
+          "id": "CTL-07",
+          "negative": 6,
+          "positive": 0,
+          "pytest_files": 0,
+          "status": "implemented"
+        },
+        {
+          "checks": 5,
+          "cited": 1,
+          "id": "CTL-08",
+          "negative": 4,
+          "positive": 1,
+          "pytest_files": 0,
+          "status": "implemented"
+        },
+        {
+          "checks": 8,
+          "cited": 2,
+          "id": "CTL-09",
+          "negative": 6,
+          "positive": 2,
+          "pytest_files": 0,
+          "status": "implemented"
+        },
+        {
+          "checks": 8,
+          "cited": 2,
+          "id": "CTL-10",
+          "negative": 8,
+          "positive": 0,
+          "pytest_files": 0,
+          "status": "implemented"
+        },
+        {
+          "checks": 10,
+          "cited": 2,
+          "id": "CTL-11",
+          "negative": 4,
+          "positive": 6,
+          "pytest_files": 0,
+          "status": "partial"
+        },
+        {
+          "checks": 3,
+          "cited": 1,
+          "id": "CTL-12",
+          "negative": 1,
+          "positive": 2,
+          "pytest_files": 0,
+          "status": "implemented"
+        },
+        {
+          "checks": 17,
+          "cited": 4,
+          "id": "CTL-13",
+          "negative": 9,
+          "positive": 8,
+          "pytest_files": 0,
+          "status": "implemented"
+        },
+        {
+          "checks": 6,
+          "cited": 3,
+          "id": "CTL-14",
+          "negative": 3,
+          "positive": 3,
+          "pytest_files": 0,
+          "status": "partial"
+        },
+        {
+          "checks": 10,
+          "cited": 1,
+          "id": "CTL-15",
+          "negative": 6,
+          "positive": 4,
+          "pytest_files": 0,
+          "status": "implemented"
+        },
+        {
+          "checks": 6,
+          "cited": 1,
+          "id": "CTL-16",
+          "negative": 2,
+          "positive": 4,
+          "pytest_files": 0,
+          "status": "implemented"
+        },
+        {
+          "checks": 6,
+          "cited": 1,
+          "id": "CTL-17",
+          "negative": 2,
+          "positive": 4,
+          "pytest_files": 0,
+          "status": "implemented"
+        },
+        {
+          "checks": 4,
+          "cited": 1,
+          "id": "CTL-18",
+          "negative": 1,
+          "positive": 3,
+          "pytest_files": 0,
+          "status": "implemented"
+        },
+        {
+          "checks": 0,
+          "cited": 1,
+          "id": "CTL-19",
+          "negative": 0,
+          "positive": 0,
+          "pytest_files": 1,
+          "status": "implemented"
+        },
+        {
+          "checks": 3,
+          "cited": 1,
+          "id": "CTL-20",
+          "negative": 2,
+          "positive": 1,
+          "pytest_files": 0,
+          "status": "implemented"
+        },
+        {
+          "checks": 3,
+          "cited": 1,
+          "id": "CTL-21",
+          "negative": 2,
+          "positive": 1,
+          "pytest_files": 0,
+          "status": "implemented"
+        },
+        {
+          "checks": 3,
+          "cited": 1,
+          "id": "CTL-22",
+          "negative": 0,
+          "positive": 3,
+          "pytest_files": 0,
+          "status": "implemented"
+        },
+        {
+          "checks": 3,
+          "cited": 1,
+          "id": "CTL-23",
+          "negative": 2,
+          "positive": 1,
+          "pytest_files": 0,
+          "status": "implemented"
+        },
+        {
+          "checks": 3,
+          "cited": 1,
+          "id": "CTL-24",
+          "negative": 2,
+          "positive": 1,
+          "pytest_files": 0,
+          "status": "implemented"
+        },
+        {
+          "checks": 0,
+          "cited": 2,
+          "id": "CTL-25",
+          "negative": 0,
+          "positive": 0,
+          "pytest_files": 2,
+          "status": "implemented"
+        },
+        {
+          "checks": 0,
+          "cited": 2,
+          "id": "CTL-26",
+          "negative": 0,
+          "positive": 0,
+          "pytest_files": 1,
+          "status": "implemented"
+        },
+        {
+          "checks": 4,
+          "cited": 3,
+          "id": "CTL-27",
+          "negative": 1,
+          "positive": 3,
+          "pytest_files": 1,
+          "status": "implemented"
+        },
+        {
+          "checks": 0,
+          "cited": 0,
+          "id": "CTL-28",
+          "negative": 0,
+          "positive": 0,
+          "pytest_files": 0,
+          "status": "partial"
+        },
+        {
+          "checks": 9,
+          "cited": 1,
+          "id": "CTL-29",
+          "negative": 2,
+          "positive": 7,
+          "pytest_files": 0,
+          "status": "implemented"
+        },
+        {
+          "checks": 10,
+          "cited": 2,
+          "id": "CTL-30",
+          "negative": 1,
+          "positive": 9,
+          "pytest_files": 0,
+          "status": "partial"
+        },
+        {
+          "checks": 0,
+          "cited": 1,
+          "id": "CTL-31",
+          "negative": 0,
+          "positive": 0,
+          "pytest_files": 0,
+          "status": "implemented"
+        },
+        {
+          "checks": 6,
+          "cited": 2,
+          "id": "CTL-32",
+          "negative": 6,
+          "positive": 0,
+          "pytest_files": 0,
+          "status": "implemented"
+        },
+        {
+          "checks": 8,
+          "cited": 1,
+          "id": "CTL-33",
+          "negative": 4,
+          "positive": 4,
+          "pytest_files": 0,
+          "status": "implemented"
+        },
+        {
+          "checks": 9,
+          "cited": 1,
+          "id": "CTL-34",
+          "negative": 7,
+          "positive": 2,
+          "pytest_files": 0,
+          "status": "implemented"
+        },
+        {
+          "checks": 6,
+          "cited": 1,
+          "id": "CTL-35",
+          "negative": 1,
+          "positive": 5,
+          "pytest_files": 0,
+          "status": "partial"
+        },
+        {
+          "checks": 0,
+          "cited": 0,
+          "id": "CTL-36",
+          "negative": 0,
+          "positive": 0,
+          "pytest_files": 0,
+          "status": "partial"
+        },
+        {
+          "checks": 0,
+          "cited": 1,
+          "id": "CTL-37",
+          "negative": 0,
+          "positive": 0,
+          "pytest_files": 1,
+          "status": "partial"
+        },
+        {
+          "checks": 9,
+          "cited": 2,
+          "id": "CTL-38",
+          "negative": 9,
+          "positive": 0,
+          "pytest_files": 1,
+          "status": "implemented"
+        },
+        {
+          "checks": 2,
+          "cited": 2,
+          "id": "CTL-39",
+          "negative": 0,
+          "positive": 2,
+          "pytest_files": 1,
+          "status": "partial"
+        },
+        {
+          "checks": 0,
+          "cited": 1,
+          "id": "CTL-40",
+          "negative": 0,
+          "positive": 0,
+          "pytest_files": 0,
+          "status": "implemented"
+        },
+        {
+          "checks": 0,
+          "cited": 2,
+          "id": "CTL-41",
+          "negative": 0,
+          "positive": 0,
+          "pytest_files": 2,
+          "status": "implemented"
+        },
+        {
+          "checks": 4,
+          "cited": 1,
+          "id": "CTL-42",
+          "negative": 4,
+          "positive": 0,
+          "pytest_files": 0,
+          "status": "implemented"
+        },
+        {
+          "checks": 2,
+          "cited": 1,
+          "id": "CTL-43",
+          "negative": 1,
+          "positive": 1,
+          "pytest_files": 0,
+          "status": "implemented"
+        },
+        {
+          "checks": 2,
+          "cited": 1,
+          "id": "CTL-44",
+          "negative": 1,
+          "positive": 1,
+          "pytest_files": 0,
+          "status": "partial"
+        },
+        {
+          "checks": 0,
+          "cited": 1,
+          "id": "CTL-45",
+          "negative": 0,
+          "positive": 0,
+          "pytest_files": 0,
+          "status": "partial"
+        },
+        {
+          "checks": 5,
+          "cited": 1,
+          "id": "CTL-46",
+          "negative": 1,
+          "positive": 4,
+          "pytest_files": 0,
+          "status": "partial"
+        },
+        {
+          "checks": 0,
+          "cited": 0,
+          "id": "CTL-47",
+          "negative": 0,
+          "positive": 0,
+          "pytest_files": 0,
+          "status": "planned"
+        },
+        {
+          "checks": 6,
+          "cited": 2,
+          "id": "CTL-48",
+          "negative": 4,
+          "positive": 2,
+          "pytest_files": 1,
+          "status": "implemented"
+        }
+      ],
+      "with_positive_and_negative": 28
+    },
+    "findings": [
+      {
+        "control": "CTL-02",
+        "has_negative": true,
+        "has_positive": false,
+        "has_pytest": false,
+        "owner": "SEC",
+        "status": "implemented",
+        "task": "P09.02"
+      },
+      {
+        "control": "CTL-06",
+        "has_negative": true,
+        "has_positive": false,
+        "has_pytest": false,
+        "owner": "CONTROL",
+        "status": "implemented",
+        "task": "P07.05"
+      },
+      {
+        "control": "CTL-07",
+        "has_negative": true,
+        "has_positive": false,
+        "has_pytest": false,
+        "owner": "CONTROL",
+        "status": "implemented",
+        "task": "P08.08"
+      },
+      {
+        "control": "CTL-10",
+        "has_negative": true,
+        "has_positive": false,
+        "has_pytest": false,
+        "owner": "DATA",
+        "status": "implemented",
+        "task": "P05.05"
+      },
+      {
+        "control": "CTL-22",
+        "has_negative": false,
+        "has_positive": true,
+        "has_pytest": false,
+        "owner": "EMERG",
+        "status": "implemented",
+        "task": "P07.07"
+      },
+      {
+        "control": "CTL-28",
+        "has_negative": false,
+        "has_positive": false,
+        "has_pytest": false,
+        "owner": "DEVOPS",
+        "status": "partial",
+        "task": "P01.05"
+      },
+      {
+        "control": "CTL-31",
+        "has_negative": false,
+        "has_positive": false,
+        "has_pytest": false,
+        "owner": "EDGE",
+        "status": "implemented",
+        "task": "P04.09"
+      },
+      {
+        "control": "CTL-32",
+        "has_negative": true,
+        "has_positive": false,
+        "has_pytest": false,
+        "owner": "BACKEND",
+        "status": "implemented",
+        "task": "P08.09"
+      },
+      {
+        "control": "CTL-36",
+        "has_negative": false,
+        "has_positive": false,
+        "has_pytest": false,
+        "owner": "DEVOPS",
+        "status": "partial",
+        "task": "P12.05"
+      },
+      {
+        "control": "CTL-38",
+        "has_negative": true,
+        "has_positive": false,
+        "has_pytest": true,
+        "owner": "OPS",
+        "status": "implemented",
+        "task": "P10.08"
+      },
+      {
+        "control": "CTL-39",
+        "has_negative": false,
+        "has_positive": true,
+        "has_pytest": true,
+        "owner": "GRC",
+        "status": "partial",
+        "task": "P12.05"
+      },
+      {
+        "control": "CTL-40",
+        "has_negative": false,
+        "has_positive": false,
+        "has_pytest": false,
+        "owner": "ARCH",
+        "status": "implemented",
+        "task": "P05.09"
+      },
+      {
+        "control": "CTL-42",
+        "has_negative": true,
+        "has_positive": false,
+        "has_pytest": false,
+        "owner": "OPS",
+        "status": "implemented",
+        "task": "P08.09"
+      },
+      {
+        "control": "CTL-45",
+        "has_negative": false,
+        "has_positive": false,
+        "has_pytest": false,
+        "owner": "QA",
+        "status": "partial",
+        "task": "P12.04"
+      }
+    ],
+    "sweep": {
+      "backend/api/verify_auth.py": {
+        "detail": "17 checks passed, failing []; P08.04: ALL CHECKS PASSED",
+        "passed": true,
+        "seconds": 21
+      },
+      "backend/verify_audit_protection.py": {
+        "detail": "31 checks passed, failing []; P09.05: ALL CHECKS PASSED",
+        "passed": true,
+        "seconds": 15
+      },
+      "database/verify_workload_protection.py": {
+        "detail": "12 checks passed, failing []; P09.04: ALL CHECKS PASSED",
+        "passed": true,
+        "seconds": 4
+      },
+      "infra/platform/keycloak/verify_keycloak.py": {
+        "detail": "33 checks passed, failing []; P09.02: ALL CHECKS PASSED",
+        "passed": true,
+        "seconds": 8
+      },
+      "policy/verify_policy.py": {
+        "detail": "79 checks passed, failing []; P09.03: ALL CHECKS PASSED",
+        "passed": true,
+        "seconds": 75
+      },
+      "security/access_review.py": {
+        "detail": "9 checks passed, failing []; P09.07: ALL CHECKS PASSED",
+        "passed": true,
+        "seconds": 1
+      },
+      "security/verify_data_inventory.py": {
+        "detail": "9 checks passed, failing []; P09.06: ALL CHECKS PASSED",
+        "passed": true,
+        "seconds": 0
+      }
+    }
+  },
+  "notes": {
+    "every_finding_about_missing_positive_or_negative_evidence_names_an_owner_and_a_task": "28 of 47 implemented or partial controls cite both a positive and a negative runtime check; 14 findings",
+    "no_implemented_control_has_no_evidence_at_all": "36 implemented controls",
+    "not_covered": "runtime detections on the target host (P09.09, the host was taken back by its owner), transport and identity inside a cluster (P11.04), and the 1 controls still planned; the positive/negative split reads check names and proves nothing about what a check does",
+    "re_running_API token enforcement matrix (P08.04)_passes": "21 s; 17 checks passed, failing []; P08.04: ALL CHECKS PASSED",
+    "re_running_access review of the live realm (P09.07)_passes": "1 s; 9 checks passed, failing []; P09.07: ALL CHECKS PASSED",
+    "re_running_audit hash chain, redaction and export (P09.05)_passes": "15 s; 31 checks passed, failing []; P09.05: ALL CHECKS PASSED",
+    "re_running_data inventory against the live database (P09.06)_passes": "0 s; 9 checks passed, failing []; P09.06: ALL CHECKS PASSED",
+    "re_running_identity: the Keycloak realm and the authorization-code attacks (P09.02)_passes": "8 s; 33 checks passed, failing []; P09.02: ALL CHECKS PASSED",
+    "re_running_policy engine (P09.03)_passes": "75 s; 79 checks passed, failing []; P09.03: ALL CHECKS PASSED",
+    "re_running_workload database identities (P09.04)_passes": "4 s; 12 checks passed, failing []; P09.04: ALL CHECKS PASSED"
+  },
+  "task": "P09.10"
+}

@@ -1,0 +1,307 @@
+{
+  "all_passed": true,
+  "checks": {
+    "every_capability_of_the_access_inventory_has_positive_and_negative_evidence_named": true,
+    "every_capability_row_cites_evidence_that_exists_and_every_cited_check_passes": true,
+    "every_partial_or_gap_capability_row_says_what_is_not_shown_and_who_owns_it": true,
+    "every_partial_or_gap_scenario_step_row_says_what_is_not_shown_and_who_owns_it": true,
+    "every_partial_or_gap_workflow_class_row_says_what_is_not_shown_and_who_owns_it": true,
+    "every_scenario_step_row_cites_evidence_that_exists_and_every_cited_check_passes": true,
+    "every_workflow_class_row_cites_evidence_that_exists_and_every_cited_check_passes": true,
+    "no_covered_capability_row_is_without_evidence": true,
+    "no_covered_scenario_step_row_is_without_evidence": true,
+    "no_covered_workflow_class_row_is_without_evidence": true,
+    "the_gate_result_is_stated_in_numbers": true,
+    "the_python_unit_tests_the_matrix_cites_passed_in_the_run_of_this_phase": true,
+    "the_role_by_capability_grid_is_complete_and_computed_from_the_inventory_not_written": true
+  },
+  "generated_at": "2026-09-26T19:08:32Z",
+  "metrics": {
+    "capabilities": 19,
+    "capability_counts": {
+      "FAILED": 0,
+      "covered": 19,
+      "gap": 0,
+      "partial": 0
+    },
+    "cells": 133,
+    "cells_permitted": 73,
+    "counts": {
+      "FAILED": 0,
+      "covered": 47,
+      "gap": 3,
+      "partial": 6
+    },
+    "evidence_dates": {
+      "p05_03_gateway": "2026-09-26T08:21:08Z",
+      "p05_05_ingestion": "2026-09-26T08:21:11Z",
+      "p06_03_forecast_model": "2026-09-26T08:23:48Z",
+      "p06_04_congestion": "2026-09-26T08:24:43Z",
+      "p06_05_safety": "2026-09-26T08:26:40Z",
+      "p06_06_vru_conflicts": "2026-09-26T08:27:33Z",
+      "p06_07_incidents": "2026-09-26T08:28:47Z",
+      "p07_01_emergency": "2026-09-26T08:28:53Z",
+      "p07_02_routing": "2026-09-26T08:42:41Z",
+      "p07_03_cross_agency": "2026-09-26T08:28:56Z",
+      "p07_04_recommendations": "2026-09-26T09:47:01Z",
+      "p07_06_simulator_adapters": "2026-09-26T09:05:38Z",
+      "p07_07_preemption": "2026-09-26T09:05:51Z",
+      "p07_09_outcomes": "2026-09-26T09:06:50Z",
+      "p07_10_scenarios": "2026-09-26T09:12:42Z",
+      "p08_04_auth_api": "2026-09-26T17:57:12Z",
+      "p08_04_ui_auth": "2026-09-26T18:43:31Z",
+      "p08_05_ui_map": "2026-09-26T18:44:44Z",
+      "p08_06_ui_analytics": "2026-09-26T18:46:19Z",
+      "p08_07_operator_actions_api": "2026-09-26T08:36:43Z",
+      "p08_07_ui_incident_dispatch": "2026-09-26T18:48:35Z",
+      "p08_08_command_workflow_api": "2026-09-26T09:13:13Z",
+      "p08_08_ui_actions": "2026-09-26T18:50:04Z",
+      "p08_09_demo_controls": "2026-09-21T16:14:54Z",
+      "p08_09_govern_api": "2026-09-26T08:37:33Z",
+      "p08_09_ui_govern": "2026-09-26T18:52:10Z",
+      "p08_10_ui_acceptance": "2026-09-26T19:05:35Z",
+      "p09_03_policy": "2026-09-26T17:58:28Z",
+      "p09_05_audit_protection": "2026-09-26T17:58:47Z",
+      "p09_10_runtime_acceptance": "2026-09-26T17:58:48Z",
+      "p10_04_alert_rules": "2026-09-26T10:47:26Z",
+      "p10_09_recovery": "2026-09-26T12:24:41Z",
+      "p11_04_target_security": "2026-09-26T05:50:59Z",
+      "p11_05_target_recovery": "2026-09-26T04:50:43Z",
+      "p11_06_target_load": "2026-09-26T05:35:46Z",
+      "p12_02_rec01_edge_outage": "2026-09-26T09:01:19Z",
+      "p12_02_safe03_stale_state": "2026-09-26T08:44:51Z"
+    },
+    "evidence_files_cited": 37,
+    "gate": "NOT PASSED: 47 covered, 6 partial, 3 gap, 0 failed",
+    "newest_evidence": "2026-09-26T19:05:35Z",
+    "oldest_evidence": "2026-09-21T16:14:54Z",
+    "roles": [
+      "operator",
+      "supervisor",
+      "dispatcher",
+      "incident_commander",
+      "field_responder",
+      "auditor",
+      "demo_operator"
+    ],
+    "scenario_counts": {
+      "FAILED": 0,
+      "covered": 22,
+      "gap": 3,
+      "partial": 6
+    },
+    "scenarios": {
+      "S1.1": {
+        "not_shown": "",
+        "owner": "",
+        "title": "Peak congestion: queue spillback is detected from the live network state",
+        "verdict": "covered"
+      },
+      "S1.2": {
+        "not_shown": "the trained forecast is significantly worse than the baseline on the held-out test for the 30-minute density target (ACC-02), so the baseline is what is served there: the prediction is measured, labelled and honest, but it is a weak predictor.",
+        "owner": "DATA/OPS - P12.05 (finding F-02)",
+        "title": "Peak congestion: the near-future queue is predicted",
+        "verdict": "partial"
+      },
+      "S1.3": {
+        "not_shown": "",
+        "owner": "",
+        "title": "Peak congestion: a corridor plan is recommended with benefit, harm and safe bounds",
+        "verdict": "covered"
+      },
+      "S1.4": {
+        "not_shown": "",
+        "owner": "",
+        "title": "Peak congestion: a person approves it, a second person, after the policy runs again on what is true now",
+        "verdict": "covered"
+      },
+      "S1.5": {
+        "not_shown": "",
+        "owner": "",
+        "title": "Peak congestion: the approved plan is applied to the simulator by the only identity that may execute",
+        "verdict": "covered"
+      },
+      "S1.6": {
+        "not_shown": "",
+        "owner": "",
+        "title": "Peak congestion: the improvement is measured independently, and reported as it is",
+        "verdict": "covered"
+      },
+      "S2.1": {
+        "not_shown": "",
+        "owner": "",
+        "title": "Collision: safety candidates are raised from telemetry and corroborated by a second source",
+        "verdict": "covered"
+      },
+      "S2.2": {
+        "not_shown": "the correlator joins sensor modalities (loop, camera, road condition); an emergency CALL is not an input to it (calls are dispatched, not correlated), so 'video, radar and call evidence' are not fused into one incident - a person links a call to an incident.",
+        "owner": "ARCH/EMERG - P12.05 (finding F-05)",
+        "title": "Collision: candidates from independent sensor modalities are correlated into one explainable incident",
+        "verdict": "partial"
+      },
+      "S2.3": {
+        "not_shown": "",
+        "owner": "",
+        "title": "Collision: the affected lanes are closed through the governed adapter",
+        "verdict": "covered"
+      },
+      "S2.4": {
+        "not_shown": "",
+        "owner": "",
+        "title": "Collision: units are dispatched with routes, ETA and uncertainty, and the call follows its unit to cleared",
+        "verdict": "covered"
+      },
+      "S2.5": {
+        "not_shown": "the variable-message-sign adapter records the message and says so honestly: SUMO has no sign to actuate, so 'the warning was published' is a recorded command, not an observed change on the road.",
+        "owner": "CONTROL - P12.05 (finding F-06)",
+        "title": "Collision: a diversion is issued and a driver message is published to the sign",
+        "verdict": "partial"
+      },
+      "S2.6": {
+        "not_shown": "",
+        "owner": "",
+        "title": "Collision: traffic recovery is verified independently of the requester, approver and executor",
+        "verdict": "covered"
+      },
+      "S3.1": {
+        "not_shown": "",
+        "owner": "",
+        "title": "Ambulance: a fastest-safe route with ETA and uncertainty from live state, never through a closed segment",
+        "verdict": "covered"
+      },
+      "S3.2": {
+        "not_shown": "",
+        "owner": "",
+        "title": "Ambulance: signals are pre-empted along the route with pedestrian clearance preserved",
+        "verdict": "covered"
+      },
+      "S3.3": {
+        "not_shown": "",
+        "owner": "",
+        "title": "Ambulance: arrival time is compared with the same run without pre-emption",
+        "verdict": "covered"
+      },
+      "S3.4": {
+        "not_shown": "",
+        "owner": "",
+        "title": "Ambulance: staged multi-agency response holds units back until their prerequisite has arrived",
+        "verdict": "covered"
+      },
+      "S4.1": {
+        "not_shown": "the flood candidate combines the road-condition sensor's flood flag with its friction estimate; rainfall, water depth as a measurement, the speed reduction at loop detectors and reports from people are NOT combined into it.",
+        "owner": "DATA/OPS - P12.05 (finding F-03)",
+        "title": "Flooding: a flood is detected from the road-condition sensor, corroborated by low friction, contradiction demoted",
+        "verdict": "partial"
+      },
+      "S4.2": {
+        "not_shown": "",
+        "owner": "",
+        "title": "Flooding: the flooded segment is treated as closed by routing and diversion",
+        "verdict": "covered"
+      },
+      "S4.3": {
+        "not_shown": "as S2.5: the sign command is recorded, the simulator shows nothing; no public-alert channel exists or is authorized.",
+        "owner": "CONTROL - P12.05 (finding F-06)",
+        "title": "Flooding: a warning is published",
+        "verdict": "partial"
+      },
+      "S5.1": {
+        "not_shown": "a controller-reported fault is deliberately NOT a safety candidate, and nothing else raises it: the data-quality detector covers the four numeric device types, not the categorical signal state, and no rule looks for conflicting greens or a stuck phase in the controller's own telemetry. `signal_fault` is an incident type nothing produces.",
+        "owner": "OPS/CONTROL - P12.05 (defect D-01)",
+        "title": "Signal failure: inconsistent phase or controller telemetry is detected and raises an incident",
+        "verdict": "gap"
+      },
+      "S5.2": {
+        "not_shown": "there is no safe-plan action among the governed adapters (signal plan change, diversion, sign, transit priority, pre-emption); a controller fault cannot be answered by the platform.",
+        "owner": "CONTROL - P12.05 (defect D-01)",
+        "title": "Signal failure: the platform enters a safe plan",
+        "verdict": "gap"
+      },
+      "S5.3": {
+        "not_shown": "the platform has no maintenance work item; an escalated incident waits for a person (P10.08) but nothing is created for a maintenance crew.",
+        "owner": "OPS - P12.05 (defect D-01)",
+        "title": "Signal failure: maintenance work is created",
+        "verdict": "gap"
+      },
+      "S5.4": {
+        "not_shown": "the independent outcome verifier exists for governed actions and reports an unknown outcome honestly; there is no signal-failure action to verify.",
+        "owner": "CONTROL - P12.05 (defect D-01)",
+        "title": "Signal failure: restoration is verified",
+        "verdict": "partial"
+      },
+      "S6.1": {
+        "not_shown": "",
+        "owner": "",
+        "title": "Outage: the edge buffers what it senses durably while the uplink is down and keeps working",
+        "verdict": "covered"
+      },
+      "S6.2": {
+        "not_shown": "",
+        "owner": "",
+        "title": "Outage: stale state is shown as stale and never used as fresh",
+        "verdict": "covered"
+      },
+      "S6.3": {
+        "not_shown": "",
+        "owner": "",
+        "title": "Outage: on reconnect the readings replay in order, acknowledged, without accepted duplicates",
+        "verdict": "covered"
+      },
+      "S6.4": {
+        "not_shown": "",
+        "owner": "",
+        "title": "Outage: the central state is reconciled after the outage",
+        "verdict": "covered"
+      },
+      "S7.1": {
+        "not_shown": "",
+        "owner": "",
+        "title": "Bad model: degraded predictions are detected as alerts on the running edge runtime",
+        "verdict": "covered"
+      },
+      "S7.2": {
+        "not_shown": "",
+        "owner": "",
+        "title": "Bad model: an unverified or tampered model is refused and the baseline serves",
+        "verdict": "covered"
+      },
+      "S7.3": {
+        "not_shown": "",
+        "owner": "",
+        "title": "Bad model: the model is rolled back to the previous verified version and health is verified",
+        "verdict": "covered"
+      },
+      "S7.4": {
+        "not_shown": "",
+        "owner": "",
+        "title": "Bad configuration: a bad rollout is contained and undone",
+        "verdict": "covered"
+      }
+    },
+    "workflow_class_counts": {
+      "FAILED": 0,
+      "covered": 6,
+      "gap": 0,
+      "partial": 0
+    }
+  },
+  "notes": {
+    "every_capability_of_the_access_inventory_has_positive_and_negative_evidence_named": "19 capabilities; unnamed []",
+    "every_capability_row_cites_evidence_that_exists_and_every_cited_check_passes": "19 rows; failed []",
+    "every_partial_or_gap_capability_row_says_what_is_not_shown_and_who_owns_it": "unowned []",
+    "every_partial_or_gap_scenario_step_row_says_what_is_not_shown_and_who_owns_it": "unowned []",
+    "every_partial_or_gap_workflow_class_row_says_what_is_not_shown_and_who_owns_it": "unowned []",
+    "every_scenario_step_row_cites_evidence_that_exists_and_every_cited_check_passes": "31 rows; failed []",
+    "every_workflow_class_row_cites_evidence_that_exists_and_every_cited_check_passes": "6 rows; failed []",
+    "gate": "NOT PASSED: 47 covered, 6 partial, 3 gap, 0 failed",
+    "no_covered_capability_row_is_without_evidence": "uncited []",
+    "no_covered_scenario_step_row_is_without_evidence": "uncited []",
+    "no_covered_workflow_class_row_is_without_evidence": "uncited []",
+    "the_gate_result_is_stated_in_numbers": "NOT PASSED: 47 covered, 6 partial, 3 gap, 0 failed",
+    "the_python_unit_tests_the_matrix_cites_passed_in_the_run_of_this_phase": "run 2026-09-26T19:06:40Z in 102.6 s",
+    "the_role_by_capability_grid_is_complete_and_computed_from_the_inventory_not_written": "7 roles x 19 capabilities = 133 cells: 73 permitted, 60 refused",
+    "the_scenarios_that_are_not_covered": "S1.2 partial: the trained forecast is significantly worse than the baseline on the held-out test for the 30-minute density t; S2.2 partial: the correlator joins sensor modalities (loop, camera, road condition); an emergency CALL is not an input to it; S2.5 partial: the variable-message-sign adapter records the message and says so honestly: SUMO has no sign to actuate, so 't; S4.1 partial: the flood candidate combines the road-condition sensor's flood flag with its friction estimate; rainfall, wate; S4.3 partial: as S2.5: the sign command is recorded, the simulator shows nothing; no public-alert channel exists or is autho; S5.1 gap: a controller-reported fault is deliberately NOT a safety candidate, and nothing else raises it: the data-quali; S5.2 gap: there is no safe-plan action among the governed adapters (signal plan change, diversion, sign, transit priorit; S5.3 gap: the platform has no maintenance work item; an escalated incident waits for a person (P10.08) but nothing is cr; S5.4 partial: the independent outcome verifier exists for governed actions and reports an unknown outcome honestly; there is",
+    "what_this_is": "a reading of live-stack, browser and target evidence produced by the verifiers (run in this phase by acceptance/run_catalog.py, on the local stack and, for Phase 11, on the target host); it re-runs nothing itself"
+  },
+  "task": "P12.01"
+}

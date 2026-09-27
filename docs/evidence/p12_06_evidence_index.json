@@ -1,0 +1,4114 @@
+{
+  "artifacts": 113,
+  "entries": [
+    {
+      "all_passed": null,
+      "bytes": 463,
+      "checks": null,
+      "cited_by": [],
+      "command": "python source-code/simulator/verification/verify_bounds.py",
+      "conditions": "workstation (run by acceptance/run_catalog.py --run simulator-bounds)",
+      "failing": [],
+      "file": "docs/evidence/bounds_report.json",
+      "generated_at": null,
+      "kind": "evidence",
+      "sha256": "eaa2d2c8b36234dd82709505ed2de625260ea2dcf7a678e94b57c4abe9025617",
+      "status": "passed",
+      "task": null
+    },
+    {
+      "bytes": 16176,
+      "cited_by": [],
+      "command": "python source-code/acceptance/verify_defects.py",
+      "conditions": "workstation: generated from acceptance/defects.py and docs/evidence",
+      "file": "docs/evidence/DEFECT_REGISTER.md",
+      "kind": "document",
+      "sha256": "f50bdc15a85d04b2a3125a10e30549d6be3bd49cac16e304d13e33ad3ca9e1cb",
+      "status": "document"
+    },
+    {
+      "bytes": 5091,
+      "cited_by": [],
+      "command": "written and reviewed by hand (see the register row of its task)",
+      "conditions": "n/a",
+      "file": "docs/evidence/EDGE_AI_LIMITATIONS.md",
+      "kind": "document",
+      "sha256": "e8f738aa2d1a9862c321dbf0f11147344c1c6ae05c07ed0acb8cf01f67b08fe4",
+      "status": "document"
+    },
+    {
+      "all_passed": null,
+      "bytes": 7429,
+      "checks": null,
+      "cited_by": [],
+      "command": "python source-code/models/evaluation/build_report.py",
+      "conditions": "workstation: the edge runtime container under its resource limits (WSL Docker)",
+      "failing": [],
+      "file": "docs/evidence/edge_benchmark_report.json",
+      "generated_at": null,
+      "kind": "evidence",
+      "sha256": "851e9603127d823754e85892cb8f8ba19484754a9075f2e3cb625a703dd8798e",
+      "status": "passed",
+      "task": null
+    },
+    {
+      "all_passed": true,
+      "bytes": 2973,
+      "checks": 5,
+      "cited_by": [],
+      "command": "python source-code/scripts/verify_clean_start.py",
+      "conditions": "workstation: clones the tree fresh and builds it (not part of the stack sweep - it starts from no checkout of its own)",
+      "failing": [],
+      "file": "docs/evidence/p01_08_clean_start.json",
+      "generated_at": "2026-09-25T11:17:21Z",
+      "kind": "evidence",
+      "sha256": "ea2c5d99241332e805ac05f6f34179fcb63c1a83fa2ce41748056440aee94914",
+      "status": "passed, not re-run in this phase",
+      "task": "P01.08"
+    },
+    {
+      "all_passed": true,
+      "bytes": 1145,
+      "checks": null,
+      "cited_by": [],
+      "command": "bash source-code/infra/platform/verify.sh",
+      "conditions": "WSL Docker: brings the stack up, restarts containers",
+      "failing": [],
+      "file": "docs/evidence/p05_01_platform_provisioning.json",
+      "generated_at": "2026-09-19T18:16:54Z",
+      "kind": "evidence",
+      "sha256": "f065de35e08440c7d9cb3140374d1af5ebac559ec4563ed840efefc5f7e260e6",
+      "status": "passed, not re-run in this phase",
+      "task": "P05.01"
+    },
+    {
+      "all_passed": true,
+      "bytes": 682,
+      "checks": null,
+      "cited_by": [],
+      "command": "bash source-code/infra/platform/mosquitto/verify-mtls.sh",
+      "conditions": "WSL Docker: the broker",
+      "failing": [],
+      "file": "docs/evidence/p05_02_mqtt_mtls_acl.json",
+      "generated_at": "2026-09-19T18:28:58Z",
+      "kind": "evidence",
+      "sha256": "e1ed91017291506415a9a50dfd1c382a9604c07f50aa35c033a5903ec265b7f0",
+      "status": "passed, not re-run in this phase",
+      "task": "P05.02"
+    },
+    {
+      "all_passed": true,
+      "bytes": 1179,
+      "checks": 9,
+      "cited_by": [
+        {
+          "links": [
+            "REC-01",
+            "REC-02"
+          ],
+          "row": "S6.4"
+        },
+        {
+          "links": [
+            "RQ04"
+          ],
+          "row": "F-S1"
+        },
+        {
+          "links": [
+            "RQ04"
+          ],
+          "row": "F-S1"
+        },
+        {
+          "links": [
+            "RQ04"
+          ],
+          "row": "F-S3"
+        },
+        {
+          "links": [
+            "RQ04"
+          ],
+          "row": "F-S3"
+        }
+      ],
+      "command": "python source-code/backend/gateway/verify_gateway.py",
+      "conditions": "stack, docker (run by acceptance/run_catalog.py --run gateway)",
+      "failing": [],
+      "file": "docs/evidence/p05_03_gateway.json",
+      "generated_at": "2026-09-26T08:21:08Z",
+      "kind": "evidence",
+      "sha256": "28aabd5138ce4239b1107d79f04f678a28ae356237972b78dcd076639cd161bf",
+      "status": "passed",
+      "task": "P05.03"
+    },
+    {
+      "all_passed": true,
+      "bytes": 1044,
+      "checks": 8,
+      "cited_by": [],
+      "command": "python source-code/database/verify_migrate.py",
+      "conditions": "stack (run by acceptance/run_catalog.py --run migrations)",
+      "failing": [],
+      "file": "docs/evidence/p05_04_migrations.json",
+      "generated_at": "2026-09-26T08:20:12Z",
+      "kind": "evidence",
+      "sha256": "7e0e4da02b245a5e9183214f7de96849a1f4e5b0cd7bcbc18f41da61ab455474",
+      "status": "passed",
+      "task": "P05.04"
+    },
+    {
+      "all_passed": true,
+      "bytes": 1814,
+      "checks": 10,
+      "cited_by": [
+        {
+          "links": [
+            "REC-01",
+            "REC-02"
+          ],
+          "row": "S6.4"
+        },
+        {
+          "links": [
+            "REC-01",
+            "REC-02"
+          ],
+          "row": "S6.4"
+        },
+        {
+          "links": [
+            "REC-01"
+          ],
+          "row": "F-S2"
+        },
+        {
+          "links": [
+            "REC-01"
+          ],
+          "row": "F-S2"
+        },
+        {
+          "links": [
+            "REC-01"
+          ],
+          "row": "F-S2"
+        }
+      ],
+      "command": "python source-code/backend/ingestion/verify_ingest.py",
+      "conditions": "stack (run by acceptance/run_catalog.py --run ingestion)",
+      "failing": [],
+      "file": "docs/evidence/p05_05_ingestion.json",
+      "generated_at": "2026-09-26T08:21:11Z",
+      "kind": "evidence",
+      "sha256": "2ed69c3ed9974b8f89232b944607d2a0c3fd5d451f91d774f5e4081cc8243010",
+      "status": "passed",
+      "task": "P05.05"
+    },
+    {
+      "all_passed": true,
+      "bytes": 2237,
+      "checks": 15,
+      "cited_by": [],
+      "command": "python source-code/backend/state/verify_network_state.py",
+      "conditions": "stack (run by acceptance/run_catalog.py --run network-state)",
+      "failing": [],
+      "file": "docs/evidence/p05_06_network_state.json",
+      "generated_at": "2026-09-26T08:21:12Z",
+      "kind": "evidence",
+      "sha256": "0cc3f3112602e06340fcdfc3faf276e276bfde4a7eb2c362566553dfb214fe39",
+      "status": "passed",
+      "task": "P05.06"
+    },
+    {
+      "all_passed": true,
+      "bytes": 2506,
+      "checks": 12,
+      "cited_by": [],
+      "command": "python source-code/backend/api/verify_api.py",
+      "conditions": "stack (run by acceptance/run_catalog.py --run api)",
+      "failing": [],
+      "file": "docs/evidence/p05_07_api.json",
+      "generated_at": "2026-09-26T08:21:25Z",
+      "kind": "evidence",
+      "sha256": "d20ced53205fb921a5fc582a5590dfdd19004484be21992dfacf28b7570cb0f3",
+      "status": "passed",
+      "task": "P05.07"
+    },
+    {
+      "all_passed": true,
+      "bytes": 3536,
+      "checks": 12,
+      "cited_by": [],
+      "command": "python source-code/backend/repositories/verify_repositories.py",
+      "conditions": "stack (run by acceptance/run_catalog.py --run repositories)",
+      "failing": [],
+      "file": "docs/evidence/p05_08_repositories.json",
+      "generated_at": "2026-09-26T08:42:38Z",
+      "kind": "evidence",
+      "sha256": "35dbab31cb2c01de927ac8e7d3b1a51bfe5ffa064b8a2361d486521be6d1f03b",
+      "status": "passed",
+      "task": "P05.08"
+    },
+    {
+      "all_passed": true,
+      "bytes": 1627,
+      "checks": 11,
+      "cited_by": [],
+      "command": "python source-code/backend/scenario_control/verify_scenario_control.py",
+      "conditions": "stack (run by acceptance/run_catalog.py --run scenario-control)",
+      "failing": [],
+      "file": "docs/evidence/p05_09_scenario_control.json",
+      "generated_at": "2026-09-20T15:18:03Z",
+      "kind": "evidence",
+      "sha256": "a2200aabb1ef97d7de1123b6a569f21c52488c573aca3e43001a3c82986b6c50",
+      "status": "passed, not re-run in this phase",
+      "task": "P05.09"
+    },
+    {
+      "all_passed": true,
+      "bytes": 1139,
+      "checks": 8,
+      "cited_by": [
+        {
+          "links": [
+            "RQ18"
+          ],
+          "row": "F-D3"
+        },
+        {
+          "links": [
+            "RQ20"
+          ],
+          "row": "Q-P2"
+        },
+        {
+          "links": [
+            "RQ20"
+          ],
+          "row": "Q-P2"
+        }
+      ],
+      "command": "python source-code/database/verify_retention.py",
+      "conditions": "stack (run by acceptance/run_catalog.py --run retention)",
+      "failing": [],
+      "file": "docs/evidence/p05_10_retention.json",
+      "generated_at": "2026-09-26T08:21:13Z",
+      "kind": "evidence",
+      "sha256": "23808e6ed49b4c7b4be6976dd7d343044b0ceda15cdd66779ef27045d37cc8e2",
+      "status": "passed",
+      "task": "P05.10"
+    },
+    {
+      "all_passed": true,
+      "bytes": 15400,
+      "checks": 24,
+      "cited_by": [],
+      "command": "python source-code/backend/analytics/verify_kpis.py",
+      "conditions": "stack (run by acceptance/run_catalog.py --run kpis)",
+      "failing": [],
+      "file": "docs/evidence/p06_01_kpis.json",
+      "generated_at": "2026-09-26T08:41:35Z",
+      "kind": "evidence",
+      "sha256": "c6999c672a7226e502d8a6d3ca3f0c752bc6a6192fb7dc70e7d04e894124261d",
+      "status": "passed",
+      "task": "P06.01"
+    },
+    {
+      "all_passed": null,
+      "bytes": 23542,
+      "checks": null,
+      "cited_by": [],
+      "command": "python source-code/backend/analytics/evaluate_baselines.py",
+      "conditions": "workstation",
+      "failing": [],
+      "file": "docs/evidence/p06_02_baselines.json",
+      "generated_at": null,
+      "kind": "evidence",
+      "sha256": "29a2a509a2c4e1362cda354bbb34708fab5784ab1492c16fc0767494b3c0b79e",
+      "status": "passed",
+      "task": null
+    },
+    {
+      "all_passed": true,
+      "bytes": 7031,
+      "checks": 26,
+      "cited_by": [
+        {
+          "links": [
+            "ACC-02"
+          ],
+          "row": "S1.2"
+        },
+        {
+          "links": [
+            "ACC-02"
+          ],
+          "row": "S1.2"
+        },
+        {
+          "links": [
+            "ACC-02"
+          ],
+          "row": "S1.2"
+        },
+        {
+          "links": [
+            "RQ06",
+            "RQ07"
+          ],
+          "row": "S7.2"
+        },
+        {
+          "links": [
+            "RQ06"
+          ],
+          "row": "F-M2"
+        },
+        {
+          "links": [
+            "SAFE-03"
+          ],
+          "row": "F-M3"
+        },
+        {
+          "links": [
+            "SAFE-03"
+          ],
+          "row": "F-M3"
+        }
+      ],
+      "command": "python source-code/backend/analytics/verify_forecasts.py",
+      "conditions": "stack (run by acceptance/run_catalog.py --run forecasts)",
+      "failing": [],
+      "file": "docs/evidence/p06_03_forecast_model.json",
+      "generated_at": "2026-09-26T08:23:48Z",
+      "kind": "evidence",
+      "sha256": "d8129487d7ad60e55353a33013badef955566d58409ec6403e06e0325b1771e3",
+      "status": "passed",
+      "task": "P06.03"
+    },
+    {
+      "all_passed": null,
+      "bytes": 20071,
+      "checks": null,
+      "cited_by": [],
+      "command": "python source-code/backend/analytics/train_forecast.py",
+      "conditions": "workstation (a non-selecting test opening is ledgered)",
+      "failing": [],
+      "file": "docs/evidence/p06_03_training_report.json",
+      "generated_at": null,
+      "kind": "evidence",
+      "sha256": "79d5a669e1c2421d4d6841c7413902dc3bd409fb600869a450a9470997e356f4",
+      "status": "passed",
+      "task": null
+    },
+    {
+      "all_passed": true,
+      "bytes": 7102,
+      "checks": 18,
+      "cited_by": [
+        {
+          "links": [
+            "RQ25",
+            "ACC-03"
+          ],
+          "row": "S1.1"
+        },
+        {
+          "links": [
+            "RQ25",
+            "ACC-03"
+          ],
+          "row": "S1.1"
+        },
+        {
+          "links": [
+            "RQ25",
+            "ACC-03"
+          ],
+          "row": "S1.1"
+        }
+      ],
+      "command": "python source-code/backend/analytics/verify_congestion.py",
+      "conditions": "stack (run by acceptance/run_catalog.py --run congestion)",
+      "failing": [],
+      "file": "docs/evidence/p06_04_congestion.json",
+      "generated_at": "2026-09-26T08:24:43Z",
+      "kind": "evidence",
+      "sha256": "34805e83d0833eea4e3aba92edc0dd0fde784c8f5807e3663ae01cf0b3217753",
+      "status": "passed",
+      "task": "P06.04"
+    },
+    {
+      "all_passed": null,
+      "bytes": 16319,
+      "checks": null,
+      "cited_by": [],
+      "command": "python source-code/backend/analytics/evaluate_congestion.py",
+      "conditions": "workstation",
+      "failing": [],
+      "file": "docs/evidence/p06_04_congestion_evaluation.json",
+      "generated_at": null,
+      "kind": "evidence",
+      "sha256": "44a273ffcf3cb43dc201697df97f1ebfe7c4c976863f5444482d86ecdd2a68f5",
+      "status": "passed",
+      "task": null
+    },
+    {
+      "all_passed": true,
+      "bytes": 5558,
+      "checks": 20,
+      "cited_by": [
+        {
+          "links": [
+            "RQ25"
+          ],
+          "row": "S2.1"
+        },
+        {
+          "links": [
+            "RQ25"
+          ],
+          "row": "S2.1"
+        },
+        {
+          "links": [
+            "RQ25"
+          ],
+          "row": "S2.1"
+        },
+        {
+          "links": [
+            "RQ25"
+          ],
+          "row": "S4.1"
+        },
+        {
+          "links": [
+            "RQ25"
+          ],
+          "row": "S4.1"
+        },
+        {
+          "links": [
+            "RQ25"
+          ],
+          "row": "S4.1"
+        },
+        {
+          "links": [
+            "RQ25"
+          ],
+          "row": "S5.1"
+        },
+        {
+          "links": [
+            "RQ25"
+          ],
+          "row": "W3"
+        },
+        {
+          "links": [
+            "RQ06"
+          ],
+          "row": "Q-S8"
+        }
+      ],
+      "command": "python source-code/backend/analytics/verify_safety_candidates.py",
+      "conditions": "stack (run by acceptance/run_catalog.py --run safety-candidates)",
+      "failing": [],
+      "file": "docs/evidence/p06_05_safety.json",
+      "generated_at": "2026-09-26T08:26:40Z",
+      "kind": "evidence",
+      "sha256": "835b00b02d49d527a308c8fe144191d90df362676b413645834be33678ae77c5",
+      "status": "passed",
+      "task": "P06.05"
+    },
+    {
+      "all_passed": true,
+      "bytes": 11840,
+      "checks": 21,
+      "cited_by": [
+        {
+          "links": [
+            "RQ25"
+          ],
+          "row": "W3"
+        },
+        {
+          "links": [
+            "RQ20"
+          ],
+          "row": "Q-P1"
+        },
+        {
+          "links": [
+            "RQ20"
+          ],
+          "row": "Q-P1"
+        },
+        {
+          "links": [
+            "RQ20"
+          ],
+          "row": "Q-P1"
+        },
+        {
+          "links": [
+            "RQ25"
+          ],
+          "row": "Q-F5"
+        },
+        {
+          "links": [
+            "RQ25"
+          ],
+          "row": "Q-F6"
+        }
+      ],
+      "command": "python source-code/backend/analytics/verify_vru_conflicts.py",
+      "conditions": "stack (run by acceptance/run_catalog.py --run vru-conflicts)",
+      "failing": [],
+      "file": "docs/evidence/p06_06_vru_conflicts.json",
+      "generated_at": "2026-09-26T08:27:33Z",
+      "kind": "evidence",
+      "sha256": "9c8c18db3f7aaaa135809836bf5c557734bff6e85de379079414bfefa52162f9",
+      "status": "passed",
+      "task": "P06.06"
+    },
+    {
+      "all_passed": null,
+      "bytes": 34884,
+      "checks": null,
+      "cited_by": [],
+      "command": "python source-code/backend/analytics/evaluate_vru.py",
+      "conditions": "workstation",
+      "failing": [],
+      "file": "docs/evidence/p06_06_vru_evaluation.json",
+      "generated_at": null,
+      "kind": "evidence",
+      "sha256": "5eb166fa151935923b5f19f20d18ae2fbd46240ce22aa05926f38445a920a8f6",
+      "status": "passed",
+      "task": null
+    },
+    {
+      "all_passed": true,
+      "bytes": 5846,
+      "checks": 31,
+      "cited_by": [
+        {
+          "links": [
+            "RQ25"
+          ],
+          "row": "S2.2"
+        },
+        {
+          "links": [
+            "RQ25"
+          ],
+          "row": "S2.2"
+        },
+        {
+          "links": [
+            "RQ25"
+          ],
+          "row": "S2.2"
+        },
+        {
+          "links": [
+            "RQ25"
+          ],
+          "row": "S2.2"
+        }
+      ],
+      "command": "python source-code/backend/analytics/verify_incidents.py",
+      "conditions": "stack (run by acceptance/run_catalog.py --run incidents)",
+      "failing": [],
+      "file": "docs/evidence/p06_07_incidents.json",
+      "generated_at": "2026-09-26T08:28:47Z",
+      "kind": "evidence",
+      "sha256": "1fbc592e582a59229733b2b027a8f94f0732bf7f737b219fab48bacccba14371",
+      "status": "passed",
+      "task": "P06.07"
+    },
+    {
+      "all_passed": null,
+      "bytes": 6369,
+      "checks": null,
+      "cited_by": [],
+      "command": "python source-code/backend/analytics/evaluate_p06_08.py",
+      "conditions": "workstation: assembles the held-out numbers already ledgered",
+      "failing": [],
+      "file": "docs/evidence/p06_08_acceptance.json",
+      "generated_at": null,
+      "kind": "evidence",
+      "sha256": "265b3dc28109d51c502fc572cd71b393d9eb04c4d90b9144f0215fd56f505420",
+      "status": "passed",
+      "task": null
+    },
+    {
+      "all_passed": null,
+      "bytes": 17465,
+      "checks": null,
+      "cited_by": [],
+      "command": "python source-code/backend/analytics/evaluate_intelligence.py",
+      "conditions": "workstation",
+      "failing": [],
+      "file": "docs/evidence/p06_08_incident_evaluation.json",
+      "generated_at": null,
+      "kind": "evidence",
+      "sha256": "762ed4c69c13c054034fc832ad5265f3f758d40cdc55a1d733737063a86a45d4",
+      "status": "passed",
+      "task": null
+    },
+    {
+      "all_passed": true,
+      "bytes": 3334,
+      "checks": 20,
+      "cited_by": [
+        {
+          "links": [
+            "RQ25"
+          ],
+          "row": "S2.4"
+        }
+      ],
+      "command": "python source-code/backend/emergency/verify_emergency.py",
+      "conditions": "stack (run by acceptance/run_catalog.py --run emergency)",
+      "failing": [],
+      "file": "docs/evidence/p07_01_emergency.json",
+      "generated_at": "2026-09-26T08:28:53Z",
+      "kind": "evidence",
+      "sha256": "c2afbacb38b3592af703ec9c1b982602f72c004a9d6d164cbfa0a205fc0bc078",
+      "status": "passed",
+      "task": "P07.01"
+    },
+    {
+      "all_passed": true,
+      "bytes": 3562,
+      "checks": 11,
+      "cited_by": [
+        {
+          "links": [
+            "RQ25"
+          ],
+          "row": "S3.1"
+        },
+        {
+          "links": [
+            "RQ25"
+          ],
+          "row": "S3.1"
+        },
+        {
+          "links": [
+            "RQ25"
+          ],
+          "row": "S3.1"
+        },
+        {
+          "links": [
+            "RQ25"
+          ],
+          "row": "S4.2"
+        },
+        {
+          "links": [],
+          "row": "CAP routes.view"
+        }
+      ],
+      "command": "python source-code/backend/routing/verify_routing.py",
+      "conditions": "stack (run by acceptance/run_catalog.py --run routing)",
+      "failing": [],
+      "file": "docs/evidence/p07_02_routing.json",
+      "generated_at": "2026-09-26T08:42:41Z",
+      "kind": "evidence",
+      "sha256": "a88d8ecf7009ba139b5d6aa2283dc12d6c23e0db63a016e3f6caf23b1f725bea",
+      "status": "passed",
+      "task": "P07.02"
+    },
+    {
+      "all_passed": true,
+      "bytes": 1685,
+      "checks": 10,
+      "cited_by": [
+        {
+          "links": [
+            "RQ25"
+          ],
+          "row": "S3.4"
+        },
+        {
+          "links": [
+            "RQ20"
+          ],
+          "row": "Q-P4"
+        }
+      ],
+      "command": "python source-code/backend/emergency/verify_cross_agency.py",
+      "conditions": "stack (run by acceptance/run_catalog.py --run cross-agency)",
+      "failing": [],
+      "file": "docs/evidence/p07_03_cross_agency.json",
+      "generated_at": "2026-09-26T08:28:56Z",
+      "kind": "evidence",
+      "sha256": "eccfa197dfa942d544421175445f194d89be5dfa61a716ed2889478dbe10b221",
+      "status": "passed",
+      "task": "P07.03"
+    },
+    {
+      "all_passed": true,
+      "bytes": 3202,
+      "checks": 18,
+      "cited_by": [
+        {
+          "links": [
+            "RQ25"
+          ],
+          "row": "S1.3"
+        },
+        {
+          "links": [
+            "RQ25"
+          ],
+          "row": "S1.3"
+        },
+        {
+          "links": [
+            "RQ25"
+          ],
+          "row": "S1.3"
+        },
+        {
+          "links": [
+            "RQ25"
+          ],
+          "row": "S2.3"
+        },
+        {
+          "links": [
+            "RQ25"
+          ],
+          "row": "S2.5"
+        },
+        {
+          "links": [
+            "RQ25"
+          ],
+          "row": "S4.2"
+        },
+        {
+          "links": [
+            "RQ25"
+          ],
+          "row": "S4.2"
+        }
+      ],
+      "command": "python source-code/backend/control/verify_recommendations.py",
+      "conditions": "stack (run by acceptance/run_catalog.py --run recommendations)",
+      "failing": [],
+      "file": "docs/evidence/p07_04_recommendations.json",
+      "generated_at": "2026-09-26T09:47:01Z",
+      "kind": "evidence",
+      "sha256": "486b12d25582ac65987ff275758024d9b9785f3086134258720b958297e77e66",
+      "status": "passed",
+      "task": "P07.04"
+    },
+    {
+      "all_passed": true,
+      "bytes": 5146,
+      "checks": 34,
+      "cited_by": [],
+      "command": "python source-code/backend/control/verify_commands.py",
+      "conditions": "stack (run by acceptance/run_catalog.py --run commands)",
+      "failing": [],
+      "file": "docs/evidence/p07_05_commands.json",
+      "generated_at": "2026-09-26T09:05:21Z",
+      "kind": "evidence",
+      "sha256": "917b9f83770442517514f099ed1ebb2e17dd22d25613c3ed93c9cf8afe79dc37",
+      "status": "passed",
+      "task": "P07.05"
+    },
+    {
+      "all_passed": true,
+      "bytes": 2368,
+      "checks": 11,
+      "cited_by": [
+        {
+          "links": [
+            "RQ25"
+          ],
+          "row": "S1.5"
+        },
+        {
+          "links": [
+            "RQ25"
+          ],
+          "row": "S2.3"
+        },
+        {
+          "links": [
+            "RQ25"
+          ],
+          "row": "S2.5"
+        },
+        {
+          "links": [
+            "RQ25"
+          ],
+          "row": "S4.3"
+        }
+      ],
+      "command": "python source-code/backend/control/verify_simulator_adapters.py",
+      "conditions": "stack, docker, sumo (run by acceptance/run_catalog.py --run simulator-adapters)",
+      "failing": [],
+      "file": "docs/evidence/p07_06_simulator_adapters.json",
+      "generated_at": "2026-09-26T09:05:38Z",
+      "kind": "evidence",
+      "sha256": "74f2bfa6e21239755bd43746360cb39f13d8ccff2ca77e0e767f0a35441a0d9d",
+      "status": "passed",
+      "task": "P07.06"
+    },
+    {
+      "all_passed": true,
+      "bytes": 5359,
+      "checks": 14,
+      "cited_by": [
+        {
+          "links": [
+            "RQ25",
+            "SAFE-01"
+          ],
+          "row": "S3.2"
+        },
+        {
+          "links": [
+            "RQ25",
+            "SAFE-01"
+          ],
+          "row": "S3.2"
+        },
+        {
+          "links": [
+            "SAFE-01"
+          ],
+          "row": "Q-S1"
+        }
+      ],
+      "command": "python source-code/backend/control/verify_preemption.py",
+      "conditions": "stack, docker, sumo (run by acceptance/run_catalog.py --run preemption)",
+      "failing": [],
+      "file": "docs/evidence/p07_07_preemption.json",
+      "generated_at": "2026-09-26T09:05:51Z",
+      "kind": "evidence",
+      "sha256": "bc3b20edd3799c9c0b10704a7b39510a0e7f212e73aeb7b8ff49b3f873bdceba",
+      "status": "passed",
+      "task": "P07.07"
+    },
+    {
+      "all_passed": true,
+      "bytes": 3370,
+      "checks": 11,
+      "cited_by": [
+        {
+          "links": [
+            "RQ25"
+          ],
+          "row": "Q-F5"
+        }
+      ],
+      "command": "python source-code/backend/control/verify_transit_priority.py",
+      "conditions": "stack, docker, sumo (run by acceptance/run_catalog.py --run transit-priority)",
+      "failing": [],
+      "file": "docs/evidence/p07_08_transit_priority.json",
+      "generated_at": "2026-09-26T09:05:58Z",
+      "kind": "evidence",
+      "sha256": "c776b84a6202e667899b3856042c22364654dbf88161f26f9d5656d384b8eb61",
+      "status": "passed",
+      "task": "P07.08"
+    },
+    {
+      "all_passed": true,
+      "bytes": 7080,
+      "checks": 32,
+      "cited_by": [
+        {
+          "links": [
+            "RQ25"
+          ],
+          "row": "S1.6"
+        },
+        {
+          "links": [
+            "RQ25"
+          ],
+          "row": "S1.6"
+        },
+        {
+          "links": [
+            "RQ25"
+          ],
+          "row": "S1.6"
+        },
+        {
+          "links": [
+            "RQ25"
+          ],
+          "row": "S2.6"
+        },
+        {
+          "links": [
+            "RQ25"
+          ],
+          "row": "S5.4"
+        },
+        {
+          "links": [
+            "RQ25",
+            "SAFE-02"
+          ],
+          "row": "W5"
+        },
+        {
+          "links": [
+            "RQ25"
+          ],
+          "row": "Q-S6"
+        },
+        {
+          "links": [
+            "RQ25"
+          ],
+          "row": "Q-S6"
+        },
+        {
+          "links": [
+            "RQ25"
+          ],
+          "row": "Q-S6"
+        },
+        {
+          "links": [
+            "RQ25"
+          ],
+          "row": "Q-F5"
+        }
+      ],
+      "command": "python source-code/backend/control/verify_outcomes.py",
+      "conditions": "stack, docker, sumo (run by acceptance/run_catalog.py --run outcomes)",
+      "failing": [],
+      "file": "docs/evidence/p07_09_outcomes.json",
+      "generated_at": "2026-09-26T09:06:50Z",
+      "kind": "evidence",
+      "sha256": "37744fbb7bdede9c3872261c34a1f992cc7d6a42084c3218104df080d80e2cb6",
+      "status": "passed",
+      "task": "P07.09"
+    },
+    {
+      "all_passed": true,
+      "bytes": 13101,
+      "checks": 18,
+      "cited_by": [
+        {
+          "links": [
+            "RQ25"
+          ],
+          "row": "S2.4"
+        },
+        {
+          "links": [
+            "RQ25"
+          ],
+          "row": "S2.6"
+        },
+        {
+          "links": [
+            "RQ25",
+            "SAFE-01"
+          ],
+          "row": "S3.2"
+        },
+        {
+          "links": [
+            "ETA-01",
+            "ETA-03"
+          ],
+          "row": "S3.3"
+        },
+        {
+          "links": [
+            "ETA-01",
+            "ETA-03"
+          ],
+          "row": "S3.3"
+        },
+        {
+          "links": [
+            "ETA-01",
+            "ETA-03"
+          ],
+          "row": "S3.3"
+        },
+        {
+          "links": [
+            "RQ25"
+          ],
+          "row": "S3.4"
+        },
+        {
+          "links": [
+            "RQ25"
+          ],
+          "row": "W4"
+        },
+        {
+          "links": [
+            "SAFE-01"
+          ],
+          "row": "Q-S1"
+        },
+        {
+          "links": [
+            "RQ25"
+          ],
+          "row": "Q-S5"
+        },
+        {
+          "links": [
+            "RQ25"
+          ],
+          "row": "Q-S5"
+        },
+        {
+          "links": [
+            "RQ25"
+          ],
+          "row": "Q-S5"
+        },
+        {
+          "links": [
+            "RQ25"
+          ],
+          "row": "Q-S5"
+        },
+        {
+          "links": [
+            "ETA-01",
+            "ETA-02"
+          ],
+          "row": "Q-F3"
+        },
+        {
+          "links": [
+            "ETA-01",
+            "ETA-02"
+          ],
+          "row": "Q-F3"
+        },
+        {
+          "links": [
+            "ETA-03"
+          ],
+          "row": "Q-F4"
+        },
+        {
+          "links": [
+            "RQ25"
+          ],
+          "row": "Q-F5"
+        }
+      ],
+      "command": "python source-code/backend/control/verify_scenarios.py",
+      "conditions": "stack, docker, sumo (run by acceptance/run_catalog.py --run scenarios)",
+      "failing": [],
+      "file": "docs/evidence/p07_10_scenarios.json",
+      "generated_at": "2026-09-26T09:12:42Z",
+      "kind": "evidence",
+      "sha256": "5aca082376f1f74f581432e3bbadedcbd4296f4f8e44b7e7e673d8896841cd0d",
+      "status": "passed",
+      "task": "P07.10"
+    },
+    {
+      "all_passed": true,
+      "bytes": 1297,
+      "checks": 6,
+      "cited_by": [],
+      "command": "python source-code/frontend/tools/inventory.py",
+      "conditions": "workstation (run by acceptance/run_catalog.py --run ux-inventory)",
+      "failing": [],
+      "file": "docs/evidence/p08_01_inventory.json",
+      "generated_at": "2026-09-26T08:16:32Z",
+      "kind": "evidence",
+      "sha256": "b828b34e7a81b80c20a1f6d06e776fb8a3ae67ce45638d73b7912b8e151587d3",
+      "status": "passed",
+      "task": "P08.01"
+    },
+    {
+      "all_passed": true,
+      "bytes": 2840,
+      "checks": 9,
+      "cited_by": [],
+      "command": "python source-code/frontend/tools/verify_wireframes.py",
+      "conditions": "workstation (run by acceptance/run_catalog.py --run ux-wireframes)",
+      "failing": [],
+      "file": "docs/evidence/p08_02_wireframes.json",
+      "generated_at": "2026-09-26T08:16:31Z",
+      "kind": "evidence",
+      "sha256": "0a5b9a09fa6cadb2e9fedc1c965a9e88e375a1a007edcb66a9413c4391585df8",
+      "status": "passed",
+      "task": "P08.02"
+    },
+    {
+      "all_passed": true,
+      "bytes": 3700,
+      "checks": 10,
+      "cited_by": [
+        {
+          "links": [
+            "UX-01"
+          ],
+          "row": "Q-A3"
+        },
+        {
+          "links": [
+            "UX-01"
+          ],
+          "row": "Q-A3"
+        },
+        {
+          "links": [
+            "UX-01"
+          ],
+          "row": "Q-A3"
+        }
+      ],
+      "command": "python source-code/frontend/tools/design.py",
+      "conditions": "workstation (run by acceptance/run_catalog.py --run ux-design)",
+      "failing": [],
+      "file": "docs/evidence/p08_03_design.json",
+      "generated_at": "2026-09-26T08:16:33Z",
+      "kind": "evidence",
+      "sha256": "c697ef57560d1d14efdbd2461ef2d337f196310d3ed714c0a0a227216ea94d12",
+      "status": "passed",
+      "task": "P08.03"
+    },
+    {
+      "all_passed": true,
+      "bytes": 4406,
+      "checks": 17,
+      "cited_by": [
+        {
+          "links": [
+            "RQ19",
+            "RQ20"
+          ],
+          "row": "W6"
+        },
+        {
+          "links": [
+            "RQ19"
+          ],
+          "row": "F-N2"
+        },
+        {
+          "links": [],
+          "row": "CAP map.view"
+        },
+        {
+          "links": [],
+          "row": "CAP map.view"
+        },
+        {
+          "links": [],
+          "row": "CAP analytics.view"
+        },
+        {
+          "links": [],
+          "row": "CAP incidents.view"
+        },
+        {
+          "links": [],
+          "row": "CAP emergency.view"
+        },
+        {
+          "links": [],
+          "row": "CAP routes.view"
+        },
+        {
+          "links": [],
+          "row": "CAP recommendations.view"
+        },
+        {
+          "links": [],
+          "row": "CAP commands.view"
+        },
+        {
+          "links": [],
+          "row": "CAP outcomes.view"
+        }
+      ],
+      "command": "python source-code/backend/api/verify_auth.py",
+      "conditions": "stack (run by acceptance/run_catalog.py --run api-auth)",
+      "failing": [],
+      "file": "docs/evidence/p08_04_auth_api.json",
+      "generated_at": "2026-09-26T17:57:12Z",
+      "kind": "evidence",
+      "sha256": "130a36936df51324f677883be6b2b6159eb060ea96d7d78bb43a45a856122817",
+      "status": "passed",
+      "task": "P08.04"
+    },
+    {
+      "all_passed": true,
+      "bytes": 4938,
+      "checks": 16,
+      "cited_by": [
+        {
+          "links": [
+            "RQ25",
+            "UX-01"
+          ],
+          "row": "W1"
+        },
+        {
+          "links": [],
+          "row": "CAP map.view"
+        },
+        {
+          "links": [],
+          "row": "CAP incidents.view"
+        },
+        {
+          "links": [],
+          "row": "CAP commands.view"
+        }
+      ],
+      "command": "python source-code/acceptance/run_ui.py",
+      "conditions": "stack, chrome (run by acceptance/run_catalog.py --run ui)",
+      "failing": [],
+      "file": "docs/evidence/p08_04_ui_auth.json",
+      "generated_at": "2026-09-26T20:04:07Z",
+      "kind": "evidence",
+      "sha256": "55e63869e7fb17915322c4183c94e82d85f4ca6ddd7248ec1d15fbc02e450f0d",
+      "status": "passed",
+      "task": "P08.04"
+    },
+    {
+      "all_passed": true,
+      "bytes": 3863,
+      "checks": 13,
+      "cited_by": [
+        {
+          "links": [
+            "RQ25",
+            "UX-01"
+          ],
+          "row": "W1"
+        },
+        {
+          "links": [
+            "UX-02"
+          ],
+          "row": "Q-A5"
+        },
+        {
+          "links": [],
+          "row": "CAP map.view"
+        },
+        {
+          "links": [],
+          "row": "CAP map.view"
+        }
+      ],
+      "command": "python source-code/acceptance/run_ui.py",
+      "conditions": "stack, chrome (run by acceptance/run_catalog.py --run ui)",
+      "failing": [],
+      "file": "docs/evidence/p08_05_ui_map.json",
+      "generated_at": "2026-09-26T20:05:09Z",
+      "kind": "evidence",
+      "sha256": "1890ee6cb1eccc17419e2da6ce695cee230b49f2f4907947381c3a9be9a9d378",
+      "status": "passed",
+      "task": "P08.05"
+    },
+    {
+      "all_passed": true,
+      "bytes": 5458,
+      "checks": 19,
+      "cited_by": [
+        {
+          "links": [
+            "UX-02"
+          ],
+          "row": "Q-A5"
+        },
+        {
+          "links": [],
+          "row": "CAP analytics.view"
+        },
+        {
+          "links": [],
+          "row": "CAP analytics.view"
+        },
+        {
+          "links": [],
+          "row": "CAP analytics.view"
+        }
+      ],
+      "command": "python source-code/acceptance/run_ui.py",
+      "conditions": "stack, chrome (run by acceptance/run_catalog.py --run ui)",
+      "failing": [],
+      "file": "docs/evidence/p08_06_ui_analytics.json",
+      "generated_at": "2026-09-26T20:06:23Z",
+      "kind": "evidence",
+      "sha256": "459ba2aae52e19ff89af509fa98b7500e783e588d3f1a63ffdb49a7d8db1dbbc",
+      "status": "passed",
+      "task": "P08.06"
+    },
+    {
+      "all_passed": true,
+      "bytes": 7973,
+      "checks": 44,
+      "cited_by": [
+        {
+          "links": [
+            "RQ25"
+          ],
+          "row": "S2.4"
+        },
+        {
+          "links": [
+            "RQ25"
+          ],
+          "row": "S2.4"
+        },
+        {
+          "links": [
+            "RQ25"
+          ],
+          "row": "W4"
+        },
+        {
+          "links": [],
+          "row": "CAP incidents.manage"
+        },
+        {
+          "links": [],
+          "row": "CAP incidents.manage"
+        },
+        {
+          "links": [],
+          "row": "CAP incidents.manage"
+        },
+        {
+          "links": [],
+          "row": "CAP incidents.manage"
+        },
+        {
+          "links": [],
+          "row": "CAP emergency.dispatch"
+        },
+        {
+          "links": [],
+          "row": "CAP emergency.dispatch"
+        },
+        {
+          "links": [],
+          "row": "CAP emergency.dispatch"
+        },
+        {
+          "links": [],
+          "row": "CAP emergency.dispatch"
+        }
+      ],
+      "command": "python source-code/backend/api/verify_operator_actions.py",
+      "conditions": "stack (run by acceptance/run_catalog.py --run api-operator-actions)",
+      "failing": [],
+      "file": "docs/evidence/p08_07_operator_actions_api.json",
+      "generated_at": "2026-09-26T08:36:43Z",
+      "kind": "evidence",
+      "sha256": "7ea2bf8118ad86820e0fdd7750a93a02d731b1b7bb16e62e01560a9539cb0e5f",
+      "status": "passed",
+      "task": "P08.07"
+    },
+    {
+      "all_passed": true,
+      "bytes": 5820,
+      "checks": 18,
+      "cited_by": [
+        {
+          "links": [
+            "RQ25"
+          ],
+          "row": "W3"
+        },
+        {
+          "links": [
+            "RQ25"
+          ],
+          "row": "W4"
+        },
+        {
+          "links": [
+            "UX-03"
+          ],
+          "row": "Q-A6"
+        },
+        {
+          "links": [],
+          "row": "CAP incidents.view"
+        },
+        {
+          "links": [],
+          "row": "CAP incidents.view"
+        },
+        {
+          "links": [],
+          "row": "CAP incidents.manage"
+        },
+        {
+          "links": [],
+          "row": "CAP emergency.view"
+        },
+        {
+          "links": [],
+          "row": "CAP emergency.view"
+        },
+        {
+          "links": [],
+          "row": "CAP emergency.dispatch"
+        }
+      ],
+      "command": "python source-code/acceptance/run_ui.py",
+      "conditions": "stack, chrome (run by acceptance/run_catalog.py --run ui)",
+      "failing": [],
+      "file": "docs/evidence/p08_07_ui_incident_dispatch.json",
+      "generated_at": "2026-09-26T20:08:12Z",
+      "kind": "evidence",
+      "sha256": "fcbb776a3cac2deb4b13c8032b4f0926a23a9429dd103e1f49dd873232b105c1",
+      "status": "passed",
+      "task": "P08.07"
+    },
+    {
+      "all_passed": true,
+      "bytes": 8615,
+      "checks": 32,
+      "cited_by": [
+        {
+          "links": [
+            "RQ25"
+          ],
+          "row": "S1.4"
+        },
+        {
+          "links": [
+            "RQ25"
+          ],
+          "row": "S1.4"
+        },
+        {
+          "links": [
+            "RQ25"
+          ],
+          "row": "S1.5"
+        },
+        {
+          "links": [
+            "RQ25"
+          ],
+          "row": "S1.5"
+        },
+        {
+          "links": [
+            "RQ25"
+          ],
+          "row": "S2.6"
+        },
+        {
+          "links": [
+            "RQ25",
+            "SAFE-02"
+          ],
+          "row": "W5"
+        },
+        {
+          "links": [
+            "SAFE-02"
+          ],
+          "row": "Q-S2"
+        },
+        {
+          "links": [
+            "SAFE-02"
+          ],
+          "row": "Q-S2"
+        },
+        {
+          "links": [
+            "SAFE-02"
+          ],
+          "row": "Q-S2"
+        },
+        {
+          "links": [],
+          "row": "CAP commands.request"
+        },
+        {
+          "links": [],
+          "row": "CAP commands.request"
+        },
+        {
+          "links": [],
+          "row": "CAP commands.request"
+        },
+        {
+          "links": [],
+          "row": "CAP commands.request"
+        },
+        {
+          "links": [],
+          "row": "CAP commands.review"
+        },
+        {
+          "links": [],
+          "row": "CAP commands.review"
+        },
+        {
+          "links": [],
+          "row": "CAP commands.review"
+        },
+        {
+          "links": [],
+          "row": "CAP commands.review"
+        }
+      ],
+      "command": "python source-code/backend/api/verify_command_workflow.py",
+      "conditions": "stack, docker, sumo (run by acceptance/run_catalog.py --run api-command-workflow)",
+      "failing": [],
+      "file": "docs/evidence/p08_08_command_workflow_api.json",
+      "generated_at": "2026-09-26T09:13:13Z",
+      "kind": "evidence",
+      "sha256": "b440e0384a9bff3c774be47ade65e8c114759b795481a56321af43f8892757d6",
+      "status": "passed",
+      "task": "P08.08"
+    },
+    {
+      "all_passed": true,
+      "bytes": 3929,
+      "checks": 11,
+      "cited_by": [
+        {
+          "links": [
+            "RQ25"
+          ],
+          "row": "S1.4"
+        },
+        {
+          "links": [
+            "RQ25",
+            "SAFE-02"
+          ],
+          "row": "W5"
+        },
+        {
+          "links": [
+            "UX-03"
+          ],
+          "row": "Q-A6"
+        },
+        {
+          "links": [
+            "UX-03"
+          ],
+          "row": "Q-A6"
+        },
+        {
+          "links": [],
+          "row": "CAP recommendations.view"
+        },
+        {
+          "links": [],
+          "row": "CAP recommendations.view"
+        },
+        {
+          "links": [],
+          "row": "CAP commands.view"
+        },
+        {
+          "links": [],
+          "row": "CAP outcomes.view"
+        }
+      ],
+      "command": "python source-code/acceptance/run_ui.py",
+      "conditions": "stack, chrome (run by acceptance/run_catalog.py --run ui)",
+      "failing": [],
+      "file": "docs/evidence/p08_08_ui_actions.json",
+      "generated_at": "2026-09-26T20:09:33Z",
+      "kind": "evidence",
+      "sha256": "aaa14a645e4a0b12f3b14d63f4b5b9ff9967e6f059c12cd687cfe91eac8ec028",
+      "status": "passed",
+      "task": "P08.08"
+    },
+    {
+      "all_passed": true,
+      "bytes": 5122,
+      "checks": 23,
+      "cited_by": [
+        {
+          "links": [],
+          "row": "CAP demo.control"
+        },
+        {
+          "links": [],
+          "row": "CAP demo.control"
+        },
+        {
+          "links": [],
+          "row": "CAP demo.control"
+        }
+      ],
+      "command": "python source-code/backend/scenario_control/verify_scenario_control.py",
+      "conditions": "stack (run by acceptance/run_catalog.py --run scenario-control): a second evidence file the same verifier writes, alongside p05_09_scenario_control",
+      "failing": [],
+      "file": "docs/evidence/p08_09_demo_controls.json",
+      "generated_at": "2026-09-21T16:14:54Z",
+      "kind": "evidence",
+      "sha256": "c2bbc751d1ea6767e89d6bf8731f581e38cc6800d2258acd792ec42bc2fe3981",
+      "status": "passed, not re-run in this phase",
+      "task": "P08.09"
+    },
+    {
+      "all_passed": true,
+      "bytes": 12118,
+      "checks": 50,
+      "cited_by": [
+        {
+          "links": [],
+          "row": "CAP audit.view"
+        },
+        {
+          "links": [],
+          "row": "CAP audit.view"
+        },
+        {
+          "links": [],
+          "row": "CAP ops.view"
+        },
+        {
+          "links": [],
+          "row": "CAP handover.view"
+        },
+        {
+          "links": [],
+          "row": "CAP handover.write"
+        },
+        {
+          "links": [],
+          "row": "CAP handover.write"
+        },
+        {
+          "links": [],
+          "row": "CAP handover.write"
+        },
+        {
+          "links": [],
+          "row": "CAP handover.write"
+        }
+      ],
+      "command": "python source-code/backend/api/verify_govern.py",
+      "conditions": "stack (run by acceptance/run_catalog.py --run api-govern)",
+      "failing": [],
+      "file": "docs/evidence/p08_09_govern_api.json",
+      "generated_at": "2026-09-26T08:37:33Z",
+      "kind": "evidence",
+      "sha256": "99dc6f876d1b340bf0c6a4210d9cd763fa44d0f6de12403ed6d067b0f031a85c",
+      "status": "passed",
+      "task": "P08.09"
+    },
+    {
+      "all_passed": true,
+      "bytes": 4538,
+      "checks": 14,
+      "cited_by": [
+        {
+          "links": [
+            "RQ25",
+            "UX-01"
+          ],
+          "row": "W1"
+        },
+        {
+          "links": [],
+          "row": "CAP audit.view"
+        },
+        {
+          "links": [],
+          "row": "CAP audit.view"
+        },
+        {
+          "links": [],
+          "row": "CAP ops.view"
+        },
+        {
+          "links": [],
+          "row": "CAP ops.view"
+        },
+        {
+          "links": [],
+          "row": "CAP handover.view"
+        },
+        {
+          "links": [],
+          "row": "CAP handover.view"
+        },
+        {
+          "links": [],
+          "row": "CAP demo.control"
+        }
+      ],
+      "command": "python source-code/acceptance/run_ui.py",
+      "conditions": "stack, chrome (run by acceptance/run_catalog.py --run ui)",
+      "failing": [],
+      "file": "docs/evidence/p08_09_ui_govern.json",
+      "generated_at": "2026-09-26T20:11:21Z",
+      "kind": "evidence",
+      "sha256": "efd5b6adb523e2be72118e5d63010465c563f083fee461d6457613796a4f70f5",
+      "status": "passed",
+      "task": "P08.09"
+    },
+    {
+      "all_passed": true,
+      "bytes": 24146,
+      "checks": 19,
+      "cited_by": [
+        {
+          "links": [
+            "SAFE-03",
+            "UX-02"
+          ],
+          "row": "S6.2"
+        },
+        {
+          "links": [
+            "SAFE-03",
+            "UX-02"
+          ],
+          "row": "S6.2"
+        },
+        {
+          "links": [
+            "RQ25",
+            "UX-01"
+          ],
+          "row": "W1"
+        },
+        {
+          "links": [
+            "LOAD-01",
+            "LOAD-02",
+            "LOAD-04"
+          ],
+          "row": "W2"
+        },
+        {
+          "links": [
+            "RQ19"
+          ],
+          "row": "F-N2"
+        },
+        {
+          "links": [
+            "RQ19"
+          ],
+          "row": "F-N2"
+        },
+        {
+          "links": [
+            "SAFE-03"
+          ],
+          "row": "Q-S4"
+        },
+        {
+          "links": [
+            "UX-01"
+          ],
+          "row": "Q-A1"
+        },
+        {
+          "links": [
+            "UX-01"
+          ],
+          "row": "Q-A2"
+        },
+        {
+          "links": [
+            "UX-04"
+          ],
+          "row": "Q-A4"
+        },
+        {
+          "links": [
+            "UX-04"
+          ],
+          "row": "Q-A4"
+        },
+        {
+          "links": [
+            "UX-02"
+          ],
+          "row": "Q-A5"
+        },
+        {
+          "links": [
+            "UX-01"
+          ],
+          "row": "Q-A7"
+        }
+      ],
+      "command": "python source-code/acceptance/run_ui.py",
+      "conditions": "stack, chrome (run by acceptance/run_catalog.py --run ui)",
+      "failing": [],
+      "file": "docs/evidence/p08_10_ui_acceptance.json",
+      "generated_at": "2026-09-26T20:24:07Z",
+      "kind": "evidence",
+      "sha256": "e9bc37f930518b50abc7c4aa47a811ee2fb1ce19dc5ec4f4fb2edf27b7586ae4",
+      "status": "passed",
+      "task": "P08.10"
+    },
+    {
+      "all_passed": true,
+      "bytes": 3754,
+      "checks": 12,
+      "cited_by": [
+        {
+          "links": [
+            "RQ12",
+            "RQ20"
+          ],
+          "row": "Q-P5"
+        },
+        {
+          "links": [
+            "RQ12",
+            "RQ20"
+          ],
+          "row": "Q-P5"
+        },
+        {
+          "links": [
+            "RQ12",
+            "RQ20"
+          ],
+          "row": "Q-P5"
+        }
+      ],
+      "command": "python source-code/security/verify_threat_model.py",
+      "conditions": "workstation (run by acceptance/run_catalog.py --run threat-model)",
+      "failing": [],
+      "file": "docs/evidence/p09_01_threat_model.json",
+      "generated_at": "2026-09-27T05:04:32Z",
+      "kind": "evidence",
+      "sha256": "907063f7a6727603b83385814f618cf60b3b4f0c58e9fe74971331d3b8864908",
+      "status": "passed",
+      "task": "P09.01"
+    },
+    {
+      "all_passed": true,
+      "bytes": 6500,
+      "checks": 33,
+      "cited_by": [],
+      "command": "python source-code/infra/platform/keycloak/verify_keycloak.py",
+      "conditions": "stack (run by acceptance/run_catalog.py --run keycloak)",
+      "failing": [],
+      "file": "docs/evidence/p09_02_keycloak.json",
+      "generated_at": "2026-09-26T17:56:52Z",
+      "kind": "evidence",
+      "sha256": "ce3db42b7e5b10640c930ab3f053ee30db1c66c70fe82008b4a330d44b910c71",
+      "status": "passed",
+      "task": "P09.02"
+    },
+    {
+      "all_passed": true,
+      "bytes": 20730,
+      "checks": 79,
+      "cited_by": [
+        {
+          "links": [
+            "SAFE-02",
+            "RQ19"
+          ],
+          "row": "F-P1"
+        },
+        {
+          "links": [
+            "SAFE-02",
+            "RQ19"
+          ],
+          "row": "F-P1"
+        },
+        {
+          "links": [
+            "SAFE-02"
+          ],
+          "row": "F-P2"
+        },
+        {
+          "links": [
+            "SAFE-02"
+          ],
+          "row": "F-P2"
+        },
+        {
+          "links": [
+            "SAFE-02"
+          ],
+          "row": "F-P3"
+        },
+        {
+          "links": [
+            "SAFE-02"
+          ],
+          "row": "F-P3"
+        },
+        {
+          "links": [
+            "RQ22"
+          ],
+          "row": "F-C2"
+        },
+        {
+          "links": [
+            "SAFE-02"
+          ],
+          "row": "Q-S2"
+        },
+        {
+          "links": [],
+          "row": "CAP commands.request"
+        },
+        {
+          "links": [],
+          "row": "CAP commands.request"
+        },
+        {
+          "links": [],
+          "row": "CAP commands.review"
+        }
+      ],
+      "command": "python source-code/policy/verify_policy.py",
+      "conditions": "stack (run by acceptance/run_catalog.py --run policy)",
+      "failing": [],
+      "file": "docs/evidence/p09_03_policy.json",
+      "generated_at": "2026-09-26T17:58:28Z",
+      "kind": "evidence",
+      "sha256": "4a098c1a78c329f07b64eff552d3f12b1eee982c70e84218bbca363e72269195",
+      "status": "passed",
+      "task": "P09.03"
+    },
+    {
+      "all_passed": true,
+      "bytes": 7933,
+      "checks": 12,
+      "cited_by": [],
+      "command": "python source-code/database/verify_workload_protection.py",
+      "conditions": "stack (run by acceptance/run_catalog.py --run workload-protection)",
+      "failing": [],
+      "file": "docs/evidence/p09_04_workload_protection.json",
+      "generated_at": "2026-09-26T17:58:32Z",
+      "kind": "evidence",
+      "sha256": "b7db3f451c6a5d9ce785e40f4c76713c5bba27e124931df7f65d2c58b37c93b9",
+      "status": "passed",
+      "task": "P09.04"
+    },
+    {
+      "all_passed": true,
+      "bytes": 11791,
+      "checks": 31,
+      "cited_by": [
+        {
+          "links": [
+            "RQ25",
+            "SAFE-02"
+          ],
+          "row": "W5"
+        },
+        {
+          "links": [
+            "RQ20"
+          ],
+          "row": "Q-P3"
+        },
+        {
+          "links": [
+            "RQ20"
+          ],
+          "row": "Q-P3"
+        },
+        {
+          "links": [
+            "RQ20"
+          ],
+          "row": "Q-P3"
+        },
+        {
+          "links": [],
+          "row": "CAP audit.export"
+        },
+        {
+          "links": [],
+          "row": "CAP audit.export"
+        },
+        {
+          "links": [],
+          "row": "CAP audit.export"
+        },
+        {
+          "links": [],
+          "row": "CAP commands.override"
+        },
+        {
+          "links": [],
+          "row": "CAP commands.override"
+        },
+        {
+          "links": [],
+          "row": "CAP commands.override"
+        }
+      ],
+      "command": "python source-code/backend/verify_audit_protection.py",
+      "conditions": "stack (run by acceptance/run_catalog.py --run audit-protection)",
+      "failing": [],
+      "file": "docs/evidence/p09_05_audit_protection.json",
+      "generated_at": "2026-09-26T17:58:47Z",
+      "kind": "evidence",
+      "sha256": "f288332929fd81eda161e6aac2381b64fa1a18c45a710a537820910655bc338f",
+      "status": "passed",
+      "task": "P09.05"
+    },
+    {
+      "all_passed": true,
+      "bytes": 2948,
+      "checks": 9,
+      "cited_by": [
+        {
+          "links": [
+            "RQ20"
+          ],
+          "row": "Q-P2"
+        },
+        {
+          "links": [
+            "RQ20"
+          ],
+          "row": "Q-P2"
+        },
+        {
+          "links": [
+            "RQ20"
+          ],
+          "row": "Q-P4"
+        }
+      ],
+      "command": "python source-code/security/verify_data_inventory.py",
+      "conditions": "stack (run by acceptance/run_catalog.py --run data-inventory)",
+      "failing": [],
+      "file": "docs/evidence/p09_06_data_inventory.json",
+      "generated_at": "2026-09-26T17:58:47Z",
+      "kind": "evidence",
+      "sha256": "e240b382f8229de108bcd60b3f8b067ed1f5752bfd815bfe10003d0dbf20d0ff",
+      "status": "passed",
+      "task": "P09.06"
+    },
+    {
+      "all_passed": true,
+      "bytes": 3425,
+      "checks": 9,
+      "cited_by": [],
+      "command": "python source-code/security/access_review.py",
+      "conditions": "stack, Keycloak provisioned (run as a step of acceptance/run_catalog.py --run runtime-acceptance); --offline reviews only the declared side, no Keycloak needed",
+      "failing": [],
+      "file": "docs/evidence/p09_07_access_review.json",
+      "generated_at": "2026-09-26T17:58:48Z",
+      "kind": "evidence",
+      "sha256": "50088f4198262cc055fce790d464c5661d4fbf7aa2f9d973017f192e6e09c1e8",
+      "status": "passed",
+      "task": "P09.07"
+    },
+    {
+      "all_passed": true,
+      "bytes": 3790,
+      "checks": 17,
+      "cited_by": [
+        {
+          "links": [
+            "RQ20",
+            "RQ23"
+          ],
+          "row": "Q-P6"
+        },
+        {
+          "links": [
+            "RQ20",
+            "RQ23"
+          ],
+          "row": "Q-P6"
+        }
+      ],
+      "command": "python source-code/security/verify_control_mapping.py",
+      "conditions": "workstation (run by acceptance/run_catalog.py --run control-mapping)",
+      "failing": [],
+      "file": "docs/evidence/p09_07_control_mapping.json",
+      "generated_at": "2026-09-27T06:19:33Z",
+      "kind": "evidence",
+      "sha256": "3b1231e77194289ebc23c199d66ee51736908b6c6c763bb93db1f6254c4bb692",
+      "status": "passed",
+      "task": "P09.07"
+    },
+    {
+      "all_passed": true,
+      "bytes": 2536,
+      "checks": 12,
+      "cited_by": [],
+      "command": "python3 source-code/security/supply_chain/build_release.py",
+      "conditions": "WSL: Trivy, Syft and Cosign as pinned containers",
+      "failing": [],
+      "file": "docs/evidence/p09_08_supply_chain.json",
+      "generated_at": "2026-09-23T17:42:26Z",
+      "kind": "evidence",
+      "sha256": "32cd5c243638cb47fa8060f3b0969074e2dd5124978e973261592fa0b9170223",
+      "status": "passed, not re-run in this phase",
+      "task": "P09.08"
+    },
+    {
+      "all_passed": true,
+      "bytes": 5236,
+      "checks": 12,
+      "cited_by": [],
+      "command": "runbook step / verifier for P09.09 on the target (falco-rules)",
+      "conditions": "the real target host, kind cluster aiops-p11: Falco rules on the local kernel (WSL); the host was cleaned afterwards",
+      "failing": [],
+      "file": "docs/evidence/p09_09_falco_rules.json",
+      "generated_at": "2026-09-26T04:36:15Z",
+      "kind": "evidence",
+      "sha256": "052fa0658f6b77c1c8af016407c3ae762b469860c182873501324c4f8f5392f9",
+      "status": "passed, not re-run in this phase",
+      "task": "P09.09"
+    },
+    {
+      "all_passed": true,
+      "bytes": 6209,
+      "checks": 13,
+      "cited_by": [],
+      "command": "runbook step / verifier for P09.09 on the target (target-falco)",
+      "conditions": "the real target host, kind cluster aiops-p11: Falco as a DaemonSet naming the pod; the host was cleaned afterwards",
+      "failing": [],
+      "file": "docs/evidence/p09_09_falco_target.json",
+      "generated_at": "2026-09-26T05:52:57Z",
+      "kind": "evidence",
+      "sha256": "b8fe728bb1c3feaffe49f4a8d69b6312067c96306c01e3fb33967af270131eaf",
+      "status": "passed, not re-run in this phase",
+      "task": "P09.09"
+    },
+    {
+      "all_passed": true,
+      "bytes": 17223,
+      "checks": 9,
+      "cited_by": [
+        {
+          "links": [
+            "RQ19",
+            "RQ20"
+          ],
+          "row": "W6"
+        }
+      ],
+      "command": "python source-code/security/verify_runtime_acceptance.py",
+      "conditions": "stack (run by acceptance/run_catalog.py --run runtime-acceptance)",
+      "failing": [],
+      "file": "docs/evidence/p09_10_runtime_acceptance.json",
+      "generated_at": "2026-09-26T17:58:48Z",
+      "kind": "evidence",
+      "sha256": "bfb74450792fde01c793861624ca1aa1da19e6fac65ed07948e4b0e87f512009",
+      "status": "passed",
+      "task": "P09.10"
+    },
+    {
+      "all_passed": true,
+      "bytes": 1549,
+      "checks": 7,
+      "cited_by": [],
+      "command": "python source-code/backend/verify_observability.py",
+      "conditions": "stack (run by acceptance/run_catalog.py --run observability)",
+      "failing": [],
+      "file": "docs/evidence/p10_01_observability.json",
+      "generated_at": "2026-09-26T08:39:50Z",
+      "kind": "evidence",
+      "sha256": "23d5163e5c26a37fd0763cf983be5aee51a544a4b86c6b0dedf3ef28d3defe74",
+      "status": "passed",
+      "task": "P10.01"
+    },
+    {
+      "all_passed": true,
+      "bytes": 1684,
+      "checks": 8,
+      "cited_by": [],
+      "command": "python source-code/backend/verify_slos.py",
+      "conditions": "stack (run by acceptance/run_catalog.py --run slos)",
+      "failing": [],
+      "file": "docs/evidence/p10_02_slos.json",
+      "generated_at": "2026-09-26T08:22:09Z",
+      "kind": "evidence",
+      "sha256": "2299d900012dc1edd847785c8018ebcfa3b01fa58549fc355ff556d1902371b4",
+      "status": "passed",
+      "task": "P10.02"
+    },
+    {
+      "all_passed": true,
+      "bytes": 1649,
+      "checks": 8,
+      "cited_by": [],
+      "command": "python source-code/infra/platform/verify_observability_stack.py",
+      "conditions": "stack (run by acceptance/run_catalog.py --run observability-stack)",
+      "failing": [],
+      "file": "docs/evidence/p10_03_observability_stack.json",
+      "generated_at": "2026-09-26T08:40:13Z",
+      "kind": "evidence",
+      "sha256": "da7cb538d327cbb0c7b249ac491f2e6f76dfcce1c82ccb8f59260cff99b1b5ad",
+      "status": "passed",
+      "task": "P10.03"
+    },
+    {
+      "all_passed": true,
+      "bytes": 10601,
+      "checks": 40,
+      "cited_by": [
+        {
+          "links": [
+            "RQ07"
+          ],
+          "row": "S7.1"
+        },
+        {
+          "links": [
+            "RQ07"
+          ],
+          "row": "S7.1"
+        },
+        {
+          "links": [
+            "RQ06",
+            "RQ07"
+          ],
+          "row": "F-E2"
+        },
+        {
+          "links": [
+            "RQ04"
+          ],
+          "row": "F-S3"
+        },
+        {
+          "links": [
+            "RQ18"
+          ],
+          "row": "F-D3"
+        },
+        {
+          "links": [
+            "RQ18"
+          ],
+          "row": "F-D3"
+        },
+        {
+          "links": [
+            "RQ19"
+          ],
+          "row": "F-C1"
+        },
+        {
+          "links": [
+            "RQ19"
+          ],
+          "row": "F-C1"
+        }
+      ],
+      "command": "python source-code/backend/aiops/verify_alerts.py",
+      "conditions": "stack, docker (run by acceptance/run_catalog.py --run alerts)",
+      "failing": [],
+      "file": "docs/evidence/p10_04_alert_rules.json",
+      "generated_at": "2026-09-26T10:47:26Z",
+      "kind": "evidence",
+      "sha256": "f16df41c60fb79cf1a3849c07e9648c6c6dfc8a03ab21491703125d9f580f39b",
+      "status": "passed",
+      "task": "P10.04"
+    },
+    {
+      "all_passed": true,
+      "bytes": 6192,
+      "checks": 21,
+      "cited_by": [],
+      "command": "python source-code/models/operations_dataset/verify_operations_dataset.py",
+      "conditions": "workstation (run by acceptance/run_catalog.py --run operations-dataset)",
+      "failing": [],
+      "file": "docs/evidence/p10_05_operations_dataset.json",
+      "generated_at": "2026-09-27T05:04:20Z",
+      "kind": "evidence",
+      "sha256": "33596de955663ebf3c925bd9795a492d820c746d0df499c87644e40e940ec862",
+      "status": "passed",
+      "task": "P10.05"
+    },
+    {
+      "all_passed": true,
+      "bytes": 7160,
+      "checks": 19,
+      "cited_by": [],
+      "command": "python source-code/models/operations_detector/verify_operations_detector.py",
+      "conditions": "workstation (run by acceptance/run_catalog.py --run operations-detector)",
+      "failing": [],
+      "file": "docs/evidence/p10_06_operations_detector.json",
+      "generated_at": "2026-09-27T05:04:21Z",
+      "kind": "evidence",
+      "sha256": "0ea28631f6433a889cf27ff2c97240f61f0518705926b8eb6b666f8a26876aa9",
+      "status": "passed",
+      "task": "P10.06"
+    },
+    {
+      "all_passed": true,
+      "bytes": 12043,
+      "checks": 30,
+      "cited_by": [],
+      "command": "python source-code/backend/aiops/verify_platform_incidents.py",
+      "conditions": "stack (run by acceptance/run_catalog.py --run platform-incidents)",
+      "failing": [],
+      "file": "docs/evidence/p10_07_platform_incidents.json",
+      "generated_at": "2026-09-26T10:47:45Z",
+      "kind": "evidence",
+      "sha256": "a1332a69d1201ea12ef93de3e4104db2ed1e6dc9a8632de6825c22bba6d31752",
+      "status": "passed",
+      "task": "P10.07"
+    },
+    {
+      "all_passed": true,
+      "bytes": 12767,
+      "checks": 53,
+      "cited_by": [
+        {
+          "links": [
+            "RQ07",
+            "REC-04"
+          ],
+          "row": "F-M1"
+        }
+      ],
+      "command": "python source-code/backend/aiops/verify_remediation.py",
+      "conditions": "stack (run by acceptance/run_catalog.py --run remediation)",
+      "failing": [],
+      "file": "docs/evidence/p10_08_remediation.json",
+      "generated_at": "2026-09-26T09:43:08Z",
+      "kind": "evidence",
+      "sha256": "f1a7c3074f61554bb2e78dbde98f20ef7b8e7ca1515eddabbb26b20cf2cac267",
+      "status": "passed",
+      "task": "P10.08"
+    },
+    {
+      "all_passed": false,
+      "bytes": 9133,
+      "checks": 2,
+      "cited_by": [],
+      "command": "python source-code/backend/aiops/evaluate_platform_incidents.py",
+      "conditions": "workstation: records a finding (FA-03), so it does not pass by design",
+      "failing": [
+        "FA_03_platform_incident_false_positive_rate_is_at_most_10_percent_on_the_held_out_test_runs"
+      ],
+      "file": "docs/evidence/p10_09_incident_quality.json",
+      "generated_at": "2026-09-25T09:06:57Z",
+      "kind": "evidence",
+      "sha256": "406a3d44d5e1adeced69d293ee76f9c3319ee302fae119f0b4336e147c5ab14b",
+      "status": "records a failure",
+      "task": "P10.09"
+    },
+    {
+      "all_passed": true,
+      "bytes": 15498,
+      "checks": 20,
+      "cited_by": [
+        {
+          "links": [
+            "RQ07",
+            "REC-04"
+          ],
+          "row": "S7.3"
+        },
+        {
+          "links": [
+            "RQ07",
+            "REC-04"
+          ],
+          "row": "S7.3"
+        },
+        {
+          "links": [
+            "RQ07",
+            "REC-04"
+          ],
+          "row": "S7.3"
+        },
+        {
+          "links": [
+            "REC-04"
+          ],
+          "row": "F-V2"
+        },
+        {
+          "links": [
+            "REC-04"
+          ],
+          "row": "F-V2"
+        },
+        {
+          "links": [
+            "REC-04",
+            "LAT-06"
+          ],
+          "row": "F-V3"
+        },
+        {
+          "links": [
+            "REC-04",
+            "LAT-06"
+          ],
+          "row": "F-V3"
+        },
+        {
+          "links": [
+            "REC-04",
+            "LAT-06"
+          ],
+          "row": "F-V3"
+        },
+        {
+          "links": [
+            "REC-04"
+          ],
+          "row": "F-V4"
+        },
+        {
+          "links": [
+            "REC-04"
+          ],
+          "row": "F-V4"
+        },
+        {
+          "links": [
+            "RQ07",
+            "REC-04"
+          ],
+          "row": "F-M1"
+        }
+      ],
+      "command": "python source-code/backend/aiops/verify_recovery.py",
+      "conditions": "stack, docker (run by acceptance/run_catalog.py --run recovery)",
+      "failing": [],
+      "file": "docs/evidence/p10_09_recovery.json",
+      "generated_at": "2026-09-26T12:24:41Z",
+      "kind": "evidence",
+      "sha256": "66c1622b012d0d68287e13b0bf328c940eae88a5949539c49bfaabc6dbee76a8",
+      "status": "passed",
+      "task": "P10.09"
+    },
+    {
+      "all_passed": true,
+      "bytes": 8873,
+      "checks": 15,
+      "cited_by": [],
+      "command": "python source-code/models/data_quality/verify_data_quality.py",
+      "conditions": "workstation (run by acceptance/run_catalog.py --run data-quality)",
+      "failing": [],
+      "file": "docs/evidence/p10_10_data_quality.json",
+      "generated_at": "2026-09-26T08:20:10Z",
+      "kind": "evidence",
+      "sha256": "025214d4e6b6e9b743a9119f0cc14bf172a69b2c62e73f146cd1ef75932e910c",
+      "status": "passed",
+      "task": "P10.10"
+    },
+    {
+      "all_passed": true,
+      "bytes": 5024,
+      "checks": 17,
+      "cited_by": [],
+      "command": "runbook step / verifier for P11.01 on the target (images)",
+      "conditions": "the real target host, kind cluster aiops-p11: Service images: reproducible build, scan, SBOM, signed provenance (WSL); the host was cleaned afterwards",
+      "failing": [],
+      "file": "docs/evidence/p11_01_service_images.json",
+      "generated_at": "2026-09-26T04:11:13Z",
+      "kind": "evidence",
+      "sha256": "796faa4c5d449f107b3b2c9008f3993414bcf0d911d45188f146286f4c784b99",
+      "status": "passed, not re-run in this phase",
+      "task": "P11.01"
+    },
+    {
+      "all_passed": true,
+      "bytes": 8012,
+      "checks": 14,
+      "cited_by": [],
+      "command": "python source-code/infra/k8s/verify_workloads.py",
+      "conditions": "workstation (run by acceptance/run_catalog.py --run workloads)",
+      "failing": [],
+      "file": "docs/evidence/p11_02_workloads.json",
+      "generated_at": "2026-09-27T05:04:23Z",
+      "kind": "evidence",
+      "sha256": "462de85300ff86cfe83e91c23f966f38ebdf5554b07945160349bf31f02b159d",
+      "status": "passed",
+      "task": "P11.02"
+    },
+    {
+      "all_passed": true,
+      "bytes": 11599,
+      "checks": 19,
+      "cited_by": [],
+      "command": "runbook step / verifier for P11.03 on the target (target-deploy)",
+      "conditions": "the real target host, kind cluster aiops-p11: Deployment on the real host, images checked against the signed ones; the host was cleaned afterwards",
+      "failing": [],
+      "file": "docs/evidence/p11_03_target_deployment.json",
+      "generated_at": "2026-09-26T05:49:06Z",
+      "kind": "evidence",
+      "sha256": "301d7e669ca33be810cfcf1e052b5227f3b6c839e8d6ab14c5a667cea4c596e5",
+      "status": "passed, not re-run in this phase",
+      "task": "P11.03"
+    },
+    {
+      "all_passed": true,
+      "bytes": 15703,
+      "checks": 56,
+      "cited_by": [
+        {
+          "links": [
+            "RQ19",
+            "RQ20"
+          ],
+          "row": "W6"
+        },
+        {
+          "links": [
+            "RQ19",
+            "RQ20"
+          ],
+          "row": "W6"
+        },
+        {
+          "links": [
+            "RQ19",
+            "RQ12"
+          ],
+          "row": "F-N3"
+        },
+        {
+          "links": [
+            "RQ19",
+            "RQ12"
+          ],
+          "row": "F-N3"
+        },
+        {
+          "links": [
+            "RQ19",
+            "RQ12"
+          ],
+          "row": "F-N3"
+        },
+        {
+          "links": [
+            "SAFE-02",
+            "RQ19"
+          ],
+          "row": "F-P1"
+        },
+        {
+          "links": [
+            "RQ19"
+          ],
+          "row": "F-C1"
+        },
+        {
+          "links": [
+            "RQ22"
+          ],
+          "row": "F-C2"
+        }
+      ],
+      "command": "runbook step / verifier for P11.04 on the target (target-security)",
+      "conditions": "the real target host, kind cluster aiops-p11: Native transport, identity, policy, admission, RBAC and network checks; the host was cleaned afterwards",
+      "failing": [],
+      "file": "docs/evidence/p11_04_target_security.json",
+      "generated_at": "2026-09-26T05:50:59Z",
+      "kind": "evidence",
+      "sha256": "7a633594ee795c6bbb7752e04a4cd02bb1e9508bbfe2f0cd95afca1a806ccc72",
+      "status": "passed, not re-run in this phase",
+      "task": "P11.04"
+    },
+    {
+      "all_passed": true,
+      "bytes": 8860,
+      "checks": 27,
+      "cited_by": [
+        {
+          "links": [
+            "RQ22"
+          ],
+          "row": "S7.4"
+        },
+        {
+          "links": [
+            "RQ22"
+          ],
+          "row": "S7.4"
+        },
+        {
+          "links": [
+            "REC-02"
+          ],
+          "row": "F-V1"
+        },
+        {
+          "links": [
+            "REC-02"
+          ],
+          "row": "F-V1"
+        },
+        {
+          "links": [
+            "RQ22"
+          ],
+          "row": "F-V5"
+        },
+        {
+          "links": [
+            "RQ22"
+          ],
+          "row": "F-V5"
+        },
+        {
+          "links": [
+            "REC-03"
+          ],
+          "row": "F-D1"
+        },
+        {
+          "links": [
+            "REC-03"
+          ],
+          "row": "F-D1"
+        },
+        {
+          "links": [
+            "REC-03"
+          ],
+          "row": "F-D1"
+        },
+        {
+          "links": [
+            "REC-03"
+          ],
+          "row": "F-D1"
+        }
+      ],
+      "command": "runbook step / verifier for P11.05 on the target (target-recovery)",
+      "conditions": "the real target host, kind cluster aiops-p11: Backup, disaster restore, restarts, rollout and rollback; the host was cleaned afterwards",
+      "failing": [],
+      "file": "docs/evidence/p11_05_target_recovery.json",
+      "generated_at": "2026-09-26T04:50:43Z",
+      "kind": "evidence",
+      "sha256": "e2d656603e1c9ef5cc2eff722b5f230d6acaa63f4e236d35f9dd6eabdad8ba07",
+      "status": "passed, not re-run in this phase",
+      "task": "P11.05"
+    },
+    {
+      "all_passed": true,
+      "bytes": 29843,
+      "checks": 10,
+      "cited_by": [
+        {
+          "links": [
+            "LOAD-01",
+            "LOAD-02",
+            "LOAD-04"
+          ],
+          "row": "W2"
+        },
+        {
+          "links": [
+            "LOAD-01",
+            "LOAD-02",
+            "LOAD-04"
+          ],
+          "row": "W2"
+        },
+        {
+          "links": [
+            "REC-01"
+          ],
+          "row": "F-N1"
+        },
+        {
+          "links": [
+            "RQ04"
+          ],
+          "row": "F-S1"
+        },
+        {
+          "links": [
+            "LOAD-03"
+          ],
+          "row": "F-D2"
+        },
+        {
+          "links": [
+            "LOAD-03"
+          ],
+          "row": "F-D2"
+        }
+      ],
+      "command": "runbook step / verifier for P11.06 on the target (target-load)",
+      "conditions": "the real target host, kind cluster aiops-p11: Load, ceiling, four outages and a 30-minute soak; the host was cleaned afterwards",
+      "failing": [],
+      "file": "docs/evidence/p11_06_target_load.json",
+      "generated_at": "2026-09-26T05:35:46Z",
+      "kind": "evidence",
+      "sha256": "21e2a3cefba6e5fb8c7af3a7689663072bd57296e4b934971e606a6ef75be5c8",
+      "status": "passed, not re-run in this phase",
+      "task": "P11.06"
+    },
+    {
+      "all_passed": false,
+      "bytes": 9627,
+      "checks": 7,
+      "cited_by": [],
+      "command": "verify_load_target.py on the target (see the runbook)",
+      "conditions": "the real host: the first run of the load check, kept because it records the defects D-04 and D-05",
+      "failing": [
+        "a_ceiling_was_found_or_the_publisher_was_the_limit_and_the_result_says_which",
+        "nominal_load_16_events_per_second_for_two_minutes_loses_nothing_and_arrives_within_5_s_at_p95",
+        "with_postgres_taken_away_for_25_s_during_a_load_the_outcome_is_measured_and_the_platform_is_healthy_again"
+      ],
+      "file": "docs/evidence/p11_06_target_load_first_run.json",
+      "generated_at": "2026-09-25T20:40:58Z",
+      "kind": "evidence",
+      "sha256": "3207182dd4099751e13a53e2a2b0d5c2148ae8e52f40a39eceab939fa81d4cb3",
+      "status": "records a failure",
+      "task": "P11.06"
+    },
+    {
+      "all_passed": true,
+      "bytes": 11637,
+      "checks": 7,
+      "cited_by": [],
+      "command": "verify_load_target.py on the target (see the runbook)",
+      "conditions": "the real host: the second run, after the first fixes",
+      "failing": [],
+      "file": "docs/evidence/p11_06_target_load_second_run.json",
+      "generated_at": "2026-09-26T03:14:59Z",
+      "kind": "evidence",
+      "sha256": "326be5b1505ecfab13def6d63a5c8fe088c215cd8cf8c2888cdd41c33107f931",
+      "status": "passed, not re-run in this phase",
+      "task": "P11.06"
+    },
+    {
+      "all_passed": true,
+      "bytes": 1927,
+      "checks": 6,
+      "cited_by": [],
+      "command": "python source-code/infra/verify_adapter_claims.py",
+      "conditions": "workstation (run by acceptance/run_catalog.py --run adapter-claims)",
+      "failing": [],
+      "file": "docs/evidence/p11_07_adapter_claims.json",
+      "generated_at": "2026-09-26T06:15:20Z",
+      "kind": "evidence",
+      "sha256": "86c853ef8d998507c49247eda4bf61ff1a80b8343763e0af18e2a14b3cbbd81a",
+      "status": "passed, not re-run in this phase",
+      "task": "P11.07"
+    },
+    {
+      "all_passed": true,
+      "bytes": 3208,
+      "checks": 7,
+      "cited_by": [],
+      "command": "runbook step / verifier for P11.03 on the target (target-deploy)",
+      "conditions": "the real target host, kind cluster aiops-p11: Deployment on the real host, images checked against the signed ones; the host was cleaned afterwards",
+      "failing": [],
+      "file": "docs/evidence/p11_08_runbook_drill_deploy.json",
+      "generated_at": "2026-09-26T05:50:59Z",
+      "kind": "evidence",
+      "sha256": "7b51c0a7fbc828b3d0ead291d298cba2886e7ca694403fa2c13f188a325cea62",
+      "status": "passed, not re-run in this phase",
+      "task": "P11.08"
+    },
+    {
+      "all_passed": true,
+      "bytes": 3488,
+      "checks": 8,
+      "cited_by": [],
+      "command": "runbook step / verifier for P11.08 on the target (target-runbook)",
+      "conditions": "the real target host, kind cluster aiops-p11: The runbook followed as written: reconcile, recovery, teardown; the host was cleaned afterwards",
+      "failing": [],
+      "file": "docs/evidence/p11_08_runbook_drill_reconcile_recover.json",
+      "generated_at": "2026-09-26T05:56:39Z",
+      "kind": "evidence",
+      "sha256": "cc8e92534d4bfc0c09e4daff0f7356c8c77725377f21abeb800fefd087423d15",
+      "status": "passed, not re-run in this phase",
+      "task": "P11.08"
+    },
+    {
+      "all_passed": true,
+      "bytes": 715,
+      "checks": 1,
+      "cited_by": [],
+      "command": "runbook step / verifier for P11.08 on the target (target-runbook)",
+      "conditions": "the real target host, kind cluster aiops-p11: The runbook followed as written: reconcile, recovery, teardown; the host was cleaned afterwards",
+      "failing": [],
+      "file": "docs/evidence/p11_08_runbook_drill_teardown.json",
+      "generated_at": "2026-09-26T05:58:01Z",
+      "kind": "evidence",
+      "sha256": "fe56d830cc8749e66bb80cd97f15b7195a8ecf23b99c7745629b83e18bca643d",
+      "status": "passed, not re-run in this phase",
+      "task": "P11.08"
+    },
+    {
+      "all_passed": true,
+      "bytes": 15448,
+      "checks": 13,
+      "cited_by": [],
+      "command": "python source-code/acceptance/verify_matrix.py p12_01",
+      "conditions": "workstation: reads docs/evidence",
+      "failing": [],
+      "file": "docs/evidence/p12_01_acceptance_matrix.json",
+      "generated_at": "2026-09-26T19:08:32Z",
+      "kind": "evidence",
+      "sha256": "a77bb07fb2d1d930c5acee1abf57026491b965ef4dddc93e652c37f03f39a64f",
+      "status": "passed",
+      "task": "P12.01"
+    },
+    {
+      "bytes": 17345,
+      "cited_by": [],
+      "command": "python source-code/acceptance/verify_matrix.py p12_01",
+      "conditions": "workstation: generated from docs/evidence",
+      "file": "docs/evidence/P12_01_ACCEPTANCE_MATRIX.md",
+      "kind": "document",
+      "sha256": "ad39c341bb32b838a4c35c68a8307428487473eff5850c0aa0508ef70de8b04b",
+      "status": "document"
+    },
+    {
+      "all_passed": true,
+      "bytes": 10210,
+      "checks": 7,
+      "cited_by": [],
+      "command": "python source-code/acceptance/verify_matrix.py p12_02",
+      "conditions": "workstation: reads docs/evidence",
+      "failing": [],
+      "file": "docs/evidence/p12_02_fault_matrix.json",
+      "generated_at": "2026-09-26T19:08:36Z",
+      "kind": "evidence",
+      "sha256": "47df756223e49b7528713a85f5ee3455d78bc6b594507efa090ff9c2a8c57ebc",
+      "status": "passed",
+      "task": "P12.02"
+    },
+    {
+      "bytes": 7106,
+      "cited_by": [],
+      "command": "python source-code/acceptance/verify_matrix.py p12_02",
+      "conditions": "workstation: generated from docs/evidence",
+      "file": "docs/evidence/P12_02_FAULT_MATRIX.md",
+      "kind": "document",
+      "sha256": "225b0b52cf7f724a4ce4c3def40ec9a1440a79095bee178ca21359e6fc49aee2",
+      "status": "document"
+    },
+    {
+      "all_passed": true,
+      "bytes": 3118,
+      "checks": 9,
+      "cited_by": [
+        {
+          "links": [
+            "RQ02",
+            "REC-01"
+          ],
+          "row": "S6.1"
+        },
+        {
+          "links": [
+            "REC-01"
+          ],
+          "row": "S6.3"
+        },
+        {
+          "links": [
+            "REC-01"
+          ],
+          "row": "S6.3"
+        },
+        {
+          "links": [
+            "REC-01"
+          ],
+          "row": "S6.3"
+        },
+        {
+          "links": [
+            "REC-01"
+          ],
+          "row": "S6.3"
+        },
+        {
+          "links": [
+            "REC-01"
+          ],
+          "row": "F-E1"
+        },
+        {
+          "links": [
+            "REC-01"
+          ],
+          "row": "F-E1"
+        },
+        {
+          "links": [
+            "REC-01"
+          ],
+          "row": "F-N1"
+        },
+        {
+          "links": [
+            "REC-01"
+          ],
+          "row": "F-N1"
+        }
+      ],
+      "command": "python source-code/acceptance/lab_edge_outage.py",
+      "conditions": "local stack: broker container (stopped and started), gateway, Kafka, ingestion, PostgreSQL; an edge process that is killed",
+      "failing": [],
+      "file": "docs/evidence/p12_02_rec01_edge_outage.json",
+      "generated_at": "2026-09-26T09:01:19Z",
+      "kind": "evidence",
+      "sha256": "aae7cbbd468cbfb6800ef6ec5cadad23bd4783960fce55a77fbe3b0a9c81354d",
+      "status": "passed",
+      "task": "P12.02"
+    },
+    {
+      "all_passed": true,
+      "bytes": 2752,
+      "checks": 9,
+      "cited_by": [
+        {
+          "links": [
+            "REC-02",
+            "SAFE-02"
+          ],
+          "row": "F-V6"
+        },
+        {
+          "links": [
+            "REC-02",
+            "SAFE-02"
+          ],
+          "row": "F-V6"
+        },
+        {
+          "links": [
+            "REC-02",
+            "SAFE-02"
+          ],
+          "row": "F-V6"
+        },
+        {
+          "links": [
+            "REC-02",
+            "SAFE-02"
+          ],
+          "row": "F-V6"
+        },
+        {
+          "links": [
+            "REC-02",
+            "SAFE-02"
+          ],
+          "row": "F-V6"
+        }
+      ],
+      "command": "python source-code/acceptance/lab_executor_restart.py",
+      "conditions": "local stack: PostgreSQL, the policy engine; an executor process that is killed",
+      "failing": [],
+      "file": "docs/evidence/p12_02_rec02_executor_restart.json",
+      "generated_at": "2026-09-26T09:46:54Z",
+      "kind": "evidence",
+      "sha256": "37d1bb52ee4ca50b0af8e96f14bb44b62f5cb3e98392b77ca71f3874d5cb5905",
+      "status": "passed",
+      "task": "P12.02"
+    },
+    {
+      "all_passed": true,
+      "bytes": 33444,
+      "checks": 19,
+      "cited_by": [
+        {
+          "links": [
+            "SAFE-02",
+            "RQ19"
+          ],
+          "row": "F-P1"
+        },
+        {
+          "links": [
+            "SAFE-02",
+            "RQ19"
+          ],
+          "row": "F-P1"
+        },
+        {
+          "links": [
+            "SAFE-02"
+          ],
+          "row": "F-X1"
+        },
+        {
+          "links": [
+            "SAFE-02"
+          ],
+          "row": "F-X1"
+        },
+        {
+          "links": [
+            "SAFE-02"
+          ],
+          "row": "Q-S3"
+        },
+        {
+          "links": [
+            "SAFE-02"
+          ],
+          "row": "Q-S3"
+        }
+      ],
+      "command": "python source-code/acceptance/lab_protected_actions.py",
+      "conditions": "local stack: PostgreSQL, the policy engine (stopped and started), a counting adapter",
+      "failing": [],
+      "file": "docs/evidence/p12_02_safe02_protected_actions.json",
+      "generated_at": "2026-09-26T08:45:54Z",
+      "kind": "evidence",
+      "sha256": "5b422ad7022a93656c3ce48a25281fc5d5650e68735d7d6ec187c8ee8dfcddd7",
+      "status": "passed",
+      "task": "P12.02"
+    },
+    {
+      "all_passed": true,
+      "bytes": 3951,
+      "checks": 10,
+      "cited_by": [
+        {
+          "links": [
+            "SAFE-03",
+            "UX-02"
+          ],
+          "row": "S6.2"
+        },
+        {
+          "links": [
+            "SAFE-03"
+          ],
+          "row": "F-M3"
+        },
+        {
+          "links": [
+            "SAFE-03"
+          ],
+          "row": "F-X2"
+        },
+        {
+          "links": [
+            "SAFE-03"
+          ],
+          "row": "F-X2"
+        },
+        {
+          "links": [
+            "SAFE-03"
+          ],
+          "row": "F-X2"
+        },
+        {
+          "links": [
+            "SAFE-03"
+          ],
+          "row": "Q-S4"
+        },
+        {
+          "links": [
+            "SAFE-03"
+          ],
+          "row": "Q-S4"
+        }
+      ],
+      "command": "python source-code/acceptance/lab_stale_state.py",
+      "conditions": "local stack: PostgreSQL",
+      "failing": [],
+      "file": "docs/evidence/p12_02_safe03_stale_state.json",
+      "generated_at": "2026-09-26T08:44:51Z",
+      "kind": "evidence",
+      "sha256": "d8ae8e8b4c346fd7407e23ca52e28d8ffb35a71135a19fefac1d56eb2cefb0e9",
+      "status": "passed",
+      "task": "P12.02"
+    },
+    {
+      "all_passed": true,
+      "bytes": 7267,
+      "checks": 17,
+      "cited_by": [],
+      "command": "python source-code/models/verify_integrity_and_claims.py",
+      "conditions": "workstation (some re-runs need the stack)",
+      "failing": [],
+      "file": "docs/evidence/p12_03_integrity_and_claims.json",
+      "generated_at": "2026-09-27T05:04:32Z",
+      "kind": "evidence",
+      "sha256": "1f37164c41b5f0f12bed287e6a9a3613aec098c512e1230b2748cbd8036f577c",
+      "status": "passed",
+      "task": "P12.03"
+    },
+    {
+      "all_passed": true,
+      "bytes": 8252,
+      "checks": 10,
+      "cited_by": [
+        {
+          "links": [
+            "ACC-03"
+          ],
+          "row": "Q-F1"
+        },
+        {
+          "links": [
+            "ACC-03"
+          ],
+          "row": "Q-F1"
+        },
+        {
+          "links": [
+            "ACC-03"
+          ],
+          "row": "Q-F1"
+        },
+        {
+          "links": [
+            "RQ25"
+          ],
+          "row": "Q-F2"
+        },
+        {
+          "links": [
+            "ETA-01",
+            "ETA-02"
+          ],
+          "row": "Q-F3"
+        },
+        {
+          "links": [
+            "ETA-03"
+          ],
+          "row": "Q-F4"
+        }
+      ],
+      "command": "python source-code/acceptance/analysis_groups.py",
+      "conditions": "workstation: the held-out congestion runs (a non-selecting, ledgered opening) and the P07.10 evidence",
+      "failing": [],
+      "file": "docs/evidence/p12_04_outcomes_by_group.json",
+      "generated_at": "2026-09-26T09:03:20Z",
+      "kind": "evidence",
+      "sha256": "49906c3d4067e63e97e98d5b63fce3f6d44b53f65221264111d4a41f72f798ac",
+      "status": "passed",
+      "task": "P12.04"
+    },
+    {
+      "all_passed": true,
+      "bytes": 9916,
+      "checks": 7,
+      "cited_by": [],
+      "command": "python source-code/acceptance/verify_matrix.py p12_04",
+      "conditions": "workstation: reads docs/evidence and scans the source",
+      "failing": [],
+      "file": "docs/evidence/p12_04_quality_matrix.json",
+      "generated_at": "2026-09-26T19:08:41Z",
+      "kind": "evidence",
+      "sha256": "f8a4aed47530384e628a502e6fb704ad4f9999f7a7cc8feb3a4091cf6dbf0543",
+      "status": "passed",
+      "task": "P12.04"
+    },
+    {
+      "bytes": 8028,
+      "cited_by": [],
+      "command": "python source-code/acceptance/verify_matrix.py p12_04",
+      "conditions": "workstation: generated from docs/evidence",
+      "file": "docs/evidence/P12_04_QUALITY_MATRIX.md",
+      "kind": "document",
+      "sha256": "6bca7c8b05562db27ffdf7fcf0f3a47d5cf381cc15123bd3e7d2139251f1e184",
+      "status": "document"
+    },
+    {
+      "all_passed": true,
+      "bytes": 14767,
+      "checks": 11,
+      "cited_by": [],
+      "command": "python source-code/acceptance/verify_defects.py",
+      "conditions": "workstation: reads docs/evidence and the register",
+      "failing": [],
+      "file": "docs/evidence/p12_05_defects.json",
+      "generated_at": "2026-09-27T05:06:51Z",
+      "kind": "evidence",
+      "sha256": "6a35de14fc0a6ee3f8bf5d328011e71ff1499b072201f57a156840a26132c8bd",
+      "status": "passed",
+      "task": "P12.05"
+    },
+    {
+      "all_passed": true,
+      "bytes": 14768,
+      "checks": 8,
+      "cited_by": [],
+      "command": "python source-code/acceptance/verify_coverage.py",
+      "conditions": "workstation: reads docs/evidence",
+      "failing": [],
+      "file": "docs/evidence/p12_07_coverage_review.json",
+      "generated_at": "2026-09-27T05:06:56Z",
+      "kind": "evidence",
+      "sha256": "ca5accd0a15e2de296eb0b7bdbb8a086859cf54404fa366bf61ae2faea0e3d40",
+      "status": "passed",
+      "task": "P12.07"
+    },
+    {
+      "bytes": 7768,
+      "cited_by": [],
+      "command": "python source-code/acceptance/verify_coverage.py",
+      "conditions": "workstation: generated from docs/evidence",
+      "file": "docs/evidence/P12_07_COVERAGE_REVIEW.md",
+      "kind": "document",
+      "sha256": "e8c7b17b87107c88929fa0891395f3bb4f7a58bf3c7785c11af480c8de31d653",
+      "status": "document"
+    },
+    {
+      "all_passed": true,
+      "bytes": 1437,
+      "checks": 6,
+      "cited_by": [],
+      "command": "python source-code/scripts/verify_diagrams.py",
+      "conditions": "workstation: needs Node/npx (mermaid-cli)",
+      "failing": [],
+      "file": "docs/evidence/p13_01_diagrams.json",
+      "generated_at": "2026-09-27T06:13:18Z",
+      "kind": "evidence",
+      "sha256": "f3e53d37490462da2fdef5969e2d3a7b6047b4fd003df0c4f6b1e36cdea57073",
+      "status": "passed",
+      "task": "P13.01"
+    },
+    {
+      "all_passed": true,
+      "bytes": 902,
+      "checks": 4,
+      "cited_by": [],
+      "command": "python source-code/scripts/verify_api_docs.py",
+      "conditions": "workstation: imports the FastAPI app, no running server or database needed",
+      "failing": [],
+      "file": "docs/evidence/p13_03_api_docs.json",
+      "generated_at": "2026-09-27T06:24:45Z",
+      "kind": "evidence",
+      "sha256": "bbbd37362b396aea1fe78c5bad6126dab1a6b6c94392f9cce3cf22a64a327997",
+      "status": "passed",
+      "task": "P13.03"
+    },
+    {
+      "all_passed": true,
+      "bytes": 1729,
+      "checks": 9,
+      "cited_by": [],
+      "command": "python source-code/scripts/verify_docs.py",
+      "conditions": "workstation",
+      "failing": [],
+      "file": "docs/evidence/p13_03_docs.json",
+      "generated_at": "2026-09-27T06:27:41Z",
+      "kind": "evidence",
+      "sha256": "95a55d27abebd93d7f615124c4677c816ed1665c09b0fad7e9f06862c32c9f1b",
+      "status": "passed",
+      "task": "P13.03"
+    },
+    {
+      "all_passed": true,
+      "bytes": 1719,
+      "checks": 10,
+      "cited_by": [],
+      "command": "python source-code/scripts/verify_runbooks.py",
+      "conditions": "workstation",
+      "failing": [],
+      "file": "docs/evidence/p13_04_runbooks.json",
+      "generated_at": "2026-09-27T06:20:45Z",
+      "kind": "evidence",
+      "sha256": "f33783519bec1cc4099df403de9623fac616e47313e71cdcb5ac11eefe7c7ba3",
+      "status": "passed",
+      "task": "P13.04"
+    },
+    {
+      "all_passed": true,
+      "bytes": 1663,
+      "checks": 7,
+      "cited_by": [],
+      "command": "python source-code/scripts/verify_publication_readiness.py",
+      "conditions": "workstation: needs git and the frontend's package-lock.json; Python licences are read from the active venv's installed packages",
+      "failing": [],
+      "file": "docs/evidence/p13_05_publication_readiness.json",
+      "generated_at": "2026-09-27T06:32:03Z",
+      "kind": "evidence",
+      "sha256": "e748fff4db5ac34fd2f174c45eb924623799640b09631bd2eee9a7ac18b36879",
+      "status": "passed",
+      "task": "P13.05"
+    },
+    {
+      "all_passed": true,
+      "bytes": 2759,
+      "checks": 7,
+      "cited_by": [],
+      "command": "python source-code/scripts/build_release_manifest.py",
+      "conditions": "workstation: needs git, Node and WSL Docker for the version report",
+      "failing": [],
+      "file": "docs/evidence/p13_06_release_manifest.json",
+      "generated_at": "2026-09-27T07:07:13Z",
+      "kind": "evidence",
+      "sha256": "fc9f3010b31ad98e73cad85b4db2ae356ea4e01abed2ee45e8714aa30221a8a5",
+      "status": "passed",
+      "task": "P13.06"
+    },
+    {
+      "bytes": 3496,
+      "cited_by": [],
+      "command": "written and reviewed by hand (see the register row of its task)",
+      "conditions": "n/a",
+      "file": "docs/evidence/PHASE_03_SIMULATION_VERIFICATION.md",
+      "kind": "document",
+      "sha256": "a3a000259f1bc94b27948a5bcd0edc72defb2ce474c12e6755e0f2f520de14b9",
+      "status": "document"
+    },
+    {
+      "bytes": 5535,
+      "cited_by": [],
+      "command": "written and reviewed by hand (see the register row of its task)",
+      "conditions": "n/a",
+      "file": "docs/evidence/PHASE_04_EDGE_AI_VERIFICATION.md",
+      "kind": "document",
+      "sha256": "fe01e12e7325fea1be101e59c808a6b5ddb9b146eff110365caa61553bec7313",
+      "status": "document"
+    },
+    {
+      "all_passed": null,
+      "bytes": 449,
+      "checks": null,
+      "cited_by": [],
+      "command": "python source-code/simulator/manifest/build_and_verify.py",
+      "conditions": "workstation",
+      "failing": [],
+      "file": "docs/evidence/replay_report.json",
+      "generated_at": null,
+      "kind": "evidence",
+      "sha256": "cd7122ec34462a0f84bbe8b0c49ca9269370c04938888531209d935de65d20ae",
+      "status": "passed",
+      "task": null
+    },
+    {
+      "bytes": 6423,
+      "cited_by": [],
+      "command": "written and reviewed by hand (see the register row of its task)",
+      "conditions": "n/a",
+      "file": "docs/evidence/SIMULATION_LIMITATIONS.md",
+      "kind": "document",
+      "sha256": "abbdec0f23e63863862bf0468ccef3c1c399958b03cacf528677f5b03bf841fa",
+      "status": "document"
+    },
+    {
+      "all_passed": null,
+      "bytes": 993,
+      "checks": null,
+      "cited_by": [],
+      "command": "python source-code/simulator/datasets/build_and_verify.py",
+      "conditions": "workstation",
+      "failing": [],
+      "file": "docs/evidence/split_summary.json",
+      "generated_at": null,
+      "kind": "evidence",
+      "sha256": "f28af2316930062923c4ad91b034a69747b5de4c077d1b5bc03e050c48ae2130",
+      "status": "passed",
+      "task": null
+    }
+  ],
+  "generated_at": "2026-09-27T07:09:38Z",
+  "how_to_reproduce": [
+    "python source-code/acceptance/run_catalog.py --list",
+    "python source-code/acceptance/run_catalog.py --all   (about two hours on the local stack, longer with the AIOps labs)",
+    "python source-code/acceptance/lab_protected_actions.py; lab_stale_state.py; lab_edge_outage.py; lab_executor_restart.py; analysis_groups.py",
+    "python source-code/acceptance/verify_matrix.py p12_01 | p12_02 | p12_04; verify_defects.py; verify_coverage.py; build_bundle.py; verify_bundle.py",
+    "the Phase 11 runs: docs/runbooks/TARGET_DEPLOYMENT_RUNBOOK.md on a host with kind, Docker and the shipped images"
+  ],
+  "manifest_sha256": "d6d1cc22b849eb6257f117d4d6a79575b548132a35a78ca10b89e4599d4d584e",
+  "passed_but_not_re_run_in_this_phase": [
+    [
+      "docs/evidence/p01_08_clean_start.json",
+      "2026-09-25"
+    ],
+    [
+      "docs/evidence/p05_01_platform_provisioning.json",
+      "2026-09-19"
+    ],
+    [
+      "docs/evidence/p05_02_mqtt_mtls_acl.json",
+      "2026-09-19"
+    ],
+    [
+      "docs/evidence/p05_09_scenario_control.json",
+      "2026-09-20"
+    ],
+    [
+      "docs/evidence/p08_09_demo_controls.json",
+      "2026-09-21"
+    ],
+    [
+      "docs/evidence/p09_08_supply_chain.json",
+      "2026-09-23"
+    ],
+    [
+      "docs/evidence/p09_09_falco_rules.json",
+      "2026-09-26"
+    ],
+    [
+      "docs/evidence/p09_09_falco_target.json",
+      "2026-09-26"
+    ],
+    [
+      "docs/evidence/p11_01_service_images.json",
+      "2026-09-26"
+    ],
+    [
+      "docs/evidence/p11_03_target_deployment.json",
+      "2026-09-26"
+    ],
+    [
+      "docs/evidence/p11_04_target_security.json",
+      "2026-09-26"
+    ],
+    [
+      "docs/evidence/p11_05_target_recovery.json",
+      "2026-09-26"
+    ],
+    [
+      "docs/evidence/p11_06_target_load.json",
+      "2026-09-26"
+    ],
+    [
+      "docs/evidence/p11_06_target_load_second_run.json",
+      "2026-09-26"
+    ],
+    [
+      "docs/evidence/p11_07_adapter_claims.json",
+      "2026-09-26"
+    ],
+    [
+      "docs/evidence/p11_08_runbook_drill_deploy.json",
+      "2026-09-26"
+    ],
+    [
+      "docs/evidence/p11_08_runbook_drill_reconcile_recover.json",
+      "2026-09-26"
+    ],
+    [
+      "docs/evidence/p11_08_runbook_drill_teardown.json",
+      "2026-09-26"
+    ]
+  ],
+  "records_a_failure_by_design": [
+    "docs/evidence/p10_09_incident_quality.json",
+    "docs/evidence/p11_06_target_load_first_run.json"
+  ],
+  "sweep": {
+    "failed": [],
+    "not_run": [
+      "operations-dataset",
+      "operations-detector",
+      "workloads",
+      "adapter-claims",
+      "threat-model",
+      "control-mapping",
+      "audit-protection",
+      "workload-protection",
+      "data-inventory"
+    ],
+    "passed": [
+      "unit-tests",
+      "simulator-bounds",
+      "ux-wireframes",
+      "ux-inventory",
+      "ux-design",
+      "data-quality",
+      "migrations",
+      "gateway",
+      "ingestion",
+      "network-state",
+      "repositories",
+      "retention",
+      "api",
+      "scenario-control",
+      "keycloak",
+      "policy",
+      "observability",
+      "slos",
+      "observability-stack",
+      "kpis",
+      "forecasts",
+      "congestion",
+      "safety-candidates",
+      "vru-conflicts",
+      "incidents",
+      "emergency",
+      "routing",
+      "cross-agency",
+      "recommendations",
+      "commands",
+      "simulator-adapters",
+      "preemption",
+      "transit-priority",
+      "outcomes",
+      "scenarios",
+      "api-auth",
+      "api-operator-actions",
+      "api-command-workflow",
+      "api-govern",
+      "ui",
+      "platform-incidents",
+      "remediation",
+      "alerts",
+      "recovery",
+      "runtime-acceptance"
+    ],
+    "runs": [
+      {
+        "command": "python -m pytest -q -p no:cacheprovider",
+        "exit": 0,
+        "group": "offline",
+        "id": "unit-tests",
+        "passed": true,
+        "seconds": 102.6,
+        "started": "2026-09-26T19:06:40Z",
+        "task": "P01.05",
+        "title": "Python unit tests (the whole tree)"
+      },
+      {
+        "command": "python simulator/verification/verify_bounds.py",
+        "exit": 0,
+        "group": "offline",
+        "id": "simulator-bounds",
+        "passed": true,
+        "seconds": 0.1,
+        "started": "2026-09-26T08:16:23Z",
+        "task": "P03.09",
+        "title": "Cross-stage invariants over the generated simulator output"
+      },
+      {
+        "command": "python frontend/tools/verify_wireframes.py",
+        "exit": 0,
+        "group": "offline",
+        "id": "ux-wireframes",
+        "passed": true,
+        "seconds": 8.1,
+        "started": "2026-09-26T08:16:23Z",
+        "task": "P08.02",
+        "title": "Wireframes complete, consistent and rendered"
+      },
+      {
+        "command": "python frontend/tools/inventory.py",
+        "exit": 0,
+        "group": "offline",
+        "id": "ux-inventory",
+        "passed": true,
+        "seconds": 1.5,
+        "started": "2026-09-26T08:16:31Z",
+        "task": "P08.01",
+        "title": "UX inventory against roles, capabilities and the served endpoints"
+      },
+      {
+        "command": "python frontend/tools/design.py",
+        "exit": 0,
+        "group": "offline",
+        "id": "ux-design",
+        "passed": true,
+        "seconds": 0.5,
+        "started": "2026-09-26T08:16:33Z",
+        "task": "P08.03",
+        "title": "Design tokens, computed contrast pairs, status vocabulary"
+      },
+      {
+        "command": "python models/data_quality/verify_data_quality.py",
+        "exit": 0,
+        "group": "offline",
+        "id": "data-quality",
+        "passed": true,
+        "seconds": 217.6,
+        "started": "2026-09-26T08:16:33Z",
+        "task": "P10.10",
+        "title": "Data-quality detector package and independent reproduction"
+      },
+      {
+        "command": "python database/verify_migrate.py",
+        "exit": 0,
+        "group": "stack",
+        "id": "migrations",
+        "passed": true,
+        "seconds": 1.5,
+        "started": "2026-09-26T08:20:11Z",
+        "task": "P05.04",
+        "title": "Migrations apply, tamper-detect and roll forward"
+      },
+      {
+        "command": "python backend/gateway/verify_gateway.py",
+        "exit": 0,
+        "group": "stack",
+        "id": "gateway",
+        "passed": true,
+        "seconds": 55.6,
+        "started": "2026-09-26T08:20:12Z",
+        "task": "P05.03",
+        "title": "MQTT gateway: validation, outbox, backpressure across a real broker outage"
+      },
+      {
+        "command": "python backend/ingestion/verify_ingest.py",
+        "exit": 0,
+        "group": "stack",
+        "id": "ingestion",
+        "passed": true,
+        "seconds": 3.7,
+        "started": "2026-09-26T08:21:08Z",
+        "task": "P05.05",
+        "title": "Kafka to PostgreSQL ingestion: idempotence, rejection, replay"
+      },
+      {
+        "command": "python backend/state/verify_network_state.py",
+        "exit": 0,
+        "group": "stack",
+        "id": "network-state",
+        "passed": true,
+        "seconds": 0.7,
+        "started": "2026-09-26T08:21:12Z",
+        "task": "P05.06",
+        "title": "Authoritative network state from observations"
+      },
+      {
+        "command": "python backend/repositories/verify_repositories.py",
+        "exit": 0,
+        "group": "stack",
+        "id": "repositories",
+        "passed": true,
+        "seconds": 0.9,
+        "started": "2026-09-26T08:42:37Z",
+        "task": "P05.08",
+        "title": "Incident, dispatch and command repositories"
+      },
+      {
+        "command": "python database/verify_retention.py",
+        "exit": 0,
+        "group": "stack",
+        "id": "retention",
+        "passed": true,
+        "seconds": 0.6,
+        "started": "2026-09-26T08:21:13Z",
+        "task": "P05.10",
+        "title": "Retention and partition policy"
+      },
+      {
+        "command": "python backend/api/verify_api.py",
+        "exit": 0,
+        "group": "stack",
+        "id": "api",
+        "passed": true,
+        "seconds": 11.8,
+        "started": "2026-09-26T08:21:13Z",
+        "task": "P05.07",
+        "title": "Versioned REST and WebSocket API under uvicorn"
+      },
+      {
+        "command": "python backend/scenario_control/verify_scenario_control.py",
+        "exit": 0,
+        "group": "stack",
+        "id": "scenario-control",
+        "passed": true,
+        "seconds": 10.6,
+        "started": "2026-09-26T08:39:38Z",
+        "task": "P05.09",
+        "title": "Scenario control service and its separate identity"
+      },
+      {
+        "command": "python infra/platform/keycloak/verify_keycloak.py",
+        "exit": 0,
+        "group": "stack",
+        "id": "keycloak",
+        "passed": true,
+        "seconds": 10.6,
+        "started": "2026-09-26T08:21:53Z",
+        "task": "P09.02",
+        "title": "Keycloak realm and the authorization-code attacks"
+      },
+      {
+        "command": "python policy/verify_policy.py",
+        "exit": 0,
+        "group": "stack",
+        "id": "policy",
+        "passed": true,
+        "seconds": 93.5,
+        "started": "2026-09-26T09:03:44Z",
+        "task": "P09.03",
+        "title": "OPA authorization at the API and at the worker"
+      },
+      {
+        "command": "python backend/verify_observability.py",
+        "exit": 0,
+        "group": "stack",
+        "id": "observability",
+        "passed": true,
+        "seconds": 2.2,
+        "started": "2026-09-26T08:39:48Z",
+        "task": "P10.01",
+        "title": "One correlation id at every hop"
+      },
+      {
+        "command": "python backend/verify_slos.py",
+        "exit": 0,
+        "group": "stack",
+        "id": "slos",
+        "passed": true,
+        "seconds": 2.4,
+        "started": "2026-09-26T08:22:07Z",
+        "task": "P10.02",
+        "title": "SLO definitions and the ingest latency measurement"
+      },
+      {
+        "command": "python infra/platform/verify_observability_stack.py",
+        "exit": 0,
+        "group": "stack",
+        "id": "observability-stack",
+        "passed": true,
+        "seconds": 22.7,
+        "started": "2026-09-26T08:39:51Z",
+        "task": "P10.03",
+        "title": "Prometheus, Grafana, Tempo, Loki live"
+      },
+      {
+        "command": "python backend/analytics/verify_kpis.py",
+        "exit": 0,
+        "group": "analytics",
+        "id": "kpis",
+        "passed": true,
+        "seconds": 82.1,
+        "started": "2026-09-26T08:40:13Z",
+        "task": "P06.01",
+        "title": "Corridor KPIs against simulator ground truth"
+      },
+      {
+        "command": "python backend/analytics/verify_forecasts.py",
+        "exit": 0,
+        "group": "analytics",
+        "id": "forecasts",
+        "passed": true,
+        "seconds": 8.4,
+        "started": "2026-09-26T08:23:40Z",
+        "task": "P06.03",
+        "title": "Short-horizon forecast service"
+      },
+      {
+        "command": "python backend/analytics/verify_congestion.py",
+        "exit": 0,
+        "group": "analytics",
+        "id": "congestion",
+        "passed": true,
+        "seconds": 54.6,
+        "started": "2026-09-26T08:23:49Z",
+        "task": "P06.04",
+        "title": "Congestion and spillback detection"
+      },
+      {
+        "command": "python backend/analytics/verify_safety_candidates.py",
+        "exit": 0,
+        "group": "analytics",
+        "id": "safety-candidates",
+        "passed": true,
+        "seconds": 117.1,
+        "started": "2026-09-26T08:24:43Z",
+        "task": "P06.05",
+        "title": "Safety candidates (blockage, stopped vehicle)"
+      },
+      {
+        "command": "python backend/analytics/verify_vru_conflicts.py",
+        "exit": 0,
+        "group": "analytics",
+        "id": "vru-conflicts",
+        "passed": true,
+        "seconds": 53.3,
+        "started": "2026-09-26T08:26:40Z",
+        "task": "P06.06",
+        "title": "Pedestrian and cyclist conflict candidates"
+      },
+      {
+        "command": "python backend/analytics/verify_incidents.py",
+        "exit": 0,
+        "group": "analytics",
+        "id": "incidents",
+        "passed": true,
+        "seconds": 73.7,
+        "started": "2026-09-26T08:27:34Z",
+        "task": "P06.07",
+        "title": "Explainable incident correlation"
+      },
+      {
+        "command": "python backend/emergency/verify_emergency.py",
+        "exit": 0,
+        "group": "emergency",
+        "id": "emergency",
+        "passed": true,
+        "seconds": 6.3,
+        "started": "2026-09-26T08:28:47Z",
+        "task": "P07.01",
+        "title": "Emergency calls, units and state"
+      },
+      {
+        "command": "python backend/routing/verify_routing.py",
+        "exit": 0,
+        "group": "emergency",
+        "id": "routing",
+        "passed": true,
+        "seconds": 3.1,
+        "started": "2026-09-26T08:42:38Z",
+        "task": "P07.02",
+        "title": "Live-state-aware routing with uncertainty"
+      },
+      {
+        "command": "python backend/emergency/verify_cross_agency.py",
+        "exit": 0,
+        "group": "emergency",
+        "id": "cross-agency",
+        "passed": true,
+        "seconds": 0.6,
+        "started": "2026-09-26T08:28:56Z",
+        "task": "P07.03",
+        "title": "Cross-agency coordination and CAD abstraction"
+      },
+      {
+        "command": "python backend/control/verify_recommendations.py",
+        "exit": 0,
+        "group": "emergency",
+        "id": "recommendations",
+        "passed": true,
+        "seconds": 2.2,
+        "started": "2026-09-26T09:46:59Z",
+        "task": "P07.04",
+        "title": "Recommendations that cannot invoke an adapter"
+      },
+      {
+        "command": "python backend/control/verify_commands.py",
+        "exit": 0,
+        "group": "emergency",
+        "id": "commands",
+        "passed": true,
+        "seconds": 3.5,
+        "started": "2026-09-26T09:05:18Z",
+        "task": "P07.05",
+        "title": "Protected commands: evidence, policy, expiry, idempotency, bounds"
+      },
+      {
+        "command": "python backend/control/verify_simulator_adapters.py",
+        "exit": 0,
+        "group": "emergency",
+        "id": "simulator-adapters",
+        "passed": true,
+        "seconds": 16.3,
+        "started": "2026-09-26T09:05:21Z",
+        "task": "P07.06",
+        "title": "Control adapters against the simulator"
+      },
+      {
+        "command": "python backend/control/verify_preemption.py",
+        "exit": 0,
+        "group": "emergency",
+        "id": "preemption",
+        "passed": true,
+        "seconds": 13.4,
+        "started": "2026-09-26T09:05:38Z",
+        "task": "P07.07",
+        "title": "Emergency signal pre-emption with pedestrian clearance"
+      },
+      {
+        "command": "python backend/control/verify_transit_priority.py",
+        "exit": 0,
+        "group": "emergency",
+        "id": "transit-priority",
+        "passed": true,
+        "seconds": 7.2,
+        "started": "2026-09-26T09:05:51Z",
+        "task": "P07.08",
+        "title": "Transit signal priority"
+      },
+      {
+        "command": "python backend/control/verify_outcomes.py",
+        "exit": 0,
+        "group": "emergency",
+        "id": "outcomes",
+        "passed": true,
+        "seconds": 52.1,
+        "started": "2026-09-26T09:05:58Z",
+        "task": "P07.09",
+        "title": "Independent outcome verification and rollback"
+      },
+      {
+        "command": "python backend/control/verify_scenarios.py",
+        "exit": 0,
+        "group": "emergency",
+        "id": "scenarios",
+        "passed": true,
+        "seconds": 351.5,
+        "started": "2026-09-26T09:06:51Z",
+        "task": "P07.10",
+        "title": "Ambulance, fire and police scenarios end to end"
+      },
+      {
+        "command": "python backend/api/verify_auth.py",
+        "exit": 0,
+        "group": "api",
+        "id": "api-auth",
+        "passed": true,
+        "seconds": 24.8,
+        "started": "2026-09-26T08:36:05Z",
+        "task": "P08.04",
+        "title": "API token enforcement matrix"
+      },
+      {
+        "command": "python backend/api/verify_operator_actions.py",
+        "exit": 0,
+        "group": "api",
+        "id": "api-operator-actions",
+        "passed": true,
+        "seconds": 12.5,
+        "started": "2026-09-26T08:36:30Z",
+        "task": "P08.07",
+        "title": "Incident and dispatch actions"
+      },
+      {
+        "command": "python backend/api/verify_command_workflow.py",
+        "exit": 0,
+        "group": "api",
+        "id": "api-command-workflow",
+        "passed": true,
+        "seconds": 30.8,
+        "started": "2026-09-26T09:12:42Z",
+        "task": "P08.08",
+        "title": "Request, approve, execute, verify"
+      },
+      {
+        "command": "python backend/api/verify_govern.py",
+        "exit": 0,
+        "group": "api",
+        "id": "api-govern",
+        "passed": true,
+        "seconds": 31.6,
+        "started": "2026-09-26T08:37:02Z",
+        "task": "P08.09",
+        "title": "Audit, platform status, shift handover"
+      },
+      {
+        "command": "python acceptance/run_ui.py",
+        "exit": 0,
+        "group": "ui",
+        "id": "ui",
+        "passed": true,
+        "seconds": 1308.5,
+        "started": "2026-09-26T20:02:18Z",
+        "task": "P08.10",
+        "title": "Operator console, every role, in real Chrome (axe, keyboard, viewports, latency)"
+      },
+      {
+        "command": "python backend/aiops/verify_platform_incidents.py",
+        "exit": 0,
+        "group": "aiops",
+        "id": "platform-incidents",
+        "passed": true,
+        "seconds": 18.5,
+        "started": "2026-09-26T10:47:27Z",
+        "task": "P10.07",
+        "title": "Platform signals correlate into incidents"
+      },
+      {
+        "command": "python backend/aiops/verify_remediation.py",
+        "exit": 0,
+        "group": "aiops",
+        "id": "remediation",
+        "passed": true,
+        "seconds": 46.8,
+        "started": "2026-09-26T09:42:21Z",
+        "task": "P10.08",
+        "title": "Bounded, policy-controlled remediation"
+      },
+      {
+        "command": "python backend/aiops/verify_alerts.py",
+        "exit": 0,
+        "group": "aiops-lab",
+        "id": "alerts",
+        "passed": true,
+        "seconds": 1106.0,
+        "started": "2026-09-26T10:29:00Z",
+        "task": "P10.04",
+        "title": "Alert rules: promtool, mutation, live faults (about 35 minutes)"
+      },
+      {
+        "command": "python backend/aiops/verify_recovery.py",
+        "exit": 0,
+        "group": "aiops-lab",
+        "id": "recovery",
+        "passed": true,
+        "seconds": 5816.3,
+        "started": "2026-09-26T10:47:46Z",
+        "task": "P10.09",
+        "title": "AIOps recovery on controlled faults (about 90 minutes)"
+      },
+      {
+        "command": "python security/verify_runtime_acceptance.py",
+        "exit": 0,
+        "group": "security",
+        "id": "runtime-acceptance",
+        "passed": true,
+        "seconds": 124.2,
+        "started": "2026-09-26T17:56:44Z",
+        "task": "P09.10",
+        "title": "Security controls exercised again and coverage stated"
+      }
+    ]
+  },
+  "task": "P12.06",
+  "versions": {
+    "docker_in_wsl": "Docker version 29.7.2, build a7dcaa6",
+    "git_commit": "a50e778f551286340fd47ee9a59fffdcc21dd308",
+    "git_uncommitted_files": 282,
+    "node": "v24.19.0",
+    "packages": {
+      "PyJWT": "2.13.0",
+      "confluent-kafka": "2.15.1",
+      "fastapi": "0.141.1",
+      "httpx": "0.28.1",
+      "jsonschema": "4.26.0",
+      "numpy": "2.5.3",
+      "onnxruntime": "1.30.0",
+      "paho-mqtt": "2.1.0",
+      "paramiko": "5.0.0",
+      "psycopg": "3.3.6",
+      "pytest": "9.1.1",
+      "ruff": "0.16.5",
+      "scikit-learn": "1.9.1",
+      "uvicorn": "0.53.0"
+    },
+    "platform": "Windows-11-10.0.22621-SP0",
+    "project_version": "0.1.0",
+    "python": "3.12.3"
+  }
+}

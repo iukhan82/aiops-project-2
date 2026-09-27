@@ -264,3 +264,44 @@ def test_outbox_sink_integrates_with_the_runtime_event_sink_protocol(db_path: Pa
 
 def test_geometry_constant_reference_for_helper_reuse() -> None:
     assert GEOMETRY == "2026-09-18.1"  # sanity: shared fixture module imported correctly
+
+
+def test_append_many_is_one_batch_that_reports_added_duplicate_and_full(tmp_path):
+    from edge.outbox import DurableOutbox
+
+    outbox = DurableOutbox(
+        tmp_path / "box.sqlite3", quota_bytes=2000, hard_fraction=0.5
+    )  # hard limit 1000 bytes
+    events = [{"event_id": f"e{i}", "pad": "x" * 200} for i in range(8)]
+    first = outbox.append_many(events[:2])
+    assert first == ["added", "added"]
+    again = outbox.append_many([events[0], events[2], events[3], events[4], events[5], events[6]])
+    assert again[0] == "duplicate"
+    assert again[1:4] == [
+        "added",
+        "added",
+        "added",
+    ]  # 5 x ~230 bytes crosses the 1000-byte hard limit inside the batch...
+    assert "full" in again  # ...and everything after it is refused, not stored
+    stored = {e.event_id for e in outbox.all_entries()}
+    refused = {
+        e["event_id"]
+        for e, outcome in zip(
+            [events[0], events[2], events[3], events[4], events[5], events[6]], again, strict=True
+        )
+        if outcome == "full"
+    }
+    assert not stored & refused
+    outbox.close()
+
+
+def test_ack_many_is_one_transaction_and_counts_only_what_changed(tmp_path):
+    from edge.outbox import DurableOutbox
+
+    outbox = DurableOutbox(tmp_path / "box.sqlite3")
+    outbox.append_many([{"event_id": f"e{i}"} for i in range(5)])
+    assert outbox.ack_many(["e0", "e1", "e1", "missing"]) == 2
+    assert [e.event_id for e in outbox.pending()] == ["e2", "e3", "e4"]
+    assert outbox.ack_many([]) == 0
+    assert outbox.prune_acked() == 2
+    outbox.close()

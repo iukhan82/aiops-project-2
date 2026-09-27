@@ -1,0 +1,54 @@
+{
+  "all_passed": true,
+  "checks": {
+    "at_least_the_three_deployable_model_packages_have_a_manifest": true,
+    "both_service_images_have_a_recorded_digest_and_build_context_hash": true,
+    "every_dependency_lock_file_this_project_declares_has_a_recorded_hash": true,
+    "every_model_packages_manifest_hash_matches_the_files_this_checkout_actually_has": true,
+    "git_commit_and_tree_identity_is_recorded": true,
+    "the_toolchain_versions_the_release_was_built_with_are_recorded": true,
+    "the_working_tree_state_relative_to_the_commit_is_stated_honestly_not_hidden": true
+  },
+  "generated_at": "2026-09-27T07:07:13Z",
+  "metrics": {
+    "dependency_lock_count": 9,
+    "git": {
+      "clean": false,
+      "commit": "a50e778f551286340fd47ee9a59fffdcc21dd308",
+      "commit_short": "a50e778f5512",
+      "tree": "0c32055536ea4200f36e3781cbc7f2cdc62826ef",
+      "uncommitted_files": 281
+    },
+    "images": {
+      "backend": {
+        "context_tree_sha256": "16a05759f49d816f70d1a67b8c2222463e2619ffc688c6bad2e7f7bda9479b8f",
+        "digest": "sha256:c3cde63e71ec6ce996f979392207f3da07a22dd0f9f60fc56b5759304fc0fc0f",
+        "revision": "a50e778",
+        "version": "0.1.0"
+      },
+      "frontend": {
+        "context_tree_sha256": "e8f157f8705c72d28379f8ddda83c2b012abc3a6d1928d1a4e885e8202141c8f",
+        "digest": "sha256:92efcf56eed93e745d498f1e89ce08fb845d6ffa4b9101d41a7f8d8df87b6b9c",
+        "revision": "a50e778",
+        "version": "0.1.0"
+      }
+    },
+    "versions": {
+      "docker_in_wsl": "Docker version 29.7.2, build a7dcaa6",
+      "node": "v24.19.0",
+      "project_version": "0.1.0",
+      "python": "3.12.3"
+    }
+  },
+  "notes": {
+    "at_least_the_three_deployable_model_packages_have_a_manifest": "['traffic-safety-blockage/1.0.0', 'traffic-forecast/1.0.0', 'ops-anomaly-detector/1.0.0']",
+    "both_service_images_have_a_recorded_digest_and_build_context_hash": "['backend', 'frontend']",
+    "every_dependency_lock_file_this_project_declares_has_a_recorded_hash": "9 of 9: missing []",
+    "every_model_packages_manifest_hash_matches_the_files_this_checkout_actually_has": "[]",
+    "git_commit_and_tree_identity_is_recorded": "a50e778f5512",
+    "regenerate_after_commit": "the commit/tree identity above is only current as of the last run - run this script again immediately before P13.07's push",
+    "the_toolchain_versions_the_release_was_built_with_are_recorded": "{'python': '3.12.3', 'node': 'v24.19.0', 'docker_in_wsl': 'Docker version 29.7.2, build a7dcaa6', 'project_version': '0.1.0'}",
+    "the_working_tree_state_relative_to_the_commit_is_stated_honestly_not_hidden": "281 uncommitted file(s), stated in the manifest"
+  },
+  "task": "P13.06"
+}

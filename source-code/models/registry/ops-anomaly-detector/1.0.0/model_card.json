@@ -1,0 +1,105 @@
+{
+  "alarm_rule": "score >= threshold for 3 consecutive steps (15 s)",
+  "feature_version": "ops-window/1",
+  "features": [
+    "now:ingest_rate",
+    "now:ingest_reject_ratio",
+    "now:ingest_latency_p95_ms",
+    "now:gateway_delivery_ratio",
+    "now:api_request_rate",
+    "now:api_error_ratio",
+    "now:api_latency_p95_ms",
+    "now:state_fresh_share",
+    "mean20s:ingest_rate",
+    "mean20s:ingest_reject_ratio",
+    "mean20s:ingest_latency_p95_ms",
+    "mean20s:gateway_delivery_ratio",
+    "mean20s:api_request_rate",
+    "mean20s:api_error_ratio",
+    "mean20s:api_latency_p95_ms",
+    "mean20s:state_fresh_share",
+    "std40s:ingest_rate",
+    "std40s:ingest_reject_ratio",
+    "std40s:ingest_latency_p95_ms",
+    "std40s:gateway_delivery_ratio",
+    "std40s:api_request_rate",
+    "std40s:api_error_ratio",
+    "std40s:api_latency_p95_ms",
+    "std40s:state_fresh_share",
+    "delta_vs_20s_earlier:ingest_rate",
+    "delta_vs_20s_earlier:ingest_reject_ratio",
+    "delta_vs_20s_earlier:ingest_latency_p95_ms",
+    "delta_vs_20s_earlier:gateway_delivery_ratio",
+    "delta_vs_20s_earlier:api_request_rate",
+    "delta_vs_20s_earlier:api_error_ratio",
+    "delta_vs_20s_earlier:api_latency_p95_ms",
+    "delta_vs_20s_earlier:state_fresh_share"
+  ],
+  "history_steps": 8,
+  "limitations": [
+    "Trained and tested on a synthetic seeded load driving the platform's real instruments; no production traffic was recorded.",
+    "Six fault types on the stream, API and freshness signals only; device, storage, certificate and configuration faults are covered by the P10.04 alert rules, not by this model.",
+    "Fault magnitudes were drawn from fixed ranges; a fault milder than the mildest training severity may go undetected (see the severity breakdown).",
+    "Test set is 2 seeds x 2 replicates per scenario: recall intervals are wide and are reported, not hidden.",
+    "One host, one Prometheus version, 5 s step, 30 s rate windows: a different scrape or push cadence needs re-validation.",
+    "The score says 'this looks unlike normal or like a known fault', never why; correlation and any cause hypothesis are P10.07 and are labelled unverified."
+  ],
+  "model_id": "ops-anomaly-detector",
+  "model_version": "1.0.0",
+  "provenance": {
+    "code_sha256": {
+      "detectors.py": "d5941b649ea049b79a7fb4b0157ce0f7fc3a72013b846bda6edfac9a41677520",
+      "evaluate.py": "34f5a4521f278f38a43e598694b0f32135559b0119c9df623706c0a84b1bcde9",
+      "features.py": "caa310f3dc2948c15a99d1219e95cc19dc8a9cb08f86a2f3efb275ec98b625a5",
+      "runtime.py": "1b51eeb64e6876abc6f58f112d1888bc0aec791e96f986ef7520e6a951eddf03",
+      "signals.py": "92946f23a6ac061895d1eeb84d0a3a7292742d258ebf38e7d6583a00c6f0af8b",
+      "train_evaluate.py": "298d3cb7a6ad948d128a3a58c04b4997759cf681232b92167160f830db31bb94"
+    },
+    "dataset": "models/operations_dataset/output/run-a (P10.05)",
+    "dataset_sha256": "7ccefb873156b3b0cfda253e72b8ccb54c02fe85a1b645bb3c721d6bcc0d6c0d",
+    "numpy": "2.5.3",
+    "python": "3.12.3",
+    "random_seed": 20260925,
+    "scikit_learn": "1.9.1",
+    "scipy": "1.18.1",
+    "splits": {
+      "test": [
+        20260925,
+        20260926
+      ],
+      "train": [
+        20260918,
+        20260919,
+        20260920,
+        20260921,
+        20260922
+      ],
+      "validation": [
+        20260923,
+        20260924
+      ]
+    },
+    "test_runs": 28,
+    "test_split_opened": "once, purpose final_comparison, recorded in models/registry/test_split_ledger.json",
+    "train_runs": 70,
+    "train_scored_steps": 3091,
+    "trained_at": "2026-09-25T09:02:40Z",
+    "validation_runs": 28
+  },
+  "purpose": "flag degraded platform behaviour (stream, API and freshness signals) from Prometheus-derived signals",
+  "selection_rule": "a learned candidate is served only if on validation it detects more degraded runs than both transparent baselines within the false-alarm budget",
+  "served_detector": "robust_zscore",
+  "signals": [
+    "ingest_rate",
+    "ingest_reject_ratio",
+    "ingest_latency_p95_ms",
+    "gateway_delivery_ratio",
+    "api_request_rate",
+    "api_error_ratio",
+    "api_latency_p95_ms",
+    "state_fresh_share"
+  ],
+  "step_seconds": 5,
+  "threshold": 6.023638846897074,
+  "threshold_selection": "lowest validation threshold with at most 3.0 false-alarm episodes per hour outside fault windows"
+}

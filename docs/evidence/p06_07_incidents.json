@@ -33,7 +33,7 @@
     "synthetic_candidates_are_removed_after_the_test": true,
     "transition_times_lie_on_the_simulated_timeline": true
   },
-  "generated_at": "2026-09-20T09:32:02Z",
+  "generated_at": "2026-09-26T08:28:47Z",
   "metrics": {
     "measured_blockages_with_a_linked_candidate_on_their_segment": {
       "covered": 3,
@@ -55,14 +55,14 @@
         "escalated": 4,
         "merged": 1,
         "opened": 7,
-        "reopened": 2,
+        "reopened": 1,
         "resolved": 4,
         "updated": 13
       }
     }
   },
   "notes": {
-    "B1_a_bridging_candidate_merges_them_keeping_the_older_incident_and_marking_the_other_duplicate": "{'46a700fb-3ac4-443e-ab2d-8762065c7b3c': ('0e5d8bf6-b89a-4394-b54e-bc1c52e3435e', 'resolved'), '0e5d8bf6-b89a-4394-b54e-bc1c52e3435e': (None, 'open')}",
+    "B1_a_bridging_candidate_merges_them_keeping_the_older_incident_and_marking_the_other_duplicate": "{'b911be9c-c467-4e8d-8097-a325bab5b9f6': ('7349272a-0e70-4800-bb03-a50dabe7676e', 'resolved'), '7349272a-0e70-4800-bb03-a50dabe7676e': (None, 'open')}",
     "B1_two_unrelated_blockages_start_as_two_incidents": "",
     "B2_a_confident_candidate_opens_an_incident": "",
     "B2_it_resolves_itself_after_the_hysteresis": "",
@@ -77,17 +77,17 @@
     "B5_a_low_precision_candidate_alone_stays_on_the_watch_list": "{'updated': 0, 'watch_list_groups': 1}",
     "B6_the_repository_state_machine_still_rejects_an_illegal_transition": "",
     "api_cursor_pagination_has_no_overlap": "",
-    "api_detail_explains_the_incident": "3 candidates, 3 hypotheses, 4 transitions",
+    "api_detail_explains_the_incident": "3 candidates, 3 hypotheses, 2 transitions",
     "api_hides_merged_duplicates_unless_asked": "",
-    "api_incidents_are_incident_v1_contract_valid": "15 records; []",
+    "api_incidents_are_incident_v1_contract_valid": "13 records; []",
     "api_merged_duplicate_points_at_the_survivor": "",
     "api_never_reports_a_verified_cause_for_a_correlator_incident": "",
     "api_status_filter_works": "",
     "api_unknown_or_malformed_incident_is_404": "",
-    "correlation_reduces_candidates_to_fewer_incidents": "21 candidates -> 7 incidents, 21 linked, totals {'opened': 7, 'updated': 13, 'resolved': 4, 'merged': 1, 'reopened': 2, 'escalated': 4}",
+    "correlation_reduces_candidates_to_fewer_incidents": "21 candidates -> 7 incidents, 21 linked, totals {'opened': 7, 'updated': 13, 'resolved': 4, 'merged': 1, 'escalated': 4, 'reopened': 1}",
     "duplicate_sources_and_consequences_are_recorded_as_such": "4 duplicate sources, 9 consequences",
     "every_live_incident_has_ranked_hypotheses_and_none_claims_a_verified_cause": "[('collision', 'EMERG'), ('flooding', 'OPS'), ('stalled_vehicle', 'OPS')]",
-    "incidents_resolved_themselves_once_evidence_cleared": "{'escalated': 5, 'open': 10, 'reopened': 2, 'resolved': 5}",
+    "incidents_resolved_themselves_once_evidence_cleared": "{'escalated': 4, 'open': 8, 'reopened': 1, 'resolved': 4}",
     "no_two_candidates_the_rules_connect_are_left_in_different_incidents": "21 candidates checked",
     "real_detectors_produced_candidates_of_several_kinds": "{'collision': 1, 'congestion': 5, 'flooding': 1, 'low_visibility': 1, 'spillback': 4, 'stalled_vehicle': 8, 'wrong_way': 1}",
     "resync_at_the_same_time_changes_nothing": "{'updated': 0}",

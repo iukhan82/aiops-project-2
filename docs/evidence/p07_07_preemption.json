@@ -16,7 +16,7 @@
     "the_preemption_command_is_approved_by_real_policy": true,
     "the_target_phase_gives_the_vehicles_actual_movement_a_green": true
   },
-  "generated_at": "2026-09-20T15:17:33Z",
+  "generated_at": "2026-09-26T09:05:51Z",
   "metrics": {
     "baseline_vs_preemption": {
       "baseline_travel_time_s": 81.0,
@@ -62,7 +62,7 @@
     "signal_safety_monitor_reports_zero_violations_during_preemption": "{'observations': 1572, 'violation_count': 0, 'violations_by_kind': {}, 'examples': [], 'design': {'min_yellow_s': 3.0, 'min_ped_green_s': 5.0, 'min_ped_clearance_s': 5.0}}",
     "signal_safety_monitor_reports_zero_violations_in_the_baseline_run": "{'observations': 1572, 'violation_count': 0, 'violations_by_kind': {}, 'examples': [], 'design': {'min_yellow_s': 3.0, 'min_ped_green_s': 5.0, 'min_ped_clearance_s': 5.0}}",
     "the_command_status_reflects_the_real_completed_corridor": "",
-    "the_preemption_command_is_approved_by_real_policy": "{'command_id': UUID('d34a83bc-e62c-4468-9409-38163c4eac4d'), 'idempotency_key': 'verify-p0707-preempt-1789917442.008401', 'recommendation_id': None, 'action_type': 'emergency_preemption', 'target_adapter': 'emergency_preemption_adapter', 'target_entity_id': 'corridor-b', 'requested_by': 'dispatcher:dana', 'requested_at': datetime.datetime(2026, 9, 20, 15, 17, 22, 8401, tzinfo=zoneinfo.ZoneInfo(key='Etc/UTC')), 'approved_by': 'commander:eve', 'approved_at': datetime.datetime(2026, 9, 20, 15, 17, 24, 8401, tzinfo=zoneinfo.ZoneInfo(key='Etc/UTC')), 'expires_at': datetime.datetime(2026, 9, 20, 15, 19, 22, 8401, tzinfo=zoneinfo.ZoneInfo(key='Etc/UTC')), 'policy_decision': 'approved', 'status': 'approved', 'acknowledged_at': None, 'rolled_back_at': None, 'error_code': None, 'error_message': None, 'error_retryable': None, 'requested_by_role': 'dispatcher', 'approved_by_role': 'incident_commander'}",
+    "the_preemption_command_is_approved_by_real_policy": "{'command_id': UUID('f5ef8682-f756-4151-a4a4-8b5625faa666'), 'idempotency_key': 'verify-p0707-preempt-1790413538.901583', 'recommendation_id': None, 'action_type': 'emergency_preemption', 'target_adapter': 'emergency_preemption_adapter', 'target_entity_id': 'corridor-b', 'requested_by': 'dispatcher:dana', 'requested_at': datetime.datetime(2026, 9, 26, 9, 5, 38, 901583, tzinfo=zoneinfo.ZoneInfo(key='Etc/UTC')), 'approved_by': 'commander:eve', 'approved_at': datetime.datetime(2026, 9, 26, 9, 5, 40, 901583, tzinfo=zoneinfo.ZoneInfo(key='Etc/UTC')), 'expires_at': datetime.datetime(2026, 9, 26, 9, 7, 38, 901583, tzinfo=zoneinfo.ZoneInfo(key='Etc/UTC')), 'policy_decision': 'approved', 'status': 'approved', 'acknowledged_at': None, 'rolled_back_at': None, 'error_code': None, 'error_message': None, 'error_retryable': None, 'requested_by_role': 'dispatcher', 'approved_by_role': 'incident_commander'}",
     "the_target_phase_gives_the_vehicles_actual_movement_a_green": "target phases {'int-b1': 0, 'int-b2': 0} served {'int-b1': True, 'int-b2': True}"
   },
   "task": "P07.07"

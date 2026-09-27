@@ -46,15 +46,19 @@ flowchart LR
   API -->|"WebSocket/SSE, authenticated"| OP
 
   subgraph OBSZONE["Observability zone"]
-    OTEL["OTel Collector\nOTLP HTTP/gRPC"]
-    GRAF["Prometheus/Grafana/Tempo\nHTTPS, authenticated"]
+    TELE["Prometheus / Tempo / Loki\nOTLP HTTP straight from each service (no separate collector, checked against the manifests P13.01)"]
+    GRAF["Grafana\nHTTPS, authenticated"]
   end
-  EDGESVC -.->|OTLP| OTEL
-  SVC -.->|OTLP| OTEL
-  OTEL --> GRAF
+  EDGESVC -.->|OTLP| TELE
+  SVC -.->|OTLP| TELE
+  TELE --> GRAF
   OP -.->|"HTTPS auth"| GRAF
 
-  subgraph ADAPTZONE["Simulator adapter zone (isolated, no public route)"]
+  subgraph ADAPTZONE["Simulator adapter zone (isolated, no public route; the local stack only - the target's command-executor has no Docker/WSL to reach a SUMO container, P11.03)"]
     ADAPT["Simulator signal/diversion/VMS adapters"]
   end
   SVC -->|"internal only, system:command-executor identity"| ADAPT
+
+  %% Internal service-to-service traffic (SVC, its stores, OPA, the gateway/broker links above) is plain HTTP/TCP behind Kubernetes NetworkPolicy and non-public
+  %% Services, not mutual TLS between them: only the edge/broker link (mTLS), PostgreSQL's own wire TLS and the browser-facing OIDC/HTTPS boundary are encrypted
+  %% in transit today. Service-to-service mTLS is an open, owned finding (docs/evidence/DEFECT_REGISTER.md; security/controls.json), not silently assumed.

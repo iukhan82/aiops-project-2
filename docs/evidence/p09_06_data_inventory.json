@@ -11,7 +11,7 @@
     "the_generated_tables_in_the_data_inventory_document_are_current": true,
     "the_retention_class_review_table_names_exactly_retention_pys_own_classes_with_matching_day_counts": true
   },
-  "generated_at": "2026-09-22T04:13:27Z",
+  "generated_at": "2026-09-26T17:58:47Z",
   "metrics": {
     "categories": 7,
     "personal_data_categories": 3,

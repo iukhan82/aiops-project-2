@@ -12,7 +12,7 @@
     "the_screen_composition_table_and_the_components_used_by_lists_agree_in_both_directions": true,
     "tokens_css_is_exactly_what_tokens_json_generates": true
   },
-  "generated_at": "2026-09-21T14:20:01Z",
+  "generated_at": "2026-09-26T08:16:33Z",
   "metrics": {
     "components": {
       "documented": 26,

@@ -134,6 +134,53 @@ def main() -> int:
             closed_edge not in route_portion.split(" -> "),
         )
 
+        # ---- a FLOODING incident (the overlay detector raises it on a corridor, not on a segment) is a closure kind: it gets a diversion around the whole corridor (P12.01, scenario 4)
+        flood_incident = create_incident(
+            conn,
+            "flooding",
+            "high",
+            "corridor",
+            "corridor-a",
+            GEOMETRY,
+            [str(uuid.uuid4())],
+            "OPS",
+            0.8,
+            "test:synthetic",
+            at=now,
+        )
+        flood_rec_id = recommend_for_incident(
+            conn,
+            flood_incident,
+            "flooding",
+            "corridor",
+            "corridor-a",
+            GEOMETRY,
+            now,
+            diversion_endpoints=("int-a1", "int-c4"),
+        )
+        flood_rec = reco_repo.get(conn, flood_rec_id) if flood_rec_id else None
+        flood_divert = next(
+            (
+                a
+                for a in (flood_rec or {}).get("alternatives", [])
+                if a["description"].startswith("Divert")
+            ),
+            None,
+        )
+        flood_route = (
+            flood_divert["description"].split(" onto ", 1)[1].split(" -> ") if flood_divert else []
+        )
+        ev.check(
+            "a_flooding_incident_on_a_corridor_gets_a_diversion_recommendation_that_avoids_every_segment_of_that_corridor",
+            bool(flood_route)
+            and flood_rec["action_type"] == "diversion"
+            and not any(
+                seg.startswith(("int-a1_int-a2", "int-a2_int-a3", "int-a3_int-a4"))
+                for seg in flood_route
+            ),
+            detail=f"route {flood_route}",
+        )
+
         rec_id = reco_repo.create_recommendation(
             conn,
             "diversion",

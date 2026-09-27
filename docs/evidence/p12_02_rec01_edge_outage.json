@@ -1,0 +1,52 @@
+{
+  "all_passed": true,
+  "checks": {
+    "every_durably_buffered_reading_reached_the_database_none_missing": true,
+    "every_reading_was_acknowledged_by_the_platform_and_the_outbox_is_empty": true,
+    "readings_replay_in_order_first_occurrences_in_the_log_are_in_sequence": true,
+    "the_edge_process_was_killed_mid_stream_and_started_again_on_the_same_outbox": true,
+    "the_gateway_was_stopped_and_started_again_during_the_stream": true,
+    "the_readings_were_buffered_on_disk_while_the_uplink_was_down": true,
+    "the_site_buffered_a_meaningful_number_of_readings": true,
+    "the_uplink_really_was_down_the_broker_stopped_and_refused_connections": true,
+    "zero_accepted_duplicates_one_row_per_reading": true
+  },
+  "generated_at": "2026-09-26T09:01:19Z",
+  "metrics": {
+    "duplicate_messages_in_the_log_rejected_downstream": 100,
+    "facts": {
+      "broker_back": true,
+      "broker_down_confirmed": true,
+      "edge_killed": true,
+      "edge_report": "{\"published\": 2255, \"publish_failed\": 0, \"ack_timeouts\": 12, \"buffered\": 550, \"counts\": {\"pending\": 0, \"acked\": 1194}}",
+      "edge_restarted": true,
+      "gateway_restarted": true,
+      "pending_at_kill": 505,
+      "pending_seen_during_outage": 375
+    },
+    "messages_in_the_log": 1294,
+    "outbox": {
+      "acked": 1194,
+      "pending": 0
+    },
+    "readings_buffered": 1194,
+    "rows_in_database": 1194,
+    "run": "rec01-530ee4b0",
+    "seconds_of_sensing": 50,
+    "topic": "telemetry.events.p12_rec01_530ee4b0"
+  },
+  "notes": {
+    "every_durably_buffered_reading_reached_the_database_none_missing": "1194 buffered, 1194 stored, missing 0",
+    "every_reading_was_acknowledged_by_the_platform_and_the_outbox_is_empty": "outbox {'pending': 0, 'acked': 1194}",
+    "not_proven": "several edges at once; an outage longer than the outbox quota (the quota's refusal is P04.07's unit tests); a broker or Kafka crash in the middle of a write (the gateway's own outbox and the application acknowledgement cover it and are exercised by P05.03)",
+    "readings_replay_in_order_first_occurrences_in_the_log_are_in_sequence": "1194 distinct readings in the log, in sequence order: True",
+    "scope": "real broker container, real gateway and ingestion code, real Kafka and PostgreSQL; one edge site of one device, 25 readings per second for 50 s; the outbox is the platform's DurableOutbox",
+    "the_edge_process_was_killed_mid_stream_and_started_again_on_the_same_outbox": "505 readings pending at the moment of the kill",
+    "the_gateway_was_stopped_and_started_again_during_the_stream": "",
+    "the_readings_were_buffered_on_disk_while_the_uplink_was_down": "up to 375 readings waiting in the outbox during the outage",
+    "the_site_buffered_a_meaningful_number_of_readings": "1194 readings buffered in 50 s (two processes)",
+    "the_uplink_really_was_down_the_broker_stopped_and_refused_connections": "down confirmed True, back True",
+    "zero_accepted_duplicates_one_row_per_reading": "1194 rows, 1194 distinct event ids, 1194 buffered"
+  },
+  "task": "P12.02"
+}

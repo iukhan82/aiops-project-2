@@ -1,0 +1,261 @@
+{
+  "all_passed": true,
+  "checks": {
+    "a_new_root_that_explains_an_open_incidents_signal_takes_it_over_and_the_old_incident_records_where_it_went": true,
+    "a_person_can_record_a_verified_cause_and_the_machine_hypothesis_stays_labelled_unverified": true,
+    "a_platform_incident_can_only_be_labelled_inferred": true,
+    "a_quiet_incident_stays_open_for_the_grace_period_then_resolves_itself": true,
+    "a_repeat_of_the_same_active_alert_adds_no_event_and_no_second_incident": true,
+    "a_signal_that_returns_soon_after_a_resolve_reopens_the_same_incident_instead_of_opening_a_new_one": true,
+    "a_status_a_person_set_survives_the_next_correlation_cycle_and_an_illegal_transition_is_refused": true,
+    "an_active_alert_opens_one_incident_that_is_inferred_and_unverified": true,
+    "even_the_database_owner_cannot_rewrite_a_recorded_event": true,
+    "every_alert_that_fired_in_the_lab_run_lands_in_at_least_one_incident": true,
+    "every_incident_is_resolved_after_the_faults_clear_and_stay_quiet": true,
+    "every_replayed_incident_is_labelled_inferred_with_an_unverified_hypothesis_and_no_cause_is_asserted_as_fact": true,
+    "fewer_incidents_than_alerts_so_duplicate_symptoms_are_grouped": true,
+    "no_signal_is_active_in_two_incidents_at_once": true,
+    "prometheus_still_holds_the_alert_series_recorded_during_the_p10_04_lab_run": true,
+    "the_correlator_cannot_delete_an_incident_or_its_history_or_wipe_or_rewrite_the_history": true,
+    "the_correlator_cannot_write_a_verified_cause_neither_when_opening_nor_after": true,
+    "the_correlator_connects_as_itself_and_can_write_an_incident_it_inferred": true,
+    "the_correlator_has_its_own_login_role_that_is_no_superuser_and_cannot_create_databases_or_roles": true,
+    "the_correlator_has_no_access_at_all_to_traffic_command_device_or_audit_tables": true,
+    "the_database_refuses_a_hypothesis_that_is_marked_verified_or_carries_no_verified_flag": true,
+    "the_database_refuses_a_second_live_incident_for_the_same_key": true,
+    "the_database_refuses_an_embedded_secret_in_a_hypothesis": true,
+    "the_history_is_hash_chained_wired_into_the_audit_chain_verifier_and_the_role_is_in_secret_rotation": true,
+    "the_incident_history_is_a_hash_chain_that_verifies_intact": true,
+    "the_p10_04_lab_evidence_with_its_time_window_exists": true,
+    "the_packaged_detector_from_p10_06_is_available": true,
+    "the_replayed_incident_history_is_an_intact_hash_chain": true,
+    "the_same_signal_long_after_a_resolve_opens_a_new_incident": true,
+    "the_three_older_service_roles_have_no_access_to_the_platform_incident_tables": true
+  },
+  "generated_at": "2026-09-26T10:47:45Z",
+  "metrics": {
+    "anomaly_signals_by_first_seen": {
+      "after_the_faults_cleared": 0,
+      "before_the_faults": 6,
+      "during_the_faults": 0,
+      "note": "the detector was trained on the P10.05 synthetic load; the lab's healthy traffic differs from it, so an anomaly before the faults is a false alarm of the detector on data it was not trained for, reported as measured"
+    },
+    "detector": {
+      "served": "robust_zscore",
+      "signal_steps": 239,
+      "threshold": 6.023638846897074
+    },
+    "lifecycle_scenarios": {
+      "events_recorded": 21,
+      "incidents_created": 7,
+      "incidents_still_live_at_end": 2,
+      "kind": "synthetic, hand-built signal sets"
+    },
+    "replay": {
+      "alert_signals_in_incidents": 37,
+      "alerts_by_incident_key": {
+        "ApiAuthenticationNotEnforced": [
+          "api"
+        ],
+        "ApiErrorRateHigh": [
+          "api"
+        ],
+        "ApiLatencyP95High": [
+          "api"
+        ],
+        "CertificateExpiringSoon{service_name=mqtt-broker}": [
+          "mosquitto"
+        ],
+        "CertificateExpiryCritical{service_name=mqtt-devices}": [
+          "devices"
+        ],
+        "CertificateExpiryCritical{service_name=postgres}": [
+          "postgres"
+        ],
+        "DatabaseSizeCritical": [
+          "postgres"
+        ],
+        "DatabaseSizeNearLimit": [
+          "postgres"
+        ],
+        "DeviceCertificateExpiring{device_type=emergency_cad_avl_adapter}": [
+          "devices"
+        ],
+        "DeviceTypeOutage{device_type=crossing_detector}": [
+          "devices"
+        ],
+        "DeviceTypeOutage{device_type=cycle_counter}": [
+          "devices"
+        ],
+        "DeviceTypeOutage{device_type=emergency_cad_avl_adapter}": [
+          "devices"
+        ],
+        "DeviceTypeOutage{device_type=inductive_loop}": [
+          "devices"
+        ],
+        "DeviceTypeOutage{device_type=road_condition_sensor}": [
+          "devices"
+        ],
+        "DeviceTypeOutage{device_type=signal_controller}": [
+          "devices"
+        ],
+        "DeviceTypeOutage{device_type=weather_station}": [
+          "devices"
+        ],
+        "DevicesSilent{device_type=crossing_detector}": [
+          "devices"
+        ],
+        "DevicesSilent{device_type=cycle_counter}": [
+          "devices"
+        ],
+        "DevicesSilent{device_type=emergency_cad_avl_adapter}": [
+          "devices"
+        ],
+        "DevicesSilent{device_type=inductive_loop}": [
+          "devices"
+        ],
+        "DevicesSilent{device_type=road_condition_sensor}": [
+          "devices"
+        ],
+        "DevicesSilent{device_type=signal_controller}": [
+          "devices"
+        ],
+        "DevicesSilent{device_type=weather_station}": [
+          "devices"
+        ],
+        "EdgeModelErrors{code=integrity_mismatch}": [
+          "edge-runtime"
+        ],
+        "EdgeModelInactive": [
+          "edge-runtime"
+        ],
+        "EdgeRuntimeDown": [
+          "edge-runtime"
+        ],
+        "GatewayDeliveryStalled": [
+          "gateway"
+        ],
+        "IngestionLatencyP95High": [
+          "ingestion"
+        ],
+        "IngestionRejectionRateHigh": [
+          "ingestion"
+        ],
+        "MigrationDrift": [
+          "postgres"
+        ],
+        "NetworkStateFreshnessLow": [
+          "devices"
+        ],
+        "PlatformProbeMissing": [
+          "observability"
+        ],
+        "PlatformProbeStale": [
+          "observability"
+        ],
+        "PlatformTargetDown{service_name=postgres}": [
+          "postgres"
+        ],
+        "PolicyVersionDrift": [
+          "opa"
+        ],
+        "RetentionOverdue": [
+          "postgres"
+        ],
+        "RetentionUnderStoragePressure": [
+          "postgres"
+        ]
+      },
+      "alerts_that_fired": 37,
+      "anomaly_signals": [
+        "operations_anomaly{signal=api_latency_p95_ms}",
+        "operations_anomaly{signal=api_request_rate}",
+        "operations_anomaly{signal=gateway_delivery_ratio}",
+        "operations_anomaly{signal=ingest_latency_p95_ms}",
+        "operations_anomaly{signal=ingest_rate}",
+        "operations_anomaly{signal=state_fresh_share}"
+      ],
+      "causal_links_in_hypotheses": [
+        [
+          "devices",
+          "NetworkStateFreshnessLow",
+          "DeviceTypeOutage{device_type=crossing_detector}"
+        ]
+      ],
+      "causal_links_the_injection_did_not_make": 1,
+      "distinct_incident_keys": [
+        "api",
+        "devices",
+        "edge-runtime",
+        "gateway",
+        "ingestion",
+        "mosquitto",
+        "observability",
+        "opa",
+        "postgres"
+      ],
+      "incidents_created": 9,
+      "reduction": "37 alerts -> 9 incident keys (9 incidents including reopened splits)",
+      "seconds_from_first_firing_to_incident_opened": {
+        "max": 539.0,
+        "median": 60.0,
+        "note": "replay sync cadence is 15 s; the first firing sample is when the alert reached `firing`, after its `for:` delay"
+      },
+      "signals_per_incident": {
+        "api#2": 5,
+        "devices#6": 17,
+        "edge-runtime#0": 3,
+        "gateway#3": 2,
+        "ingestion#4": 5,
+        "mosquitto#7": 1,
+        "observability#1": 2,
+        "opa#8": 1,
+        "postgres#5": 7
+      },
+      "step_s": 15,
+      "syncs": 96,
+      "window_utc": {
+        "baseline_checked": "2026-09-26T10:36:45Z",
+        "cleared": "2026-09-26T10:42:23Z",
+        "finished": "2026-09-26T10:47:24Z",
+        "induced": "2026-09-26T10:36:47Z",
+        "lab_started": "2026-09-26T10:29:34Z"
+      }
+    },
+    "seconds": 15
+  },
+  "notes": {
+    "a_new_root_that_explains_an_open_incidents_signal_takes_it_over_and_the_old_incident_records_where_it_went": "{'auto': True, 'merged_into': ['postgres'], 'quiet_for_s': 30}",
+    "a_person_can_record_a_verified_cause_and_the_machine_hypothesis_stays_labelled_unverified": "['opened', 'cause_verified']",
+    "a_platform_incident_can_only_be_labelled_inferred": "",
+    "a_quiet_incident_stays_open_for_the_grace_period_then_resolves_itself": "['opened', 'signal_cleared', 'resolved']",
+    "a_repeat_of_the_same_active_alert_adds_no_event_and_no_second_incident": "",
+    "a_signal_that_returns_soon_after_a_resolve_reopens_the_same_incident_instead_of_opening_a_new_one": "['opened', 'signal_cleared', 'resolved', 'reopened', 'signal_reactivated']",
+    "a_status_a_person_set_survives_the_next_correlation_cycle_and_an_illegal_transition_is_refused": "acknowledged",
+    "an_active_alert_opens_one_incident_that_is_inferred_and_unverified": "",
+    "even_the_database_owner_cannot_rewrite_a_recorded_event": "",
+    "every_alert_that_fired_in_the_lab_run_lands_in_at_least_one_incident": "37 distinct alerts fired; lost: []",
+    "every_incident_is_resolved_after_the_faults_clear_and_stay_quiet": "still live: []",
+    "every_replayed_incident_is_labelled_inferred_with_an_unverified_hypothesis_and_no_cause_is_asserted_as_fact": "9 incidents, 0 not unverified",
+    "fewer_incidents_than_alerts_so_duplicate_symptoms_are_grouped": "37 alerts -> 9 incident keys",
+    "lab_injection_independence": "verify_alerts.py switches every fault on independently, at the same moment. Any causal link a hypothesis asserts between two lab faults is therefore an inference the lab cannot confirm - it is counted above, not defended.",
+    "no_signal_is_active_in_two_incidents_at_once": "{}",
+    "prometheus_still_holds_the_alert_series_recorded_during_the_p10_04_lab_run": "72 ALERTS series in the window",
+    "the_correlator_cannot_delete_an_incident_or_its_history_or_wipe_or_rewrite_the_history": "",
+    "the_correlator_cannot_write_a_verified_cause_neither_when_opening_nor_after": "",
+    "the_correlator_connects_as_itself_and_can_write_an_incident_it_inferred": "svc_platform_correlator",
+    "the_correlator_has_its_own_login_role_that_is_no_superuser_and_cannot_create_databases_or_roles": "(False, False, False, False)",
+    "the_correlator_has_no_access_at_all_to_traffic_command_device_or_audit_tables": "commands, operator_audit, incidents, observation_events, devices, policy_decisions",
+    "the_database_refuses_a_hypothesis_that_is_marked_verified_or_carries_no_verified_flag": "",
+    "the_database_refuses_a_second_live_incident_for_the_same_key": "",
+    "the_database_refuses_an_embedded_secret_in_a_hypothesis": "",
+    "the_history_is_hash_chained_wired_into_the_audit_chain_verifier_and_the_role_is_in_secret_rotation": "",
+    "the_incident_history_is_a_hash_chain_that_verifies_intact": "21 events, 0 mismatches",
+    "the_p10_04_lab_evidence_with_its_time_window_exists": "{'baseline_checked': '2026-09-26T10:36:45Z', 'cleared': '2026-09-26T10:42:23Z', 'finished': '2026-09-26T10:47:24Z', 'induced': '2026-09-26T10:36:47Z', 'lab_started': '2026-09-26T10:29:34Z'}",
+    "the_packaged_detector_from_p10_06_is_available": "",
+    "the_replayed_incident_history_is_an_intact_hash_chain": "111 events",
+    "the_same_signal_long_after_a_resolve_opens_a_new_incident": "['resolved', 'open']",
+    "the_three_older_service_roles_have_no_access_to_the_platform_incident_tables": "[]"
+  },
+  "task": "P10.07"
+}

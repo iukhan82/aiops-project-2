@@ -78,7 +78,20 @@ def main() -> int:  # noqa: PLR0915
     service_accounts = {d["metadata"]["name"] for d in docs if d.get("kind") == "ServiceAccount"}
     all_ok &= check(
         "there_is_one_service_account_per_real_service_this_platform_runs",
-        len(service_accounts) == 10,
+        # P09.04 declared these ten; P11.02 generates the file and adds the workloads the observability and AIOps tasks brought.
+        {
+            "aiops-api",
+            "aiops-command-executor",
+            "aiops-outcome-verifier",
+            "aiops-scenario-control",
+            "aiops-ingestion-gateway",
+            "aiops-opa",
+            "aiops-postgres",
+            "aiops-keycloak",
+            "aiops-mqtt-broker",
+            "aiops-kafka-broker",
+        }
+        <= service_accounts,
         sorted(service_accounts),
     )
 
@@ -112,7 +125,7 @@ def main() -> int:  # noqa: PLR0915
         sorted(named_policies - service_accounts),
     )
 
-    label_pattern = re.compile(r"^aiops-[a-z-]+$")
+    label_pattern = re.compile(r"^aiops-[a-z0-9-]+$")
     bad_labels: list[str] = []
     for name, policy in policies.items():
         for rule_kind in ("ingress", "egress"):

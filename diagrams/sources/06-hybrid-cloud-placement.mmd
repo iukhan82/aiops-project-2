@@ -1,14 +1,14 @@
 %%{init: {"flowchart": {"htmlLabels": true, "curve": "linear"}} }%%
 flowchart TB
-  subgraph TESTED["TESTED: deployed on local K3s target (ADR-0007, ADR-0008)\nsee diagram 07 for pod-level detail"]
+  subgraph TESTED["TESTED: deployed on a real Ubuntu LTS host, a kind cluster of its own (P11.03; ADR-0007, ADR-0008)\nsee diagram 07 for pod-level detail"]
     direction TB
-    T1["Edge sites x3 (logical, same host)"]
-    T2["Central K3s namespace\nall central services, PostgreSQL/PostGIS, Keycloak, OPA, MQTT, Kafka-compatible broker"]
-    T3["Observability stack\nPrometheus/Grafana/Tempo/OTel"]
+    T1["Edge runtime (one replica: a recorded run replayed at 100x; its outbox does not drain to MQTT on this target)"]
+    T2["19 workloads, one namespace `aiops`\nPostgreSQL/PostGIS, Keycloak, OPA, MQTT (8883 mTLS only), Kafka-compatible broker, the API, workers"]
+    T3["Observability: Prometheus/Grafana/Tempo/Loki, OTLP exported directly by each service (no separate collector); Falco DaemonSet"]
     T1 --> T2 --> T3
   end
 
-  subgraph PROPOSED["PROPOSED production reference only — NOT DEPLOYED (ADR-0007)\nsee P13.02 for full detail; never claimed as running"]
+  subgraph PROPOSED["PROPOSED production reference only — NOT DEPLOYED (ADR-0007)\nsee 08-proposed-production-reference.mmd (P13.02) for full detail; never claimed as running"]
     direction TB
     P1["Distributed edge nodes\nreal intersection/corridor hardware"]
     P2["Redundant regional gateways\ndevice trust termination"]

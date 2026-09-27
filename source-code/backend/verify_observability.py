@@ -59,13 +59,16 @@ ev = Evidence("P10.01", docs_name="p10_01_observability")
 
 
 class FakeMQTTMessage:
-    """The only two attributes `Gateway._on_message` reads off a real paho
-    message - a real MQTT round trip is P05.03's own proof
-    (`verify_gateway.py`); this script's job is the span, not the broker."""
+    """The attributes `Gateway._on_message` reads off a real paho message (the gateway
+    acknowledges each message to the broker only after it is stored, so it keeps the message id
+    and QoS) - a real MQTT round trip is P05.03's own proof (`verify_gateway.py`); this
+    script's job is the span, not the broker."""
 
     def __init__(self, topic: str, payload: bytes) -> None:
         self.topic = topic
         self.payload = payload
+        self.mid = 1
+        self.qos = 1
 
 
 def find_span(name: str, correlation_id: str | None = None):

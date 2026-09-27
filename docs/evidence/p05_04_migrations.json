@@ -1,6 +1,6 @@
 {
   "task": "P05.04",
-  "generated_at": "2026-09-19T18:50:41Z",
+  "generated_at": "2026-09-26T08:20:12Z",
   "checks": {
     "all_migrations_create_expected_tables": true,
     "rerun_is_idempotent_no_new_applies": true,

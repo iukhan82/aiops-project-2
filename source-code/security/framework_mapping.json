@@ -1,0 +1,2695 @@
+{
+  "schema_version": "1.0.0",
+  "statement": "A mapping and gap list for an academic prototype. It makes no claim of compliance, conformity or certification with any framework named here, applies none of their audit rules, and is not legal advice.",
+  "coverage_meaning": {
+    "evidenced": "every cited control is implemented and its evidence passes today",
+    "partial": "at least one cited control is implemented or partial, and something is missing",
+    "documented": "no control cited, but a document records the intent (intent, not enforcement)",
+    "gap": "applicable, and neither a working control nor a document exists, or only planned controls do",
+    "out_of_scope": "not applicable to a software prototype with no operating organisation, staff or premises"
+  },
+  "frameworks": [
+    {
+      "id": "iso27001",
+      "name": "ISO/IEC 27001:2022 Annex A (applicability mapping, Statement-of-Applicability style)",
+      "kind": "applicability",
+      "items": [
+        {
+          "ref": "5.1",
+          "title": "Policies for information security",
+          "applicability": "partly",
+          "controls": [],
+          "docs": [
+            "docs/SECURITY_COMPLIANCE_BASELINE.md",
+            "docs/security/SECURITY_ARCHITECTURE.md"
+          ],
+          "note": "The baseline and security architecture stand in for a policy set; nothing is management-approved.",
+          "owner": "GRC",
+          "next": null,
+          "accepted": "A prototype has no management to approve a policy set."
+        },
+        {
+          "ref": "5.2",
+          "title": "Information security roles and responsibilities",
+          "applicability": "applies",
+          "controls": [
+            "CTL-05",
+            "CTL-46"
+          ],
+          "docs": [
+            "docs/security/ROLES_AND_ACTION_AUTHORITY.md"
+          ],
+          "note": "Roles and action authority are finalised; every control has a named owner role.",
+          "owner": "SEC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "5.3",
+          "title": "Segregation of duties",
+          "applicability": "applies",
+          "controls": [
+            "CTL-05",
+            "CTL-07",
+            "CTL-21"
+          ],
+          "docs": [
+            "docs/security/ROLES_AND_ACTION_AUTHORITY.md"
+          ],
+          "note": "Requester is never the approver; the executor and the verifier are independent identities.",
+          "owner": "SEC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "5.4",
+          "title": "Management responsibilities",
+          "applicability": "not_applicable",
+          "controls": [],
+          "docs": [],
+          "note": "The control concerns an operating organisation; this prototype has none.",
+          "owner": "GRC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "5.5",
+          "title": "Contact with authorities",
+          "applicability": "not_applicable",
+          "controls": [],
+          "docs": [],
+          "note": "The control concerns an operating organisation; this prototype has none.",
+          "owner": "GRC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "5.6",
+          "title": "Contact with special interest groups",
+          "applicability": "not_applicable",
+          "controls": [],
+          "docs": [],
+          "note": "The control concerns an operating organisation; this prototype has none.",
+          "owner": "GRC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "5.7",
+          "title": "Threat intelligence",
+          "applicability": "partly",
+          "controls": [],
+          "docs": [
+            "docs/security/THREAT_MODEL.md"
+          ],
+          "note": "The threat model is built from public framework knowledge; no threat-intelligence feed is consumed.",
+          "owner": "GRC",
+          "next": null,
+          "accepted": "No feed is available to an academic prototype."
+        },
+        {
+          "ref": "5.8",
+          "title": "Information security in project management",
+          "applicability": "applies",
+          "controls": [],
+          "docs": [
+            "TASK_REGISTER.md",
+            "docs/security/THREAT_MODEL.md"
+          ],
+          "note": "Security work is registered tasks with acceptance and evidence; the phase 09 gate exists.",
+          "owner": "SEC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "5.9",
+          "title": "Inventory of information and other associated assets",
+          "applicability": "applies",
+          "controls": [],
+          "docs": [
+            "docs/security/DATA_INVENTORY_AND_DPIA.md",
+            "docs/security/THREAT_MODEL.md"
+          ],
+          "note": "Data inventory (7 categories) and asset list in the threat model.",
+          "owner": "GRC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "5.10",
+          "title": "Acceptable use of information and other associated assets",
+          "applicability": "partly",
+          "controls": [
+            "CTL-40"
+          ],
+          "docs": [
+            "docs/security/ROLES_AND_ACTION_AUTHORITY.md"
+          ],
+          "note": "Roles bound what each identity may do; no acceptable-use policy for people exists.",
+          "owner": "SEC",
+          "next": null,
+          "accepted": "No staff to bind."
+        },
+        {
+          "ref": "5.11",
+          "title": "Return of assets",
+          "applicability": "not_applicable",
+          "controls": [],
+          "docs": [],
+          "note": "A human-resources control; the prototype has no staff to screen, contract or discipline.",
+          "owner": "GRC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "5.12",
+          "title": "Classification of information",
+          "applicability": "applies",
+          "controls": [
+            "CTL-16",
+            "CTL-19"
+          ],
+          "docs": [
+            "docs/security/DATA_INVENTORY_AND_DPIA.md"
+          ],
+          "note": "Privacy classification is a contract field on every observation; retention classes are enforced.",
+          "owner": "GRC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "5.13",
+          "title": "Labelling of information",
+          "applicability": "applies",
+          "controls": [
+            "CTL-10"
+          ],
+          "docs": [
+            "docs/security/DATA_INVENTORY_AND_DPIA.md"
+          ],
+          "note": "Every event carries a truth label and a privacy classification, validated at ingestion.",
+          "owner": "DATA",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "5.14",
+          "title": "Information transfer",
+          "applicability": "applies",
+          "controls": [
+            "CTL-09",
+            "CTL-11",
+            "CTL-43"
+          ],
+          "docs": [
+            "docs/security/SECURITY_ARCHITECTURE.md"
+          ],
+          "note": "Device mTLS, TLS to the database, code-plus-PKCE in the browser; Kafka, OPA and Keycloak links are still plain inside the platform network.",
+          "owner": "SEC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "5.15",
+          "title": "Access control",
+          "applicability": "applies",
+          "controls": [
+            "CTL-03",
+            "CTL-04",
+            "CTL-05",
+            "CTL-47"
+          ],
+          "docs": [
+            "docs/security/ROLES_AND_ACTION_AUTHORITY.md"
+          ],
+          "note": "Default-deny endpoint authorization from one inventory; OPA as decision point.",
+          "owner": "SEC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "5.16",
+          "title": "Identity management",
+          "applicability": "applies",
+          "controls": [
+            "CTL-02",
+            "CTL-12",
+            "CTL-46"
+          ],
+          "docs": [
+            "docs/security/ACCESS_REVIEW.md"
+          ],
+          "note": "Keycloak for people, workload identity for services; the joiner-mover-leaver procedure is in `docs/security/ACCESS_REVIEW.md`.",
+          "owner": "SEC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "5.17",
+          "title": "Authentication information",
+          "applicability": "applies",
+          "controls": [
+            "CTL-14",
+            "CTL-43"
+          ],
+          "docs": [],
+          "note": "Secrets generated at deployment, kept out of Git and rotated; the token never touches storage in the browser.",
+          "owner": "SEC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "5.18",
+          "title": "Access rights",
+          "applicability": "applies",
+          "controls": [
+            "CTL-05",
+            "CTL-46"
+          ],
+          "docs": [
+            "docs/security/ACCESS_REVIEW.md"
+          ],
+          "note": "Roles are provisioned from one place; a reviewable report of who holds what is generated.",
+          "owner": "GRC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "5.19",
+          "title": "Information security in supplier relationships",
+          "applicability": "partly",
+          "controls": [
+            "CTL-27",
+            "CTL-29"
+          ],
+          "docs": [
+            "docs/SECURITY_COMPLIANCE_BASELINE.md"
+          ],
+          "note": "Dependencies and images pinned and signed; no supplier agreements exist for open-source components.",
+          "owner": "DEVOPS",
+          "next": null,
+          "accepted": "Open-source suppliers offer no agreements to negotiate."
+        },
+        {
+          "ref": "5.20",
+          "title": "Addressing information security within supplier agreements",
+          "applicability": "not_applicable",
+          "controls": [],
+          "docs": [],
+          "note": "No supplier agreements exist for the open-source components and free hosted services used.",
+          "owner": "GRC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "5.21",
+          "title": "Managing information security in the ICT supply chain",
+          "applicability": "applies",
+          "controls": [
+            "CTL-27",
+            "CTL-28",
+            "CTL-29"
+          ],
+          "docs": [],
+          "note": "Pinned locks, secret/dependency/image scanning in CI, SBOM, provenance and signing.",
+          "owner": "DEVOPS",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "5.22",
+          "title": "Monitoring, review and change management of supplier services",
+          "applicability": "partly",
+          "controls": [
+            "CTL-28"
+          ],
+          "docs": [],
+          "note": "CI re-scans on every change; no periodic supplier review.",
+          "owner": "DEVOPS",
+          "next": null,
+          "accepted": "No supplier agreements to review."
+        },
+        {
+          "ref": "5.23",
+          "title": "Information security for use of cloud services",
+          "applicability": "partly",
+          "controls": [
+            "CTL-28"
+          ],
+          "docs": [
+            "docs/environment/GIT_POLICY.md"
+          ],
+          "note": "GitHub Actions, Docker Hub and SonarQube Cloud are used with least-privilege tokens; no cloud-service risk assessment is recorded.",
+          "owner": "DEVOPS",
+          "next": "P13.05",
+          "accepted": null
+        },
+        {
+          "ref": "5.24",
+          "title": "Information security incident management planning and preparation",
+          "applicability": "partly",
+          "controls": [
+            "CTL-15",
+            "CTL-42"
+          ],
+          "docs": [
+            "source-code/backend/aiops/README.md"
+          ],
+          "note": "Platform incidents are correlated and recorded with an append-only history (P10.07); no human incident-response procedure is exercised.",
+          "owner": "OPS",
+          "next": "P13.04",
+          "accepted": null
+        },
+        {
+          "ref": "5.25",
+          "title": "Assessment and decision on information security events",
+          "applicability": "applies",
+          "controls": [
+            "CTL-15",
+            "CTL-42",
+            "CTL-48"
+          ],
+          "docs": [
+            "source-code/backend/aiops/README.md"
+          ],
+          "note": "Alerts (P10.04) become incidents with severity and an unverified hypothesis (P10.07).",
+          "owner": "OPS",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "5.26",
+          "title": "Response to information security incidents",
+          "applicability": "partly",
+          "controls": [
+            "CTL-38",
+            "CTL-21"
+          ],
+          "docs": [
+            "source-code/backend/aiops/README.md"
+          ],
+          "note": "Bounded, policy-controlled remediation with escalation to a person (P10.08); no security-incident playbook beyond it.",
+          "owner": "OPS",
+          "next": "P13.04",
+          "accepted": null
+        },
+        {
+          "ref": "5.27",
+          "title": "Learning from information security incidents",
+          "applicability": "partly",
+          "controls": [
+            "CTL-15"
+          ],
+          "docs": [],
+          "note": "Incident and remediation histories are kept append-only; no post-incident review process is run.",
+          "owner": "OPS",
+          "next": null,
+          "accepted": "No operating history to learn from."
+        },
+        {
+          "ref": "5.28",
+          "title": "Collection of evidence",
+          "applicability": "applies",
+          "controls": [
+            "CTL-15",
+            "CTL-16",
+            "CTL-17"
+          ],
+          "docs": [],
+          "note": "Tamper-evident hash-chained histories, redacted exports for the auditor role only.",
+          "owner": "SEC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "5.29",
+          "title": "Information security during disruption",
+          "applicability": "partly",
+          "controls": [
+            "CTL-23",
+            "CTL-41",
+            "CTL-06"
+          ],
+          "docs": [],
+          "note": "Safe local behaviour on loss of central services; durable edge outbox; policy outage never approves.",
+          "owner": "SEC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "5.30",
+          "title": "ICT readiness for business continuity",
+          "applicability": "partly",
+          "controls": [
+            "CTL-35",
+            "CTL-41"
+          ],
+          "docs": [],
+          "note": "A tested, encrypted backup and a real disaster restore exist (P11.05: RTO 203 s and RPO 2.3 s on a small data set); there is no scheduled or off-host backup; the edge buffers offline.",
+          "owner": "DEVOPS",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "5.31",
+          "title": "Legal, statutory, regulatory and contractual requirements",
+          "applicability": "partly",
+          "controls": [],
+          "docs": [
+            "docs/security/DATA_INVENTORY_AND_DPIA.md",
+            "docs/SECURITY_COMPLIANCE_BASELINE.md"
+          ],
+          "note": "Requirements are identified as GDPR-oriented assumptions; no legal determination is made.",
+          "owner": "GRC",
+          "next": null,
+          "accepted": "A legal question for qualified counsel, outside the prototype."
+        },
+        {
+          "ref": "5.32",
+          "title": "Intellectual property rights",
+          "applicability": "applies",
+          "controls": [],
+          "docs": [
+            "docs/environment/GIT_POLICY.md"
+          ],
+          "note": "Licences and attribution are reviewed in P13.05; only redistributable data is used.",
+          "owner": "GRC",
+          "next": "P13.05",
+          "accepted": null
+        },
+        {
+          "ref": "5.33",
+          "title": "Protection of records",
+          "applicability": "applies",
+          "controls": [
+            "CTL-15",
+            "CTL-18"
+          ],
+          "docs": [],
+          "note": "Audit classes are never purged; retention per class is enforced.",
+          "owner": "GRC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "5.34",
+          "title": "Privacy and protection of PII",
+          "applicability": "applies",
+          "controls": [
+            "CTL-16",
+            "CTL-18",
+            "CTL-19"
+          ],
+          "docs": [
+            "docs/security/DATA_INVENTORY_AND_DPIA.md"
+          ],
+          "note": "Minimisation at the edge, redaction, retention, role-limited evidence; DPIA-style review.",
+          "owner": "GRC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "5.35",
+          "title": "Independent review of information security",
+          "applicability": "partly",
+          "controls": [],
+          "docs": [
+            "docs/security/THREAT_MODEL.md"
+          ],
+          "note": "P09.10 and the runs on the target (P11.04, P09.09) are independent acceptance runs and phase 12 adds more; no external review exists.",
+          "owner": "GRC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "5.36",
+          "title": "Compliance with policies, rules and standards for information security",
+          "applicability": "partly",
+          "controls": [
+            "CTL-28"
+          ],
+          "docs": [],
+          "note": "CI gates and the verifiers check the platform's own rules; no external standard is applied.",
+          "owner": "QA",
+          "next": null,
+          "accepted": "No claim against any external standard is made or intended."
+        },
+        {
+          "ref": "5.37",
+          "title": "Documented operating procedures",
+          "applicability": "partly",
+          "controls": [],
+          "docs": [
+            "docs/environment/RESOURCE_BUDGET.md",
+            "docs/environment/CLEAN_START.md"
+          ],
+          "note": "Clean-start and resource instructions exist; operational runbooks are P13.04.",
+          "owner": "DEVOPS",
+          "next": "P13.04",
+          "accepted": null
+        },
+        {
+          "ref": "6.1",
+          "title": "Screening",
+          "applicability": "not_applicable",
+          "controls": [],
+          "docs": [],
+          "note": "A human-resources control; the prototype has no staff to screen, contract or discipline.",
+          "owner": "GRC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "6.2",
+          "title": "Terms and conditions of employment",
+          "applicability": "not_applicable",
+          "controls": [],
+          "docs": [],
+          "note": "A human-resources control; the prototype has no staff to screen, contract or discipline.",
+          "owner": "GRC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "6.3",
+          "title": "Information security awareness, education and training",
+          "applicability": "not_applicable",
+          "controls": [],
+          "docs": [],
+          "note": "A human-resources control; the prototype has no staff to screen, contract or discipline.",
+          "owner": "GRC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "6.4",
+          "title": "Disciplinary process",
+          "applicability": "not_applicable",
+          "controls": [],
+          "docs": [],
+          "note": "A human-resources control; the prototype has no staff to screen, contract or discipline.",
+          "owner": "GRC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "6.5",
+          "title": "Responsibilities after termination or change of employment",
+          "applicability": "partly",
+          "controls": [
+            "CTL-46"
+          ],
+          "docs": [
+            "docs/security/ACCESS_REVIEW.md"
+          ],
+          "note": "The leaver and mover steps for operating roles are written (`ACCESS_REVIEW.md`); no employment exists to change.",
+          "owner": "GRC",
+          "next": null,
+          "accepted": "Applies to role holders only."
+        },
+        {
+          "ref": "6.6",
+          "title": "Confidentiality or non-disclosure agreements",
+          "applicability": "not_applicable",
+          "controls": [],
+          "docs": [],
+          "note": "A human-resources control; the prototype has no staff to screen, contract or discipline.",
+          "owner": "GRC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "6.7",
+          "title": "Remote working",
+          "applicability": "not_applicable",
+          "controls": [],
+          "docs": [],
+          "note": "A human-resources control; the prototype has no staff to screen, contract or discipline.",
+          "owner": "GRC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "6.8",
+          "title": "Information security event reporting",
+          "applicability": "partly",
+          "controls": [
+            "CTL-42"
+          ],
+          "docs": [
+            "source-code/backend/aiops/README.md"
+          ],
+          "note": "Platform events are alerted and correlated; no route exists for people to report events.",
+          "owner": "OPS",
+          "next": "P13.04",
+          "accepted": null
+        },
+        {
+          "ref": "7.1",
+          "title": "Physical security perimeters",
+          "applicability": "not_applicable",
+          "controls": [],
+          "docs": [],
+          "note": "A physical-premises control; the prototype runs on a development host and one lab host it does not own the premises of.",
+          "owner": "GRC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "7.2",
+          "title": "Physical entry",
+          "applicability": "not_applicable",
+          "controls": [],
+          "docs": [],
+          "note": "A physical-premises control; the prototype runs on a development host and one lab host it does not own the premises of.",
+          "owner": "GRC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "7.3",
+          "title": "Securing offices, rooms and facilities",
+          "applicability": "not_applicable",
+          "controls": [],
+          "docs": [],
+          "note": "A physical-premises control; the prototype runs on a development host and one lab host it does not own the premises of.",
+          "owner": "GRC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "7.4",
+          "title": "Physical security monitoring",
+          "applicability": "not_applicable",
+          "controls": [],
+          "docs": [],
+          "note": "A physical-premises control; the prototype runs on a development host and one lab host it does not own the premises of.",
+          "owner": "GRC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "7.5",
+          "title": "Protecting against physical and environmental threats",
+          "applicability": "not_applicable",
+          "controls": [],
+          "docs": [],
+          "note": "A physical-premises control; the prototype runs on a development host and one lab host it does not own the premises of.",
+          "owner": "GRC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "7.6",
+          "title": "Working in secure areas",
+          "applicability": "not_applicable",
+          "controls": [],
+          "docs": [],
+          "note": "A physical-premises control; the prototype runs on a development host and one lab host it does not own the premises of.",
+          "owner": "GRC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "7.7",
+          "title": "Clear desk and clear screen",
+          "applicability": "not_applicable",
+          "controls": [],
+          "docs": [],
+          "note": "A physical-premises control; the prototype runs on a development host and one lab host it does not own the premises of.",
+          "owner": "GRC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "7.8",
+          "title": "Equipment siting and protection",
+          "applicability": "not_applicable",
+          "controls": [],
+          "docs": [],
+          "note": "A physical-premises control; the prototype runs on a development host and one lab host it does not own the premises of.",
+          "owner": "GRC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "7.9",
+          "title": "Security of assets off-premises",
+          "applicability": "not_applicable",
+          "controls": [],
+          "docs": [],
+          "note": "A physical-premises control; the prototype runs on a development host and one lab host it does not own the premises of.",
+          "owner": "GRC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "7.10",
+          "title": "Storage media",
+          "applicability": "not_applicable",
+          "controls": [],
+          "docs": [],
+          "note": "A physical-premises control; the prototype runs on a development host and one lab host it does not own the premises of.",
+          "owner": "GRC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "7.11",
+          "title": "Supporting utilities",
+          "applicability": "not_applicable",
+          "controls": [],
+          "docs": [],
+          "note": "A physical-premises control; the prototype runs on a development host and one lab host it does not own the premises of.",
+          "owner": "GRC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "7.12",
+          "title": "Cabling security",
+          "applicability": "not_applicable",
+          "controls": [],
+          "docs": [],
+          "note": "A physical-premises control; the prototype runs on a development host and one lab host it does not own the premises of.",
+          "owner": "GRC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "7.13",
+          "title": "Equipment maintenance",
+          "applicability": "not_applicable",
+          "controls": [],
+          "docs": [],
+          "note": "A physical-premises control; the prototype runs on a development host and one lab host it does not own the premises of.",
+          "owner": "GRC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "7.14",
+          "title": "Secure disposal or re-use of equipment",
+          "applicability": "not_applicable",
+          "controls": [],
+          "docs": [],
+          "note": "A physical-premises control; the prototype runs on a development host and one lab host it does not own the premises of.",
+          "owner": "GRC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "8.1",
+          "title": "User endpoint devices",
+          "applicability": "not_applicable",
+          "controls": [],
+          "docs": [],
+          "note": "Operators use a browser; the console holds the token in memory only (CTL-43) but no endpoint is managed.",
+          "owner": "GRC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "8.2",
+          "title": "Privileged access rights",
+          "applicability": "applies",
+          "controls": [
+            "CTL-05",
+            "CTL-34",
+            "CTL-46"
+          ],
+          "docs": [],
+          "note": "The only override (incident commander, SC-2) needs a justification and is audited; roles are reviewed.",
+          "owner": "SEC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "8.3",
+          "title": "Information access restriction",
+          "applicability": "applies",
+          "controls": [
+            "CTL-03",
+            "CTL-04",
+            "CTL-17"
+          ],
+          "docs": [],
+          "note": "Default-deny per endpoint; the audit trail is readable by the auditor role only.",
+          "owner": "SEC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "8.4",
+          "title": "Access to source code",
+          "applicability": "partly",
+          "controls": [
+            "CTL-28"
+          ],
+          "docs": [
+            "docs/environment/GIT_POLICY.md"
+          ],
+          "note": "A private GitHub repository with least-privilege CI tokens.",
+          "owner": "DEVOPS",
+          "next": null,
+          "accepted": "Single-developer repository."
+        },
+        {
+          "ref": "8.5",
+          "title": "Secure authentication",
+          "applicability": "applies",
+          "controls": [
+            "CTL-01",
+            "CTL-02",
+            "CTL-43"
+          ],
+          "docs": [],
+          "note": "PKCE S256 only, strict token validation, lockout; MFA readiness is a Keycloak setting not enabled for the demo.",
+          "owner": "SEC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "8.6",
+          "title": "Capacity management",
+          "applicability": "partly",
+          "controls": [
+            "CTL-18",
+            "CTL-37"
+          ],
+          "docs": [
+            "docs/environment/RESOURCE_BUDGET.md",
+            "docs/observability/SLOS_AND_TOPOLOGY.md"
+          ],
+          "note": "Resource budget, storage and retention alerts (P10.04); load, a measured ceiling and a 30-minute soak on the target (P11.06); no longer soak and no capacity plan.",
+          "owner": "OPS",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "8.7",
+          "title": "Protection against malware",
+          "applicability": "partly",
+          "controls": [
+            "CTL-28",
+            "CTL-31"
+          ],
+          "docs": [],
+          "note": "Image and dependency scanning, non-root read-only edge container; no endpoint anti-malware.",
+          "owner": "DEVOPS",
+          "next": null,
+          "accepted": "Container scanning is the relevant surface."
+        },
+        {
+          "ref": "8.8",
+          "title": "Management of technical vulnerabilities",
+          "applicability": "applies",
+          "controls": [
+            "CTL-27",
+            "CTL-28",
+            "CTL-29"
+          ],
+          "docs": [],
+          "note": "Trivy on the repository and images in CI, pinned dependencies, SBOM.",
+          "owner": "DEVOPS",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "8.9",
+          "title": "Configuration management",
+          "applicability": "applies",
+          "controls": [
+            "CTL-27",
+            "CTL-37"
+          ],
+          "docs": [
+            "docs/observability/SLOS_AND_TOPOLOGY.md"
+          ],
+          "note": "Pinned images and locks; configuration and migration drift alerts (P10.04).",
+          "owner": "DEVOPS",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "8.10",
+          "title": "Information deletion",
+          "applicability": "applies",
+          "controls": [
+            "CTL-18"
+          ],
+          "docs": [
+            "docs/security/DATA_INVENTORY_AND_DPIA.md"
+          ],
+          "note": "Retention windows per class, aggregation before deletion.",
+          "owner": "GRC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "8.11",
+          "title": "Data masking",
+          "applicability": "applies",
+          "controls": [
+            "CTL-16",
+            "CTL-19"
+          ],
+          "docs": [],
+          "note": "Recursive redaction in audit, logs and errors; privacy-zone suppression at the edge.",
+          "owner": "SEC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "8.12",
+          "title": "Data leakage prevention",
+          "applicability": "partly",
+          "controls": [
+            "CTL-16",
+            "CTL-17",
+            "CTL-37"
+          ],
+          "docs": [],
+          "note": "Redaction and role-limited evidence; no network-level leakage prevention.",
+          "owner": "SEC",
+          "next": null,
+          "accepted": "Out of scope for a single-host prototype."
+        },
+        {
+          "ref": "8.13",
+          "title": "Information backup",
+          "applicability": "applies",
+          "controls": [
+            "CTL-35"
+          ],
+          "docs": [],
+          "note": "An encrypted, tested backup and a real restore exist (P11.05); a schedule, an off-host copy and custody of the key do not.",
+          "owner": "DEVOPS",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "8.14",
+          "title": "Redundancy of information processing facilities",
+          "applicability": "applies",
+          "controls": [
+            "CTL-41"
+          ],
+          "docs": [],
+          "note": "One node and one volume per store: nothing is redundant beyond the edge outbox, the broker's queue for the gateway and safe local behaviour; what happens in an outage of each component was measured (P11.05, P11.06).",
+          "owner": "DEVOPS",
+          "next": null,
+          "accepted": "Accepted for the laboratory: a single node is the scope of this project (docs/environment/RESOURCE_BUDGET.md); redundancy would be a different deployment."
+        },
+        {
+          "ref": "8.15",
+          "title": "Logging",
+          "applicability": "applies",
+          "controls": [
+            "CTL-15",
+            "CTL-16",
+            "CTL-36",
+            "CTL-37"
+          ],
+          "docs": [],
+          "note": "Append-only audit and transition histories, redacted; time source partly consolidated.",
+          "owner": "SEC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "8.16",
+          "title": "Monitoring activities",
+          "applicability": "applies",
+          "controls": [
+            "CTL-37",
+            "CTL-38",
+            "CTL-42"
+          ],
+          "docs": [
+            "source-code/backend/aiops/README.md",
+            "docs/observability/SLOS_AND_TOPOLOGY.md"
+          ],
+          "note": "27 alert rules tested live, platform incident correlation, bounded remediation; model drift monitoring is not built.",
+          "owner": "OPS",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "8.17",
+          "title": "Clock synchronization",
+          "applicability": "applies",
+          "controls": [
+            "CTL-36"
+          ],
+          "docs": [],
+          "note": "The database clock stamps every audit row; the target host's time synchronization is neither configured by this deployment nor monitored.",
+          "owner": "DEVOPS",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "8.18",
+          "title": "Use of privileged utility programs",
+          "applicability": "not_applicable",
+          "controls": [],
+          "docs": [],
+          "note": "No privileged utilities are exposed by the platform; the host is a development machine.",
+          "owner": "GRC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "8.19",
+          "title": "Installation of software on operational systems",
+          "applicability": "partly",
+          "controls": [
+            "CTL-29"
+          ],
+          "docs": [],
+          "note": "Only signed, provenance-attested artefacts are admitted by the release gate, and on the target the backend and frontend images that run are shown to be the signed ones (P11.03); the edge image is built on the host.",
+          "owner": "DEVOPS",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "8.20",
+          "title": "Networks security",
+          "applicability": "applies",
+          "controls": [
+            "CTL-09",
+            "CTL-11",
+            "CTL-13"
+          ],
+          "docs": [],
+          "note": "Device mTLS with topic ACLs, TLS to the database, and default-deny network policy enforced on a real cluster with 19 positive and negative checks (P11.04); links between services inside the namespace are plain.",
+          "owner": "SEC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "8.21",
+          "title": "Security of network services",
+          "applicability": "partly",
+          "controls": [
+            "CTL-11",
+            "CTL-33"
+          ],
+          "docs": [],
+          "note": "TLS on the broker and the database and rate limits at the API; the other service links are plain (CTL-11).",
+          "owner": "SEC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "8.22",
+          "title": "Segregation of networks",
+          "applicability": "partly",
+          "controls": [
+            "CTL-13",
+            "CTL-08"
+          ],
+          "docs": [
+            "docs/security/SECURITY_ARCHITECTURE.md"
+          ],
+          "note": "Trust zones TZ0-TZ8 are designed; on the cluster the NetworkPolicies were shown to isolate workloads, including a pod of another namespace from the database (P11.04).",
+          "owner": "SEC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "8.23",
+          "title": "Web filtering",
+          "applicability": "not_applicable",
+          "controls": [],
+          "docs": [],
+          "note": "No user web browsing is provided by the platform.",
+          "owner": "GRC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "8.24",
+          "title": "Use of cryptography",
+          "applicability": "applies",
+          "controls": [
+            "CTL-09",
+            "CTL-11",
+            "CTL-14",
+            "CTL-29"
+          ],
+          "docs": [],
+          "note": "TLS 1.3 to the database, mTLS to devices, signed artefacts, rotated secrets; no key-management service.",
+          "owner": "SEC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "8.25",
+          "title": "Secure development life cycle",
+          "applicability": "applies",
+          "controls": [
+            "CTL-28"
+          ],
+          "docs": [
+            "docs/environment/GIT_POLICY.md"
+          ],
+          "note": "Registered tasks, tests, verifiers with evidence, CI gates.",
+          "owner": "DEVOPS",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "8.26",
+          "title": "Application security requirements",
+          "applicability": "applies",
+          "controls": [
+            "CTL-32",
+            "CTL-33"
+          ],
+          "docs": [
+            "docs/security/THREAT_MODEL.md"
+          ],
+          "note": "Closed schemas, validated inputs, headers, rate limits.",
+          "owner": "BACKEND",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "8.27",
+          "title": "Secure system architecture and engineering principles",
+          "applicability": "applies",
+          "controls": [
+            "CTL-03",
+            "CTL-04",
+            "CTL-08",
+            "CTL-22"
+          ],
+          "docs": [
+            "docs/security/SECURITY_ARCHITECTURE.md"
+          ],
+          "note": "Default-deny, least privilege, fail closed, separation of demo control.",
+          "owner": "ARCH",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "8.28",
+          "title": "Secure coding",
+          "applicability": "applies",
+          "controls": [
+            "CTL-28",
+            "CTL-32"
+          ],
+          "docs": [],
+          "note": "SonarQube Cloud, secret scanning and tests on every push.",
+          "owner": "DEVOPS",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "8.29",
+          "title": "Security testing in development and acceptance",
+          "applicability": "partly",
+          "controls": [
+            "CTL-28"
+          ],
+          "docs": [],
+          "note": "Negative tests sit beside the positive ones in every verifier; the abuse-case acceptance run (P09.10) and the native checks on the target (P11.04) are done; CI has not yet run on a hosted runner.",
+          "owner": "QA",
+          "next": "P01.05",
+          "accepted": null
+        },
+        {
+          "ref": "8.30",
+          "title": "Outsourced development",
+          "applicability": "not_applicable",
+          "controls": [],
+          "docs": [],
+          "note": "Development is not outsourced.",
+          "owner": "GRC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "8.31",
+          "title": "Separation of development, test and production environments",
+          "applicability": "partly",
+          "controls": [
+            "CTL-08"
+          ],
+          "docs": [],
+          "note": "Scratch databases for verifiers; demo control cannot reach operations; no production exists.",
+          "owner": "DEVOPS",
+          "next": null,
+          "accepted": "A prototype has no production environment."
+        },
+        {
+          "ref": "8.32",
+          "title": "Change management",
+          "applicability": "partly",
+          "controls": [
+            "CTL-25",
+            "CTL-28"
+          ],
+          "docs": [
+            "docs/environment/GIT_POLICY.md"
+          ],
+          "note": "Every change goes through CI; model changes through verify-then-commit activation; no change board.",
+          "owner": "DEVOPS",
+          "next": null,
+          "accepted": "Single-developer project."
+        },
+        {
+          "ref": "8.33",
+          "title": "Test information",
+          "applicability": "applies",
+          "controls": [
+            "CTL-26",
+            "CTL-40"
+          ],
+          "docs": [
+            "docs/security/DATA_INVENTORY_AND_DPIA.md"
+          ],
+          "note": "All test and training data is synthetic or open; no production personal data exists.",
+          "owner": "DATA",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "8.34",
+          "title": "Protection of information systems during audit testing",
+          "applicability": "not_applicable",
+          "controls": [],
+          "docs": [],
+          "note": "No independent audit testing is performed; verifiers run against scratch databases.",
+          "owner": "GRC",
+          "next": null,
+          "accepted": null
+        }
+      ]
+    },
+    {
+      "id": "nist-csf-2",
+      "name": "NIST Cybersecurity Framework 2.0 (categories)",
+      "kind": "reference",
+      "items": [
+        {
+          "ref": "GV.OC",
+          "title": "Organizational Context",
+          "applicability": "partly",
+          "controls": [],
+          "docs": [
+            "docs/SECURITY_COMPLIANCE_BASELINE.md",
+            "docs/PROTOCOLS_AND_STANDARDS.md"
+          ],
+          "note": "Mission, safety boundary and stakeholder assumptions are documented.",
+          "owner": "LEAD",
+          "next": null,
+          "accepted": "No operating organisation."
+        },
+        {
+          "ref": "GV.RM",
+          "title": "Risk Management Strategy",
+          "applicability": "applies",
+          "controls": [],
+          "docs": [
+            "docs/security/RISK_REGISTER.md",
+            "docs/security/THREAT_MODEL.md"
+          ],
+          "note": "Risk register with likelihood, impact, treatment, owner and residual risk computed from control state.",
+          "owner": "SEC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "GV.RR",
+          "title": "Roles, Responsibilities, and Authorities",
+          "applicability": "applies",
+          "controls": [
+            "CTL-05",
+            "CTL-46"
+          ],
+          "docs": [
+            "docs/security/ROLES_AND_ACTION_AUTHORITY.md"
+          ],
+          "note": "Roles and action authority; control owners.",
+          "owner": "SEC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "GV.PO",
+          "title": "Policy",
+          "applicability": "partly",
+          "controls": [
+            "CTL-04"
+          ],
+          "docs": [
+            "docs/SECURITY_COMPLIANCE_BASELINE.md"
+          ],
+          "note": "Policy is code (OPA) for actions and endpoints; no management policy set.",
+          "owner": "SEC",
+          "next": null,
+          "accepted": "No management to approve policies."
+        },
+        {
+          "ref": "GV.OV",
+          "title": "Oversight",
+          "applicability": "partly",
+          "controls": [
+            "CTL-15",
+            "CTL-17"
+          ],
+          "docs": [],
+          "note": "Auditor role with redacted evidence access.",
+          "owner": "SEC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "GV.SC",
+          "title": "Cybersecurity Supply Chain Risk Management",
+          "applicability": "applies",
+          "controls": [
+            "CTL-27",
+            "CTL-28",
+            "CTL-29"
+          ],
+          "docs": [],
+          "note": "Locks, digests, scanning, SBOM, provenance, signing.",
+          "owner": "DEVOPS",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "ID.AM",
+          "title": "Asset Management",
+          "applicability": "applies",
+          "controls": [],
+          "docs": [
+            "docs/security/DATA_INVENTORY_AND_DPIA.md",
+            "docs/security/THREAT_MODEL.md"
+          ],
+          "note": "Data and asset inventories; device registry; SBOM.",
+          "owner": "GRC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "ID.RA",
+          "title": "Risk Assessment",
+          "applicability": "applies",
+          "controls": [],
+          "docs": [
+            "docs/security/THREAT_MODEL.md",
+            "docs/security/RISK_REGISTER.md"
+          ],
+          "note": "76 threats scored for likelihood, safety and security impact.",
+          "owner": "SEC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "ID.IM",
+          "title": "Improvement",
+          "applicability": "partly",
+          "controls": [
+            "CTL-15"
+          ],
+          "docs": [],
+          "note": "Findings become registered tasks; residual risk recomputed on each control change.",
+          "owner": "SEC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "PR.AA",
+          "title": "Identity Management, Authentication, and Access Control",
+          "applicability": "applies",
+          "controls": [
+            "CTL-01",
+            "CTL-02",
+            "CTL-03",
+            "CTL-04",
+            "CTL-12",
+            "CTL-43",
+            "CTL-46",
+            "CTL-47"
+          ],
+          "docs": [],
+          "note": "OIDC/PKCE, default-deny endpoints, OPA, workload identity, access review procedure.",
+          "owner": "SEC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "PR.AT",
+          "title": "Awareness and Training",
+          "applicability": "not_applicable",
+          "controls": [],
+          "docs": [],
+          "note": "No staff to train; operator guidance is UX documentation.",
+          "owner": "GRC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "PR.DS",
+          "title": "Data Security",
+          "applicability": "applies",
+          "controls": [
+            "CTL-09",
+            "CTL-11",
+            "CTL-15",
+            "CTL-16",
+            "CTL-18",
+            "CTL-19"
+          ],
+          "docs": [
+            "docs/security/DATA_INVENTORY_AND_DPIA.md"
+          ],
+          "note": "Transport protection, tamper-evident audit, redaction, retention, edge privacy.",
+          "owner": "SEC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "PR.PS",
+          "title": "Platform Security",
+          "applicability": "partly",
+          "controls": [
+            "CTL-13",
+            "CTL-25",
+            "CTL-27",
+            "CTL-29",
+            "CTL-31"
+          ],
+          "docs": [],
+          "note": "Verified model activation, pinned and signed artefacts, hardened edge container; cluster hardening (admission, RBAC, no mounted tokens, network policy) was checked natively on the target (P11.04).",
+          "owner": "DEVOPS",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "PR.IR",
+          "title": "Technology Infrastructure Resilience",
+          "applicability": "partly",
+          "controls": [
+            "CTL-23",
+            "CTL-35",
+            "CTL-41"
+          ],
+          "docs": [],
+          "note": "Safe degraded behaviour and edge buffering; outages of the gateway, Kafka, ingestion and PostgreSQL lost nothing under load and every component restart recovered (P11.05, P11.06); a tested backup exists but no schedule; single node.",
+          "owner": "DEVOPS",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "DE.CM",
+          "title": "Continuous Monitoring",
+          "applicability": "applies",
+          "controls": [
+            "CTL-30",
+            "CTL-37",
+            "CTL-42"
+          ],
+          "docs": [
+            "source-code/backend/aiops/README.md"
+          ],
+          "note": "Alert rules and probes tested live; runtime detection with Falco proven on the target cluster (P09.09); alerts are not routed to an operator.",
+          "owner": "OPS",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "DE.AE",
+          "title": "Adverse Event Analysis",
+          "applicability": "applies",
+          "controls": [
+            "CTL-38",
+            "CTL-48"
+          ],
+          "docs": [
+            "source-code/backend/aiops/README.md"
+          ],
+          "note": "Alerts and detector anomalies are correlated into incidents with unverified hypotheses.",
+          "owner": "OPS",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "RS.MA",
+          "title": "Incident Management",
+          "applicability": "partly",
+          "controls": [
+            "CTL-38",
+            "CTL-21"
+          ],
+          "docs": [
+            "source-code/backend/aiops/README.md"
+          ],
+          "note": "Incidents are opened, owned, escalated and resolved with a chained history.",
+          "owner": "OPS",
+          "next": "P13.04",
+          "accepted": null
+        },
+        {
+          "ref": "RS.AN",
+          "title": "Incident Analysis",
+          "applicability": "partly",
+          "controls": [
+            "CTL-15",
+            "CTL-48"
+          ],
+          "docs": [
+            "source-code/backend/aiops/README.md"
+          ],
+          "note": "Causal hypotheses are recorded and never asserted as fact; no forensic tooling.",
+          "owner": "OPS",
+          "next": null,
+          "accepted": "Out of scope for a prototype."
+        },
+        {
+          "ref": "RS.CO",
+          "title": "Incident Response Reporting and Communication",
+          "applicability": "partly",
+          "controls": [],
+          "docs": [
+            "docs/runbooks/INCIDENT_RESPONSE_AND_BREACH_RUNBOOK.md",
+            "docs/security/DATA_INVENTORY_AND_DPIA.md"
+          ],
+          "note": "A breach procedure is written (P13.04) and its steps checked against real, independently-tested controls (Falco, audit export, secret rotation); the sequence as a whole and the notification channel are not live-drilled.",
+          "owner": "GRC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "RS.MI",
+          "title": "Incident Mitigation",
+          "applicability": "applies",
+          "controls": [
+            "CTL-38",
+            "CTL-21"
+          ],
+          "docs": [
+            "source-code/backend/aiops/README.md"
+          ],
+          "note": "Registered, bounded, verified remediation with escalation.",
+          "owner": "OPS",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "RC.RP",
+          "title": "Incident Recovery Plan Execution",
+          "applicability": "partly",
+          "controls": [
+            "CTL-38",
+            "CTL-35"
+          ],
+          "docs": [],
+          "note": "Recovery is verified from alerts, not from the adapter; a database restore after the loss of its volume was rehearsed on the target (P11.05).",
+          "owner": "OPS",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "RC.CO",
+          "title": "Incident Recovery Communication",
+          "applicability": "not_applicable",
+          "controls": [],
+          "docs": [],
+          "note": "No stakeholders to notify in a prototype.",
+          "owner": "GRC",
+          "next": null,
+          "accepted": null
+        }
+      ]
+    },
+    {
+      "id": "etsi-303645",
+      "name": "ETSI EN 303 645 (consumer IoT baseline, used as a device security profile)",
+      "kind": "reference",
+      "items": [
+        {
+          "ref": "5.1",
+          "title": "No universal default passwords",
+          "applicability": "applies",
+          "controls": [
+            "CTL-09",
+            "CTL-14",
+            "CTL-39"
+          ],
+          "docs": [],
+          "note": "Devices authenticate with per-device certificates, never a shared password.",
+          "owner": "SEC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "5.2",
+          "title": "Implement a means to manage reports of vulnerabilities",
+          "applicability": "partly",
+          "controls": [],
+          "docs": [
+            "docs/environment/GIT_POLICY.md"
+          ],
+          "note": "Findings become registered tasks; no public disclosure policy.",
+          "owner": "GRC",
+          "next": null,
+          "accepted": "No product is published."
+        },
+        {
+          "ref": "5.3",
+          "title": "Keep software updated",
+          "applicability": "partly",
+          "controls": [
+            "CTL-25",
+            "CTL-29"
+          ],
+          "docs": [],
+          "note": "Verify-then-commit model activation with rollback; signed artefacts; a rollout and a rollback of a bad image were tested on the target (P11.05); no over-the-air device update service.",
+          "owner": "EDGE",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "5.4",
+          "title": "Securely store sensitive security parameters",
+          "applicability": "partly",
+          "controls": [
+            "CTL-14"
+          ],
+          "docs": [],
+          "note": "Secrets kept out of Git and rotated; no hardware secure element.",
+          "owner": "SEC",
+          "next": null,
+          "accepted": "Simulated devices."
+        },
+        {
+          "ref": "5.5",
+          "title": "Communicate securely",
+          "applicability": "applies",
+          "controls": [
+            "CTL-09",
+            "CTL-11"
+          ],
+          "docs": [],
+          "note": "Per-device mTLS with default-deny topic ACLs; TLS to the database.",
+          "owner": "SEC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "5.6",
+          "title": "Minimize exposed attack surfaces",
+          "applicability": "applies",
+          "controls": [
+            "CTL-31",
+            "CTL-09"
+          ],
+          "docs": [],
+          "note": "Non-root, read-only, capability-dropped edge container; only the health port is exposed.",
+          "owner": "EDGE",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "5.7",
+          "title": "Ensure software integrity",
+          "applicability": "applies",
+          "controls": [
+            "CTL-25",
+            "CTL-29"
+          ],
+          "docs": [],
+          "note": "Model hash verified at load; signed artefacts.",
+          "owner": "EDGE",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "5.8",
+          "title": "Ensure that personal data is secure",
+          "applicability": "applies",
+          "controls": [
+            "CTL-19",
+            "CTL-16"
+          ],
+          "docs": [
+            "docs/security/DATA_INVENTORY_AND_DPIA.md"
+          ],
+          "note": "Privacy zones, ephemeral identities, k-anonymity floor, redaction.",
+          "owner": "GRC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "5.9",
+          "title": "Make systems resilient to outages",
+          "applicability": "applies",
+          "controls": [
+            "CTL-41",
+            "CTL-23",
+            "CTL-38"
+          ],
+          "docs": [],
+          "note": "Durable ordered edge outbox, safe offline behaviour, verified remediation.",
+          "owner": "EDGE",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "5.10",
+          "title": "Examine system telemetry data",
+          "applicability": "applies",
+          "controls": [
+            "CTL-37",
+            "CTL-42"
+          ],
+          "docs": [
+            "docs/observability/SLOS_AND_TOPOLOGY.md"
+          ],
+          "note": "Bounded low-cardinality telemetry, alerts and a detector on it.",
+          "owner": "OPS",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "5.11",
+          "title": "Make it easy for users to delete user data",
+          "applicability": "partly",
+          "controls": [
+            "CTL-18"
+          ],
+          "docs": [
+            "docs/security/DATA_INVENTORY_AND_DPIA.md"
+          ],
+          "note": "Retention deletes by class; no data-subject deletion workflow is exercised.",
+          "owner": "GRC",
+          "next": null,
+          "accepted": "No consumer users."
+        },
+        {
+          "ref": "5.12",
+          "title": "Make installation and maintenance of devices easy",
+          "applicability": "partly",
+          "controls": [],
+          "docs": [
+            "docs/environment/CLEAN_START.md"
+          ],
+          "note": "Documented clean start; no device provisioning UX.",
+          "owner": "DEVOPS",
+          "next": null,
+          "accepted": "Simulated devices."
+        },
+        {
+          "ref": "5.13",
+          "title": "Validate input data",
+          "applicability": "applies",
+          "controls": [
+            "CTL-10",
+            "CTL-32"
+          ],
+          "docs": [],
+          "note": "Schema, identity and content validation at ingestion and API.",
+          "owner": "DATA",
+          "next": null,
+          "accepted": null
+        }
+      ]
+    },
+    {
+      "id": "iec-62443",
+      "name": "IEC 62443 (foundational requirements)",
+      "kind": "reference",
+      "items": [
+        {
+          "ref": "FR 1",
+          "title": "Identification and authentication control (IAC)",
+          "applicability": "applies",
+          "controls": [
+            "CTL-01",
+            "CTL-02",
+            "CTL-09",
+            "CTL-12"
+          ],
+          "docs": [],
+          "note": "People through Keycloak, services by workload identity, devices by certificate.",
+          "owner": "SEC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "FR 2",
+          "title": "Use control (UC)",
+          "applicability": "applies",
+          "controls": [
+            "CTL-03",
+            "CTL-04",
+            "CTL-05",
+            "CTL-07",
+            "CTL-34",
+            "CTL-47"
+          ],
+          "docs": [
+            "docs/security/ROLES_AND_ACTION_AUTHORITY.md"
+          ],
+          "note": "Default-deny use control per endpoint and action class, four-eyes, single executor.",
+          "owner": "SEC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "FR 3",
+          "title": "System integrity (SI)",
+          "applicability": "applies",
+          "controls": [
+            "CTL-10",
+            "CTL-24",
+            "CTL-25",
+            "CTL-29",
+            "CTL-22"
+          ],
+          "docs": [],
+          "note": "Validated input, replay protection, model and artefact integrity.",
+          "owner": "SEC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "FR 4",
+          "title": "Data confidentiality (DC)",
+          "applicability": "partly",
+          "controls": [
+            "CTL-11",
+            "CTL-16",
+            "CTL-17",
+            "CTL-19"
+          ],
+          "docs": [],
+          "note": "Redaction and role-limited evidence; the broker and the database links are TLS, transport between the other platform services is plain.",
+          "owner": "SEC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "FR 5",
+          "title": "Restricted data flow (RDF)",
+          "applicability": "partly",
+          "controls": [
+            "CTL-13",
+            "CTL-08",
+            "CTL-09"
+          ],
+          "docs": [
+            "docs/security/SECURITY_ARCHITECTURE.md"
+          ],
+          "note": "Zones and conduits are designed (TZ0-TZ8); enforcement in the cluster was tested natively (P11.04).",
+          "owner": "SEC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "FR 6",
+          "title": "Timely response to events (TRE)",
+          "applicability": "applies",
+          "controls": [
+            "CTL-15",
+            "CTL-37",
+            "CTL-38",
+            "CTL-42"
+          ],
+          "docs": [
+            "source-code/backend/aiops/README.md"
+          ],
+          "note": "Audit trail, alerts, incident correlation, remediation within 30 s of an incident (measured in P10.09).",
+          "owner": "OPS",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "FR 7",
+          "title": "Resource availability (RA)",
+          "applicability": "partly",
+          "controls": [
+            "CTL-23",
+            "CTL-35",
+            "CTL-41"
+          ],
+          "docs": [
+            "docs/environment/RESOURCE_BUDGET.md"
+          ],
+          "note": "Degraded-mode behaviour and rate limits; load, outage and a 30-minute soak measured on one node (P11.06); no redundancy.",
+          "owner": "OPS",
+          "next": null,
+          "accepted": null
+        }
+      ]
+    },
+    {
+      "id": "owasp-asvs",
+      "name": "OWASP ASVS 4.0.3 (chapters)",
+      "kind": "reference",
+      "items": [
+        {
+          "ref": "V1",
+          "title": "Architecture, Design and Threat Modeling",
+          "applicability": "applies",
+          "controls": [
+            "CTL-03",
+            "CTL-04"
+          ],
+          "docs": [
+            "docs/security/THREAT_MODEL.md",
+            "docs/security/SECURITY_ARCHITECTURE.md"
+          ],
+          "note": "Threat model, trust zones and default-deny architecture.",
+          "owner": "ARCH",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "V2",
+          "title": "Authentication",
+          "applicability": "applies",
+          "controls": [
+            "CTL-01",
+            "CTL-02",
+            "CTL-43"
+          ],
+          "docs": [],
+          "note": "OIDC authorization code with PKCE, lockout, refresh rotation.",
+          "owner": "SEC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "V3",
+          "title": "Session Management",
+          "applicability": "applies",
+          "controls": [
+            "CTL-43",
+            "CTL-02"
+          ],
+          "docs": [],
+          "note": "Short-lived tokens held in memory; no cookie session.",
+          "owner": "SEC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "V4",
+          "title": "Access Control",
+          "applicability": "applies",
+          "controls": [
+            "CTL-03",
+            "CTL-04",
+            "CTL-05",
+            "CTL-17",
+            "CTL-47"
+          ],
+          "docs": [],
+          "note": "Default-deny per endpoint and per action, role-limited evidence.",
+          "owner": "SEC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "V5",
+          "title": "Validation, Sanitization and Encoding",
+          "applicability": "applies",
+          "controls": [
+            "CTL-32",
+            "CTL-10"
+          ],
+          "docs": [],
+          "note": "Closed request schemas, validated cursors and ranges, escaped search.",
+          "owner": "BACKEND",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "V6",
+          "title": "Stored Cryptography",
+          "applicability": "partly",
+          "controls": [
+            "CTL-14",
+            "CTL-29"
+          ],
+          "docs": [],
+          "note": "Secrets rotation and signing; an encrypted backup (P11.05); no data-at-rest encryption of the database volume.",
+          "owner": "SEC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "V7",
+          "title": "Error Handling and Logging",
+          "applicability": "applies",
+          "controls": [
+            "CTL-15",
+            "CTL-16"
+          ],
+          "docs": [],
+          "note": "Redacted logs and error responses, append-only audit.",
+          "owner": "SEC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "V8",
+          "title": "Data Protection",
+          "applicability": "applies",
+          "controls": [
+            "CTL-16",
+            "CTL-18",
+            "CTL-19"
+          ],
+          "docs": [
+            "docs/security/DATA_INVENTORY_AND_DPIA.md"
+          ],
+          "note": "Redaction, retention, edge minimisation.",
+          "owner": "GRC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "V9",
+          "title": "Communication",
+          "applicability": "partly",
+          "controls": [
+            "CTL-11",
+            "CTL-09"
+          ],
+          "docs": [],
+          "note": "TLS to the database and device mTLS, proven on the target (P11.04); internal links partly plain.",
+          "owner": "SEC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "V10",
+          "title": "Malicious Code",
+          "applicability": "partly",
+          "controls": [
+            "CTL-28",
+            "CTL-29"
+          ],
+          "docs": [],
+          "note": "Scanning, SBOM and signing; no dedicated code-integrity review.",
+          "owner": "DEVOPS",
+          "next": null,
+          "accepted": "Single developer."
+        },
+        {
+          "ref": "V11",
+          "title": "Business Logic",
+          "applicability": "applies",
+          "controls": [
+            "CTL-05",
+            "CTL-06",
+            "CTL-20",
+            "CTL-24",
+            "CTL-22"
+          ],
+          "docs": [],
+          "note": "Four-eyes, execution-time policy, safety bounds, idempotency and replay protection.",
+          "owner": "CONTROL",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "V12",
+          "title": "Files and Resources",
+          "applicability": "partly",
+          "controls": [
+            "CTL-32"
+          ],
+          "docs": [],
+          "note": "No file upload is offered; evidence exports are redacted.",
+          "owner": "BACKEND",
+          "next": null,
+          "accepted": "No upload surface exists."
+        },
+        {
+          "ref": "V13",
+          "title": "API and Web Service",
+          "applicability": "applies",
+          "controls": [
+            "CTL-01",
+            "CTL-03",
+            "CTL-32",
+            "CTL-33"
+          ],
+          "docs": [],
+          "note": "Versioned APIs, closed schemas, rate and size limits.",
+          "owner": "BACKEND",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "V14",
+          "title": "Configuration",
+          "applicability": "applies",
+          "controls": [
+            "CTL-27",
+            "CTL-33",
+            "CTL-37"
+          ],
+          "docs": [],
+          "note": "Pinned images, security headers, strict CORS, configuration drift alerts.",
+          "owner": "DEVOPS",
+          "next": null,
+          "accepted": null
+        }
+      ]
+    },
+    {
+      "id": "owasp-api",
+      "name": "OWASP API Security Top 10 (2023)",
+      "kind": "reference",
+      "items": [
+        {
+          "ref": "API1",
+          "title": "Broken Object Level Authorization (2023)",
+          "applicability": "applies",
+          "controls": [
+            "CTL-03",
+            "CTL-04",
+            "CTL-17",
+            "CTL-47"
+          ],
+          "docs": [],
+          "note": "Policy decides per route and role; evidence access is role-limited; agency scope on emergency records is P09.06's planned control.",
+          "owner": "SEC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "API2",
+          "title": "Broken Authentication (2023)",
+          "applicability": "applies",
+          "controls": [
+            "CTL-01",
+            "CTL-02",
+            "CTL-43"
+          ],
+          "docs": [],
+          "note": "Strict token validation; PKCE only.",
+          "owner": "SEC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "API3",
+          "title": "Broken Object Property Level Authorization (2023)",
+          "applicability": "applies",
+          "controls": [
+            "CTL-16",
+            "CTL-32",
+            "CTL-17"
+          ],
+          "docs": [],
+          "note": "Closed response schemas and redaction.",
+          "owner": "BACKEND",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "API4",
+          "title": "Unrestricted Resource Consumption (2023)",
+          "applicability": "applies",
+          "controls": [
+            "CTL-33"
+          ],
+          "docs": [],
+          "note": "Rate limits, request-size limits.",
+          "owner": "BACKEND",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "API5",
+          "title": "Broken Function Level Authorization (2023)",
+          "applicability": "applies",
+          "controls": [
+            "CTL-03",
+            "CTL-04",
+            "CTL-05"
+          ],
+          "docs": [],
+          "note": "Default-deny per endpoint; action class gates.",
+          "owner": "SEC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "API6",
+          "title": "Unrestricted Access to Sensitive Business Flows (2023)",
+          "applicability": "applies",
+          "controls": [
+            "CTL-05",
+            "CTL-06",
+            "CTL-24",
+            "CTL-34"
+          ],
+          "docs": [],
+          "note": "Four-eyes, expiry, idempotency, audited override.",
+          "owner": "CONTROL",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "API7",
+          "title": "Server Side Request Forgery (2023)",
+          "applicability": "applies",
+          "controls": [
+            "CTL-32"
+          ],
+          "docs": [],
+          "note": "The API makes no user-directed outbound requests.",
+          "owner": "BACKEND",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "API8",
+          "title": "Security Misconfiguration (2023)",
+          "applicability": "applies",
+          "controls": [
+            "CTL-33",
+            "CTL-37",
+            "CTL-27"
+          ],
+          "docs": [],
+          "note": "Headers, CORS, pinned images, drift alerts.",
+          "owner": "DEVOPS",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "API9",
+          "title": "Improper Inventory Management (2023)",
+          "applicability": "applies",
+          "controls": [
+            "CTL-03"
+          ],
+          "docs": [],
+          "note": "One endpoint inventory drives authorization and the UI; unlisted routes are denied.",
+          "owner": "BACKEND",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "API10",
+          "title": "Unsafe Consumption of APIs (2023)",
+          "applicability": "applies",
+          "controls": [
+            "CTL-40",
+            "CTL-10"
+          ],
+          "docs": [],
+          "note": "External integrations are simulated; inbound events are validated.",
+          "owner": "BACKEND",
+          "next": null,
+          "accepted": null
+        }
+      ]
+    },
+    {
+      "id": "nist-ai-rmf",
+      "name": "NIST AI Risk Management Framework 1.0 (functions)",
+      "kind": "reference",
+      "items": [
+        {
+          "ref": "GOVERN",
+          "title": "Culture, accountability and policy for AI risk",
+          "applicability": "partly",
+          "controls": [
+            "CTL-05",
+            "CTL-21"
+          ],
+          "docs": [
+            "docs/security/ROLES_AND_ACTION_AUTHORITY.md"
+          ],
+          "note": "Human authority over consequential recommendations; named control owners.",
+          "owner": "LEAD",
+          "next": null,
+          "accepted": "No organisation."
+        },
+        {
+          "ref": "MAP",
+          "title": "Context, intended use and impact of each AI system",
+          "applicability": "applies",
+          "controls": [
+            "CTL-26",
+            "CTL-45"
+          ],
+          "docs": [
+            "docs/requirements/ACCEPTANCE_TARGETS.md"
+          ],
+          "note": "Model cards state purpose and limitations; data provenance and splits are recorded.",
+          "owner": "EDGE",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "MEASURE",
+          "title": "Testing and measurement of AI risk and trustworthiness",
+          "applicability": "partly",
+          "controls": [
+            "CTL-25",
+            "CTL-26",
+            "CTL-44",
+            "CTL-45"
+          ],
+          "docs": [
+            "docs/requirements/ACCEPTANCE_TARGETS.md"
+          ],
+          "note": "Baselines beside every model, held-out splits with a test ledger, wide intervals reported; drift and fairness monitoring are not built.",
+          "owner": "QA",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "MANAGE",
+          "title": "Prioritised treatment and response for AI risk",
+          "applicability": "partly",
+          "controls": [
+            "CTL-25",
+            "CTL-38",
+            "CTL-44"
+          ],
+          "docs": [],
+          "note": "Staged activation with rollback; a model is served only if it beats the transparent baselines; drift response is planned.",
+          "owner": "OPS",
+          "next": null,
+          "accepted": null
+        }
+      ]
+    },
+    {
+      "id": "iso-42001",
+      "name": "ISO/IEC 42001:2023 Annex A (control objectives)",
+      "kind": "reference",
+      "items": [
+        {
+          "ref": "A.2",
+          "title": "Policies related to AI",
+          "applicability": "partly",
+          "controls": [],
+          "docs": [
+            "docs/SECURITY_COMPLIANCE_BASELINE.md"
+          ],
+          "note": "AI and data controls are in the baseline; no management-approved AI policy.",
+          "owner": "GRC",
+          "next": null,
+          "accepted": "No organisation."
+        },
+        {
+          "ref": "A.3",
+          "title": "Internal organization",
+          "applicability": "partly",
+          "controls": [
+            "CTL-05"
+          ],
+          "docs": [
+            "docs/security/ROLES_AND_ACTION_AUTHORITY.md"
+          ],
+          "note": "Roles and authority are defined; no AI governance body.",
+          "owner": "LEAD",
+          "next": null,
+          "accepted": "No organisation."
+        },
+        {
+          "ref": "A.4",
+          "title": "Resources for AI systems",
+          "applicability": "applies",
+          "controls": [],
+          "docs": [
+            "docs/environment/RESOURCE_BUDGET.md"
+          ],
+          "note": "Data, compute and tooling resources are recorded in the resource budget and manifests.",
+          "owner": "ARCH",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "A.5",
+          "title": "Assessing impacts of AI systems",
+          "applicability": "partly",
+          "controls": [
+            "CTL-45"
+          ],
+          "docs": [
+            "docs/security/DATA_INVENTORY_AND_DPIA.md",
+            "docs/requirements/ACCEPTANCE_TARGETS.md"
+          ],
+          "note": "Safety, privacy and per-class performance are assessed; the fairness review is P12.04.",
+          "owner": "GRC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "A.6",
+          "title": "AI system life cycle",
+          "applicability": "applies",
+          "controls": [
+            "CTL-25",
+            "CTL-26"
+          ],
+          "docs": [],
+          "note": "Reproducible training, model cards, verified activation and rollback.",
+          "owner": "EDGE",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "A.7",
+          "title": "Data for AI systems",
+          "applicability": "applies",
+          "controls": [
+            "CTL-26",
+            "CTL-40"
+          ],
+          "docs": [
+            "docs/security/DATA_INVENTORY_AND_DPIA.md"
+          ],
+          "note": "Provenance, licences, split integrity, leakage checks, synthetic-versus-measured labelling.",
+          "owner": "DATA",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "A.8",
+          "title": "Information for interested parties of AI systems",
+          "applicability": "partly",
+          "controls": [],
+          "docs": [
+            "docs/requirements/ACCEPTANCE_TARGETS.md"
+          ],
+          "note": "Model cards and acceptance targets state measured limits; user-facing disclosure is P13.03.",
+          "owner": "ARCH",
+          "next": "P13.03",
+          "accepted": null
+        },
+        {
+          "ref": "A.9",
+          "title": "Use of AI systems",
+          "applicability": "applies",
+          "controls": [
+            "CTL-05",
+            "CTL-21",
+            "CTL-38"
+          ],
+          "docs": [],
+          "note": "Recommendations need approval; remediation is bounded and verified.",
+          "owner": "CONTROL",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "A.10",
+          "title": "Third-party and customer relationships",
+          "applicability": "not_applicable",
+          "controls": [],
+          "docs": [],
+          "note": "No third-party AI service or customer is involved.",
+          "owner": "GRC",
+          "next": null,
+          "accepted": null
+        }
+      ]
+    },
+    {
+      "id": "gdpr",
+      "name": "GDPR (reference points only; not legal advice)",
+      "kind": "reference",
+      "items": [
+        {
+          "ref": "Art. 5(1)(a)",
+          "title": "Lawfulness, fairness and transparency",
+          "applicability": "partly",
+          "controls": [],
+          "docs": [
+            "docs/security/DATA_INVENTORY_AND_DPIA.md"
+          ],
+          "note": "Lawful-purpose assumptions are written; no legal basis is determined.",
+          "owner": "GRC",
+          "next": null,
+          "accepted": "A legal question for qualified counsel."
+        },
+        {
+          "ref": "Art. 5(1)(b)",
+          "title": "Purpose limitation",
+          "applicability": "applies",
+          "controls": [
+            "CTL-19"
+          ],
+          "docs": [
+            "docs/security/DATA_INVENTORY_AND_DPIA.md"
+          ],
+          "note": "Each data category has a stated purpose checked against real fields.",
+          "owner": "GRC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "Art. 5(1)(c)",
+          "title": "Data minimisation",
+          "applicability": "applies",
+          "controls": [
+            "CTL-19",
+            "CTL-16"
+          ],
+          "docs": [
+            "docs/security/DATA_INVENTORY_AND_DPIA.md"
+          ],
+          "note": "Aggregation and privacy zones at the edge; redaction downstream.",
+          "owner": "GRC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "Art. 5(1)(e)",
+          "title": "Storage limitation",
+          "applicability": "applies",
+          "controls": [
+            "CTL-18"
+          ],
+          "docs": [
+            "docs/security/DATA_INVENTORY_AND_DPIA.md"
+          ],
+          "note": "Retention windows enforced per class.",
+          "owner": "GRC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "Art. 5(1)(f)",
+          "title": "Integrity and confidentiality",
+          "applicability": "applies",
+          "controls": [
+            "CTL-11",
+            "CTL-15",
+            "CTL-16",
+            "CTL-17"
+          ],
+          "docs": [],
+          "note": "Transport protection, tamper-evident audit, redaction, role-limited evidence.",
+          "owner": "SEC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "Art. 25",
+          "title": "Data protection by design and by default",
+          "applicability": "applies",
+          "controls": [
+            "CTL-19",
+            "CTL-18"
+          ],
+          "docs": [
+            "docs/security/DATA_INVENTORY_AND_DPIA.md"
+          ],
+          "note": "Privacy decisions are made at the edge and recorded in the inventory.",
+          "owner": "GRC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "Art. 30",
+          "title": "Records of processing activities",
+          "applicability": "applies",
+          "controls": [],
+          "docs": [
+            "docs/security/DATA_INVENTORY_AND_DPIA.md"
+          ],
+          "note": "The data inventory records categories, purposes, access, retention and rights.",
+          "owner": "GRC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "Art. 32",
+          "title": "Security of processing",
+          "applicability": "partly",
+          "controls": [
+            "CTL-11",
+            "CTL-14",
+            "CTL-15",
+            "CTL-35"
+          ],
+          "docs": [],
+          "note": "Technical measures as mapped above; a tested backup exists (P11.05) but no schedule.",
+          "owner": "SEC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "Art. 33",
+          "title": "Notification of a personal data breach",
+          "applicability": "partly",
+          "controls": [],
+          "docs": [
+            "docs/runbooks/INCIDENT_RESPONSE_AND_BREACH_RUNBOOK.md",
+            "docs/security/DATA_INVENTORY_AND_DPIA.md"
+          ],
+          "note": "A breach procedure is written (P13.04), naming containment, scoping, exposure assessment and notification steps; the notification channel and timing commitment are not exercised, and no jurisdiction's legal deadline is claimed - a real deployment needs qualified counsel for that step.",
+          "owner": "GRC",
+          "next": null,
+          "accepted": null
+        },
+        {
+          "ref": "Art. 35",
+          "title": "Data protection impact assessment",
+          "applicability": "partly",
+          "controls": [],
+          "docs": [
+            "docs/security/DATA_INVENTORY_AND_DPIA.md"
+          ],
+          "note": "A DPIA-style review of video, trajectory and location processing is written; no supervisory-authority consultation.",
+          "owner": "GRC",
+          "next": null,
+          "accepted": "Not a legal DPIA."
+        },
+        {
+          "ref": "Arts. 15-22",
+          "title": "Data subject rights",
+          "applicability": "partly",
+          "controls": [],
+          "docs": [
+            "docs/security/DATA_INVENTORY_AND_DPIA.md"
+          ],
+          "note": "A rights process is described per category; no workflow is exercised.",
+          "owner": "GRC",
+          "next": null,
+          "accepted": "No data subjects exist in a synthetic prototype."
+        }
+      ]
+    }
+  ]
+}

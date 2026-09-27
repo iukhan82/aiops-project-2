@@ -22,7 +22,7 @@
     "reingesting_avl_telemetry_is_idempotent": true,
     "synthetic_calls_are_removed_after_the_test": true
   },
-  "generated_at": "2026-09-20T09:59:19Z",
+  "generated_at": "2026-09-26T08:28:53Z",
   "metrics": {
     "dataset": {
       "assignments": 9,
@@ -37,7 +37,7 @@
     "B2_an_assignment_can_become_unavailable_mid_response": "",
     "B2_the_call_can_still_be_reassigned_after_a_unit_goes_unavailable": "",
     "B3_a_handover_record_persists_with_its_required_fields": "",
-    "all_three_call_types_present_and_every_call_reached_a_terminal_status": "{'fire': 3, 'ambulance': 3, 'police': 3}, {'cleared': 9}",
+    "all_three_call_types_present_and_every_call_reached_a_terminal_status": "{'police': 3, 'fire': 3, 'ambulance': 3}, {'cleared': 9}",
     "api_call_detail_includes_assignments_and_transitions": "",
     "api_call_type_filter_works": "",
     "api_lists_real_calls_with_correct_schema": "",

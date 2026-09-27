@@ -1,0 +1,17 @@
+# P11.03: the target cluster on the shared Ubuntu host, isolated from its K3s and from the other projects' kind clusters.
+#
+#   kind create cluster --config kind-aiops-p11.yaml
+#
+# Kubernetes v1.36.4 is the version the host's own K3s runs and the version the manifests are validated against (P11.02). The default CNI is
+# switched off because kindnet does not enforce NetworkPolicy; Calico (deploy.py) does, which the default-deny policies of P11.02 need to mean
+# anything. Pod and service ranges are chosen clear of the host's LAN (192.168.11.0/24) and of Calico's 192.168.0.0/16 default, which would cover it.
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+name: aiops-p11
+networking:
+  disableDefaultCNI: true
+  podSubnet: "10.200.0.0/16"
+  serviceSubnet: "10.201.0.0/16"
+nodes:
+  - role: control-plane
+    image: kindest/node:v1.36.4@sha256:099e049362a1526b2db71494e1947aae99bd16290d7c895f2b7ea312e3cbfaed

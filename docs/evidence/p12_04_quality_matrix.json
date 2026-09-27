@@ -1,0 +1,234 @@
+{
+  "all_passed": true,
+  "checks": {
+    "every_partial_or_gap_quality_row_says_what_is_not_shown_and_who_owns_it": true,
+    "every_quality_row_cites_evidence_that_exists_and_every_cited_check_passes": true,
+    "no_backend_source_file_implements_automated_enforcement": true,
+    "no_dependency_lock_carries_a_face_or_plate_recognition_library": true,
+    "no_source_file_imports_a_face_or_plate_recognition_library": true,
+    "the_gate_result_is_stated_in_numbers": true,
+    "the_python_unit_tests_the_matrix_cites_passed_in_the_run_of_this_phase": true
+  },
+  "generated_at": "2026-09-26T19:08:41Z",
+  "metrics": {
+    "by_group": {
+      "Accessibility": {
+        "FAILED": 0,
+        "covered": 6,
+        "gap": 0,
+        "partial": 1
+      },
+      "Fairness by place, kind of road user and mode": {
+        "FAILED": 0,
+        "covered": 4,
+        "gap": 2,
+        "partial": 1
+      },
+      "Privacy": {
+        "FAILED": 0,
+        "covered": 6,
+        "gap": 0,
+        "partial": 0
+      },
+      "Safety": {
+        "FAILED": 0,
+        "covered": 7,
+        "gap": 1,
+        "partial": 0
+      }
+    },
+    "counts": {
+      "FAILED": 0,
+      "covered": 23,
+      "gap": 3,
+      "partial": 2
+    },
+    "gate": "NOT PASSED: 23 covered, 2 partial, 3 gap, 0 failed",
+    "rows": {
+      "Q-A1": {
+        "not_shown": "",
+        "owner": "",
+        "title": "WCAG 2.2 AA (axe), keyboard reach with a visible focus indicator and no keyboard trap on every screen each of the seven roles may open",
+        "verdict": "covered"
+      },
+      "Q-A2": {
+        "not_shown": "",
+        "owner": "",
+        "title": "Reduced motion is honoured on every screen",
+        "verdict": "covered"
+      },
+      "Q-A3": {
+        "not_shown": "",
+        "owner": "",
+        "title": "Colour is never the only signal: every state has a label and a shape, and every colour pair meets its contrast minimum",
+        "verdict": "covered"
+      },
+      "Q-A4": {
+        "not_shown": "",
+        "owner": "",
+        "title": "Laptop, projector, phone, and 200% and 400% zoom: no sideways page scroll and no clipped or unreachable critical control",
+        "verdict": "covered"
+      },
+      "Q-A5": {
+        "not_shown": "",
+        "owner": "",
+        "title": "Every displayed value carries its truth label and freshness",
+        "verdict": "covered"
+      },
+      "Q-A6": {
+        "not_shown": "",
+        "owner": "",
+        "title": "Critical actions need an explicit confirmation that defaults to cancel, and every state is shown distinctly",
+        "verdict": "covered"
+      },
+      "Q-A7": {
+        "not_shown": "axe, keyboard and reflow checks are automated; no screen-reader session and no user who relies on assistive technology took part, so what an automated check cannot see (reading order sense, announcements that mislead) is untested.",
+        "owner": "UX/PRESENT - P12.05, with a real person in P14",
+        "title": "Use with assistive technology by people who rely on it",
+        "verdict": "partial"
+      },
+      "Q-F1": {
+        "not_shown": "recall corridor-a 0.267 against corridor-b 0.25; the 95% intervals overlap. Corridors compared: corridor-a, corridor-b of corridor-a, corridor-b, corridor-c; the held-out runs hold few truth episodes, so the intervals are wide and a difference (or its absence) is not established.",
+        "owner": "DATA - P12.05 (finding F-04)",
+        "title": "By place: the congestion detector finds episodes as well on one corridor and direction as on another (frozen parameters, held-out runs, non-selecting)",
+        "verdict": "partial"
+      },
+      "Q-F2": {
+        "not_shown": "",
+        "owner": "",
+        "title": "By place: how many sensors watch each corridor is counted from the catalogue",
+        "verdict": "covered"
+      },
+      "Q-F3": {
+        "not_shown": "",
+        "owner": "",
+        "title": "By kind of emergency service: the ETA error of ambulance, fire and police is reported separately and each is inside its limit",
+        "verdict": "covered"
+      },
+      "Q-F4": {
+        "not_shown": "",
+        "owner": "",
+        "title": "By road user: what pre-emption costs the traffic on the streets it crosses is measured, paired, with its worst case",
+        "verdict": "covered"
+      },
+      "Q-F5": {
+        "not_shown": "",
+        "owner": "",
+        "title": "By mode: cars, pedestrians, transit and emergency vehicles have measured outcomes",
+        "verdict": "covered"
+      },
+      "Q-F6": {
+        "not_shown": "the simulator has no real cyclist conflict, so the cyclist detector is unvalidated and the API serves no cyclist candidate; nothing about outcomes for cyclists can be said.",
+        "owner": "SIM/DATA - P12.05 (finding F-07)",
+        "title": "By mode: cyclists",
+        "verdict": "gap"
+      },
+      "Q-F7": {
+        "not_shown": "the district is synthetic and holds no population, demographic or vulnerability data, so no claim about people is possible and none is made; a real deployment would need that data, its consent and a design for measuring it.",
+        "owner": "GRC - P12.05 (accepted limit of the simulation)",
+        "title": "By people: whether outcomes differ across demographic or vulnerable groups",
+        "verdict": "gap"
+      },
+      "Q-P1": {
+        "not_shown": "",
+        "owner": "",
+        "title": "Vision: privacy zones, ephemeral identities, a cohort floor, and no track point or object id ever leaves the edge",
+        "verdict": "covered"
+      },
+      "Q-P2": {
+        "not_shown": "",
+        "owner": "",
+        "title": "Data: every category of data is inventoried with its privacy class and retention window, and the inventory is checked against the live schema",
+        "verdict": "covered"
+      },
+      "Q-P3": {
+        "not_shown": "",
+        "owner": "",
+        "title": "Audit and export: secrets and tokens are redacted before a row is written, exports drop locations and say who exported",
+        "verdict": "covered"
+      },
+      "Q-P4": {
+        "not_shown": "",
+        "owner": "",
+        "title": "Emergency records carry no caller, crew or patient identifier",
+        "verdict": "covered"
+      },
+      "Q-P5": {
+        "not_shown": "",
+        "owner": "",
+        "title": "Threat model: every trust boundary has threats scored separately for security and for safety, every implemented control has evidence that passes today",
+        "verdict": "covered"
+      },
+      "Q-P6": {
+        "not_shown": "",
+        "owner": "",
+        "title": "Framework mapping: every applicable item names what closes it, and nothing claims compliance",
+        "verdict": "covered"
+      },
+      "Q-S1": {
+        "not_shown": "",
+        "owner": "",
+        "title": "Signals: no conflicting movements, no short yellow, no short pedestrian green or clearance - in every step of every platform run",
+        "verdict": "covered"
+      },
+      "Q-S2": {
+        "not_shown": "",
+        "owner": "",
+        "title": "Actions: a recommendation cannot invoke an adapter; a second person approves; only the executor executes; every step is audited",
+        "verdict": "covered"
+      },
+      "Q-S3": {
+        "not_shown": "",
+        "owner": "",
+        "title": "Actions: an action that lacks evidence, a valid decision or fresh state is denied and never executed - every adapter, every way",
+        "verdict": "covered"
+      },
+      "Q-S4": {
+        "not_shown": "",
+        "owner": "",
+        "title": "State: stale network and signal state fails safe in every consumer",
+        "verdict": "covered"
+      },
+      "Q-S5": {
+        "not_shown": "",
+        "owner": "",
+        "title": "Emergency response: a missing route is reported not guessed, a policy outage and stale evidence leave the unit driving unassisted, staged response holds units back",
+        "verdict": "covered"
+      },
+      "Q-S6": {
+        "not_shown": "",
+        "owner": "",
+        "title": "Outcomes: every executed action is verified independently, an unknown outcome is escalated, an unsafe one is rolled back with the undo said plainly",
+        "verdict": "covered"
+      },
+      "Q-S7": {
+        "not_shown": "no governed action puts a failed controller on a safe plan and no rule detects the failure (scenario 5): the platform preserves safety by refusing to act, not by taking over.",
+        "owner": "CONTROL/OPS - P12.05 (defect D-01)",
+        "title": "A safe fallback plan when a signal controller fails",
+        "verdict": "gap"
+      },
+      "Q-S8": {
+        "not_shown": "",
+        "owner": "",
+        "title": "Edge: uncertain input is an explicit abstention with a reason, and the runtime never goes silent",
+        "verdict": "covered"
+      }
+    },
+    "static_scan": {
+      "enforcement_features": [],
+      "face_or_plate_recognition_imports": [],
+      "recognition_libraries_in_the_locks": []
+    }
+  },
+  "notes": {
+    "every_partial_or_gap_quality_row_says_what_is_not_shown_and_who_owns_it": "unowned []",
+    "every_quality_row_cites_evidence_that_exists_and_every_cited_check_passes": "28 rows; failed []",
+    "gate": "NOT PASSED: 23 covered, 2 partial, 3 gap, 0 failed",
+    "no_backend_source_file_implements_automated_enforcement": "[]",
+    "no_dependency_lock_carries_a_face_or_plate_recognition_library": "[]",
+    "no_source_file_imports_a_face_or_plate_recognition_library": "[]",
+    "the_gate_result_is_stated_in_numbers": "NOT PASSED: 23 covered, 2 partial, 3 gap, 0 failed",
+    "the_python_unit_tests_the_matrix_cites_passed_in_the_run_of_this_phase": "2026-09-26T19:06:40Z"
+  },
+  "task": "P12.04"
+}

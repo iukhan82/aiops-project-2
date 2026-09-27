@@ -1,0 +1,655 @@
+{
+  "dataset": {
+    "cadence_s": 60,
+    "calibration_steps": 60,
+    "devices": 42,
+    "faults_per_class_per_seed": 4,
+    "seeds": {
+      "test": [
+        301,
+        302,
+        303
+      ],
+      "train": [
+        101,
+        102,
+        103,
+        104,
+        105,
+        106
+      ],
+      "validation": [
+        201,
+        202,
+        203
+      ]
+    },
+    "sha256": "264d1b5ff08e83b4115b81ab6207c0ae4c24d7a2e4a225eb919f598fb1b83232",
+    "steps": 480
+  },
+  "fa_02": {
+    "met": true,
+    "target": "strict false-incident share <= 5% on held-out fault scenarios",
+    "test_strict_false_share": 0.0,
+    "test_strict_false_share_wilson95": [
+      0.0,
+      0.0631
+    ]
+  },
+  "feature_version": "dq-rules/1",
+  "incident_rule": {
+    "explained_by": {
+      "drift": [
+        "stuck",
+        "missing"
+      ]
+    },
+    "grace_s": 300.0,
+    "merge_gap_s": 900.0
+  },
+  "kind": "transparent rules; nothing is learned",
+  "limitations": [
+    "The streams are synthetic: only the device set and the levels of the continuous channels come from the P03.03 simulation. Count rates, the daily shape, noise and the shared component are assumptions, so every number here is a measurement on injected faults over seeded streams, not on a real device fleet.",
+    "Faults are injected one at a time per device, never overlapping, from a fixed catalogue of five classes with fixed magnitude ranges. A fault milder than the mildest injected one, or a new kind, may pass unseen.",
+    "Drift is judged against same-type peers after an hour of fault-free commissioning per device. With only three weather stations and three road-condition sensors each device has two peers, and a fault that moves two of three devices together cannot be told apart from the world changing.",
+    "A sensor frozen at exactly zero looks like an empty road and is not flagged (an all-zero tuple is never 'stuck').",
+    "The stuck rule needs every channel to repeat exactly. The generated readings carry four decimals and continuous noise, so a natural exact repeat never happens and a short run length is enough (the selection chose the shortest offered); a real sensor quantised to 0.1 with slow change repeats naturally and would need a longer run and a re-tune.",
+    "Drift is the weak class: recall is well below the others and the median delay is tens of minutes (the fault is a slow ramp), so the measured false-incident share rests mostly on the four exact-signature classes.",
+    "Incidents are in-memory records with an open/resolved status and no database table, API or console view yet; hypotheses are not offered (verified_cause is always null).",
+    "Test set: 3 seeds x 4 faults per class = 12 faults per class; per-class recall intervals are wide and are reported, not hidden."
+  ],
+  "metrics": {
+    "selection": {
+      "clean_device_hours": 2537.2,
+      "faults": 180,
+      "fragment": 0,
+      "incidents": 169,
+      "overlap_false_share": 0.023668639053254437,
+      "per_class": {
+        "drift": {
+          "detected": 21,
+          "faults": 36,
+          "median_delay_s": 2550.25,
+          "p95_delay_s": 5970.25,
+          "recall": 0.5833333333333334
+        },
+        "duplicate": {
+          "detected": 36,
+          "faults": 36,
+          "median_delay_s": 1.25,
+          "p95_delay_s": 1.25,
+          "recall": 1.0
+        },
+        "missing": {
+          "detected": 36,
+          "faults": 36,
+          "median_delay_s": 150.25,
+          "p95_delay_s": 150.25,
+          "recall": 1.0
+        },
+        "out_of_order": {
+          "detected": 36,
+          "faults": 36,
+          "median_delay_s": 90.25,
+          "p95_delay_s": 90.25,
+          "recall": 1.0
+        },
+        "stuck": {
+          "detected": 36,
+          "faults": 36,
+          "median_delay_s": 180.25,
+          "p95_delay_s": 180.25,
+          "recall": 1.0
+        }
+      },
+      "recall": 0.9166666666666666,
+      "recall_wilson95": [
+        0.8671,
+        0.9489
+      ],
+      "spurious": 4,
+      "spurious_per_clean_device_hour": 0.0015765410688948448,
+      "strict_false_share": 0.023668639053254437,
+      "strict_false_share_wilson95": [
+        0.0092,
+        0.0593
+      ],
+      "true": 165,
+      "wrong_class": 0
+    },
+    "test": {
+      "clean_device_hours": 845.3,
+      "faults": 60,
+      "fragment": 0,
+      "incidents": 57,
+      "overlap_false_share": 0.0,
+      "per_class": {
+        "drift": {
+          "detected": 9,
+          "faults": 12,
+          "median_delay_s": 3390.25,
+          "p95_delay_s": 5778.249999999999,
+          "recall": 0.75
+        },
+        "duplicate": {
+          "detected": 12,
+          "faults": 12,
+          "median_delay_s": 1.25,
+          "p95_delay_s": 1.25,
+          "recall": 1.0
+        },
+        "missing": {
+          "detected": 12,
+          "faults": 12,
+          "median_delay_s": 150.25,
+          "p95_delay_s": 190.74999999999994,
+          "recall": 1.0
+        },
+        "out_of_order": {
+          "detected": 12,
+          "faults": 12,
+          "median_delay_s": 90.25,
+          "p95_delay_s": 90.25,
+          "recall": 1.0
+        },
+        "stuck": {
+          "detected": 12,
+          "faults": 12,
+          "median_delay_s": 180.25,
+          "p95_delay_s": 180.25,
+          "recall": 1.0
+        }
+      },
+      "recall": 0.95,
+      "recall_wilson95": [
+        0.863,
+        0.9829
+      ],
+      "spurious": 0,
+      "spurious_per_clean_device_hour": 0.0,
+      "strict_false_share": 0.0,
+      "strict_false_share_wilson95": [
+        0.0,
+        0.0631
+      ],
+      "true": 57,
+      "wrong_class": 0
+    },
+    "test_drift_recall_by_channel": {
+      "continuous": [
+        9,
+        10
+      ],
+      "counts": [
+        0,
+        2
+      ]
+    },
+    "test_drift_recall_by_severity": {
+      "0.25_to_0.35": [
+        2,
+        2
+      ],
+      "ge_0.35": [
+        3,
+        4
+      ],
+      "relative_offset_lt_0.25": [
+        4,
+        6
+      ]
+    },
+    "validation": {
+      "clean_device_hours": 844.6,
+      "faults": 60,
+      "fragment": 0,
+      "incidents": 59,
+      "overlap_false_share": 0.03389830508474576,
+      "per_class": {
+        "drift": {
+          "detected": 9,
+          "faults": 12,
+          "median_delay_s": 2850.25,
+          "p95_delay_s": 6006.25,
+          "recall": 0.75
+        },
+        "duplicate": {
+          "detected": 12,
+          "faults": 12,
+          "median_delay_s": 1.25,
+          "p95_delay_s": 1.25,
+          "recall": 1.0
+        },
+        "missing": {
+          "detected": 12,
+          "faults": 12,
+          "median_delay_s": 150.25,
+          "p95_delay_s": 150.25,
+          "recall": 1.0
+        },
+        "out_of_order": {
+          "detected": 12,
+          "faults": 12,
+          "median_delay_s": 90.25,
+          "p95_delay_s": 90.25,
+          "recall": 1.0
+        },
+        "stuck": {
+          "detected": 12,
+          "faults": 12,
+          "median_delay_s": 180.25,
+          "p95_delay_s": 180.25,
+          "recall": 1.0
+        }
+      },
+      "recall": 0.95,
+      "recall_wilson95": [
+        0.863,
+        0.9829
+      ],
+      "spurious": 2,
+      "spurious_per_clean_device_hour": 0.002368078304455934,
+      "strict_false_share": 0.03389830508474576,
+      "strict_false_share_wilson95": [
+        0.0093,
+        0.1154
+      ],
+      "true": 57,
+      "wrong_class": 0
+    }
+  },
+  "model_id": "data-quality-rules",
+  "model_version": "1.0.0",
+  "params": {
+    "cusum_h": 12.0,
+    "cusum_k": 1.5,
+    "gap_grace_s": 120.0,
+    "merge_gap_s": 900.0,
+    "silence_after_s": 180.0,
+    "stuck_run": 4
+  },
+  "provenance": {
+    "code_sha256": {
+      "detector.py": "5757a9f9ca763a91c0a21c04dae0c6bb2fed50f0b2c178719135bc1ca4dbd289",
+      "scoring.py": "4d2970e527c01caeb3c4bf70435d5daf54d55f110084ff8a24d13d23df75a983",
+      "streams.py": "22b1332401ee4470984b2840bb35045b48406c365b7aa2056c300c57a0ac4d4a",
+      "tune_evaluate.py": "88c452b8cf833ee642fb9798816a4a204ba2e8c6be359672e74edfee490bf7fe"
+    },
+    "numpy": "2.5.3",
+    "python": "3.12.3",
+    "trained_at": "2026-09-25T11:10:21+00:00"
+  },
+  "purpose": "Raise data-quality incidents from observation content: missing, stuck, drift, duplicate, out-of-order (acceptance target FA-02).",
+  "selection": {
+    "grid": {
+      "drift": [
+        {
+          "cusum_h": 6.0,
+          "cusum_k": 1.0,
+          "drift_detected": 29,
+          "drift_faults": 36,
+          "false_incidents": 129,
+          "overall_strict_false_share": 0.4272
+        },
+        {
+          "cusum_h": 8.0,
+          "cusum_k": 1.0,
+          "drift_detected": 28,
+          "drift_faults": 36,
+          "false_incidents": 51,
+          "overall_strict_false_share": 0.2287
+        },
+        {
+          "cusum_h": 12.0,
+          "cusum_k": 1.0,
+          "drift_detected": 27,
+          "drift_faults": 36,
+          "false_incidents": 21,
+          "overall_strict_false_share": 0.1094
+        },
+        {
+          "cusum_h": 16.0,
+          "cusum_k": 1.0,
+          "drift_detected": 27,
+          "drift_faults": 36,
+          "false_incidents": 20,
+          "overall_strict_false_share": 0.1047
+        },
+        {
+          "cusum_h": 6.0,
+          "cusum_k": 1.5,
+          "drift_detected": 25,
+          "drift_faults": 36,
+          "false_incidents": 30,
+          "overall_strict_false_share": 0.1508
+        },
+        {
+          "cusum_h": 8.0,
+          "cusum_k": 1.5,
+          "drift_detected": 22,
+          "drift_faults": 36,
+          "false_incidents": 9,
+          "overall_strict_false_share": 0.0514
+        },
+        {
+          "cusum_h": 12.0,
+          "cusum_k": 1.5,
+          "drift_detected": 21,
+          "drift_faults": 36,
+          "false_incidents": 4,
+          "overall_strict_false_share": 0.0237
+        },
+        {
+          "cusum_h": 16.0,
+          "cusum_k": 1.5,
+          "drift_detected": 19,
+          "drift_faults": 36,
+          "false_incidents": 5,
+          "overall_strict_false_share": 0.0298
+        },
+        {
+          "cusum_h": 6.0,
+          "cusum_k": 2.0,
+          "drift_detected": 19,
+          "drift_faults": 36,
+          "false_incidents": 15,
+          "overall_strict_false_share": 0.0843
+        },
+        {
+          "cusum_h": 8.0,
+          "cusum_k": 2.0,
+          "drift_detected": 19,
+          "drift_faults": 36,
+          "false_incidents": 3,
+          "overall_strict_false_share": 0.0181
+        },
+        {
+          "cusum_h": 12.0,
+          "cusum_k": 2.0,
+          "drift_detected": 18,
+          "drift_faults": 36,
+          "false_incidents": 0,
+          "overall_strict_false_share": 0.0
+        },
+        {
+          "cusum_h": 16.0,
+          "cusum_k": 2.0,
+          "drift_detected": 16,
+          "drift_faults": 36,
+          "false_incidents": 1,
+          "overall_strict_false_share": 0.0062
+        },
+        {
+          "cusum_h": 6.0,
+          "cusum_k": 3.0,
+          "drift_detected": 15,
+          "drift_faults": 36,
+          "false_incidents": 4,
+          "overall_strict_false_share": 0.0245
+        },
+        {
+          "cusum_h": 8.0,
+          "cusum_k": 3.0,
+          "drift_detected": 14,
+          "drift_faults": 36,
+          "false_incidents": 1,
+          "overall_strict_false_share": 0.0063
+        },
+        {
+          "cusum_h": 12.0,
+          "cusum_k": 3.0,
+          "drift_detected": 12,
+          "drift_faults": 36,
+          "false_incidents": 0,
+          "overall_strict_false_share": 0.0
+        },
+        {
+          "cusum_h": 16.0,
+          "cusum_k": 3.0,
+          "drift_detected": 12,
+          "drift_faults": 36,
+          "false_incidents": 0,
+          "overall_strict_false_share": 0.0
+        }
+      ],
+      "missing": [
+        {
+          "detected": {
+            "missing": 36,
+            "out_of_order": 36
+          },
+          "false": {
+            "missing": 0,
+            "out_of_order": 0
+          },
+          "gap_grace_s": 120.0,
+          "median_delay_s": {
+            "missing": 150.25,
+            "out_of_order": 90.25
+          },
+          "silence_after_s": 180.0
+        },
+        {
+          "detected": {
+            "missing": 36,
+            "out_of_order": 36
+          },
+          "false": {
+            "missing": 0,
+            "out_of_order": 0
+          },
+          "gap_grace_s": 150.0,
+          "median_delay_s": {
+            "missing": 150.25,
+            "out_of_order": 90.25
+          },
+          "silence_after_s": 180.0
+        },
+        {
+          "detected": {
+            "missing": 36,
+            "out_of_order": 36
+          },
+          "false": {
+            "missing": 0,
+            "out_of_order": 0
+          },
+          "gap_grace_s": 240.0,
+          "median_delay_s": {
+            "missing": 150.25,
+            "out_of_order": 90.25
+          },
+          "silence_after_s": 180.0
+        },
+        {
+          "detected": {
+            "missing": 36,
+            "out_of_order": 36
+          },
+          "false": {
+            "missing": 0,
+            "out_of_order": 0
+          },
+          "gap_grace_s": 120.0,
+          "median_delay_s": {
+            "missing": 210.25,
+            "out_of_order": 90.25
+          },
+          "silence_after_s": 240.0
+        },
+        {
+          "detected": {
+            "missing": 36,
+            "out_of_order": 36
+          },
+          "false": {
+            "missing": 0,
+            "out_of_order": 0
+          },
+          "gap_grace_s": 150.0,
+          "median_delay_s": {
+            "missing": 210.25,
+            "out_of_order": 90.25
+          },
+          "silence_after_s": 240.0
+        },
+        {
+          "detected": {
+            "missing": 36,
+            "out_of_order": 36
+          },
+          "false": {
+            "missing": 0,
+            "out_of_order": 0
+          },
+          "gap_grace_s": 240.0,
+          "median_delay_s": {
+            "missing": 210.25,
+            "out_of_order": 90.25
+          },
+          "silence_after_s": 240.0
+        },
+        {
+          "detected": {
+            "missing": 36,
+            "out_of_order": 36
+          },
+          "false": {
+            "missing": 0,
+            "out_of_order": 0
+          },
+          "gap_grace_s": 120.0,
+          "median_delay_s": {
+            "missing": 270.25,
+            "out_of_order": 90.25
+          },
+          "silence_after_s": 300.0
+        },
+        {
+          "detected": {
+            "missing": 36,
+            "out_of_order": 36
+          },
+          "false": {
+            "missing": 0,
+            "out_of_order": 0
+          },
+          "gap_grace_s": 150.0,
+          "median_delay_s": {
+            "missing": 270.25,
+            "out_of_order": 90.25
+          },
+          "silence_after_s": 300.0
+        },
+        {
+          "detected": {
+            "missing": 36,
+            "out_of_order": 36
+          },
+          "false": {
+            "missing": 0,
+            "out_of_order": 0
+          },
+          "gap_grace_s": 240.0,
+          "median_delay_s": {
+            "missing": 270.25,
+            "out_of_order": 90.25
+          },
+          "silence_after_s": 300.0
+        },
+        {
+          "detected": {
+            "missing": 36,
+            "out_of_order": 36
+          },
+          "false": {
+            "missing": 0,
+            "out_of_order": 0
+          },
+          "gap_grace_s": 120.0,
+          "median_delay_s": {
+            "missing": 390.25,
+            "out_of_order": 90.25
+          },
+          "silence_after_s": 420.0
+        },
+        {
+          "detected": {
+            "missing": 36,
+            "out_of_order": 36
+          },
+          "false": {
+            "missing": 0,
+            "out_of_order": 0
+          },
+          "gap_grace_s": 150.0,
+          "median_delay_s": {
+            "missing": 390.25,
+            "out_of_order": 90.25
+          },
+          "silence_after_s": 420.0
+        },
+        {
+          "detected": {
+            "missing": 36,
+            "out_of_order": 36
+          },
+          "false": {
+            "missing": 0,
+            "out_of_order": 0
+          },
+          "gap_grace_s": 240.0,
+          "median_delay_s": {
+            "missing": 390.25,
+            "out_of_order": 90.25
+          },
+          "silence_after_s": 420.0
+        }
+      ],
+      "stuck_run": [
+        {
+          "detected": 36,
+          "false": 0,
+          "faults": 36,
+          "median_delay_s": 180.25,
+          "stuck_run": 4
+        },
+        {
+          "detected": 36,
+          "false": 0,
+          "faults": 36,
+          "median_delay_s": 300.25,
+          "stuck_run": 6
+        },
+        {
+          "detected": 36,
+          "false": 0,
+          "faults": 36,
+          "median_delay_s": 420.25,
+          "stuck_run": 8
+        },
+        {
+          "detected": 32,
+          "false": 0,
+          "faults": 36,
+          "median_delay_s": 660.25,
+          "stuck_run": 12
+        }
+      ]
+    },
+    "margin": 0.03,
+    "rule": "per class: no false ticket, then highest recall, then shortest median delay; drift: highest recall with the overall strict false-incident share on the selection seeds at or below the margin",
+    "seeds": [
+      101,
+      102,
+      103,
+      104,
+      105,
+      106,
+      201,
+      202,
+      203
+    ]
+  },
+  "truth_rule": "strict: an incident is true only if it is the first of the right class on the faulty device to open in [onset, end + grace]; fragments, wrong-class and spurious incidents are all counted as false"
+}

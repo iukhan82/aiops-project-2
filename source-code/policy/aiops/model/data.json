@@ -376,6 +376,171 @@
       "incident_commander"
     ]
   },
+  "remediation": {
+    "actions": {
+      "failover_service": {
+        "adapter": "plan_only",
+        "cooldown_s": 900,
+        "kind": "failover",
+        "max_attempts_per_incident": 1,
+        "max_per_window": 1,
+        "params": {},
+        "targets": [
+          {
+            "autonomy": "plan_only",
+            "id": "postgres",
+            "pattern": false
+          },
+          {
+            "autonomy": "plan_only",
+            "id": "kafka",
+            "pattern": false
+          },
+          {
+            "autonomy": "plan_only",
+            "id": "mosquitto",
+            "pattern": false
+          }
+        ],
+        "window_s": 3600
+      },
+      "quarantine_device": {
+        "adapter": "plan_only",
+        "cooldown_s": 600,
+        "kind": "quarantine",
+        "max_attempts_per_incident": 1,
+        "max_per_window": 1,
+        "params": {},
+        "targets": [
+          {
+            "autonomy": "plan_only",
+            "id": "device:[A-Za-z0-9_.\\-]{1,64}",
+            "pattern": true
+          }
+        ],
+        "window_s": 3600
+      },
+      "restart_container": {
+        "adapter": "docker",
+        "cooldown_s": 120,
+        "kind": "restart",
+        "max_attempts_per_incident": 2,
+        "max_per_window": 3,
+        "params": {},
+        "targets": [
+          {
+            "autonomy": "auto",
+            "id": "aiops-edge-runtime",
+            "pattern": false
+          },
+          {
+            "autonomy": "approval",
+            "id": "aiops-mqtt-broker",
+            "pattern": false
+          },
+          {
+            "autonomy": "approval",
+            "id": "aiops-postgres",
+            "pattern": false
+          },
+          {
+            "autonomy": "approval",
+            "id": "aiops-kafka-broker",
+            "pattern": false
+          },
+          {
+            "autonomy": "approval",
+            "id": "aiops-keycloak",
+            "pattern": false
+          }
+        ],
+        "window_s": 3600
+      },
+      "rollback_model": {
+        "adapter": "model_registry",
+        "cooldown_s": 300,
+        "kind": "rollback",
+        "max_attempts_per_incident": 1,
+        "max_per_window": 2,
+        "params": {},
+        "targets": [
+          {
+            "autonomy": "auto",
+            "id": "edge-runtime:traffic-safety-blockage",
+            "pattern": false
+          }
+        ],
+        "window_s": 3600
+      },
+      "scale_service": {
+        "adapter": "plan_only",
+        "cooldown_s": 600,
+        "kind": "scale",
+        "max_attempts_per_incident": 1,
+        "max_per_window": 1,
+        "params": {
+          "replicas": {
+            "max": 3,
+            "min": 2
+          }
+        },
+        "targets": [
+          {
+            "autonomy": "plan_only",
+            "id": "api",
+            "pattern": false
+          },
+          {
+            "autonomy": "plan_only",
+            "id": "ingestion",
+            "pattern": false
+          },
+          {
+            "autonomy": "plan_only",
+            "id": "edge-runtime",
+            "pattern": false
+          }
+        ],
+        "window_s": 3600
+      },
+      "set_trace_sampling": {
+        "adapter": "trace_sampling",
+        "cooldown_s": 300,
+        "kind": "sampling",
+        "max_attempts_per_incident": 1,
+        "max_per_window": 3,
+        "params": {
+          "ratio": {
+            "max": 0.5,
+            "min": 0.01
+          },
+          "ttl_s": {
+            "max": 900,
+            "min": 60
+          }
+        },
+        "targets": [
+          {
+            "autonomy": "auto",
+            "id": "otel-traces",
+            "pattern": false
+          }
+        ],
+        "window_s": 3600
+      }
+    },
+    "actor": "system:aiops-remediation",
+    "approver_roles": [
+      "operator",
+      "supervisor"
+    ],
+    "held_by_person_statuses": [
+      "acknowledged",
+      "escalated"
+    ],
+    "max_attempts_per_incident": 4,
+    "max_in_flight": 1
+  },
   "request_roles": {
     "SC-0": [
       "operator"
@@ -410,5 +575,5 @@
     "transit_priority": "SC-1",
     "variable_message_sign": "SC-0"
   },
-  "version": "fef068b27e9d1d8e"
+  "version": "1e71a6af37e42419"
 }

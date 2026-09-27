@@ -1,0 +1,167 @@
+{
+  "all_passed": true,
+  "checks": {
+    "both_transparent_baselines_are_reported_beside_the_model_on_validation_and_test": true,
+    "each_split_holds_only_runs_of_its_own_seeds_and_the_recorded_counts_match": true,
+    "every_package_file_matches_its_manifest_hash": true,
+    "live_scoring_latency_measured_again_now_is_far_below_the_five_second_step": true,
+    "live_scoring_of_a_window_equals_batch_scoring_of_the_same_data": true,
+    "no_feature_name_carries_a_fault_severity_scenario_burst_or_label": true,
+    "re_running_the_package_on_the_test_split_reproduces_the_recorded_test_numbers_a_non_selecting_use": true,
+    "re_running_the_package_on_validation_at_its_stored_threshold_gives_the_recorded_numbers": true,
+    "re_running_the_threshold_selection_on_validation_gives_the_stored_threshold": true,
+    "the_alarm_rule_the_false_alarm_budget_and_the_threshold_selection_are_recorded": true,
+    "the_code_that_trained_the_model_is_the_code_on_disk_now": true,
+    "the_fitted_model_loads_for_the_feature_version_it_claims": true,
+    "the_ledger_holds_exactly_one_selecting_test_opening_and_it_names_the_served_detector_chosen_on_validation": true,
+    "the_limitations_name_the_synthetic_source_the_faults_not_covered_the_small_test_set_and_that_no_cause_is_asserted": true,
+    "the_package_has_all_four_files": true,
+    "the_recorded_dataset_hash_is_the_captured_datasets_and_the_manifest_records_the_same_hash": true,
+    "the_served_detector_follows_the_recorded_selection_rule_recomputed_from_the_validation_numbers": true,
+    "the_severity_breakdown_of_the_served_detector_on_test_is_reported": true,
+    "the_train_validation_and_test_seeds_are_disjoint": true
+  },
+  "generated_at": "2026-09-27T05:04:21Z",
+  "metrics": {
+    "by_fault_type_on_test": {
+      "api_errors": {
+        "detected": 4,
+        "median_delay_s": 15.0,
+        "runs": 4
+      },
+      "api_slow": {
+        "detected": 4,
+        "median_delay_s": 7.5,
+        "runs": 4
+      },
+      "gateway_stall": {
+        "detected": 4,
+        "median_delay_s": 15.0,
+        "runs": 4
+      },
+      "ingest_latency_slow": {
+        "detected": 4,
+        "median_delay_s": 12.5,
+        "runs": 4
+      },
+      "ingest_reject_surge": {
+        "detected": 4,
+        "median_delay_s": 12.5,
+        "runs": 4
+      },
+      "state_stale": {
+        "detected": 4,
+        "median_delay_s": 17.5,
+        "runs": 4
+      }
+    },
+    "latency_ms_now": {
+      "n": 135,
+      "p50": 0.06550003308802843,
+      "p95": 0.06954998825676739
+    },
+    "served": {
+      "detector": "robust_zscore",
+      "model_accepted_over_baselines": false,
+      "threshold": 6.023638846897074
+    },
+    "test": {
+      "gradient_boosting": {
+        "event_recall": 1.0,
+        "false_alarms_per_hour": 2.706766917293233,
+        "median_delay_s": 10.0,
+        "recall_wilson95": [
+          0.8620194241710247,
+          1.0
+        ]
+      },
+      "isolation_forest": {
+        "event_recall": 0.875,
+        "false_alarms_per_hour": 1.8045112781954886,
+        "median_delay_s": 25.0,
+        "recall_wilson95": [
+          0.6899571185214243,
+          0.9565574496068442
+        ]
+      },
+      "robust_zscore": {
+        "event_recall": 1.0,
+        "false_alarms_per_hour": 5.413533834586466,
+        "median_delay_s": 15.0,
+        "recall_wilson95": [
+          0.8620194241710247,
+          1.0
+        ]
+      },
+      "slo_thresholds": {
+        "event_recall": 1.0,
+        "false_alarms_per_hour": 3.6090225563909772,
+        "median_delay_s": 15.0,
+        "recall_wilson95": [
+          0.8620194241710247,
+          1.0
+        ]
+      }
+    },
+    "validation": {
+      "gradient_boosting": {
+        "event_recall": 1.0,
+        "false_alarms_per_hour": 2.6600985221674875,
+        "median_delay_s": 10.0,
+        "recall_wilson95": [
+          0.8620194241710247,
+          1.0
+        ]
+      },
+      "isolation_forest": {
+        "event_recall": 0.875,
+        "false_alarms_per_hour": 2.6600985221674875,
+        "median_delay_s": 25.0,
+        "recall_wilson95": [
+          0.6899571185214243,
+          0.9565574496068442
+        ]
+      },
+      "robust_zscore": {
+        "event_recall": 1.0,
+        "false_alarms_per_hour": 2.6600985221674875,
+        "median_delay_s": 15.0,
+        "recall_wilson95": [
+          0.8620194241710247,
+          1.0
+        ]
+      },
+      "slo_thresholds": {
+        "event_recall": 1.0,
+        "false_alarms_per_hour": 3.5467980295566504,
+        "median_delay_s": 15.0,
+        "recall_wilson95": [
+          0.8620194241710247,
+          1.0
+        ]
+      }
+    }
+  },
+  "notes": {
+    "both_transparent_baselines_are_reported_beside_the_model_on_validation_and_test": "",
+    "each_split_holds_only_runs_of_its_own_seeds_and_the_recorded_counts_match": "70/28/28 runs",
+    "every_package_file_matches_its_manifest_hash": "",
+    "live_scoring_latency_measured_again_now_is_far_below_the_five_second_step": "p95 0.07 ms now, 0.08 ms recorded, budget 100.0 ms for a 5 s step",
+    "live_scoring_of_a_window_equals_batch_scoring_of_the_same_data": "max difference 0.00e+00",
+    "no_feature_name_carries_a_fault_severity_scenario_burst_or_label": "",
+    "re_running_the_package_on_the_test_split_reproduces_the_recorded_test_numbers_a_non_selecting_use": "recall 1.000 (24/24), false alarms/h 5.41",
+    "re_running_the_package_on_validation_at_its_stored_threshold_gives_the_recorded_numbers": "recall 1.000, false-alarm episodes 3",
+    "re_running_the_threshold_selection_on_validation_gives_the_stored_threshold": "6.023639 vs 6.023639",
+    "the_alarm_rule_the_false_alarm_budget_and_the_threshold_selection_are_recorded": "",
+    "the_code_that_trained_the_model_is_the_code_on_disk_now": "changed since training: []",
+    "the_fitted_model_loads_for_the_feature_version_it_claims": "served detector robust_zscore",
+    "the_ledger_holds_exactly_one_selecting_test_opening_and_it_names_the_served_detector_chosen_on_validation": "{'model_id': 'ops-anomaly-detector', 'model_version': '1.0.0', 'selected_candidate': 'robust_zscore', 'selected_on': 'validation'}",
+    "the_limitations_name_the_synthetic_source_the_faults_not_covered_the_small_test_set_and_that_no_cause_is_asserted": "6 limitations",
+    "the_package_has_all_four_files": "D:\\AIOPS Project\\AIOPS-Project-2\\source-code\\models\\registry\\ops-anomaly-detector\\1.0.0",
+    "the_recorded_dataset_hash_is_the_captured_datasets_and_the_manifest_records_the_same_hash": "",
+    "the_served_detector_follows_the_recorded_selection_rule_recomputed_from_the_validation_numbers": "candidate gradient_boosting not accepted, best baseline robust_zscore, serving robust_zscore",
+    "the_severity_breakdown_of_the_served_detector_on_test_is_reported": "",
+    "the_train_validation_and_test_seeds_are_disjoint": "{'test': [20260925, 20260926], 'train': [20260918, 20260919, 20260920, 20260921, 20260922], 'validation': [20260923, 20260924]}"
+  },
+  "task": "P10.06"
+}

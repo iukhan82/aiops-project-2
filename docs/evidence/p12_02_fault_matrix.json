@@ -1,0 +1,279 @@
+{
+  "all_passed": true,
+  "checks": {
+    "every_fault_class_the_acceptance_names_has_rows_edge_network_stream_service_model_policy_storage": true,
+    "every_fault_row_cites_evidence_that_exists_and_every_cited_check_passes": true,
+    "every_partial_or_gap_fault_row_says_what_is_not_shown_and_who_owns_it": true,
+    "no_covered_fault_row_is_without_evidence": true,
+    "recovery_objectives_are_measured_not_assumed_restore_time_and_recovery_point_are_in_the_target_evidence": true,
+    "the_gate_result_is_stated_in_numbers": true,
+    "the_python_unit_tests_the_matrix_cites_passed_in_the_run_of_this_phase": true
+  },
+  "generated_at": "2026-09-26T19:08:36Z",
+  "metrics": {
+    "by_class": {
+      "certificates and configuration": {
+        "FAILED": 0,
+        "covered": 2,
+        "gap": 0,
+        "partial": 0
+      },
+      "edge": {
+        "FAILED": 0,
+        "covered": 3,
+        "gap": 0,
+        "partial": 0
+      },
+      "model": {
+        "FAILED": 0,
+        "covered": 3,
+        "gap": 0,
+        "partial": 0
+      },
+      "network": {
+        "FAILED": 0,
+        "covered": 3,
+        "gap": 0,
+        "partial": 0
+      },
+      "policy": {
+        "FAILED": 0,
+        "covered": 3,
+        "gap": 0,
+        "partial": 0
+      },
+      "safety targets": {
+        "FAILED": 0,
+        "covered": 2,
+        "gap": 0,
+        "partial": 0
+      },
+      "service": {
+        "FAILED": 0,
+        "covered": 6,
+        "gap": 0,
+        "partial": 0
+      },
+      "storage": {
+        "FAILED": 0,
+        "covered": 3,
+        "gap": 0,
+        "partial": 0
+      },
+      "stream": {
+        "FAILED": 0,
+        "covered": 3,
+        "gap": 0,
+        "partial": 0
+      }
+    },
+    "counts": {
+      "FAILED": 0,
+      "covered": 28,
+      "gap": 0,
+      "partial": 0
+    },
+    "evidence_dates": {
+      "p05_03_gateway": "2026-09-26T08:21:08Z",
+      "p05_05_ingestion": "2026-09-26T08:21:11Z",
+      "p05_10_retention": "2026-09-26T08:21:13Z",
+      "p06_03_forecast_model": "2026-09-26T08:23:48Z",
+      "p08_04_auth_api": "2026-09-26T17:57:12Z",
+      "p08_10_ui_acceptance": "2026-09-26T19:05:35Z",
+      "p09_03_policy": "2026-09-26T17:58:28Z",
+      "p10_04_alert_rules": "2026-09-26T10:47:26Z",
+      "p10_08_remediation": "2026-09-26T09:43:08Z",
+      "p10_09_recovery": "2026-09-26T12:24:41Z",
+      "p11_04_target_security": "2026-09-26T05:50:59Z",
+      "p11_05_target_recovery": "2026-09-26T04:50:43Z",
+      "p11_06_target_load": "2026-09-26T05:35:46Z",
+      "p12_02_rec01_edge_outage": "2026-09-26T09:01:19Z",
+      "p12_02_rec02_executor_restart": "2026-09-26T09:46:54Z",
+      "p12_02_safe02_protected_actions": "2026-09-26T08:45:54Z",
+      "p12_02_safe03_stale_state": "2026-09-26T08:44:51Z"
+    },
+    "faults": {
+      "F-C1": {
+        "not_shown": "",
+        "owner": "",
+        "title": "Certificates: expiring and forged certificates are alerts and are refused",
+        "verdict": "covered"
+      },
+      "F-C2": {
+        "not_shown": "",
+        "owner": "",
+        "title": "Configuration: a policy or data set that drifted from what was generated is caught",
+        "verdict": "covered"
+      },
+      "F-D1": {
+        "not_shown": "",
+        "owner": "",
+        "title": "Storage: the database volume is lost - restored from an encrypted backup with data, control and audit integrity",
+        "verdict": "covered"
+      },
+      "F-D2": {
+        "not_shown": "",
+        "owner": "",
+        "title": "Storage: the database is unavailable during a load",
+        "verdict": "covered"
+      },
+      "F-D3": {
+        "not_shown": "",
+        "owner": "",
+        "title": "Storage: retention overdue and storage pressure are alerts",
+        "verdict": "covered"
+      },
+      "F-E1": {
+        "not_shown": "",
+        "owner": "",
+        "title": "Edge: the process is killed mid-stream and starts again on its outbox",
+        "verdict": "covered"
+      },
+      "F-E2": {
+        "not_shown": "",
+        "owner": "",
+        "title": "Edge: the model is missing, tampered or failing - the runtime says so and the baseline serves",
+        "verdict": "covered"
+      },
+      "F-E3": {
+        "not_shown": "",
+        "owner": "",
+        "title": "Edge: input is bad - invalid, duplicate, out of order, stale or unsynchronised",
+        "verdict": "covered"
+      },
+      "F-M1": {
+        "not_shown": "",
+        "owner": "",
+        "title": "Model: a rotted active model is detected and rolled back to the previous verified version",
+        "verdict": "covered"
+      },
+      "F-M2": {
+        "not_shown": "",
+        "owner": "",
+        "title": "Model: a tampered package is refused at load and at activation",
+        "verdict": "covered"
+      },
+      "F-M3": {
+        "not_shown": "",
+        "owner": "",
+        "title": "Model: input to a forecast is stale or has a gap - the service abstains",
+        "verdict": "covered"
+      },
+      "F-N1": {
+        "not_shown": "",
+        "owner": "",
+        "title": "Network: the uplink is lost (the broker stopped) and restored",
+        "verdict": "covered"
+      },
+      "F-N2": {
+        "not_shown": "",
+        "owner": "",
+        "title": "Network: the identity provider is unreachable",
+        "verdict": "covered"
+      },
+      "F-N3": {
+        "not_shown": "",
+        "owner": "",
+        "title": "Network: a workload reaches what it should not (a broken isolation)",
+        "verdict": "covered"
+      },
+      "F-P1": {
+        "not_shown": "",
+        "owner": "",
+        "title": "Policy: the engine is unreachable - every protected request is refused, an approved command is held, nothing is waved through",
+        "verdict": "covered"
+      },
+      "F-P2": {
+        "not_shown": "",
+        "owner": "",
+        "title": "Policy: the engine answers nothing, garbage or a loosely typed permit - treated as unavailable",
+        "verdict": "covered"
+      },
+      "F-P3": {
+        "not_shown": "",
+        "owner": "",
+        "title": "Policy: what the engine enforces is what was reviewed (thousands of generated contexts against the reference)",
+        "verdict": "covered"
+      },
+      "F-S1": {
+        "not_shown": "",
+        "owner": "",
+        "title": "Stream: Kafka is unavailable while events keep arriving",
+        "verdict": "covered"
+      },
+      "F-S2": {
+        "not_shown": "",
+        "owner": "",
+        "title": "Stream: events are replayed or duplicated, and content conflicts",
+        "verdict": "covered"
+      },
+      "F-S3": {
+        "not_shown": "",
+        "owner": "",
+        "title": "Stream: invalid events are refused at the gateway and never reach Kafka",
+        "verdict": "covered"
+      },
+      "F-V1": {
+        "not_shown": "",
+        "owner": "",
+        "title": "Service: each component is restarted (database, Kafka, broker, identity, gateway, API, ingestion, policy engine)",
+        "verdict": "covered"
+      },
+      "F-V2": {
+        "not_shown": "",
+        "owner": "",
+        "title": "Service: a worker is killed mid-action - the action is not repeated and the request is closed as abandoned",
+        "verdict": "covered"
+      },
+      "F-V3": {
+        "not_shown": "",
+        "owner": "",
+        "title": "Service: a crashed edge runtime is detected, becomes one incident, is restarted once and resolves",
+        "verdict": "covered"
+      },
+      "F-V4": {
+        "not_shown": "",
+        "owner": "",
+        "title": "Service: a fault that cannot be repaired is escalated to a person and automation stands down",
+        "verdict": "covered"
+      },
+      "F-V5": {
+        "not_shown": "",
+        "owner": "",
+        "title": "Service: a bad rollout of the API and of a worker",
+        "verdict": "covered"
+      },
+      "F-V6": {
+        "not_shown": "",
+        "owner": "",
+        "title": "Service: the command executor is killed while a command is executing - the orphan is reconciled before anything new runs and is never driven again",
+        "verdict": "covered"
+      },
+      "F-X1": {
+        "not_shown": "",
+        "owner": "",
+        "title": "SAFE-02: a protected action that lacks evidence, a valid decision or fresh state is denied and never executed (every adapter, every way)",
+        "verdict": "covered"
+      },
+      "F-X2": {
+        "not_shown": "",
+        "owner": "",
+        "title": "SAFE-03: stale state fails safe in every consumer (state service, KPI record, forecast, routing, recommendation, command policy)",
+        "verdict": "covered"
+      }
+    },
+    "gate": "PASSED: 28 covered, 0 partial, 0 gap, 0 failed"
+  },
+  "notes": {
+    "every_fault_class_the_acceptance_names_has_rows_edge_network_stream_service_model_policy_storage": "{'edge': 3, 'network': 3, 'stream': 3, 'service': 6, 'model': 3, 'policy': 3, 'storage': 3, 'certificates and configuration': 2, 'safety targets': 2}",
+    "every_fault_row_cites_evidence_that_exists_and_every_cited_check_passes": "28 rows; failed []",
+    "every_partial_or_gap_fault_row_says_what_is_not_shown_and_who_owns_it": "unowned []",
+    "gate": "PASSED: 28 covered, 0 partial, 0 gap, 0 failed",
+    "no_covered_fault_row_is_without_evidence": "uncited []",
+    "recovery_objectives_are_measured_not_assumed_restore_time_and_recovery_point_are_in_the_target_evidence": "P11.05: RTO and RPO measured on the target (see the evidence's metrics)",
+    "the_gate_result_is_stated_in_numbers": "PASSED: 28 covered, 0 partial, 0 gap, 0 failed",
+    "the_python_unit_tests_the_matrix_cites_passed_in_the_run_of_this_phase": "run 2026-09-26T19:06:40Z in 102.6 s",
+    "what_this_is": "each fault class of the acceptance (edge, network, stream, service, model, policy, storage) with the evidence that the fault was induced and what the platform did; two labs written for this phase (SAFE-02, SAFE-03, REC-01) and the target and lab evidence of Phases 05-11"
+  },
+  "task": "P12.02"
+}

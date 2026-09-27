@@ -21,6 +21,7 @@ from __future__ import annotations
 import base64
 import hashlib
 import html
+import os
 import re
 import secrets
 from dataclasses import dataclass
@@ -29,8 +30,10 @@ from urllib.parse import parse_qs, urlencode, urlparse
 import httpx
 import jwt
 
-PUBLIC = "http://localhost:8180"
-BASE = "http://127.0.0.1:8180"
+# On the workstation: Keycloak advertises localhost:8180 and is reached at 127.0.0.1:8180 (see above). In a cluster both are its Service
+# (`http://aiops-keycloak:8080`, the issuer the API is configured with), and nothing needs rewriting.
+PUBLIC = os.environ.get("KEYCLOAK_PUBLIC_URL", "http://localhost:8180")
+BASE = os.environ.get("KEYCLOAK_BASE_URL", "http://127.0.0.1:8180")
 REALM = "aiops"
 REALM_URL = f"{BASE}/realms/{REALM}"
 AUTH_URL = f"{REALM_URL}/protocol/openid-connect/auth"

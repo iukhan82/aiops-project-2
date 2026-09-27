@@ -1,0 +1,34 @@
+{
+  "all_passed": true,
+  "checks": {
+    "every_required_runbook_file_exists": true,
+    "every_restarted_component_p11_05_measured_is_named_in_the_runbook_table": true,
+    "the_backup_rollback_recovery_runbook_quotes_the_real_p11_05_numbers": true,
+    "the_index_covers_access": true,
+    "the_index_covers_backup": true,
+    "the_index_covers_breach": true,
+    "the_index_covers_incident": true,
+    "the_index_covers_recovery": true,
+    "the_index_covers_rollback": true,
+    "the_runbooks_still_state_what_has_and_has_not_been_exercised": true
+  },
+  "generated_at": "2026-09-27T06:20:45Z",
+  "metrics": {
+    "quoted_numbers_checked": 6,
+    "required_files": 5
+  },
+  "notes": {
+    "every_required_runbook_file_exists": "[]",
+    "every_restarted_component_p11_05_measured_is_named_in_the_runbook_table": "measured but not named: []",
+    "the_backup_rollback_recovery_runbook_quotes_the_real_p11_05_numbers": "not found as written, re-check the runbook against docs/evidence/p11_05_target_recovery.json: []",
+    "the_index_covers_access": "docs/runbooks/README.md",
+    "the_index_covers_backup": "docs/runbooks/README.md",
+    "the_index_covers_breach": "docs/runbooks/README.md",
+    "the_index_covers_incident": "docs/runbooks/README.md",
+    "the_index_covers_recovery": "docs/runbooks/README.md",
+    "the_index_covers_rollback": "docs/runbooks/README.md",
+    "the_runbooks_still_state_what_has_and_has_not_been_exercised": "[]",
+    "what_this_does_not_check": "that a person can actually follow these procedures under pressure - only that the required documents exist, cite real numbers accurately, and disclose what is not yet exercised"
+  },
+  "task": "P13.04"
+}

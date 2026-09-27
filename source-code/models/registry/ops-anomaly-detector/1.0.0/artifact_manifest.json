@@ -1,0 +1,9 @@
+{
+  "dataset_sha256": "7ccefb873156b3b0cfda253e72b8ccb54c02fe85a1b645bb3c721d6bcc0d6c0d",
+  "files": {
+    "evaluation.json": "9827d2c65b2e634100313e9fd73f9ec8b93f788bf2a0fbc5839248f0c93752b5",
+    "model.joblib": "07c6345173a8f43df344727688eb25862f63fe6b2cd3640b601d9d4b833b79df",
+    "model_card.json": "4b6187fa8352c272db112a19a536cde3879342c537730488373b3ea2c5292932"
+  },
+  "format": "ops-anomaly-detector-package/1"
+}

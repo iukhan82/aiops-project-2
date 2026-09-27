@@ -1,0 +1,26 @@
+{
+  "all_passed": true,
+  "checks": {
+    "diagram_07_names_no_target_workload_that_is_not_in_the_real_manifest": true,
+    "each_diagram_still_says_what_p13_01_found_true_and_not_what_it_corrected": true,
+    "every_checked_in_export_matches_a_fresh_render_of_its_source": true,
+    "every_diagram_source_renders_without_error": true,
+    "the_diagram_index_documents_this_review_and_its_limitations": true,
+    "the_workload_and_job_names_this_verifier_checks_against_are_themselves_real": true
+  },
+  "generated_at": "2026-09-27T06:13:18Z",
+  "metrics": {
+    "real_workloads_checked": 19,
+    "views": 8
+  },
+  "notes": {
+    "diagram_07_names_no_target_workload_that_is_not_in_the_real_manifest": "named but not real: set()",
+    "each_diagram_still_says_what_p13_01_found_true_and_not_what_it_corrected": "[]",
+    "every_checked_in_export_matches_a_fresh_render_of_its_source": "stale, regenerate with mermaid-cli: []",
+    "every_diagram_source_renders_without_error": "[]: ",
+    "the_diagram_index_documents_this_review_and_its_limitations": "diagrams/README.md",
+    "the_workload_and_job_names_this_verifier_checks_against_are_themselves_real": "not found in the manifests: set()",
+    "what_this_does_not_check": "visual legibility and layout are not checked by a script - the seven exports were opened and read after regeneration, not just rendered without a parser error"
+  },
+  "task": "P13.01"
+}

@@ -1,0 +1,140 @@
+{
+  "all_passed": true,
+  "checks": {
+    "all_service_roles_exist_and_none_is_a_superuser_or_can_create_a_database_or_role": true,
+    "an_ordinary_connection_string_with_no_sslmode_negotiates_tls_anyway_libpqs_own_default_is_prefer": true,
+    "every_service_role_connects_as_itself_and_can_neither_delete_nor_truncate_anywhere_nor_update_any_append_only_table": true,
+    "rotating_a_service_roles_password_makes_postgres_refuse_the_old_one_and_accept_the_new_one": true,
+    "the_executor_role_can_do_the_one_thing_it_actually_needs_select_and_insert_on_its_own_working_tables": true,
+    "the_kubernetes_rbac_and_networkpolicy_manifests_are_structurally_valid_and_internally_consistent": true,
+    "the_real_ca_certificate_this_server_was_issued_from_is_on_disk": true,
+    "the_rotated_password_was_written_to_the_git_ignored_secrets_file": true,
+    "the_server_has_tls_enabled": true,
+    "verify_full_against_a_ca_this_server_was_not_issued_from_is_refused": true,
+    "verify_full_against_the_right_ca_but_the_wrong_hostname_is_refused_the_cert_is_issued_for_aiops_postgres_not_an_ip": true,
+    "verify_full_against_the_right_hostname_and_the_real_ca_succeeds": true
+  },
+  "generated_at": "2026-09-26T17:58:32Z",
+  "metrics": {
+    "tls": {
+      "cipher": "TLS_AES_256_GCM_SHA384",
+      "version": "TLSv1.3"
+    }
+  },
+  "notes": {
+    "all_service_roles_exist_and_none_is_a_superuser_or_can_create_a_database_or_role": {
+      "svc_command_executor": [
+        false,
+        false,
+        false
+      ],
+      "svc_outcome_verifier": [
+        false,
+        false,
+        false
+      ],
+      "svc_platform_correlator": [
+        false,
+        false,
+        false
+      ],
+      "svc_remediation_worker": [
+        false,
+        false,
+        false
+      ],
+      "svc_scenario_control": [
+        false,
+        false,
+        false
+      ]
+    },
+    "an_ordinary_connection_string_with_no_sslmode_negotiates_tls_anyway_libpqs_own_default_is_prefer": {
+      "cipher": "TLS_AES_256_GCM_SHA384",
+      "used": true,
+      "version": "TLSv1.3"
+    },
+    "every_service_role_connects_as_itself_and_can_neither_delete_nor_truncate_anywhere_nor_update_any_append_only_table": {
+      "svc_command_executor": {
+        "connects_as_itself": true,
+        "delete_refused": true,
+        "truncate_refused": true,
+        "update_refused_command_transitions": true,
+        "update_refused_emergency_assignment_transitions": true,
+        "update_refused_emergency_call_transitions": true,
+        "update_refused_incident_transitions": true,
+        "update_refused_operator_audit": true,
+        "update_refused_policy_decisions": true,
+        "update_refused_retention_runs": true,
+        "update_refused_scenario_control_audit": true
+      },
+      "svc_outcome_verifier": {
+        "connects_as_itself": true,
+        "delete_refused": true,
+        "truncate_refused": true,
+        "update_refused_command_transitions": true,
+        "update_refused_emergency_assignment_transitions": true,
+        "update_refused_emergency_call_transitions": true,
+        "update_refused_incident_transitions": true,
+        "update_refused_operator_audit": true,
+        "update_refused_policy_decisions": true,
+        "update_refused_retention_runs": true,
+        "update_refused_scenario_control_audit": true
+      },
+      "svc_platform_correlator": {
+        "connects_as_itself": true,
+        "delete_refused": true,
+        "truncate_refused": true,
+        "update_refused_command_transitions": true,
+        "update_refused_emergency_assignment_transitions": true,
+        "update_refused_emergency_call_transitions": true,
+        "update_refused_incident_transitions": true,
+        "update_refused_operator_audit": true,
+        "update_refused_policy_decisions": true,
+        "update_refused_retention_runs": true,
+        "update_refused_scenario_control_audit": true
+      },
+      "svc_remediation_worker": {
+        "connects_as_itself": true,
+        "delete_refused": true,
+        "truncate_refused": true,
+        "update_refused_command_transitions": true,
+        "update_refused_emergency_assignment_transitions": true,
+        "update_refused_emergency_call_transitions": true,
+        "update_refused_incident_transitions": true,
+        "update_refused_operator_audit": true,
+        "update_refused_policy_decisions": true,
+        "update_refused_retention_runs": true,
+        "update_refused_scenario_control_audit": true
+      },
+      "svc_scenario_control": {
+        "connects_as_itself": true,
+        "delete_refused": true,
+        "truncate_refused": true,
+        "update_refused_command_transitions": true,
+        "update_refused_emergency_assignment_transitions": true,
+        "update_refused_emergency_call_transitions": true,
+        "update_refused_incident_transitions": true,
+        "update_refused_operator_audit": true,
+        "update_refused_policy_decisions": true,
+        "update_refused_retention_runs": true,
+        "update_refused_scenario_control_audit": true
+      }
+    },
+    "kubernetes_manifest_check_output": "PASS: the_manifest_file_parses_as_a_sequence_of_yaml_documents 49\nPASS: every_document_is_one_of_the_three_kinds_this_task_uses []\nPASS: every_document_carries_the_fields_its_own_kind_requires []\nPASS: every_document_uses_the_real_stable_apiversion_for_its_kind []\nPASS: there_is_one_service_account_per_real_service_this_platform_runs ['aiops-api', 'aiops-command-executor', 'aiops-e2e', 'aiops-edge-runtime', 'aiops-frontend', 'aiops-grafana', 'aiops-ingestion-gateway', 'aiops-kafka-broker', 'aiops-keycloak', 'aiops-load', 'aiops-loki', 'aiops-migrate', 'aiops-mqtt-broker', 'aiops-mqtt-gateway', 'aiops-opa', 'aiops-outcome-verifier', 'aiops-platform-correlato\nPASS: every_service_account_explicitly_refuses_to_mount_a_kubernetes_api_token_nothing_here_calls_the_api []\nPASS: a_default_deny_policy_exists_with_an_empty_selector_matching_every_pod_and_both_directions {'podSelector': {}, 'policyTypes': ['Ingress', 'Egress']}\nPASS: every_non_default_networkpolicy_is_named_after_a_real_declared_service_account []\nPASS: every_pod_selector_used_in_a_rule_names_a_well_formed_aiops_service_label []\nPASS: every_service_label_a_rule_references_is_a_service_account_this_manifest_actually_declares []\nPASS: most_service_account_names_match_a_real_container_name_already_running_in_this_stack_not_invented_labels ['aiops-grafana', 'aiops-kafka-broker', 'aiops-keycloak', 'aiops-loki', 'aiops-mqtt-broker', 'aiops-opa', 'aiops-postgres', 'aiops-prometheus', 'aiops-tempo']\nPASS: every_egress_targets_own_policy_actually_accepts_that_ingress_no_rule_points_at_a_target_that_would_refuse_it []\nALL CHECKS PASSED\n",
+    "rotating_a_service_roles_password_makes_postgres_refuse_the_old_one_and_accept_the_new_one": {
+      "new_works": true,
+      "old_refused_after": true,
+      "old_worked_before": true
+    },
+    "the_executor_role_can_do_the_one_thing_it_actually_needs_select_and_insert_on_its_own_working_tables": "",
+    "the_kubernetes_rbac_and_networkpolicy_manifests_are_structurally_valid_and_internally_consistent": "ALL CHECKS PASSED",
+    "the_real_ca_certificate_this_server_was_issued_from_is_on_disk": "",
+    "the_rotated_password_was_written_to_the_git_ignored_secrets_file": "",
+    "the_server_has_tls_enabled": "on",
+    "verify_full_against_a_ca_this_server_was_not_issued_from_is_refused": "",
+    "verify_full_against_the_right_ca_but_the_wrong_hostname_is_refused_the_cert_is_issued_for_aiops_postgres_not_an_ip": "skipped: aiops-postgres does not resolve from this client, so 127.0.0.1 is the only reachable host and cannot double as the negative case",
+    "verify_full_against_the_right_hostname_and_the_real_ca_succeeds": "127.0.0.1"
+  },
+  "task": "P09.04"
+}

@@ -14,6 +14,7 @@ async function requestSign(page: Page, message: string): Promise<string> {
   const dialog = page.getByRole("dialog", { name: "Request a command" });
   await expect(dialog).toBeVisible();
   await expect(dialog.getByRole("button", { name: "Cancel" })).toBeFocused();
+  await expect(dialog.getByLabel("Road segment")).not.toHaveValue("", { timeout: 20_000 }); // the targets load after the dialog opens
   await dialog.getByLabel("Message").fill(message);
   await dialog.getByRole("button", { name: "Request command" }).click();
   await expect(dialog.getByRole("alert")).toContainText("Command requested", { timeout: 20_000 });
@@ -140,7 +141,7 @@ test.describe("recommendations, commands and outcomes (P08.08)", () => {
     fixture("policy-outage");
     await commands(page, "supervisor");
     for (const [state, text] of [
-      ["failed", /invalid_target/],
+      ["failed", /outcome of the action is unknown/],
       ["requested_policy_unavailable", /policy check could not run/],
       ["expired", /Expired/],
     ] as const) {

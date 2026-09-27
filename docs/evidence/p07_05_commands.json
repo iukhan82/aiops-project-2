@@ -36,7 +36,7 @@
     "the_state_machine_rejects_an_illegal_transition_independent_of_policy": true,
     "while_an_incident_commander_can": true
   },
-  "generated_at": "2026-09-20T15:15:44Z",
+  "generated_at": "2026-09-26T09:05:21Z",
   "metrics": {},
   "notes": {
     "a_command_linked_to_a_live_matching_recommendation_is_approved": "",
@@ -57,7 +57,7 @@
     "an_unknown_adapter_is_an_invalid_target": "",
     "and_an_operator_may_no_longer_approve_it": "",
     "api_command_detail_includes_transitions": "",
-    "api_commands_are_contract_valid": "27 records; []",
+    "api_commands_are_contract_valid": "328 records; []",
     "api_unknown_command_is_404": "",
     "approval_records_the_requesters_and_approvers_operating_roles": "",
     "approval_records_who_and_when": "",

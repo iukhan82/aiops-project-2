@@ -16,6 +16,12 @@ Three ways an event is rejected outright (never written, recorded in
 - content conflict: `event_id` already exists in `observation_events` with
   a *different* `content_sha256` - never silently overwritten.
 
+Throughput (found on the target, where one transaction and one synchronous offset commit per event sustained about 7 events/s): messages are
+consumed in batches. A batch is written in ONE database transaction and its offsets are committed once, AFTER that transaction committed, so the
+guarantee above is unchanged - a crash between the two reprocesses the batch, and every write path is idempotent. If the batch cannot be written as
+a whole (a database error), it is rolled back and its events are written one at a time, each in its own transaction, so one bad event cannot hold
+back the good ones and nothing is lost.
+
 A true replay (same `event_id`, same `content_sha256`) is accepted as an
 idempotent no-op: this is what "identical replay is idempotent" means in
 practice, not merely "does not crash."
@@ -32,18 +38,19 @@ from datetime import datetime, timezone
 from enum import Enum
 from pathlib import Path
 
-import jsonschema
 import psycopg
 from confluent_kafka import Consumer
 
 SOURCE_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(SOURCE_ROOT))
 
+from backend import schema_validation  # noqa: E402
 from backend.analytics.kpis import parse_time  # noqa: E402
 from backend.observability import BoundedCounter, BoundedHistogram, configure, traced  # noqa: E402
 from database.migrate import dsn_from_env  # noqa: E402
 
 OBSERVATION_SCHEMA_PATH = SOURCE_ROOT / "contracts" / "observation-envelope" / "v1" / "schema.json"
+BATCH = 200  # messages per database transaction and per offset commit
 KAFKA_TOPIC = "telemetry.events"
 
 log = logging.getLogger("ingestion")
@@ -99,27 +106,30 @@ def content_hash(event: dict) -> str:
     return hashlib.sha256(canonical.encode("utf-8")).hexdigest()
 
 
-def ingest_one(conn: psycopg.Connection, event: dict, schema: dict) -> IngestResult:
-    """One event, one DB transaction, one of the five Outcome values.
-    Caller controls commit (so it can be tied to a Kafka offset commit)."""
+def ingest_one(
+    conn: psycopg.Connection, event: dict, schema: dict, commit: bool = True
+) -> IngestResult:
+    """One event, one of the five Outcome values. `commit=True` (the default) commits its own transaction; a batch passes `commit=False`
+    and commits once for all of its events, tying that single commit to a single Kafka offset commit."""
     precheck_event_id = event.get("event_id") if isinstance(event, dict) else None
     with traced(
         "ingestion.ingest_one",
         correlation_id=precheck_event_id,
         device_id=str(event.get("device_id")) if isinstance(event, dict) else "unknown",
     ):
-        result = _ingest_one(conn, event, schema)
+        result = _ingest_one(conn, event, schema, commit)
         _outcome_counter(result.outcome.value).add()
         return result
 
 
-def _ingest_one(conn: psycopg.Connection, event: dict, schema: dict) -> IngestResult:
-    try:
-        jsonschema.validate(instance=event, schema=schema)
-    except jsonschema.ValidationError as exc:
+def _ingest_one(
+    conn: psycopg.Connection, event: dict, schema: dict, commit: bool = True
+) -> IngestResult:
+    error = schema_validation.first_error(schema, event)
+    if error is not None:
         event_id = event.get("event_id") if isinstance(event, dict) else None
-        _record_rejection(conn, event_id, "schema_invalid", exc.message)
-        return IngestResult(Outcome.REJECTED_SCHEMA, event_id, exc.message)
+        _record_rejection(conn, event_id, "schema_invalid", error.message, commit)
+        return IngestResult(Outcome.REJECTED_SCHEMA, event_id, error.message)
 
     event_id = event["event_id"]
     device_id = event["device_id"]
@@ -127,7 +137,7 @@ def _ingest_one(conn: psycopg.Connection, event: dict, schema: dict) -> IngestRe
     with conn.cursor() as cur:
         cur.execute("SELECT 1 FROM devices WHERE device_id = %s", (device_id,))
         if cur.fetchone() is None:
-            _record_rejection(conn, event_id, "unknown_device", device_id)
+            _record_rejection(conn, event_id, "unknown_device", device_id, commit)
             return IngestResult(Outcome.REJECTED_UNKNOWN_DEVICE, event_id, device_id)
 
     chash = content_hash(event)
@@ -176,7 +186,8 @@ def _ingest_one(conn: psycopg.Connection, event: dict, schema: dict) -> IngestRe
         inserted = cur.fetchone() is not None
 
     if inserted:
-        conn.commit()
+        if commit:
+            conn.commit()
         latency_ms = (
             datetime.now(timezone.utc) - parse_time(event["observation_time"])
         ).total_seconds() * 1000.0
@@ -190,24 +201,28 @@ def _ingest_one(conn: psycopg.Connection, event: dict, schema: dict) -> IngestRe
         (stored_hash,) = cur.fetchone()
 
     if stored_hash == chash:
-        conn.commit()
+        if commit:
+            conn.commit()
         return IngestResult(Outcome.DUPLICATE_OK, event_id)
 
-    _record_rejection(conn, event_id, "content_conflict", f"stored={stored_hash} incoming={chash}")
+    _record_rejection(
+        conn, event_id, "content_conflict", f"stored={stored_hash} incoming={chash}", commit
+    )
     return IngestResult(
         Outcome.REJECTED_CONTENT_CONFLICT, event_id, f"stored={stored_hash} incoming={chash}"
     )
 
 
 def _record_rejection(
-    conn: psycopg.Connection, event_id: str | None, reason: str, detail: str
+    conn: psycopg.Connection, event_id: str | None, reason: str, detail: str, commit: bool = True
 ) -> None:
     with conn.cursor() as cur:
         cur.execute(
             "INSERT INTO ingestion_rejections (event_id, reason, detail) VALUES (%s, %s, %s)",
             (event_id, reason, detail),
         )
-    conn.commit()
+    if commit:
+        conn.commit()
 
 
 def run(
@@ -232,22 +247,49 @@ def run(
     consumer.subscribe([topic])
     counts: dict[str, int] = {}
     processed = 0
+
+    def write(conn: psycopg.Connection, messages: list) -> None:
+        nonlocal processed
+        batch_counts: dict[str, int] = {}
+        try:
+            for msg in messages:
+                result = ingest_one(conn, json.loads(msg.value()), schema, commit=False)
+                batch_counts[result.outcome.value] = batch_counts.get(result.outcome.value, 0) + 1
+            conn.commit()
+        except (psycopg.Error, ValueError):
+            # the batch could not be written as a whole: undo it and write its events one at a time, each in its own transaction
+            conn.rollback()
+            batch_counts = {}
+            for msg in messages:
+                try:
+                    result = ingest_one(conn, json.loads(msg.value()), schema)
+                except (psycopg.Error, ValueError) as exc:
+                    conn.rollback()
+                    log.warning("event skipped after a database or decoding error: %s", exc)
+                    continue
+                batch_counts[result.outcome.value] = batch_counts.get(result.outcome.value, 0) + 1
+        for name, n in batch_counts.items():
+            counts[name] = counts.get(name, 0) + n
+        processed += len(messages)
+
     try:
         with psycopg.connect(dsn_from_env()) as conn:
             while max_messages is None or processed < max_messages:
-                msg = consumer.poll(1.0)
-                if msg is None:
-                    if max_messages is not None:
-                        break
+                want = BATCH if max_messages is None else min(BATCH, max_messages - processed)
+                batch = consumer.consume(num_messages=want, timeout=1.0)
+                if not batch and max_messages is not None:
+                    break
+                good = []
+                for msg in batch:
+                    if msg.error():
+                        log.warning("kafka error: %s", msg.error())
+                    else:
+                        good.append(msg)
+                if not good:
                     continue
-                if msg.error():
-                    log.warning("kafka error: %s", msg.error())
-                    continue
-                event = json.loads(msg.value())
-                result = ingest_one(conn, event, schema)
-                counts[result.outcome.value] = counts.get(result.outcome.value, 0) + 1
-                consumer.commit(msg, asynchronous=False)
-                processed += 1
+                write(conn, good)
+                # the offsets move only now, after the transaction that wrote them committed
+                consumer.commit(asynchronous=False)
     finally:
         consumer.close()
     return counts

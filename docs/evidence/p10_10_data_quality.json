@@ -1,0 +1,257 @@
+{
+  "all_passed": true,
+  "checks": {
+    "FA_02_data_quality_incident_false_positive_rate_is_at_most_5_percent_on_the_held_out_test_seeds_strict_rule": true,
+    "every_one_of_the_five_classes_is_present_and_detected_on_the_test_seeds": true,
+    "fault_free_streams_raise_no_incident_on_any_test_seed": true,
+    "no_incident_asserts_a_cause_and_every_one_says_so": true,
+    "re_running_the_detector_on_the_test_seeds_reproduces_the_recorded_numbers_a_non_selecting_use": true,
+    "re_running_the_detector_on_validation_gives_the_recorded_incident_counts": true,
+    "re_running_the_selection_on_the_selection_seeds_chooses_the_stored_numbers": true,
+    "the_code_that_produced_the_package_is_the_code_on_disk_now": true,
+    "the_detectors_entry_point_takes_no_fault_list_and_the_event_has_no_truth_field": true,
+    "the_ledger_holds_exactly_one_selecting_test_opening_and_it_names_the_stored_numbers": true,
+    "the_limitations_name_the_synthetic_source_the_stuck_at_zero_blind_spot_and_the_weak_drift_class": true,
+    "the_overlap_rule_is_reported_beside_the_strict_one_and_not_used_as_the_headline": true,
+    "the_recorded_dataset_hash_is_the_generators_now": true,
+    "the_selection_grid_and_every_candidate_result_are_recorded": true,
+    "the_train_validation_and_test_seeds_are_disjoint_and_the_selection_used_only_the_first_two": true
+  },
+  "generated_at": "2026-09-26T08:20:10Z",
+  "metrics": {
+    "fa_02": {
+      "met": true,
+      "target": "strict false-incident share <= 5% on held-out fault scenarios",
+      "test_strict_false_share": 0.0,
+      "test_strict_false_share_wilson95": [
+        0.0,
+        0.0631
+      ]
+    },
+    "params": {
+      "cusum_h": 12.0,
+      "cusum_k": 1.5,
+      "gap_grace_s": 120.0,
+      "merge_gap_s": 900.0,
+      "silence_after_s": 180.0,
+      "stuck_run": 4
+    },
+    "selection": {
+      "clean_device_hours": 2537.2,
+      "faults": 180,
+      "fragment": 0,
+      "incidents": 169,
+      "overlap_false_share": 0.023668639053254437,
+      "per_class": {
+        "drift": {
+          "detected": 21,
+          "faults": 36,
+          "median_delay_s": 2550.25,
+          "p95_delay_s": 5970.25,
+          "recall": 0.5833333333333334
+        },
+        "duplicate": {
+          "detected": 36,
+          "faults": 36,
+          "median_delay_s": 1.25,
+          "p95_delay_s": 1.25,
+          "recall": 1.0
+        },
+        "missing": {
+          "detected": 36,
+          "faults": 36,
+          "median_delay_s": 150.25,
+          "p95_delay_s": 150.25,
+          "recall": 1.0
+        },
+        "out_of_order": {
+          "detected": 36,
+          "faults": 36,
+          "median_delay_s": 90.25,
+          "p95_delay_s": 90.25,
+          "recall": 1.0
+        },
+        "stuck": {
+          "detected": 36,
+          "faults": 36,
+          "median_delay_s": 180.25,
+          "p95_delay_s": 180.25,
+          "recall": 1.0
+        }
+      },
+      "recall": 0.9166666666666666,
+      "recall_wilson95": [
+        0.8671,
+        0.9489
+      ],
+      "spurious": 4,
+      "spurious_per_clean_device_hour": 0.0015765410688948448,
+      "strict_false_share": 0.023668639053254437,
+      "strict_false_share_wilson95": [
+        0.0092,
+        0.0593
+      ],
+      "true": 165,
+      "wrong_class": 0
+    },
+    "test": {
+      "clean_device_hours": 845.3,
+      "faults": 60,
+      "fragment": 0,
+      "incidents": 57,
+      "overlap_false_share": 0.0,
+      "per_class": {
+        "drift": {
+          "detected": 9,
+          "faults": 12,
+          "median_delay_s": 3390.25,
+          "p95_delay_s": 5778.249999999999,
+          "recall": 0.75
+        },
+        "duplicate": {
+          "detected": 12,
+          "faults": 12,
+          "median_delay_s": 1.25,
+          "p95_delay_s": 1.25,
+          "recall": 1.0
+        },
+        "missing": {
+          "detected": 12,
+          "faults": 12,
+          "median_delay_s": 150.25,
+          "p95_delay_s": 190.74999999999994,
+          "recall": 1.0
+        },
+        "out_of_order": {
+          "detected": 12,
+          "faults": 12,
+          "median_delay_s": 90.25,
+          "p95_delay_s": 90.25,
+          "recall": 1.0
+        },
+        "stuck": {
+          "detected": 12,
+          "faults": 12,
+          "median_delay_s": 180.25,
+          "p95_delay_s": 180.25,
+          "recall": 1.0
+        }
+      },
+      "recall": 0.95,
+      "recall_wilson95": [
+        0.863,
+        0.9829
+      ],
+      "spurious": 0,
+      "spurious_per_clean_device_hour": 0.0,
+      "strict_false_share": 0.0,
+      "strict_false_share_wilson95": [
+        0.0,
+        0.0631
+      ],
+      "true": 57,
+      "wrong_class": 0
+    },
+    "test_drift_recall_by_channel": {
+      "continuous": [
+        9,
+        10
+      ],
+      "counts": [
+        0,
+        2
+      ]
+    },
+    "test_drift_recall_by_severity": {
+      "0.25_to_0.35": [
+        2,
+        2
+      ],
+      "ge_0.35": [
+        3,
+        4
+      ],
+      "relative_offset_lt_0.25": [
+        4,
+        6
+      ]
+    },
+    "validation": {
+      "clean_device_hours": 844.6,
+      "faults": 60,
+      "fragment": 0,
+      "incidents": 59,
+      "overlap_false_share": 0.03389830508474576,
+      "per_class": {
+        "drift": {
+          "detected": 9,
+          "faults": 12,
+          "median_delay_s": 2850.25,
+          "p95_delay_s": 6006.25,
+          "recall": 0.75
+        },
+        "duplicate": {
+          "detected": 12,
+          "faults": 12,
+          "median_delay_s": 1.25,
+          "p95_delay_s": 1.25,
+          "recall": 1.0
+        },
+        "missing": {
+          "detected": 12,
+          "faults": 12,
+          "median_delay_s": 150.25,
+          "p95_delay_s": 150.25,
+          "recall": 1.0
+        },
+        "out_of_order": {
+          "detected": 12,
+          "faults": 12,
+          "median_delay_s": 90.25,
+          "p95_delay_s": 90.25,
+          "recall": 1.0
+        },
+        "stuck": {
+          "detected": 12,
+          "faults": 12,
+          "median_delay_s": 180.25,
+          "p95_delay_s": 180.25,
+          "recall": 1.0
+        }
+      },
+      "recall": 0.95,
+      "recall_wilson95": [
+        0.863,
+        0.9829
+      ],
+      "spurious": 2,
+      "spurious_per_clean_device_hour": 0.002368078304455934,
+      "strict_false_share": 0.03389830508474576,
+      "strict_false_share_wilson95": [
+        0.0093,
+        0.1154
+      ],
+      "true": 57,
+      "wrong_class": 0
+    }
+  },
+  "notes": {
+    "FA_02_data_quality_incident_false_positive_rate_is_at_most_5_percent_on_the_held_out_test_seeds_strict_rule": "0 false of 57 incidents = 0.0% (Wilson 95% 0.0%-6.3%); the interval's upper end is above the 5% target",
+    "every_one_of_the_five_classes_is_present_and_detected_on_the_test_seeds": "missing 12/12, stuck 12/12, drift 9/12, duplicate 12/12, out_of_order 12/12",
+    "fault_free_streams_raise_no_incident_on_any_test_seed": "incidents per seed {301: 0, 302: 0, 303: 0} over 42 devices x 420 minutes",
+    "no_incident_asserts_a_cause_and_every_one_says_so": "19 incidents",
+    "re_running_the_detector_on_the_test_seeds_reproduces_the_recorded_numbers_a_non_selecting_use": "57 incidents, 0 false",
+    "re_running_the_detector_on_validation_gives_the_recorded_incident_counts": "59 incidents, 57 true",
+    "re_running_the_selection_on_the_selection_seeds_chooses_the_stored_numbers": "{'stuck_run': 4, 'silence_after_s': 180.0, 'gap_grace_s': 120.0, 'cusum_k': 1.5, 'cusum_h': 12.0, 'merge_gap_s': 900.0} vs {'stuck_run': 4, 'silence_after_s': 180.0, 'gap_grace_s': 120.0, 'cusum_k': 1.5, 'cusum_h': 12.0, 'merge_gap_s': 900.0}",
+    "scope": "seeded synthetic streams over the P03.03 device set with injected faults; not a real fleet (see the package limitations)",
+    "the_code_that_produced_the_package_is_the_code_on_disk_now": "changed since: []",
+    "the_detectors_entry_point_takes_no_fault_list_and_the_event_has_no_truth_field": "['params', 'events', 'devices', 'tick_s']",
+    "the_ledger_holds_exactly_one_selecting_test_opening_and_it_names_the_stored_numbers": "1 selecting opening(s)",
+    "the_limitations_name_the_synthetic_source_the_stuck_at_zero_blind_spot_and_the_weak_drift_class": "8 limitations",
+    "the_overlap_rule_is_reported_beside_the_strict_one_and_not_used_as_the_headline": "overlap 0.0%, strict 0.0%",
+    "the_recorded_dataset_hash_is_the_generators_now": "264d1b5ff08e83b4",
+    "the_selection_grid_and_every_candidate_result_are_recorded": "32 candidates",
+    "the_train_validation_and_test_seeds_are_disjoint_and_the_selection_used_only_the_first_two": "6/3/3 seeds"
+  },
+  "task": "P10.10"
+}

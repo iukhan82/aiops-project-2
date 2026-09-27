@@ -1,0 +1,302 @@
+{
+  "all_passed": false,
+  "checks": {
+    "a_ceiling_was_found_or_the_publisher_was_the_limit_and_the_result_says_which": false,
+    "nominal_load_16_events_per_second_for_two_minutes_loses_nothing_and_arrives_within_5_s_at_p95": false,
+    "peak_load_ten_times_nominal_loses_nothing_and_arrives_within_5_s_at_p95": true,
+    "with_gateway_taken_away_for_25_s_during_a_load_the_outcome_is_measured_and_the_platform_is_healthy_again": true,
+    "with_ingestion_taken_away_for_25_s_during_a_load_the_outcome_is_measured_and_the_platform_is_healthy_again": true,
+    "with_kafka_taken_away_for_25_s_during_a_load_the_outcome_is_measured_and_the_platform_is_healthy_again": true,
+    "with_postgres_taken_away_for_25_s_during_a_load_the_outcome_is_measured_and_the_platform_is_healthy_again": false
+  },
+  "generated_at": "2026-09-25T20:40:58Z",
+  "metrics": {
+    "ceiling_steps": [
+      {
+        "arrived": "17924/17924",
+        "lost": 0,
+        "max_s": 20.134,
+        "offered_rate": 400.0,
+        "p95_s": 17.8204,
+        "seconds_until_everything_arrived": 66.4,
+        "sustained_publish_rate": 389.4,
+        "usage": {
+          "aiops-api": {
+            "cpu_seconds": 3.7,
+            "memory_mib": 61,
+            "memory_peak_mib": 69,
+            "throttled_periods": 69
+          },
+          "aiops-ingestion-gateway": {
+            "cpu_seconds": 29.6,
+            "memory_mib": 57,
+            "memory_peak_mib": 61,
+            "throttled_periods": 930
+          },
+          "aiops-kafka-broker": {
+            "cpu_seconds": 33.0,
+            "memory_mib": 358,
+            "memory_peak_mib": 362,
+            "throttled_periods": 0
+          },
+          "aiops-mqtt-broker": {
+            "cpu_seconds": 3.8,
+            "memory_mib": 2,
+            "memory_peak_mib": 7,
+            "throttled_periods": 11
+          },
+          "aiops-mqtt-gateway": {
+            "cpu_seconds": 25.8,
+            "memory_mib": 98,
+            "memory_peak_mib": 103,
+            "throttled_periods": 620
+          },
+          "aiops-postgres": {
+            "cpu_seconds": 58.2,
+            "memory_mib": 266,
+            "memory_peak_mib": 274,
+            "throttled_periods": 315
+          }
+        }
+      }
+    ],
+    "degraded": {
+      "gateway": {
+        "acked_by_broker": 3600,
+        "arrived_in_postgres": 1592,
+        "latency_s": {
+          "max": 52.756,
+          "mean": 1.7511,
+          "n": 1592,
+          "p50": 0.9516,
+          "p95": 1.8196,
+          "p99": 52.3576
+        },
+        "lost": 2008,
+        "offered": 3600,
+        "seconds_until_everything_arrived": 331.3
+      },
+      "ingestion": {
+        "acked_by_broker": 3600,
+        "arrived_in_postgres": 3600,
+        "latency_s": {
+          "max": 45.071,
+          "mean": 11.8928,
+          "n": 3600,
+          "p50": 0.9987,
+          "p95": 40.6651,
+          "p99": 44.2651
+        },
+        "lost": 0,
+        "offered": 3600,
+        "seconds_until_everything_arrived": 104.1
+      },
+      "kafka": {
+        "acked_by_broker": 3600,
+        "arrived_in_postgres": 3600,
+        "latency_s": {
+          "max": 36.5,
+          "mean": 11.2015,
+          "n": 3600,
+          "p50": 4.0563,
+          "p95": 32.2154,
+          "p99": 35.6963
+        },
+        "lost": 0,
+        "offered": 3600,
+        "seconds_until_everything_arrived": 91.9
+      },
+      "postgres": {
+        "acked_by_broker": null,
+        "arrived_in_postgres": 0,
+        "latency_s": {},
+        "lost": null,
+        "offered": 0,
+        "seconds_until_everything_arrived": null
+      }
+    },
+    "idle_usage": {
+      "aiops-api": {
+        "cpu_seconds": 2.1,
+        "memory_mib": 64,
+        "memory_peak_mib": 69,
+        "throttled_periods": 67
+      },
+      "aiops-ingestion-gateway": {
+        "cpu_seconds": 5.4,
+        "memory_mib": 48,
+        "memory_peak_mib": 53,
+        "throttled_periods": 216
+      },
+      "aiops-kafka-broker": {
+        "cpu_seconds": 31.0,
+        "memory_mib": 333,
+        "memory_peak_mib": 343,
+        "throttled_periods": 0
+      },
+      "aiops-mqtt-broker": {
+        "cpu_seconds": 0.1,
+        "memory_mib": 3,
+        "memory_peak_mib": 7,
+        "throttled_periods": 2
+      },
+      "aiops-mqtt-gateway": {
+        "cpu_seconds": 4.7,
+        "memory_mib": 98,
+        "memory_peak_mib": 103,
+        "throttled_periods": 181
+      },
+      "aiops-postgres": {
+        "cpu_seconds": 38.1,
+        "memory_mib": 158,
+        "memory_peak_mib": 274,
+        "throttled_periods": 177
+      }
+    },
+    "loss_under_degradation": {
+      "gateway": 2008,
+      "ingestion": 0,
+      "kafka": 0,
+      "postgres": null
+    },
+    "nominal": {
+      "report": {
+        "acked_by_broker": 1920,
+        "arrived_in_postgres": 1920,
+        "devices": 8,
+        "label": "nominal",
+        "latency_s": {
+          "max": 10.617,
+          "mean": 1.3806,
+          "n": 1920,
+          "p50": 0.8772,
+          "p95": 6.6909,
+          "p99": 10.1118
+        },
+        "lost": 0,
+        "offered": 1920,
+        "offered_rate": 16.0,
+        "passed": true,
+        "rate_per_device": 2.0,
+        "run": "nominal-f0ac3a18",
+        "seconds": 120.0,
+        "seconds_until_everything_arrived": 121.6,
+        "sustained_publish_rate": 15.9
+      },
+      "usage": {
+        "aiops-api": {
+          "cpu_seconds": 2.8,
+          "memory_mib": 65,
+          "memory_peak_mib": 69,
+          "throttled_periods": 67
+        },
+        "aiops-ingestion-gateway": {
+          "cpu_seconds": 10.3,
+          "memory_mib": 44,
+          "memory_peak_mib": 53,
+          "throttled_periods": 352
+        },
+        "aiops-kafka-broker": {
+          "cpu_seconds": 31.8,
+          "memory_mib": 333,
+          "memory_peak_mib": 343,
+          "throttled_periods": 0
+        },
+        "aiops-mqtt-broker": {
+          "cpu_seconds": 0.5,
+          "memory_mib": 2,
+          "memory_peak_mib": 7,
+          "throttled_periods": 4
+        },
+        "aiops-mqtt-gateway": {
+          "cpu_seconds": 6.9,
+          "memory_mib": 97,
+          "memory_peak_mib": 103,
+          "throttled_periods": 182
+        },
+        "aiops-postgres": {
+          "cpu_seconds": 43.5,
+          "memory_mib": 176,
+          "memory_peak_mib": 274,
+          "throttled_periods": 219
+        }
+      }
+    },
+    "peak": {
+      "report": {
+        "acked_by_broker": 9584,
+        "arrived_in_postgres": 9584,
+        "devices": 16,
+        "label": "peak",
+        "latency_s": {
+          "max": 2.068,
+          "mean": 0.9993,
+          "n": 9584,
+          "p50": 1.0032,
+          "p95": 1.6099,
+          "p99": 1.8629
+        },
+        "lost": 0,
+        "offered": 9584,
+        "offered_rate": 160.0,
+        "passed": true,
+        "rate_per_device": 10.0,
+        "run": "peak-a9aeb881",
+        "seconds": 60.0,
+        "seconds_until_everything_arrived": 63.0,
+        "sustained_publish_rate": 157.2
+      },
+      "usage": {
+        "aiops-api": {
+          "cpu_seconds": 3.2,
+          "memory_mib": 61,
+          "memory_peak_mib": 69,
+          "throttled_periods": 68
+        },
+        "aiops-ingestion-gateway": {
+          "cpu_seconds": 17.0,
+          "memory_mib": 52,
+          "memory_peak_mib": 56,
+          "throttled_periods": 539
+        },
+        "aiops-kafka-broker": {
+          "cpu_seconds": 32.3,
+          "memory_mib": 343,
+          "memory_peak_mib": 347,
+          "throttled_periods": 0
+        },
+        "aiops-mqtt-broker": {
+          "cpu_seconds": 1.8,
+          "memory_mib": 2,
+          "memory_peak_mib": 7,
+          "throttled_periods": 7
+        },
+        "aiops-mqtt-gateway": {
+          "cpu_seconds": 14.3,
+          "memory_mib": 98,
+          "memory_peak_mib": 103,
+          "throttled_periods": 199
+        },
+        "aiops-postgres": {
+          "cpu_seconds": 49.6,
+          "memory_mib": 220,
+          "memory_peak_mib": 274,
+          "throttled_periods": 266
+        }
+      }
+    },
+    "restarts_at_start": 0
+  },
+  "notes": {
+    "a_ceiling_was_found_or_the_publisher_was_the_limit_and_the_result_says_which": "highest clean sustained rate None events/s; first step that was not clean: 389.4",
+    "load_shape": "constant-rate publishers, QoS 1, one small loop-detector event each; a real network would add jitter, larger messages and bursts",
+    "nominal_load_16_events_per_second_for_two_minutes_loses_nothing_and_arrives_within_5_s_at_p95": "1920/1920 arrived, p50 0.8772 s, p95 6.6909 s, p99 10.1118 s",
+    "peak_load_ten_times_nominal_loses_nothing_and_arrives_within_5_s_at_p95": "9584/9584 arrived at 157.2 events/s, p95 1.6099 s",
+    "scope": "one node, resource limits as in workloads.yaml, a shared host, the load generator a single 1-CPU pod: the ceiling is a property of this deployment on this machine, not a capacity promise",
+    "with_gateway_taken_away_for_25_s_during_a_load_the_outcome_is_measured_and_the_platform_is_healthy_again": "2008 lost: 1592/3600 arrived, all arrived after 331.3 s, p95 1.8196 s",
+    "with_ingestion_taken_away_for_25_s_during_a_load_the_outcome_is_measured_and_the_platform_is_healthy_again": "nothing lost: 3600/3600 arrived, all arrived after 104.1 s, p95 40.6651 s",
+    "with_kafka_taken_away_for_25_s_during_a_load_the_outcome_is_measured_and_the_platform_is_healthy_again": "nothing lost: 3600/3600 arrived, all arrived after 91.9 s, p95 32.2154 s",
+    "with_postgres_taken_away_for_25_s_during_a_load_the_outcome_is_measured_and_the_platform_is_healthy_again": "None lost: 0/0 arrived, all arrived after None s, p95 None s"
+  },
+  "task": "P11.06"
+}

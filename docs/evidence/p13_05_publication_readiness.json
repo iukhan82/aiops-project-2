@@ -1,0 +1,31 @@
+{
+  "all_passed": true,
+  "checks": {
+    "every_locked_python_dependency_s_licence_is_known_from_the_installed_package_metadata": true,
+    "every_npm_dependency_in_the_lockfile_declares_a_licence": true,
+    "no_env_file_or_private_key_file_is_tracked": true,
+    "no_npm_dependency_carries_a_gpl_family_licence": true,
+    "no_python_dependency_carries_a_gpl_family_licence": true,
+    "no_tracked_file_contains_a_real_looking_secret": true,
+    "no_tracked_file_contains_an_email_address_outside_the_synthetic_project_s_own_domains": true
+  },
+  "generated_at": "2026-09-27T06:32:03Z",
+  "metrics": {
+    "npm_packages_checked": 163,
+    "personal_data_hits": 0,
+    "python_packages_checked": 77,
+    "secrets_found": 0,
+    "tracked_files": 806
+  },
+  "notes": {
+    "every_locked_python_dependency_s_licence_is_known_from_the_installed_package_metadata": "not found installed (activate the project venv first): []",
+    "every_npm_dependency_in_the_lockfile_declares_a_licence": "0 of 163 unknown: []",
+    "no_env_file_or_private_key_file_is_tracked": "[]",
+    "no_npm_dependency_carries_a_gpl_family_licence": "[]",
+    "no_python_dependency_carries_a_gpl_family_licence": "[]",
+    "no_tracked_file_contains_a_real_looking_secret": "[]",
+    "no_tracked_file_contains_an_email_address_outside_the_synthetic_project_s_own_domains": "[]",
+    "what_this_does_not_check": "asset-level provenance (fonts, icons, imagery under design-system/ and frontend/src) is not automated here - see the register row for what was reviewed by hand; and this is a scan, not a legal opinion on licence compatibility"
+  },
+  "task": "P13.05"
+}

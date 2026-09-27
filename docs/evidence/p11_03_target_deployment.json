@@ -1,0 +1,215 @@
+{
+  "all_passed": true,
+  "checks": {
+    "a_cni_that_enforces_network_policy_calico_is_running_on_every_node": true,
+    "a_default_storage_class_exists_for_the_volume_claims": true,
+    "end_to_end_a_certificate_from_another_ca_is_refused": true,
+    "end_to_end_an_event_published_under_another_devices_topic_never_arrived": true,
+    "end_to_end_device_connects_with_its_certificate": true,
+    "end_to_end_devices_registered": true,
+    "end_to_end_the_api_answers_its_health_check": true,
+    "end_to_end_the_api_refuses_a_caller_with_no_token": true,
+    "end_to_end_the_event_reached_postgres_through_broker_gateway_kafka_and_ingestion": true,
+    "every_component_of_the_recorded_topology_is_a_running_workload": true,
+    "every_dependency_edge_of_the_topology_is_a_tcp_connection_that_succeeds_from_the_clients_own_pod": true,
+    "every_node_is_ready": true,
+    "every_running_container_is_ready": true,
+    "every_workload_the_manifests_declare_was_admitted_and_is_ready_with_its_declared_replicas": true,
+    "prometheus_scrapes_the_edge_runtime_and_tempo_and_both_are_up": true,
+    "the_cluster_runs_the_kubernetes_minor_version_the_manifests_are_validated_against": true,
+    "the_end_to_end_job_reported_success": true,
+    "the_namespace_enforces_pod_security_restricted": true,
+    "the_platform_images_running_in_the_cluster_are_the_ones_the_workstation_signed": true
+  },
+  "generated_at": "2026-09-26T05:49:06Z",
+  "metrics": {
+    "end_to_end": {
+      "passed": true,
+      "rogue_refusal": "no CONNACK",
+      "seconds_to_reach_postgres": 12.3,
+      "steps": {
+        "a_certificate_from_another_ca_is_refused": true,
+        "an_event_published_under_another_devices_topic_never_arrived": true,
+        "device_connects_with_its_certificate": true,
+        "devices_registered": true,
+        "the_api_answers_its_health_check": true,
+        "the_api_refuses_a_caller_with_no_token": true,
+        "the_event_reached_postgres_through_broker_gateway_kafka_and_ingestion": true
+      }
+    },
+    "image_identity": {
+      "backend": {
+        "cluster_layers_equal_the_docker_images": true,
+        "docker_image_id": "sha256:c3cde63e71ec6ce996f979392207f3da07a22dd0f9f60fc56b5759304fc0fc0f",
+        "layers": 19,
+        "signed_digest": "sha256:c3cde63e71ec6ce996f979392207f3da07a22dd0f9f60fc56b5759304fc0fc0f",
+        "signed_digest_matches": true
+      },
+      "edge": {
+        "cluster_layers_equal_the_docker_images": true,
+        "docker_image_id": "sha256:d85d543bcf7da2d092018e3b18e8757b283b5927aa7c64877daa7b7327a502a2",
+        "layers": 11,
+        "signed_digest": null,
+        "signed_digest_matches": null
+      },
+      "frontend": {
+        "cluster_layers_equal_the_docker_images": true,
+        "docker_image_id": "sha256:92efcf56eed93e745d498f1e89ce08fb845d6ffa4b9101d41a7f8d8df87b6b9c",
+        "layers": 13,
+        "signed_digest": "sha256:92efcf56eed93e745d498f1e89ce08fb845d6ffa4b9101d41a7f8d8df87b6b9c",
+        "signed_digest_matches": true
+      }
+    },
+    "images": {
+      "aiops-api-6cb9b95476-67fhw/api": {
+        "image": "docker.io/library/aiops-backend:0.1.0",
+        "imageID": "docker.io/library/import-2026-09-26@sha256:d7b4deffcd8e36b290af463fc0bec6935ec3df3675fc4a19ba5b894e3263d1eb",
+        "ready": true,
+        "restarts": 0
+      },
+      "aiops-command-executor-6f9cdbb8b9-5f559/command-executor": {
+        "image": "docker.io/library/aiops-backend:0.1.0",
+        "imageID": "docker.io/library/import-2026-09-26@sha256:d7b4deffcd8e36b290af463fc0bec6935ec3df3675fc4a19ba5b894e3263d1eb",
+        "ready": true,
+        "restarts": 0
+      },
+      "aiops-edge-runtime-78d4bcc4b4-fnnq6/edge-runtime": {
+        "image": "docker.io/library/aiops-edge:0.1.0",
+        "imageID": "docker.io/library/import-2026-09-26@sha256:cbe9400c4ea6622f36070aab8ffcdd72529fad1d9b366cee6f6a6c10a6670361",
+        "ready": true,
+        "restarts": 0
+      },
+      "aiops-frontend-75fc979cbc-zxrh4/frontend": {
+        "image": "docker.io/library/aiops-frontend:0.1.0",
+        "imageID": "docker.io/library/import-2026-09-26@sha256:21201ae6e4ce0b414e6811b23634bc9e58f921c0b8f246e5374c0f4a227036a6",
+        "ready": true,
+        "restarts": 0
+      },
+      "aiops-grafana-0/grafana": {
+        "image": "sha256:bac4f177a0d5a5f8539398abee9c956472c55d98a4438e1c3d03247c3a302b19",
+        "imageID": "docker.io/grafana/grafana@sha256:35c41e0fd0295f5d0ee5db7e780cf33506abfaf47686196f825364889dee878b",
+        "ready": true,
+        "restarts": 0
+      },
+      "aiops-ingestion-gateway-5675c6ff84-92sfh/ingestion-gateway": {
+        "image": "docker.io/library/aiops-backend:0.1.0",
+        "imageID": "docker.io/library/import-2026-09-26@sha256:d7b4deffcd8e36b290af463fc0bec6935ec3df3675fc4a19ba5b894e3263d1eb",
+        "ready": true,
+        "restarts": 0
+      },
+      "aiops-kafka-broker-0/kafka-broker": {
+        "image": "sha256:31fb07e3c339cc0209385859dcaf8acdcb50c430f7d45ee0ccff34c20becee69",
+        "imageID": "docker.redpanda.com/redpandadata/redpanda@sha256:0270951e8793c77f0dd9178d137198018fa7ffd920e5a2a3b02a050ec76195b8",
+        "ready": true,
+        "restarts": 0
+      },
+      "aiops-keycloak-0/keycloak": {
+        "image": "sha256:e447933b6a5015646c24a1b927a40202ce07adbadac839e7a1f99c463d68a224",
+        "imageID": "quay.io/keycloak/keycloak@sha256:09a381c715ab0b111835b70f2905955274843a219c6f27efb348e4d9f4086858",
+        "ready": true,
+        "restarts": 0
+      },
+      "aiops-loki-0/loki": {
+        "image": "sha256:4d58e59bc9fc417097c0694571572731e138b1e8bfa8e0b5dbc3cf8d0d1b54aa",
+        "imageID": "docker.io/grafana/loki@sha256:0eaee7bf39cc83aaef46914fb58f287d4f4c4be6ec96b86c2ed55719a75e49c8",
+        "ready": true,
+        "restarts": 0
+      },
+      "aiops-migrate-bcjxk/migrate": {
+        "image": "docker.io/library/aiops-backend:0.1.0",
+        "imageID": "docker.io/library/import-2026-09-26@sha256:d7b4deffcd8e36b290af463fc0bec6935ec3df3675fc4a19ba5b894e3263d1eb",
+        "ready": false,
+        "restarts": 0
+      },
+      "aiops-mqtt-broker-0/mqtt-broker": {
+        "image": "sha256:d25945831d6b8935b016caacc6f612ad4876ba124601b240e64953886cf264b4",
+        "imageID": "docker.io/library/eclipse-mosquitto@sha256:d12c8f80dfc65b768bb9acecc7ef182b976f71fb681640b66358e5e0cf94e9e9",
+        "ready": true,
+        "restarts": 0
+      },
+      "aiops-mqtt-gateway-0/mqtt-gateway": {
+        "image": "docker.io/library/aiops-backend:0.1.0",
+        "imageID": "docker.io/library/import-2026-09-26@sha256:d7b4deffcd8e36b290af463fc0bec6935ec3df3675fc4a19ba5b894e3263d1eb",
+        "ready": true,
+        "restarts": 2
+      },
+      "aiops-opa-5c787c7686-cdqn8/opa": {
+        "image": "sha256:711f083031e6698bbdf73e68b4912cb37bf049065f3055eb83fd7b1ce179eda4",
+        "imageID": "docker.io/openpolicyagent/opa@sha256:2de1e6619246955695b982d0bcb6c73bcee22aa34ff96f2455996616ec1d21c1",
+        "ready": true,
+        "restarts": 0
+      },
+      "aiops-outcome-verifier-68487cb596-x4kjc/outcome-verifier": {
+        "image": "docker.io/library/aiops-backend:0.1.0",
+        "imageID": "docker.io/library/import-2026-09-26@sha256:d7b4deffcd8e36b290af463fc0bec6935ec3df3675fc4a19ba5b894e3263d1eb",
+        "ready": true,
+        "restarts": 0
+      },
+      "aiops-platform-correlator-dc6b6ff8-sft7s/platform-correlator": {
+        "image": "docker.io/library/aiops-backend:0.1.0",
+        "imageID": "docker.io/library/import-2026-09-26@sha256:d7b4deffcd8e36b290af463fc0bec6935ec3df3675fc4a19ba5b894e3263d1eb",
+        "ready": true,
+        "restarts": 1
+      },
+      "aiops-platform-probe-6569cbbcf5-bch2p/platform-probe": {
+        "image": "docker.io/library/aiops-backend:0.1.0",
+        "imageID": "docker.io/library/import-2026-09-26@sha256:d7b4deffcd8e36b290af463fc0bec6935ec3df3675fc4a19ba5b894e3263d1eb",
+        "ready": true,
+        "restarts": 0
+      },
+      "aiops-postgres-0/postgres": {
+        "image": "sha256:06287eb8e12c43f425773085c48d6ad02d73f8b442ac209810c1b211eb0a643b",
+        "imageID": "docker.io/postgis/postgis@sha256:44126d872ac91993766c341e369c539e8196614321765d36a6f1bab0419a5fa5",
+        "ready": true,
+        "restarts": 0
+      },
+      "aiops-prometheus-0/prometheus": {
+        "image": "sha256:a683da7699127231b140f7dbd7d60e9741d51543ba91c656bf3287860a39428f",
+        "imageID": "docker.io/prom/prometheus@sha256:49214755b6153f90a597adcbff0252cc61069f8ab69ce8411285cd4a560e8038",
+        "ready": true,
+        "restarts": 0
+      },
+      "aiops-scenario-control-596db564fc-mtskz/scenario-control": {
+        "image": "docker.io/library/aiops-backend:0.1.0",
+        "imageID": "docker.io/library/import-2026-09-26@sha256:d7b4deffcd8e36b290af463fc0bec6935ec3df3675fc4a19ba5b894e3263d1eb",
+        "ready": true,
+        "restarts": 0
+      },
+      "aiops-tempo-0/tempo": {
+        "image": "sha256:9f1b1c526cbf95fb055a37bef59125fdba3a8946d52f1f2cb09df0aaf2e699fe",
+        "imageID": "docker.io/grafana/tempo@sha256:3f0825e14397d3459e11e96f99ddd3976ec0cb75e328459e173298d9fb74b407",
+        "ready": true,
+        "restarts": 0
+      }
+    },
+    "restarts": {
+      "aiops-mqtt-gateway-0/mqtt-gateway": 2,
+      "aiops-platform-correlator-dc6b6ff8-sft7s/platform-correlator": 1
+    }
+  },
+  "notes": {
+    "a_cni_that_enforces_network_policy_calico_is_running_on_every_node": "1 calico-node pod(s)",
+    "a_default_storage_class_exists_for_the_volume_claims": "standard",
+    "end_to_end_a_certificate_from_another_ca_is_refused": "",
+    "end_to_end_an_event_published_under_another_devices_topic_never_arrived": "",
+    "end_to_end_device_connects_with_its_certificate": "",
+    "end_to_end_devices_registered": "",
+    "end_to_end_the_api_answers_its_health_check": "",
+    "end_to_end_the_api_refuses_a_caller_with_no_token": "",
+    "end_to_end_the_event_reached_postgres_through_broker_gateway_kafka_and_ingestion": "",
+    "every_component_of_the_recorded_topology_is_a_running_workload": "10 components; missing []",
+    "every_dependency_edge_of_the_topology_is_a_tcp_connection_that_succeeds_from_the_clients_own_pod": "10 edges; failed []",
+    "every_node_is_ready": "1 node(s), runtime containerd://2.3.4, kernel 7.0.0-31-generic",
+    "every_running_container_is_ready": "20 containers in 19 running pods",
+    "every_workload_the_manifests_declare_was_admitted_and_is_ready_with_its_declared_replicas": "19 workloads; not ready: []",
+    "not_deployed": "the remediation worker (its docker adapter needs a container runtime; a Kubernetes adapter is future work) and the demo feeder; Keycloak runs in start-dev mode with an embedded database exactly as in the compose stack, which is not a production Keycloak",
+    "prometheus_scrapes_the_edge_runtime_and_tempo_and_both_are_up": "targets {'edge-runtime': True, 'tempo': True, 'prometheus': True}",
+    "taken_at": "2026-09-26T05:49:06Z",
+    "target": "a kind cluster (Kubernetes v1.36.4, containerd) on the shared Ubuntu host, Calico CNI; not the host's own K3s",
+    "the_cluster_runs_the_kubernetes_minor_version_the_manifests_are_validated_against": "server v1.36.4",
+    "the_end_to_end_job_reported_success": "seconds to Postgres 12.3; rogue refusal: no CONNACK",
+    "the_namespace_enforces_pod_security_restricted": "",
+    "the_platform_images_running_in_the_cluster_are_the_ones_the_workstation_signed": "backend: sha256:c3cde63e71ec, signed match True, cluster layers equal True; frontend: sha256:92efcf56eed9, signed match True, cluster layers equal True; edge: sha256:d85d543bcf7d, signed match None, cluster layers equal True"
+  },
+  "task": "P11.03"
+}

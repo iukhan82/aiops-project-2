@@ -7,7 +7,8 @@ What is real and what is recorded is written into the data, not left to memory:
 * REAL, made now through the running API as named demo people with real Keycloak tokens: a command left waiting for approval, one
   denied with a reason, one whose approval was refused by an injected policy outage, and two that the running command executor
   really executes in the SUMO container (a sign message and a signal extension). The verifier worker later records their outcomes.
-* REAL failure: a command whose target the adapter cannot find, so the executor really fails it.
+* REAL failure: a command left `executing` by an executor that was interrupted, which the running executor really fails (the outcome is said to be unknown).
+  (A target that exists nowhere is no longer a failure: the policy gate refuses it before the adapter is driven.)
 * REAL expiry: a command nobody approved in time.
 * RECORDED: four completed histories, one per outcome class - effective, ineffective, unsafe (rolled back, with the undo evidence)
   and unknown (escalated) - built with the measured numbers of the lock-step simulator runs of P07.09
@@ -309,27 +310,39 @@ def recorded_histories(conn: psycopg.Connection) -> dict:
 
 def failed_and_expired(conn: psycopg.Connection) -> dict:
     now = datetime.now(timezone.utc)
+    # A target that exists nowhere no longer reaches the adapter: the executor's policy gate refuses it first (the command ends `denied`). The failure that can still
+    # happen, and that the executor really produces, is an interrupted run: a command left `executing` by an executor that died is failed by the running executor's
+    # reconciliation (P12.02 REC-02, D-03) with the outcome said to be unknown. The command is left `executing` 10 minutes ago and the running executor closes it.
     ghost, _ = request_command(
         conn,
-        f"seed-ghost-{uuid.uuid4().hex[:8]}",
+        f"seed-interrupted-{uuid.uuid4().hex[:8]}",
         "variable_message_sign",
         "vms_adapter",
-        "int-z9_int-z9",
+        "int-a1_int-a2",
         "alex.chen",
-        now,
+        now - timedelta(minutes=12),
         "operator",
-        params={"message": "This target does not exist in the simulator"},
+        ttl_s=3600.0,
+        params={"message": "Executor interrupted while running this"},
     )
     command_repo.transition_command(
         conn,
         ghost,
         "approved",
         "alex.two",
-        "approved for the seed: the target exists nowhere, so the adapter must fail it",
-        at=now,
+        "approved for the seed, then the executor was interrupted while running it",
+        at=now - timedelta(minutes=11),
         approved_by="alex.two",
         policy_decision="approved",
         approved_by_role="operator",
+    )
+    command_repo.transition_command(
+        conn,
+        ghost,
+        "executing",
+        EXECUTOR,
+        "dispatched to simulator adapter",
+        at=now - timedelta(minutes=10),
     )
     lapsed, _ = request_command(
         conn,
@@ -380,7 +393,11 @@ def main() -> int:
             if k in made
         ]
         print("waiting for the command executor to run:", watch, flush=True)
-        print(json.dumps({"commands": made, "executor": wait_for_executor(conn, watch)}, indent=2))
+        states = wait_for_executor(conn, watch)
+        print(json.dumps({"commands": made, "executor": states}, indent=2))
+        if states.get(made["failed_by_executor"]) != "failed":
+            print("the interrupted command did not end failed: is the command executor running?")
+            return 1
     return 0
 
 

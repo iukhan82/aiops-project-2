@@ -11,11 +11,13 @@ RUN groupadd --gid 10001 edge && \
     useradd --uid 10001 --gid edge --no-create-home --shell /usr/sbin/nologin edge
 
 WORKDIR /app
-COPY edge/requirements-lock.txt /app/requirements-lock.txt
+COPY --chmod=0644 edge/requirements-lock.txt /app/requirements-lock.txt
 RUN pip install --disable-pip-version-check --no-cache-dir --no-deps -r /app/requirements-lock.txt
 
 COPY edge/ /app/edge/
 COPY contracts/ /app/contracts/
+# The checkout's file modes (0777 from a Windows-mounted tree) must not reach the image: see backend/Dockerfile.
+RUN find /app -type d -exec chmod 0755 {} + && find /app -type f -exec chmod 0644 {} +
 ENV EDGE_CONTRACTS_ROOT=/app/contracts
 ENV PYTHONPATH=/app
 ENV PYTHONDONTWRITEBYTECODE=1

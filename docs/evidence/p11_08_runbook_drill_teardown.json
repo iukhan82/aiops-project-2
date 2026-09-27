@@ -1,0 +1,24 @@
+{
+  "all_passed": true,
+  "checks": {
+    "runbook_step_teardown_runs_as_written_and_prints_what_the_runbook_promises": true
+  },
+  "generated_at": "2026-09-26T05:58:01Z",
+  "metrics": {
+    "step_seconds": {
+      "teardown": {
+        "exit": 0,
+        "phase": "teardown",
+        "seconds": 67.6
+      }
+    },
+    "total_seconds": 67.6
+  },
+  "notes": {
+    "not_proven": "a person other than the author reading it cold: this drill has no judgement to fail on",
+    "phases": "teardown",
+    "runbook_sha256": "d98ea33f73c6edfc156666b686e5c031cbca2f1343b6ca7da8a5abc93dd8f27a",
+    "runbook_step_teardown_runs_as_written_and_prints_what_the_runbook_promises": "67.6 s, exit 0; 0 | 0"
+  },
+  "task": "P11.08"
+}

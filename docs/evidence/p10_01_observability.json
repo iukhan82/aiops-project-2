@@ -9,17 +9,17 @@
     "request_command_span_correlates_by_idempotency_key": true,
     "review_command_span_correlates_by_the_commands_own_id": true
   },
-  "generated_at": "2026-09-23T18:23:52Z",
+  "generated_at": "2026-09-26T08:39:50Z",
   "metrics": {},
   "notes": {
-    "chain": "incident=1707a4cc-d1a3-42dd-bf9f-c72d3b0aa3b9 -> command=ad2b0b6c-cc9a-47ac-b8c4-939a90a7399a -> outcome=731f9fe3-2809-4197-a4b7-a321545c4de3",
-    "gateway_receive_span_correlates_by_event_id": "event_id=f4913254-488c-4418-841f-10616f8652f8",
+    "chain": "incident=631159cb-b0a0-4d5a-89fb-0ec07daedc69 -> command=9b1c4181-7b65-4d1d-99de-2815b67de1a8 -> outcome=3cd7ac57-42aa-4f32-a5b1-c1e879f74c37",
+    "gateway_receive_span_correlates_by_event_id": "event_id=492fe6b4-4ad4-49c1-b38e-5fe25f66dfd6",
     "ingestion_span_shares_the_same_correlation_id_as_the_gateway_span": "outcome=inserted",
     "metric_label_keys_stay_bounded_under_real_use": "",
-    "outcome_span_correlates_by_the_same_command_id_the_review_span_used": "outcome_id=731f9fe3-2809-4197-a4b7-a321545c4de3, classification=ineffective",
-    "recommendation_span_correlates_by_incident_id": "incident_id=1707a4cc-d1a3-42dd-bf9f-c72d3b0aa3b9",
-    "request_command_span_correlates_by_idempotency_key": "idempotency_key=verify-obs-f2a8b556-de2a-4e6a-abf7-8d5b6f6170a1",
-    "review_command_span_correlates_by_the_commands_own_id": "command_id=ad2b0b6c-cc9a-47ac-b8c4-939a90a7399a, status=approved"
+    "outcome_span_correlates_by_the_same_command_id_the_review_span_used": "outcome_id=3cd7ac57-42aa-4f32-a5b1-c1e879f74c37, classification=ineffective",
+    "recommendation_span_correlates_by_incident_id": "incident_id=631159cb-b0a0-4d5a-89fb-0ec07daedc69",
+    "request_command_span_correlates_by_idempotency_key": "idempotency_key=verify-obs-d41bb215-1d97-4f9a-bcfe-d7faac57b9cf",
+    "review_command_span_correlates_by_the_commands_own_id": "command_id=9b1c4181-7b65-4d1d-99de-2815b67de1a8, status=approved"
   },
   "task": "P10.01"
 }

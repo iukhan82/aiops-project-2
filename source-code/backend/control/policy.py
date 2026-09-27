@@ -242,7 +242,14 @@ def _evidence_fresh(
                 return False
             corridor_id = seg.corridor_id
             if corridor_id is None:
-                return True  # a cross-street segment has no corridor KPI; freshness is not applicable, not denied
+                # A cross street has no corridor KPI, so its evidence is the live telemetry of the junctions at its two ends. (It used to count as fresh without
+                # any evidence at all: an action on one of the eight cross streets needed nothing to be current - found by the SAFE-02/SAFE-03 labs, P12.02.)
+                cur.execute(
+                    "SELECT 1 FROM observation_events e JOIN devices d ON d.device_id = e.device_id "
+                    "WHERE (d.intersection_id = %s OR d.intersection_id = %s) AND e.observation_time > %s LIMIT 1",
+                    (seg.from_node, seg.to_node, cutoff),
+                )
+                return cur.fetchone() is not None
             cur.execute(
                 "SELECT 1 FROM corridor_kpis WHERE corridor_id = %s AND direction = %s AND geometry_version = %s AND window_start > %s LIMIT 1",
                 (corridor_id, seg.direction, geometry, cutoff),

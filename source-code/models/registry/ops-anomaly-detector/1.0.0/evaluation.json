@@ -1,0 +1,486 @@
+{
+  "best_baseline": "robust_zscore",
+  "candidate_model": "gradient_boosting",
+  "candidate_model_accepted": false,
+  "latency": {
+    "max_ms": 0.1618000096641481,
+    "p50_ms": 0.06749999010935426,
+    "p95_ms": 0.07570001762360334,
+    "p99_ms": 0.08382800500839946,
+    "samples": 225
+  },
+  "live_batch_parity": {
+    "max_abs_difference": 0.0,
+    "median_abs_difference": 0.0,
+    "windows": 138
+  },
+  "served_by_severity_on_test": {
+    "middle_third": {
+      "detected": 8,
+      "runs": 8,
+      "severity_range": [
+        0.66,
+        0.75
+      ]
+    },
+    "mildest_third": {
+      "detected": 8,
+      "runs": 8,
+      "severity_range": [
+        0.51,
+        0.61
+      ]
+    },
+    "most_severe_third": {
+      "detected": 8,
+      "runs": 8,
+      "severity_range": [
+        0.78,
+        0.97
+      ]
+    }
+  },
+  "served_detector": "robust_zscore",
+  "test": {
+    "gradient_boosting": {
+      "by_fault_type": {
+        "api_errors": {
+          "detected": 4,
+          "median_delay_s": 10.0,
+          "runs": 4
+        },
+        "api_slow": {
+          "detected": 4,
+          "median_delay_s": 7.5,
+          "runs": 4
+        },
+        "gateway_stall": {
+          "detected": 4,
+          "median_delay_s": 10.0,
+          "runs": 4
+        },
+        "ingest_latency_slow": {
+          "detected": 4,
+          "median_delay_s": 15.0,
+          "runs": 4
+        },
+        "ingest_reject_surge": {
+          "detected": 4,
+          "median_delay_s": 12.5,
+          "runs": 4
+        },
+        "state_stale": {
+          "detected": 4,
+          "median_delay_s": 10.0,
+          "runs": 4
+        }
+      },
+      "detected": 24,
+      "event_recall": 1.0,
+      "event_recall_wilson95": [
+        0.8620194241710247,
+        1.0
+      ],
+      "false_alarm_episodes": 3,
+      "false_alarms_during_benign_bursts": 0,
+      "false_alarms_per_hour": 2.706766917293233,
+      "false_alarms_per_hour_poisson95": [
+        0.5582004116351291,
+        7.910321566684803
+      ],
+      "fault_runs": 24,
+      "median_delay_s": 10.0,
+      "p90_delay_s": 15.0,
+      "quiet_hours": 1.1083333333333334,
+      "step_f1": 0.8782707622298066,
+      "step_precision": 0.8792710706150342,
+      "step_recall": 0.8772727272727273
+    },
+    "isolation_forest": {
+      "by_fault_type": {
+        "api_errors": {
+          "detected": 2,
+          "median_delay_s": 40.0,
+          "runs": 4
+        },
+        "api_slow": {
+          "detected": 4,
+          "median_delay_s": 20.0,
+          "runs": 4
+        },
+        "gateway_stall": {
+          "detected": 4,
+          "median_delay_s": 30.0,
+          "runs": 4
+        },
+        "ingest_latency_slow": {
+          "detected": 4,
+          "median_delay_s": 20.0,
+          "runs": 4
+        },
+        "ingest_reject_surge": {
+          "detected": 4,
+          "median_delay_s": 22.5,
+          "runs": 4
+        },
+        "state_stale": {
+          "detected": 3,
+          "median_delay_s": 30.0,
+          "runs": 4
+        }
+      },
+      "detected": 21,
+      "event_recall": 0.875,
+      "event_recall_wilson95": [
+        0.6899571185214243,
+        0.9565574496068442
+      ],
+      "false_alarm_episodes": 2,
+      "false_alarms_during_benign_bursts": 0,
+      "false_alarms_per_hour": 1.8045112781954886,
+      "false_alarms_per_hour_poisson95": [
+        0.21853468740808876,
+        6.518515188923874
+      ],
+      "fault_runs": 24,
+      "median_delay_s": 25.0,
+      "p90_delay_s": 35.0,
+      "quiet_hours": 1.1083333333333334,
+      "step_f1": 0.4462025316455696,
+      "step_precision": 0.734375,
+      "step_recall": 0.32045454545454544
+    },
+    "robust_zscore": {
+      "by_fault_type": {
+        "api_errors": {
+          "detected": 4,
+          "median_delay_s": 15.0,
+          "runs": 4
+        },
+        "api_slow": {
+          "detected": 4,
+          "median_delay_s": 7.5,
+          "runs": 4
+        },
+        "gateway_stall": {
+          "detected": 4,
+          "median_delay_s": 15.0,
+          "runs": 4
+        },
+        "ingest_latency_slow": {
+          "detected": 4,
+          "median_delay_s": 12.5,
+          "runs": 4
+        },
+        "ingest_reject_surge": {
+          "detected": 4,
+          "median_delay_s": 12.5,
+          "runs": 4
+        },
+        "state_stale": {
+          "detected": 4,
+          "median_delay_s": 17.5,
+          "runs": 4
+        }
+      },
+      "detected": 24,
+      "event_recall": 1.0,
+      "event_recall_wilson95": [
+        0.8620194241710247,
+        1.0
+      ],
+      "false_alarm_episodes": 6,
+      "false_alarms_during_benign_bursts": 4,
+      "false_alarms_per_hour": 5.413533834586466,
+      "false_alarms_per_hour_poisson95": [
+        1.9866715069090386,
+        11.782984080467987
+      ],
+      "fault_runs": 24,
+      "median_delay_s": 15.0,
+      "p90_delay_s": 18.499999999999996,
+      "quiet_hours": 1.1083333333333334,
+      "step_f1": 0.7644084934277048,
+      "step_precision": 0.6885245901639344,
+      "step_recall": 0.8590909090909091
+    },
+    "slo_thresholds": {
+      "by_fault_type": {
+        "api_errors": {
+          "detected": 4,
+          "median_delay_s": 10.0,
+          "runs": 4
+        },
+        "api_slow": {
+          "detected": 4,
+          "median_delay_s": 20.0,
+          "runs": 4
+        },
+        "gateway_stall": {
+          "detected": 4,
+          "median_delay_s": 30.0,
+          "runs": 4
+        },
+        "ingest_latency_slow": {
+          "detected": 4,
+          "median_delay_s": 17.5,
+          "runs": 4
+        },
+        "ingest_reject_surge": {
+          "detected": 4,
+          "median_delay_s": 15.0,
+          "runs": 4
+        },
+        "state_stale": {
+          "detected": 4,
+          "median_delay_s": 12.5,
+          "runs": 4
+        }
+      },
+      "detected": 24,
+      "event_recall": 1.0,
+      "event_recall_wilson95": [
+        0.8620194241710247,
+        1.0
+      ],
+      "false_alarm_episodes": 4,
+      "false_alarms_during_benign_bursts": 0,
+      "false_alarms_per_hour": 3.6090225563909772,
+      "false_alarms_per_hour_poisson95": [
+        0.9833371792117218,
+        9.24053113570258
+      ],
+      "fault_runs": 24,
+      "median_delay_s": 15.0,
+      "p90_delay_s": 30.0,
+      "quiet_hours": 1.1083333333333334,
+      "step_f1": 0.7707423580786026,
+      "step_precision": 0.7415966386554622,
+      "step_recall": 0.8022727272727272
+    }
+  },
+  "thresholds": {
+    "gradient_boosting": 0.0919819304076073,
+    "isolation_forest": -0.053603594665754595,
+    "robust_zscore": 6.023638846897074,
+    "slo_thresholds": 1.0
+  },
+  "validation": {
+    "gradient_boosting": {
+      "by_fault_type": {
+        "api_errors": {
+          "detected": 4,
+          "median_delay_s": 10.0,
+          "runs": 4
+        },
+        "api_slow": {
+          "detected": 4,
+          "median_delay_s": 15.0,
+          "runs": 4
+        },
+        "gateway_stall": {
+          "detected": 4,
+          "median_delay_s": 10.0,
+          "runs": 4
+        },
+        "ingest_latency_slow": {
+          "detected": 4,
+          "median_delay_s": 12.5,
+          "runs": 4
+        },
+        "ingest_reject_surge": {
+          "detected": 4,
+          "median_delay_s": 7.5,
+          "runs": 4
+        },
+        "state_stale": {
+          "detected": 4,
+          "median_delay_s": 7.5,
+          "runs": 4
+        }
+      },
+      "detected": 24,
+      "event_recall": 1.0,
+      "event_recall_wilson95": [
+        0.8620194241710247,
+        1.0
+      ],
+      "false_alarm_episodes": 3,
+      "false_alarms_during_benign_bursts": 0,
+      "false_alarms_per_hour": 2.6600985221674875,
+      "false_alarms_per_hour_poisson95": [
+        0.5485762666069373,
+        7.7739367120867895
+      ],
+      "fault_runs": 24,
+      "median_delay_s": 10.0,
+      "p90_delay_s": 15.0,
+      "quiet_hours": 1.1277777777777778,
+      "step_f1": 0.8849347568208779,
+      "step_precision": 0.8817966903073287,
+      "step_recall": 0.888095238095238
+    },
+    "isolation_forest": {
+      "by_fault_type": {
+        "api_errors": {
+          "detected": 2,
+          "median_delay_s": 20.0,
+          "runs": 4
+        },
+        "api_slow": {
+          "detected": 4,
+          "median_delay_s": 17.5,
+          "runs": 4
+        },
+        "gateway_stall": {
+          "detected": 4,
+          "median_delay_s": 30.0,
+          "runs": 4
+        },
+        "ingest_latency_slow": {
+          "detected": 4,
+          "median_delay_s": 20.0,
+          "runs": 4
+        },
+        "ingest_reject_surge": {
+          "detected": 3,
+          "median_delay_s": 35.0,
+          "runs": 4
+        },
+        "state_stale": {
+          "detected": 4,
+          "median_delay_s": 30.0,
+          "runs": 4
+        }
+      },
+      "detected": 21,
+      "event_recall": 0.875,
+      "event_recall_wilson95": [
+        0.6899571185214243,
+        0.9565574496068442
+      ],
+      "false_alarm_episodes": 3,
+      "false_alarms_during_benign_bursts": 0,
+      "false_alarms_per_hour": 2.6600985221674875,
+      "false_alarms_per_hour_poisson95": [
+        0.5485762666069373,
+        7.7739367120867895
+      ],
+      "fault_runs": 24,
+      "median_delay_s": 25.0,
+      "p90_delay_s": 35.0,
+      "quiet_hours": 1.1277777777777778,
+      "step_f1": 0.36,
+      "step_precision": 0.7615384615384615,
+      "step_recall": 0.2357142857142857
+    },
+    "robust_zscore": {
+      "by_fault_type": {
+        "api_errors": {
+          "detected": 4,
+          "median_delay_s": 15.0,
+          "runs": 4
+        },
+        "api_slow": {
+          "detected": 4,
+          "median_delay_s": 12.5,
+          "runs": 4
+        },
+        "gateway_stall": {
+          "detected": 4,
+          "median_delay_s": 15.0,
+          "runs": 4
+        },
+        "ingest_latency_slow": {
+          "detected": 4,
+          "median_delay_s": 15.0,
+          "runs": 4
+        },
+        "ingest_reject_surge": {
+          "detected": 4,
+          "median_delay_s": 15.0,
+          "runs": 4
+        },
+        "state_stale": {
+          "detected": 4,
+          "median_delay_s": 17.5,
+          "runs": 4
+        }
+      },
+      "detected": 24,
+      "event_recall": 1.0,
+      "event_recall_wilson95": [
+        0.8620194241710247,
+        1.0
+      ],
+      "false_alarm_episodes": 3,
+      "false_alarms_during_benign_bursts": 3,
+      "false_alarms_per_hour": 2.6600985221674875,
+      "false_alarms_per_hour_poisson95": [
+        0.5485762666069373,
+        7.7739367120867895
+      ],
+      "fault_runs": 24,
+      "median_delay_s": 15.0,
+      "p90_delay_s": 18.499999999999996,
+      "quiet_hours": 1.1277777777777778,
+      "step_f1": 0.7377220480668757,
+      "step_precision": 0.6573556797020484,
+      "step_recall": 0.8404761904761905
+    },
+    "slo_thresholds": {
+      "by_fault_type": {
+        "api_errors": {
+          "detected": 4,
+          "median_delay_s": 12.5,
+          "runs": 4
+        },
+        "api_slow": {
+          "detected": 4,
+          "median_delay_s": 17.5,
+          "runs": 4
+        },
+        "gateway_stall": {
+          "detected": 4,
+          "median_delay_s": 30.0,
+          "runs": 4
+        },
+        "ingest_latency_slow": {
+          "detected": 4,
+          "median_delay_s": 20.0,
+          "runs": 4
+        },
+        "ingest_reject_surge": {
+          "detected": 4,
+          "median_delay_s": 15.0,
+          "runs": 4
+        },
+        "state_stale": {
+          "detected": 4,
+          "median_delay_s": 15.0,
+          "runs": 4
+        }
+      },
+      "detected": 24,
+      "event_recall": 1.0,
+      "event_recall_wilson95": [
+        0.8620194241710247,
+        1.0
+      ],
+      "false_alarm_episodes": 4,
+      "false_alarms_during_benign_bursts": 1,
+      "false_alarms_per_hour": 3.5467980295566504,
+      "false_alarms_per_hour_poisson95": [
+        0.966383089914968,
+        9.081211633362882
+      ],
+      "fault_runs": 24,
+      "median_delay_s": 15.0,
+      "p90_delay_s": 28.499999999999996,
+      "quiet_hours": 1.1277777777777778,
+      "step_f1": 0.7579185520361991,
+      "step_precision": 0.7219827586206896,
+      "step_recall": 0.7976190476190477
+    }
+  }
+}

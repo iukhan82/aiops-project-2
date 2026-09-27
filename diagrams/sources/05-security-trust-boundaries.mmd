@@ -13,8 +13,8 @@ flowchart TB
     KAFKA["Kafka-compatible stream"]
   end
 
-  subgraph TZ3["Trust zone 3: Central services (K8s RBAC + network policy, P09.04)"]
-    SVC["Ingestion / state / analytics / incident / emergency / optimization / command / outcome services\nscoped DB roles, least privilege"]
+  subgraph TZ3["Trust zone 3: Central services (K8s RBAC + Calico NetworkPolicy default-deny, Pod Security `restricted` - tested on the target's kind cluster, P09.04/P11.03)"]
+    SVC["Ingestion / state / analytics / incident / emergency / optimization / command / outcome / AIOps (correlator, remediation) services\nscoped DB roles, least privilege; no mutual TLS between them today (open finding, DEFECT_REGISTER.md)"]
   end
 
   subgraph TZ4["Trust zone 4: Adapter (most restricted; only system:command-executor identity reaches it, P02.08)"]
@@ -40,6 +40,8 @@ flowchart TB
     DEMO["Scenario control API\nno path to command/v1 or adapters"]
   end
 
+  FALCO["Falco (node-level runtime detection, P01.07/P09.09)\nnot a trust zone itself: watches every zone's containers from the node, alerts to its own stdout"]
+
   DEV -->|"TLS 8883, cert auth"| MQTT
   EDGE -->|"TLS 8883, cert auth"| MQTT
   MQTT -->|"validated only"| KAFKA
@@ -55,6 +57,8 @@ flowchart TB
   USER -->|"DEMO role only"| DEMO
   DEMO -.->|"structurally no route"| ADAPT
   DEMO -.->|"structurally no route"| SVC
+  FALCO -.->|"observes, does not gate"| SVC
+  FALCO -.->|"observes, does not gate"| ADAPT
 
   classDef restricted fill:#fee,stroke:#844,stroke-width:2px
   class TZ4,TZ5,TZ6 restricted

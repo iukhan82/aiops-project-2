@@ -8,13 +8,13 @@
     "roles_equal_the_binding_p02_08_role_set": true,
     "the_generated_tables_in_the_inventory_document_are_current": true
   },
-  "generated_at": "2026-09-21T14:31:11Z",
+  "generated_at": "2026-09-26T08:16:32Z",
   "metrics": {
     "counts": {
-      "apis": 45,
-      "apis_implemented": 45,
+      "apis": 47,
+      "apis_implemented": 47,
       "apis_planned": 0,
-      "capabilities": 17,
+      "capabilities": 19,
       "journeys": 7,
       "roles": 7,
       "screens": 21

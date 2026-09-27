@@ -28,6 +28,7 @@ correct):
 from __future__ import annotations
 
 import json
+import shutil
 import subprocess
 import sys
 import time
@@ -48,6 +49,8 @@ TEMPO_URL = "http://127.0.0.1:3200"
 LOKI_URL = "http://127.0.0.1:3100"
 
 CONTAINERS = ["aiops-prometheus", "aiops-tempo", "aiops-loki", "aiops-grafana"]
+# the containers run in the WSL2 Docker engine; from a Windows shell without a docker CLI they are reached through it, as every other verifier here does
+DOCKER = ["docker"] if shutil.which("docker") else ["wsl.exe", "-e", "docker"]
 EXPECTED_TOTAL_NANO_CPUS = 750_000_000  # 0.75 CPU, docs/environment/RESOURCE_BUDGET.md
 EXPECTED_TOTAL_MEMORY_BYTES = 1536 * 1024 * 1024  # 1,536 MiB total
 
@@ -56,7 +59,7 @@ ev = Evidence("P10.03", docs_name="p10_03_observability_stack")
 
 def docker_inspect(fmt: str, *names: str) -> list[str]:
     result = subprocess.run(
-        ["docker", "inspect", *names, "--format", fmt], capture_output=True, text=True, check=True
+        [*DOCKER, "inspect", *names, "--format", fmt], capture_output=True, text=True, check=True
     )
     return result.stdout.strip().splitlines()
 

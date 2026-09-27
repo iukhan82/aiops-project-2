@@ -144,12 +144,25 @@ def main() -> int:
         )
 
         # ---- commands: invalid transition rejected ----
+        # (approved -> denied is legal since P09.03: the executor's own policy check may refuse an approved command, and it must then say why;
+        # an approved command that skips `executing` is the illegal step this check is about)
         try:
-            commands.transition_command(conn, cmd_id_1, "denied", "verify-script")
+            commands.transition_command(conn, cmd_id_1, "executed", "verify-script")
             cmd_invalid_rejected = False
         except commands.InvalidTransition:
             cmd_invalid_rejected = True
-        check("command_invalid_transition_from_approved_to_denied_rejected", cmd_invalid_rejected)
+        check(
+            "command_invalid_transition_from_approved_straight_to_executed_rejected",
+            cmd_invalid_rejected,
+        )
+        try:
+            commands.transition_command(conn, cmd_id_1, "denied", "verify-script")
+            denied_without_reason_raised = False
+        except commands.MissingAuditReference:
+            denied_without_reason_raised = True
+        check(
+            "command_denied_at_execution_without_a_reason_is_refused", denied_without_reason_raised
+        )
 
         # ---- commands: 'failed' requires structured error ----
         commands.transition_command(conn, cmd_id_1, "executing", "verify-script")
@@ -203,7 +216,9 @@ def main() -> int:
             except incidents.InvalidTransition:
                 outcomes[name] = "invalid_transition"
 
-    t_a = threading.Thread(target=attempt, args=("A", "escalated"))
+    # Two people acknowledge the same open incident at once. (Different targets would not do: acknowledged -> escalated is a legal step, so whichever
+    # ran second could succeed in sequence and both would rightly succeed; the same step twice is the race the row lock exists for.)
+    t_a = threading.Thread(target=attempt, args=("A", "acknowledged"))
     t_b = threading.Thread(target=attempt, args=("B", "acknowledged"))
     t_a.start()
     t_b.start()

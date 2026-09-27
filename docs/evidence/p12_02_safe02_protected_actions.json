@@ -1,0 +1,1115 @@
+{
+  "all_passed": true,
+  "checks": {
+    "adapter_unreachable_when_driven_is_never_executed_on_any_of_the_7_adapters_and_ends_failed": true,
+    "approved_by_a_role_with_no_authority_is_never_executed_on_any_of_the_7_adapters_and_ends_denied": true,
+    "approved_by_its_own_requester_is_never_executed_on_any_of_the_5_adapters_and_ends_denied": true,
+    "control_a_valid_command_is_approved_and_executed_exactly_once_on_every_adapter": true,
+    "evidence_stale_after_approval_before_execution_is_never_executed_on_any_of_the_7_adapters_and_ends_denied": true,
+    "expired_before_review_is_never_executed_on_any_of_the_7_adapters_and_ends_expired": true,
+    "linked_recommendation_of_another_action_type_is_never_executed_on_any_of_the_7_adapters_and_ends_denied": true,
+    "linked_recommendation_superseded_is_never_executed_on_any_of_the_7_adapters_and_ends_denied": true,
+    "never_approved_is_never_executed_on_any_of_the_7_adapters_and_ends_requested": true,
+    "no_fresh_evidence_at_approval_is_never_executed_on_any_of_the_7_adapters_and_ends_denied": true,
+    "policy_engine_unreachable_at_approval_is_never_executed_on_any_of_the_7_adapters_and_ends_requested": true,
+    "policy_engine_unreachable_at_execution_is_never_executed_on_any_of_the_7_adapters_and_ends_approved": true,
+    "precondition_no_command_is_waiting_for_the_executor_so_every_call_counted_here_is_this_lab_s": true,
+    "requested_by_a_role_with_no_authority_is_never_executed_on_any_of_the_7_adapters_and_ends_refused": true,
+    "safe_02_every_attempt_that_lacked_evidence_a_valid_decision_or_fresh_state_was_stopped_and_the_adapter_was_never_driven": true,
+    "the_lab_can_fail_with_the_gate_switched_off_a_command_with_no_evidence_is_executed_and_counted": true,
+    "the_policy_engine_is_running_again": true,
+    "unknown_target_is_never_executed_on_any_of_the_7_adapters_and_ends_denied": true,
+    "with_the_engine_back_the_commands_that_were_held_are_executed_so_holding_was_a_wait_not_a_refusal": true
+  },
+  "generated_at": "2026-09-26T08:45:54Z",
+  "metrics": {
+    "attempts": [
+      {
+        "adapter": "signal_controller_adapter",
+        "adapter_calls": 1,
+        "case": "control_valid_command",
+        "error_code": null,
+        "expected": [
+          "executed"
+        ],
+        "ok": true,
+        "status": "executed"
+      },
+      {
+        "adapter": "signal_controller_adapter",
+        "adapter_calls": 0,
+        "case": "no_fresh_evidence_at_approval",
+        "error_code": "stale_evidence",
+        "expected": [
+          "denied"
+        ],
+        "ok": true,
+        "status": "denied"
+      },
+      {
+        "adapter": "signal_controller_adapter",
+        "adapter_calls": 0,
+        "case": "evidence_stale_after_approval_before_execution",
+        "error_code": "stale_evidence",
+        "expected": [
+          "denied"
+        ],
+        "ok": true,
+        "status": "denied"
+      },
+      {
+        "adapter": "signal_controller_adapter",
+        "adapter_calls": 0,
+        "case": "never_approved",
+        "error_code": null,
+        "expected": [
+          "requested"
+        ],
+        "ok": true,
+        "status": "requested"
+      },
+      {
+        "adapter": "signal_controller_adapter",
+        "adapter_calls": 0,
+        "case": "approved_by_its_own_requester",
+        "error_code": "policy_denied",
+        "expected": [
+          "denied"
+        ],
+        "ok": true,
+        "status": "denied"
+      },
+      {
+        "adapter": "signal_controller_adapter",
+        "adapter_calls": 0,
+        "case": "approved_by_a_role_with_no_authority",
+        "error_code": "policy_denied",
+        "expected": [
+          "denied"
+        ],
+        "ok": true,
+        "status": "denied"
+      },
+      {
+        "adapter": "signal_controller_adapter",
+        "adapter_calls": 0,
+        "case": "requested_by_a_role_with_no_authority",
+        "error_code": null,
+        "expected": [
+          "refused"
+        ],
+        "ok": true,
+        "status": "refused, no command exists"
+      },
+      {
+        "adapter": "signal_controller_adapter",
+        "adapter_calls": 0,
+        "case": "unknown_target",
+        "error_code": "invalid_target",
+        "expected": [
+          "denied"
+        ],
+        "ok": true,
+        "status": "denied"
+      },
+      {
+        "adapter": "signal_controller_adapter",
+        "adapter_calls": 0,
+        "case": "expired_before_review",
+        "error_code": "expired",
+        "expected": [
+          "expired"
+        ],
+        "ok": true,
+        "status": "expired"
+      },
+      {
+        "adapter": "signal_controller_adapter",
+        "adapter_calls": 0,
+        "case": "linked_recommendation_of_another_action_type",
+        "error_code": "policy_denied",
+        "expected": [
+          "denied"
+        ],
+        "ok": true,
+        "status": "denied"
+      },
+      {
+        "adapter": "signal_controller_adapter",
+        "adapter_calls": 0,
+        "case": "linked_recommendation_superseded",
+        "error_code": "policy_denied",
+        "expected": [
+          "denied"
+        ],
+        "ok": true,
+        "status": "denied"
+      },
+      {
+        "adapter": "signal_controller_adapter",
+        "adapter_calls": 1,
+        "case": "adapter_unreachable_when_driven",
+        "error_code": "adapter_unreachable",
+        "expected": [
+          "failed"
+        ],
+        "ok": true,
+        "status": "failed"
+      },
+      {
+        "adapter": "diversion_adapter",
+        "adapter_calls": 1,
+        "case": "control_valid_command",
+        "error_code": null,
+        "expected": [
+          "executed"
+        ],
+        "ok": true,
+        "status": "executed"
+      },
+      {
+        "adapter": "diversion_adapter",
+        "adapter_calls": 0,
+        "case": "no_fresh_evidence_at_approval",
+        "error_code": "stale_evidence",
+        "expected": [
+          "denied"
+        ],
+        "ok": true,
+        "status": "denied"
+      },
+      {
+        "adapter": "diversion_adapter",
+        "adapter_calls": 0,
+        "case": "evidence_stale_after_approval_before_execution",
+        "error_code": "stale_evidence",
+        "expected": [
+          "denied"
+        ],
+        "ok": true,
+        "status": "denied"
+      },
+      {
+        "adapter": "diversion_adapter",
+        "adapter_calls": 0,
+        "case": "never_approved",
+        "error_code": null,
+        "expected": [
+          "requested"
+        ],
+        "ok": true,
+        "status": "requested"
+      },
+      {
+        "adapter": "diversion_adapter",
+        "adapter_calls": 0,
+        "case": "approved_by_its_own_requester",
+        "error_code": "policy_denied",
+        "expected": [
+          "denied"
+        ],
+        "ok": true,
+        "status": "denied"
+      },
+      {
+        "adapter": "diversion_adapter",
+        "adapter_calls": 0,
+        "case": "approved_by_a_role_with_no_authority",
+        "error_code": "policy_denied",
+        "expected": [
+          "denied"
+        ],
+        "ok": true,
+        "status": "denied"
+      },
+      {
+        "adapter": "diversion_adapter",
+        "adapter_calls": 0,
+        "case": "requested_by_a_role_with_no_authority",
+        "error_code": null,
+        "expected": [
+          "refused"
+        ],
+        "ok": true,
+        "status": "refused, no command exists"
+      },
+      {
+        "adapter": "diversion_adapter",
+        "adapter_calls": 0,
+        "case": "unknown_target",
+        "error_code": "invalid_target",
+        "expected": [
+          "denied"
+        ],
+        "ok": true,
+        "status": "denied"
+      },
+      {
+        "adapter": "diversion_adapter",
+        "adapter_calls": 0,
+        "case": "expired_before_review",
+        "error_code": "expired",
+        "expected": [
+          "expired"
+        ],
+        "ok": true,
+        "status": "expired"
+      },
+      {
+        "adapter": "diversion_adapter",
+        "adapter_calls": 0,
+        "case": "linked_recommendation_of_another_action_type",
+        "error_code": "policy_denied",
+        "expected": [
+          "denied"
+        ],
+        "ok": true,
+        "status": "denied"
+      },
+      {
+        "adapter": "diversion_adapter",
+        "adapter_calls": 0,
+        "case": "linked_recommendation_superseded",
+        "error_code": "policy_denied",
+        "expected": [
+          "denied"
+        ],
+        "ok": true,
+        "status": "denied"
+      },
+      {
+        "adapter": "diversion_adapter",
+        "adapter_calls": 1,
+        "case": "adapter_unreachable_when_driven",
+        "error_code": "adapter_unreachable",
+        "expected": [
+          "failed"
+        ],
+        "ok": true,
+        "status": "failed"
+      },
+      {
+        "adapter": "vms_adapter",
+        "adapter_calls": 1,
+        "case": "control_valid_command",
+        "error_code": null,
+        "expected": [
+          "executed"
+        ],
+        "ok": true,
+        "status": "executed"
+      },
+      {
+        "adapter": "vms_adapter",
+        "adapter_calls": 0,
+        "case": "no_fresh_evidence_at_approval",
+        "error_code": "stale_evidence",
+        "expected": [
+          "denied"
+        ],
+        "ok": true,
+        "status": "denied"
+      },
+      {
+        "adapter": "vms_adapter",
+        "adapter_calls": 0,
+        "case": "evidence_stale_after_approval_before_execution",
+        "error_code": "stale_evidence",
+        "expected": [
+          "denied"
+        ],
+        "ok": true,
+        "status": "denied"
+      },
+      {
+        "adapter": "vms_adapter",
+        "adapter_calls": 0,
+        "case": "never_approved",
+        "error_code": null,
+        "expected": [
+          "requested"
+        ],
+        "ok": true,
+        "status": "requested"
+      },
+      {
+        "adapter": "vms_adapter",
+        "adapter_calls": 0,
+        "case": "approved_by_a_role_with_no_authority",
+        "error_code": "policy_denied",
+        "expected": [
+          "denied"
+        ],
+        "ok": true,
+        "status": "denied"
+      },
+      {
+        "adapter": "vms_adapter",
+        "adapter_calls": 0,
+        "case": "requested_by_a_role_with_no_authority",
+        "error_code": null,
+        "expected": [
+          "refused"
+        ],
+        "ok": true,
+        "status": "refused, no command exists"
+      },
+      {
+        "adapter": "vms_adapter",
+        "adapter_calls": 0,
+        "case": "unknown_target",
+        "error_code": "invalid_target",
+        "expected": [
+          "denied"
+        ],
+        "ok": true,
+        "status": "denied"
+      },
+      {
+        "adapter": "vms_adapter",
+        "adapter_calls": 0,
+        "case": "expired_before_review",
+        "error_code": "expired",
+        "expected": [
+          "expired"
+        ],
+        "ok": true,
+        "status": "expired"
+      },
+      {
+        "adapter": "vms_adapter",
+        "adapter_calls": 0,
+        "case": "linked_recommendation_of_another_action_type",
+        "error_code": "policy_denied",
+        "expected": [
+          "denied"
+        ],
+        "ok": true,
+        "status": "denied"
+      },
+      {
+        "adapter": "vms_adapter",
+        "adapter_calls": 0,
+        "case": "linked_recommendation_superseded",
+        "error_code": "policy_denied",
+        "expected": [
+          "denied"
+        ],
+        "ok": true,
+        "status": "denied"
+      },
+      {
+        "adapter": "vms_adapter",
+        "adapter_calls": 1,
+        "case": "adapter_unreachable_when_driven",
+        "error_code": "adapter_unreachable",
+        "expected": [
+          "failed"
+        ],
+        "ok": true,
+        "status": "failed"
+      },
+      {
+        "adapter": "transit_priority_adapter",
+        "adapter_calls": 1,
+        "case": "control_valid_command",
+        "error_code": null,
+        "expected": [
+          "executed"
+        ],
+        "ok": true,
+        "status": "executed"
+      },
+      {
+        "adapter": "transit_priority_adapter",
+        "adapter_calls": 0,
+        "case": "no_fresh_evidence_at_approval",
+        "error_code": "stale_evidence",
+        "expected": [
+          "denied"
+        ],
+        "ok": true,
+        "status": "denied"
+      },
+      {
+        "adapter": "transit_priority_adapter",
+        "adapter_calls": 0,
+        "case": "evidence_stale_after_approval_before_execution",
+        "error_code": "stale_evidence",
+        "expected": [
+          "denied"
+        ],
+        "ok": true,
+        "status": "denied"
+      },
+      {
+        "adapter": "transit_priority_adapter",
+        "adapter_calls": 0,
+        "case": "never_approved",
+        "error_code": null,
+        "expected": [
+          "requested"
+        ],
+        "ok": true,
+        "status": "requested"
+      },
+      {
+        "adapter": "transit_priority_adapter",
+        "adapter_calls": 0,
+        "case": "approved_by_its_own_requester",
+        "error_code": "policy_denied",
+        "expected": [
+          "denied"
+        ],
+        "ok": true,
+        "status": "denied"
+      },
+      {
+        "adapter": "transit_priority_adapter",
+        "adapter_calls": 0,
+        "case": "approved_by_a_role_with_no_authority",
+        "error_code": "policy_denied",
+        "expected": [
+          "denied"
+        ],
+        "ok": true,
+        "status": "denied"
+      },
+      {
+        "adapter": "transit_priority_adapter",
+        "adapter_calls": 0,
+        "case": "requested_by_a_role_with_no_authority",
+        "error_code": null,
+        "expected": [
+          "refused"
+        ],
+        "ok": true,
+        "status": "refused, no command exists"
+      },
+      {
+        "adapter": "transit_priority_adapter",
+        "adapter_calls": 0,
+        "case": "unknown_target",
+        "error_code": "invalid_target",
+        "expected": [
+          "denied"
+        ],
+        "ok": true,
+        "status": "denied"
+      },
+      {
+        "adapter": "transit_priority_adapter",
+        "adapter_calls": 0,
+        "case": "expired_before_review",
+        "error_code": "expired",
+        "expected": [
+          "expired"
+        ],
+        "ok": true,
+        "status": "expired"
+      },
+      {
+        "adapter": "transit_priority_adapter",
+        "adapter_calls": 0,
+        "case": "linked_recommendation_of_another_action_type",
+        "error_code": "policy_denied",
+        "expected": [
+          "denied"
+        ],
+        "ok": true,
+        "status": "denied"
+      },
+      {
+        "adapter": "transit_priority_adapter",
+        "adapter_calls": 0,
+        "case": "linked_recommendation_superseded",
+        "error_code": "policy_denied",
+        "expected": [
+          "denied"
+        ],
+        "ok": true,
+        "status": "denied"
+      },
+      {
+        "adapter": "transit_priority_adapter",
+        "adapter_calls": 1,
+        "case": "adapter_unreachable_when_driven",
+        "error_code": "adapter_unreachable",
+        "expected": [
+          "failed"
+        ],
+        "ok": true,
+        "status": "failed"
+      },
+      {
+        "adapter": "emergency_preemption_adapter",
+        "adapter_calls": 1,
+        "case": "control_valid_command",
+        "error_code": null,
+        "expected": [
+          "executed"
+        ],
+        "ok": true,
+        "status": "executed"
+      },
+      {
+        "adapter": "emergency_preemption_adapter",
+        "adapter_calls": 0,
+        "case": "no_fresh_evidence_at_approval",
+        "error_code": "stale_evidence",
+        "expected": [
+          "denied"
+        ],
+        "ok": true,
+        "status": "denied"
+      },
+      {
+        "adapter": "emergency_preemption_adapter",
+        "adapter_calls": 0,
+        "case": "evidence_stale_after_approval_before_execution",
+        "error_code": "stale_evidence",
+        "expected": [
+          "denied"
+        ],
+        "ok": true,
+        "status": "denied"
+      },
+      {
+        "adapter": "emergency_preemption_adapter",
+        "adapter_calls": 0,
+        "case": "never_approved",
+        "error_code": null,
+        "expected": [
+          "requested"
+        ],
+        "ok": true,
+        "status": "requested"
+      },
+      {
+        "adapter": "emergency_preemption_adapter",
+        "adapter_calls": 0,
+        "case": "approved_by_its_own_requester",
+        "error_code": "policy_denied",
+        "expected": [
+          "denied"
+        ],
+        "ok": true,
+        "status": "denied"
+      },
+      {
+        "adapter": "emergency_preemption_adapter",
+        "adapter_calls": 0,
+        "case": "approved_by_a_role_with_no_authority",
+        "error_code": "policy_denied",
+        "expected": [
+          "denied"
+        ],
+        "ok": true,
+        "status": "denied"
+      },
+      {
+        "adapter": "emergency_preemption_adapter",
+        "adapter_calls": 0,
+        "case": "requested_by_a_role_with_no_authority",
+        "error_code": null,
+        "expected": [
+          "refused"
+        ],
+        "ok": true,
+        "status": "refused, no command exists"
+      },
+      {
+        "adapter": "emergency_preemption_adapter",
+        "adapter_calls": 0,
+        "case": "unknown_target",
+        "error_code": "invalid_target",
+        "expected": [
+          "denied"
+        ],
+        "ok": true,
+        "status": "denied"
+      },
+      {
+        "adapter": "emergency_preemption_adapter",
+        "adapter_calls": 0,
+        "case": "expired_before_review",
+        "error_code": "expired",
+        "expected": [
+          "expired"
+        ],
+        "ok": true,
+        "status": "expired"
+      },
+      {
+        "adapter": "emergency_preemption_adapter",
+        "adapter_calls": 0,
+        "case": "linked_recommendation_of_another_action_type",
+        "error_code": "policy_denied",
+        "expected": [
+          "denied"
+        ],
+        "ok": true,
+        "status": "denied"
+      },
+      {
+        "adapter": "emergency_preemption_adapter",
+        "adapter_calls": 0,
+        "case": "linked_recommendation_superseded",
+        "error_code": "policy_denied",
+        "expected": [
+          "denied"
+        ],
+        "ok": true,
+        "status": "denied"
+      },
+      {
+        "adapter": "emergency_preemption_adapter",
+        "adapter_calls": 1,
+        "case": "adapter_unreachable_when_driven",
+        "error_code": "adapter_unreachable",
+        "expected": [
+          "failed"
+        ],
+        "ok": true,
+        "status": "failed"
+      },
+      {
+        "adapter": "diversion_adapter",
+        "adapter_calls": 1,
+        "case": "control_valid_command",
+        "error_code": null,
+        "expected": [
+          "executed"
+        ],
+        "ok": true,
+        "status": "executed"
+      },
+      {
+        "adapter": "diversion_adapter",
+        "adapter_calls": 0,
+        "case": "no_fresh_evidence_at_approval",
+        "error_code": "stale_evidence",
+        "expected": [
+          "denied"
+        ],
+        "ok": true,
+        "status": "denied"
+      },
+      {
+        "adapter": "diversion_adapter",
+        "adapter_calls": 0,
+        "case": "evidence_stale_after_approval_before_execution",
+        "error_code": "stale_evidence",
+        "expected": [
+          "denied"
+        ],
+        "ok": true,
+        "status": "denied"
+      },
+      {
+        "adapter": "diversion_adapter",
+        "adapter_calls": 0,
+        "case": "never_approved",
+        "error_code": null,
+        "expected": [
+          "requested"
+        ],
+        "ok": true,
+        "status": "requested"
+      },
+      {
+        "adapter": "diversion_adapter",
+        "adapter_calls": 0,
+        "case": "approved_by_its_own_requester",
+        "error_code": "policy_denied",
+        "expected": [
+          "denied"
+        ],
+        "ok": true,
+        "status": "denied"
+      },
+      {
+        "adapter": "diversion_adapter",
+        "adapter_calls": 0,
+        "case": "approved_by_a_role_with_no_authority",
+        "error_code": "policy_denied",
+        "expected": [
+          "denied"
+        ],
+        "ok": true,
+        "status": "denied"
+      },
+      {
+        "adapter": "diversion_adapter",
+        "adapter_calls": 0,
+        "case": "requested_by_a_role_with_no_authority",
+        "error_code": null,
+        "expected": [
+          "refused"
+        ],
+        "ok": true,
+        "status": "refused, no command exists"
+      },
+      {
+        "adapter": "diversion_adapter",
+        "adapter_calls": 0,
+        "case": "unknown_target",
+        "error_code": "invalid_target",
+        "expected": [
+          "denied"
+        ],
+        "ok": true,
+        "status": "denied"
+      },
+      {
+        "adapter": "diversion_adapter",
+        "adapter_calls": 0,
+        "case": "expired_before_review",
+        "error_code": "expired",
+        "expected": [
+          "expired"
+        ],
+        "ok": true,
+        "status": "expired"
+      },
+      {
+        "adapter": "diversion_adapter",
+        "adapter_calls": 0,
+        "case": "linked_recommendation_of_another_action_type",
+        "error_code": "policy_denied",
+        "expected": [
+          "denied"
+        ],
+        "ok": true,
+        "status": "denied"
+      },
+      {
+        "adapter": "diversion_adapter",
+        "adapter_calls": 0,
+        "case": "linked_recommendation_superseded",
+        "error_code": "policy_denied",
+        "expected": [
+          "denied"
+        ],
+        "ok": true,
+        "status": "denied"
+      },
+      {
+        "adapter": "diversion_adapter",
+        "adapter_calls": 1,
+        "case": "adapter_unreachable_when_driven",
+        "error_code": "adapter_unreachable",
+        "expected": [
+          "failed"
+        ],
+        "ok": true,
+        "status": "failed"
+      },
+      {
+        "adapter": "vms_adapter",
+        "adapter_calls": 1,
+        "case": "control_valid_command",
+        "error_code": null,
+        "expected": [
+          "executed"
+        ],
+        "ok": true,
+        "status": "executed"
+      },
+      {
+        "adapter": "vms_adapter",
+        "adapter_calls": 0,
+        "case": "no_fresh_evidence_at_approval",
+        "error_code": "stale_evidence",
+        "expected": [
+          "denied"
+        ],
+        "ok": true,
+        "status": "denied"
+      },
+      {
+        "adapter": "vms_adapter",
+        "adapter_calls": 0,
+        "case": "evidence_stale_after_approval_before_execution",
+        "error_code": "stale_evidence",
+        "expected": [
+          "denied"
+        ],
+        "ok": true,
+        "status": "denied"
+      },
+      {
+        "adapter": "vms_adapter",
+        "adapter_calls": 0,
+        "case": "never_approved",
+        "error_code": null,
+        "expected": [
+          "requested"
+        ],
+        "ok": true,
+        "status": "requested"
+      },
+      {
+        "adapter": "vms_adapter",
+        "adapter_calls": 0,
+        "case": "approved_by_a_role_with_no_authority",
+        "error_code": "policy_denied",
+        "expected": [
+          "denied"
+        ],
+        "ok": true,
+        "status": "denied"
+      },
+      {
+        "adapter": "vms_adapter",
+        "adapter_calls": 0,
+        "case": "requested_by_a_role_with_no_authority",
+        "error_code": null,
+        "expected": [
+          "refused"
+        ],
+        "ok": true,
+        "status": "refused, no command exists"
+      },
+      {
+        "adapter": "vms_adapter",
+        "adapter_calls": 0,
+        "case": "unknown_target",
+        "error_code": "invalid_target",
+        "expected": [
+          "denied"
+        ],
+        "ok": true,
+        "status": "denied"
+      },
+      {
+        "adapter": "vms_adapter",
+        "adapter_calls": 0,
+        "case": "expired_before_review",
+        "error_code": "expired",
+        "expected": [
+          "expired"
+        ],
+        "ok": true,
+        "status": "expired"
+      },
+      {
+        "adapter": "vms_adapter",
+        "adapter_calls": 0,
+        "case": "linked_recommendation_of_another_action_type",
+        "error_code": "policy_denied",
+        "expected": [
+          "denied"
+        ],
+        "ok": true,
+        "status": "denied"
+      },
+      {
+        "adapter": "vms_adapter",
+        "adapter_calls": 0,
+        "case": "linked_recommendation_superseded",
+        "error_code": "policy_denied",
+        "expected": [
+          "denied"
+        ],
+        "ok": true,
+        "status": "denied"
+      },
+      {
+        "adapter": "vms_adapter",
+        "adapter_calls": 1,
+        "case": "adapter_unreachable_when_driven",
+        "error_code": "adapter_unreachable",
+        "expected": [
+          "failed"
+        ],
+        "ok": true,
+        "status": "failed"
+      },
+      {
+        "adapter": "signal_controller_adapter",
+        "adapter_calls": 0,
+        "case": "policy_engine_unreachable_at_approval",
+        "error_code": "internal",
+        "expected": [
+          "requested"
+        ],
+        "ok": true,
+        "status": "requested"
+      },
+      {
+        "adapter": "diversion_adapter",
+        "adapter_calls": 0,
+        "case": "policy_engine_unreachable_at_approval",
+        "error_code": "internal",
+        "expected": [
+          "requested"
+        ],
+        "ok": true,
+        "status": "requested"
+      },
+      {
+        "adapter": "vms_adapter",
+        "adapter_calls": 0,
+        "case": "policy_engine_unreachable_at_approval",
+        "error_code": "internal",
+        "expected": [
+          "requested"
+        ],
+        "ok": true,
+        "status": "requested"
+      },
+      {
+        "adapter": "transit_priority_adapter",
+        "adapter_calls": 0,
+        "case": "policy_engine_unreachable_at_approval",
+        "error_code": "internal",
+        "expected": [
+          "requested"
+        ],
+        "ok": true,
+        "status": "requested"
+      },
+      {
+        "adapter": "emergency_preemption_adapter",
+        "adapter_calls": 0,
+        "case": "policy_engine_unreachable_at_approval",
+        "error_code": "internal",
+        "expected": [
+          "requested"
+        ],
+        "ok": true,
+        "status": "requested"
+      },
+      {
+        "adapter": "diversion_adapter",
+        "adapter_calls": 0,
+        "case": "policy_engine_unreachable_at_approval",
+        "error_code": "internal",
+        "expected": [
+          "requested"
+        ],
+        "ok": true,
+        "status": "requested"
+      },
+      {
+        "adapter": "vms_adapter",
+        "adapter_calls": 0,
+        "case": "policy_engine_unreachable_at_approval",
+        "error_code": "internal",
+        "expected": [
+          "requested"
+        ],
+        "ok": true,
+        "status": "requested"
+      },
+      {
+        "adapter": "signal_controller_adapter",
+        "adapter_calls": 0,
+        "case": "policy_engine_unreachable_at_execution",
+        "error_code": null,
+        "expected": [
+          "approved"
+        ],
+        "ok": true,
+        "status": "approved"
+      },
+      {
+        "adapter": "diversion_adapter",
+        "adapter_calls": 0,
+        "case": "policy_engine_unreachable_at_execution",
+        "error_code": null,
+        "expected": [
+          "approved"
+        ],
+        "ok": true,
+        "status": "approved"
+      },
+      {
+        "adapter": "vms_adapter",
+        "adapter_calls": 0,
+        "case": "policy_engine_unreachable_at_execution",
+        "error_code": null,
+        "expected": [
+          "approved"
+        ],
+        "ok": true,
+        "status": "approved"
+      },
+      {
+        "adapter": "transit_priority_adapter",
+        "adapter_calls": 0,
+        "case": "policy_engine_unreachable_at_execution",
+        "error_code": null,
+        "expected": [
+          "approved"
+        ],
+        "ok": true,
+        "status": "approved"
+      },
+      {
+        "adapter": "emergency_preemption_adapter",
+        "adapter_calls": 0,
+        "case": "policy_engine_unreachable_at_execution",
+        "error_code": null,
+        "expected": [
+          "approved"
+        ],
+        "ok": true,
+        "status": "approved"
+      },
+      {
+        "adapter": "diversion_adapter",
+        "adapter_calls": 0,
+        "case": "policy_engine_unreachable_at_execution",
+        "error_code": null,
+        "expected": [
+          "approved"
+        ],
+        "ok": true,
+        "status": "approved"
+      },
+      {
+        "adapter": "vms_adapter",
+        "adapter_calls": 0,
+        "case": "policy_engine_unreachable_at_execution",
+        "error_code": null,
+        "expected": [
+          "approved"
+        ],
+        "ok": true,
+        "status": "approved"
+      }
+    ],
+    "counts": {
+      "adapters": 7,
+      "attempts": 96,
+      "executed_among_violating": 0,
+      "violating_attempts": 82
+    }
+  },
+  "notes": {
+    "adapter_unreachable_when_driven_is_never_executed_on_any_of_the_7_adapters_and_ends_failed": "statuses ['failed']; adapter calls 7; error codes ['adapter_unreachable']",
+    "approved_by_a_role_with_no_authority_is_never_executed_on_any_of_the_7_adapters_and_ends_denied": "statuses ['denied']; adapter calls 0; error codes ['policy_denied']",
+    "approved_by_its_own_requester_is_never_executed_on_any_of_the_5_adapters_and_ends_denied": "statuses ['denied']; adapter calls 0; error codes ['policy_denied']",
+    "control_a_valid_command_is_approved_and_executed_exactly_once_on_every_adapter": "7 adapters; statuses ['executed', 'executed', 'executed', 'executed', 'executed', 'executed', 'executed']; calls [1, 1, 1, 1, 1, 1, 1]",
+    "evidence_stale_after_approval_before_execution_is_never_executed_on_any_of_the_7_adapters_and_ends_denied": "statuses ['denied']; adapter calls 0; error codes ['stale_evidence']",
+    "expired_before_review_is_never_executed_on_any_of_the_7_adapters_and_ends_expired": "statuses ['expired']; adapter calls 0; error codes ['expired']",
+    "linked_recommendation_of_another_action_type_is_never_executed_on_any_of_the_7_adapters_and_ends_denied": "statuses ['denied']; adapter calls 0; error codes ['policy_denied']",
+    "linked_recommendation_superseded_is_never_executed_on_any_of_the_7_adapters_and_ends_denied": "statuses ['denied']; adapter calls 0; error codes ['policy_denied']",
+    "never_approved_is_never_executed_on_any_of_the_7_adapters_and_ends_requested": "statuses ['requested']; adapter calls 0; error codes ['None']",
+    "no_fresh_evidence_at_approval_is_never_executed_on_any_of_the_7_adapters_and_ends_denied": "statuses ['denied']; adapter calls 0; error codes ['stale_evidence']",
+    "not_proven": "actions through the HTTP API and roles as Keycloak tokens (P08.08 and P09.10); a real adapter failure other than a timeout; commands the executor never sees because they were never approved are counted as such, not as denials",
+    "policy_engine_unreachable_at_approval_is_never_executed_on_any_of_the_7_adapters_and_ends_requested": "statuses ['requested']; adapter calls 0; error codes ['internal']",
+    "policy_engine_unreachable_at_execution_is_never_executed_on_any_of_the_7_adapters_and_ends_approved": "statuses ['approved']; adapter calls 0; error codes ['None']",
+    "precondition_no_command_is_waiting_for_the_executor_so_every_call_counted_here_is_this_lab_s": "0 approved or executing",
+    "requested_by_a_role_with_no_authority_is_never_executed_on_any_of_the_7_adapters_and_ends_refused": "statuses ['refused, no command exists']; adapter calls 0; error codes ['None']",
+    "safe_02_every_attempt_that_lacked_evidence_a_valid_decision_or_fresh_state_was_stopped_and_the_adapter_was_never_driven": "82 attempts, 0 executed, 0 adapter calls",
+    "the_lab_can_fail_with_the_gate_switched_off_a_command_with_no_evidence_is_executed_and_counted": "status executed, adapter calls 1",
+    "the_policy_engine_is_running_again": "",
+    "unknown_target_is_never_executed_on_any_of_the_7_adapters_and_ends_denied": "statuses ['denied']; adapter calls 0; error codes ['invalid_target']",
+    "what_is_stood_in": "the simulator adapter is a counting stand-in (the SUMO runs are P07.06-P07.10); what is measured is whether the boundary that drives an adapter was crossed, through the real request, policy (real engine) and executor code",
+    "with_the_engine_back_the_commands_that_were_held_are_executed_so_holding_was_a_wait_not_a_refusal": "['executed', 'executed', 'executed', 'executed', 'executed', 'executed', 'executed']"
+  },
+  "task": "P12.02"
+}

@@ -243,15 +243,30 @@ async def main() -> int:  # noqa: PLR0915
                 db.rollback()
                 raise
 
+        def refuses_update_or_is_guarded(table: str) -> tuple[bool, str]:
+            """A row-level trigger cannot fire on an empty table, so an UPDATE there proves nothing (this check failed on a
+            database with no incidents). With rows, attempt the UPDATE; with none, read the trigger out of the catalogue:
+            an enabled BEFORE UPDATE row trigger and an enabled TRUNCATE trigger."""
+            if db.execute(f"SELECT EXISTS (SELECT 1 FROM {table})").fetchone()[0]:
+                return refuses(
+                    f"UPDATE {table} SET note = 'x' WHERE id = (SELECT id FROM {table} LIMIT 1)"
+                ), "attempted on a real row"
+            row = db.execute(
+                "SELECT coalesce(bool_or((tgtype & 3) = 3 AND (tgtype & 16) <> 0 AND tgenabled = 'O'), false),"
+                " coalesce(bool_or((tgtype & 32) <> 0 AND tgenabled = 'O'), false)"
+                " FROM pg_trigger WHERE tgrelid = %s::regclass AND NOT tgisinternal",
+                (table,),
+            ).fetchone()
+            return bool(row[0]) and bool(
+                row[1]
+            ), "table empty: the enabled UPDATE and TRUNCATE triggers read from the catalogue"
+
+        commands_ok, commands_how = refuses_update_or_is_guarded("command_transitions")
+        incidents_ok, incidents_how = refuses_update_or_is_guarded("incident_transitions")
         ev.check(
             "command_transitions_and_incident_transitions_still_refuse_update_and_truncate",
-            refuses(
-                "UPDATE command_transitions SET note = 'x' WHERE id = (SELECT id FROM command_transitions LIMIT 1)"
-            )
-            and refuses("TRUNCATE command_transitions")
-            and refuses(
-                "UPDATE incident_transitions SET note = 'x' WHERE id = (SELECT id FROM incident_transitions LIMIT 1)"
-            ),
+            commands_ok and refuses("TRUNCATE command_transitions") and incidents_ok,
+            detail={"command_transitions": commands_how, "incident_transitions": incidents_how},
         )
         ev.check(
             "the_database_itself_refuses_a_raw_insert_carrying_a_bearer_credential_defense_in_depth_for_ctl_16",

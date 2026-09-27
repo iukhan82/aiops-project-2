@@ -44,14 +44,14 @@
       "purpose": "Vulnerable-road-user counts and speeds for the same analytics traffic sensors feed, from a device type capable of raw imagery.",
       "device_types": ["edge_camera"],
       "privacy_classification": ["aggregated"],
-      "retention_class": "standard",
+      "retention_class": "short",
       "personal_data": false,
-      "minimization": "The privacy-preserving pipeline (`source-code/edge/vision_privacy.py`, P04.06) is the ONLY path an edge_camera's data may reach this platform through: privacy zones drop a track point before aggregation with no code path around them, a rehashed non-persistent id (fresh salt every window) is never exported, and a k-anonymity floor suppresses any window with too few contributing objects to reveal one individual. No raw frame, trajectory, face or plate field exists anywhere in this codebase.",
+      "minimization": "The privacy-preserving pipeline (`source-code/edge/vision_privacy.py`, P04.06) is the ONLY path an edge_camera's data may reach this platform through: privacy zones drop a track point before aggregation with no code path around them, a rehashed non-persistent id (fresh salt every window) is never exported, and a k-anonymity floor suppresses any window with too few contributing objects to reveal one individual. No raw frame, trajectory, face or plate field exists anywhere in this codebase. `edge/vision_devices.py` registers every such device with `retention_class: short` (7 days) rather than the other sensor types' `standard` (90 days), the shorter of the two the schema allows, because this category's purpose is fully served by the standing analytics window and there is no reason to keep aggregate track metadata as long as telemetry that carries no privacy question at all.",
       "access_capabilities": ["map.view", "analytics.view"],
       "data_subject": "Pedestrians and cyclists in view of a camera, made anonymous by construction before the platform ever sees a record.",
       "rights_process": "Not personal data as received (aggregated, k-anonymous, no persistent id). A rights request about a specific individual could not be answered from platform data even in principle, because no individual-level record is ever created.",
       "residual_risk": "medium",
-      "residual_risk_note": "Correctness of privacy-zone configuration and the k-anonymity floor is what stands between a real camera and identifiable output; both are enforced in code and covered by tests (`tests/test_edge_vision_privacy.py`), but this is a structural guarantee about THIS pipeline, not a guarantee about a camera's raw feed before it reaches this code - deploying a real camera needs its own device-level review. No edge_camera is part of the current simulated device population (0 registered in either database or the sensor catalog); the pipeline is built and tested ahead of that device type actually appearing.",
+      "residual_risk_note": "Correctness of privacy-zone configuration and the k-anonymity floor is what stands between a real camera and identifiable output; both are enforced in code and covered by tests (`tests/test_edge_vision_privacy.py`), but this is a structural guarantee about THIS pipeline, not a guarantee about a camera's raw feed before it reaches this code - deploying a real camera needs its own device-level review. `edge_camera` is not part of the simulator's own sensor catalog (P03.03); the twelve instances a live database can hold (one per intersection, `camera-int-*`) come only from this task's own verifier (P06.06, `verify_vru_conflicts.py`) registering the pipeline's illustrative devices against whichever database it is pointed at, most often the shared verification database `aiops` - not from any operational feed.",
       "owner": "GRC"
     },
     {
@@ -121,8 +121,8 @@
     }
   ],
   "retention_class_review": {
-    "short": {"days": 7, "used_by": ["not currently assigned to any category above"], "note": "reserved for the highest-volume, shortest-lived data the schema allows; nothing in the current device population needs a window this short."},
-    "standard": {"days": 90, "used_by": ["traffic-sensor-telemetry", "signal-and-field-device-state", "edge-vision-aggregate-metadata", "emergency-call-and-unit-coordination"], "note": "the default operational window: long enough for trend analytics and incident review, short enough to bound what is kept."},
+    "short": {"days": 7, "used_by": ["edge-vision-aggregate-metadata"], "note": "the aggregate, k-anonymous vision-track metadata needs no longer than this to serve its analytics purpose."},
+    "standard": {"days": 90, "used_by": ["traffic-sensor-telemetry", "signal-and-field-device-state", "emergency-call-and-unit-coordination"], "note": "the default operational window: long enough for trend analytics and incident review, short enough to bound what is kept."},
     "extended": {"days": 365, "used_by": ["not currently assigned to any category above"], "note": "reserved for a data class needing a year for seasonal comparison; none of the current live data uses it."},
     "audit": {"days": null, "used_by": ["operator-and-service-identity", "policy-and-command-decision-records", "demo-identities-and-scenario-runs"], "note": "never purged (`database/retention.py` refuses to touch it) and, since P09.05, hash-chained and append-only - an ACCEPTED design decision: safety-critical accountability outweighs minimization for this narrow set of pseudonymous (username-level) records, and nothing in this class is public-facing personal data."}
   },

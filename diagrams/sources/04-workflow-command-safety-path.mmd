@@ -14,34 +14,47 @@ sequenceDiagram
   Evi->>OptSvc: current state + incident evidence
   OptSvc->>Op: recommendation/v1 (alternatives, safety_bounds, expires_at)
   Op->>Cmd: command/v1 (status=requested, idempotency_key)
+  Cmd->>OPA: authorise(request): may this role REQUEST this action type?
   Cmd->>Aud: log request
   alt safety class SC-1 or SC-2
     Op->>Sup: request approval (different person, four-eyes)
     Sup->>Cmd: approved_by (must != requested_by)
+    Cmd->>OPA: authorise(review): may this role APPROVE this class? target exists? evidence fresh now?
+    alt denied (role, self-approval, unknown target, stale evidence, expired, superseded recommendation, or OPA unreachable - fails closed)
+      OPA-->>Cmd: deny (reason required, P12.02 SAFE-02)
+      Cmd->>Aud: log denial
+      Cmd-->>Op: status=denied / expired / requested_policy_unavailable
+    end
   else safety class SC-0
     Note over Op,Cmd: requester's REQUEST is sufficient, no second approval
   end
-  Cmd->>OPA: policy-decision/v1 input (role, action_type, target, evidence_freshness_seconds)
-  alt evidence stale or expired or policy unavailable
-    OPA-->>Cmd: deny (reason required)
-    Cmd->>Aud: log denial
-    Cmd-->>Op: status=denied / expired
+  Note over Cmd,Exec: approval is not taken on trust (P12.02 SAFE-02/SAFE-03): the executor re-derives everything, fresh, immediately before the adapter runs
+  Cmd->>Exec: dispatch approved command
+  Exec->>OPA: execution_gate: re-check role/target/evidence/expiry NOW, not what approval saw
+  alt now stale, expired, unknown target, or OPA unreachable - fails closed, adapter never driven
+    OPA-->>Exec: deny
+    Exec->>Cmd: status=failed (error_code, retryable)
+    Cmd->>Aud: log execution refusal
   else permit
-    OPA-->>Cmd: permit
-    Cmd->>Exec: dispatch approved command
+    OPA-->>Exec: permit
     Exec->>Adapt: execute (registered, idempotent action only)
-    Adapt-->>Exec: acknowledgement + observed state
-    Exec->>Cmd: status=executed
-    Cmd->>Aud: log execution
-    Cmd->>Ver: request outcome verification
-    Ver->>Evi: read independent pre/post window
-    alt effective
-      Ver-->>Cmd: outcome/v1 classification=effective
-    else unsafe or unknown
-      Ver-->>Cmd: outcome/v1 classification=unsafe/unknown
-      Cmd->>Exec: rollback
-      Exec->>Adapt: revert
-      Cmd->>Aud: log rollback/escalation
+    alt adapter unreachable or the executor is killed mid-run
+      Note over Exec,Adapt: the outcome is unknown - on the executor's next start the orphaned command is reconciled to failed, never retried, never re-driven (D-03, P12.02 REC-02)
+      Exec->>Cmd: status=failed (retryable only if the adapter itself never ran)
+    else acknowledged
+      Adapt-->>Exec: acknowledgement + observed state
+      Exec->>Cmd: status=executed
+      Cmd->>Aud: log execution
+      Cmd->>Ver: request outcome verification
+      Ver->>Evi: read independent pre/post window
+      alt effective
+        Ver-->>Cmd: outcome/v1 classification=effective
+      else unsafe or unknown
+        Ver-->>Cmd: outcome/v1 classification=unsafe/unknown
+        Cmd->>Exec: rollback
+        Exec->>Adapt: revert
+        Cmd->>Aud: log rollback/escalation
+      end
     end
   end
 

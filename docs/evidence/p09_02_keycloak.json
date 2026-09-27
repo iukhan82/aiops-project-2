@@ -35,7 +35,7 @@
     "ui_client_redirects_and_origins_are_exact_with_no_wildcard_anywhere": true,
     "ui_client_token_carries_only_the_users_operating_role_via_scope_mapping_not_full_scope": true
   },
-  "generated_at": "2026-09-21T16:16:26Z",
+  "generated_at": "2026-09-26T17:56:52Z",
   "metrics": {
     "newer_refresh_token_after_old_one_was_replayed": "revoked",
     "realm": {

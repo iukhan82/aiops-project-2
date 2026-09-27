@@ -290,7 +290,8 @@
       "owner": "DATA",
       "implementation": [
         "source-code/infra/platform/mosquitto",
-        "source-code/infra/platform/docker-compose.yml"
+        "source-code/infra/platform/docker-compose.yml",
+        "source-code/infra/k8s/target/mosquitto.conf"
       ],
       "evidence": [
         {
@@ -300,6 +301,15 @@
             "cross_device_publish_blocked",
             "cross_device_subscribe_blocked",
             "untrusted_ca_cert_rejected"
+          ]
+        },
+        {
+          "file": "docs/evidence/p11_04_target_security.json",
+          "checks": [
+            "mqtt_a_device_with_a_certificate_from_the_platform_ca_connects",
+            "mqtt_a_certificate_from_another_ca_is_refused",
+            "mqtt_a_client_with_no_certificate_is_refused",
+            "the_mqtt_broker_listens_on_the_mtls_port_only_there_is_no_plain_listener"
           ]
         }
       ]
@@ -347,11 +357,40 @@
       "baseline": [
         2
       ],
-      "status": "planned",
-      "task": "P09.04",
+      "status": "partial",
+      "task": "P12.05",
       "owner": "SEC",
-      "gap": "The database, broker-to-service and service-to-service links inside the platform network are plain today; only device-to-broker is mTLS.",
-      "due": "2026-09-30"
+      "gap": "In the cluster the database accepts TLS only (hostssl in pg_hba.conf; a plain connection is refused; verify-full against the platform CA connects, against another CA fails) and the broker accepts mutual TLS only (TLS 1.3 negotiated; no client certificate, a certificate from another CA, and plain bytes on the TLS port are all refused; port 1883 is not listening) - proven natively on the target (P11.04). Kafka, the policy engine, Keycloak, the API and the console still speak plain TCP or HTTP to each other inside the namespace, confined by NetworkPolicy to exactly the listed paths, and there is no service-to-service mutual authentication (no mesh, no per-service certificates).",
+      "due": "2026-10-12",
+      "implementation": [
+        "source-code/infra/platform/docker-compose.yml",
+        "source-code/infra/platform/postgres/gen-certs.sh",
+        "source-code/infra/platform/mosquitto/gen-certs.sh",
+        "source-code/infra/k8s/target/pg_hba.conf",
+        "source-code/infra/k8s/target/mosquitto.conf"
+      ],
+      "evidence": [
+        {
+          "file": "docs/evidence/p09_04_workload_protection.json",
+          "checks": [
+            "the_server_has_tls_enabled",
+            "an_ordinary_connection_string_with_no_sslmode_negotiates_tls_anyway_libpqs_own_default_is_prefer",
+            "the_real_ca_certificate_this_server_was_issued_from_is_on_disk",
+            "verify_full_against_the_right_hostname_and_the_real_ca_succeeds",
+            "verify_full_against_a_ca_this_server_was_not_issued_from_is_refused"
+          ]
+        },
+        {
+          "file": "docs/evidence/p11_04_target_security.json",
+          "checks": [
+            "postgres_verify_full_against_the_platform_ca_connects_and_the_session_is_tls",
+            "postgres_refuses_a_connection_that_is_not_tls",
+            "postgres_verify_full_against_a_different_ca_fails",
+            "mqtt_negotiates_tls_1_2_or_better",
+            "mqtt_plain_mqtt_bytes_on_the_tls_port_get_no_connack"
+          ]
+        }
+      ]
     },
     {
       "id": "CTL-12",
@@ -361,11 +400,27 @@
         1,
         4
       ],
-      "status": "planned",
+      "status": "implemented",
       "task": "P09.04",
       "owner": "SEC",
-      "gap": "The executor and verifier record a service name in the audit trail but authenticate to the database with the shared application role; the service clients exist and are proven (CTL-02) but are not yet used by the workers.",
-      "due": "2026-09-30"
+      "implementation": [
+        "source-code/database/migrations/0028_service_workload_roles.sql",
+        "source-code/database/migrations/0029_platform_incidents.sql",
+        "source-code/database/rotate_service_secrets.py",
+        "source-code/backend/control/executor_worker.py",
+        "source-code/backend/control/verifier_worker.py",
+        "source-code/backend/scenario_control/app.py"
+      ],
+      "evidence": [
+        {
+          "file": "docs/evidence/p09_04_workload_protection.json",
+          "checks": [
+            "all_service_roles_exist_and_none_is_a_superuser_or_can_create_a_database_or_role",
+            "every_service_role_connects_as_itself_and_can_neither_delete_nor_truncate_anywhere_nor_update_any_append_only_table",
+            "the_executor_role_can_do_the_one_thing_it_actually_needs_select_and_insert_on_its_own_working_tables"
+          ]
+        }
+      ]
     },
     {
       "id": "CTL-13",
@@ -375,11 +430,58 @@
         3,
         4
       ],
-      "status": "planned",
-      "task": "P11.02",
+      "status": "implemented",
+      "task": "P11.04",
       "owner": "SEC",
-      "gap": "No cluster workload exists yet; manifests, policies and their negative tests are P09.04 (policies) and P11.02 (manifests).",
-      "due": "2026-10-12"
+      "implementation": [
+        "source-code/infra/k8s/rbac-and-network-policy.yaml",
+        "source-code/infra/k8s/workloads.yaml",
+        "source-code/infra/k8s/generate_workloads.py",
+        "source-code/infra/k8s/verify_manifests.py",
+        "source-code/infra/k8s/verify_workloads.py",
+        "source-code/infra/k8s/target/deploy.py",
+        "source-code/infra/k8s/target/verify_target.py",
+        "source-code/infra/k8s/target/verify_security_target.py"
+      ],
+      "evidence": [
+        {
+          "file": "docs/evidence/p09_04_workload_protection.json",
+          "checks": [
+            "the_kubernetes_rbac_and_networkpolicy_manifests_are_structurally_valid_and_internally_consistent"
+          ]
+        },
+        {
+          "file": "docs/evidence/p11_02_workloads.json",
+          "checks": [
+            "every_pod_template_meets_the_pod_security_restricted_profile_rule_by_rule",
+            "the_network_policy_allows_no_workload_to_workload_path_the_dependency_specification_does_not_list"
+          ]
+        },
+        {
+          "file": "docs/evidence/p11_03_target_deployment.json",
+          "checks": [
+            "the_namespace_enforces_pod_security_restricted",
+            "every_workload_the_manifests_declare_was_admitted_and_is_ready_with_its_declared_replicas",
+            "a_cni_that_enforces_network_policy_calico_is_running_on_every_node"
+          ]
+        },
+        {
+          "file": "docs/evidence/p11_04_target_security.json",
+          "checks": [
+            "admission_refuses_a_privileged_pod",
+            "admission_refuses_a_pod_that_may_run_as_root_with_no_hardening",
+            "admission_refuses_a_pod_that_mounts_a_host_path",
+            "admission_refuses_a_pod_on_the_host_network",
+            "admission_admits_a_pod_that_meets_the_restricted_profile",
+            "rbac_aiops-api_can_do_none_of_read_secrets_create_pods_exec_or_list_nodes",
+            "no_service_account_token_is_mounted_in_the_api_pod",
+            "network_a_pod_of_another_namespace_cannot_reach_the_database",
+            "network_api_cannot_reach_the_internet",
+            "network_the_edge_runtime_cannot_reach_the_internet",
+            "network_api_reaches_the_database"
+          ]
+        }
+      ]
     },
     {
       "id": "CTL-14",
@@ -389,10 +491,11 @@
         6
       ],
       "status": "partial",
-      "task": "P09.04",
+      "task": "P12.05",
       "owner": "SEC",
       "implementation": [
         "source-code/infra/platform/keycloak/provision.py",
+        "source-code/database/rotate_service_secrets.py",
         ".gitignore"
       ],
       "evidence": [
@@ -403,9 +506,22 @@
             "the_files_holding_those_secrets_are_git_ignored",
             "the_committed_realm_file_holds_no_client_secret_and_no_user_but_credential_less_service_accounts"
           ]
+        },
+        {
+          "file": "docs/evidence/p09_04_workload_protection.json",
+          "checks": [
+            "rotating_a_service_roles_password_makes_postgres_refuse_the_old_one_and_accept_the_new_one",
+            "the_rotated_password_was_written_to_the_git_ignored_secrets_file"
+          ]
+        },
+        {
+          "file": "docs/evidence/p11_08_runbook_drill_reconcile_recover.json",
+          "checks": [
+            "runbook_step_reconcile-keeps-secrets_runs_as_written_and_prints_what_the_runbook_promises"
+          ]
         }
       ],
-      "gap": "Generation and exclusion from Git are proven; rotation (database password, client secrets, device certificates) and a secret-scan gate are not yet exercised.",
+      "gap": "Generation, Git exclusion and database-password rotation (old refused, new accepted, recorded in the git-ignored file) are proven, and on the target the secrets and the test CA are generated at deployment, live only in the cluster's Secret objects and a mode-restricted directory, and are kept when the deployment is run again (P11.08). Keycloak client-secret rotation, device-certificate rotation and a rotation schedule are not yet exercised.",
       "due": "2026-09-30"
     },
     {
@@ -725,19 +841,23 @@
     },
     {
       "id": "CTL-27",
-      "title": "Pinned dependencies and container images (exact locks; image digests in the platform compose file)",
+      "title": "Pinned dependencies and container images (exact locks; image digests in the platform compose file; the platform's own images rebuild to an identical digest)",
       "layer": "supply-chain",
       "baseline": [
         11
       ],
-      "status": "partial",
+      "status": "implemented",
       "task": "P09.08",
       "owner": "DEVOPS",
       "implementation": [
         "source-code/requirements-lock.txt",
         "source-code/frontend/package-lock.json",
         "source-code/infra/platform/docker-compose.yml",
-        "source-code/edge/Dockerfile"
+        "source-code/edge/Dockerfile",
+        "source-code/backend/requirements-lock.txt",
+        "source-code/backend/Dockerfile",
+        "source-code/frontend/Dockerfile",
+        "source-code/security/supply_chain/build_service_images.py"
       ],
       "evidence": [
         {
@@ -748,10 +868,16 @@
           "checks": [
             "edge_image_builds"
           ]
+        },
+        {
+          "file": "docs/evidence/p11_01_service_images.json",
+          "checks": [
+            "backend_two_clean_builds_give_the_identical_image_digest",
+            "frontend_two_clean_builds_give_the_identical_image_digest",
+            "backend_sbom_lists_every_locked_package_at_its_pinned_version_and_no_development_package"
+          ]
         }
-      ],
-      "gap": "Third-party images and the edge runtime image (P09.08) are pinned by digest; the backend and frontend service images do not exist yet (P11.01).",
-      "due": "2026-10-19"
+      ]
     },
     {
       "id": "CTL-28",
@@ -812,13 +938,39 @@
         12
       ],
       "status": "partial",
-      "task": "P09.09",
+      "task": "P12.05",
       "owner": "SEC",
       "implementation": [
-        "docs/environment/CONTAINER_K3S_FALCO_FEASIBILITY.md"
+        "docs/environment/CONTAINER_K3S_FALCO_FEASIBILITY.md",
+        "source-code/infra/falco/aiops_rules.yaml",
+        "source-code/infra/falco/verify_falco_rules.py",
+        "source-code/infra/falco/falco-daemonset.yaml",
+        "source-code/infra/falco/verify_falco_target.py"
       ],
-      "gap": "Live syscall capture was proven on the real Ubuntu host in P01.07 (a triggered read of /etc/shadow produced a matching alert); platform-scoped rules and their target-native positive and negative checks are P09.09.",
-      "due": "2026-09-30"
+      "gap": "Live syscall capture was proven on the real Ubuntu host in P01.07, the six platform rules were run live on the local WSL2 kernel (P09.09), and on the TARGET cluster Falco runs as a DaemonSet that resolves pods through the node's container runtime: each rule that can fire did, for a real action inside a real platform pod, and the alert names the Kubernetes pod, the container, the process and the numeric uid; two actions (a write below a binary directory and a read of /etc/shadow by the service user) are refused by the pods' own hardening so there is nothing to detect; the platform's steady state raised none. Not built: routing an alert to an operator (Falco writes to its own log), and the actions were performed by the verifier, not by an adversary.",
+      "due": "2026-09-30",
+      "evidence": [
+        {
+          "file": "docs/evidence/p09_09_falco_rules.json",
+          "checks": [
+            "rule_fires_credential",
+            "rule_fires_binary",
+            "rule_fires_registry",
+            "the_same_actions_in_a_container_that_is_not_the_platforms_raise_none_of_the_platform_rules",
+            "the_labs_own_containers_and_their_health_probes_raise_none_of_the_platform_rules_in_the_same_window"
+          ]
+        },
+        {
+          "file": "docs/evidence/p09_09_falco_target.json",
+          "checks": [
+            "rule_fires_shell_and_names_the_pod_aiops-api",
+            "rule_fires_credential_and_names_the_pod_aiops-mqtt-gateway",
+            "rule_fires_registry_and_names_the_pod_aiops-api",
+            "every_platform_alert_names_the_pod_the_container_the_process_and_the_numeric_uid",
+            "benign_actions_and_the_platforms_steady_state_raise_none_of_the_platform_rules"
+          ]
+        }
+      ]
     },
     {
       "id": "CTL-31",
@@ -944,11 +1096,29 @@
       "baseline": [
         14
       ],
-      "status": "planned",
-      "task": "P11.05",
+      "status": "partial",
+      "task": "P12.05",
       "owner": "DEVOPS",
-      "gap": "No backup or restore has been exercised.",
-      "due": "2026-10-12"
+      "gap": "Proven on the target (P11.05): an encrypted backup (AES-256, PBKDF2) of the roles and the database in a 0700 directory with 0600 files, restored into a scratch database with every row and audit hash chain identical, a copy changed by one bit refused, and the whole database restored after the loss of its volume (RTO 203 s and RPO 2.3 s on a small data set). Not yet: a scheduled backup (there is none), an off-host copy, custody of the key (it sits beside the archive), and Keycloak's embedded database is not in the backup.",
+      "due": "2026-10-12",
+      "implementation": [
+        "source-code/infra/k8s/target/backup_restore.py",
+        "source-code/infra/k8s/target/verify_recovery_target.py",
+        "docs/runbooks/TARGET_DEPLOYMENT_RUNBOOK.md"
+      ],
+      "evidence": [
+        {
+          "file": "docs/evidence/p11_05_target_recovery.json",
+          "checks": [
+            "the_backup_is_encrypted_restricted_and_matches_its_manifest",
+            "the_backup_restores_into_a_scratch_database",
+            "the_restored_copy_has_exactly_the_rows_and_content_of_the_original_in_every_table",
+            "a_backup_that_was_changed_by_one_bit_is_refused",
+            "the_database_is_restored_from_the_encrypted_backup_roles_and_all",
+            "the_audit_hash_chains_are_intact_after_the_restore"
+          ]
+        }
+      ]
     },
     {
       "id": "CTL-36",
@@ -958,7 +1128,7 @@
         9
       ],
       "status": "partial",
-      "task": "P11.03",
+      "task": "P12.05",
       "owner": "DEVOPS",
       "implementation": [
         "source-code/database/migrations/0020_operator_workflows.sql"
@@ -995,11 +1165,37 @@
       "baseline": [
         7
       ],
-      "status": "planned",
+      "status": "implemented",
       "task": "P10.08",
       "owner": "OPS",
-      "gap": "No remediation worker exists.",
-      "due": "2026-10-05"
+      "implementation": [
+        "source-code/backend/aiops/remediation.py",
+        "source-code/backend/aiops/remediation_adapters.py",
+        "source-code/backend/aiops/remediation_worker.py",
+        "source-code/backend/repositories/remediation.py",
+        "source-code/policy/aiops/remediation/remediation.rego",
+        "source-code/database/migrations/0030_remediation.sql",
+        "source-code/backend/trace_sampling.py"
+      ],
+      "evidence": [
+        {
+          "file": "docs/evidence/p10_08_remediation.json",
+          "checks": [
+            "every_deliberate_breakage_of_a_remediation_rule_is_caught_by_the_policy_tests",
+            "the_database_refuses_a_second_approved_or_running_remediation_anywhere_on_the_platform",
+            "a_plan_only_request_can_never_be_marked_executing_executed_or_verified_not_even_by_direct_sql",
+            "the_worker_cannot_approve_its_own_request_neither_by_setting_the_approver_nor_by_setting_the_status",
+            "recovery_is_verified_only_after_the_alerts_have_cleared_and_stayed_clear_for_the_sustain_time",
+            "a_restart_is_not_declared_recovered_while_another_alert_about_the_same_component_is_still_active",
+            "with_the_policy_engine_down_the_worker_does_nothing_and_says_so",
+            "when_every_registered_remediation_is_spent_within_minutes_the_incident_is_escalated_as_exhausted",
+            "an_action_held_back_by_its_rate_limit_runs_nothing_and_the_incident_is_escalated_not_left_silent"
+          ]
+        },
+        {
+          "pytest": "source-code/tests/test_remediation_registry.py"
+        }
+      ]
     },
     {
       "id": "CTL-39",
@@ -1010,7 +1206,7 @@
         8
       ],
       "status": "partial",
-      "task": "P11.02",
+      "task": "P12.05",
       "owner": "GRC",
       "gap": "Registration (a device must be in `devices` before ingestion accepts its data), per-device certificate identity and ACL scoping (CTL-09), and lifecycle status (`active`/`inactive`/`maintenance`/`decommissioned`) are real and evidenced. Certificate rotation and decommissioning are documented procedures, not automated. Revocation is not enforced: there is no CRL or OCSP-equivalent check at the broker, so a leaked or decommissioned device's certificate still authenticates until the CA itself is rotated - see docs/security/DATA_INVENTORY_AND_DPIA.md's Device lifecycle section.",
       "due": "2026-10-12",
@@ -1136,11 +1332,24 @@
       "baseline": [
         8
       ],
-      "status": "planned",
-      "task": "P10.06",
+      "status": "partial",
+      "task": "P12.05",
       "owner": "OPS",
-      "gap": "Detectors are evaluated on held-out data (P06.08); nothing monitors them in operation.",
-      "due": "2026-10-05"
+      "gap": "Two detectors exist and are evaluated on held-out data: the operational anomaly detector (P10.06) and the data-quality rules (P10.10: missing, stuck, drift, duplicate, out-of-order; 0 false of 57 incidents on synthetic held-out streams, interval up to 6.3%). Nothing yet monitors a model in operation: no drift, confidence-collapse or feature-loss check runs on the served models, the data-quality incidents have no table, API or console view and gate no consumer, and on the P10.04 lab's healthy traffic the operational detector raised anomalies the synthetic training load never showed (P10.07).",
+      "due": "2026-10-15",
+      "implementation": [
+        "source-code/models/data_quality/detector.py",
+        "source-code/models/operations_detector/runtime.py"
+      ],
+      "evidence": [
+        {
+          "file": "docs/evidence/p10_10_data_quality.json",
+          "checks": [
+            "FA_02_data_quality_incident_false_positive_rate_is_at_most_5_percent_on_the_held_out_test_seeds_strict_rule",
+            "fault_free_streams_raise_no_incident_on_any_test_seed"
+          ]
+        }
+      ]
     },
     {
       "id": "CTL-45",
@@ -1171,11 +1380,29 @@
       "baseline": [
         4
       ],
-      "status": "planned",
+      "status": "partial",
       "task": "P09.07",
       "owner": "GRC",
-      "gap": "Roles are provisioned and separated (CTL-02, CTL-05) but no periodic access review or leaver procedure is written or exercised.",
-      "due": "2026-09-30"
+      "gap": "The procedure is written and its mechanical first pass runs against the live realm (roles, service identities, separation of duties, hardening, live equals declared). No accountable person has signed a periodic review and no joiner, mover or leaver has ever been processed: the accounts are demo users.",
+      "due": "2026-10-31",
+      "implementation": [
+        "source-code/security/access_review.py",
+        "docs/security/ACCESS_REVIEW.md",
+        "source-code/infra/platform/keycloak/provision.py",
+        "source-code/infra/platform/keycloak/realm/aiops-realm.json"
+      ],
+      "evidence": [
+        {
+          "file": "docs/evidence/p09_07_access_review.json",
+          "checks": [
+            "the_realm_defines_exactly_the_roles_the_code_knows",
+            "each_service_identity_is_held_by_exactly_its_own_service_account_and_no_service_client_has_an_interactive_flow",
+            "nobody_can_both_request_and_approve_a_four_eyes_action_and_the_auditor_holds_nothing_else",
+            "the_live_identity_provider_matches_the_declared_accounts_and_roles_exactly",
+            "the_joiner_mover_leaver_procedure_exists_with_its_review_and_leaver_steps"
+          ]
+        }
+      ]
     },
     {
       "id": "CTL-47",
@@ -1189,6 +1416,38 @@
       "owner": "SEC",
       "gap": "Roles are global and the token carries no agency. Call and unit records carry an agency, but the API neither filters nor checks it per user. The policy engine (P09.03) is now the decision point, so the rule is a policy and data change once there is a second operating agency; the Keycloak attribute and the per-record filter are not built.",
       "due": "2026-10-05"
+    },
+    {
+      "id": "CTL-48",
+      "title": "Platform incidents are inferred, grouped and labelled: a cause is a hypothesis, unverified until a person records it",
+      "layer": "ai",
+      "baseline": [
+        12
+      ],
+      "status": "implemented",
+      "task": "P10.07",
+      "owner": "OPS",
+      "implementation": [
+        "source-code/backend/aiops/correlation.py",
+        "source-code/backend/repositories/platform_incidents.py",
+        "source-code/database/migrations/0029_platform_incidents.sql"
+      ],
+      "evidence": [
+        {
+          "file": "docs/evidence/p10_07_platform_incidents.json",
+          "checks": [
+            "a_platform_incident_can_only_be_labelled_inferred",
+            "the_database_refuses_a_hypothesis_that_is_marked_verified_or_carries_no_verified_flag",
+            "the_correlator_cannot_write_a_verified_cause_neither_when_opening_nor_after",
+            "a_person_can_record_a_verified_cause_and_the_machine_hypothesis_stays_labelled_unverified",
+            "every_replayed_incident_is_labelled_inferred_with_an_unverified_hypothesis_and_no_cause_is_asserted_as_fact",
+            "every_alert_that_fired_in_the_lab_run_lands_in_at_least_one_incident"
+          ]
+        },
+        {
+          "pytest": "source-code/tests/test_platform_correlation.py"
+        }
+      ]
     }
   ]
 }

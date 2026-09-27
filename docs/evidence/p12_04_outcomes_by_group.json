@@ -1,0 +1,216 @@
+{
+  "all_passed": true,
+  "checks": {
+    "corridor_corridor-a_recall_and_precision_are_reported_with_intervals_and_labelled_if_the_sample_is_too_small_to_compare": true,
+    "corridor_corridor-b_recall_and_precision_are_reported_with_intervals_and_labelled_if_the_sample_is_too_small_to_compare": true,
+    "corridor_corridor-c_recall_and_precision_are_reported_with_intervals_and_labelled_if_the_sample_is_too_small_to_compare": true,
+    "sensor_coverage_by_corridor_is_counted_from_the_device_catalogue": true,
+    "the_cost_of_pre_emption_to_the_streets_it_crosses_is_measured_paired_with_its_worst_case": true,
+    "the_detectors_parameters_were_read_from_the_stored_artifact_not_chosen_here": true,
+    "the_disparity_between_corridors_is_stated_in_numbers_or_as_not_measurable": true,
+    "the_eta_error_of_each_emergency_service_is_reported_separately_never_pooled_away": true,
+    "the_groups_account_for_every_truth_episode_of_the_test_runs": true,
+    "the_held_out_test_opening_is_ledgered_as_non_selecting_with_its_purpose_and_task": true
+  },
+  "generated_at": "2026-09-26T09:03:20Z",
+  "metrics": {
+    "congestion_detector_by_corridor_on_the_held_out_runs": {
+      "corridor-a": {
+        "detected_episodes": 4,
+        "enough_truth_to_compare": true,
+        "matched": 4,
+        "precision": 1.0,
+        "precision_ci95": [
+          0.51,
+          1.0
+        ],
+        "recall": 0.267,
+        "recall_ci95": [
+          0.109,
+          0.52
+        ],
+        "truth_episodes": 15
+      },
+      "corridor-b": {
+        "detected_episodes": 2,
+        "enough_truth_to_compare": true,
+        "matched": 2,
+        "precision": 1.0,
+        "precision_ci95": [
+          0.342,
+          1.0
+        ],
+        "recall": 0.25,
+        "recall_ci95": [
+          0.071,
+          0.591
+        ],
+        "truth_episodes": 8
+      },
+      "corridor-c": {
+        "detected_episodes": 2,
+        "enough_truth_to_compare": false,
+        "matched": 2,
+        "precision": 1.0,
+        "precision_ci95": [
+          0.342,
+          1.0
+        ],
+        "recall": 0.667,
+        "recall_ci95": [
+          0.208,
+          0.939
+        ],
+        "truth_episodes": 3
+      }
+    },
+    "congestion_detector_by_direction": {
+      "east": {
+        "detected_episodes": 4,
+        "enough_truth_to_compare": true,
+        "matched": 4,
+        "precision": 1.0,
+        "precision_ci95": [
+          0.51,
+          1.0
+        ],
+        "recall": 0.2,
+        "recall_ci95": [
+          0.081,
+          0.416
+        ],
+        "truth_episodes": 20
+      },
+      "west": {
+        "detected_episodes": 4,
+        "enough_truth_to_compare": false,
+        "matched": 4,
+        "precision": 1.0,
+        "precision_ci95": [
+          0.51,
+          1.0
+        ],
+        "recall": 0.667,
+        "recall_ci95": [
+          0.3,
+          0.903
+        ],
+        "truth_episodes": 6
+      }
+    },
+    "corridor_disparity": "recall corridor-a 0.267 against corridor-b 0.25; the 95% intervals overlap",
+    "dataset_sha256": "f361f3b87cc8c0727727999ed8b8c090faa3f2b7f3954380e1efd405676fc6e2",
+    "detection_delay_s_median_by_corridor": {
+      "corridor-a": 330.0,
+      "corridor-b": 120.0,
+      "corridor-c": 90.0
+    },
+    "emergency_eta_error_by_service_normal_traffic": {
+      "ambulance": {
+        "mae_pct": 3.65,
+        "n": 5,
+        "worst_pct": 7.19
+      },
+      "fire": {
+        "mae_pct": 6.91,
+        "n": 5,
+        "worst_pct": 7.39
+      },
+      "police": {
+        "mae_pct": 14.63,
+        "n": 5,
+        "worst_pct": 20.71
+      }
+    },
+    "emergency_eta_error_by_service_under_an_incident": {
+      "ambulance": {
+        "mae_pct": 9.91,
+        "n": 5,
+        "worst_pct": 10.82
+      },
+      "fire": {
+        "mae_pct": 8.0,
+        "n": 5,
+        "worst_pct": 10.2
+      },
+      "police": {
+        "mae_pct": 13.73,
+        "n": 5,
+        "worst_pct": 27.62
+      }
+    },
+    "frozen_parameters": {
+      "n_off": 2,
+      "n_on": 3,
+      "occ_off_frac": 0.6,
+      "occ_on": 0.2,
+      "speed_on": 4.0
+    },
+    "intervals_overlap": true,
+    "preemption_side_effects": {
+      "cross_street_mean_waiting_change_s": {
+        "best_decrease": -2.179,
+        "mean": 0.304,
+        "pairs": 30,
+        "worst_increase": 5.828
+      },
+      "network_mean_waiting_change_s": {
+        "best_decrease": -3.053,
+        "mean": 0.773,
+        "worst_increase": 9.139
+      },
+      "note": "paired, same seed, the same 150 s window after the vehicle departs; positive = pre-emption made general traffic wait longer",
+      "pairs": 30,
+      "window_s": 150
+    },
+    "sensors_by_corridor": {
+      "corridor-a": 20,
+      "corridor-b": 22,
+      "corridor-c": 21
+    },
+    "sensors_by_place_and_type": {
+      "corridor": {
+        "corridor-a:crossing_detector": 2,
+        "corridor-a:cycle_counter": 6,
+        "corridor-a:inductive_loop": 6,
+        "corridor-a:road_condition_sensor": 1,
+        "corridor-a:signal_controller": 4,
+        "corridor-a:weather_station": 1,
+        "corridor-b:crossing_detector": 4,
+        "corridor-b:cycle_counter": 6,
+        "corridor-b:inductive_loop": 6,
+        "corridor-b:road_condition_sensor": 1,
+        "corridor-b:signal_controller": 4,
+        "corridor-b:weather_station": 1,
+        "corridor-c:crossing_detector": 3,
+        "corridor-c:cycle_counter": 6,
+        "corridor-c:inductive_loop": 6,
+        "corridor-c:road_condition_sensor": 1,
+        "corridor-c:signal_controller": 4,
+        "corridor-c:weather_station": 1
+      },
+      "junction": {
+        "int-a1:crossing_detector": 1,
+        "int-a4:crossing_detector": 1,
+        "int-b1:crossing_detector": 2,
+        "int-b4:crossing_detector": 2,
+        "int-c4:crossing_detector": 1
+      }
+    }
+  },
+  "notes": {
+    "corridor_corridor-a_recall_and_precision_are_reported_with_intervals_and_labelled_if_the_sample_is_too_small_to_compare": "15 truth, recall 0.267 [0.109, 0.52], precision 1.0; comparable: True",
+    "corridor_corridor-b_recall_and_precision_are_reported_with_intervals_and_labelled_if_the_sample_is_too_small_to_compare": "8 truth, recall 0.25 [0.071, 0.591], precision 1.0; comparable: True",
+    "corridor_corridor-c_recall_and_precision_are_reported_with_intervals_and_labelled_if_the_sample_is_too_small_to_compare": "3 truth, recall 0.667 [0.208, 0.939], precision 1.0; comparable: False",
+    "not_measurable": "anything about people: the district has no population, demographic or vulnerability data, so no demographic fairness claim is possible or made",
+    "scope": "a synthetic district and one recorded sensor run: places and kinds of road user are compared where the data can say anything, and labelled where it cannot",
+    "sensor_coverage_by_corridor_is_counted_from_the_device_catalogue": "{'corridor-a': 20, 'corridor-b': 22, 'corridor-c': 21}",
+    "the_cost_of_pre_emption_to_the_streets_it_crosses_is_measured_paired_with_its_worst_case": "cross-street mean change 0.304 s, worst +5.828 s; network mean 0.773 s, worst +9.139 s (30 pairs, 150 s window)",
+    "the_detectors_parameters_were_read_from_the_stored_artifact_not_chosen_here": "{'n_off': 2, 'n_on': 3, 'occ_off_frac': 0.6, 'occ_on': 0.2, 'speed_on': 4.0}",
+    "the_disparity_between_corridors_is_stated_in_numbers_or_as_not_measurable": "recall corridor-a 0.267 against corridor-b 0.25; the 95% intervals overlap",
+    "the_eta_error_of_each_emergency_service_is_reported_separately_never_pooled_away": "{'ambulance': {'mae_pct': 3.65, 'n': 5, 'worst_pct': 7.19}, 'fire': {'mae_pct': 6.91, 'n': 5, 'worst_pct': 7.39}, 'police': {'mae_pct': 14.63, 'n': 5, 'worst_pct': 20.71}}; spread 11.0 points",
+    "the_groups_account_for_every_truth_episode_of_the_test_runs": "26 truth episodes; corridors ['corridor-a', 'corridor-b', 'corridor-c'], directions ['east', 'west']",
+    "the_held_out_test_opening_is_ledgered_as_non_selecting_with_its_purpose_and_task": "ledger 16 -> 17; last: corridor_breakdown"
+  },
+  "task": "P12.04"
+}

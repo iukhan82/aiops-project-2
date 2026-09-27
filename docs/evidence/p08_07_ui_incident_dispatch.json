@@ -1,6 +1,6 @@
 {
   "task": "P08.07",
-  "generated_at": "2026-09-21T15:34:19Z",
+  "generated_at": "2026-09-26T20:08:12Z",
   "browser": {
     "channel": "chrome",
     "headless": true,
@@ -10,131 +10,132 @@
   "tests_total": 18,
   "tests_passed": 18,
   "all_passed": true,
+  "retried_after_a_failed_first_attempt": [],
   "tests": [
     {
       "title": "dispatch.spec.ts > emergency dispatch (P08.07) > a new call needs its fields, keeps the person on the form when they are missing, and opens the call when taken",
       "file": "dispatch.spec.ts",
       "status": "passed",
-      "duration_ms": 5672,
+      "duration_ms": 5195,
       "error": null
     },
     {
       "title": "dispatch.spec.ts > emergency dispatch (P08.07) > assigning a unit finds route alternatives with ETA and uncertainty, one selected, and the call follows its unit to cleared",
       "file": "dispatch.spec.ts",
       "status": "passed",
-      "duration_ms": 6457,
+      "duration_ms": 6723,
       "error": null
     },
     {
       "title": "dispatch.spec.ts > emergency dispatch (P08.07) > a unit whose last position is old is not routed from a guess; saying where it is fixes it",
       "file": "dispatch.spec.ts",
       "status": "passed",
-      "duration_ms": 6372,
+      "duration_ms": 5990,
       "error": null
     },
     {
       "title": "dispatch.spec.ts > emergency dispatch (P08.07) > cancelling a call is a confirmation that needs a reason and cannot be repeated",
       "file": "dispatch.spec.ts",
       "status": "passed",
-      "duration_ms": 4873,
+      "duration_ms": 4227,
       "error": null
     },
     {
       "title": "dispatch.spec.ts > emergency dispatch (P08.07) > the call list shows priority, status and truth label, filters and links to the call",
       "file": "dispatch.spec.ts",
       "status": "passed",
-      "duration_ms": 4711,
+      "duration_ms": 4916,
       "error": null
     },
     {
       "title": "dispatch.spec.ts > emergency dispatch (P08.07) > an operator can read the dispatch screens but has no way to take a call, assign or move a unit",
       "file": "dispatch.spec.ts",
       "status": "passed",
-      "duration_ms": 3353,
+      "duration_ms": 3446,
       "error": null
     },
     {
       "title": "dispatch.spec.ts > emergency dispatch (P08.07) > the field view is read-only on a phone: the call, the route with its ETA, the steps and what changed, and no control that acts",
       "file": "dispatch.spec.ts",
       "status": "passed",
-      "duration_ms": 10605,
+      "duration_ms": 11040,
       "error": null
     },
     {
       "title": "dispatch.spec.ts > emergency dispatch (P08.07) > no accessibility violations on the list, the call and the new-call dialog",
       "file": "dispatch.spec.ts",
       "status": "passed",
-      "duration_ms": 10239,
+      "duration_ms": 9443,
       "error": null
     },
     {
       "title": "incidents.spec.ts > incident queue and investigation (P08.07) > the queue is critical first, filterable, and every row links to the incident",
       "file": "incidents.spec.ts",
       "status": "passed",
-      "duration_ms": 6222,
+      "duration_ms": 5227,
       "error": null
     },
     {
       "title": "incidents.spec.ts > incident queue and investigation (P08.07) > the queue shows severity and status as shape and word, owner and confidence with its inferred label",
       "file": "incidents.spec.ts",
       "status": "passed",
-      "duration_ms": 5947,
+      "duration_ms": 5145,
       "error": null
     },
     {
       "title": "incidents.spec.ts > incident queue and investigation (P08.07) > the detail reads as evidence, not verdict: hypotheses are inferred and no cause is verified",
       "file": "incidents.spec.ts",
       "status": "passed",
-      "duration_ms": 4591,
+      "duration_ms": 4198,
       "error": null
     },
     {
       "title": "incidents.spec.ts > incident queue and investigation (P08.07) > an operator moves the incident through its lifecycle from the stepper, and only legal next steps are controls",
       "file": "incidents.spec.ts",
       "status": "passed",
-      "duration_ms": 5498,
+      "duration_ms": 5057,
       "error": null
     },
     {
       "title": "incidents.spec.ts > incident queue and investigation (P08.07) > notes and ownership are recorded with the person, and appear in the timeline",
       "file": "incidents.spec.ts",
       "status": "passed",
-      "duration_ms": 5306,
+      "duration_ms": 5126,
       "error": null
     },
     {
       "title": "incidents.spec.ts > incident queue and investigation (P08.07) > resolving is a confirmation: focus starts on Cancel, Escape returns focus to the opener, a note is required, and the result is shown in place",
       "file": "incidents.spec.ts",
       "status": "passed",
-      "duration_ms": 5489,
+      "duration_ms": 5399,
       "error": null
     },
     {
       "title": "incidents.spec.ts > incident queue and investigation (P08.07) > a change made from an out-of-date screen is refused with what the incident is now, and nothing is overwritten",
       "file": "incidents.spec.ts",
       "status": "passed",
-      "duration_ms": 8667,
+      "duration_ms": 8131,
       "error": null
     },
     {
       "title": "incidents.spec.ts > incident queue and investigation (P08.07) > a role that may read but not manage sees the incident with no action controls, and says why",
       "file": "incidents.spec.ts",
       "status": "passed",
-      "duration_ms": 4393,
+      "duration_ms": 4191,
       "error": null
     },
     {
       "title": "incidents.spec.ts > incident queue and investigation (P08.07) > an unknown incident says so and links back to the queue",
       "file": "incidents.spec.ts",
       "status": "passed",
-      "duration_ms": 3509,
+      "duration_ms": 3271,
       "error": null
     },
     {
       "title": "incidents.spec.ts > incident queue and investigation (P08.07) > no accessibility violations on the detail, the resolve dialog and the read-only view",
       "file": "incidents.spec.ts",
       "status": "passed",
-      "duration_ms": 7379,
+      "duration_ms": 6426,
       "error": null
     }
   ],

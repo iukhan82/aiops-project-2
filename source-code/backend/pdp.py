@@ -1,10 +1,11 @@
 """P09.03: the client every policy enforcement point uses to ask the policy decision point (Open Policy Agent).
 
-Three questions go to OPA (policies in `source-code/policy/`):
+Four questions go to OPA (policies in `source-code/policy/`):
 
 * `api_decision`       - may these roles call this endpoint (`aiops/api/authz`)?
 * `command_authority`  - may one of these roles request or review a command of this action type (`aiops/command`)?
 * `command_decision`   - may this command be approved, or executed (`aiops/command`)?
+* `remediation_decision` - may this platform remediation action run on this target now (`aiops/remediation`)?
 
 The rule this module exists to keep: an engine that cannot answer is NOT an engine that said no, and it is never an engine that said
 yes. Any failure to obtain a well-formed decision - connection refused, timeout, a non-200 answer, an undefined result, a result of the
@@ -28,6 +29,9 @@ API_PATH = "aiops/api/authz/decision"
 AUTHORITY_PATH = "aiops/command/authority"
 COMMAND_PATH = "aiops/command/decision"
 COMMAND_DECISIONS = {"approved", "denied", "expired"}
+REMEDIATION_PATH = "aiops/remediation/decision"
+REMEDIATION_DECISIONS = {"approved", "needs_approval", "plan_only", "denied"}
+REMEDIATION_AUTONOMY = {"auto", "approval", "plan_only"}
 
 
 class PolicyUnavailable(Exception):
@@ -141,6 +145,19 @@ def command_decision(facts: dict) -> dict:
     result = query(COMMAND_PATH, facts)
     if result.get("decision") not in COMMAND_DECISIONS:
         raise PolicyUnavailable("the policy engine returned a malformed command decision")
+    return result
+
+
+def remediation_decision(facts: dict) -> dict:
+    result = query(REMEDIATION_PATH, facts)
+    if result.get("decision") not in REMEDIATION_DECISIONS or not isinstance(
+        result.get("reason"), str
+    ):
+        raise PolicyUnavailable("the policy engine returned a malformed remediation decision")
+    if result["decision"] != "denied" and result.get("autonomy") not in REMEDIATION_AUTONOMY:
+        raise PolicyUnavailable(
+            "the policy engine permitted a remediation without naming its autonomy level"
+        )
     return result
 
 

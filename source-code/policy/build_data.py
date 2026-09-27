@@ -24,6 +24,7 @@ from pathlib import Path
 SOURCE_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(SOURCE_ROOT))
 
+from backend.aiops import remediation as remediation_registry  # noqa: E402
 from backend.api.authz import inventory  # noqa: E402
 from backend.control.policy import ADAPTER_TARGET_KIND, KNOWN_ADAPTERS  # noqa: E402
 from backend.roles import (  # noqa: E402
@@ -44,6 +45,37 @@ ACTIONABLE_RECOMMENDATION_STATUSES = ["proposed", "requested"]
 
 def rego_files() -> list[Path]:
     return sorted(p for p in POLICY_DIR.rglob("*.rego") if not p.name.endswith("_test.rego"))
+
+
+def remediation_data() -> dict:
+    """P10.08: the remediation registry as policy data - actions, targets and their autonomy, parameter bounds, budgets."""
+    reg = remediation_registry
+    assert reg.PLATFORM_ACTOR in SERVICE_IDENTITIES, (
+        "the remediation identity must be a registered service identity"
+    )
+    assert set(reg.APPROVER_ROLES) <= set(HUMAN_ROLES), "only human roles may approve a remediation"
+    return {
+        "actor": reg.PLATFORM_ACTOR,
+        "approver_roles": sorted(reg.APPROVER_ROLES),
+        "max_in_flight": reg.MAX_IN_FLIGHT,
+        "max_attempts_per_incident": reg.MAX_ATTEMPTS_PER_INCIDENT,
+        "held_by_person_statuses": sorted(reg.HELD_BY_PERSON),
+        "actions": {
+            a.id: {
+                "kind": a.kind,
+                "adapter": a.adapter,
+                "params": {n: {"min": lo, "max": hi} for n, (lo, hi) in sorted(a.params.items())},
+                "max_attempts_per_incident": a.max_attempts_per_incident,
+                "cooldown_s": a.cooldown_s,
+                "window_s": a.window_s,
+                "max_per_window": a.max_per_window,
+                "targets": [
+                    {"id": t.id, "pattern": t.pattern, "autonomy": t.autonomy} for t in a.targets
+                ],
+            }
+            for a in sorted(reg.ACTIONS.values(), key=lambda a: a.id)
+        },
+    }
 
 
 def build() -> dict:
@@ -74,6 +106,7 @@ def build() -> dict:
         "adapter_target_kind": dict(sorted(ADAPTER_TARGET_KIND.items())),
         "executor": EXECUTOR,
         "actionable_recommendation_statuses": ACTIONABLE_RECOMMENDATION_STATUSES,
+        "remediation": remediation_data(),
     }
     digest = hashlib.sha256()
     for path in rego_files():

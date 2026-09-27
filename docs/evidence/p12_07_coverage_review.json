@@ -1,0 +1,381 @@
+{
+  "all_passed": true,
+  "checks": {
+    "demonstrated_is_never_claimed_it_needs_an_assessor": true,
+    "every_implemented_requirement_says_what_stops_it_being_tested": true,
+    "every_planned_requirement_names_the_task_that_owns_it_and_every_gap_says_what_is_missing_and_who_decides": true,
+    "every_requirement_rq01_to_rq30_is_reviewed_once_and_matches_the_traceability_document": true,
+    "every_task_named_as_an_owner_exists_in_the_register": true,
+    "every_tested_or_implemented_requirement_cites_evidence_that_exists_and_passes_today": true,
+    "no_citation_of_any_requirement_is_missing_or_failing": true,
+    "the_gate_result_is_stated_and_quotes_the_three_matrices_and_the_open_defects": true
+  },
+  "generated_at": "2026-09-27T05:06:56Z",
+  "metrics": {
+    "gate": "NOT PASSED: 10 tested, 11 implemented, 8 planned (Phases 13 and 14), 1 gap; matrices: acceptance_matrix NOT PASSED: 47 covered, 6 partial, 3 gap, 0 failed; fault_matrix PASSED: 28 covered, 0 partial, 0 gap, 0 failed; quality_matrix NOT PASSED: 23 covered, 2 partial, 3 gap, 0 failed; 16 open defects",
+    "matrices": {
+      "p12_01_acceptance_matrix": "NOT PASSED: 47 covered, 6 partial, 3 gap, 0 failed",
+      "p12_02_fault_matrix": "PASSED: 28 covered, 0 partial, 0 gap, 0 failed",
+      "p12_04_quality_matrix": "NOT PASSED: 23 covered, 2 partial, 3 gap, 0 failed"
+    },
+    "open_defects": [
+      "D-01",
+      "F-02",
+      "F-03",
+      "F-04",
+      "F-05",
+      "F-07",
+      "F-08",
+      "F-09",
+      "F-10",
+      "F-11",
+      "F-12",
+      "F-13",
+      "F-15",
+      "F-17",
+      "F-18",
+      "F-20"
+    ],
+    "requirements": {
+      "RQ01": {
+        "evidence": [
+          "p12_01_acceptance_matrix",
+          "p12_02_fault_matrix",
+          "p11_08_runbook_drill_deploy"
+        ],
+        "note": "the platform runs end to end on a real host and the scenario steps stand on passing evidence, except those the P12.01 matrix lists as partial or a gap: the signal-failure scenario is not implemented (D-01)",
+        "status": "IMPLEMENTED",
+        "tasks": [
+          "P12.05"
+        ]
+      },
+      "RQ02": {
+        "evidence": [
+          "pytest:tests/test_edge_outbox.py",
+          "p12_02_rec01_edge_outage",
+          "pytest:tests/test_edge_runtime.py"
+        ],
+        "note": "one simulated edge site; the edge decides locally and buffers through an outage",
+        "status": "TESTED",
+        "tasks": []
+      },
+      "RQ03": {
+        "evidence": [
+          "p11_03_target_deployment",
+          "doc:docs/decisions/ADR-0007-central-cloud-placement.md"
+        ],
+        "note": "the central tier runs on the workstation and, deployed from the same manifests, on one real Ubuntu host; nothing runs on a remote cloud. Whether that satisfies the assessment is the assessor's decision (F-17).",
+        "status": "GAP",
+        "tasks": [
+          "P13.02"
+        ]
+      },
+      "RQ04": {
+        "evidence": [
+          "p11_06_target_load",
+          "p11_06_target_load",
+          "p11_04_target_security"
+        ],
+        "note": "measured on one node of a shared host with synthetic events: clean to 312 events/s, a 30-minute soak, 56 native security checks",
+        "status": "TESTED",
+        "tasks": []
+      },
+      "RQ05": {
+        "evidence": [
+          "p11_03_target_deployment",
+          "p11_04_target_security",
+          "p11_03_target_deployment"
+        ],
+        "note": "the edge runtime is a non-root, read-only, capability-free container with resource limits, deployed in a Kubernetes cluster",
+        "status": "TESTED",
+        "tasks": []
+      },
+      "RQ06": {
+        "evidence": [
+          "pytest:tests/test_edge_model_runtime.py",
+          "pytest:tests/test_edge_runtime.py",
+          "doc:docs/evidence/edge_benchmark_report.json"
+        ],
+        "note": "ONNX Runtime on CPU with one thread under 0.75 CPU and 512 MiB: warm inference p95 0.135 ms against a 100 ms target (LAT-01); the model beats the baseline on F1 with wide intervals (ACC-01)",
+        "status": "TESTED",
+        "tasks": []
+      },
+      "RQ07": {
+        "evidence": [
+          "p10_04_alert_rules",
+          "p10_09_recovery",
+          "p10_08_remediation"
+        ],
+        "note": "alerts, correlated incidents and bounded remediation with independent recovery verification; false incidents 29.6% against a 10% target (FA-03, F-08) and scale, failover and quarantine are plan-only (F-14)",
+        "status": "TESTED",
+        "tasks": []
+      },
+      "RQ08": {
+        "evidence": [
+          "doc:diagrams/sources/02-network-flow.mmd",
+          "doc:diagrams/exports/02-network-flow.svg"
+        ],
+        "note": "an editable source and an export exist from Phase 02; they are updated to the tested implementation and inspected in P13.01",
+        "status": "IMPLEMENTED",
+        "tasks": [
+          "P13.01"
+        ]
+      },
+      "RQ09": {
+        "evidence": [
+          "doc:diagrams/sources/03-data-flow.mmd",
+          "doc:diagrams/exports/03-data-flow.svg"
+        ],
+        "note": "as RQ08",
+        "status": "IMPLEMENTED",
+        "tasks": [
+          "P13.01"
+        ]
+      },
+      "RQ10": {
+        "evidence": [
+          "doc:diagrams/sources/01-system-architecture.mmd",
+          "doc:diagrams/sources/07-deployment-topology.mmd"
+        ],
+        "note": "as RQ08; the proposed production views are separate and labelled not deployed (P13.02)",
+        "status": "IMPLEMENTED",
+        "tasks": [
+          "P13.01",
+          "P13.02"
+        ]
+      },
+      "RQ11": {
+        "evidence": [
+          "doc:diagrams/sources/04-workflow-command-safety-path.mmd",
+          "p12_01_acceptance_matrix"
+        ],
+        "note": "as RQ08",
+        "status": "IMPLEMENTED",
+        "tasks": [
+          "P13.01"
+        ]
+      },
+      "RQ12": {
+        "evidence": [
+          "doc:docs/security/SECURITY_ARCHITECTURE.md",
+          "doc:diagrams/sources/05-security-trust-boundaries.mmd",
+          "p09_01_threat_model"
+        ],
+        "note": "the threat model covers every trust boundary; the diagram is updated in P13.01",
+        "status": "IMPLEMENTED",
+        "tasks": [
+          "P13.01"
+        ]
+      },
+      "RQ13": {
+        "evidence": [
+          "doc:docs/decisions/ADR-0007-central-cloud-placement.md",
+          "doc:diagrams/sources/06-hybrid-cloud-placement.mmd"
+        ],
+        "note": "the placement decision is recorded with the deployed/proposed distinction; the proposed view is finished in P13.02",
+        "status": "IMPLEMENTED",
+        "tasks": [
+          "P13.02"
+        ]
+      },
+      "RQ14": {
+        "evidence": [],
+        "note": "the release, the publication review and the authorized push are P13.05-P13.07; the push is the user's",
+        "status": "PLANNED",
+        "tasks": [
+          "P13.05",
+          "P13.06",
+          "P13.07"
+        ]
+      },
+      "RQ15": {
+        "evidence": [
+          "p11_03_target_deployment",
+          "p11_08_runbook_drill_deploy",
+          "doc:docs/environment/CONTAINER_K3S_FALCO_FEASIBILITY.md"
+        ],
+        "note": "the platform runs in a kind cluster (Kubernetes v1.36.4, the minor of the host's K3s) with Docker, deployed by a runbook that was followed as written; it is not deployed on K3s itself, which was proven feasible in P01.07",
+        "status": "IMPLEMENTED",
+        "tasks": []
+      },
+      "RQ16": {
+        "evidence": [
+          "pytest:tests/test_edge_model_runtime.py",
+          "pytest:tests/test_edge_vision_privacy.py"
+        ],
+        "note": "Python with ONNX Runtime; the vision path is privacy-preserving feature aggregation, not OpenCV inference on video",
+        "status": "TESTED",
+        "tasks": []
+      },
+      "RQ17": {
+        "evidence": [
+          "p05_03_gateway",
+          "p05_05_ingestion",
+          "p11_06_target_load"
+        ],
+        "note": "Mosquitto over mutual TLS at the edge and Redpanda (Kafka API) centrally",
+        "status": "TESTED",
+        "tasks": []
+      },
+      "RQ18": {
+        "evidence": [
+          "p10_03_observability_stack",
+          "p10_04_alert_rules",
+          "p11_03_target_deployment",
+          "p10_01_observability"
+        ],
+        "note": "Prometheus, Grafana, Tempo, Loki and OpenTelemetry on the workstation stack and on the target",
+        "status": "TESTED",
+        "tasks": []
+      },
+      "RQ19": {
+        "evidence": [
+          "p09_02_keycloak",
+          "p09_03_policy",
+          "p11_01_service_images",
+          "p09_09_falco_target"
+        ],
+        "note": "Keycloak (Authorization Code with PKCE), OPA, Trivy (scan of the shipped images) and Falco (on the target); service-to-service TLS and alert routing are open (F-12, F-13)",
+        "status": "TESTED",
+        "tasks": []
+      },
+      "RQ20": {
+        "evidence": [
+          "p09_07_control_mapping",
+          "p09_06_data_inventory",
+          "p09_01_threat_model"
+        ],
+        "note": "a scoped mapping to GDPR, ISO 27001, IEC 62443, NIST CSF, ETSI EN 303 645, OWASP ASVS and AI frameworks with an explicit gap list; no compliance claim; eleven controls are partial (F-10)",
+        "status": "IMPLEMENTED",
+        "tasks": [
+          "P12.05",
+          "P13.04"
+        ]
+      },
+      "RQ21": {
+        "evidence": [
+          "doc:docs/decisions/ADR-0002-streaming-transport.md"
+        ],
+        "note": "eight decision records exist; explaining and defending them is the student's, in P14",
+        "status": "PLANNED",
+        "tasks": [
+          "P14.01",
+          "P14.05",
+          "P14.08"
+        ]
+      },
+      "RQ22": {
+        "evidence": [
+          "p11_08_runbook_drill_reconcile_recover",
+          "p12_02_fault_matrix",
+          "p11_05_target_recovery",
+          "p11_06_target_load"
+        ],
+        "note": "configuration and deployment (a runbook followed as written), operation, failure and recovery (27 fault rows), scale (a measured ceiling) and security (56 native checks)",
+        "status": "TESTED",
+        "tasks": []
+      },
+      "RQ23": {
+        "evidence": [
+          "doc:docs/security/RISK_REGISTER.md",
+          "doc:docs/security/DATA_INVENTORY_AND_DPIA.md",
+          "p09_07_control_mapping"
+        ],
+        "note": "the policies, roles, controls, risk register and DPIA-style review are written and checked against the code; the operational, security and privacy runbooks are exercised in P13.04",
+        "status": "IMPLEMENTED",
+        "tasks": [
+          "P13.04"
+        ]
+      },
+      "RQ24": {
+        "evidence": [],
+        "note": "the deck, its notes, PDF and rehearsal are P14.01-P14.03 and P14.09",
+        "status": "PLANNED",
+        "tasks": [
+          "P14.01",
+          "P14.02",
+          "P14.03",
+          "P14.09"
+        ]
+      },
+      "RQ25": {
+        "evidence": [
+          "p12_01_acceptance_matrix",
+          "p07_10_scenarios",
+          "p10_09_recovery"
+        ],
+        "note": "real-time processing, edge AI and the response to an event are evidenced for scenarios 1, 2, 3, 6 and 7 and in part for 4; scenario 5 is a gap (D-01); the live demonstration and its offline backup are P14.04",
+        "status": "IMPLEMENTED",
+        "tasks": [
+          "P12.05",
+          "P14.04"
+        ]
+      },
+      "RQ26": {
+        "evidence": [],
+        "note": "the question bank and the mock interview are P14.05 and P14.09; the interview needs the student",
+        "status": "PLANNED",
+        "tasks": [
+          "P14.05",
+          "P14.09"
+        ]
+      },
+      "RQ27": {
+        "evidence": [],
+        "note": "the M2, M3 and M4 walkthroughs and the live redesign need the student and cannot be done or inferred by an agent",
+        "status": "PLANNED",
+        "tasks": [
+          "P14.06",
+          "P14.07",
+          "P14.08",
+          "P14.09"
+        ]
+      },
+      "RQ28": {
+        "evidence": [],
+        "note": "an AI-use statement and log for the student to own and defend is P14; AGENTS.md records that agents assist and labels every simulated or inferred value",
+        "status": "PLANNED",
+        "tasks": [
+          "P14.02",
+          "P14.09"
+        ]
+      },
+      "RQ29": {
+        "evidence": [],
+        "note": "the rubric review and the rendered-deck inspection are P14.03",
+        "status": "PLANNED",
+        "tasks": [
+          "P14.03"
+        ]
+      },
+      "RQ30": {
+        "evidence": [],
+        "note": "at least ten structured questions are written in the P14.05 bank and rehearsed in P14.09",
+        "status": "PLANNED",
+        "tasks": [
+          "P14.05",
+          "P14.09"
+        ]
+      }
+    },
+    "status_counts": {
+      "GAP": 1,
+      "IMPLEMENTED": 11,
+      "PLANNED": 8,
+      "TESTED": 10
+    }
+  },
+  "notes": {
+    "assessor_approval": "none has been given and none is claimed: an exception to the exit gate needs the assessor's own approval",
+    "demonstrated_is_never_claimed_it_needs_an_assessor": "statuses used: GAP, IMPLEMENTED, PLANNED, TESTED",
+    "every_implemented_requirement_says_what_stops_it_being_tested": "without a note: []",
+    "every_planned_requirement_names_the_task_that_owns_it_and_every_gap_says_what_is_missing_and_who_decides": "without a note and a task: []",
+    "every_requirement_rq01_to_rq30_is_reviewed_once_and_matches_the_traceability_document": "30 reviewed, 30 in the document",
+    "every_task_named_as_an_owner_exists_in_the_register": "unknown: []",
+    "every_tested_or_implemented_requirement_cites_evidence_that_exists_and_passes_today": "failed []",
+    "gate": "NOT PASSED: 10 tested, 11 implemented, 8 planned (Phases 13 and 14), 1 gap; matrices: acceptance_matrix NOT PASSED: 47 covered, 6 partial, 3 gap, 0 failed; fault_matrix PASSED: 28 covered, 0 partial, 0 gap, 0 failed; quality_matrix NOT PASSED: 23 covered, 2 partial, 3 gap, 0 failed; 16 open defects",
+    "no_citation_of_any_requirement_is_missing_or_failing": "[]",
+    "the_gate_result_is_stated_and_quotes_the_three_matrices_and_the_open_defects": "NOT PASSED: 10 tested, 11 implemented, 8 planned (Phases 13 and 14), 1 gap; matrices: acceptance_matrix NOT PASSED: 47 covered, 6 partial, 3 gap, 0 failed; fault_matrix PASSED: 28 covered, 0 partial, 0 gap, 0 failed; quality_matrix NOT PASSED: 23 covered, 2 partial, 3 gap, 0 failed; 16 open defects"
+  },
+  "task": "P12.07"
+}

@@ -1,0 +1,56 @@
+{
+  "all_passed": true,
+  "checks": {
+    "Falco_0_44_1_loads_the_platform_rules_after_its_default_rules_with_no_error_and_no_warning": true,
+    "Falco_captures_live_syscalls_from_the_kernel_with_the_modern_eBPF_driver": true,
+    "benign_actions_in_a_platform_container_raise_nothing": true,
+    "every_alert_names_the_container_the_process_and_the_user": true,
+    "rule_fires_binary": true,
+    "rule_fires_credential": true,
+    "rule_fires_egress": true,
+    "rule_fires_installer": true,
+    "rule_fires_registry": true,
+    "rule_fires_shell": true,
+    "the_labs_own_containers_and_their_health_probes_raise_none_of_the_platform_rules_in_the_same_window": true,
+    "the_same_actions_in_a_container_that_is_not_the_platforms_raise_none_of_the_platform_rules": true
+  },
+  "generated_at": "2026-09-26T04:36:15Z",
+  "metrics": {
+    "alerts_by_rule": {
+      "AIOps edge runtime connecting outside the platform network": 1,
+      "AIOps model registry written at run time": 1,
+      "AIOps package manager in a platform container": 1,
+      "AIOps sensitive file read by an unexpected program": 1,
+      "AIOps shell in a platform container": 1,
+      "AIOps write below a binary directory": 1
+    },
+    "falco_image": "falcosecurity/falco:0.44.1@sha256:d0cfe422d6ac0e0f20857798f46c7d7273210e1b064b22821e4e6e7f843cde6b",
+    "falco_log_tail": "",
+    "kernel": "6.18.33.2-microsoft-standard-WSL2",
+    "sample_alerts": [
+      "2026-09-26T04:36:00.989841279+0000: Warning Shell in a platform container (container=aiops-falco-target image=alpine user=root uid=0 shell=sh cmdline=sh -c true parent=<NA> tty=34816) container_id=fe881371b897 container_",
+      "2026-09-26T04:36:01.113272844+0000: Warning Sensitive file read in a platform container (file=/etc/shadow container=aiops-falco-target user=root uid=0 proc=cat cmdline=cat /etc/shadow parent=<NA>) container_id=fe881371b8",
+      "2026-09-26T04:36:01.276015460+0000: Error Write below a binary directory (file=/usr/local/bin/aiops-evil container=aiops-falco-target user=root uid=0 proc=sh cmdline=sh -c echo x > /usr/local/bin/aiops-evil) container_id",
+      "2026-09-26T04:36:01.405256909+0000: Critical Model registry write (file=/data/registry/model.onnx container=aiops-falco-target user=root uid=0 proc=sh cmdline=sh -c mkdir -p /data/registry && echo x > /data/registry/mode",
+      "2026-09-26T04:36:01.518080712+0000: Warning Installer or downloader run in a platform container (container=aiops-falco-target user=root uid=0 proc=wget cmdline=wget -q -T 1 http://192.0.2.1/ parent=runc) container_id=fe8",
+      "2026-09-26T04:36:03.150762405+0000: Warning Edge runtime connection outside the platform network (dest=172.17.0.6:45449->1.1.1.1:443 container=aiops-edge-runtime proc=nc user=root uid=0) container_id=d8b14f97919f contain"
+    ]
+  },
+  "notes": {
+    "Falco_0_44_1_loads_the_platform_rules_after_its_default_rules_with_no_error_and_no_warning": "2026-09-26T04:35:54+0000:    /rules/aiops_rules.yaml",
+    "Falco_captures_live_syscalls_from_the_kernel_with_the_modern_eBPF_driver": "kernel 6.18.33.2-microsoft-standard-WSL2",
+    "benign_actions_in_a_platform_container_raise_nothing": "benign alerts: []; shell alerts 1 (the interactive one)",
+    "every_alert_names_the_container_the_process_and_the_user": "6 AIOps alerts",
+    "kernel": "6.18.33.2-microsoft-standard-WSL2",
+    "not_proven": "runs on the local development kernel (WSL2), not on the target host, and the actions are performed by this script with docker exec, not by an adversary; P09.09's acceptance names the target host, and alert routing to an operator is not built",
+    "rule_fires_binary": "1 alert(s); e.g. 2026-09-26T04:36:01.276015460+0000: Error Write below a binary directory (file=/usr/local/bin/aiops-evil container=aiops-falco-target user=root uid=0 proc=sh cmdline=sh -",
+    "rule_fires_credential": "1 alert(s); e.g. 2026-09-26T04:36:01.113272844+0000: Warning Sensitive file read in a platform container (file=/etc/shadow container=aiops-falco-target user=root uid=0 proc=cat cmdline=ca",
+    "rule_fires_egress": "1 alert(s); e.g. 2026-09-26T04:36:03.150762405+0000: Warning Edge runtime connection outside the platform network (dest=172.17.0.6:45449->1.1.1.1:443 container=aiops-edge-runtime proc=nc ",
+    "rule_fires_installer": "1 alert(s); e.g. 2026-09-26T04:36:01.518080712+0000: Warning Installer or downloader run in a platform container (container=aiops-falco-target user=root uid=0 proc=wget cmdline=wget -q -T",
+    "rule_fires_registry": "1 alert(s); e.g. 2026-09-26T04:36:01.405256909+0000: Critical Model registry write (file=/data/registry/model.onnx container=aiops-falco-target user=root uid=0 proc=sh cmdline=sh -c mkdir",
+    "rule_fires_shell": "1 alert(s); e.g. 2026-09-26T04:36:00.989841279+0000: Warning Shell in a platform container (container=aiops-falco-target image=alpine user=root uid=0 shell=sh cmdline=sh -c true parent=<N",
+    "the_labs_own_containers_and_their_health_probes_raise_none_of_the_platform_rules_in_the_same_window": "0 unexpected (rule, container, process): []",
+    "the_same_actions_in_a_container_that_is_not_the_platforms_raise_none_of_the_platform_rules": "alerts for other-tenant: []"
+  },
+  "task": "P09.09"
+}

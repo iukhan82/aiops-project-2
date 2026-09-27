@@ -1,0 +1,114 @@
+# P09.09 (CTL-30): runtime detection rules scoped to this platform's containers.
+#
+# Loaded AFTER Falco's default rules (they define the macros used here: container, spawned_process, open_read, open_write,
+# shell_procs, sensitive_files). Every rule is limited to containers this project runs (`container.name` starts with `aiops-`), so
+# it does not fire on unrelated workloads on a shared host, and every rule names the container, the process and the user so an alert
+# can be acted on without further digging.
+#
+# Falco 0.44.1 or later with the modern_ebpf driver (the earlier 0.39.2 kernel-module source does not build on kernel 6.4+; see
+# docs/environment/CONTAINER_K3S_FALCO_FEASIBILITY.md).
+#
+#   falco -c falco.yaml -r /etc/falco/falco_rules.yaml -r aiops_rules.yaml -o rule_matching=all
+#   falco -V /etc/falco/falco_rules.yaml -V aiops_rules.yaml          # validate only, no driver needed
+#
+# `rule_matching: all` is REQUIRED. Falco's default is `first`: an event that matches one of Falco's own default rules (a read of
+# /etc/shadow, a terminal shell in a container) is reported under that rule only, and the rules below - which name the platform's
+# container and the action to take - never get to evaluate it. Found by running them live (infra/falco/verify_falco_rules.py).
+
+# A platform container is one named `aiops-*` (the compose stack's docker containers) or one in the `aiops` namespace (Falco with a CRI runtime resolves
+# k8s.ns.name). Inside a kind node the pods are nested one level down and Falco sees the NODE's docker container (`aiops-p11-control-plane`) with the k8s
+# fields empty, so the name test is what matches there; on a node whose containerd Falco can read (K3s) the namespace test matches each pod.
+- macro: aiops_container
+  condition: (container.id != host and (container.name startswith "aiops-" or k8s.ns.name = "aiops"))
+
+# Containers this project builds itself run as an unprivileged user with a read-only root file system and no shell needed at run time.
+- macro: aiops_hardened_container
+  condition: (aiops_container and (container.name in (aiops-edge-runtime, aiops-api, aiops-gateway, aiops-ingestion, aiops-correlator, aiops-remediation-worker, aiops-scenario-control)
+              or k8s.pod.name pmatch (aiops-api, aiops-edge-runtime, aiops-mqtt-gateway, aiops-ingestion-gateway, aiops-platform-correlator, aiops-scenario-control)))
+
+# Interactive access is what an attacker (or a tired operator) does; the platform's own start-up scripts never attach a terminal.
+- macro: aiops_interactive
+  condition: (proc.tty != 0)
+
+- macro: aiops_shell
+  condition: (proc.name in (sh, bash, ash, dash, zsh, ksh, csh, tcsh))
+
+# The official images of the third-party services start through a shell entrypoint (Postgres, Keycloak); only their entrypoint scripts
+# are expected to do so, and never with a terminal attached.
+- macro: aiops_expected_entrypoint
+  condition: (proc.pname in (docker-entrypoint.sh, entrypoint.sh, kc.sh, tini, dumb-init) or proc.aname[2] in (docker-entrypoint.sh, entrypoint.sh, kc.sh))
+
+- macro: aiops_binary_dirs
+  condition: (fd.directory in (/bin, /sbin, /usr/bin, /usr/sbin, /usr/local/bin, /usr/local/sbin))
+
+- macro: aiops_credential_paths
+  condition: (fd.name in (/etc/shadow, /etc/gshadow, /etc/sudoers) or fd.name startswith /etc/ssl/private or fd.name endswith .key or fd.name endswith id_rsa or fd.name startswith /run/secrets)
+
+# The processes that legitimately read this platform's own key material.
+- list: aiops_key_readers
+  items: [postgres, pg_isready, mosquitto, java, redpanda, python, python3, opa, prometheus, grafana, grafana-server, loki, tempo, node]
+
+- rule: AIOps shell in a platform container
+  desc: A shell was started with a terminal attached, or at all inside one of the platform's own hardened containers.
+  condition: >
+    evt.type in (execve, execveat) and aiops_container and aiops_shell
+    and (aiops_interactive or aiops_hardened_container)
+    and not aiops_expected_entrypoint
+  output: >
+    Shell in a platform container (container=%container.name image=%container.image.repository user=%user.name uid=%user.uid
+    shell=%proc.name cmdline=%proc.cmdline parent=%proc.pname tty=%proc.tty)
+  priority: WARNING
+  tags: [aiops, runtime, shell, T1059]
+
+- rule: AIOps sensitive file read by an unexpected program
+  desc: A credential or key file was opened for reading by a program that has no business with it.
+  condition: >
+    open_read and aiops_container and aiops_credential_paths
+    and not proc.name in (aiops_key_readers)
+  output: >
+    Sensitive file read in a platform container (file=%fd.name container=%container.name user=%user.name uid=%user.uid proc=%proc.name
+    cmdline=%proc.cmdline parent=%proc.pname)
+  priority: WARNING
+  tags: [aiops, runtime, credential-access, T1552]
+
+- rule: AIOps write below a binary directory
+  desc: A file was created or changed in a system binary directory of a platform container.
+  condition: >
+    open_write and aiops_container and aiops_binary_dirs and not aiops_expected_entrypoint
+  output: >
+    Write below a binary directory (file=%fd.name container=%container.name user=%user.name uid=%user.uid proc=%proc.name cmdline=%proc.cmdline)
+  priority: ERROR
+  tags: [aiops, runtime, persistence, T1036]
+
+- rule: AIOps model registry written at run time
+  desc: The verified model registry is read-only at run time; any write to it is an attempt to swap a model outside verify-then-commit activation.
+  condition: >
+    open_write and aiops_container and (fd.name startswith /data/registry or fd.name endswith .onnx)
+  output: >
+    Model registry write (file=%fd.name container=%container.name user=%user.name uid=%user.uid proc=%proc.name cmdline=%proc.cmdline)
+  priority: CRITICAL
+  tags: [aiops, runtime, ai, model-integrity, T1565]
+
+- rule: AIOps package manager in a platform container
+  desc: Installing software into a running platform container, or downloading from anywhere but the container itself, is never part of normal operation (images are built, signed and pinned; the health probes of the stack call localhost).
+  condition: >
+    spawned_process and aiops_container and not aiops_expected_entrypoint
+    and (proc.name in (pip, pip3, apt, apt-get, apk, dpkg, npm, yarn)
+         or (proc.name in (curl, wget) and not (proc.cmdline contains localhost or proc.cmdline contains "127.0.0.1" or proc.cmdline contains "[::1]")))
+  output: >
+    Installer or downloader run in a platform container (container=%container.name user=%user.name uid=%user.uid proc=%proc.name cmdline=%proc.cmdline
+    parent=%proc.pname)
+  priority: WARNING
+  tags: [aiops, runtime, supply-chain, T1105]
+
+- rule: AIOps edge runtime connecting outside the platform network
+  desc: The edge runtime talks only to the platform network; a connection to a public address is unexpected.
+  # The SERVER address is what is tested (fd.snet). `fd.net` matches either end of the connection, and the container's own address is
+  # always private, so a rule written with it never fires - found by running this rule live.
+  condition: >
+    evt.type = connect and (container.name = aiops-edge-runtime or k8s.pod.name startswith aiops-edge-runtime)
+    and fd.typechar = 4 and not fd.snet in ("127.0.0.0/8", "10.0.0.0/8", "172.16.0.0/12", "192.168.0.0/16")
+  output: >
+    Edge runtime connection outside the platform network (dest=%fd.name container=%container.name proc=%proc.name user=%user.name uid=%user.uid)
+  priority: WARNING
+  tags: [aiops, runtime, network, T1071]

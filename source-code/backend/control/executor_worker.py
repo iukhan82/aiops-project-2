@@ -44,6 +44,7 @@ SERVICE = "command-executor"
 POLL_S = 2.0
 RECONNECT_S = 5.0
 GATE_RETRY_S = 15.0
+ORPHAN_AFTER_S = 180.0  # the adapter gives up after 120 s (`simulator_adapters.EXECUTION_TIMEOUT_S`): a command still `executing` after this has no executor behind it
 _gate_retry_after: dict[str, float] = {}
 
 
@@ -57,11 +58,41 @@ def next_approved(conn: psycopg.Connection) -> tuple[str, dict] | None:
     return (str(row[0]), row[1] or {}) if row else None
 
 
+def reconcile(conn: psycopg.Connection, at_start: bool = False) -> list[str]:
+    """Close what a dead executor left `executing`, BEFORE anything new is executed (REC-02).
+
+    A command moves to `executing` before its adapter is driven and to `executed` or `failed` afterwards; an executor that is killed in between leaves it `executing` for ever, and the
+    state machine offers it no other way out. There is exactly one executor, so at its start every command still `executing` is an orphan; while it runs, one older than the adapter's own
+    time limit is. Whether the action took effect is NOT known (the adapter may have finished after the process died), so the command is failed - not retried, not called executed - and
+    says so: a person, or the independent outcome verifier looking at the network, decides what happened.
+    """
+    with conn.cursor() as cur:
+        cur.execute(
+            "SELECT command_id FROM commands WHERE status = 'executing' AND (%s OR updated_at < now() - make_interval(secs => %s)) ORDER BY updated_at",
+            (at_start, ORPHAN_AFTER_S),
+        )
+        orphans = [str(r[0]) for r in cur.fetchall()]
+    conn.commit()
+    for command_id in orphans:
+        command_repo.transition_command(
+            conn,
+            command_id,
+            "failed",
+            EXECUTOR,
+            "the executor stopped while this command was executing; whether the action took effect is not known",
+            error_code="internal",
+            error_message="the executor was interrupted while running the adapter; the outcome of the action is unknown and it was not repeated",
+            error_retryable=False,
+        )
+    return orphans
+
+
 def run_once(conn: psycopg.Connection) -> str | None:
     """Expire what is stale, then act on at most one approved command: execute it, or refuse it if the policy engine says no. Returns its
     id, or None if there was nothing to do or the engine could not be asked (the command stays approved and is asked again later)."""
     command_repo.expire_stale(conn)
     conn.commit()
+    reconcile(conn)
     job = next_approved(conn)
     if job is None:
         return None
@@ -132,6 +163,11 @@ def main() -> int:
     while not stop.is_set():
         try:
             with psycopg.connect(dsn_from_env(role="svc_command_executor")) as conn:
+                for orphan in reconcile(conn, at_start=True):
+                    print(
+                        f"reconciled {orphan}: it was left executing by an executor that stopped",
+                        flush=True,
+                    )
                 while not stop.is_set():
                     heartbeat(conn, SERVICE, {"executed_this_run": executed})
                     done = run_once(conn)

@@ -1,0 +1,26 @@
+# Build context for the backend and edge images is source-code/. Nothing local, generated or secret belongs in an image.
+**/__pycache__
+**/*.pyc
+**/.pytest_cache
+**/.ruff_cache
+**/.venv
+**/node_modules
+**/output
+**/certs
+**/keys
+**/.env
+**/*.md
+**/*.log
+**/*.sqlite
+tests
+**/verify_*.py
+**/test_*.py
+frontend
+!frontend/src/config/inventory.json
+infra
+simulator
+!simulator/manifest/replay.py
+security
+scripts
+docs
+diagrams

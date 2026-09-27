@@ -1,0 +1,100 @@
+{
+  "all_passed": true,
+  "checks": {
+    "a_not_applicable_item_cites_no_control": true,
+    "every_applicable_item_that_is_not_fully_evidenced_names_the_task_that_closes_it_or_why_it_is_accepted": true,
+    "every_cited_control_exists_in_the_catalogue": true,
+    "every_cited_document_exists": true,
+    "every_control_in_the_catalogue_is_cited_by_at_least_one_framework_item": true,
+    "every_named_next_task_exists_in_the_register": true,
+    "every_not_applicable_item_says_why": true,
+    "every_owner_is_a_real_role_code_and_every_applicability_is_valid": true,
+    "iso_27001_annex_a_is_complete_all_93_controls_none_missing_or_extra": true,
+    "nine_frameworks_are_mapped": true,
+    "no_framework_lists_an_item_twice": true,
+    "no_gap_points_at_a_task_that_is_already_done_it_would_have_closed_it": true,
+    "no_item_text_claims_compliance_conformity_or_certification": true,
+    "the_document_uses_claim_words_only_in_sentences_that_deny_a_claim": true,
+    "the_generated_tables_in_the_document_are_the_ones_the_data_produces": true,
+    "the_json_on_disk_is_what_the_python_source_produces": true,
+    "the_top_level_statement_disclaims_any_compliance_conformity_or_certification_claim": true
+  },
+  "generated_at": "2026-09-27T06:19:33Z",
+  "metrics": {
+    "closing_tasks": {
+      "P01.05": 1,
+      "P13.03": 1,
+      "P13.04": 5,
+      "P13.05": 2
+    },
+    "controls_cited": 48,
+    "coverage_by_framework": {
+      "etsi-303645": {
+        "documented": 2,
+        "evidenced": 7,
+        "partial": 4
+      },
+      "gdpr": {
+        "documented": 5,
+        "evidenced": 4,
+        "partial": 2
+      },
+      "iec-62443": {
+        "evidenced": 3,
+        "partial": 4
+      },
+      "iso-42001": {
+        "documented": 3,
+        "evidenced": 4,
+        "out_of_scope": 1,
+        "partial": 1
+      },
+      "iso27001": {
+        "documented": 8,
+        "evidenced": 25,
+        "out_of_scope": 30,
+        "partial": 30
+      },
+      "nist-ai-rmf": {
+        "evidenced": 1,
+        "partial": 3
+      },
+      "nist-csf-2": {
+        "documented": 5,
+        "evidenced": 8,
+        "out_of_scope": 2,
+        "partial": 7
+      },
+      "owasp-api": {
+        "evidenced": 8,
+        "partial": 2
+      },
+      "owasp-asvs": {
+        "evidenced": 9,
+        "partial": 5
+      }
+    },
+    "gaps": [],
+    "items": 183
+  },
+  "notes": {
+    "a_not_applicable_item_cites_no_control": "[]",
+    "every_applicable_item_that_is_not_fully_evidenced_names_the_task_that_closes_it_or_why_it_is_accepted": "[]",
+    "every_cited_control_exists_in_the_catalogue": "[]",
+    "every_cited_document_exists": "[]",
+    "every_control_in_the_catalogue_is_cited_by_at_least_one_framework_item": "unmapped: []",
+    "every_named_next_task_exists_in_the_register": "[]",
+    "every_not_applicable_item_says_why": "[]",
+    "every_owner_is_a_real_role_code_and_every_applicability_is_valid": "",
+    "iso_27001_annex_a_is_complete_all_93_controls_none_missing_or_extra": "93 items",
+    "nine_frameworks_are_mapped": "iso27001, nist-csf-2, etsi-303645, iec-62443, owasp-asvs, owasp-api, nist-ai-rmf, iso-42001, gdpr",
+    "no_framework_lists_an_item_twice": "",
+    "no_gap_points_at_a_task_that_is_already_done_it_would_have_closed_it": "[]",
+    "no_item_text_claims_compliance_conformity_or_certification": "[]",
+    "the_document_uses_claim_words_only_in_sentences_that_deny_a_claim": "lines []",
+    "the_generated_tables_in_the_document_are_the_ones_the_data_produces": "rendered",
+    "the_json_on_disk_is_what_the_python_source_produces": "",
+    "the_top_level_statement_disclaims_any_compliance_conformity_or_certification_claim": ""
+  },
+  "task": "P09.07"
+}

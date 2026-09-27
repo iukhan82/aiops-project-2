@@ -1,0 +1,301 @@
+{
+  "all_passed": true,
+  "checks": {
+    "LAT_06_incident_to_remediation_start_p95_is_under_30_s": true,
+    "REC_04_every_incident_ended_recovered_and_verified_or_escalated_with_a_recorded_reason_none_was_left_unresolved_and_silent": true,
+    "a_rotted_active_model_raises_the_model_alerts_and_the_incident_is_recovered_by_rolling_back_the_registry": true,
+    "a_stateful_service_reported_down_gets_a_request_that_waits_for_a_person_and_the_real_container_is_left_alone": true,
+    "a_worker_killed_mid_action_leaves_a_request_that_is_closed_as_abandoned_not_left_running": true,
+    "after_the_escalation_automation_stands_down_no_further_action_is_taken": true,
+    "an_approval_from_a_role_the_policy_does_not_accept_is_withdrawn_and_the_real_container_is_still_untouched": true,
+    "an_escalated_incident_is_resolved_by_the_correlator_once_the_platform_is_repaired_by_a_person": true,
+    "control_with_the_worker_held_back_the_crashed_runtime_stays_down_its_alert_keeps_firing_and_the_incident_stays_open": true,
+    "each_recovery_was_verified_from_the_alerts_staying_clear_and_only_then_was_the_incident_resolved": true,
+    "every_attempt_stayed_within_its_registered_limit_and_the_rollback_was_refused_without_changing_anything": true,
+    "every_crash_is_detected_becomes_one_incident_gets_one_restart_and_resolves": true,
+    "once_the_policy_engine_is_back_the_worker_proceeds_and_the_platform_recovers": true,
+    "the_action_is_not_repeated_after_the_crash_and_the_incident_still_resolves": true,
+    "the_events_of_each_recovery_are_in_causal_order_fault_alert_incident_action_verification_resolution": true,
+    "the_rollback_switched_the_pointer_to_the_previous_verified_version_and_restarted_the_runtime_which_then_served_it": true,
+    "the_runtime_really_came_back_from_a_new_process_the_container_start_time_changed": true,
+    "when_the_attempt_limits_are_reached_and_the_fault_persists_the_incident_is_escalated_to_a_person_with_the_reason_recorded": true,
+    "with_the_policy_engine_stopped_the_worker_does_nothing_says_so_and_the_fault_is_left_as_it_was": true,
+    "with_the_worker_released_the_control_crash_is_recovered_and_the_incident_resolves": true
+  },
+  "generated_at": "2026-09-26T12:24:41Z",
+  "metrics": {
+    "bad_model": {
+      "worker_log": [
+        "approved: rollback_model on edge-runtime:traffic-safety-blockage for edge-runtime (the active model fails to load or run; return to the previous verified version)",
+        "executed: rollback_model on edge-runtime:traffic-safety-blockage (recovery not yet judged)",
+        "verified: rollback_model on edge-runtime:traffic-safety-blockage - ['EdgeModelErrors', 'EdgeModelInactive', 'EdgeModelLatencyP95High', 'EdgePendingDevicesSaturated', 'EdgeRuntimeDown'] clear for 125 s"
+      ]
+    },
+    "cadence": {
+      "correlator_every_s": 15,
+      "prometheus_evaluation_s": 15,
+      "worker_every_s": 10
+    },
+    "crash_restart": {
+      "control_then_reps": [
+        {
+          "alert_at": "2026-09-26T10:52:23.080000+00:00",
+          "fault_at": "2026-09-26T10:49:53.079689+00:00",
+          "incident_opened_at": "2026-09-26T10:52:38.541973+00:00",
+          "label": "control-then-released",
+          "request": {
+            "action": "restart_container",
+            "executed_at": "2026-09-26T10:56:41.976676+00:00",
+            "finished_at": "2026-09-26T10:59:02.482201+00:00",
+            "result": {
+              "after": {
+                "health": "",
+                "started_at": "2026-09-26T10:56:41.460646507Z",
+                "status": "running"
+              },
+              "before": {
+                "health": "",
+                "started_at": "2026-09-26T10:48:42.729595039Z",
+                "status": "exited"
+              },
+              "seconds": 0.7
+            },
+            "started_at": "2026-09-26T10:56:40.407599+00:00",
+            "status": "verified",
+            "target": "aiops-edge-runtime",
+            "verification": {
+              "alerts": [
+                "EdgeModelErrors",
+                "EdgeModelInactive",
+                "EdgeModelLatencyP95High",
+                "EdgePendingDevicesSaturated",
+                "EdgeRuntimeDown"
+              ],
+              "checked_at": "2026-09-26T10:59:02.482201+00:00",
+              "healthy_for_s": 126,
+              "last_active_at": "2026-09-26T10:56:41.977000+00:00",
+              "required_s": 120,
+              "still_active": false,
+              "verdict": "recovered"
+            }
+          },
+          "resolved": true,
+          "resolved_at": "2026-09-26T10:59:39.644064+00:00"
+        },
+        {
+          "alert_at": "2026-09-26T11:03:24.951000+00:00",
+          "fault_at": "2026-09-26T11:00:54.950673+00:00",
+          "incident_opened_at": "2026-09-26T11:03:25.418397+00:00",
+          "label": "crash-1",
+          "request": {
+            "action": "restart_container",
+            "executed_at": "2026-09-26T11:03:33.511775+00:00",
+            "finished_at": "2026-09-26T11:05:54.080978+00:00",
+            "result": {
+              "after": {
+                "health": "",
+                "started_at": "2026-09-26T11:03:32.784884853Z",
+                "status": "running"
+              },
+              "before": {
+                "health": "",
+                "started_at": "2026-09-26T10:59:54.544640368Z",
+                "status": "exited"
+              },
+              "seconds": 1.0
+            },
+            "started_at": "2026-09-26T11:03:32.300309+00:00",
+            "status": "verified",
+            "target": "aiops-edge-runtime",
+            "verification": {
+              "alerts": [
+                "EdgeModelErrors",
+                "EdgeModelInactive",
+                "EdgeModelLatencyP95High",
+                "EdgePendingDevicesSaturated",
+                "EdgeRuntimeDown"
+              ],
+              "checked_at": "2026-09-26T11:05:54.080978+00:00",
+              "healthy_for_s": 126,
+              "last_active_at": "2026-09-26T11:03:33.512000+00:00",
+              "required_s": 120,
+              "still_active": false,
+              "verdict": "recovered"
+            }
+          },
+          "resolved": true,
+          "resolved_at": "2026-09-26T11:06:40.930032+00:00"
+        },
+        {
+          "alert_at": "2026-09-26T11:10:20.640000+00:00",
+          "fault_at": "2026-09-26T11:07:50.639630+00:00",
+          "incident_opened_at": "2026-09-26T11:10:21.069291+00:00",
+          "label": "crash-2",
+          "request": {
+            "action": "restart_container",
+            "executed_at": "2026-09-26T11:10:28.913096+00:00",
+            "finished_at": "2026-09-26T11:12:49.471840+00:00",
+            "result": {
+              "after": {
+                "health": "",
+                "started_at": "2026-09-26T11:10:28.545077586Z",
+                "status": "running"
+              },
+              "before": {
+                "health": "",
+                "started_at": "2026-09-26T11:06:50.269023314Z",
+                "status": "exited"
+              },
+              "seconds": 0.6
+            },
+            "started_at": "2026-09-26T11:10:28.052872+00:00",
+            "status": "verified",
+            "target": "aiops-edge-runtime",
+            "verification": {
+              "alerts": [
+                "EdgeModelErrors",
+                "EdgeModelInactive",
+                "EdgeModelLatencyP95High",
+                "EdgePendingDevicesSaturated",
+                "EdgeRuntimeDown"
+              ],
+              "checked_at": "2026-09-26T11:12:49.471840+00:00",
+              "healthy_for_s": 126,
+              "last_active_at": "2026-09-26T11:10:28.913000+00:00",
+              "required_s": 120,
+              "still_active": false,
+              "verdict": "recovered"
+            }
+          },
+          "resolved": true,
+          "resolved_at": "2026-09-26T11:13:21.528383+00:00"
+        }
+      ]
+    },
+    "crash_restart_worker_log": [
+      "approved: restart_container on aiops-edge-runtime for edge-runtime (the edge runtime stopped answering scrapes; a restart is the first, cheapest step)",
+      "executed: restart_container on aiops-edge-runtime (recovery not yet judged)",
+      "escalated to a person: observability - no remediation is registered for this incident: a person must look at it",
+      "verified: restart_container on aiops-edge-runtime - ['EdgeModelErrors', 'EdgeModelInactive', 'EdgeModelLatencyP95High', 'EdgePendingDevicesSaturated', 'EdgeRuntimeDown'] clear for 126 s",
+      "approved: restart_container on aiops-edge-runtime for edge-runtime (the edge runtime stopped answering scrapes; a restart is the first, cheapest step)",
+      "executed: restart_container on aiops-edge-runtime (recovery not yet judged)",
+      "escalated to a person: observability - no remediation is registered for this incident: a person must look at it",
+      "verified: restart_container on aiops-edge-runtime - ['EdgeModelErrors', 'EdgeModelInactive', 'EdgeModelLatencyP95High', 'EdgePendingDevicesSaturated', 'EdgeRuntimeDown'] clear for 126 s"
+    ],
+    "induced": [
+      "crash: docker kill of the real edge runtime container",
+      "bad model: a byte flipped in the active version's weights on the host registry copy, then a container restart",
+      "unrecoverable: the same flip in every version",
+      "stateful: the probe is told to report postgres down; the alert, correlation and policy are real, the container is real and untouched",
+      "policy outage: docker stop of the real policy engine",
+      "worker crash: the worker process killed while its adapter is running"
+    ],
+    "latencies": {
+      "detect_s": {
+        "max_s": 150.0,
+        "median_s": 150.0,
+        "n": 3,
+        "values_s": [
+          150.0,
+          150.0,
+          15.0
+        ]
+      },
+      "dispatch_s": {
+        "max_s": 7.0,
+        "median_s": 7.0,
+        "n": 3,
+        "values_s": [
+          6.9,
+          7.0,
+          7.0
+        ]
+      },
+      "incident_s": {
+        "max_s": 0.5,
+        "median_s": 0.5,
+        "n": 2,
+        "values_s": [
+          0.5,
+          0.4
+        ]
+      },
+      "mttr_s": {
+        "max_s": 346.0,
+        "median_s": 330.9,
+        "n": 3,
+        "values_s": [
+          346.0,
+          330.9,
+          225.7
+        ]
+      },
+      "verify_s": {
+        "max_s": 140.6,
+        "median_s": 140.6,
+        "n": 2,
+        "values_s": [
+          140.6,
+          140.6
+        ]
+      }
+    },
+    "seconds": 5813,
+    "stateful": {
+      "induced": "the probe was told to report postgres down (its real path needs a broken connection); the alert, correlation and policy are real"
+    },
+    "unrecoverable": {
+      "attempts": [
+        [
+          "rollback_model",
+          "failed"
+        ],
+        [
+          "restart_container",
+          "failed"
+        ],
+        [
+          "restart_container",
+          "failed"
+        ]
+      ],
+      "worker_log": [
+        "approved: rollback_model on edge-runtime:traffic-safety-blockage for edge-runtime (the active model fails to load or run; return to the previous verified version)",
+        "failed to run: rollback_model on edge-runtime:traffic-safety-blockage - rollback refused",
+        "denied: rollback_model on edge-runtime:traffic-safety-blockage - action_attempts_spent",
+        "approved: restart_container on aiops-edge-runtime for edge-runtime (if the rollback did not help, a restart clears a wedged process)",
+        "executed: restart_container on aiops-edge-runtime (recovery not yet judged)",
+        "escalated to a person: observability - no remediation is registered for this incident: a person must look at it",
+        "failed: restart_container on aiops-edge-runtime - the alerts did not clear and stay clear within the verification timeout",
+        "denied: restart_container on aiops-edge-runtime - cooldown",
+        "approved: restart_container on aiops-edge-runtime for edge-runtime (if the rollback did not help, a restart clears a wedged process)",
+        "executed: restart_container on aiops-edge-runtime (recovery not yet judged)",
+        "failed: restart_container on aiops-edge-runtime - the alerts did not clear and stay clear within the verification timeout",
+        "escalated to a person: edge-runtime - live for 23 minutes (it may have flapped); automation has done all its bounds allow"
+      ]
+    }
+  },
+  "notes": {
+    "LAT_06_incident_to_remediation_start_p95_is_under_30_s": "n=3, values [6.9, 7.0, 7.0], p95 7.0 s (small sample: the maximum stands in for p95)",
+    "REC_04_every_incident_ended_recovered_and_verified_or_escalated_with_a_recorded_reason_none_was_left_unresolved_and_silent": "",
+    "a_rotted_active_model_raises_the_model_alerts_and_the_incident_is_recovered_by_rolling_back_the_registry": "active 1.0.1 -> 1.0.0; rollback verified",
+    "a_stateful_service_reported_down_gets_a_request_that_waits_for_a_person_and_the_real_container_is_left_alone": "request awaiting_approval, postgres started_at unchanged: True",
+    "a_worker_killed_mid_action_leaves_a_request_that_is_closed_as_abandoned_not_left_running": "[('restart_container', 'abandoned')]",
+    "after_the_escalation_automation_stands_down_no_further_action_is_taken": "3 attempts at escalation, 3 three minutes later",
+    "an_approval_from_a_role_the_policy_does_not_accept_is_withdrawn_and_the_real_container_is_still_untouched": "expired",
+    "an_escalated_incident_is_resolved_by_the_correlator_once_the_platform_is_repaired_by_a_person": "",
+    "control_with_the_worker_held_back_the_crashed_runtime_stays_down_its_alert_keeps_firing_and_the_incident_stays_open": "405.6 s after the crash: alert firing, incident open, requests 0",
+    "each_recovery_was_verified_from_the_alerts_staying_clear_and_only_then_was_the_incident_resolved": "",
+    "every_attempt_stayed_within_its_registered_limit_and_the_rollback_was_refused_without_changing_anything": "[('rollback_model', 'failed'), ('restart_container', 'failed'), ('restart_container', 'failed')]",
+    "every_crash_is_detected_becomes_one_incident_gets_one_restart_and_resolves": "['verified', 'verified', 'verified']",
+    "once_the_policy_engine_is_back_the_worker_proceeds_and_the_platform_recovers": "",
+    "the_action_is_not_repeated_after_the_crash_and_the_incident_still_resolves": "[('restart_container', 'abandoned')]",
+    "the_events_of_each_recovery_are_in_causal_order_fault_alert_incident_action_verification_resolution": "",
+    "the_rollback_switched_the_pointer_to_the_previous_verified_version_and_restarted_the_runtime_which_then_served_it": "1.0.0",
+    "the_runtime_really_came_back_from_a_new_process_the_container_start_time_changed": "",
+    "when_the_attempt_limits_are_reached_and_the_fault_persists_the_incident_is_escalated_to_a_person_with_the_reason_recorded": "{'reason': 'live for 23 minutes (it may have flapped); automation has done all its bounds allow'}",
+    "with_the_policy_engine_stopped_the_worker_does_nothing_says_so_and_the_fault_is_left_as_it_was": "policy_unavailable counted 7 times; requests 0",
+    "with_the_worker_released_the_control_crash_is_recovered_and_the_incident_resolves": ""
+  },
+  "task": "P10.09"
+}

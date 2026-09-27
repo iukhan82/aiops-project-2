@@ -1,0 +1,486 @@
+{
+  "all_passed": true,
+  "checks": {
+    "defect_ids_are_unique_and_severities_and_statuses_are_from_the_vocabulary": true,
+    "every_acceptance_target_that_is_not_met_or_only_partly_met_is_linked_to_a_defect": true,
+    "every_fixed_defect_names_evidence_that_was_regenerated_after_the_fix": true,
+    "every_open_defect_names_its_impact_owner_and_next_action_and_every_accepted_one_its_impact_and_owner": true,
+    "every_partial_or_gap_row_of_the_matrices_is_explained_by_a_defect_that_lists_it": true,
+    "every_retest_cited_by_a_fixed_defect_exists_and_passes_today": true,
+    "every_retest_evidence_is_from_the_fix_or_later_not_from_before_it": true,
+    "every_row_a_defect_lists_is_a_partial_or_gap_row": true,
+    "no_acceptance_target_is_left_not_yet_measured": true,
+    "the_counts_are_stated": true,
+    "the_defect_a_row_names_in_its_owner_is_the_defect_that_lists_the_row": true
+  },
+  "generated_at": "2026-09-27T05:06:51Z",
+  "metrics": {
+    "counts": {
+      "ACCEPTED": 4,
+      "FIXED": 18,
+      "OPEN": 16
+    },
+    "defects": {
+      "D-01": {
+        "links": [
+          "RQ25"
+        ],
+        "owner": "OPS/CONTROL",
+        "rows": [
+          "S5.1",
+          "S5.2",
+          "S5.3",
+          "S5.4",
+          "Q-S7"
+        ],
+        "severity": "HIGH",
+        "status": "OPEN",
+        "title": "The signal-failure scenario has no implementation: no detection, no safe plan, no maintenance work"
+      },
+      "D-02": {
+        "links": [
+          "SAFE-02",
+          "SAFE-03"
+        ],
+        "owner": "BACKEND/CONTROL",
+        "rows": [],
+        "severity": "SAFETY",
+        "status": "FIXED",
+        "title": "A protected action on a cross street needed no current evidence"
+      },
+      "D-03": {
+        "links": [
+          "REC-02"
+        ],
+        "owner": "BACKEND/CONTROL",
+        "rows": [],
+        "severity": "SAFETY",
+        "status": "FIXED",
+        "title": "A command left `executing` by a killed executor stayed `executing` for ever"
+      },
+      "D-04": {
+        "links": [
+          "LOAD-01",
+          "LOAD-02"
+        ],
+        "owner": "BACKEND/DATA",
+        "rows": [],
+        "severity": "HIGH",
+        "status": "FIXED",
+        "title": "Ingestion sustained about 15 events per second and lost events under load"
+      },
+      "D-05": {
+        "links": [
+          "LOAD-02",
+          "REC-01"
+        ],
+        "owner": "DEVOPS/DATA",
+        "rows": [],
+        "severity": "SAFETY",
+        "status": "FIXED",
+        "title": "The MQTT gateway lost broker-acknowledged events across its own restart"
+      },
+      "D-06": {
+        "links": [
+          "LOAD-03"
+        ],
+        "owner": "DEVOPS",
+        "rows": [],
+        "severity": "MEDIUM",
+        "status": "FIXED",
+        "title": "A failed check Job was retried, hiding which run failed"
+      },
+      "D-07": {
+        "links": [
+          "LOAD-03"
+        ],
+        "owner": "QA",
+        "rows": [],
+        "severity": "MEDIUM",
+        "status": "FIXED",
+        "title": "The load check died when PostgreSQL was taken away"
+      },
+      "D-08": {
+        "links": [
+          "RQ18"
+        ],
+        "owner": "DEVOPS",
+        "rows": [],
+        "severity": "MEDIUM",
+        "status": "FIXED",
+        "title": "Tempo was OOM-killed compacting hours of traces"
+      },
+      "D-09": {
+        "links": [
+          "REC-02"
+        ],
+        "owner": "QA",
+        "rows": [],
+        "severity": "MEDIUM",
+        "status": "FIXED",
+        "title": "Restart times were measured with `rollout status`, which answers at once for a deleted pod"
+      },
+      "D-10": {
+        "links": [
+          "RQ22"
+        ],
+        "owner": "DEVOPS",
+        "rows": [],
+        "severity": "LOW",
+        "status": "FIXED",
+        "title": "The runbook drill misread a command that prints its answer last, and overwrote its own evidence"
+      },
+      "D-11": {
+        "links": [
+          "RQ19"
+        ],
+        "owner": "SEC",
+        "rows": [],
+        "severity": "MEDIUM",
+        "status": "FIXED",
+        "title": "Falco alerts named the user as `<NA>` and the check accepted it as a name"
+      },
+      "D-12": {
+        "links": [
+          "RQ22"
+        ],
+        "owner": "QA",
+        "rows": [],
+        "severity": "MEDIUM",
+        "status": "FIXED",
+        "title": "Verifiers polluted each other through the one shared verification database"
+      },
+      "D-13": {
+        "links": [
+          "RQ22"
+        ],
+        "owner": "QA",
+        "rows": [],
+        "severity": "MEDIUM",
+        "status": "FIXED",
+        "title": "Five verifiers had drifted from the platform they verify"
+      },
+      "D-14": {
+        "links": [
+          "RQ19"
+        ],
+        "owner": "SEC",
+        "rows": [],
+        "severity": "LOW",
+        "status": "FIXED",
+        "title": "The manifest verifier rejected workload names with digits"
+      },
+      "D-15": {
+        "links": [
+          "RQ15"
+        ],
+        "owner": "DEVOPS",
+        "rows": [],
+        "severity": "HIGH",
+        "status": "FIXED",
+        "title": "The API image lacked a file it reads at start"
+      },
+      "D-16": {
+        "links": [
+          "CTL-11"
+        ],
+        "owner": "SEC",
+        "rows": [],
+        "severity": "HIGH",
+        "status": "FIXED",
+        "title": "The database image accepted a plain (non-TLS) connection"
+      },
+      "D-17": {
+        "links": [],
+        "owner": "FRONTEND",
+        "rows": [],
+        "severity": "LOW",
+        "status": "FIXED",
+        "title": "The new-command dialog could be submitted before its list of targets had loaded"
+      },
+      "D-18": {
+        "links": [],
+        "owner": "FRONTEND/QA",
+        "rows": [],
+        "severity": "LOW",
+        "status": "FIXED",
+        "title": "The console's demo data relied on a failure the platform no longer lets happen"
+      },
+      "D-19": {
+        "links": [],
+        "owner": "GRC",
+        "rows": [],
+        "severity": "LOW",
+        "status": "FIXED",
+        "title": "The data inventory declared the wrong retention class for edge-camera aggregate metadata, and had gone stale about whether any such device is registered"
+      },
+      "F-02": {
+        "links": [
+          "ACC-02"
+        ],
+        "owner": "DATA/OPS",
+        "rows": [
+          "S1.2"
+        ],
+        "severity": "MEDIUM",
+        "status": "OPEN",
+        "title": "The trained 30-minute density forecast is significantly worse than the baseline on the held-out test"
+      },
+      "F-03": {
+        "links": [
+          "RQ25"
+        ],
+        "owner": "DATA",
+        "rows": [
+          "S4.1"
+        ],
+        "severity": "MEDIUM",
+        "status": "OPEN",
+        "title": "Flooding is detected from a sensor flag and friction only; rainfall, water depth, the loop-detector speed drop and reports are not combined"
+      },
+      "F-04": {
+        "links": [
+          "ACC-03"
+        ],
+        "owner": "DATA",
+        "rows": [
+          "Q-F1"
+        ],
+        "severity": "LOW",
+        "status": "OPEN",
+        "title": "Outcomes by corridor cannot be compared: the held-out runs hold too few truth episodes"
+      },
+      "F-05": {
+        "links": [
+          "RQ25"
+        ],
+        "owner": "ARCH/EMERG",
+        "rows": [
+          "S2.2"
+        ],
+        "severity": "MEDIUM",
+        "status": "OPEN",
+        "title": "Emergency calls are not an input to incident correlation"
+      },
+      "F-06": {
+        "links": [
+          "RQ25"
+        ],
+        "owner": "CONTROL",
+        "rows": [
+          "S2.5",
+          "S4.3"
+        ],
+        "severity": "LOW",
+        "status": "ACCEPTED",
+        "title": "The variable-message-sign adapter records a message but nothing is actuated, and no public-alert channel exists"
+      },
+      "F-07": {
+        "links": [
+          "RQ25"
+        ],
+        "owner": "SIM/DATA",
+        "rows": [
+          "Q-F6"
+        ],
+        "severity": "MEDIUM",
+        "status": "OPEN",
+        "title": "The cyclist conflict mode is unvalidated"
+      },
+      "F-08": {
+        "links": [
+          "FA-03"
+        ],
+        "owner": "OPS",
+        "rows": [],
+        "severity": "HIGH",
+        "status": "OPEN",
+        "title": "AIOps platform-incident false positives are 29.6% against a 10% target (FA-03)"
+      },
+      "F-09": {
+        "links": [
+          "ACC-04"
+        ],
+        "owner": "OPS/DATA",
+        "rows": [],
+        "severity": "MEDIUM",
+        "status": "OPEN",
+        "title": "The operational anomaly detector did not transfer to lab traffic and its test false-alarm rate is above budget"
+      },
+      "F-10": {
+        "links": [
+          "RQ20"
+        ],
+        "owner": "SEC",
+        "rows": [],
+        "severity": "MEDIUM",
+        "status": "OPEN",
+        "title": "Eleven security controls are partial with a stated gap and fourteen lack a positive or a negative runtime check"
+      },
+      "F-11": {
+        "links": [
+          "REC-03"
+        ],
+        "owner": "DEVOPS",
+        "rows": [],
+        "severity": "MEDIUM",
+        "status": "OPEN",
+        "title": "No scheduled backup, no off-host copy, the key sits beside the archive, Keycloak's embedded database is not backed up"
+      },
+      "F-12": {
+        "links": [
+          "RQ19"
+        ],
+        "owner": "SEC",
+        "rows": [],
+        "severity": "MEDIUM",
+        "status": "OPEN",
+        "title": "Service-to-service traffic inside the namespace is plain and unauthenticated (confined by NetworkPolicy only)"
+      },
+      "F-13": {
+        "links": [
+          "RQ19"
+        ],
+        "owner": "OPS/SEC",
+        "rows": [],
+        "severity": "LOW",
+        "status": "OPEN",
+        "title": "Falco alerts are not routed to an operator"
+      },
+      "F-14": {
+        "links": [
+          "RQ07"
+        ],
+        "owner": "OPS",
+        "rows": [],
+        "severity": "LOW",
+        "status": "ACCEPTED",
+        "title": "Scale, failover and quarantine remediation are plan-only"
+      },
+      "F-15": {
+        "links": [
+          "UX-01"
+        ],
+        "owner": "UX/PRESENT",
+        "rows": [
+          "Q-A7"
+        ],
+        "severity": "MEDIUM",
+        "status": "OPEN",
+        "title": "No screen-reader session and no assistive-technology user has used the console"
+      },
+      "F-16": {
+        "links": [
+          "RQ20"
+        ],
+        "owner": "GRC",
+        "rows": [
+          "Q-F7"
+        ],
+        "severity": "LOW",
+        "status": "ACCEPTED",
+        "title": "Demographic and vulnerable-group outcomes cannot be measured: the district holds no population data"
+      },
+      "F-17": {
+        "links": [
+          "RQ03"
+        ],
+        "owner": "ARCH/LEAD",
+        "rows": [],
+        "severity": "HIGH",
+        "status": "OPEN",
+        "title": "No remote cloud execution: the central tier runs locally and on one real host"
+      },
+      "F-18": {
+        "links": [
+          "LOAD-02"
+        ],
+        "owner": "DEVOPS/QA",
+        "rows": [],
+        "severity": "MEDIUM",
+        "status": "OPEN",
+        "title": "A hard crash of the MQTT broker inside its 5-second persistence interval could drop acknowledged events; not injected"
+      },
+      "F-19": {
+        "links": [
+          "LOAD-02"
+        ],
+        "owner": "DEVOPS",
+        "rows": [],
+        "severity": "LOW",
+        "status": "ACCEPTED",
+        "title": "The two-listener compose fixture keeps `per_listener_settings true` and so keeps no offline queue for the gateway"
+      },
+      "F-20": {
+        "links": [
+          "RQ14"
+        ],
+        "owner": "DEVOPS",
+        "rows": [],
+        "severity": "LOW",
+        "status": "OPEN",
+        "title": "The hosted CI run has not happened (P01.05)"
+      }
+    },
+    "fixed_by_severity": {
+      "HIGH": 3,
+      "LOW": 5,
+      "MEDIUM": 7,
+      "SAFETY": 3
+    },
+    "open_by_severity": {
+      "HIGH": 3,
+      "LOW": 3,
+      "MEDIUM": 10,
+      "SAFETY": 0
+    },
+    "targets": {
+      "ACC-01": "measured",
+      "ACC-02": "measured",
+      "ACC-03": "measured",
+      "ACC-04": "measured",
+      "ETA-01": "measured",
+      "ETA-02": "measured",
+      "ETA-03": "measured",
+      "FA-01": "measured",
+      "FA-02": "measured",
+      "FA-03": "not met",
+      "LAT-01": "measured",
+      "LAT-02": "measured",
+      "LAT-03": "measured",
+      "LAT-04": "measured",
+      "LAT-05": "measured",
+      "LAT-06": "measured",
+      "LOAD-01": "measured",
+      "LOAD-02": "measured",
+      "LOAD-03": "measured",
+      "LOAD-04": "measured",
+      "REC-01": "measured",
+      "REC-02": "measured",
+      "REC-03": "measured",
+      "REC-04": "measured",
+      "SAFE-01": "measured",
+      "SAFE-02": "measured",
+      "SAFE-03": "measured",
+      "UX-01": "measured",
+      "UX-02": "measured",
+      "UX-03": "measured",
+      "UX-04": "measured"
+    }
+  },
+  "notes": {
+    "defect_ids_are_unique_and_severities_and_statuses_are_from_the_vocabulary": "38 entries",
+    "every_acceptance_target_that_is_not_met_or_only_partly_met_is_linked_to_a_defect": "targets not met or partial: ['FA-03']; unlinked []",
+    "every_fixed_defect_names_evidence_that_was_regenerated_after_the_fix": "without retest evidence: []",
+    "every_open_defect_names_its_impact_owner_and_next_action_and_every_accepted_one_its_impact_and_owner": "incomplete: []",
+    "every_partial_or_gap_row_of_the_matrices_is_explained_by_a_defect_that_lists_it": "unexplained rows: []",
+    "every_retest_cited_by_a_fixed_defect_exists_and_passes_today": "{}",
+    "every_retest_evidence_is_from_the_fix_or_later_not_from_before_it": "older than 2026-09-25: {}",
+    "every_row_a_defect_lists_is_a_partial_or_gap_row": "rows that are not partial or gap: []",
+    "no_acceptance_target_is_left_not_yet_measured": "31 targets; not yet measured: []",
+    "the_counts_are_stated": "18 fixed and retested, 16 open, 4 accepted",
+    "the_defect_a_row_names_in_its_owner_is_the_defect_that_lists_the_row": "{}",
+    "what_is_not_claimed": "ACCEPTED is the project's own decision to live with a limit; it is not an assessor approval, and none is recorded or implied"
+  },
+  "task": "P12.05"
+}

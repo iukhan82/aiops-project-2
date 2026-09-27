@@ -10,7 +10,7 @@
       "target_value": 100,
       "target_unit": "ms",
       "window_seconds": 60,
-      "measurement_query_ref": "histogram_quantile(0.95, sum(rate(edge_model_inference_latency_ms_bucket[1m])) by (le))",
+      "measurement_query_ref": "histogram_quantile(0.95, sum by (le) (rate(edge_model_inference_latency_ms_bucket[1m])))",
       "related_acceptance_target_id": "LAT-01",
       "owner_role": "OPS",
       "effective_from": "2026-09-23T00:00:00Z"
@@ -35,7 +35,7 @@
       "target_value": 2000,
       "target_unit": "ms",
       "window_seconds": 300,
-      "measurement_query_ref": "histogram_quantile(0.95, sum(rate(ingestion_ingest_latency_bucket[5m])) by (le))",
+      "measurement_query_ref": "histogram_quantile(0.95, sum by (le) (rate(ingestion_ingest_latency_milliseconds_bucket[5m])))",
       "related_acceptance_target_id": "LAT-02",
       "owner_role": "OPS",
       "effective_from": "2026-09-23T00:00:00Z"
@@ -48,7 +48,7 @@
       "target_value": 5,
       "target_unit": "percent",
       "window_seconds": 300,
-      "measurement_query_ref": "sum(rate(ingestion_events_rejected_schema[5m]) + rate(ingestion_events_rejected_unknown_device[5m]) + rate(ingestion_events_rejected_content_conflict[5m])) / sum(rate(ingestion_events_inserted[5m]) + rate(ingestion_events_duplicate_ok[5m]) + rate(ingestion_events_rejected_schema[5m]) + rate(ingestion_events_rejected_unknown_device[5m]) + rate(ingestion_events_rejected_content_conflict[5m])) * 100",
+      "measurement_query_ref": "100 * (sum(rate(ingestion_events_rejected_schema_total[5m])) + sum(rate(ingestion_events_rejected_unknown_device_total[5m])) + sum(rate(ingestion_events_rejected_content_conflict_total[5m]))) / sum(rate(ingestion_events_inserted_total[5m]) + rate(ingestion_events_duplicate_ok_total[5m]) + rate(ingestion_events_rejected_schema_total[5m]) + rate(ingestion_events_rejected_unknown_device_total[5m]) + rate(ingestion_events_rejected_content_conflict_total[5m]))",
       "owner_role": "OPS",
       "effective_from": "2026-09-23T00:00:00Z"
     },
@@ -60,7 +60,7 @@
       "target_value": 95,
       "target_unit": "percent",
       "window_seconds": 300,
-      "measurement_query_ref": "sum(rate(network_state_records{freshness_status=\"fresh\"}[5m])) / sum(rate(network_state_records[5m])) * 100",
+      "measurement_query_ref": "100 * sum(rate(network_state_records_total{freshness_status=\"fresh\"}[5m])) / sum(rate(network_state_records_total[5m]))",
       "related_acceptance_target_id": "SAFE-03",
       "owner_role": "OPS",
       "effective_from": "2026-09-23T00:00:00Z"
@@ -73,7 +73,7 @@
       "target_value": 2000,
       "target_unit": "ms",
       "window_seconds": 300,
-      "measurement_query_ref": "histogram_quantile(0.95, sum(rate(api_http_request_duration_bucket[5m])) by (le))",
+      "measurement_query_ref": "histogram_quantile(0.95, sum by (le) (rate(api_http_request_duration_milliseconds_bucket[5m])))",
       "owner_role": "OPS",
       "effective_from": "2026-09-23T00:00:00Z"
     },
@@ -85,7 +85,7 @@
       "target_value": 1,
       "target_unit": "percent",
       "window_seconds": 300,
-      "measurement_query_ref": "sum(rate(api_http_requests_total{http_status_code=~\"5..\"}[5m])) / sum(rate(api_http_requests_total[5m])) * 100",
+      "measurement_query_ref": "100 * sum(rate(api_http_requests_total{http_status_code=~\"5..\"}[5m])) / sum(rate(api_http_requests_total[5m]))",
       "owner_role": "OPS",
       "effective_from": "2026-09-23T00:00:00Z"
     },
@@ -97,7 +97,7 @@
       "target_value": 99,
       "target_unit": "percent",
       "window_seconds": 86400,
-      "measurement_query_ref": "avg_over_time(up{service=\"api\"}[24h]) * 100",
+      "measurement_query_ref": "avg_over_time(platform_probe_target_up{service_name=\"api\"}[24h]) * 100",
       "owner_role": "OPS",
       "effective_from": "2026-09-23T00:00:00Z"
     },

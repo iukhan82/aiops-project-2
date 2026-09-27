@@ -1726,7 +1726,8 @@
       "treatments": [
         "CTL-10",
         "CTL-38",
-        "CTL-42"
+        "CTL-42",
+        "CTL-48"
       ],
       "owner": "OPS",
       "due": "2026-10-05"

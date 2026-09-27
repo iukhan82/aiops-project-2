@@ -30,7 +30,12 @@ flowchart TB
     OUTVER["Outcome verifier\n(outcome/v1)"]
     MODELSVC["Model service\nregistry, activation, rollback"]
     AUDIT[("Audit service\nappend-only (P09.05)")]
-    AIOPS["AIOps engine\n(P10)"]
+    subgraph AIOPSBOX["AIOps (P10)"]
+      DQDET["Data-quality detector\nP10.10"]
+      OPDET["Operations anomaly detector\nP10.06 (served: robust z-score baseline)"]
+      PCORR["Platform correlator\nplatform signals into platform incidents, P10.07"]
+      REMED["Remediation\nbounded, policy-controlled (P10.08) - LOCAL STACK ONLY, not one of the target's 19 workloads (P11.03)"]
+    end
   end
 
   KAFKA --> DEVREG
@@ -47,7 +52,11 @@ flowchart TB
   CMD --> AUDIT
   INCIDENT --> AUDIT
   MODELSVC --> EDGEML
-  AIOPS --> CMD
+  NETSTATE -.-> DQDET
+  PROM -.-> OPDET
+  PROM -.-> PCORR
+  PCORR --> REMED
+  REMED -->|"the same request/approve/execute path, never a shortcut"| CMD
 
   subgraph STORES["Data stores (ADR-0003)"]
     PG[("PostgreSQL/PostGIS\ntopology, incidents, commands, audit")]
@@ -61,14 +70,19 @@ flowchart TB
   AUDIT --> PG
   MODELSVC --> OBJ
 
-  subgraph MON["Observability (P10)"]
-    OTEL["OpenTelemetry Collector"]
-    PROM[("Prometheus / Tempo / logs")]
+  subgraph MON["Observability (P10) - each service exports OTLP directly; there is no separate collector pod (verified against the manifests, P13.01)"]
+    PROM[("Prometheus\nmetrics + alert rules")]
+    TEMPO[("Tempo\ntraces")]
+    LOKI[("Loki\nlogs")]
     GRAF["Grafana dashboards"]
   end
-  EDGERT -.->|traces/metrics| OTEL
-  CENTRAL -.->|traces/metrics| OTEL
-  OTEL --> PROM --> GRAF
+  EDGERT -.->|OTLP metrics/traces| PROM
+  EDGERT -.->|OTLP| TEMPO
+  CENTRAL -.->|OTLP metrics/traces| PROM
+  CENTRAL -.->|OTLP| TEMPO
+  PROM --> GRAF
+  TEMPO --> GRAF
+  LOKI --> GRAF
 
   subgraph OPUI["Staff API / BFF and UI"]
     API["Staff API / BFF"]

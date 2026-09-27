@@ -84,8 +84,10 @@ async def api_checks() -> None:
                         "eta_uncertainty_seconds",
                         "constraints_applied",
                         "selected",
+                        "edges",  # added with the operator console (P08): the route's segments, so the map can draw it
                     }
                     == set(a)
+                    and a["edges"]
                     for a in alts
                 )
                 and sum(a["selected"] for a in alts) == 1,

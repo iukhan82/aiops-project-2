@@ -1,0 +1,219 @@
+{
+  "all_passed": true,
+  "checks": {
+    "FA_02_as_written_matches_the_data_quality_evidence_and_keeps_the_interval_and_the_synthetic_source_beside_it": true,
+    "FA_03_as_written_matches_the_incident_quality_evidence_and_says_not_met": true,
+    "LAT_06_and_REC_04_as_written_match_the_recovery_evidence": true,
+    "every_absent_artifact_is_listed_with_the_command_that_regenerates_it": true,
+    "every_measured_row_states_a_scope_sample_or_limit_in_its_own_text": true,
+    "every_measured_target_row_cites_evidence_that_exists": true,
+    "every_non_selecting_opening_records_what_it_was_for": true,
+    "every_package_file_present_matches_its_manifest_hash": true,
+    "every_package_has_a_model_card_that_names_its_limitations": true,
+    "every_partial_row_says_what_is_not_shown_and_names_the_task_that_owns_it": true,
+    "no_dataset_and_feature_version_has_more_than_one_selecting_test_opening_without_a_recorded_reason": true,
+    "re_running_control_mapping_verification_passes": true,
+    "re_running_operations_dataset_verification_passes": true,
+    "re_running_operations_detector_verification_passes": true,
+    "re_running_threat_model_verification_passes": true,
+    "re_running_workload_manifests_verification_passes": true,
+    "the_cited_evidence_passed_or_the_row_says_the_target_was_not_met": true
+  },
+  "generated_at": "2026-09-27T05:04:32Z",
+  "metrics": {
+    "number_tracing": {
+      "ACC-01": {
+        "not_found": [],
+        "numbers": 7
+      },
+      "ACC-02": {
+        "not_found": [],
+        "numbers": 5
+      },
+      "ACC-03": {
+        "not_found": [
+          "0.38"
+        ],
+        "numbers": 7
+      },
+      "ACC-04": {
+        "not_found": [],
+        "numbers": 5
+      },
+      "ETA-01": {
+        "not_found": [],
+        "numbers": 5
+      },
+      "ETA-02": {
+        "not_found": [],
+        "numbers": 4
+      },
+      "ETA-03": {
+        "not_found": [],
+        "numbers": 2
+      },
+      "FA-01": {
+        "not_found": [],
+        "numbers": 3
+      },
+      "FA-02": {
+        "not_found": [],
+        "numbers": 4
+      },
+      "FA-03": {
+        "not_found": [
+          "5.41",
+          "20.7",
+          "10.3"
+        ],
+        "numbers": 6
+      },
+      "LAT-01": {
+        "not_found": [],
+        "numbers": 9
+      },
+      "LAT-02": {
+        "not_found": [
+          "27.8"
+        ],
+        "numbers": 13
+      },
+      "LAT-03": {
+        "not_found": [],
+        "numbers": 1
+      },
+      "LAT-04": {
+        "not_found": [
+          "0.057",
+          "2.70"
+        ],
+        "numbers": 2
+      },
+      "LAT-05": {
+        "not_found": [
+          "0.99",
+          "0.67",
+          "1.13",
+          "0.5"
+        ],
+        "numbers": 5
+      },
+      "LAT-06": {
+        "not_found": [],
+        "numbers": 8
+      },
+      "LOAD-01": {
+        "not_found": [
+          "1,453",
+          "604",
+          "0.35",
+          "0.11",
+          "6.7"
+        ],
+        "numbers": 17
+      },
+      "LOAD-02": {
+        "not_found": [
+          "2,008"
+        ],
+        "numbers": 13
+      },
+      "LOAD-03": {
+        "not_found": [
+          "12.3"
+        ],
+        "numbers": 21
+      },
+      "LOAD-04": {
+        "not_found": [
+          "1.02",
+          "0.99",
+          "687",
+          "333",
+          "0.7"
+        ],
+        "numbers": 6
+      },
+      "REC-01": {
+        "not_found": [],
+        "numbers": 5
+      },
+      "REC-02": {
+        "not_found": [],
+        "numbers": 2
+      },
+      "REC-03": {
+        "not_found": [
+          "0600",
+          "0700"
+        ],
+        "numbers": 9
+      },
+      "REC-04": {
+        "not_found": [],
+        "numbers": 0
+      },
+      "SAFE-01": {
+        "not_found": [],
+        "numbers": 1
+      },
+      "SAFE-02": {
+        "not_found": [],
+        "numbers": 0
+      },
+      "SAFE-03": {
+        "not_found": [],
+        "numbers": 2
+      },
+      "UX-01": {
+        "not_found": [
+          "2.1",
+          "3.19"
+        ],
+        "numbers": 4
+      },
+      "UX-02": {
+        "not_found": [],
+        "numbers": 0
+      },
+      "UX-03": {
+        "not_found": [],
+        "numbers": 0
+      },
+      "UX-04": {
+        "not_found": [],
+        "numbers": 3
+      }
+    },
+    "reproduction": {
+      "control mapping (P09.07)": true,
+      "operations dataset (P10.05)": true,
+      "operations detector (P10.06)": true,
+      "threat model (P09.01)": true,
+      "workload manifests (P11.02)": true
+    }
+  },
+  "notes": {
+    "FA_02_as_written_matches_the_data_quality_evidence_and_keeps_the_interval_and_the_synthetic_source_beside_it": "0/57",
+    "FA_03_as_written_matches_the_incident_quality_evidence_and_says_not_met": "8/27 = 29.6%",
+    "LAT_06_and_REC_04_as_written_match_the_recovery_evidence": "dispatch [6.9, 7.0, 7.0]",
+    "every_absent_artifact_is_listed_with_the_command_that_regenerates_it": "absent from this checkout: none",
+    "every_measured_row_states_a_scope_sample_or_limit_in_its_own_text": "rows with no such wording: []",
+    "every_measured_target_row_cites_evidence_that_exists": "31 measured rows of 31; missing: []",
+    "every_non_selecting_opening_records_what_it_was_for": "17 ledger entries",
+    "every_package_file_present_matches_its_manifest_hash": "7 files match; mismatched []",
+    "every_package_has_a_model_card_that_names_its_limitations": "without limitations: []",
+    "every_partial_row_says_what_is_not_shown_and_names_the_task_that_owns_it": "0 partial rows; without an owner or a gap: []",
+    "no_dataset_and_feature_version_has_more_than_one_selecting_test_opening_without_a_recorded_reason": "4 selecting openings, repeated without a reason: []",
+    "not_reproduced_here": "the edge safety model, the forecast models and the live-stack latencies were not re-run: their training and lab runs are long and need the running stack; their packages are hash-checked above and their evidence is traced above",
+    "number_tracing_summary": "142 of 169 figures written in the measured rows were found in their cited evidence; the rest are listed per row under metrics.number_tracing for review",
+    "re_running_control_mapping_verification_passes": "control mapping (P09.07): P09.07: ALL CHECKS PASSED",
+    "re_running_operations_dataset_verification_passes": "operations dataset (P10.05): P10.05: ALL CHECKS PASSED",
+    "re_running_operations_detector_verification_passes": "operations detector (P10.06): P10.06: ALL CHECKS PASSED",
+    "re_running_threat_model_verification_passes": "threat model (P09.01): P09.01: ALL CHECKS PASSED",
+    "re_running_workload_manifests_verification_passes": "workload manifests (P11.02): P11.02: ALL CHECKS PASSED",
+    "regenerate": "{\"ops-anomaly-detector/1.0.0/model.joblib\": \"python source-code/models/operations_detector/train_evaluate.py\", \"traffic-forecast/1.0.0/models.joblib\": \"python source-code/models/train/train_forecast.py\"}",
+    "the_cited_evidence_passed_or_the_row_says_the_target_was_not_met": "failing without saying so: []"
+  },
+  "task": "P12.03"
+}

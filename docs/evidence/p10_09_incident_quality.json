@@ -1,0 +1,342 @@
+{
+  "all_passed": false,
+  "checks": {
+    "FA_03_platform_incident_false_positive_rate_is_at_most_10_percent_on_the_held_out_test_runs": false,
+    "the_packaged_p10_06_detector_is_available": true
+  },
+  "generated_at": "2026-09-25T09:06:57Z",
+  "metrics": {
+    "fa_03": {
+      "dataset_sha256": "7ccefb873156b3b0cfda253e72b8ccb54c02fe85a1b645bb3c721d6bcc0d6c0d",
+      "degraded_runs": 24,
+      "degraded_runs_with_a_true_incident": 19,
+      "detector": "robust_zscore",
+      "false_incident_rate": 0.2962962962962963,
+      "false_incidents": 8,
+      "false_incidents_per_hour_of_normal_run": 0.0,
+      "incidents": 27,
+      "limit": 0.1,
+      "normal_run_hours": 0.24444444444444444,
+      "overlap_rule_false_incident_rate": 0.0,
+      "overlap_rule_false_incidents": 0,
+      "per_run": [
+        {
+          "components": [
+            "api"
+          ],
+          "false": 0,
+          "incidents": 1,
+          "run": "ops-20260925-api-errors-r0",
+          "scenario": "api_errors",
+          "severity": 0.72,
+          "true": 1
+        },
+        {
+          "components": [
+            "api"
+          ],
+          "false": 0,
+          "incidents": 1,
+          "run": "ops-20260925-api-errors-r1",
+          "scenario": "api_errors",
+          "severity": 0.78,
+          "true": 1
+        },
+        {
+          "components": [
+            "api"
+          ],
+          "false": 0,
+          "incidents": 1,
+          "run": "ops-20260925-api-slow-r0",
+          "scenario": "api_slow",
+          "severity": 0.58,
+          "true": 1
+        },
+        {
+          "components": [
+            "api",
+            "ingestion"
+          ],
+          "false": 1,
+          "incidents": 2,
+          "run": "ops-20260925-api-slow-r1",
+          "scenario": "api_slow",
+          "severity": 0.73,
+          "true": 1
+        },
+        {
+          "components": [
+            "gateway"
+          ],
+          "false": 0,
+          "incidents": 1,
+          "run": "ops-20260925-gateway-stall-r0",
+          "scenario": "gateway_stall",
+          "severity": 0.89,
+          "true": 1
+        },
+        {
+          "components": [
+            "gateway"
+          ],
+          "false": 0,
+          "incidents": 1,
+          "run": "ops-20260925-gateway-stall-r1",
+          "scenario": "gateway_stall",
+          "severity": 0.59,
+          "true": 1
+        },
+        {
+          "components": [
+            "ingestion"
+          ],
+          "false": 1,
+          "incidents": 1,
+          "run": "ops-20260925-ingest-latency-slow-r0",
+          "scenario": "ingest_latency_slow",
+          "severity": 0.93,
+          "true": 0
+        },
+        {
+          "components": [
+            "ingestion"
+          ],
+          "false": 0,
+          "incidents": 1,
+          "run": "ops-20260925-ingest-latency-slow-r1",
+          "scenario": "ingest_latency_slow",
+          "severity": 0.61,
+          "true": 1
+        },
+        {
+          "components": [
+            "ingestion"
+          ],
+          "false": 0,
+          "incidents": 1,
+          "run": "ops-20260925-ingest-reject-surge-r0",
+          "scenario": "ingest_reject_surge",
+          "severity": 0.97,
+          "true": 1
+        },
+        {
+          "components": [
+            "ingestion"
+          ],
+          "false": 1,
+          "incidents": 1,
+          "run": "ops-20260925-ingest-reject-surge-r1",
+          "scenario": "ingest_reject_surge",
+          "severity": 0.85,
+          "true": 0
+        },
+        {
+          "components": [],
+          "false": 0,
+          "incidents": 0,
+          "run": "ops-20260925-normal-r0",
+          "scenario": "normal",
+          "severity": 0.0,
+          "true": 0
+        },
+        {
+          "components": [],
+          "false": 0,
+          "incidents": 0,
+          "run": "ops-20260925-normal-r1",
+          "scenario": "normal",
+          "severity": 0.0,
+          "true": 0
+        },
+        {
+          "components": [
+            "ingestion"
+          ],
+          "false": 0,
+          "incidents": 1,
+          "run": "ops-20260925-state-stale-r0",
+          "scenario": "state_stale",
+          "severity": 0.83,
+          "true": 1
+        },
+        {
+          "components": [
+            "ingestion"
+          ],
+          "false": 0,
+          "incidents": 1,
+          "run": "ops-20260925-state-stale-r1",
+          "scenario": "state_stale",
+          "severity": 0.59,
+          "true": 1
+        },
+        {
+          "components": [
+            "api"
+          ],
+          "false": 0,
+          "incidents": 1,
+          "run": "ops-20260926-api-errors-r0",
+          "scenario": "api_errors",
+          "severity": 0.7,
+          "true": 1
+        },
+        {
+          "components": [
+            "api"
+          ],
+          "false": 0,
+          "incidents": 1,
+          "run": "ops-20260926-api-errors-r1",
+          "scenario": "api_errors",
+          "severity": 0.61,
+          "true": 1
+        },
+        {
+          "components": [
+            "api",
+            "ingestion"
+          ],
+          "false": 2,
+          "incidents": 2,
+          "run": "ops-20260926-api-slow-r0",
+          "scenario": "api_slow",
+          "severity": 0.72,
+          "true": 0
+        },
+        {
+          "components": [
+            "api",
+            "ingestion"
+          ],
+          "false": 1,
+          "incidents": 2,
+          "run": "ops-20260926-api-slow-r1",
+          "scenario": "api_slow",
+          "severity": 0.66,
+          "true": 1
+        },
+        {
+          "components": [
+            "gateway"
+          ],
+          "false": 0,
+          "incidents": 1,
+          "run": "ops-20260926-gateway-stall-r0",
+          "scenario": "gateway_stall",
+          "severity": 0.73,
+          "true": 1
+        },
+        {
+          "components": [
+            "gateway"
+          ],
+          "false": 0,
+          "incidents": 1,
+          "run": "ops-20260926-gateway-stall-r1",
+          "scenario": "gateway_stall",
+          "severity": 0.71,
+          "true": 1
+        },
+        {
+          "components": [
+            "ingestion"
+          ],
+          "false": 0,
+          "incidents": 1,
+          "run": "ops-20260926-ingest-latency-slow-r0",
+          "scenario": "ingest_latency_slow",
+          "severity": 0.51,
+          "true": 1
+        },
+        {
+          "components": [
+            "ingestion"
+          ],
+          "false": 1,
+          "incidents": 1,
+          "run": "ops-20260926-ingest-latency-slow-r1",
+          "scenario": "ingest_latency_slow",
+          "severity": 0.59,
+          "true": 0
+        },
+        {
+          "components": [
+            "ingestion"
+          ],
+          "false": 1,
+          "incidents": 1,
+          "run": "ops-20260926-ingest-reject-surge-r0",
+          "scenario": "ingest_reject_surge",
+          "severity": 0.75,
+          "true": 0
+        },
+        {
+          "components": [
+            "ingestion"
+          ],
+          "false": 0,
+          "incidents": 1,
+          "run": "ops-20260926-ingest-reject-surge-r1",
+          "scenario": "ingest_reject_surge",
+          "severity": 0.95,
+          "true": 1
+        },
+        {
+          "components": [],
+          "false": 0,
+          "incidents": 0,
+          "run": "ops-20260926-normal-r0",
+          "scenario": "normal",
+          "severity": 0.0,
+          "true": 0
+        },
+        {
+          "components": [],
+          "false": 0,
+          "incidents": 0,
+          "run": "ops-20260926-normal-r1",
+          "scenario": "normal",
+          "severity": 0.0,
+          "true": 0
+        },
+        {
+          "components": [
+            "ingestion"
+          ],
+          "false": 0,
+          "incidents": 1,
+          "run": "ops-20260926-state-stale-r0",
+          "scenario": "state_stale",
+          "severity": 0.53,
+          "true": 1
+        },
+        {
+          "components": [
+            "ingestion"
+          ],
+          "false": 0,
+          "incidents": 1,
+          "run": "ops-20260926-state-stale-r1",
+          "scenario": "state_stale",
+          "severity": 0.88,
+          "true": 1
+        }
+      ],
+      "seconds": 15,
+      "test_runs": 28,
+      "true_incidents": 19,
+      "wilson95": [
+        0.15852853317647564,
+        0.4848103338083759
+      ]
+    }
+  },
+  "notes": {
+    "FA_03_platform_incident_false_positive_rate_is_at_most_10_percent_on_the_held_out_test_runs": "8 false of 27 incidents = 29.6% (Wilson 95% 15.9%-48.5%); 19 of 24 degraded runs produced a true incident",
+    "scope": "detector plus correlator on the eight P10.05 signals; the alert rules are not part of this measurement; small sample (2 test seeds)",
+    "the_packaged_p10_06_detector_is_available": ""
+  },
+  "task": "P10.09"
+}
