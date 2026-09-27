@@ -229,9 +229,26 @@ STARTUP_PROBE = (
 )
 
 
-def load_image(archive: Path) -> str:
-    out = br.require(["docker", "load", "-i", str(archive)]).stdout
-    return re.search(r"Loaded image(?: ID)?: (\S+)", out).group(1)
+def load_image_for_smoke_test(
+    name: str, spec: dict, version: str, revision: str, epoch: str
+) -> str:
+    """Loads the image straight into the local Docker daemon through buildx's own `--load`, not `docker load` of the OCI archive:
+    some Docker Engine versions (seen on the GitHub-hosted Ubuntu 24.04 runner's Docker 28.0.4, not on a newer local Engine) fail to
+    import the image-index-wrapped OCI tar BuildKit now produces even for a single-platform build ("blobs/json: no such file or
+    directory") - `--load` never goes through that tar at all. Cache from the two `--no-cache` archive builds moments earlier makes
+    this fast and, since the Dockerfile/context/build-args are unchanged, content-identical; only used for the smoke test below, not
+    for anything recorded, signed or compared as the release digest - that is still `archive`, built with `--no-cache`."""
+    iid_file = OUT / f"{name.removeprefix('aiops-')}-load.iid"
+    br.require(
+        [
+            "docker", "buildx", "build", "--provenance=false", "--sbom=false",
+            "--build-arg", f"SOURCE_DATE_EPOCH={epoch}", "--build-arg", f"VERSION={version}", "--build-arg", f"REVISION={revision}",
+            "-f", str(spec["dockerfile"]), "--iidfile", str(iid_file), "--load", str(spec["context"]),
+        ]
+    )  # fmt: skip
+    image = iid_file.read_text(encoding="utf-8").strip()
+    iid_file.unlink(missing_ok=True)
+    return image
 
 
 def workload_scripts() -> list[str]:
@@ -385,7 +402,7 @@ def main() -> int:  # noqa: PLR0915
         )
 
         try:
-            image = load_image(archive)
+            image = load_image_for_smoke_test(name, spec, version, revision, epoch)
             if name == "aiops-backend":
                 probe = smoke_backend(image)
                 ev.check(
