@@ -1,0 +1,21 @@
+# Falco needs host-level visibility to do its job (P01.07/P09.09): it loads an eBPF probe into the node's kernel, reads every process on the
+# node (hostPID) and needs the CRI socket to resolve a process back to its Kubernetes pod. `source-code/infra/falco/falco-daemonset.yaml`
+# explains this in its own header comment; these five checks describe exactly the properties Falco needs to be Falco. Mitigation: it runs in its
+# own namespace (the only one Pod Security does not hold to `restricted`), nothing else runs there, and no platform workload has any route to it
+# (checked by NetworkPolicy, `infra/k8s/rbac-and-network-policy.yaml`).
+misconfigurations:
+  - id: KSV-0010
+    paths:
+      - source-code/infra/falco/falco-daemonset.yaml
+  - id: KSV-0014
+    paths:
+      - source-code/infra/falco/falco-daemonset.yaml
+  - id: KSV-0017
+    paths:
+      - source-code/infra/falco/falco-daemonset.yaml
+  - id: KSV-0118
+    paths:
+      - source-code/infra/falco/falco-daemonset.yaml
+  - id: KSV-0121
+    paths:
+      - source-code/infra/falco/falco-daemonset.yaml

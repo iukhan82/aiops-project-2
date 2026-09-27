@@ -69,11 +69,13 @@ jobs:
         run: >-
           docker run --rm
           -v "$PWD:/workspace:ro"
+          -w /workspace
           aquasec/trivy:0.74.0
           filesystem
           --scanners vuln,misconfig,secret
           --exit-code 1
           --severity CRITICAL,HIGH
+          --ignorefile /workspace/.trivyignore.yaml
           --skip-dirs /workspace/.git
           --skip-dirs /workspace/.venv
           --skip-dirs /workspace/source-code/frontend/.venv

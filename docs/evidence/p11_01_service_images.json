@@ -19,19 +19,19 @@
     "frontend_two_clean_builds_give_the_identical_image_digest": true,
     "the_admission_gate_admits_the_genuine_provenance_and_rejects_a_one_byte_tampered_copy": true
   },
-  "generated_at": "2026-09-26T04:11:13Z",
+  "generated_at": "2026-09-27T09:10:53Z",
   "metrics": {
     "backend": {
-      "context_tree_sha256": "16a05759f49d816f70d1a67b8c2222463e2619ffc688c6bad2e7f7bda9479b8f",
-      "digest": "sha256:c3cde63e71ec6ce996f979392207f3da07a22dd0f9f60fc56b5759304fc0fc0f",
-      "revision": "a50e778",
+      "context_tree_sha256": "81d2c9b927b043b5a36213b438d0f229760837d12a7d9689b086b64b8512fba4",
+      "digest": "sha256:9c7fea3ac07d2a78425f7832d1c6d57d0e7f5c54c9945ee22298392f68ad5d71",
+      "revision": "a0f032e",
       "user": "aiops:aiops",
       "version": "0.1.0"
     },
     "frontend": {
-      "context_tree_sha256": "e8f157f8705c72d28379f8ddda83c2b012abc3a6d1928d1a4e885e8202141c8f",
-      "digest": "sha256:92efcf56eed93e745d498f1e89ce08fb845d6ffa4b9101d41a7f8d8df87b6b9c",
-      "revision": "a50e778",
+      "context_tree_sha256": "d952212e09b7eaaaaf1fef7012245d783cf00cef901a217b1296cb6a55891a10",
+      "digest": "sha256:1afd1ba1d67867322f356ed45cea108b28bafabd16bb2585b8f1fc80254457dd",
+      "revision": "a0f032e",
       "user": "101",
       "version": "0.1.0"
     },
@@ -56,26 +56,26 @@
     }
   },
   "notes": {
-    "backend_build_inputs_hashed_and_base_images_pinned_by_digest": "227 files, tree 16a05759f49d; bases ['de48e70534b94cd8ebbe06a9']",
+    "backend_build_inputs_hashed_and_base_images_pinned_by_digest": "227 files, tree 81d2c9b927b0; bases ['de48e70534b94cd8ebbe06a9']",
     "backend_every_module_the_service_scripts_import_imports_and_the_operator_api_answers_its_health_check_in_the_read_only_no_capability_container_as_a_non_root_uid": "41 modules from 8 scripts, uid 10002, failed []; the operator API answers its health check: True ",
-    "backend_image_carries_its_release_version_and_source_revision": "version 0.1.0, revision a50e778",
+    "backend_image_carries_its_release_version_and_source_revision": "version 0.1.0, revision a0f032e",
     "backend_image_is_configured_to_run_as_a_non_root_user": "User='aiops:aiops'",
     "backend_no_fixable_critical_or_high_vulnerability": "0 fixable; 44 critical/high in all; unfixable ['CVE-2025-69720', 'CVE-2026-16742', 'CVE-2026-54369', 'CVE-2026-76642', 'CVE-2026-78408']",
     "backend_sbom_generated_from_the_exact_archive": "143 components",
     "backend_sbom_lists_every_locked_package_at_its_pinned_version_and_no_development_package": "47 pinned; missing/different []; dev []",
-    "backend_two_clean_builds_give_the_identical_image_digest": "sha256:c3cde63e71ec6ce9 vs sha256:c3cde63e71ec6ce9",
+    "backend_two_clean_builds_give_the_identical_image_digest": "sha256:9c7fea3ac07d2a78 vs sha256:9c7fea3ac07d2a78",
     "every_sbom_and_provenance_statement_is_signed_and_the_signature_verifies": "4/4 signed",
-    "frontend_build_inputs_hashed_and_base_images_pinned_by_digest": "86 files, tree e8f157f8705c; bases ['f159f681a8d18c0e2bc2e402', 'd0521e90c6e5287db8cf0bc5']",
-    "frontend_image_carries_its_release_version_and_source_revision": "version 0.1.0, revision a50e778",
+    "frontend_build_inputs_hashed_and_base_images_pinned_by_digest": "86 files, tree d952212e09b7; bases ['f159f681a8d18c0e2bc2e402', 'd0521e90c6e5287db8cf0bc5']",
+    "frontend_image_carries_its_release_version_and_source_revision": "version 0.1.0, revision a0f032e",
     "frontend_image_is_configured_to_run_as_a_non_root_user": "User='101'",
     "frontend_no_fixable_critical_or_high_vulnerability": "0 fixable; 0 critical/high in all; unfixable []",
     "frontend_sbom_generated_from_the_exact_archive": "71 components",
     "frontend_serves_the_console_read_only_without_capabilities_with_its_security_headers_as_a_non_root_uid": "{'status_200': True, 'csp': True, 'nosniff': True, 'uid': '101'}",
-    "frontend_two_clean_builds_give_the_identical_image_digest": "sha256:92efcf56eed93e74 vs sha256:92efcf56eed93e74",
+    "frontend_two_clean_builds_give_the_identical_image_digest": "sha256:1afd1ba1d6786732 vs sha256:1afd1ba1d6786732",
     "git_dirty": "True",
-    "git_head": "a50e778f551286340fd47ee9a59fffdcc21dd308",
+    "git_head": "a0f032e5f01d8fd30fefab0746b54302fe33e625",
     "not_proven": "nothing is pushed to a registry and no image signature is attached in a registry (P13.06/P13.07); the cluster admission policy is enforced only once a cluster runs it (P11.03)",
-    "source_date_epoch": "1790270510",
+    "source_date_epoch": "1790498849",
     "the_admission_gate_admits_the_genuine_provenance_and_rejects_a_one_byte_tampered_copy": "genuine admitted=True, tampered admitted=False"
   },
   "task": "P11.01"
